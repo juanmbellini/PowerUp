@@ -117,12 +117,6 @@ local.properties
 .recommenders/
 
 
-### Dropbox template
-# Dropbox settings and caches
-.dropbox
-.dropbox.attr
-.dropbox.cache
-
 
 ### SublimeText template
 # cache files for sublime text

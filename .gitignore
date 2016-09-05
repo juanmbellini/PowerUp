@@ -1,1 +1,9 @@
+### Mac stuff
 .DS_Store
+
+
+### Dropbox template
+# Dropbox settings and caches
+.dropbox
+.dropbox.attr
+.dropbox.cache
