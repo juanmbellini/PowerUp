@@ -10,5 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="interfaces" />
+    <orderEntry type="module" module-name="model" />
   </component>
 </module>
