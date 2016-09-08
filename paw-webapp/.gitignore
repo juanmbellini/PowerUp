@@ -1,5 +1,6 @@
-
-
+#Ignore all IDEA files
+.idea/
+*.iml
 
 ###------------------------------------------------------------------
 ### Auto-generated rules created by .ignore support plugin (hsz.mobi)
