@@ -13,6 +13,8 @@
         <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
         <servlet-api.version>2.5</servlet-api.version>
         <jstl.version>1.2</jstl.version>
+        <org.joda-time.version>2.9.4</org.joda-time.version>
+        <org.postgresql.jdbc.version>9.1-901-1.jdbc4</org.postgresql.jdbc.version>
     </properties>
 
     <modules>
@@ -45,6 +47,16 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${jstl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${org.joda-time.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${org.postgresql.jdbc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
