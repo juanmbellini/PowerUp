@@ -1,5 +1,7 @@
-
-
+#Ignore all IDEA files
+.idea/
+*.iml
+!/*.iml
 
 ###------------------------------------------------------------------
 ### Auto-generated rules created by .ignore support plugin (hsz.mobi)
@@ -156,3 +158,5 @@ dist/
 nbdist/
 nbactions.xml
 .nb-gradle/
+model/java/
+paw-webapp.iml
