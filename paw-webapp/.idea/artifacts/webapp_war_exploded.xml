@@ -23,9 +23,11 @@
           <element id="archive" name="model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="model" />
           </element>
+          <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" />
           <element id="archive" name="service-1.0-SNAPSHOT.jar">
             <element id="module-output" name="service" />
           </element>
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -35,6 +35,8 @@
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="module" module-name="interfaces" />
     <orderEntry type="module" module-name="model" />
+    <orderEntry type="library" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" level="project" />
     <orderEntry type="module" module-name="service" scope="RUNTIME" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.4" level="project" />
   </component>
 </module>
