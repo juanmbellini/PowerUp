@@ -1,0 +1,12 @@
+a- Ver juegos e información detallada de los mismos (idealmente con foto de cada juego)
+b- Leer y dejar reviews de juegos
+c- Ver y dejar puntajes de juegos
+d- Registrar cuáles juegos jugaste/estás jugando/vas a jugar (quizá también en qué consola, cuánto tiempo, etc.)
+
+De ahí, surgen los siguientes features y preguntas:
+1- Los usuarios pueden hablarse entre sí? Mandarse msjs, etc?
+2- El sistema te puede sugerir usuarios con gustos similares? Me parece que esto sería re difícil, no lo quiero hacer
+3- El sistema te puede sugerir juegos? Idem anterior pero quizá la API de IGDB ya tenga esto implementado
+4- El sistema te puede mandar notificaciones de email cuando pasa algo? Ej nuevo juego, nuevo mensaje, etc.
+5- Los usuarios van a poder cargar o sugerir juegos?
+6- El sistema está hecho principalmente para usuarios logueados, para usuarios anónimos, o para ambos?
