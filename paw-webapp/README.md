@@ -8,9 +8,9 @@ This is the PAW project, PowerUp!
 4. Navigate to where you cloned the repo and choose the ```paw-webapp``` subfolder (at the same level as ```doc```)
 5. Choose to ```Import project from external model``` and choose Maven
 6. Leave all the options as is, also check ```Import Maven projects automatically``` and ```Create module groups for multi-Module Maven projects```
-  * Optionally, select to automatically download sources and documentation (highly recommended)
+    * Optionally, select to automatically download sources and documentation (highly recommended)
 7. Click next through all the following windows
-8. IDEA may come up with balloons for VCS (Git), Maven auto-import, and other project features. Enable them all, there should be no errors.
+8. IDEA may come up with balloons for VCS (Git), Maven auto-import, and other project features. Enable them all, there should be no errors. IDEA should automatically detect all source folders, there's no need to go to module settings for each module anymore.
 9. Build the project. Either in the command line invoking ```mvn package``` or ```Build -> Make project``` in IDEA (you can also use the icon on the top right later). IDEA should automatically use JDK 8, or at least ask you if you want to set up a JDK and have version 8 preselected.
 
 ##Running the project with IDEA's Jetty runner
