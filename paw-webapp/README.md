@@ -17,9 +17,10 @@ This is the PAW project, PowerUp!
 1. If you don't have the Jetty Runner plugin installed (or if you don't know), go to ```Help -> Find Action``` and look for Plugins.
 2. Select ```Browse repositories...``` and find Jetty Runner. Jetty Integration/Jetty Server is **not** what you're looking for. Restart IDEA if necessary.
 3. Go to ```Run -> Edit configurations...```. Expand Defaults and find Jetty Runner. Click the green + icon on the top left to create a new configuration of this type.
-4. Specify the classes folder. This is the same as web app folder, changing ```.../webapp/src/main/webapp``` by ```.../webapp/target/classes```
-5. Click OK. You may have to rebuild the project this one time.
-6. Go to ```Run -> Run``` (**not** ```Run...```, you already did that part) or use the icon or keyboard shortcut.
-7. Visit <http://localhost:8080/paw-webapp> to see the web app in action!
-8. When you make changes, recompile (if needed) re-run. Tell IDEA to automatically stop and restart the server for you instead of asking every time, or you manually stopping and restarting the server.
-9. PROFIT
+4. Set the path as ```/```
+5. Specify the classes folder. This is the same as web app folder, changing ```.../webapp/src/main/webapp``` by ```.../webapp/target/classes```
+6. Click OK. You may have to rebuild the project this one time.
+7. Go to ```Run -> Run``` (**not** ```Run...```, you already did that part) or use the icon or keyboard shortcut.
+8. Visit <http://localhost:8080/> to see the web app in action!
+9. When you make changes, recompile (if needed) re-run. Tell IDEA to automatically stop and restart the server for you instead of asking every time, or you manually stopping and restarting the server.
+10. PROFIT
