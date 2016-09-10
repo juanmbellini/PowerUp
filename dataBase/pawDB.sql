@@ -11,48 +11,49 @@ DROP TABLE IF EXISTS powerUp.publishersGames CASCADE;
 DROP TABLE IF EXISTS powerUp.companies CASCADE;
 
 CREATE TABLE IF NOT EXISTS powerUp.games(
-	gameId  integer,
-	name 	varchar,
-	summary	varchar,
-	avgScore real,
-	release date,
-	PRIMARY KEY (gameId)
+	id 		  	serial not null primary key,
+	name 		varchar,
+	summary		text,
+	avgScore 	real,
+	release 	date,
 );
 
 CREATE TABLE IF NOT EXISTS powerUp.genres(
-	genreId integer,
+	id 	 	serial not null primary key,
 	name	varchar,
-	PRIMARY KEY (genreId)
-);
-CREATE TABLE IF NOT EXISTS powerUp.platforms(
-	platformId integer,
-	name	varchar,
-	PRIMARY KEY (platformId)
 );
 
-CREATE TABLE IF NOT EXISTS powerUp.genresGames
-(
-	gameId	integer,
-	genreId integer,
-	FOREIGN KEY (gameId) REFERENCES powerUp.games (gameId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (genreId) REFERENCES powerUp.genres (genreId) ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE IF NOT EXISTS powerUp.platforms(
+	id 		serial not null primary key,
+	name	varchar,
+);
+
+CREATE TABLE IF NOT EXISTS powerUp.gameGenres (
+	id 		serial not null primary key
+	gameId	integer not null,
+	genreId integer not null,
+
+	FOREIGN KEY (gameId) REFERENCES powerUp.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (genreId) REFERENCES powerUp.genres (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(gameId,genreId)
 );
 
-CREATE TABLE IF NOT EXISTS powerUp.platformsGames
-(
-	gameId	integer,
-	platformId integer,
-	FOREIGN KEY (gameId) REFERENCES powerUp.games (gameId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (platformId) REFERENCES powerUp.platforms (platformId) ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE IF NOT EXISTS powerUp.platformsGames (
+	id 	 		serial not null primary key
+	gameId		integer not null,
+	platformId 	integer not null,
+
+	FOREIGN KEY (gameId) REFERENCES powerUp.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (platformId) REFERENCES powerUp.platforms (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(gameId,platformId)
 );
 
-CREATE TABLE IF NOT EXISTS powerUp.keywords
-(
-	gameId	integer,
-	name varchar,
-	FOREIGN KEY (gameId) REFERENCES powerUp.games (gameId) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE IF NOT EXISTS powerUp.keywords (
+	id 		serial not null primary key
+	gameId	integer not null,
+	name 	varchar,
+
+	FOREIGN KEY (gameId) REFERENCES powerUp.games (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CREATE TABLE IF NOT EXISTS powerUp.ratings(
@@ -64,26 +65,27 @@ CREATE TABLE IF NOT EXISTS powerUp.keywords
 	-- FOREIGN KEY( )userId REFERENCES powerUp.users(id)
 -- );
 
-CREATE TABLE IF NOT EXISTS powerUp.companies(
-	companyId  	integer,
+CREATE TABLE IF NOT EXISTS powerUp.companies (
+	id 		serial not null primary key,
 	name 	varchar,
-	PRIMARY KEY (companyId)
 );
 
-CREATE TABLE IF NOT EXISTS powerUp.developersGames
-(
-	gameId	integer,
-	developerId integer,
-	FOREIGN KEY (gameId) REFERENCES powerUp.games (gameId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (developerId) REFERENCES powerUp.companies (companyId) ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE IF NOT EXISTS powerUp.developersGames (
+	id 			serial not null primary key,
+	gameId		integer not null,
+	developerId integer not null,
+
+	FOREIGN KEY (gameId) REFERENCES powerUp.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (developerId) REFERENCES powerUp.companies (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(gameId,developerId)
 );
 
-CREATE TABLE IF NOT EXISTS powerUp.publishersGames
-(
-	gameId	integer,
-	publisherId integer,
-	FOREIGN KEY (gameId) REFERENCES powerUp.games (gameId) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (publisherId) REFERENCES powerUp.companies (companyId) ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE IF NOT EXISTS powerUp.publishersGames (
+	id 			serial not null primary key,
+	gameId		integer not null,
+	publisherId integer not null,
+
+	FOREIGN KEY (gameId) REFERENCES powerUp.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (publisherId) REFERENCES powerUp.companies (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(gameId,publisherId)
 );
