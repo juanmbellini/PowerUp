@@ -21,7 +21,6 @@ function create_user {
 function create_db {
 	psql -lqt | cut -d\| -f 1 | grep -wq $1 || createdb $1 -U $2
 }
-
 # Function to stop database server
 # Must be called after script execution
 function exit_function {
@@ -29,14 +28,12 @@ function exit_function {
 	kill -2 $!
 	echo "Done"
 }
-
 # Function to report error and abort execution of script
 function error_function {
 	echo "Error"
 	echo "Something went wrong... Aborting"
 	exit
 }
-
 # Function that initializes database server, and creates users, databases, and tables
 # Returns 0 on sucess, or -1 otherwise
 function initialize_databases {
@@ -60,6 +57,7 @@ function initialize_databases {
 	return 0
 }
 
+# Script starts here ...
 
 set -e # Aborts script if anything goes wrong
 trap exit_function EXIT INT QUIT KILL TERM STOP
