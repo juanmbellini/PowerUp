@@ -8,18 +8,22 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private ArrayList<Review> reviews = new ArrayList<>();  
+    private ArrayList<Review> reviews = new ArrayList<>();
     private int[] ratings = new int[10];
-    private ArrayList<String> companies;
+    private ArrayList<String> publishers;
+    private ArrayList<String> developers;
     private ArrayList<String> genres;
     private ArrayList<String> keywords;
     private ArrayList<String> platforms;
-    private ArrayList<String> series;
     private String name;
 
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name){this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public ArrayList<Review> getReviews() {
         return reviews;
@@ -37,13 +41,13 @@ public class Game {
         this.ratings = ratings;
     }
 
-    public ArrayList<String> getCompanies() {
-        return companies;
-    }
+    public ArrayList<String> getPublishers() { return publishers; }
 
-    public void setCompanies(ArrayList<String> companies) {
-        this.companies = companies;
-    }
+    public void setPublishers(ArrayList<String> publishers) { this.publishers = publishers; }
+
+    public ArrayList<String> getDevelopers() { return developers; }
+
+    public void setDevelopers(ArrayList<String> developers) { this.developers = developers; }
 
     public ArrayList<String> getGenres() {
         return genres;
@@ -69,12 +73,5 @@ public class Game {
         this.platforms = platforms;
     }
 
-    public ArrayList<String> getSeries() {
-        return series;
-    }
-
-    public void setSeries(ArrayList<String> series) {
-        this.series = series;
-    }
 
 }
