@@ -1,0 +1,4188 @@
+[
+  {
+    "id": 2171,
+    "name": "Warhorse Studios",
+    "created_at": 1391399250948,
+    "updated_at": 1450102463617,
+    "slug": "warhorse-studios",
+    "url": "https://www.igdb.com/companies/warhorse-studios",
+    "logo": {
+      "cloudinary_id": "tsxq1omgrpsjqxkjpkyu",
+      "width": 960,
+      "height": 960
+    },
+    "description": "We are a new independent game development studio, currently working on open-world medieval RPG - Kingdom Come: Deliverance.",
+    "start_date": 1314748800000,
+    "start_date_category": 0,
+    "country": 203,
+    "website": "http://warhorsestudios.cz/",
+    "change_date_category": 7,
+    "twitter": "https://twitter.com/WarhorseStudios",
+    "published": [
+      4843
+    ],
+    "developed": [
+      4843
+    ]
+  },
+  {
+    "id": 2170,
+    "name": "SCE San Diego Studios",
+    "created_at": 1391398471964,
+    "updated_at": 1466690668303,
+    "slug": "sce-san-diego-studios",
+    "url": "https://www.igdb.com/companies/sce-san-diego-studios",
+    "logo": {
+      "cloudinary_id": "as3ue8ur2edmvbtpwflm",
+      "width": 350,
+      "height": 265
+    },
+    "start_date": 1009756800000,
+    "start_date_category": 2,
+    "country": 840,
+    "website": "http://sds.playstation.com/",
+    "parent": 4897,
+    "change_date_category": 7,
+    "developed": [
+      4841,
+      7373,
+      7374,
+      7369,
+      7370,
+      7371,
+      7372,
+      7375,
+      7381,
+      7382,
+      7383,
+      9120,
+      9642,
+      18230,
+      18237,
+      18238,
+      11201
+    ]
+  },
+  {
+    "id": 2169,
+    "name": "Vanguard Entertainment",
+    "created_at": 1391397552284,
+    "updated_at": 1413496237197,
+    "slug": "vanguard-entertainment",
+    "url": "https://www.igdb.com/companies/vanguard-entertainment",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4839,
+      7849
+    ]
+  },
+  {
+    "id": 2168,
+    "name": "Drinkbox Studios",
+    "created_at": 1391397224177,
+    "updated_at": 1465977827354,
+    "slug": "drinkbox-studios",
+    "url": "https://www.igdb.com/companies/drinkbox-studios",
+    "logo": {
+      "cloudinary_id": "w7c9ee9nh1yujfn6frqh",
+      "width": 579,
+      "height": 238
+    },
+    "description": "DrinkBox Studios is an independent Toronto-based video game developer. The company was founded in April of 2008 by a group of game industry veterans.\n\nDrinkBox develops and publishes game products of its own. The company’s objective is to release high-quality, innovative games.",
+    "start_date": 1208217600000,
+    "start_date_category": 0,
+    "country": 124,
+    "website": "http://www.drinkboxstudios.com",
+    "change_date_category": 7,
+    "published": [
+      6066,
+      5893,
+      19121,
+      4838,
+      8862
+    ],
+    "developed": [
+      6066,
+      5893,
+      19121,
+      4838,
+      8862
+    ]
+  },
+  {
+    "id": 2167,
+    "name": "Nintendo SPD Group No. 3",
+    "created_at": 1391382254287,
+    "updated_at": 1391419916208,
+    "slug": "nintendo-spd-group-no-3",
+    "url": "https://www.igdb.com/companies/nintendo-spd-group-no-3",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4836
+    ]
+  },
+  {
+    "id": 2166,
+    "name": "Supersonic Software",
+    "created_at": 1391381476229,
+    "updated_at": 1454678921232,
+    "slug": "supersonic-software",
+    "url": "https://www.igdb.com/companies/supersonic-software",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4831,
+      5112,
+      5816,
+      5727,
+      8512,
+      8513,
+      8775,
+      9187,
+      9863
+    ]
+  },
+  {
+    "id": 2165,
+    "name": "Enterbrain",
+    "created_at": 1391381043834,
+    "updated_at": 1473372378120,
+    "slug": "enterbrain",
+    "url": "https://www.igdb.com/companies/enterbrain",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      22571,
+      4829
+    ],
+    "developed": [
+      22571,
+      22008
+    ]
+  },
+  {
+    "id": 2164,
+    "name": "Play THQ",
+    "created_at": 1391378892863,
+    "updated_at": 1414752474417,
+    "slug": "play-thq",
+    "url": "https://www.igdb.com/companies/play-thq",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4822,
+      5261,
+      7994,
+      7993
+    ]
+  },
+  {
+    "id": 2163,
+    "name": "Agatsuma",
+    "created_at": 1391378684068,
+    "updated_at": 1399737091736,
+    "slug": "agatsuma",
+    "url": "https://www.igdb.com/companies/agatsuma",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4821,
+      6751
+    ],
+    "developed": [
+      6751
+    ]
+  },
+  {
+    "id": 2162,
+    "name": "5th Cell",
+    "created_at": 1391378536311,
+    "updated_at": 1457508211605,
+    "slug": "5th-cell",
+    "url": "https://www.igdb.com/companies/5th-cell",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      2943,
+      4820,
+      4821,
+      5033,
+      8806,
+      8807,
+      8808,
+      18264
+    ]
+  },
+  {
+    "id": 2161,
+    "name": "Armor Project",
+    "created_at": 1391364185003,
+    "updated_at": 1440496649556,
+    "slug": "armor-project",
+    "url": "https://www.igdb.com/companies/armor-project",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      1821,
+      1812,
+      11667
+    ]
+  },
+  {
+    "id": 2160,
+    "name": "Ironstone Partners",
+    "created_at": 1391362857414,
+    "updated_at": 1391364150125,
+    "slug": "ironstone-partners",
+    "url": "https://www.igdb.com/companies/ironstone-partners",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4814
+    ]
+  },
+  {
+    "id": 2159,
+    "name": "Asylum Entertainment",
+    "created_at": 1391362682598,
+    "updated_at": 1396421013542,
+    "slug": "asylum-entertainment",
+    "url": "https://www.igdb.com/companies/asylum-entertainment",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4813,
+      5796
+    ]
+  },
+  {
+    "id": 2158,
+    "name": "4mm Games",
+    "created_at": 1391360740254,
+    "updated_at": 1391364129704,
+    "slug": "4mm-games",
+    "url": "https://www.igdb.com/companies/4mm-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4803
+    ]
+  },
+  {
+    "id": 2157,
+    "name": "Gravity-i",
+    "created_at": 1391360063509,
+    "updated_at": 1399023224106,
+    "slug": "gravity-i",
+    "url": "https://www.igdb.com/companies/gravity-i",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4800,
+      6596
+    ]
+  },
+  {
+    "id": 2156,
+    "name": "Imagination Entertainment",
+    "created_at": 1391360063256,
+    "updated_at": 1391364115495,
+    "slug": "imagination-entertainment",
+    "url": "https://www.igdb.com/companies/imagination-entertainment",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4800
+    ],
+    "developed": [
+      4800
+    ]
+  },
+  {
+    "id": 2155,
+    "name": "Syfy Kids",
+    "created_at": 1391358854061,
+    "updated_at": 1391364105947,
+    "slug": "syfy-kids",
+    "url": "https://www.igdb.com/companies/syfy-kids",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4796
+    ]
+  },
+  {
+    "id": 2154,
+    "name": "Keen Games",
+    "created_at": 1391355530104,
+    "updated_at": 1395583005066,
+    "slug": "keen-games",
+    "url": "https://www.igdb.com/companies/keen-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4795,
+      5146,
+      4876,
+      5615
+    ]
+  },
+  {
+    "id": 2153,
+    "name": "G1M2",
+    "created_at": 1391355096486,
+    "updated_at": 1422995503336,
+    "slug": "g1m2",
+    "url": "https://www.igdb.com/companies/g1m2",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4793,
+      8911
+    ]
+  },
+  {
+    "id": 2152,
+    "name": "WXP Inc",
+    "created_at": 1391354922956,
+    "updated_at": 1401531516307,
+    "slug": "wxp-inc",
+    "url": "https://www.igdb.com/companies/wxp-inc",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4792,
+      7182
+    ]
+  },
+  {
+    "id": 2151,
+    "name": "Jet Black Games",
+    "created_at": 1391354712653,
+    "updated_at": 1391802885243,
+    "slug": "jet-black-games",
+    "url": "https://www.igdb.com/companies/jet-black-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4791,
+      5066
+    ]
+  },
+  {
+    "id": 2150,
+    "name": "Aurona",
+    "created_at": 1391354557955,
+    "updated_at": 1392133021594,
+    "slug": "aurona",
+    "url": "https://www.igdb.com/companies/aurona",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4790,
+      5303
+    ]
+  },
+  {
+    "id": 2149,
+    "name": "Zoe Mode",
+    "created_at": 1391354557914,
+    "updated_at": 1469607129147,
+    "slug": "zoe-mode",
+    "url": "https://www.igdb.com/companies/zoe-mode",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4999,
+      568,
+      4790,
+      4791,
+      4807,
+      4809,
+      4810,
+      4812,
+      4811,
+      4895,
+      5307,
+      5308,
+      5309,
+      5306,
+      5331,
+      7164,
+      7258,
+      6753
+    ]
+  },
+  {
+    "id": 2148,
+    "name": "Konami Digital Entertainment GmbH",
+    "created_at": 1391354290746,
+    "updated_at": 1401003829023,
+    "slug": "konami-digital-entertainment-gmbh",
+    "url": "https://www.igdb.com/companies/konami-digital-entertainment-gmbh",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4789,
+      5806,
+      5803,
+      5804,
+      6956
+    ],
+    "developed": [
+      5806,
+      5803,
+      5804,
+      6956
+    ]
+  },
+  {
+    "id": 2147,
+    "name": "Young Horses",
+    "created_at": 1391339861254,
+    "updated_at": 1391342712093,
+    "slug": "young-horses",
+    "url": "https://www.igdb.com/companies/young-horses",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4788
+    ]
+  },
+  {
+    "id": 2146,
+    "name": "Daoka",
+    "created_at": 1391309689083,
+    "updated_at": 1391342711540,
+    "slug": "daoka",
+    "url": "https://www.igdb.com/companies/daoka",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4787
+    ]
+  },
+  {
+    "id": 2145,
+    "name": "Tango Gameworks",
+    "created_at": 1391309396024,
+    "updated_at": 1469478107941,
+    "slug": "tango-gameworks",
+    "url": "https://www.igdb.com/companies/tango-gameworks",
+    "logo": {
+      "cloudinary_id": "v5nmxsaslpiw0i8cb3pb",
+      "width": 700,
+      "height": 560
+    },
+    "description": "Tango Gameworks  was founded by Shinji Mikami, the creator of the Resident Evil series.\nTheir headquarters and in Tokyo, Japan.",
+    "start_date": 1267401600000,
+    "start_date_category": 0,
+    "country": 392,
+    "parent": 28,
+    "change_date_category": 7,
+    "developed": [
+      21592,
+      4786
+    ]
+  },
+  {
+    "id": 2144,
+    "name": "Sproing Interactive Media",
+    "created_at": 1391266675382,
+    "updated_at": 1391858495337,
+    "slug": "sproing-interactive-media",
+    "url": "https://www.igdb.com/companies/sproing-interactive-media",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4783,
+      5091
+    ]
+  },
+  {
+    "id": 2143,
+    "name": "Deep Silver Vienna",
+    "created_at": 1391266675335,
+    "updated_at": 1391342708618,
+    "slug": "deep-silver-vienna",
+    "url": "https://www.igdb.com/companies/deep-silver-vienna",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4783
+    ]
+  },
+  {
+    "id": 2142,
+    "name": "EA Bright Light",
+    "created_at": 1391265731970,
+    "updated_at": 1391590792452,
+    "slug": "ea-bright-light",
+    "url": "https://www.igdb.com/companies/ea-bright-light",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4778,
+      4904,
+      4906,
+      4905,
+      4908
+    ]
+  },
+  {
+    "id": 2141,
+    "name": "FAKT Software",
+    "created_at": 1391265522742,
+    "updated_at": 1463905004302,
+    "slug": "fakt-software",
+    "url": "https://www.igdb.com/companies/fakt-software",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      19291,
+      4777,
+      9803
+    ]
+  },
+  {
+    "id": 2140,
+    "name": "Pepper Games",
+    "created_at": 1391265522687,
+    "updated_at": 1391342705137,
+    "slug": "pepper-games",
+    "url": "https://www.igdb.com/companies/pepper-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4777
+    ]
+  },
+  {
+    "id": 2139,
+    "name": "DTP Entertainment",
+    "created_at": 1391265522608,
+    "updated_at": 1462572443592,
+    "slug": "dtp-entertainment",
+    "url": "https://www.igdb.com/companies/dtp-entertainment",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4777,
+      5196,
+      7233,
+      6950,
+      8768,
+      8769,
+      8770,
+      11351,
+      10049,
+      3117
+    ],
+    "developed": [
+      5091,
+      18308,
+      15793
+    ]
+  },
+  {
+    "id": 2138,
+    "name": "Novitas Publishing",
+    "created_at": 1391265522550,
+    "updated_at": 1391342705096,
+    "slug": "novitas-publishing",
+    "url": "https://www.igdb.com/companies/novitas-publishing",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4777
+    ]
+  },
+  {
+    "id": 2137,
+    "name": "cerasus.media",
+    "created_at": 1391264769786,
+    "updated_at": 1391342657613,
+    "slug": "cerasus-media",
+    "url": "https://www.igdb.com/companies/cerasus-media",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4774
+    ]
+  },
+  {
+    "id": 2136,
+    "name": "Octopus Studio",
+    "created_at": 1391264611994,
+    "updated_at": 1391342656986,
+    "slug": "octopus-studio",
+    "url": "https://www.igdb.com/companies/octopus-studio",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4773
+    ]
+  },
+  {
+    "id": 2135,
+    "name": "HyberDevbox Japan",
+    "created_at": 1391264611910,
+    "updated_at": 1422458320175,
+    "slug": "hyberdevbox-japan",
+    "url": "https://www.igdb.com/companies/hyberdevbox-japan",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4773
+    ],
+    "developed": [
+      4773,
+      5103
+    ]
+  },
+  {
+    "id": 2134,
+    "name": "War Drum Studios",
+    "created_at": 1391263781668,
+    "updated_at": 1459101691812,
+    "slug": "war-drum-studios",
+    "url": "https://www.igdb.com/companies/war-drum-studios",
+    "logo": {
+      "cloudinary_id": "rfrbqfvqzlbog1d2otjn",
+      "width": 400,
+      "height": 400
+    },
+    "description": "War Drum Studios is a game developer founded in 2007 based in Gainesville, Florida. The Studio is also focused on porting games for the Apple iOS, Android, PC, Sony PlayStation, and Microsoft Xbox.",
+    "start_date": 1199059200000,
+    "start_date_category": 2,
+    "country": 840,
+    "website": "http://www.wardrumstudios.com/",
+    "change_date_category": 7,
+    "twitter": "https://twitter.com/wardrumstudios",
+    "published": [
+      18485
+    ],
+    "developed": [
+      18,
+      18485,
+      4769,
+      566
+    ]
+  },
+  {
+    "id": 2133,
+    "name": "Taffy Entertainment",
+    "created_at": 1391263577949,
+    "updated_at": 1391263848437,
+    "slug": "taffy-entertainment",
+    "url": "https://www.igdb.com/companies/taffy-entertainment",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4768
+    ]
+  },
+  {
+    "id": 2132,
+    "name": "Bold Games",
+    "created_at": 1391262925940,
+    "updated_at": 1391802816236,
+    "slug": "bold-games",
+    "url": "https://www.igdb.com/companies/bold-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4766,
+      4957,
+      4950,
+      4976,
+      4951,
+      5041,
+      4956,
+      4952,
+      4954,
+      5020
+    ]
+  },
+  {
+    "id": 2131,
+    "name": "Twelve Games",
+    "created_at": 1391262791812,
+    "updated_at": 1391342667595,
+    "slug": "twelve-games",
+    "url": "https://www.igdb.com/companies/twelve-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4765,
+      4775
+    ]
+  },
+  {
+    "id": 2130,
+    "name": "Extra Mile Studios",
+    "created_at": 1391262632389,
+    "updated_at": 1391262655925,
+    "slug": "extra-mile-studios",
+    "url": "https://www.igdb.com/companies/extra-mile-studios",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4764
+    ]
+  },
+  {
+    "id": 2129,
+    "name": "Noviy Disk",
+    "created_at": 1391262479334,
+    "updated_at": 1458863476400,
+    "slug": "noviy-disk",
+    "url": "https://www.igdb.com/companies/noviy-disk",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4763
+    ],
+    "developed": [
+      6959
+    ]
+  },
+  {
+    "id": 2128,
+    "name": "Ware Interactive",
+    "created_at": 1391262242208,
+    "updated_at": 1391262533720,
+    "slug": "ware-interactive",
+    "url": "https://www.igdb.com/companies/ware-interactive",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4762
+    ]
+  },
+  {
+    "id": 2127,
+    "name": "Zuxxes",
+    "created_at": 1391262242125,
+    "updated_at": 1391262533677,
+    "slug": "zuxxes",
+    "url": "https://www.igdb.com/companies/zuxxes",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4762
+    ]
+  },
+  {
+    "id": 2126,
+    "name": "Frontline Studios",
+    "created_at": 1391262242003,
+    "updated_at": 1457508218458,
+    "slug": "frontline-studios",
+    "url": "https://www.igdb.com/companies/frontline-studios",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4762,
+      18260
+    ]
+  },
+  {
+    "id": 2125,
+    "name": "Toontraxx",
+    "created_at": 1391262241923,
+    "updated_at": 1391262533603,
+    "slug": "toontraxx",
+    "url": "https://www.igdb.com/companies/toontraxx",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4762
+    ]
+  },
+  {
+    "id": 2124,
+    "name": "Slam Games",
+    "created_at": 1391261881539,
+    "updated_at": 1391262533019,
+    "slug": "slam-games",
+    "url": "https://www.igdb.com/companies/slam-games",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4761
+    ]
+  },
+  {
+    "id": 2123,
+    "name": "Foxconn Technology Group",
+    "created_at": 1391260815842,
+    "updated_at": 1391260815842,
+    "slug": "foxconn-technology-group",
+    "url": "https://www.igdb.com/companies/foxconn-technology-group",
+    "start_date_category": 0,
+    "change_date_category": 0
+  },
+  {
+    "id": 2122,
+    "name": "One True Game Studios",
+    "created_at": 1391222238432,
+    "updated_at": 1391259884463,
+    "slug": "one-true-game-studios",
+    "url": "https://www.igdb.com/companies/one-true-game-studios",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4759
+    ]
+  },
+  {
+    "id": 2121,
+    "name": "Iron Galaxy Studios",
+    "created_at": 1391222238374,
+    "updated_at": 1466492967818,
+    "slug": "iron-galaxy-studios",
+    "url": "https://www.igdb.com/companies/iron-galaxy-studios",
+    "logo": {
+      "cloudinary_id": "bz8dmxxfvmlct04ecmwe",
+      "width": 1920,
+      "height": 1080
+    },
+    "description": "Iron Galaxy is a Chicago based game development studio founded by industry veterans who have worked closely for years.   Each of our team members average over eleven years experience in various senior roles with a gameography that boasts published titles on every major gaming console since the original Sony PlayStation.  With a focus on big console technology including the Xbox 360 and Playstation3, our clients and partners rely on Iron Galaxy’s expertise and track record to execute on their most trusted brands.",
+    "start_date": 1218758400000,
+    "start_date_category": 0,
+    "country": 840,
+    "website": "http://irongalaxystudios.com/",
+    "change_date_category": 7,
+    "twitter": "https://twitter.com/IToTheG",
+    "published": [
+      19607,
+      4759,
+      11184
+    ],
+    "developed": [
+      10354,
+      4759,
+      5304,
+      4220,
+      6710,
+      1011,
+      8806,
+      5574,
+      14548,
+      18052
+    ]
+  },
+  {
+    "id": 2120,
+    "name": "Grounding Inc",
+    "created_at": 1391221231765,
+    "updated_at": 1391259877390,
+    "slug": "grounding-inc",
+    "url": "https://www.igdb.com/companies/grounding-inc",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4757
+    ]
+  },
+  {
+    "id": 2119,
+    "name": "Real Arcade",
+    "created_at": 1391210061152,
+    "updated_at": 1391259642874,
+    "slug": "real-arcade",
+    "url": "https://www.igdb.com/companies/real-arcade",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "published": [
+      4752
+    ]
+  },
+  {
+    "id": 2118,
+    "name": "Oxygen Interactive Software",
+    "created_at": 1391210061052,
+    "updated_at": 1423218274147,
+    "slug": "oxygen-interactive-software",
+    "url": "https://www.igdb.com/companies/oxygen-interactive-software",
+    "logo": {
+      "cloudinary_id": "x0zdrckxnr8lsdhqn5wg",
+      "width": 249,
+      "height": 59
+    },
+    "start_date": 1009756800000,
+    "start_date_category": 2,
+    "country": 826,
+    "changed_company_id": 1942,
+    "change_date": 1104451200000,
+    "change_date_category": 2,
+    "published": [
+      4794,
+      5092,
+      4752,
+      8934
+    ]
+  },
+  {
+    "id": 2117,
+    "name": "Gamenauts",
+    "created_at": 1391210060930,
+    "updated_at": 1391259642760,
+    "slug": "gamenauts",
+    "url": "https://www.igdb.com/companies/gamenauts",
+    "start_date_category": 0,
+    "change_date_category": 0,
+    "developed": [
+      4752
+    ]
+  },
+  {
+    "id": 4127,
+    "name": "Sphere",
+    "created_at": 1415935550360,
+    "updated_at": 1415947496049,
+    "slug": "sphere",
+    "url": "https://www.igdb.com/companies/sphere",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4126,
+    "name": "Andromeda Software",
+    "created_at": 1415935550318,
+    "updated_at": 1415947495974,
+    "slug": "andromeda-software",
+    "url": "https://www.igdb.com/companies/andromeda-software",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4125,
+    "name": "Elorg",
+    "created_at": 1415935550266,
+    "updated_at": 1415947495930,
+    "slug": "elorg",
+    "url": "https://www.igdb.com/companies/elorg",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4124,
+    "name": "Vadim Gerasimov",
+    "created_at": 1415935550217,
+    "updated_at": 1415947495856,
+    "slug": "vadim-gerasimov",
+    "url": "https://www.igdb.com/companies/vadim-gerasimov",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4123,
+    "name": "Alexey Pajitnov",
+    "created_at": 1415935550182,
+    "updated_at": 1415947495823,
+    "slug": "alexey-pajitnov",
+    "url": "https://www.igdb.com/companies/alexey-pajitnov",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4122,
+    "name": "DR Korea",
+    "created_at": 1415935550146,
+    "updated_at": 1415947495781,
+    "slug": "dr-korea",
+    "url": "https://www.igdb.com/companies/dr-korea",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8197
+    ]
+  },
+  {
+    "id": 4121,
+    "name": "Tandy",
+    "created_at": 1415935550100,
+    "updated_at": 1469829929802,
+    "slug": "tandy",
+    "url": "https://www.igdb.com/companies/tandy",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      21921,
+      8197
+    ]
+  },
+  {
+    "id": 4120,
+    "name": "AcademySoft",
+    "created_at": 1415935550041,
+    "updated_at": 1415947495543,
+    "slug": "academysoft",
+    "url": "https://www.igdb.com/companies/academysoft",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8197
+    ],
+    "developed": [
+      8197
+    ]
+  },
+  {
+    "id": 4119,
+    "name": "Mirrorsoft",
+    "created_at": 1415935549981,
+    "updated_at": 1466459790461,
+    "slug": "mirrorsoft",
+    "url": "https://www.igdb.com/companies/mirrorsoft",
+    "description": "Founded by Jim Mackonochie and Robert Maxwell. Bought by Acclaim Entertainment in 1992 and renamed to Arena Entertainment",
+    "start_date": 410140800000,
+    "start_date_category": 2,
+    "country": 826,
+    "changed_company_id": 2424,
+    "change_date": 725760000000,
+    "change_date_category": 2,
+    "published": [
+      13985,
+      12034,
+      8197,
+      11953,
+      12088,
+      12102
+    ]
+  },
+  {
+    "id": 4118,
+    "name": "SoMa Play",
+    "created_at": 1415906593816,
+    "updated_at": 1415947495888,
+    "slug": "soma-play",
+    "url": "https://www.igdb.com/companies/soma-play",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8194,
+      8197
+    ]
+  },
+  {
+    "id": 4117,
+    "name": "Ralston-Purina",
+    "created_at": 1415882852725,
+    "updated_at": 1421751325148,
+    "slug": "ralston-purina",
+    "url": "https://www.igdb.com/companies/ralston-purina",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8192,
+      8718
+    ]
+  },
+  {
+    "id": 4116,
+    "name": "Digital Café",
+    "created_at": 1415882852685,
+    "updated_at": 1421751325106,
+    "slug": "digital-cafe",
+    "url": "https://www.igdb.com/companies/digital-cafe",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8192,
+      8718
+    ]
+  },
+  {
+    "id": 4115,
+    "name": "Lion Entertainment",
+    "created_at": 1415880951805,
+    "updated_at": 1469372261746,
+    "slug": "lion-entertainment",
+    "url": "https://www.igdb.com/companies/lion-entertainment",
+    "logo": {
+      "cloudinary_id": "adxzpcfvuauywzi7akit",
+      "width": 320,
+      "height": 200
+    },
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      4344,
+      312,
+      10192,
+      4270
+    ]
+  },
+  {
+    "id": 4114,
+    "name": "Bashou House",
+    "created_at": 1415879955258,
+    "updated_at": 1415884927004,
+    "slug": "bashou-house",
+    "url": "https://www.igdb.com/companies/bashou-house",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      673
+    ]
+  },
+  {
+    "id": 4113,
+    "name": "Art Data Interactive",
+    "created_at": 1415879955217,
+    "updated_at": 1415884926969,
+    "slug": "art-data-interactive",
+    "url": "https://www.igdb.com/companies/art-data-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      673
+    ]
+  },
+  {
+    "id": 4112,
+    "name": "Soft Bank",
+    "created_at": 1415879955173,
+    "updated_at": 1415884926932,
+    "slug": "soft-bank",
+    "url": "https://www.igdb.com/companies/soft-bank",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      673
+    ]
+  },
+  {
+    "id": 4111,
+    "name": "Midway Studios San Diego",
+    "created_at": 1415879955122,
+    "updated_at": 1415884926824,
+    "slug": "midway-studios-san-diego",
+    "url": "https://www.igdb.com/companies/midway-studios-san-diego",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      673
+    ]
+  },
+  {
+    "id": 4110,
+    "name": "Micronics",
+    "created_at": 1415856245614,
+    "updated_at": 1423668483948,
+    "slug": "micronics",
+    "url": "https://www.igdb.com/companies/micronics",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      4606
+    ],
+    "developed": [
+      9052
+    ]
+  },
+  {
+    "id": 4109,
+    "name": "Kabam",
+    "created_at": 1415826401690,
+    "updated_at": 1415865890848,
+    "slug": "kabam",
+    "url": "https://www.igdb.com/companies/kabam",
+    "logo": {
+      "cloudinary_id": "f8bripa2jatc0zrggmds",
+      "width": 532,
+      "height": 269
+    },
+    "description": "A publisher focused on free to play games with micro transactions. Mainly focusing on games available to play in browsers and mobile devices.",
+    "start_date_category": 7,
+    "website": "http://corporate.kabam.com/company/",
+    "change_date_category": 7,
+    "published": [
+      8188
+    ]
+  },
+  {
+    "id": 4108,
+    "name": "Wild Shadow Studios",
+    "created_at": 1415826401643,
+    "updated_at": 1415865869035,
+    "slug": "wild-shadow-studios",
+    "url": "https://www.igdb.com/companies/wild-shadow-studios",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8188
+    ]
+  },
+  {
+    "id": 4107,
+    "name": "SCE Australia",
+    "created_at": 1415797583169,
+    "updated_at": 1449825979738,
+    "slug": "sce-australia",
+    "url": "https://www.igdb.com/companies/sce-australia",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      425,
+      426,
+      15179
+    ]
+  },
+  {
+    "id": 4106,
+    "name": "Light Weight",
+    "created_at": 1415696991441,
+    "updated_at": 1418290519476,
+    "slug": "light-weight",
+    "url": "https://www.igdb.com/companies/light-weight",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      1418,
+      1419,
+      1420,
+      1422,
+      1421
+    ]
+  },
+  {
+    "id": 4105,
+    "name": "Kenproduction",
+    "created_at": 1415631310432,
+    "updated_at": 1415631310432,
+    "slug": "kenproduction",
+    "url": "https://www.igdb.com/companies/kenproduction",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4104,
+    "name": "Mox Co., Ltd.",
+    "created_at": 1415631310329,
+    "updated_at": 1415631310329,
+    "slug": "mox-co-dot-ltd",
+    "url": "https://www.igdb.com/companies/mox-co-dot-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4103,
+    "name": "SRD Co., Ltd.",
+    "created_at": 1415631310191,
+    "updated_at": 1415631310191,
+    "slug": "srd-co-dot-ltd",
+    "url": "https://www.igdb.com/companies/srd-co-dot-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4102,
+    "name": "Aventurine SA",
+    "created_at": 1415614554448,
+    "updated_at": 1415622946081,
+    "slug": "aventurine-sa--1",
+    "url": "https://www.igdb.com/companies/aventurine-sa--1",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8185
+    ]
+  },
+  {
+    "id": 4101,
+    "name": "Aventurine",
+    "created_at": 1415614553628,
+    "updated_at": 1415622946390,
+    "slug": "aventurine",
+    "url": "https://www.igdb.com/companies/aventurine",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8185
+    ]
+  },
+  {
+    "id": 4100,
+    "name": "Aventurine SA",
+    "created_at": 1415614552968,
+    "updated_at": 1415614552968,
+    "slug": "aventurine-sa",
+    "url": "https://www.igdb.com/companies/aventurine-sa",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4099,
+    "name": "Open Corp",
+    "created_at": 1415584923465,
+    "updated_at": 1415608783027,
+    "slug": "open-corp",
+    "url": "https://www.igdb.com/companies/open-corp",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      2630
+    ]
+  },
+  {
+    "id": 4098,
+    "name": "Bootleg",
+    "created_at": 1415584922775,
+    "updated_at": 1445949159425,
+    "slug": "bootleg",
+    "url": "https://www.igdb.com/companies/bootleg",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4097,
+    "name": "Vertigo Games",
+    "created_at": 1415570894901,
+    "updated_at": 1457174937294,
+    "slug": "vertigo-games--1",
+    "url": "https://www.igdb.com/companies/vertigo-games--1",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8183
+    ],
+    "developed": [
+      8183,
+      16298
+    ]
+  },
+  {
+    "id": 4096,
+    "name": "Vertigo Games",
+    "created_at": 1415569766457,
+    "updated_at": 1457699557553,
+    "slug": "vertigo-games",
+    "url": "https://www.igdb.com/companies/vertigo-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8181,
+      8182,
+      18303
+    ],
+    "developed": [
+      8181,
+      8182,
+      18303
+    ]
+  },
+  {
+    "id": 4095,
+    "name": "Kouyousha",
+    "created_at": 1415479883975,
+    "updated_at": 1415525130977,
+    "slug": "kouyousha",
+    "url": "https://www.igdb.com/companies/kouyousha",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      1732
+    ]
+  },
+  {
+    "id": 4094,
+    "name": "Aldorlea Games",
+    "created_at": 1415467408731,
+    "updated_at": 1472942155747,
+    "slug": "aldorlea-games",
+    "url": "https://www.igdb.com/companies/aldorlea-games",
+    "logo": {
+      "cloudinary_id": "etra8hjzhx8ogkpjm74i",
+      "width": 320,
+      "height": 320
+    },
+    "description": "Aldorlea Games has set one very goal: to bring you an unforgettable and rich gaming experience in the vein of those classics. \n\nAldorlea Games is an independent company specialized in casual RPG, old-school RPG, retro gaming and adventure games.",
+    "start_date": 1230681600000,
+    "start_date_category": 2,
+    "website": "http://www.aldorlea.org/",
+    "change_date_category": 7,
+    "published": [
+      23489,
+      10364,
+      10507,
+      8180,
+      8179,
+      8176,
+      8178,
+      18643,
+      17059,
+      17361
+    ],
+    "developed": [
+      23489,
+      10364,
+      10507,
+      8180,
+      8179,
+      8176,
+      8178,
+      17361,
+      14787,
+      9933
+    ]
+  },
+  {
+    "id": 4093,
+    "name": "H2 Interactive",
+    "created_at": 1415442590088,
+    "updated_at": 1415450820457,
+    "slug": "h2-interactive",
+    "url": "https://www.igdb.com/companies/h2-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      6441
+    ]
+  },
+  {
+    "id": 4092,
+    "name": "N3V Games",
+    "created_at": 1415442590050,
+    "updated_at": 1469693425990,
+    "slug": "n3v-games",
+    "url": "https://www.igdb.com/companies/n3v-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      11021,
+      11018,
+      6441,
+      17777
+    ],
+    "developed": [
+      11021,
+      11018,
+      17777
+    ]
+  },
+  {
+    "id": 4091,
+    "name": "PQube",
+    "created_at": 1415442590010,
+    "updated_at": 1468629171617,
+    "slug": "pqube--1",
+    "url": "https://www.igdb.com/companies/pqube--1",
+    "logo": {
+      "cloudinary_id": "nf6fnmqcmxfmjmk83xvv",
+      "width": 194,
+      "height": 63
+    },
+    "description": "PQube is a publisher and distributor of video games for PlayStation 4, Xbox One, PlayStation 3, Xbox 360, PS Vita, Nintendo 3DS, Nintendo Wii and Windows PC.",
+    "start_date": 1262217600000,
+    "start_date_category": 2,
+    "country": 826,
+    "website": "http://www.pqube.co.uk/",
+    "change_date_category": 7,
+    "published": [
+      20047,
+      11002,
+      19798,
+      6441,
+      7194
+    ]
+  },
+  {
+    "id": 4090,
+    "name": "Havas Interactive",
+    "created_at": 1415433875327,
+    "updated_at": 1415433936211,
+    "slug": "havas-interactive",
+    "url": "https://www.igdb.com/companies/havas-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      126
+    ]
+  },
+  {
+    "id": 4089,
+    "name": "Disastercake",
+    "created_at": 1415431537868,
+    "updated_at": 1468006215587,
+    "slug": "disastercake",
+    "url": "https://www.igdb.com/companies/disastercake",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8174
+    ],
+    "developed": [
+      8174
+    ]
+  },
+  {
+    "id": 4088,
+    "name": "Masatsugu Shinozaki Group",
+    "created_at": 1415408394511,
+    "updated_at": 1415408394511,
+    "slug": "masatsugu-shinozaki-group",
+    "url": "https://www.igdb.com/companies/masatsugu-shinozaki-group",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4087,
+    "name": "Swing",
+    "created_at": 1415408393602,
+    "updated_at": 1415408393602,
+    "slug": "swing",
+    "url": "https://www.igdb.com/companies/swing",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4086,
+    "name": "Otogi LLC",
+    "created_at": 1415408393507,
+    "updated_at": 1415408393507,
+    "slug": "otogi-llc",
+    "url": "https://www.igdb.com/companies/otogi-llc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4085,
+    "name": "Bacteria Inc.",
+    "created_at": 1415408393403,
+    "updated_at": 1415408393403,
+    "slug": "bacteria-inc",
+    "url": "https://www.igdb.com/companies/bacteria-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4084,
+    "name": "Zener Works Inc.",
+    "created_at": 1415408393310,
+    "updated_at": 1415408393310,
+    "slug": "zener-works-inc",
+    "url": "https://www.igdb.com/companies/zener-works-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4083,
+    "name": "PlayStation C.A.M.P.",
+    "created_at": 1415408390617,
+    "updated_at": 1415408390617,
+    "slug": "playstation-camp",
+    "url": "https://www.igdb.com/companies/playstation-camp",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4082,
+    "name": "The Sequence Group",
+    "created_at": 1415359504886,
+    "updated_at": 1415359504886,
+    "slug": "the-sequence-group",
+    "url": "https://www.igdb.com/companies/the-sequence-group",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4081,
+    "name": "Cynergy Systems Inc",
+    "created_at": 1415359504699,
+    "updated_at": 1415359504699,
+    "slug": "cynergy-systems-inc",
+    "url": "https://www.igdb.com/companies/cynergy-systems-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4080,
+    "name": "Los Angles/ Seattle/ Tokyo Music Production Unit",
+    "created_at": 1415359493200,
+    "updated_at": 1415359493200,
+    "slug": "los-angles-slash-seattle-slash-tokyo-music-production-unit",
+    "url": "https://www.igdb.com/companies/los-angles-slash-seattle-slash-tokyo-music-production-unit",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4079,
+    "name": "Bristol/London Music Production Unit",
+    "created_at": 1415359489005,
+    "updated_at": 1415359489005,
+    "slug": "bristol-slash-london-music-production-unit",
+    "url": "https://www.igdb.com/companies/bristol-slash-london-music-production-unit",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4078,
+    "name": "Experis",
+    "created_at": 1415359477347,
+    "updated_at": 1415359477347,
+    "slug": "experis",
+    "url": "https://www.igdb.com/companies/experis",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4077,
+    "name": "Software Project",
+    "created_at": 1415352390548,
+    "updated_at": 1415374659072,
+    "slug": "software-project",
+    "url": "https://www.igdb.com/companies/software-project",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8170
+    ]
+  },
+  {
+    "id": 4076,
+    "name": "Tynesoft",
+    "created_at": 1415352390508,
+    "updated_at": 1459337215151,
+    "slug": "tynesoft",
+    "url": "https://www.igdb.com/companies/tynesoft",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8170,
+      9166,
+      11956,
+      12284,
+      12429,
+      14780,
+      18524,
+      18523
+    ],
+    "developed": [
+      12284
+    ]
+  },
+  {
+    "id": 4075,
+    "name": "Software Projects",
+    "created_at": 1415352390460,
+    "updated_at": 1468221880974,
+    "slug": "software-projects",
+    "url": "https://www.igdb.com/companies/software-projects",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      4603,
+      8171
+    ],
+    "developed": [
+      8170,
+      8171
+    ]
+  },
+  {
+    "id": 4074,
+    "name": "TNX Music Recordings",
+    "created_at": 1415350992998,
+    "updated_at": 1415374638048,
+    "slug": "tnx-music-recordings",
+    "url": "https://www.igdb.com/companies/tnx-music-recordings",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8167
+    ]
+  },
+  {
+    "id": 4073,
+    "name": "Similis",
+    "created_at": 1415324872256,
+    "updated_at": 1415346691387,
+    "slug": "similis",
+    "url": "https://www.igdb.com/companies/similis",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8162
+    ]
+  },
+  {
+    "id": 4072,
+    "name": "LSP",
+    "created_at": 1415324546432,
+    "updated_at": 1433145835792,
+    "slug": "lsp",
+    "url": "https://www.igdb.com/companies/lsp",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8161,
+      8162,
+      8160,
+      5881
+    ]
+  },
+  {
+    "id": 4071,
+    "name": "Bruno R. Marcos",
+    "created_at": 1415311657229,
+    "updated_at": 1415315710188,
+    "slug": "bruno-r-marcos",
+    "url": "https://www.igdb.com/companies/bruno-r-marcos",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8147,
+      8148
+    ],
+    "developed": [
+      8147,
+      8148
+    ]
+  },
+  {
+    "id": 4070,
+    "name": "Eyebrow Interactive",
+    "created_at": 1415310835819,
+    "updated_at": 1453376148158,
+    "slug": "eyebrow-interactive",
+    "url": "https://www.igdb.com/companies/eyebrow-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8146,
+      16627
+    ],
+    "developed": [
+      8146,
+      16627
+    ]
+  },
+  {
+    "id": 4069,
+    "name": "Derek Yu",
+    "created_at": 1415310305218,
+    "updated_at": 1415315708137,
+    "slug": "derek-yu",
+    "url": "https://www.igdb.com/companies/derek-yu",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8145
+    ],
+    "developed": [
+      8145
+    ]
+  },
+  {
+    "id": 4068,
+    "name": "Infinitap Games",
+    "created_at": 1415258883022,
+    "updated_at": 1468629208845,
+    "slug": "infinitap-games",
+    "url": "https://www.igdb.com/companies/infinitap-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8138
+    ],
+    "developed": [
+      8138
+    ]
+  },
+  {
+    "id": 4067,
+    "name": "WJS Design",
+    "created_at": 1415230151412,
+    "updated_at": 1420969549467,
+    "slug": "wjs-design",
+    "url": "https://www.igdb.com/companies/wjs-design",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8121,
+      8495
+    ]
+  },
+  {
+    "id": 4066,
+    "name": "Equilibrium",
+    "created_at": 1415229598587,
+    "updated_at": 1415262756060,
+    "slug": "equilibrium",
+    "url": "https://www.igdb.com/companies/equilibrium",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8119
+    ]
+  },
+  {
+    "id": 4065,
+    "name": "Curve Studios",
+    "created_at": 1415223445753,
+    "updated_at": 1468316645505,
+    "slug": "curve-studios",
+    "url": "https://www.igdb.com/companies/curve-studios",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8117
+    ],
+    "developed": [
+      17959,
+      5892,
+      10923,
+      10922,
+      10924
+    ]
+  },
+  {
+    "id": 4064,
+    "name": "Superflat Games",
+    "created_at": 1415223445683,
+    "updated_at": 1453193346658,
+    "slug": "superflat-games",
+    "url": "https://www.igdb.com/companies/superflat-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8117
+    ],
+    "developed": [
+      8117
+    ]
+  },
+  {
+    "id": 4063,
+    "name": "Limasse Five",
+    "created_at": 1415222289492,
+    "updated_at": 1453996623522,
+    "slug": "limasse-five",
+    "url": "https://www.igdb.com/companies/limasse-five",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8116
+    ],
+    "developed": [
+      8116
+    ]
+  },
+  {
+    "id": 4062,
+    "name": "4PM GAME",
+    "created_at": 1415221719987,
+    "updated_at": 1415222044359,
+    "slug": "4pm-game",
+    "url": "https://www.igdb.com/companies/4pm-game",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8115
+    ]
+  },
+  {
+    "id": 4061,
+    "name": "Bojan Brbora",
+    "created_at": 1415221719941,
+    "updated_at": 1415222044221,
+    "slug": "bojan-brbora",
+    "url": "https://www.igdb.com/companies/bojan-brbora",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8115
+    ]
+  },
+  {
+    "id": 4060,
+    "name": "Adult Swim",
+    "created_at": 1415221052831,
+    "updated_at": 1472155024403,
+    "slug": "adult-swim",
+    "url": "https://www.igdb.com/companies/adult-swim",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8903
+    ],
+    "developed": [
+      16306
+    ]
+  },
+  {
+    "id": 4059,
+    "name": "Necrophone Games",
+    "created_at": 1415221052732,
+    "updated_at": 1472155024319,
+    "slug": "necrophone-games",
+    "url": "https://www.igdb.com/companies/necrophone-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8114
+    ]
+  },
+  {
+    "id": 4058,
+    "name": "Mario Kart Band",
+    "created_at": 1415205229910,
+    "updated_at": 1415205229910,
+    "slug": "mario-kart-band",
+    "url": "https://www.igdb.com/companies/mario-kart-band",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4057,
+    "name": "PTD Guideline Compliance",
+    "created_at": 1415205227519,
+    "updated_at": 1415205227519,
+    "slug": "ptd-guideline-compliance",
+    "url": "https://www.igdb.com/companies/ptd-guideline-compliance",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4056,
+    "name": "Sessing Music Services",
+    "created_at": 1415205039186,
+    "updated_at": 1415205039186,
+    "slug": "sessing-music-services",
+    "url": "https://www.igdb.com/companies/sessing-music-services",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4055,
+    "name": "Synapse Films",
+    "created_at": 1415205038891,
+    "updated_at": 1415205038891,
+    "slug": "synapse-films",
+    "url": "https://www.igdb.com/companies/synapse-films",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4054,
+    "name": "Shooting Star",
+    "created_at": 1415205038835,
+    "updated_at": 1415205038835,
+    "slug": "shooting-star",
+    "url": "https://www.igdb.com/companies/shooting-star",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4053,
+    "name": "Corbis Images",
+    "created_at": 1415205038726,
+    "updated_at": 1415205038726,
+    "slug": "corbis-images",
+    "url": "https://www.igdb.com/companies/corbis-images",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4052,
+    "name": "Viacom Entertainment Group",
+    "created_at": 1415205038297,
+    "updated_at": 1415205038297,
+    "slug": "viacom-entertainment-group",
+    "url": "https://www.igdb.com/companies/viacom-entertainment-group",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4051,
+    "name": "Kokopeli Digital Studios",
+    "created_at": 1415189187558,
+    "updated_at": 1440058906033,
+    "slug": "kokopeli-digital-studios",
+    "url": "https://www.igdb.com/companies/kokopeli-digital-studios",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      1957,
+      10456
+    ]
+  },
+  {
+    "id": 4050,
+    "name": "DePaul University students",
+    "created_at": 1415140515526,
+    "updated_at": 1415148280661,
+    "slug": "depaul-university-students",
+    "url": "https://www.igdb.com/companies/depaul-university-students",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8110
+    ]
+  },
+  {
+    "id": 4049,
+    "name": "Ravensburger Interactive Media",
+    "created_at": 1415134226970,
+    "updated_at": 1415148237394,
+    "slug": "ravensburger-interactive-media",
+    "url": "https://www.igdb.com/companies/ravensburger-interactive-media",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8109
+    ]
+  },
+  {
+    "id": 4048,
+    "name": "Super Empire",
+    "created_at": 1415133975701,
+    "updated_at": 1415148236357,
+    "slug": "super-empire",
+    "url": "https://www.igdb.com/companies/super-empire",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8108
+    ]
+  },
+  {
+    "id": 4047,
+    "name": "Wanderlust Interactive",
+    "created_at": 1415133303838,
+    "updated_at": 1415148237352,
+    "slug": "wanderlust-interactive",
+    "url": "https://www.igdb.com/companies/wanderlust-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8107,
+      8109
+    ]
+  },
+  {
+    "id": 4046,
+    "name": "Manley and Associates Inc",
+    "created_at": 1415132983519,
+    "updated_at": 1441448613076,
+    "slug": "manley-and-associates-inc",
+    "url": "https://www.igdb.com/companies/manley-and-associates-inc",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8106,
+      8142,
+      9573,
+      9565,
+      4338
+    ]
+  },
+  {
+    "id": 4045,
+    "name": "TecMagik",
+    "created_at": 1415132983452,
+    "updated_at": 1465727873742,
+    "slug": "tecmagik",
+    "url": "https://www.igdb.com/companies/tecmagik",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8106
+    ],
+    "developed": [
+      12192
+    ]
+  },
+  {
+    "id": 4044,
+    "name": "PitStop Productions",
+    "created_at": 1415089692321,
+    "updated_at": 1415089692321,
+    "slug": "pitstop-productions",
+    "url": "https://www.igdb.com/companies/pitstop-productions",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4043,
+    "name": "Quantic Labs",
+    "created_at": 1415089692252,
+    "updated_at": 1415089692252,
+    "slug": "quantic-labs",
+    "url": "https://www.igdb.com/companies/quantic-labs",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4042,
+    "name": "TZWART Software",
+    "created_at": 1415089692190,
+    "updated_at": 1415089692190,
+    "slug": "tzwart-software",
+    "url": "https://www.igdb.com/companies/tzwart-software",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4041,
+    "name": "The Third Floor Inc.",
+    "created_at": 1415089692151,
+    "updated_at": 1415089692151,
+    "slug": "the-third-floor-inc",
+    "url": "https://www.igdb.com/companies/the-third-floor-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4040,
+    "name": "Snark Co. Ltd",
+    "created_at": 1415089692111,
+    "updated_at": 1415089692111,
+    "slug": "snark-co-ltd",
+    "url": "https://www.igdb.com/companies/snark-co-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4039,
+    "name": "Xi'an Panish Informantion Technology",
+    "created_at": 1415089692051,
+    "updated_at": 1415089692051,
+    "slug": "xian-panish-informantion-technology",
+    "url": "https://www.igdb.com/companies/xian-panish-informantion-technology",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4038,
+    "name": "Little Red Zombies",
+    "created_at": 1415089691904,
+    "updated_at": 1415089691904,
+    "slug": "little-red-zombies",
+    "url": "https://www.igdb.com/companies/little-red-zombies",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4037,
+    "name": "Kylin Magical Image",
+    "created_at": 1415089691864,
+    "updated_at": 1415089691864,
+    "slug": "kylin-magical-image",
+    "url": "https://www.igdb.com/companies/kylin-magical-image",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4036,
+    "name": "SomaTone Audio",
+    "created_at": 1415089689343,
+    "updated_at": 1415089689343,
+    "slug": "somatone-audio",
+    "url": "https://www.igdb.com/companies/somatone-audio",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4035,
+    "name": "Polyassets United Inc.",
+    "created_at": 1415089679119,
+    "updated_at": 1415089679119,
+    "slug": "polyassets-united-inc",
+    "url": "https://www.igdb.com/companies/polyassets-united-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4034,
+    "name": "Nintendo of Europe",
+    "created_at": 1415089676952,
+    "updated_at": 1471990394225,
+    "slug": "nintendo-of-europe",
+    "url": "https://www.igdb.com/companies/nintendo-of-europe",
+    "logo": {
+      "cloudinary_id": "zbm2trlr5zakeyartql6",
+      "width": 1000,
+      "height": 246
+    },
+    "description": "European Subsidiary of Nintendo",
+    "start_date": 644198400000,
+    "start_date_category": 0,
+    "country": 276,
+    "website": "http://www.nintendo.com/",
+    "change_date_category": 7,
+    "twitter": "https://twitter.com/NintendoEurope",
+    "published": [
+      9621,
+      11217,
+      19930,
+      3568,
+      9511,
+      9083,
+      18221,
+      11196
+    ]
+  },
+  {
+    "id": 4033,
+    "name": "GL33K, LLC",
+    "created_at": 1415089673838,
+    "updated_at": 1415089673838,
+    "slug": "gl33k-llc",
+    "url": "https://www.igdb.com/companies/gl33k-llc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4032,
+    "name": "Sapient Corporation",
+    "created_at": 1415064906687,
+    "updated_at": 1415089394311,
+    "slug": "sapient-corporation",
+    "url": "https://www.igdb.com/companies/sapient-corporation",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8096
+    ]
+  },
+  {
+    "id": 4031,
+    "name": "Darkblack",
+    "created_at": 1415064097306,
+    "updated_at": 1415089391190,
+    "slug": "darkblack",
+    "url": "https://www.igdb.com/companies/darkblack",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8094
+    ]
+  },
+  {
+    "id": 4030,
+    "name": "Mobliss",
+    "created_at": 1415063319925,
+    "updated_at": 1415089385873,
+    "slug": "mobliss",
+    "url": "https://www.igdb.com/companies/mobliss",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8090
+    ],
+    "developed": [
+      8090
+    ]
+  },
+  {
+    "id": 4029,
+    "name": "Xilam",
+    "created_at": 1415046383323,
+    "updated_at": 1415050462171,
+    "slug": "xilam",
+    "url": "https://www.igdb.com/companies/xilam",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8078
+    ]
+  },
+  {
+    "id": 4028,
+    "name": "Citizen Software",
+    "created_at": 1415045331349,
+    "updated_at": 1415045544271,
+    "slug": "citizen-software",
+    "url": "https://www.igdb.com/companies/citizen-software",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8077
+    ]
+  },
+  {
+    "id": 4027,
+    "name": "Focus Multimedia",
+    "created_at": 1415014318415,
+    "updated_at": 1455281647952,
+    "slug": "focus-multimedia",
+    "url": "https://www.igdb.com/companies/focus-multimedia",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      5039,
+      5042,
+      4083,
+      6997,
+      10769
+    ]
+  },
+  {
+    "id": 4026,
+    "name": "Gakken",
+    "created_at": 1415011566018,
+    "updated_at": 1415019336956,
+    "slug": "gakken",
+    "url": "https://www.igdb.com/companies/gakken",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7733
+    ]
+  },
+  {
+    "id": 4025,
+    "name": "G-Amusements",
+    "created_at": 1415011565982,
+    "updated_at": 1415019336925,
+    "slug": "g-amusements",
+    "url": "https://www.igdb.com/companies/g-amusements",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7733
+    ]
+  },
+  {
+    "id": 4024,
+    "name": "StarCraft, Inc.",
+    "created_at": 1415011565946,
+    "updated_at": 1467368531173,
+    "slug": "starcraft-inc",
+    "url": "https://www.igdb.com/companies/starcraft-inc",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7734,
+      7733
+    ],
+    "developed": [
+      18799
+    ]
+  },
+  {
+    "id": 4023,
+    "name": "Guildhall Leisure Services Ltd.",
+    "created_at": 1415007678051,
+    "updated_at": 1466625022623,
+    "slug": "guildhall-leisure-services-ltd",
+    "url": "https://www.igdb.com/companies/guildhall-leisure-services-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      4414,
+      283
+    ]
+  },
+  {
+    "id": 4022,
+    "name": "Happy Feet Foley",
+    "created_at": 1415005318877,
+    "updated_at": 1415005318877,
+    "slug": "happy-feet-foley",
+    "url": "https://www.igdb.com/companies/happy-feet-foley",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4021,
+    "name": "Eastworks",
+    "created_at": 1415005316226,
+    "updated_at": 1415005316226,
+    "slug": "eastworks",
+    "url": "https://www.igdb.com/companies/eastworks",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4020,
+    "name": "Trias Digital",
+    "created_at": 1415005315371,
+    "updated_at": 1415005315371,
+    "slug": "trias-digital",
+    "url": "https://www.igdb.com/companies/trias-digital",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4019,
+    "name": "VMC Game Labs, Montreal",
+    "created_at": 1415005313994,
+    "updated_at": 1415005313994,
+    "slug": "vmc-game-labs-montreal",
+    "url": "https://www.igdb.com/companies/vmc-game-labs-montreal",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4018,
+    "name": "The Research Centaur",
+    "created_at": 1415003563944,
+    "updated_at": 1415003563944,
+    "slug": "the-research-centaur",
+    "url": "https://www.igdb.com/companies/the-research-centaur",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4017,
+    "name": "Earbash Inc.",
+    "created_at": 1415003563872,
+    "updated_at": 1415003563872,
+    "slug": "earbash-inc",
+    "url": "https://www.igdb.com/companies/earbash-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4016,
+    "name": "Minor Key Games",
+    "created_at": 1414998620083,
+    "updated_at": 1471485116593,
+    "slug": "minor-key-games",
+    "url": "https://www.igdb.com/companies/minor-key-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8070,
+      14687,
+      7556,
+      17571
+    ],
+    "developed": [
+      22713,
+      8070,
+      14687,
+      7556,
+      17571
+    ]
+  },
+  {
+    "id": 4015,
+    "name": "Recreational Brainware",
+    "created_at": 1414974589294,
+    "updated_at": 1415003432511,
+    "slug": "recreational-brainware",
+    "url": "https://www.igdb.com/companies/recreational-brainware",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8066
+    ]
+  },
+  {
+    "id": 4014,
+    "name": "Vblank Entertainment",
+    "created_at": 1414969027020,
+    "updated_at": 1448526273498,
+    "slug": "vblank-entertainment",
+    "url": "https://www.igdb.com/companies/vblank-entertainment",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8063,
+      14694
+    ]
+  },
+  {
+    "id": 4013,
+    "name": "Active Enterprises",
+    "created_at": 1414967569540,
+    "updated_at": 1423120308702,
+    "slug": "active-enterprises",
+    "url": "https://www.igdb.com/companies/active-enterprises",
+    "logo": {
+      "cloudinary_id": "vr1bpcinsagiz1lpqxjr",
+      "width": 400,
+      "height": 113
+    },
+    "start_date": 631065600000,
+    "start_date_category": 2,
+    "country": 840,
+    "change_date": 788832000000,
+    "change_date_category": 2,
+    "published": [
+      8062,
+      5340
+    ],
+    "developed": [
+      8062,
+      5340
+    ]
+  },
+  {
+    "id": 4012,
+    "name": "Innocuous Games",
+    "created_at": 1414966317675,
+    "updated_at": 1414970041072,
+    "slug": "innocuous-games",
+    "url": "https://www.igdb.com/companies/innocuous-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8061
+    ],
+    "developed": [
+      8061
+    ]
+  },
+  {
+    "id": 4011,
+    "name": "Lost Boys Games",
+    "created_at": 1414964199024,
+    "updated_at": 1414969977773,
+    "slug": "lost-boys-games",
+    "url": "https://www.igdb.com/companies/lost-boys-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8058
+    ]
+  },
+  {
+    "id": 4010,
+    "name": "Macrospace",
+    "created_at": 1414960587728,
+    "updated_at": 1439295621110,
+    "slug": "macrospace",
+    "url": "https://www.igdb.com/companies/macrospace",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8044
+    ],
+    "developed": [
+      8044,
+      11635
+    ]
+  },
+  {
+    "id": 4009,
+    "name": "Sanritsu",
+    "created_at": 1414960135980,
+    "updated_at": 1465720120253,
+    "slug": "sanritsu",
+    "url": "https://www.igdb.com/companies/sanritsu",
+    "logo": {
+      "cloudinary_id": "wkjztgkozmoyzq5pbe6r",
+      "width": 500,
+      "height": 56
+    },
+    "description": "Sanritsu Denki was the video game division of Sanritsu Electronics, co. Ltd.\nIt was contracted by Sega to port many of their games to home platforms, mainly the Sega Mega Drive, Sega Master System and Sega Game Gear.\nIt would later start a joint venture with Sega, SIMS.",
+    "start_date": 126144000000,
+    "start_date_category": 2,
+    "country": 392,
+    "changed_company_id": 1069,
+    "change_date": 676684800000,
+    "change_date_category": 0,
+    "developed": [
+      19487,
+      2051,
+      8043,
+      8197,
+      18233,
+      18292,
+      6083
+    ]
+  },
+  {
+    "id": 4008,
+    "name": "Sega Australia",
+    "created_at": 1414938586446,
+    "updated_at": 1414938586446,
+    "slug": "sega-australia",
+    "url": "https://www.igdb.com/companies/sega-australia",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4007,
+    "name": "Sega France",
+    "created_at": 1414938586024,
+    "updated_at": 1414938586024,
+    "slug": "sega-france",
+    "url": "https://www.igdb.com/companies/sega-france",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4006,
+    "name": "Sega Benelux",
+    "created_at": 1414938585866,
+    "updated_at": 1414938585866,
+    "slug": "sega-benelux",
+    "url": "https://www.igdb.com/companies/sega-benelux",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4005,
+    "name": "Sega Spain",
+    "created_at": 1414938585673,
+    "updated_at": 1414938585673,
+    "slug": "sega-spain",
+    "url": "https://www.igdb.com/companies/sega-spain",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4004,
+    "name": "Sega Germany",
+    "created_at": 1414938585439,
+    "updated_at": 1414938585439,
+    "slug": "sega-germany",
+    "url": "https://www.igdb.com/companies/sega-germany",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4003,
+    "name": "Sega International",
+    "created_at": 1414938585275,
+    "updated_at": 1472815522953,
+    "slug": "sega-international",
+    "url": "https://www.igdb.com/companies/sega-international",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      23329,
+      11885
+    ],
+    "developed": [
+      11885
+    ]
+  },
+  {
+    "id": 4002,
+    "name": "Sega UK",
+    "created_at": 1414938584943,
+    "updated_at": 1414938584943,
+    "slug": "sega-uk",
+    "url": "https://www.igdb.com/companies/sega-uk",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4001,
+    "name": "Sega of Europe",
+    "created_at": 1414938578626,
+    "updated_at": 1414938578626,
+    "slug": "sega-of-europe",
+    "url": "https://www.igdb.com/companies/sega-of-europe",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 4000,
+    "name": "Bug-Tracker INC.",
+    "created_at": 1414938576767,
+    "updated_at": 1414938576767,
+    "slug": "bug-tracker-inc",
+    "url": "https://www.igdb.com/companies/bug-tracker-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3999,
+    "name": "WOMB Music",
+    "created_at": 1414938571860,
+    "updated_at": 1414938571860,
+    "slug": "womb-music",
+    "url": "https://www.igdb.com/companies/womb-music",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3998,
+    "name": "Gamebase USA",
+    "created_at": 1414935834711,
+    "updated_at": 1414935834711,
+    "slug": "gamebase-usa",
+    "url": "https://www.igdb.com/companies/gamebase-usa",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3997,
+    "name": "Gamebase Co., Ltd.",
+    "created_at": 1414935834672,
+    "updated_at": 1414935834672,
+    "slug": "gamebase-co-dot-ltd",
+    "url": "https://www.igdb.com/companies/gamebase-co-dot-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3996,
+    "name": "Experimental Gameplay",
+    "created_at": 1414929853345,
+    "updated_at": 1414937790527,
+    "slug": "experimental-gameplay",
+    "url": "https://www.igdb.com/companies/experimental-gameplay",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      1363
+    ]
+  },
+  {
+    "id": 3995,
+    "name": "Eidos Interactive Europe",
+    "created_at": 1414875230111,
+    "updated_at": 1461435204869,
+    "slug": "eidos-interactive-europe",
+    "url": "https://www.igdb.com/companies/eidos-interactive-europe",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      18870,
+      18872,
+      13106
+    ]
+  },
+  {
+    "id": 3994,
+    "name": "Eidos Interactive US",
+    "created_at": 1414875229113,
+    "updated_at": 1440795443157,
+    "slug": "eidos-interactive-us",
+    "url": "https://www.igdb.com/companies/eidos-interactive-us",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      11822
+    ]
+  },
+  {
+    "id": 3993,
+    "name": "IMGS, INC.",
+    "created_at": 1414875228870,
+    "updated_at": 1414875228870,
+    "slug": "imgs-inc",
+    "url": "https://www.igdb.com/companies/imgs-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3992,
+    "name": "Ion Storm Support",
+    "created_at": 1414875228044,
+    "updated_at": 1414875228044,
+    "slug": "ion-storm-support",
+    "url": "https://www.igdb.com/companies/ion-storm-support",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3991,
+    "name": "Russel",
+    "created_at": 1414864284219,
+    "updated_at": 1434153618154,
+    "slug": "russel",
+    "url": "https://www.igdb.com/companies/russel",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      654,
+      7018
+    ]
+  },
+  {
+    "id": 3990,
+    "name": "A10",
+    "created_at": 1414848748896,
+    "updated_at": 1414860710451,
+    "slug": "a10",
+    "url": "https://www.igdb.com/companies/a10",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8038
+    ]
+  },
+  {
+    "id": 3989,
+    "name": "Playcast-media",
+    "created_at": 1414846572249,
+    "updated_at": 1414860815668,
+    "slug": "playcast-media",
+    "url": "https://www.igdb.com/companies/playcast-media",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      500
+    ],
+    "developed": [
+      500
+    ]
+  },
+  {
+    "id": 3988,
+    "name": "ZeniMax Australia",
+    "created_at": 1414846140436,
+    "updated_at": 1465804164490,
+    "slug": "zenimax-australia",
+    "url": "https://www.igdb.com/companies/zenimax-australia",
+    "logo": {
+      "cloudinary_id": "svmx4lvwhx0ta5nuxt1g",
+      "width": 1199,
+      "height": 266
+    },
+    "description": "Zenimax Australia directly oversees sales, marketing and distribution for all Bethesda titles in Australia and New Zealand",
+    "start_date": 1380672000000,
+    "start_date_category": 0,
+    "country": 36,
+    "parent": 0,
+    "change_date_category": 7
+  },
+  {
+    "id": 3987,
+    "name": "Designware Co. Ltd.",
+    "created_at": 1414846134167,
+    "updated_at": 1414846134167,
+    "slug": "designware-co-ltd",
+    "url": "https://www.igdb.com/companies/designware-co-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3986,
+    "name": "Arriba Entertainment",
+    "created_at": 1414846133731,
+    "updated_at": 1414846133731,
+    "slug": "arriba-entertainment",
+    "url": "https://www.igdb.com/companies/arriba-entertainment",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3985,
+    "name": "Film Score LLC",
+    "created_at": 1414846133688,
+    "updated_at": 1414846133688,
+    "slug": "film-score-llc",
+    "url": "https://www.igdb.com/companies/film-score-llc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3984,
+    "name": "Nashville Music Scoring Orchestra",
+    "created_at": 1414846133639,
+    "updated_at": 1414846133639,
+    "slug": "nashville-music-scoring-orchestra",
+    "url": "https://www.igdb.com/companies/nashville-music-scoring-orchestra",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3983,
+    "name": "Forcewick Sound Design",
+    "created_at": 1414846131376,
+    "updated_at": 1414846131376,
+    "slug": "forcewick-sound-design",
+    "url": "https://www.igdb.com/companies/forcewick-sound-design",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3982,
+    "name": "Casting Boat",
+    "created_at": 1414846131330,
+    "updated_at": 1414846131330,
+    "slug": "casting-boat",
+    "url": "https://www.igdb.com/companies/casting-boat",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3981,
+    "name": "Mozoo",
+    "created_at": 1414846131289,
+    "updated_at": 1414846131289,
+    "slug": "mozoo",
+    "url": "https://www.igdb.com/companies/mozoo",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3980,
+    "name": "The Workshop Entertainment",
+    "created_at": 1414846126802,
+    "updated_at": 1414846126802,
+    "slug": "the-workshop-entertainment",
+    "url": "https://www.igdb.com/companies/the-workshop-entertainment",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3979,
+    "name": "Konami Digital Entertainment Co. Ltd.",
+    "created_at": 1414846101828,
+    "updated_at": 1473060055416,
+    "slug": "konami-digital-entertainment-co-ltd",
+    "url": "https://www.igdb.com/companies/konami-digital-entertainment-co-ltd",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      12308
+    ]
+  },
+  {
+    "id": 3978,
+    "name": "Konami Digital Entertainment Inc.",
+    "created_at": 1414846098051,
+    "updated_at": 1469881956694,
+    "slug": "konami-digital-entertainment-inc",
+    "url": "https://www.igdb.com/companies/konami-digital-entertainment-inc",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      19911
+    ],
+    "developed": [
+      19911
+    ]
+  },
+  {
+    "id": 3977,
+    "name": "Konami Digital Entertainment B.V.",
+    "created_at": 1414846097101,
+    "updated_at": 1414846097101,
+    "slug": "konami-digital-entertainment-bv",
+    "url": "https://www.igdb.com/companies/konami-digital-entertainment-bv",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3976,
+    "name": "An.X",
+    "created_at": 1414846096565,
+    "updated_at": 1414846096565,
+    "slug": "an-dot-x",
+    "url": "https://www.igdb.com/companies/an-dot-x",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3975,
+    "name": "Konami UK Studio",
+    "created_at": 1414846095388,
+    "updated_at": 1414846095388,
+    "slug": "konami-uk-studio",
+    "url": "https://www.igdb.com/companies/konami-uk-studio",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3974,
+    "name": "The Slovak National Symphony Orchestra",
+    "created_at": 1414846093909,
+    "updated_at": 1414846093909,
+    "slug": "the-slovak-national-symphony-orchestra",
+    "url": "https://www.igdb.com/companies/the-slovak-national-symphony-orchestra",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3973,
+    "name": "The Bratislawa Symphnoy Choir",
+    "created_at": 1414846093745,
+    "updated_at": 1414846093745,
+    "slug": "the-bratislawa-symphnoy-choir",
+    "url": "https://www.igdb.com/companies/the-bratislawa-symphnoy-choir",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3972,
+    "name": "The Bratislawa Symphony Orchestra",
+    "created_at": 1414846093700,
+    "updated_at": 1414846093700,
+    "slug": "the-bratislawa-symphony-orchestra",
+    "url": "https://www.igdb.com/companies/the-bratislawa-symphony-orchestra",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3971,
+    "name": "Master Symphony Orchestra Valencia",
+    "created_at": 1414846093462,
+    "updated_at": 1414846093462,
+    "slug": "master-symphony-orchestra-valencia",
+    "url": "https://www.igdb.com/companies/master-symphony-orchestra-valencia",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3970,
+    "name": "globalvoX",
+    "created_at": 1414846092972,
+    "updated_at": 1414846092972,
+    "slug": "globalvox",
+    "url": "https://www.igdb.com/companies/globalvox",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3969,
+    "name": "East West",
+    "created_at": 1414846092699,
+    "updated_at": 1414846092699,
+    "slug": "east-west",
+    "url": "https://www.igdb.com/companies/east-west",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3968,
+    "name": "Project Sam",
+    "created_at": 1414846092652,
+    "updated_at": 1414846092652,
+    "slug": "project-sam",
+    "url": "https://www.igdb.com/companies/project-sam",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3967,
+    "name": "Nord Media Films Studio",
+    "created_at": 1414846092606,
+    "updated_at": 1414846092606,
+    "slug": "nord-media-films-studio",
+    "url": "https://www.igdb.com/companies/nord-media-films-studio",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3966,
+    "name": "ESABU",
+    "created_at": 1414846092523,
+    "updated_at": 1414846092523,
+    "slug": "esabu",
+    "url": "https://www.igdb.com/companies/esabu",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3965,
+    "name": "Musikart Studios",
+    "created_at": 1414846092321,
+    "updated_at": 1414846092321,
+    "slug": "musikart-studios",
+    "url": "https://www.igdb.com/companies/musikart-studios",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3964,
+    "name": "G.A.F. Ivry",
+    "created_at": 1414845333711,
+    "updated_at": 1414845333711,
+    "slug": "gaf-ivry",
+    "url": "https://www.igdb.com/companies/gaf-ivry",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3963,
+    "name": "Sinfonia Pop Orchestra",
+    "created_at": 1414845332913,
+    "updated_at": 1414845332913,
+    "slug": "sinfonia-pop-orchestra",
+    "url": "https://www.igdb.com/companies/sinfonia-pop-orchestra",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3962,
+    "name": "Game Audio Factory",
+    "created_at": 1414845331980,
+    "updated_at": 1414845331980,
+    "slug": "game-audio-factory",
+    "url": "https://www.igdb.com/companies/game-audio-factory",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3961,
+    "name": "SoftClub",
+    "created_at": 1414845329401,
+    "updated_at": 1414845329401,
+    "slug": "softclub",
+    "url": "https://www.igdb.com/companies/softclub",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3960,
+    "name": "Team N+",
+    "created_at": 1414845329331,
+    "updated_at": 1414845329331,
+    "slug": "team-n-plus",
+    "url": "https://www.igdb.com/companies/team-n-plus",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3959,
+    "name": "Sos",
+    "created_at": 1414845107202,
+    "updated_at": 1414845271114,
+    "slug": "sos",
+    "url": "https://www.igdb.com/companies/sos",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7553
+    ],
+    "developed": [
+      7553
+    ]
+  },
+  {
+    "id": 3958,
+    "name": "Bandai Namco Games",
+    "created_at": 1414843878181,
+    "updated_at": 1465846245976,
+    "slug": "bandai-namco-games",
+    "url": "https://www.igdb.com/companies/bandai-namco-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7498,
+      8060,
+      890,
+      8479,
+      8546,
+      8222,
+      10762,
+      10900,
+      1202,
+      10942,
+      10944,
+      6452,
+      1210,
+      1205,
+      1206,
+      9618,
+      11839,
+      14756,
+      8595,
+      8731,
+      17461,
+      14758
+    ],
+    "developed": [
+      7498,
+      10762,
+      6452,
+      14756,
+      8595
+    ]
+  },
+  {
+    "id": 3957,
+    "name": "M2H",
+    "created_at": 1414837926965,
+    "updated_at": 1465977813514,
+    "slug": "m2h--1",
+    "url": "https://www.igdb.com/companies/m2h--1",
+    "logo": {
+      "cloudinary_id": "pby1hhkb8vfrurwt9vom",
+      "width": 720,
+      "height": 240
+    },
+    "description": "M2H was officially founded in 2009 by two highly efficient indie game dev brothers Matt and Mike Hergaarden. M2H loves and specialises in innovative multiplayer games: better and easier multiplayer matchmaking, unique co-op gameplay and so on. They are most known for their multiplayer knowledge which is shared in various networking tutorials and showcased in their games such as Verdun, Crash Drive, and Cubelands.",
+    "start_date": 1420761600000,
+    "start_date_category": 0,
+    "country": 528,
+    "website": "http://www.m2h.nl/",
+    "change_date_category": 7,
+    "published": [
+      8036,
+      8037
+    ],
+    "developed": [
+      8036,
+      8037,
+      8038
+    ]
+  },
+  {
+    "id": 3956,
+    "name": "IronMonkey Studios",
+    "created_at": 1414835548259,
+    "updated_at": 1439385719984,
+    "slug": "ironmonkey-studios",
+    "url": "https://www.igdb.com/companies/ironmonkey-studios",
+    "logo": {
+      "cloudinary_id": "n3kssdsjppfil0et83y3",
+      "width": 160,
+      "height": 57
+    },
+    "description": "Based in Melbourne, IronMonkey Studios is comprised of some of Australia's most experienced creative development staff. The team draws upon a wealth of knowledge gained producing dozens of games, on formats ranging from the 8-bit era to the PS2 and beyond.\nIn 2010, IronMonkey Studios was acquired by publisher Electronic Arts to join its game development studio family. In July of 2012, the company was merged with fellow Australia game company Firemint to form the joint office FireMonkeys.",
+    "start_date_category": 7,
+    "country": 36,
+    "website": "http://www.ironmonkeystudios.com",
+    "change_date_category": 7,
+    "developed": [
+      1051,
+      101
+    ]
+  },
+  {
+    "id": 3954,
+    "name": "RSP",
+    "created_at": 1414791719204,
+    "updated_at": 1466345192739,
+    "slug": "rsp",
+    "url": "https://www.igdb.com/companies/rsp",
+    "start_date": 536371200000,
+    "start_date_category": 2,
+    "country": 840,
+    "change_date_category": 7,
+    "developed": [
+      19684,
+      8025
+    ]
+  },
+  {
+    "id": 3953,
+    "name": "Magic Bytes",
+    "created_at": 1414791456170,
+    "updated_at": 1466586835811,
+    "slug": "magic-bytes",
+    "url": "https://www.igdb.com/companies/magic-bytes",
+    "start_date": 567907200000,
+    "start_date_category": 2,
+    "country": 276,
+    "change_date": 946598400000,
+    "change_date_category": 2,
+    "published": [
+      15700,
+      8024,
+      14156,
+      14300,
+      11970,
+      14653
+    ],
+    "developed": [
+      8024,
+      8105
+    ]
+  },
+  {
+    "id": 3952,
+    "name": "ISCO",
+    "created_at": 1414789461902,
+    "updated_at": 1414794682897,
+    "slug": "isco",
+    "url": "https://www.igdb.com/companies/isco",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8019
+    ]
+  },
+  {
+    "id": 3951,
+    "name": "Denton Designs",
+    "created_at": 1414788534830,
+    "updated_at": 1414794662796,
+    "slug": "denton-designs",
+    "url": "https://www.igdb.com/companies/denton-designs",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8015
+    ]
+  },
+  {
+    "id": 3950,
+    "name": "Blue Turtle",
+    "created_at": 1414787362652,
+    "updated_at": 1414794644696,
+    "slug": "blue-turtle",
+    "url": "https://www.igdb.com/companies/blue-turtle",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      8010
+    ]
+  },
+  {
+    "id": 3949,
+    "name": "Magifact",
+    "created_at": 1414787362600,
+    "updated_at": 1414794644665,
+    "slug": "magifact",
+    "url": "https://www.igdb.com/companies/magifact",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8010
+    ]
+  },
+  {
+    "id": 3948,
+    "name": "Cybersoft",
+    "created_at": 1414787362529,
+    "updated_at": 1414794644579,
+    "slug": "cybersoft",
+    "url": "https://www.igdb.com/companies/cybersoft",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      8010
+    ]
+  },
+  {
+    "id": 3947,
+    "name": "Young Jump Animation",
+    "created_at": 1414753593939,
+    "updated_at": 1414753593939,
+    "slug": "young-jump-animation",
+    "url": "https://www.igdb.com/companies/young-jump-animation",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3946,
+    "name": "#30 Jutz Zollern Workroom",
+    "created_at": 1414753546696,
+    "updated_at": 1414753546696,
+    "slug": "number-30-jutz-zollern-workroom",
+    "url": "https://www.igdb.com/companies/number-30-jutz-zollern-workroom",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3945,
+    "name": "Ubisoft Limited",
+    "created_at": 1414753546396,
+    "updated_at": 1414753546396,
+    "slug": "ubisoft-limited",
+    "url": "https://www.igdb.com/companies/ubisoft-limited",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3944,
+    "name": "Latis Global Communications",
+    "created_at": 1414753545922,
+    "updated_at": 1414753545922,
+    "slug": "latis-global-communications",
+    "url": "https://www.igdb.com/companies/latis-global-communications",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3943,
+    "name": "Ubisoft South Korea",
+    "created_at": 1414753545821,
+    "updated_at": 1414753545821,
+    "slug": "ubisoft-south-korea",
+    "url": "https://www.igdb.com/companies/ubisoft-south-korea",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3942,
+    "name": "entalize",
+    "created_at": 1414753545576,
+    "updated_at": 1414753545576,
+    "slug": "entalize",
+    "url": "https://www.igdb.com/companies/entalize",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3941,
+    "name": "Scillex",
+    "created_at": 1414753545069,
+    "updated_at": 1414753545069,
+    "slug": "scillex",
+    "url": "https://www.igdb.com/companies/scillex",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3940,
+    "name": "U-TRAX",
+    "created_at": 1414753543541,
+    "updated_at": 1414753543541,
+    "slug": "u-trax",
+    "url": "https://www.igdb.com/companies/u-trax",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3939,
+    "name": "Tonstudio Krauthausen GmbH",
+    "created_at": 1414753540404,
+    "updated_at": 1414753540404,
+    "slug": "tonstudio-krauthausen-gmbh",
+    "url": "https://www.igdb.com/companies/tonstudio-krauthausen-gmbh",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3938,
+    "name": "Das Hörspielstudio XBerg GmbH",
+    "created_at": 1414753540348,
+    "updated_at": 1414753540348,
+    "slug": "das-horspielstudio-xberg-gmbh",
+    "url": "https://www.igdb.com/companies/das-horspielstudio-xberg-gmbh",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3937,
+    "name": "mouse-power GmbH",
+    "created_at": 1414753539798,
+    "updated_at": 1414753539798,
+    "slug": "mouse-power-gmbh",
+    "url": "https://www.igdb.com/companies/mouse-power-gmbh",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3936,
+    "name": "Wave London",
+    "created_at": 1414753531748,
+    "updated_at": 1414753531748,
+    "slug": "wave-london",
+    "url": "https://www.igdb.com/companies/wave-london",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3935,
+    "name": "Studio Technicolor",
+    "created_at": 1414753531308,
+    "updated_at": 1414753531308,
+    "slug": "studio-technicolor",
+    "url": "https://www.igdb.com/companies/studio-technicolor",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3934,
+    "name": "Vision Globale",
+    "created_at": 1414753531189,
+    "updated_at": 1414753531189,
+    "slug": "vision-globale",
+    "url": "https://www.igdb.com/companies/vision-globale",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3933,
+    "name": "Studio 451 Inc.",
+    "created_at": 1414753530975,
+    "updated_at": 1414753530975,
+    "slug": "studio-451-inc",
+    "url": "https://www.igdb.com/companies/studio-451-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3932,
+    "name": "Paul Johnston Studio",
+    "created_at": 1414753530843,
+    "updated_at": 1414753530843,
+    "slug": "paul-johnston-studio",
+    "url": "https://www.igdb.com/companies/paul-johnston-studio",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3931,
+    "name": "Studio de I'Est",
+    "created_at": 1414753530486,
+    "updated_at": 1414753530486,
+    "slug": "studio-de-iest",
+    "url": "https://www.igdb.com/companies/studio-de-iest",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3930,
+    "name": "Hotel 2 Tango",
+    "created_at": 1414753530256,
+    "updated_at": 1414753530256,
+    "slug": "hotel-2-tango",
+    "url": "https://www.igdb.com/companies/hotel-2-tango",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3929,
+    "name": "Les services d'urgence Medic",
+    "created_at": 1414753525169,
+    "updated_at": 1414753525169,
+    "slug": "les-services-durgence-medic",
+    "url": "https://www.igdb.com/companies/les-services-durgence-medic",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3928,
+    "name": "Ubisoft Chengdu",
+    "created_at": 1414753485440,
+    "updated_at": 1471519937330,
+    "slug": "ubisoft-chengdu",
+    "url": "https://www.igdb.com/companies/ubisoft-chengdu",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      22739,
+      7570,
+      8263,
+      7448
+    ]
+  },
+  {
+    "id": 3927,
+    "name": "Viacom International",
+    "created_at": 1414715966804,
+    "updated_at": 1414752473217,
+    "slug": "viacom-international",
+    "url": "https://www.igdb.com/companies/viacom-international",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7991
+    ]
+  },
+  {
+    "id": 3926,
+    "name": "Game Factory",
+    "created_at": 1414712881402,
+    "updated_at": 1415262767214,
+    "slug": "game-factory",
+    "url": "https://www.igdb.com/companies/game-factory",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7979,
+      8120
+    ]
+  },
+  {
+    "id": 3925,
+    "name": "Nick Jr. Interactive",
+    "created_at": 1414711185556,
+    "updated_at": 1414747582248,
+    "slug": "nick-jr-interactive",
+    "url": "https://www.igdb.com/companies/nick-jr-interactive",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7973
+    ]
+  },
+  {
+    "id": 3924,
+    "name": "Six by nine",
+    "created_at": 1414685762639,
+    "updated_at": 1414704168279,
+    "slug": "six-by-nine",
+    "url": "https://www.igdb.com/companies/six-by-nine",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7969
+    ]
+  },
+  {
+    "id": 3923,
+    "name": "Studio Pixel",
+    "created_at": 1414672265314,
+    "updated_at": 1450484248121,
+    "slug": "studio-pixel",
+    "url": "https://www.igdb.com/companies/studio-pixel",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      6189,
+      15466
+    ],
+    "developed": [
+      6189,
+      10255,
+      15466
+    ]
+  },
+  {
+    "id": 3922,
+    "name": "Red Rocket Games",
+    "created_at": 1414671489356,
+    "updated_at": 1452769779413,
+    "slug": "red-rocket-games",
+    "url": "https://www.igdb.com/companies/red-rocket-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7963,
+      16075
+    ],
+    "developed": [
+      7963
+    ]
+  },
+  {
+    "id": 3921,
+    "name": "Blendo Games",
+    "created_at": 1414670373203,
+    "updated_at": 1469139237714,
+    "slug": "blendo-games",
+    "url": "https://www.igdb.com/companies/blendo-games",
+    "logo": {
+      "cloudinary_id": "ylvnopikeyguq8luzu5n",
+      "width": 400,
+      "height": 74
+    },
+    "start_date": 946598400000,
+    "start_date_category": 2,
+    "country": 840,
+    "website": "http://www.blendogames.com/",
+    "change_date_category": 7,
+    "published": [
+      7962,
+      9013,
+      9014,
+      8388,
+      16183
+    ],
+    "developed": [
+      7962,
+      9013,
+      9014,
+      8388,
+      16183
+    ]
+  },
+  {
+    "id": 3920,
+    "name": "Toho",
+    "created_at": 1414669494211,
+    "updated_at": 1414678248094,
+    "slug": "toho",
+    "url": "https://www.igdb.com/companies/toho",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7961
+    ]
+  },
+  {
+    "id": 3918,
+    "name": "Cyberdreams, Inc. - duplicate",
+    "created_at": 1414668677076,
+    "updated_at": 1470270864496,
+    "slug": "cyberdreams-inc-duplicate",
+    "url": "https://www.igdb.com/companies/cyberdreams-inc-duplicate",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3917,
+    "name": "Media Station",
+    "created_at": 1414643070516,
+    "updated_at": 1414678014891,
+    "slug": "media-station",
+    "url": "https://www.igdb.com/companies/media-station",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7955,
+      7956,
+      7957
+    ]
+  },
+  {
+    "id": 3916,
+    "name": "Playskool",
+    "created_at": 1414642796953,
+    "updated_at": 1414678054645,
+    "slug": "playskool",
+    "url": "https://www.igdb.com/companies/playskool",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7954
+    ]
+  },
+  {
+    "id": 3915,
+    "name": "Vortex Media Arts",
+    "created_at": 1414642796914,
+    "updated_at": 1414678054516,
+    "slug": "vortex-media-arts",
+    "url": "https://www.igdb.com/companies/vortex-media-arts",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7954
+    ]
+  },
+  {
+    "id": 3914,
+    "name": "Playbox",
+    "created_at": 1414620312317,
+    "updated_at": 1414622164661,
+    "slug": "playbox",
+    "url": "https://www.igdb.com/companies/playbox",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7941
+    ]
+  },
+  {
+    "id": 3913,
+    "name": "EnjoyUp Games",
+    "created_at": 1414598469230,
+    "updated_at": 1450428398961,
+    "slug": "enjoyup-games",
+    "url": "https://www.igdb.com/companies/enjoyup-games",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7936,
+      15462
+    ],
+    "developed": [
+      15462
+    ]
+  },
+  {
+    "id": 3912,
+    "name": "Asterizm Corporation",
+    "created_at": 1414598469133,
+    "updated_at": 1471350132801,
+    "slug": "asterizm-corporation",
+    "url": "https://www.igdb.com/companies/asterizm-corporation",
+    "logo": {
+      "cloudinary_id": "ct2rdla5yvvnq10dmcgo",
+      "width": 607,
+      "height": 234
+    },
+    "description": "From Mobygames:\n\"Asterizm Corporation (formerly Nigoro) is a Japanese team of three developers: Takayuki Ebihara (Duplex), Takumi Naramura (Naramura) and Houryu Samejima (Samieru). The team originally started using the name GR3 Project and under that moniker they are best known for La•Mulana (2005), a game that was five years in development. Afterwards they changed the name to Nigoro and started working on smaller browser games that received a large following.\"",
+    "start_date": 1009843200000,
+    "start_date_category": 1,
+    "country": 392,
+    "website": "http://asterizm.jp/",
+    "parent": 3911,
+    "change_date_category": 7,
+    "published": [
+      7936,
+      22186
+    ]
+  },
+  {
+    "id": 3911,
+    "name": "Independant - duplicate",
+    "created_at": 1414598469014,
+    "updated_at": 1472944425847,
+    "slug": "independant-duplicate",
+    "url": "https://www.igdb.com/companies/independant-duplicate",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3910,
+    "name": "Pygmy Studio",
+    "created_at": 1414598468943,
+    "updated_at": 1471347542409,
+    "slug": "pygmy-studio",
+    "url": "https://www.igdb.com/companies/pygmy-studio",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      22186
+    ]
+  },
+  {
+    "id": 3909,
+    "name": "Nigoro",
+    "created_at": 1414598468836,
+    "updated_at": 1471350628668,
+    "slug": "nigoro",
+    "url": "https://www.igdb.com/companies/nigoro",
+    "logo": {
+      "cloudinary_id": "pidx7z8cwmfbryxotjdz",
+      "width": 176,
+      "height": 60
+    },
+    "description": "\"NIGORO is a naughty group that doesn’t watch main stream nor trend of the game, and make games as we like!\n\nWe grow up on playing retro games. Our purpose is to pursue and to evolve more the fun of them.\n\nNIGORO is not a game company. To be exact, NIGORO is a game development department of ASTERIZM corporation. The games are developed by NIGORO members have released as a brand name “NIGORO”. We may also sell on behalf of other game developers. In that case, they have released as a brand name “ASTERIZM”.\nIt is hard to understand. lol.\n\nIn the United States, indie Games has considerable demand, and many developers have been successful. In Japan, when it comes to a genre called “DOUJIN”, there are successes. On the other hand when it comes to a genre called “INDIE”, there are few successes. On top of that, indie games themselves are not so popular.\n\nIn that circumstances, we have the ambition to be successful Japanese indie games and hope to boost Japanese indie game development field which like-minded people. We are working with such thoughts. Thanks.\"",
+    "start_date": 1173830400000,
+    "start_date_category": 0,
+    "country": 392,
+    "website": "http://nigoro.jp/en/",
+    "parent": 3912,
+    "change_date_category": 7,
+    "twitter": "https://twitter.com/NIGORO",
+    "developed": [
+      22186,
+      7936,
+      7937
+    ]
+  },
+  {
+    "id": 3908,
+    "name": "Picsoft Studio",
+    "created_at": 1414576604339,
+    "updated_at": 1414609215005,
+    "slug": "picsoft-studio",
+    "url": "https://www.igdb.com/companies/picsoft-studio",
+    "logo": {
+      "cloudinary_id": "uneutk03f5rl4bevzi6n",
+      "width": 1024,
+      "height": 768
+    },
+    "start_date_category": 7,
+    "country": 764,
+    "website": "http://www.pic-soft.com/",
+    "change_date_category": 7,
+    "published": [
+      7935
+    ],
+    "developed": [
+      7935
+    ]
+  },
+  {
+    "id": 3907,
+    "name": "Creative Patterns",
+    "created_at": 1414533477283,
+    "updated_at": 1414574058800,
+    "slug": "creative-patterns",
+    "url": "https://www.igdb.com/companies/creative-patterns",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7933
+    ]
+  },
+  {
+    "id": 3906,
+    "name": "Anuman Interactive",
+    "created_at": 1414531057394,
+    "updated_at": 1464435926974,
+    "slug": "anuman-interactive",
+    "url": "https://www.igdb.com/companies/anuman-interactive",
+    "logo": {
+      "cloudinary_id": "ma7qwepjuj9ybiusxs2c",
+      "width": 197,
+      "height": 222
+    },
+    "start_date": 978220800000,
+    "start_date_category": 2,
+    "country": 250,
+    "website": "http://www.anuman.fr/",
+    "change_date_category": 7,
+    "published": [
+      19345,
+      890,
+      9091
+    ],
+    "developed": [
+      7921,
+      890,
+      9734,
+      9790,
+      9093,
+      13163
+    ]
+  },
+  {
+    "id": 3905,
+    "name": "Little Worlds Studio",
+    "created_at": 1414531057329,
+    "updated_at": 1414574043346,
+    "slug": "little-worlds-studio",
+    "url": "https://www.igdb.com/companies/little-worlds-studio",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "developed": [
+      7921
+    ]
+  },
+  {
+    "id": 3904,
+    "name": "Towa Chiki",
+    "created_at": 1414524459483,
+    "updated_at": 1414525433623,
+    "slug": "towa-chiki",
+    "url": "https://www.igdb.com/companies/towa-chiki",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      7905
+    ]
+  },
+  {
+    "id": 3903,
+    "name": "BioWare Montreal",
+    "created_at": 1414493642346,
+    "updated_at": 1414520261272,
+    "slug": "bioware-montreal",
+    "url": "https://www.igdb.com/companies/bioware-montreal",
+    "start_date": 1235865600000,
+    "start_date_category": 1,
+    "country": 124,
+    "parent": 2,
+    "change_date_category": 7,
+    "developed": [
+      7349
+    ]
+  },
+  {
+    "id": 3902,
+    "name": "SPD Technology Group",
+    "created_at": 1414493504985,
+    "updated_at": 1414493504985,
+    "slug": "spd-technology-group",
+    "url": "https://www.igdb.com/companies/spd-technology-group",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3901,
+    "name": "Toei Zukun Laboratory",
+    "created_at": 1414493498455,
+    "updated_at": 1414493498455,
+    "slug": "toei-zukun-laboratory",
+    "url": "https://www.igdb.com/companies/toei-zukun-laboratory",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3900,
+    "name": "Red Light Management",
+    "created_at": 1414493497052,
+    "updated_at": 1414493497052,
+    "slug": "red-light-management",
+    "url": "https://www.igdb.com/companies/red-light-management",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3899,
+    "name": "Dance Therapy Productions",
+    "created_at": 1414493496834,
+    "updated_at": 1414493496834,
+    "slug": "dance-therapy-productions",
+    "url": "https://www.igdb.com/companies/dance-therapy-productions",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3898,
+    "name": "Studio Mausu",
+    "created_at": 1414493496549,
+    "updated_at": 1414493496549,
+    "slug": "studio-mausu",
+    "url": "https://www.igdb.com/companies/studio-mausu",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3897,
+    "name": "Synthesis Germany",
+    "created_at": 1414493424292,
+    "updated_at": 1414493424292,
+    "slug": "synthesis-germany",
+    "url": "https://www.igdb.com/companies/synthesis-germany",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3896,
+    "name": "La Marque Rose",
+    "created_at": 1414493423767,
+    "updated_at": 1414493423767,
+    "slug": "la-marque-rose",
+    "url": "https://www.igdb.com/companies/la-marque-rose",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3895,
+    "name": "ZeniMax Benelux",
+    "created_at": 1414493420942,
+    "updated_at": 1414493420942,
+    "slug": "zenimax-benelux",
+    "url": "https://www.igdb.com/companies/zenimax-benelux",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3894,
+    "name": "ZeniMax Germany",
+    "created_at": 1414493420418,
+    "updated_at": 1414493420418,
+    "slug": "zenimax-germany",
+    "url": "https://www.igdb.com/companies/zenimax-germany",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3893,
+    "name": "ZeniMax France",
+    "created_at": 1414493419966,
+    "updated_at": 1414493419966,
+    "slug": "zenimax-france",
+    "url": "https://www.igdb.com/companies/zenimax-france",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3892,
+    "name": "Hansoft",
+    "created_at": 1414493405108,
+    "updated_at": 1414493405108,
+    "slug": "hansoft",
+    "url": "https://www.igdb.com/companies/hansoft",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3891,
+    "name": "Diligentia",
+    "created_at": 1414493404798,
+    "updated_at": 1414493404798,
+    "slug": "diligentia",
+    "url": "https://www.igdb.com/companies/diligentia",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3890,
+    "name": "Standard Deviation",
+    "created_at": 1414493403535,
+    "updated_at": 1414493403535,
+    "slug": "standard-deviation",
+    "url": "https://www.igdb.com/companies/standard-deviation",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3889,
+    "name": "Fat Little Indian Boy",
+    "created_at": 1414493403381,
+    "updated_at": 1414493403381,
+    "slug": "fat-little-indian-boy",
+    "url": "https://www.igdb.com/companies/fat-little-indian-boy",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3888,
+    "name": "Somnio Studios",
+    "created_at": 1414493403275,
+    "updated_at": 1414493403275,
+    "slug": "somnio-studios",
+    "url": "https://www.igdb.com/companies/somnio-studios",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3887,
+    "name": "Volta Creations Inc.",
+    "created_at": 1414493403220,
+    "updated_at": 1414493403220,
+    "slug": "volta-creations-inc",
+    "url": "https://www.igdb.com/companies/volta-creations-inc",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3886,
+    "name": "1910 Design & Communication",
+    "created_at": 1414493403102,
+    "updated_at": 1414493403102,
+    "slug": "1910-design-and-communication",
+    "url": "https://www.igdb.com/companies/1910-design-and-communication",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3885,
+    "name": "QW Creatives",
+    "created_at": 1414493403036,
+    "updated_at": 1414493403036,
+    "slug": "qw-creatives",
+    "url": "https://www.igdb.com/companies/qw-creatives",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3884,
+    "name": "Daybreak CG",
+    "created_at": 1414493402905,
+    "updated_at": 1444138361614,
+    "slug": "daybreak-cg",
+    "url": "https://www.igdb.com/companies/daybreak-cg",
+    "start_date_category": 7,
+    "change_date_category": 7,
+    "published": [
+      3264
+    ]
+  },
+  {
+    "id": 3883,
+    "name": "RIVER",
+    "created_at": 1414493401320,
+    "updated_at": 1414493401320,
+    "slug": "river",
+    "url": "https://www.igdb.com/companies/river",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3882,
+    "name": "SDFX",
+    "created_at": 1414493401129,
+    "updated_at": 1414493401129,
+    "slug": "sdfx",
+    "url": "https://www.igdb.com/companies/sdfx",
+    "start_date_category": 7,
+    "change_date_category": 7
+  },
+  {
+    "id": 3881,
+    "name": "Game Audio Australia",
+    "created_at": 1414493400913,
+    "updated_at": 1414493400913,
+    "slug": "game-audio-australia",
+    "url": "https://www.igdb.com/companies/game-audio-australia",
+    "start_date_category": 7,
+    "change_date_category": 7
+  }
+]

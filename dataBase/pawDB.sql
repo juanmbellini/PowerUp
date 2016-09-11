@@ -1,6 +1,6 @@
 \set ON_ERROR_STOP on -- Makes psql return error code if something went wrong
 
-begin;
+BEGIN;
 
 CREATE SCHEMA IF NOT EXISTS power_up;
 
@@ -56,10 +56,11 @@ CREATE TABLE IF NOT EXISTS power_up.game_consoles (
 	id 	 		serial not null primary key,
 	game_id		integer not null,
 	console_id	integer not null,
+	release_date date not null,
 
 	FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (console_id) REFERENCES power_up.consoles (id) ON DELETE CASCADE ON UPDATE CASCADE,
-	UNIQUE(game_id,console_id)
+	UNIQUE(game_id,console_id, release_date)	--The same game can be released for the same console multiple times (i.e. remaster)
 );
 CREATE TABLE IF NOT EXISTS power_up.game_keywords (
 	id 		serial not null primary key,
@@ -96,4 +97,4 @@ CREATE TABLE IF NOT EXISTS power_up.game_publishers (
 	-- FOREIGN KEY( )userId REFERENCES power_up.users(id)
 -- );
 
-commit;
+COMMIT;
