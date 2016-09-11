@@ -15,7 +15,12 @@ public class Game {
     private ArrayList<String> keywords;
     private ArrayList<String> platforms;
     private ArrayList<String> series;
+    private String summary;
     private String name;
+
+    public String getSummary() {return summary;}
+
+    public void setSummary(String summary){this.summary = summary; }
 
     public String getName() {return name;}
 
