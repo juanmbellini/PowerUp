@@ -31,8 +31,8 @@ public class GameJdbcDao implements GameDao {
     public Collection<Game> searchGame(String name, Collection<Filter> filters) {
         ArrayList<Game> gameList = new ArrayList();
 
-        PreparedStatement search = null;
-        String searchString = "SELECT name, avg_score FROM power_up.games";
+        StringBuilder searchString = new StringBuilder("SELECT name, avg_score FROM power_up.games");
+        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ?");
 
         //Joins with specific table if a filter of that table is needed
         Boolean companyfilter = false;
@@ -45,26 +45,27 @@ public class GameJdbcDao implements GameDao {
             }
             if (hasFilter) {
                 //Natural Join on relationship table
-                searchString.concat(" NATURAL JOIN power_up.game_" + filterType.name().toLowerCase());
+                searchString.append(", power_up.game_" + filterType.name().toLowerCase());
+                whereSentence.append("&& power_up.games.id = power_up.game_" + filterType.name().toLowerCase() + ".game_id");
                 //Natural Join on entity table;
                 if (filterType != Filter.FilterCategory.DEVELOPERS && filterType != Filter.FilterCategory.PUBLISHERS) {
-                    searchString.concat(" NATURAL JOIN power_up." + filterType.name().toLowerCase());
+                    searchString.append(", power_up." + filterType.name().toLowerCase());
+                    whereSentence.append("&& power_up.games.id = power_up." + filterType.name().toLowerCase() + ".game_id");
                 } else {
                     if (!companyfilter) {
                         companyfilter = true;
-                        searchString.concat(" NATURAL JOIN power_up.companies");
+                        searchString.append(", power_up.companies");
                     }
                 }
             }
         }
-        searchString.concat("WHERE power_up.games.name = ?");
-
+        searchString.append(whereSentence);
         for (Filter.FilterCategory filterType : Filter.FilterCategory.values()) {
             Boolean flag;
             for (Filter filter : filters) {
                 if (filter.getType() == filterType) {
                     //aca hay que meter el valor del filtro haciendo cosas raras
-                    searchString.concat(" && power_up." + filterType.name().toLowerCase() + " = ?" );
+                    searchString.append(" && power_up." + filterType.name().toLowerCase() + " = ?" );
                 }
             }
         }
