@@ -15,6 +15,11 @@ public class Game {
     private ArrayList<String> keywords;
     private ArrayList<String> platforms;
     private ArrayList<String> series;
+    private String name;
+
+    public String getName() {return name;}
+
+    public void setName(String name){this.name = name; }
 
     public ArrayList<Review> getReviews() {
         return reviews;
