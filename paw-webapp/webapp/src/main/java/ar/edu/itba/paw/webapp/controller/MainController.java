@@ -1,10 +1,15 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Controller
 public class MainController {
@@ -35,6 +40,16 @@ public class MainController {
     public ModelAndView search() {
         final ModelAndView mav = new ModelAndView("search");
         mav.addObject("greeting", "PAW");
+        return mav;
+    }
+
+
+
+    @RequestMapping("/gameSearch")
+    public ModelAndView searchGameByName(@RequestParam("name") String name) {
+        final ModelAndView mav = new ModelAndView("gameSearch");
+       Collection<Game> searchedGame = gameService.findByName(name);
+       mav.addObject("gameList", searchedGame);
         return mav;
     }
 

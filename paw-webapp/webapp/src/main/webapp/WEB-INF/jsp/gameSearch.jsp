@@ -1,12 +1,25 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%--TODO verify taglib prefix--%>
 
-<html>
+<html><%-- fn:length( gameList)--%>
 <body>
-<%--
-<c:forEach var="game" items="${gameList}">
-    <c:out value="${game.name}" />
-</c:forEach>
-<h2>Hello ${gameList}!</h2><%--hola--%>
+<h2>Game Search!</h2>
+<br />
+<c:choose>
+    <c:when test="${ fn:length( gameList)<= 0 }">
+       No results
+        <br />
+    </c:when>
+    <c:otherwise>
+        <c:forEach var="game" items="${gameList}">
+            <c:out value="${game.name}" />
+            <br />
+        </c:forEach>
+
+    </c:otherwise>
+</c:choose>
+
+
 </body>
 </html>
