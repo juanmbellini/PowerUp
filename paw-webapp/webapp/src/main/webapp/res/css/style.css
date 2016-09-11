@@ -1,14 +1,45 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+.rating-stars {
+    color: #FFD700;
+}
+
+.rating-number {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+#results > li {
+    height: 100px;
+    padding: 0;
+}
+
+#results > li > img {
+    max-height: 100px;
+    width: auto;
+    padding-left: 0;
+}
+
+#results > li > .primary-content {
+    padding-top: 10px;
+}
+
+#results > li > .primary-content .title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* Sticky footer rules */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
