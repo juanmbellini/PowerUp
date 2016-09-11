@@ -31,72 +31,44 @@ public class GameJdbcDao implements GameDao {
     public Collection<Game> searchGame(String name, Collection<Filter> filters) {
         ArrayList<Game> gameList = new ArrayList();
 
-        StringBuilder searchString = new StringBuilder("SELECT name, avg_score FROM power_up.games");
-        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ?");
+        StringBuilder searchString = new StringBuilder("SELECT name, avg_score, summary FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? && power_up.game_platform.game_id = power_up.games.id &&" +
+                                                        "power_up.game_platforms.platform_id = power_up.platforms.id");
 
         //Joins with specific table if a filter of that table is needed
         Boolean companyfilter = false;
         for (Filter.FilterCategory filterType : Filter.FilterCategory.values()) {
             Boolean hasFilter = false;
             for (Filter filter : filters) {
-                if (filter.getType() == filterType) {
+                if (filter.getType() == filterType && filterType != Filter.FilterCategory.PLATFORMS) {
                     hasFilter = true;
                 }
             }
             if (hasFilter) {
-                //Natural Join on relationship table
+                //Join on relationship table
                 searchString.append(", power_up.game_" + filterType.name().toLowerCase());
                 whereSentence.append("&& power_up.games.id = power_up.game_" + filterType.name().toLowerCase() + ".game_id");
-                //Natural Join on entity table;
+                //Join on entity table;
                 if (filterType != Filter.FilterCategory.DEVELOPERS && filterType != Filter.FilterCategory.PUBLISHERS) {
                     searchString.append(", power_up." + filterType.name().toLowerCase());
-                    whereSentence.append("&& power_up.games.id = power_up." + filterType.name().toLowerCase() + ".game_id");
+                    whereSentence.append("&& power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0,filterType.name().length()-2) +
+                            "_id = power_up." + filterType.name().toLowerCase() + ".id");
                 } else {
                     if (!companyfilter) {
                         companyfilter = true;
                         searchString.append(", power_up.companies");
+                        whereSentence.append("&& power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0,filterType.name().length()-2) +
+                                "_id = power_up.companies.id");
                     }
                 }
             }
         }
         searchString.append(whereSentence);
-        for (Filter.FilterCategory filterType : Filter.FilterCategory.values()) {
-            Boolean flag;
             for (Filter filter : filters) {
-                if (filter.getType() == filterType) {
                     //aca hay que meter el valor del filtro haciendo cosas raras
-                    searchString.append(" && power_up." + filterType.name().toLowerCase() + " = ?" );
-                }
+                    searchString.append(" && power_up." + filter.getType().name().toLowerCase() + ".name = ?" );
             }
-        }
 
-
-//        Game testGame = new Game();
-//        testGame.setName(name);
-//
-//        gameList.add(testGame);
-//
-//        return gameList;
-
-//        for (Game game : jdbcTemplate.query(
-//                "SELECT name, avg_score FROM power_up.games WHERE name = ?", new Object[]{name},
-//                new RowMapper<Game>() {
-//                    public Game mapRow(ResultSet rs, int i) throws SQLException {
-//
-//                        Game newGame = new Game();
-//                        newGame.setName(rs.getString(name));
-//                        return newGame;
-//                    }
-//
-//        ))
-//
-//                    {
-//                        gameList.add(game);
-//                    }
-//
-//                    ;
-//                    //Old code: (rs, rowNum) -> new Game(rs.getString("first_name"), rs.getString("last_name"))
-//                }
         return null;
     }
 }
