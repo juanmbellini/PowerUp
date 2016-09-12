@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.model.Filter;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -48,7 +51,8 @@ public class MainController {
     @RequestMapping("/gameSearch")
     public ModelAndView searchGameByName(@RequestParam("name") String name) {
         final ModelAndView mav = new ModelAndView("gameSearch");
-       Collection<Game> searchedGame = gameService.findByName(name);
+       Collection<Game> searchedGame = gameService.searchGame(name, new HashSet<Filter>() {
+       });
        mav.addObject("gameList", searchedGame);
         return mav;
     }
