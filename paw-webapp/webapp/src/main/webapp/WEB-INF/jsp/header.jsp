@@ -6,3 +6,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="<c:url value="/css/materialize.css" />" type="text/css" rel="stylesheet" media="screen,projection"/>
 <link href="<c:url value="/css/style.css" />" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!--Important scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

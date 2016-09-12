@@ -24,9 +24,9 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping("/results")
+    @RequestMapping("/search")
     public ModelAndView results() {
-        final ModelAndView mav = new ModelAndView("results");
+        final ModelAndView mav = new ModelAndView("search");
         mav.addObject("greeting", "PAW");
         return mav;
     }
