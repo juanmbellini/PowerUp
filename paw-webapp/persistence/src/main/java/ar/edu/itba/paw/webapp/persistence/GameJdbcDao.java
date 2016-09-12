@@ -36,8 +36,8 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[filters.size()+1];
         parameters[0] = name;
         int i = 1;
-        StringBuilder searchString = new StringBuilder("SELECT name, avg_score, summary FROM power_up.games, power_up.game_platforms, power_up.platforms");
-        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? AND power_up.game_platform.game_id = power_up.games.id AND" +
+        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? AND power_up.game_platforms.game_id = power_up.games.id AND " +
                 "power_up.game_platforms.platform_id = power_up.platforms.id");
 
         //Joins with specific table if a filter of that table is needed
@@ -52,17 +52,17 @@ public class GameJdbcDao implements GameDao {
             if (hasFilter) {
                 //Join on relationship table
                 searchString.append(", power_up.game_" + filterType.name().toLowerCase());
-                whereSentence.append("AND power_up.games.id = power_up.game_" + filterType.name().toLowerCase() + ".game_id");
+                whereSentence.append(" AND power_up.games.id = power_up.game_" + filterType.name().toLowerCase() + ".game_id");
                 //Join on entity table;
                 if (filterType != Filter.FilterCategory.DEVELOPERS && filterType != Filter.FilterCategory.PUBLISHERS) {
                     searchString.append(", power_up." + filterType.name().toLowerCase());
-                    whereSentence.append("AND power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0, filterType.name().length() - 2) +
+                    whereSentence.append(" AND power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0, filterType.name().length() - 1) +
                             "_id = power_up." + filterType.name().toLowerCase() + ".id");
                 } else {
                     if (!companyfilter) {
                         companyfilter = true;
                         searchString.append(", power_up.companies");
-                        whereSentence.append("AND power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0, filterType.name().length() - 2) +
+                        whereSentence.append(" AND power_up.game_" + filterType.name().toLowerCase() + "." + filterType.name().substring(0, filterType.name().length() - 1) +
                                 "_id = power_up.companies.id");
                     }
                 }
@@ -75,7 +75,7 @@ public class GameJdbcDao implements GameDao {
             parameters[i] = filter.getName();
             i++;
         }
-
+       System.out.print(searchString.toString());
 
        jdbcTemplate.query(searchString.toString(), parameters, new RowCallbackHandler(){
 
