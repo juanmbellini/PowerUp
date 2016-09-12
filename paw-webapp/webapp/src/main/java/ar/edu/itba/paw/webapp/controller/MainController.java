@@ -25,14 +25,8 @@ public class MainController {
     }
 
     @RequestMapping("/search")
-    public ModelAndView results() {
-        final ModelAndView mav = new ModelAndView("search");
-        mav.addObject("greeting", "PAW");
-        return mav;
-    }
-
-    @RequestMapping("/search")
     public ModelAndView search() {
+        //TODO actually perform a search here and add the results to the MAV
         final ModelAndView mav = new ModelAndView("search");
         mav.addObject("greeting", "PAW");
         return mav;
