@@ -9,7 +9,6 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.omg.CORBA.Object;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -49,11 +48,11 @@ public class IgdbDownloader {
 
     public static void main(String[] args) {
         IgdbDownloader me = getInstance();
-//        me.downloadAllGenres();
-//        System.out.println("------------------------------------------------------");
-//        me.downloadAllCompanies();
-//        System.out.println("------------------------------------------------------");
-//        me.downloadAllConsoles();
+        me.downloadAllGenres();
+        System.out.println("------------------------------------------------------");
+        me.downloadAllCompanies();
+        System.out.println("------------------------------------------------------");
+        me.downloadAllConsoles();
         me.downloadAllGames();
     }
 
