@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.omg.CORBA.Object;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -123,17 +124,70 @@ public class IgdbDownloader {
 
     public void downloadAllGames() {
         try {
+            gamesFile.write("BEGIN;\n");
+            gamesFile.write("SET DATESTYLE TO ISO, YMD;\n");
+            gamesFile.write("\\encoding utf8;\n");
             paginate("games/?fields=*&order=name%3Aasc", new Consumer<JSONObject>() {
                 @Override
                 public void accept(JSONObject game) {
+                    //Game
                     String name = "'" + escapeQuotes(game.getString("name")) + "'",
                             summary = "'" + escapeQuotes(game.getString("summary")) + "'",
                             dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
-                    String query = "INSERT INTO power_up.games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");";
-
+                    String gameQuery = "INSERT INTO power_up.games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");\n";
+                    StringBuilder genreQueries = new StringBuilder(),
+                                    developerQueries = new StringBuilder(),
+                                    publisherQueries = new StringBuilder(),
+                                    keywordQueries = new StringBuilder();
+                    //Genres
+                    if(game.has("genres")) {
+                        JSONArray genres = game.getJSONArray("genres");
+                        for (int i = 0; i < genres.length(); i++) {
+                            genreQueries.append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Developers
+                    if(game.has("developers")) {
+                        JSONArray developers = game.getJSONArray("developers");
+                        for (int i = 0; i < developers.length(); i++) {
+                            developerQueries.append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (").append(game.getInt("id")).append(", ").append(developers.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Publishers
+                    if(game.has("publishers")) {
+                        JSONArray publishers = game.getJSONArray("publishers");
+                        for (int i = 0; i < publishers.length(); i++) {
+                            publisherQueries.append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (").append(game.getInt("id")).append(", ").append(publishers.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Keywords
+                    //TODO schema declares keyword names should go here rather than keyword IDs.
+//                    if(game.has("keywords")) {
+//                        JSONArray keywords = game.getJSONArray("keywords");
+//                        for (int i = 0; i < keywords.length(); i++) {
+//                            keywordQueries.append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (").append(game.getInt("id")).append(", ").append(keywords.getInt(i)).append(");\n");
+//                        }
+//                    }
+                    //TODO game_consoles, basically loop through release dates
+                    try {
+                        IgdbDownloader.this.gamesFile.write(gameQuery);
+                        IgdbDownloader.this.gameGenresFile.write(genreQueries.toString());
+                        IgdbDownloader.this.gameDevelopersFile.write(developerQueries.toString());
+                        IgdbDownloader.this.gamePublishersFile.write(publisherQueries.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
-        } catch (UnirestException e) {
+            gamesFile.write("COMMIT;\n");
+            gameGenresFile.write("COMMIT;\n");
+            gameDevelopersFile.write("COMMIT;\n");
+            gamePublishersFile.write("COMMIT;\n");
+            gamesFile.close();
+            gameGenresFile.close();
+            gameDevelopersFile.close();
+            gamePublishersFile.close();
+        } catch (UnirestException|IOException e) {
             e.printStackTrace();
         }
     }
