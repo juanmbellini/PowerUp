@@ -1,10236 +1,10248 @@
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9888, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9888, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9888, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8616, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14249, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12693, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19000, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7724, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11811, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11811, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11987, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11988, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12027, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11807, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11807, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11808, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11808, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11809, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11809, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11810, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11810, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9770, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9770, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9770, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7522, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6172, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1649, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1642, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1643, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1645, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1646, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1640, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6173, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9583, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1898, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15938, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15938, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6464, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6464, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9848, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9848, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18686, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14727, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9705, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2733, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8745, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22347, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22347, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11426, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11426, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6281, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6281, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2372, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12347, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12353, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8617, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8617, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23168, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (582, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16745, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16745, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4632, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4633, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2361, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2361, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3774, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3774, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3328, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3328, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2373, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14688, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14688, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17481, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9497, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9497, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9497, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13930, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8562, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8562, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3706, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11427, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11428, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12354, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12373, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6761, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6761, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6761, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21627, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21627, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21627, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12494, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3978, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12374, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19749, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19749, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19749, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19749, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19749, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6077, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6077, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6075, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6075, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13931, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2374, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6076, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6076, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6079, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6079, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6733, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9771, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9771, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17886, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7169, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7169, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19313, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19313, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14360, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22428, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19390, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2375, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6078, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6078, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16316, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16316, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16316, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9894, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9894, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11871, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8618, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8618, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12355, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13263, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2292, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14048, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14048, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14048, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (583, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5474, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4655, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12290, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12290, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5471, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9105, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9105, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13264, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17828, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17828, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17828, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2293, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2412, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6062, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5714, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19710, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19710, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22192, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7264, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7264, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6734, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5337, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2376, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2204, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9933, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9933, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9933, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2377, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11110, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13268, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20380, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11854, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9116, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2734, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2734, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14470, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14470, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11432, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11432, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19396, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19396, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13667, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8522, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12980, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2383, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2294, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7265, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8523, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11872, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13276, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2384, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2385, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18467, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11873, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12356, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13269, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13270, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13270, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10735, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10735, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9899, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9900, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11874, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12496, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11875, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9934, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9934, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15886, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3701, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9935, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5568, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5568, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12383, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12383, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12383, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19389, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11433, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11433, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7266, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12497, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23505, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8115, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11876, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17630, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5715, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (584, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1562, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12287, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5472, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2414, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2414, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21670, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14196, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11877, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11877, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11709, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11709, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11709, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11709, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11435, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11435, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3509, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3433, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3434, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6735, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5338, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (585, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11878, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5574, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5574, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5574, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16537, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16537, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19805, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4634, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4634, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4629, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4638, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4637, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4635, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9936, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9936, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9936, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8580, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15580, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15581, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15582, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13279, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6288, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15583, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11817, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11817, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11823, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11826, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11828, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11828, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9895, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12639, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14150, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1975, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1975, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18907, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18907, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18907, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18907, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9171, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21414, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21414, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21414, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21414, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9053, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9053, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9053, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9053, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17034, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17034, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23501, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23501, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23501, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17331, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15584, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17143, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11879, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16837, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3707, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20927, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8619, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8357, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8357, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9937, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9937, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9937, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9937, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9937, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11438, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11438, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11438, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11438, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11438, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11439, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11439, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11439, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11439, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11439, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18881, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22467, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8615, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8794, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8794, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2109, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4656, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4656, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2847, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17702, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8627, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8627, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3245, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3245, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3245, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3245, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3245, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14696, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9941, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2018, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15058, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8819, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8819, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14678, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14678, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6705, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6705, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6705, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23883, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23883, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18302, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18302, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2363, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15860, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15860, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19600, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18205, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18205, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18205, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19719, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19719, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19719, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16309, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16309, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16309, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12440, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16924, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2295, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7147, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7147, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20468, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18653, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23509, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8521, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8521, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18122, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7211, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7211, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15768, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1625, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9718, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9718, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3116, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3040, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3040, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3040, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3040, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16646, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11232, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11232, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14200, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22424, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22424, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8623, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8624, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5355, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9990, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19398, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20175, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20175, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11880, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11880, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18959, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9955, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18960, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11881, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11881, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8639, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6282, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6282, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5360, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5360, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11882, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14201, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14595, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3240, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3240, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3240, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6286, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6286, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6286, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5339, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5339, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11883, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8626, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18637, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18637, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9938, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9938, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9938, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9938, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7171, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7903, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11849, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2415, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3305, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11884, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12914, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17376, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17376, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14202, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8735, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8735, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8735, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3080, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3080, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3080, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5653, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2398, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11587, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11587, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11587, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11587, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12376, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (586, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (586, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12288, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8524, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14414, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17136, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7352, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7352, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6467, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6467, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4657, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13281, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13282, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18110, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18110, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17155, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17155, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17155, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13283, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1430, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1430, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1430, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9763, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9763, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14750, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14751, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14753, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5476, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5476, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14758, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6297, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6297, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6628, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6628, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14756, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14754, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (531, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6745, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6298, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6298, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6298, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11863, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6290, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6290, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4586, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12384, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12385, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12386, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16910, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11820, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2296, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16264, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16264, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2008, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2008, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11111, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11111, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3044, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21991, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21991, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21991, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13284, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8920, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (587, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (587, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9339, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9339, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12270, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12270, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5340, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14205, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14205, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11885, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11885, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4658, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14550, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14550, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12289, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12387, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4659, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4660, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6631, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6468, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6468, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7704, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12388, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1988, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1993, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1994, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1992, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13230, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13230, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20756, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20756, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20756, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8181, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8181, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8182, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8182, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8183, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8183, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16298, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16298, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6469, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13286, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13287, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20302, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8654, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11886, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18486, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11887, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6300, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1691, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1691, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1692, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1692, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1694, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1693, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1693, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1693, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13791, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13791, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6470, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5654, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8602, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8602, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8602, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8603, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8622, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8622, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8732, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8732, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5655, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13289, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14153, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14154, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13938, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8899, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8899, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2297, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11888, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5716, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5716, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12239, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8253, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9905, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9905, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9591, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2416, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21556, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4594, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4594, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6471, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8737, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8737, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7549, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15589, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4557, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11320, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11320, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2797, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8620, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8620, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2298, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8193, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8193, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23739, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8130, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8130, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8741, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3662, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6472, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7547, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7547, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19865, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19865, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19865, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14681, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23169, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23169, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11112, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8010, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8373, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8374, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8374, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15847, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11560, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11560, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5441, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5441, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5441, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18233, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23326, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23326, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23326, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12491, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19711, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3147, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3147, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6773, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3330, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5348, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5349, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18199, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5350, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5351, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16383, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17839, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3329, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3329, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7746, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3709, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3708, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9673, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4662, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5477, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6907, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11889, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13290, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7267, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14228, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5478, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5468, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5468, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5352, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5356, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22097, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22097, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22097, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5713, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8375, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (175, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13292, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13292, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11283, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8764, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8764, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8764, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17620, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17620, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6301, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4663, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4664, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17470, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17470, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9948, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9948, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9948, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18910, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18910, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (270, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (588, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16402, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9949, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (289, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9951, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9951, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2950, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2950, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (327, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (599, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9950, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (299, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8220, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3017, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5571, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8575, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21221, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (291, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (324, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9902, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9902, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13186, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8221, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9432, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9432, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9431, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9431, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14229, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9430, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9430, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9428, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9428, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9429, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9429, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16134, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16134, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (589, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (589, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (590, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (590, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5652, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5652, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5652, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11085, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11085, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11085, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8863, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (591, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (591, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1899, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1899, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8628, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1920, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11293, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11293, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11293, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12247, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19440, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3783, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11890, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19453, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19453, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9537, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7747, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (592, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6475, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8886, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8886, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7720, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7720, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7720, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8887, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8887, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8885, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8889, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2850, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (563, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19841, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11340, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11340, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11340, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3331, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14230, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5353, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14691, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14691, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14749, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14749, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1490, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3829, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3829, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3831, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3830, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3828, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13160, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5354, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14231, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8791, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8791, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11113, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11114, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11114, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14156, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14157, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14157, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12281, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18048, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18048, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18048, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14232, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11859, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8629, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8629, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2302, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8231, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8231, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11891, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9134, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9134, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9134, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3710, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5718, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9957, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9958, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9956, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9956, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9959, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9959, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11086, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11086, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11856, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11856, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1365, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1365, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19899, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19899, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14233, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6476, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17561, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17561, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8630, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8630, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (593, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8848, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8848, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8848, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15827, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8631, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5479, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2417, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8376, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1900, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5480, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15887, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8632, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19465, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7268, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1995, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18124, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2340, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14234, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19584, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4145, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1120, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1120, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17330, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17330, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8809, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8809, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2418, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8118, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14235, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4665, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4665, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1062, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1062, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2602, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14161, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13223, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15889, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15891, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2419, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19698, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3651, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11892, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12248, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12248, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3754, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17899, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17899, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14475, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17637, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15691, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15691, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14236, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14237, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2420, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13300, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13299, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3217, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13678, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13678, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2848, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9359, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9359, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12249, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12249, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5721, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5721, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14238, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7749, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10673, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10673, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18750, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21555, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5719, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8776, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12250, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12250, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4666, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1040, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1040, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1040, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12240, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21635, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21636, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8633, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9962, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9962, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9963, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9963, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14239, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14240, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14241, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9964, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9964, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14596, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11087, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11865, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8487, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8487, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12492, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14242, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11294, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2421, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23495, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16246, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16246, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2690, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2168, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14243, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14243, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2422, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7750, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18481, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2551, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12251, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8634, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16367, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11088, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11089, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16016, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11090, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4490, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4490, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9969, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9969, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13950, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7598, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4667, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4667, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4478, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4478, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6825, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2206, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2206, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8477, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13679, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11893, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15146, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4754, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15459, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15460, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15464, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15555, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15552, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15553, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15554, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7600, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13680, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13680, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9979, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (594, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5720, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19214, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (560, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2169, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1021, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8908, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8908, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8908, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14244, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19508, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19508, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11894, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2796, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17681, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17681, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17681, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14246, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1014, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1014, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4668, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10658, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10659, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2849, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2851, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2851, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3436, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9971, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9972, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8909, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5481, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19998, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10663, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10624, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11557, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11558, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11559, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (595, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (595, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7751, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11115, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11115, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11296, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13157, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9970, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1958, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1958, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1958, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1956, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1956, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1957, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1957, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1959, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1959, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7716, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1960, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1960, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8635, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8635, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16874, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16874, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16874, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13681, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13681, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14199, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9173, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2539, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2539, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12389, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14250, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19954, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19872, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1989, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1989, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2303, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2604, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2304, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2304, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7752, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7752, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16304, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16304, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2423, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16031, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13310, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2357, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2357, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17556, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17556, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18130, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22168, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22168, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22168, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22168, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1175, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1175, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1176, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4669, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4670, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4671, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7289, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7289, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7289, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10681, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10681, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10681, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8636, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8916, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14251, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16744, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16744, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3784, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3784, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18115, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7754, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17235, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2305, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2307, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12390, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12390, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11897, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2424, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11898, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (597, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (597, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7843, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7843, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5722, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5482, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5482, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13312, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13953, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6302, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3785, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3785, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (596, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (596, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9361, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9361, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9360, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9360, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13313, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18241, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18242, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18247, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18246, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18245, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4377, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6304, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20289, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20289, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (337, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (337, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11899, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9667, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13314, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5723, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4672, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4673, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5724, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7755, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11116, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11116, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8637, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1882, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15534, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15534, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15534, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13199, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (111, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (111, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (111, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14254, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7642, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7642, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8061, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8061, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5725, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5483, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5484, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2141, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11081, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11081, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8378, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13315, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13317, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2882, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2425, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2308, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6305, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (54, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5622, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10037, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10037, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14163, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1996, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (598, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5485, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20471, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11900, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10032, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13193, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13193, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7713, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15463, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15463, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15463, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15463, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14164, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15892, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7676, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19077, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12391, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12392, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16228, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5726, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9772, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9772, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9772, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4953, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5358, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23852, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23852, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18665, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22001, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22001, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22001, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22001, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5359, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11414, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2170, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7269, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17279, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17279, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13323, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2035, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2035, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2035, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19273, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19274, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19276, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19271, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19275, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4674, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4674, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19272, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4675, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4675, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7960, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7960, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7960, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14742, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14742, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14742, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18999, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17082, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2309, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2655, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2688, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10143, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2687, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2645, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13191, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13191, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7756, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19432, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3786, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3786, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6712, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13324, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11591, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9976, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9977, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9977, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9977, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18666, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11367, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11367, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11903, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1862, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (662, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (662, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8227, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (300, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8224, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (303, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8225, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8226, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2959, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2959, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8228, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11205, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11205, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11205, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8111, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4795, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8640, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11092, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11092, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9212, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9212, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8993, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8993, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8760, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8760, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8758, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8758, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8759, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8759, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11776, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9566, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9579, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9582, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4676, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4676, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18595, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18595, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9978, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9978, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9978, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4348, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4348, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16493, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9877, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9877, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11226, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11226, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14257, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14258, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23172, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18016, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11904, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4592, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4592, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17227, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17227, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17227, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1061, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11553, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2064, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2064, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2064, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8946, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18451, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9773, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9773, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9773, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9773, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2426, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5727, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4677, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2427, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (600, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14166, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3233, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3233, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14259, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11905, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3762, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6063, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6064, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (511, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20906, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14385, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5728, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11906, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15547, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14260, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14357, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14357, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14357, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5487, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5487, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1429, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8641, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9016, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12254, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12255, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17700, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17700, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14167, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14261, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23291, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3714, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8642, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6911, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6911, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6911, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17807, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3788, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14168, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7271, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1997, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1998, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1999, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7272, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7272, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7406, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7406, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7406, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12293, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14263, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5488, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7273, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7274, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16929, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19406, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19406, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19406, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13683, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13683, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13682, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13682, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13684, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13684, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10861, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10861, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10862, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23886, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23886, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11907, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14264, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4678, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4678, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18636, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18636, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12393, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6520, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17247, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11909, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15599, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13328, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19232, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17338, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17338, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16219, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18868, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18868, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8525, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3652, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5490, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16923, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16923, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16923, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3234, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8331, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (255, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (255, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6451, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11664, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11910, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2197, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22720, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11911, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5539, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5539, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16208, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16208, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11912, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11912, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13242, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8488, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4679, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3703, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11913, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16138, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2208, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6521, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5729, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14599, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14169, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14265, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5731, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17276, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6877, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19694, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19694, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15895, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15896, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13330, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12256, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17660, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17660, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18303, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18303, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18303, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2310, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10239, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10239, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21867, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4595, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13685, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11756, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20982, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20982, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (572, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (572, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (572, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (601, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (601, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1881, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1881, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1881, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19547, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19547, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19547, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9774, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9774, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9774, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9774, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9775, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9775, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11914, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6713, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6713, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15027, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23137, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13795, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14266, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2311, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2311, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (211, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13687, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13687, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10448, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11260, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11260, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18855, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11093, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11093, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11126, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2388, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5656, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12647, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12647, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4144, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4144, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19414, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5491, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5492, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5493, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19410, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19424, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19412, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19428, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5494, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5494, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14984, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2610, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15853, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13688, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13688, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3439, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14267, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11915, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17887, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8643, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6307, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3417, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5732, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6308, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8498, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3440, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3441, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2702, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18208, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18208, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18208, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (996, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (996, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (997, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (997, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1832, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13333, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13797, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14268, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14268, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11917, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12869, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12869, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6309, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22392, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22392, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2009, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2009, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11489, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6555, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4514, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6556, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6566, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21530, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15498, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15498, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14358, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6567, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2360, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2360, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2312, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17281, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17281, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22471, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22472, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14170, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19809, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19808, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19785, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22465, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12241, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11918, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14787, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14787, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (602, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17969, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10231, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8638, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17783, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18794, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18794, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18794, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19167, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19167, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10860, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10860, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17001, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17001, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6259, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (603, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23737, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23738, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23735, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23736, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4680, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8550, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11919, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11919, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11919, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11666, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11666, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11666, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23295, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6746, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23296, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23303, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23304, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23305, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23306, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23314, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8646, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23310, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18995, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6260, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6261, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23313, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11920, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (128, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (127, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1266, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3195, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3195, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8218, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1970, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21349, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21349, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3775, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3775, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10661, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (113, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8216, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22754, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (537, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8217, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7570, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8263, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15169, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5606, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8219, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14601, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14601, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19176, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8223, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8223, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14902, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14902, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14903, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14903, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20864, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6881, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6881, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8644, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8644, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8644, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8645, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18655, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18655, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21064, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21064, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9530, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5597, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5597, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18789, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14171, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14271, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14271, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8356, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8356, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8356, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17536, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17536, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19486, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12242, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7757, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14452, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3789, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8501, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14272, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19781, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4681, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4681, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4681, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2313, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2313, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7758, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7758, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13689, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13689, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18174, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18174, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14273, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16882, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16882, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9769, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9769, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9769, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13959, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13959, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6310, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4682, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12304, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12304, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16265, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9987, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9987, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9987, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22732, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22732, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13205, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13205, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3755, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5657, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11127, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5495, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20038, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20038, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20038, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6311, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16760, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12243, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14274, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7278, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7279, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19634, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7277, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7275, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11513, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12633, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12633, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7276, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9104, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13693, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9522, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5658, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11094, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11094, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11094, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11095, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11095, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19446, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19446, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6568, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16182, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9056, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2209, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18063, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18063, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13346, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8388, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8388, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6312, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6312, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8649, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7760, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11921, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11922, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11923, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11924, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6569, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18607, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7761, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4683, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4143, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4143, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22695, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22695, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14879, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22555, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22555, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8650, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8650, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8650, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11645, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11645, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11645, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8269, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8270, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8271, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8273, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8274, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8272, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4142, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3790, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18981, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18981, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2956, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2956, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9707, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9555, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15282, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22716, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13350, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12395, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14275, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8746, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9776, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9776, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9776, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18485, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18485, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14224, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14224, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11925, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13352, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14277, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19338, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3791, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5659, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17178, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13353, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13353, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2428, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17239, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3442, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19442, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19442, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22025, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11926, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10036, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23241, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23241, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23241, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23241, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7407, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7407, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3792, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3792, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4684, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4685, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23212, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9777, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7762, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7762, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18878, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18887, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18887, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19580, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19581, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8802, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16337, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16337, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16338, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16339, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8752, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10012, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17821, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17821, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17820, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15710, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15710, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13694, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10007, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17169, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15288, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17667, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17667, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19751, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19751, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19751, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5877, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5877, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12363, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1281, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1281, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5595, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5595, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22380, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22380, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22381, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22381, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19485, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17772, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14845, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11927, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6570, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18827, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18827, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8652, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8652, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13808, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13808, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9652, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9652, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9652, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17740, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6747, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6747, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2210, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16067, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18707, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14278, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8651, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6545, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10373, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18197, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5733, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5660, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10016, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2314, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2314, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2315, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12294, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16235, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11928, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11929, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11929, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6423, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8659, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14279, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11930, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8346, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4686, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11128, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19883, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19883, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9418, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9418, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17366, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17366, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19217, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19217, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8516, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8516, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12396, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8517, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8517, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8517, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8517, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8519, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3232, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3232, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6314, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5496, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17254, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8660, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12397, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11931, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17194, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18152, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19674, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6572, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4687, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4688, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5569, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6315, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6908, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5735, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5735, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5734, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5734, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12884, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11335, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5736, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5736, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12398, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11932, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9164, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9164, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9982, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9982, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (604, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (604, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9167, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8582, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8582, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9169, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8901, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8901, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8901, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15470, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15470, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20042, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11933, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11934, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11934, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15843, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18781, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5497, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19665, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6909, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15897, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8661, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8662, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11935, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11935, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14608, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14608, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6714, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5613, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5613, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (82, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (83, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (83, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (84, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (84, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1880, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1880, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14292, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (81, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14281, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14282, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17428, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17428, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20895, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (176, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (177, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17320, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7495, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7495, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5878, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2735, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3682, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4704, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16770, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23165, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23165, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6573, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2316, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12303, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18135, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18135, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18135, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18135, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18825, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18825, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19845, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19845, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9264, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22093, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11677, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2678, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9285, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5498, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9496, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18506, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18506, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3207, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15286, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1861, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3443, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11937, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11937, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2002, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2002, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2002, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2002, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7763, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2148, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2148, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6318, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6318, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3008, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3008, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6316, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3418, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3418, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11938, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6083, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6083, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11939, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15661, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11940, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12642, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3793, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11941, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11941, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11942, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11942, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4640, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4639, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3308, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3309, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16671, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3310, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3310, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3310, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3311, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19401, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19403, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19402, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3313, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3315, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3316, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17450, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3318, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3318, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12775, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12775, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12775, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8379, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8379, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8379, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8379, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2318, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16590, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9875, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9875, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4524, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4520, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18032, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3794, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11866, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14287, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4705, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7438, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18116, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10023, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10023, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13862, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2829, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12349, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12349, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11412, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7582, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7581, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7580, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6319, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (605, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (605, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9897, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9903, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9942, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19376, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19376, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19376, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7764, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10124, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10257, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10122, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13380, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18407, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16979, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5689, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18344, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14498, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10025, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10026, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10026, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14766, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14766, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14766, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14766, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11867, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11867, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3419, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3419, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3420, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3420, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5737, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5737, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4706, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4141, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19724, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19724, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19724, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19724, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1983, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3796, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3795, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14288, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14288, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14288, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10510, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10510, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18442, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18442, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19563, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3063, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3063, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3444, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7769, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14289, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4379, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (500, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (500, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (501, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (501, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5503, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5503, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2003, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2003, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2003, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7689, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7689, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5738, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4489, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19245, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19245, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5739, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4707, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4707, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12401, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12401, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14746, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14746, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16126, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16126, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17446, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17446, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3797, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3797, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4708, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4708, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4708, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17175, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17528, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1417, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1413, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1414, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1415, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11944, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11944, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12402, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12511, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12511, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12511, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23689, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23689, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23689, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2603, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11099, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11099, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11098, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15152, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4596, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4596, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11945, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5741, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5741, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5499, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13382, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21866, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14290, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2365, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2365, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5361, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19093, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19093, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3190, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3190, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3190, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3190, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17502, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9030, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9030, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9030, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9031, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9031, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9031, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9032, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9032, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9032, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11100, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11100, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11101, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9034, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9034, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9034, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9034, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11145, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17427, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17577, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13383, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9892, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9892, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7772, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4709, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13384, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2056, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7774, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9068, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9068, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22407, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22418, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (606, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11104, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8938, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8938, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13869, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13869, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4549, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10623, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7775, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11946, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5500, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4608, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4608, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7206, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19010, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2605, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2605, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7687, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7687, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18320, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (240, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (346, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (345, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (351, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (277, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (349, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3814, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3813, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (348, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (347, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (343, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3038, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3037, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3033, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3036, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3039, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1979, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3091, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3095, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3096, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3094, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3093, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13387, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13387, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7081, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18023, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (350, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (353, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (354, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (335, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (473, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (352, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (607, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8713, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8713, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18487, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (608, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (609, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (610, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17955, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17955, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (178, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11947, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11947, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9779, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9779, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23193, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23193, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (611, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19704, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22445, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4710, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4710, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9735, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9735, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22699, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15013, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15013, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15013, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17530, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4223, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4222, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4222, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11948, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8345, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18279, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11949, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2970, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7776, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14591, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14591, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18577, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18577, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18627, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23845, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (613, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (613, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (613, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12916, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12916, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3423, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2136, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2135, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5362, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21622, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11287, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17451, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11822, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11822, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3805, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11950, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8526, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18200, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14293, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17131, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17131, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5661, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11138, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18098, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18098, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22397, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22397, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22397, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20324, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20324, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17881, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14837, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14837, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11951, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8018, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11952, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11952, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17382, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17382, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11139, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18248, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18860, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18860, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18860, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5745, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7404, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7404, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6280, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9045, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9045, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9045, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7087, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7087, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7087, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7087, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18383, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18383, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6456, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6456, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12350, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7777, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8458, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8458, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8457, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8459, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8461, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8463, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8460, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2390, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2390, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13391, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4711, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12879, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12879, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12879, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12879, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18778, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19684, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2715, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18540, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18540, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7778, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23569, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23569, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9780, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9780, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9780, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14294, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6910, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8318, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (614, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14806, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1978, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14295, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9246, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3231, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3231, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3231, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2803, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2802, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2807, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2801, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2806, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2800, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5310, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5310, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2799, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20176, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20176, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20176, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9541, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9541, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9541, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (612, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (612, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (919, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (919, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2873, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6024, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6024, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16140, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6912, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23488, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23488, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11953, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11953, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8337, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22557, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22557, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19765, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19157, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19157, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2391, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9047, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9047, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8664, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8665, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21605, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7783, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11954, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2211, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8828, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7711, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11955, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8455, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16985, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16985, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11956, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16895, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16895, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4653, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9726, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3807, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3032, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3032, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11957, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11957, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9781, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11135, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11135, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18350, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1341, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1341, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1936, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15299, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15299, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8698, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8698, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8698, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11958, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11958, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6835, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1951, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1342, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4462, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11163, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5747, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5747, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15421, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3808, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18549, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18549, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4712, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2744, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4713, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4713, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14993, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14993, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2731, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14300, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12403, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (615, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13394, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13395, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3756, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3756, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3367, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3809, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5748, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11960, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19233, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7557, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11961, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14301, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21586, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13398, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18117, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4714, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17710, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17710, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17878, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17878, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22352, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22351, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14302, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7784, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7785, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5363, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5364, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14306, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14305, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14304, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3810, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13400, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4717, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4717, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18207, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18207, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6913, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4556, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22429, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3220, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3220, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12917, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3366, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19378, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4517, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8491, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2213, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10685, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14526, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14526, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14526, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6914, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9242, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9242, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7786, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15856, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15856, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15858, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15858, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9221, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9221, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9221, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9896, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9896, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9896, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9782, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9782, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17721, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17721, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13403, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3818, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6322, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6323, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3811, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14543, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (538, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10047, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19839, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19839, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17596, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13696, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11962, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6915, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22408, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22408, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16142, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14308, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17943, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17943, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9535, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4719, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15280, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15281, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6246, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6246, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6246, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5749, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3819, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3819, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (308, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1921, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1923, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14387, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7787, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12257, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12257, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9297, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9297, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9297, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6916, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8692, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12405, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12405, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6292, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6292, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14609, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5365, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14309, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13971, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17589, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11964, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14610, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12258, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12258, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6739, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6739, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6739, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6739, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11351, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11351, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10049, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10049, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11831, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11965, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11965, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14310, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5750, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11966, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11966, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14311, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14311, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10058, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18455, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18455, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17555, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17555, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17555, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10048, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10048, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5522, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5522, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8335, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8335, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8335, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8335, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13220, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13220, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13220, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2118, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8481, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21974, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21974, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18915, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12979, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12979, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5730, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (452, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14206, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14206, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6917, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9041, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9041, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9041, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14312, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8719, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8719, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16741, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22430, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22430, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11860, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14847, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (322, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (322, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14313, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14313, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19579, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7788, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6918, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6919, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8527, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18489, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18490, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18491, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8489, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8490, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3424, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4720, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14317, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2367, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2367, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11967, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22034, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22034, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11613, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11613, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6441, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6441, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5643, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5643, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11612, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11612, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6750, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6750, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6920, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6920, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11611, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11611, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18249, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18249, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18249, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2128, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14567, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14567, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3125, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3124, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5475, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5475, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10500, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10500, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13407, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3821, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20530, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9706, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8597, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6324, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8210, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8210, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18378, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2432, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10053, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12498, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5752, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5751, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17685, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17685, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17457, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17457, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14611, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23201, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5753, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6921, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10242, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10242, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7288, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11106, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11106, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11107, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11107, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10243, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15702, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14318, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14319, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14320, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8437, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8437, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14321, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14321, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9175, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9175, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9175, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18118, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23864, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23864, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12940, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13408, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14323, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14324, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7591, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7591, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10208, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10208, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8984, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8984, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15404, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15404, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7644, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17454, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17454, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5649, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5649, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5649, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6059, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6059, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16400, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6922, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6922, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11265, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11968, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10056, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10056, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7894, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7894, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13243, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5754, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5754, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18864, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18500, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7334, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14647, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14647, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7310, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2352, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17108, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2214, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2214, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1015, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1015, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1016, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1016, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2606, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2606, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17587, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10760, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2433, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8937, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8937, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2434, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2608, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2749, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4140, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4140, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3824, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18054, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16733, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16733, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22782, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22782, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17520, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17676, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3825, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18322, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18322, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11970, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11971, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15679, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6923, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6923, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19939, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19939, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7439, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8381, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12364, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13817, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13817, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11972, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21980, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21980, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18790, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18790, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7972, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7973, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9701, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9983, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9983, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9983, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18804, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11415, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3425, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3425, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3235, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3235, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13411, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13819, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11973, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11973, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3826, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3826, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19111, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2356, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14329, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2435, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13416, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11140, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14328, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22019, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22019, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11974, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11975, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3426, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3426, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10666, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10666, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6924, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14330, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17646, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17646, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9508, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9508, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11141, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6329, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6326, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7379, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4723, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21917, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21917, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13420, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6100, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6100, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5662, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17403, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17403, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21918, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14331, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3445, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3445, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3451, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3452, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22773, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3832, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3453, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3447, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3833, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4724, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17456, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17456, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6334, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18786, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16627, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17653, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6810, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6810, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6810, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6810, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17449, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17449, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11976, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4511, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11977, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19752, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19752, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12493, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7794, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7795, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3757, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17634, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17634, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19614, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4725, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4726, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22747, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22747, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8325, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18847, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18847, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12406, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7870, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2259, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2260, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16742, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16742, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10918, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7797, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13509, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13509, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18608, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18608, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17264, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17264, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18388, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18388, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13822, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14333, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6717, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15491, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (498, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (498, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1011, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1011, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13920, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13920, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13926, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13926, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13927, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13927, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13921, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13921, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13928, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13928, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13922, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13922, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13924, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13924, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13925, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13925, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13923, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13923, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19164, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13916, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13914, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13914, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14548, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14548, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6032, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6032, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13919, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13919, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13918, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13918, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13917, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13917, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13915, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13915, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13913, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13913, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6101, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6101, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12941, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18764, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18764, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14334, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14334, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14335, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12259, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18758, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18758, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13425, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7730, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7730, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8431, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17971, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10865, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10865, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16835, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16835, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22751, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22751, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6611, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6611, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14336, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3369, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12942, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12943, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13427, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13698, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14790, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14790, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7208, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14365, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14365, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12305, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11802, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11802, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18005, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14337, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15654, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15654, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15747, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13699, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20198, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20198, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20198, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5663, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6335, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13430, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7799, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13431, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13556, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2853, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2853, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2853, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2711, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2711, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2712, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2712, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7281, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13980, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9258, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16288, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14338, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5366, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5366, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5366, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14342, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14342, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14341, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14340, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14339, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16289, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16292, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14343, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14343, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11978, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11978, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6336, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4727, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3835, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3836, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4728, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17695, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17695, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6926, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23722, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23722, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1810, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18823, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18823, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18823, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14607, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14607, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18824, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18824, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18824, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18824, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4729, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8999, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8755, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8755, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8755, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4700, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4700, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11256, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11256, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18250, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18250, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14344, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10233, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10233, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12407, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12407, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8422, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8422, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8422, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14345, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14345, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14345, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18845, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18845, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5755, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5755, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13887, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5756, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5756, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2754, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7800, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16259, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16259, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11617, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6337, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18055, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1280, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18056, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14346, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12283, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5757, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6927, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11979, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13436, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18991, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14347, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14348, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14348, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9784, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9784, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9784, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17098, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9785, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9785, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14349, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13361, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13361, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3127, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3127, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3127, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19484, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19484, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (502, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23863, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23863, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13444, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6338, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14458, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17618, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5973, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5973, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5973, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3087, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3087, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19681, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19681, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1150, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1150, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1150, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18933, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21127, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21127, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21127, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1152, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1152, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2924, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2924, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (616, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (616, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (616, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1151, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1151, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19255, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12644, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12644, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19263, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19263, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4730, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4730, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (617, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (617, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2034, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (618, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (619, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (619, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1334, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1334, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13447, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13447, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5758, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6339, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10607, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4731, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4732, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14759, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14759, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14350, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4449, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5759, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5759, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22372, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19791, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (212, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (212, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1446, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1446, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11980, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11980, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4373, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2630, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2630, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7801, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11981, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7802, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7803, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7806, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7804, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7805, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2436, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11142, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22741, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19240, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19240, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19240, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4409, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4409, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12284, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5760, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3837, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6343, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18747, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18747, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14351, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19735, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19735, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18390, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12728, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18802, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18802, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3045, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8724, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3052, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8723, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3053, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4733, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14352, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13451, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13451, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19413, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14393, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14393, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14393, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14830, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8683, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5645, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5645, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6928, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (494, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2720, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13452, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6574, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16348, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16348, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14353, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5664, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13453, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13454, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6209, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11724, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23274, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22780, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22780, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18656, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18656, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10855, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16661, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16661, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16661, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2382, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16293, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12618, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6575, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18912, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18912, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18912, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4609, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4609, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6576, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6577, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16917, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11143, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14354, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11861, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3838, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14355, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3840, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5761, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20160, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20160, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6203, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10916, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10916, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (620, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10067, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2626, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2404, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17747, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17747, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17747, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2453, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19882, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14356, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16294, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1418, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1419, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12409, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4138, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4139, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6826, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4734, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11982, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3841, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17557, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5665, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19675, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18716, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18715, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7282, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7283, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7284, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13456, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6095, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23572, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23572, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23572, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10033, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16833, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16833, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16658, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16658, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5762, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19793, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8611, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6317, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11144, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6648, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7807, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7807, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6931, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6931, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6932, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6932, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6932, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4735, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3842, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3842, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4736, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6649, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6650, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6650, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16631, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5763, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5763, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5763, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3843, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3843, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3843, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4737, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4737, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4738, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5807, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5807, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5764, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5764, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5765, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5765, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7808, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7808, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7809, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7809, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3844, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3844, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6651, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6651, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4739, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4739, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22363, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22363, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22363, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9872, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9872, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6652, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6652, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11983, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11983, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18216, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18216, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5368, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5367, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7416, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7509, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6332, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6332, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7508, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17927, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17927, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4597, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6718, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17854, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17854, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4740, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4740, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18537, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11984, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11985, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3335, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18351, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18351, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4741, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13175, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9176, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2964, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2964, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16667, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16667, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16667, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (621, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (622, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3845, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (949, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (623, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (623, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6632, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (545, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8548, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1122, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9509, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3761, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2033, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18968, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (559, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (979, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (979, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3120, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (624, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (625, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19836, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (429, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (430, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (430, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1976, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1976, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1976, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (543, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17432, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17432, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11266, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11266, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12410, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12410, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17713, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17713, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2808, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14371, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14372, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21404, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2270, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2270, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2270, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4744, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19289, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19289, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19289, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19697, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3269, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3269, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3269, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3269, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3269, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5636, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18061, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13675, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13675, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5519, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5519, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11986, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11986, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6719, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21920, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21920, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16870, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17017, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7875, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7875, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21921, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21921, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14374, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18821, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6933, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5766, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3846, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14373, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14375, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3050, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3050, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17487, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11184, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11184, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7816, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7816, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4745, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11989, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11989, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19821, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11990, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14376, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17360, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17360, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6654, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18986, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11991, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4746, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7337, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7337, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7337, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5369, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3847, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19824, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2454, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6344, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6344, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7571, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17780, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19371, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19290, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19290, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12501, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14565, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14565, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14565, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17231, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12531, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17752, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7880, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7880, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7880, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7880, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9792, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (626, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10608, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10608, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (951, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1884, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18075, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1883, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2403, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19426, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3848, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3848, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12533, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10073, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18632, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18632, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5666, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4058, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11761, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11761, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17236, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13700, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18432, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18432, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11992, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6934, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6934, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22414, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3849, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4747, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4748, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4749, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18251, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (627, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22497, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22497, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12534, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2785, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2810, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2811, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2809, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2798, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2798, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5767, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14383, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11993, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18212, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18212, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4750, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22373, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22373, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20969, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6345, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3850, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9793, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9793, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9793, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3153, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3153, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9611, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9611, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11994, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11994, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11995, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11995, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7779, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7722, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7722, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11495, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11495, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8122, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4751, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14446, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14447, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4149, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3238, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3238, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12535, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2727, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9794, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11267, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11268, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11269, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19136, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1130, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1130, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1114, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1114, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16476, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19468, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19468, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1123, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1123, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1116, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1116, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1116, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1119, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1119, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1142, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1142, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1142, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1129, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1129, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1148, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1134, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1134, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1127, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1132, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1132, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1137, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1137, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1136, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1136, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1136, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1136, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1147, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1133, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1133, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1135, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1135, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1131, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1131, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (491, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1149, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10076, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10076, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10075, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10075, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1182, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1182, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6303, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6303, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9715, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1141, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1141, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1141, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1141, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1140, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1138, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1138, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1138, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1138, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1139, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1139, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1128, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1128, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1118, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1118, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1146, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1146, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1145, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21888, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21888, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21888, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4165, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11533, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22701, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13203, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13203, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23186, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23186, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18014, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18730, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18730, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18730, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8705, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11044, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11045, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17692, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16539, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23724, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23724, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14613, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14613, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19386, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19386, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8537, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2151, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2151, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2151, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11321, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17966, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7820, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23277, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3851, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16616, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13469, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13469, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13469, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7898, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6189, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6189, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6189, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6189, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11783, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8214, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8214, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8214, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8214, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13470, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2876, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7874, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18677, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18677, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17871, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17871, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2874, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12536, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16844, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16844, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14614, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14614, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3852, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5768, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4753, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17978, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17978, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17978, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17693, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11271, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11271, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12537, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14615, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11996, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2237, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2235, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2235, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4760, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13472, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3456, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8257, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21417, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8394, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6103, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6103, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16672, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16672, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16672, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17543, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17543, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17543, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18091, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8625, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8625, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12538, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2455, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2455, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12539, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7821, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7821, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11997, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3427, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6084, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6085, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6086, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12540, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6087, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6088, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6089, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11998, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6090, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6092, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2456, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9813, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9813, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16426, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8583, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10237, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10237, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15207, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4408, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15872, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19772, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15208, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11306, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11306, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5771, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14887, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14840, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14888, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14889, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18870, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5773, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14616, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5769, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5770, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (628, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (628, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18872, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4538, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13478, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6722, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13827, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12525, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12525, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12525, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12525, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2917, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2917, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5062, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5062, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (629, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13222, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13222, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13222, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15833, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15945, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7904, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7904, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17767, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17767, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11393, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11392, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6935, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3853, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3854, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7897, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7897, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7897, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7897, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14617, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3855, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6346, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6802, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6802, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11999, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5774, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3222, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3222, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3222, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12014, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11151, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11151, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15210, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4460, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17917, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8062, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16986, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16986, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10078, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23249, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13246, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9796, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10080, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10080, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10080, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15551, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9165, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17659, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17659, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15211, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4761, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4761, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15212, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15883, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15883, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15876, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15878, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15878, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (630, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (630, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (631, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (631, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (632, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (632, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8192, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8718, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3856, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3856, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11216, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18873, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12000, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5775, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13486, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11713, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11714, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11715, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11716, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11717, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6723, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4762, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19234, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22462, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7822, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6936, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6936, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4756, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4756, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4756, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16859, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14988, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11727, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17907, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17907, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18554, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7597, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7597, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7597, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6490, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6490, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6518, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6518, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12001, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15905, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15905, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2358, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2358, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10083, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10083, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11366, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18070, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15913, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10429, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10429, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22036, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13093, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13093, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17744, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8425, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18252, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6094, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7823, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7823, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7824, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7824, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3428, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16296, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10737, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5588, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9046, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9046, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9046, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23245, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7873, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16147, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6937, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6937, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19433, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19433, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7856, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16043, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18744, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19391, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1804, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14179, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14180, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1802, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9594, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9594, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18974, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18974, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18974, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12002, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6347, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23573, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23573, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10228, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10228, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4516, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4371, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13493, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13494, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16825, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10235, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13495, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3758, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3458, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3459, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14702, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4765, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4765, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6348, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9723, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9723, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16312, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16312, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16312, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9881, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9881, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9881, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5667, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12944, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12003, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12004, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5776, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12005, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22710, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22710, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2804, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1010, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1010, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2931, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2931, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2154, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4213, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4214, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10094, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10094, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9066, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9066, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16604, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16604, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16602, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16602, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8598, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4610, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4610, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15719, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20458, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18354, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18354, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18354, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18354, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20457, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17565, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17565, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18151, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18151, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3083, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17527, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (634, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (634, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6038, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6038, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9930, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21930, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21930, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12006, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12007, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15284, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18508, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10082, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10082, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14465, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14465, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17121, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19118, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19118, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5589, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17892, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6938, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15707, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4766, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18064, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18065, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18066, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5777, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10159, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10159, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9797, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9797, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9797, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2474, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14005, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3460, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3461, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18784, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18159, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6724, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7511, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7511, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12543, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15563, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10095, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10095, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5370, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18446, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18355, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18355, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18355, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6939, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (636, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18718, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19287, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18305, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19288, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12544, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9764, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19756, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19717, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17141, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16218, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16218, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15083, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21923, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21923, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (637, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (637, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (638, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (639, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (639, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5779, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17346, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22217, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8146, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8146, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8146, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12545, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9864, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16820, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4767, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14618, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14618, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7573, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14619, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14620, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17909, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18597, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18597, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14621, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10349, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10349, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10349, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18484, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16049, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17678, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17678, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14622, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13209, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13209, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6725, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9798, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10097, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5371, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2457, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2457, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13501, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14590, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19537, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11152, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19677, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19677, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3860, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3859, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3861, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8453, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8454, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4768, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7392, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7392, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6751, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6751, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19475, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18072, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21939, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (344, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5875, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5875, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11749, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11749, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1929, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2812, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9283, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15762, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15762, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (640, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17861, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17861, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10100, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10100, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8426, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8426, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8426, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9984, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9984, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14624, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14623, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14570, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14570, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5780, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5780, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5781, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5781, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8277, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9799, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7967, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7967, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (641, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (641, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (641, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (642, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (642, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (642, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7969, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7969, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7969, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7968, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7968, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (943, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (943, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (561, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (561, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12634, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17340, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17340, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17340, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5782, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5783, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6941, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4541, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8280, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19585, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8282, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8281, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8202, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17725, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10851, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10851, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14626, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14626, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4446, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6350, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17232, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17232, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5610, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (643, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4203, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4203, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7494, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16759, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12546, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18940, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5784, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (644, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (645, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (646, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (646, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7907, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7907, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7907, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7906, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6752, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7908, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7909, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7909, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9800, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9800, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12547, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3071, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3071, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1901, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1901, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (647, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (707, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (321, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (670, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11571, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21205, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (649, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (649, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (650, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (650, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (295, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (676, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18785, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (652, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (245, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (245, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (648, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (959, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (833, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (759, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (706, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (664, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (663, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18165, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18165, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18165, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (340, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (900, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11678, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11678, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2447, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2446, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2443, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2445, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2441, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2439, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2440, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2442, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2010, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17607, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5668, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9801, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9801, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11153, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (653, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (653, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (653, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (477, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (477, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9760, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (879, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (879, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (961, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (961, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (275, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18890, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18890, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13705, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11154, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11154, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12412, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12412, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (654, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1369, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11496, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1370, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1371, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11671, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23571, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11245, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21926, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21926, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2458, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2458, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3862, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3862, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9006, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9006, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12009, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12009, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12009, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4701, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4702, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14148, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14148, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6943, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6943, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6942, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6942, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4770, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6726, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17195, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17195, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6727, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5634, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3863, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3864, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5785, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5785, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14627, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5786, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5786, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17729, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5669, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16107, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1286, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1424, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1425, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1425, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11623, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12413, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12413, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16889, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16889, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15303, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15303, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (655, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2616, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19120, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19120, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11278, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7566, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7567, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7567, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15446, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15446, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9572, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9572, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9572, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9572, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18736, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16670, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5787, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5787, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2614, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6404, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6404, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15163, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15163, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12010, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8725, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8725, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4598, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4598, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4598, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9545, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6351, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11300, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20192, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20192, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1336, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18877, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11333, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9802, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9802, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9802, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3839, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3839, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3839, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18765, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18765, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9921, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9921, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9921, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11238, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11238, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11238, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23236, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23236, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3241, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3241, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3241, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3060, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3062, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3065, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11359, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11360, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3061, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18449, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3064, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6728, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19205, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2621, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7825, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11362, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14010, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4771, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11344, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19528, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19528, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20124, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16810, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12011, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5372, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11608, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11601, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11319, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11600, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11000, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11318, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8689, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12012, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10107, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11048, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11048, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10428, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10428, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5788, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8466, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18504, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18504, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10035, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10035, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18846, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18846, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18710, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18547, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18547, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23203, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23203, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16200, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14015, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6729, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7544, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2459, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12013, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12013, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18535, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18535, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23899, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23899, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18382, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7826, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8484, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17230, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17230, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17230, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11369, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11369, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11369, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11369, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15173, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15173, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13215, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13214, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (305, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13213, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (242, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (242, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9362, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9362, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5637, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5638, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13523, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13524, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2612, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2612, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4773, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (241, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2997, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9098, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (297, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1372, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1372, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (307, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2944, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12306, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7612, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13525, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4137, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12015, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11298, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2896, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2896, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2897, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2897, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7333, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23843, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11341, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14554, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14554, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14554, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7656, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11554, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16599, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5789, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1185, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1186, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1198, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1199, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1197, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1188, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1187, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1195, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1196, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8038, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13529, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1193, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1190, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1194, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1194, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1192, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6945, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6946, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6947, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1189, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1191, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22516, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22516, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15389, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15389, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15389, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11049, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11049, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11049, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14946, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14946, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6361, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6361, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12550, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12551, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12552, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4611, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4611, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13531, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13833, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4777, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9803, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9803, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19291, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19291, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19291, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16865, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17214, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17214, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12553, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12553, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12414, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1805, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1806, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1807, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1808, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1809, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17105, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17105, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17105, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17112, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17112, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14629, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14629, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18732, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18732, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9259, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9259, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11374, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11375, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22038, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15035, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7595, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7595, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9809, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9809, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9809, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23902, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5790, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13532, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13533, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14941, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14941, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12016, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12016, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6784, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12554, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12554, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5373, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5373, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4242, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4242, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21931, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12017, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12017, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23837, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12018, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19328, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11750, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11751, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11746, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4757, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22002, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22002, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22002, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5792, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15863, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15863, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5793, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7587, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7587, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7587, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8763, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8763, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4136, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4136, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2407, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2407, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20474, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21932, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9810, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9810, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19165, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13188, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13188, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7902, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7901, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10116, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18911, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18911, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17569, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6948, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6948, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18556, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18556, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7285, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7285, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11868, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14631, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14631, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15920, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13535, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18760, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18760, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9739, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9739, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11176, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10230, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17173, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5794, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17848, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17848, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1126, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1126, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1126, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1126, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1126, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12415, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18977, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18977, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10070, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13521, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13521, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4779, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10163, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3429, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3430, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2477, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2477, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12555, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2922, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2922, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2918, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2918, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23850, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (656, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7840, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2011, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2011, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6753, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6753, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17027, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18709, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18709, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17256, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17256, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3084, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2967, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2967, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7886, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7886, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7886, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13365, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13365, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13365, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13365, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18499, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18557, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22691, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (296, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (296, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (471, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (471, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1268, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1268, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10117, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10117, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (336, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (336, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4764, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16297, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11207, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17893, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8483, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12019, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12020, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12020, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15198, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15198, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11648, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11648, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3121, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2460, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10120, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10120, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11281, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5795, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19268, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7632, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4780, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4781, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4782, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6352, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6353, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6055, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8427, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8427, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19086, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22708, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16812, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16812, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13708, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2593, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2593, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17372, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16346, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16346, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6900, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9811, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9811, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9811, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17658, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17658, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17727, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17727, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6754, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6754, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6754, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3865, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3866, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9812, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9812, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12556, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22100, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6949, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9631, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9816, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13537, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9061, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9061, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3867, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12021, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12021, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21977, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21977, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23300, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2461, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18893, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4783, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4783, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16470, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16470, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7497, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12557, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12557, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3462, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3466, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3465, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3464, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3463, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9761, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12394, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12394, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12394, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12394, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12394, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21674, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7828, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7828, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12260, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21995, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21995, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16471, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16472, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19740, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9876, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3431, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19252, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9190, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12022, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12558, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12023, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12023, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11192, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11192, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18998, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18998, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12025, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12024, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1877, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14632, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15447, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20268, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20268, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11028, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11028, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11028, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22809, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22810, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12559, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14022, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18748, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8693, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16937, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19339, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17431, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12560, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22489, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4319, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4319, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14768, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14768, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12417, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14633, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12028, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12028, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4758, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4758, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17691, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2462, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4461, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8132, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8201, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12563, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6657, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3868, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12029, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13564, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12030, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13565, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6952, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10136, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10136, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12031, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12031, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12032, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18953, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3679, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3678, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3681, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3467, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6658, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3680, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6779, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6780, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5799, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5800, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5801, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5802, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6953, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6954, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6955, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4789, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6659, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11641, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11641, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2663, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17484, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6956, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6957, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5803, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5804, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5806, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4790, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4791, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22371, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9694, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9708, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9708, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9708, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7842, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11745, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23309, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17429, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17429, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17429, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2471, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11386, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11387, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11388, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18985, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18985, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15990, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12033, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14789, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17107, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6365, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6366, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12734, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6958, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6958, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6789, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6789, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6788, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6788, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6660, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18193, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2111, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (657, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11726, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5868, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6367, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18876, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18876, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12034, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12034, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12035, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11869, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1214, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1214, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1215, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11806, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18137, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18137, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18137, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14197, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14197, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14197, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9817, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9817, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9817, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9818, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9818, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9818, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10139, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10139, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18816, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12036, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12036, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16890, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15898, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16668, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2369, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17238, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17238, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11390, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (658, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (659, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3468, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3468, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8428, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8428, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8428, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12990, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12990, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6959, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9260, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9260, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9261, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9261, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17109, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17109, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12053, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12053, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2155, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2155, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2155, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2368, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2368, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20341, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22502, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22502, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19924, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8222, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8222, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11133, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23158, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23158, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21988, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21040, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3869, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2466, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2465, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4220, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4220, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10166, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10166, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5374, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5374, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13543, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17217, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3870, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3870, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8965, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8965, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2012, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2012, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4219, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8185, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8185, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2467, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2399, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12037, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12037, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18335, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18335, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12564, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10108, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10108, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1270, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1270, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1270, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1269, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1269, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1269, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20048, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20048, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18638, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4135, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4135, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20013, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2125, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9118, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9118, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (660, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5808, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17305, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17305, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17305, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8452, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17032, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17032, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (661, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (661, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (661, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (309, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14332, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8981, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17954, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17954, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15145, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11830, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11829, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11504, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17400, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17400, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14527, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12416, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12416, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11389, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4794, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3871, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6368, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6369, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6661, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18703, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18703, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19721, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11024, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11025, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14989, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12038, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11327, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10169, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10169, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10169, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1533, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7551, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3267, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19549, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19549, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19549, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19549, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14634, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14634, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (193, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (193, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15862, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15862, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12039, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12039, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3046, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3046, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20750, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20750, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20750, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20751, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20751, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20751, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5593, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5593, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23891, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19561, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19561, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12040, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17245, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2117, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2117, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2117, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11575, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11575, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7662, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21953, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (576, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3769, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3769, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3769, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3769, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3677, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2637, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2637, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4796, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4796, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18358, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19588, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8429, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8429, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10170, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17159, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18078, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18078, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18078, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14949, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8442, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8442, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18440, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18440, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18440, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18440, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18440, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (536, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (536, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7329, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19399, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19399, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19397, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2902, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1833, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1833, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16822, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5809, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14851, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2134, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2134, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20336, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1387, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1387, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13575, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1388, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1388, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1389, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1392, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1392, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1383, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11725, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7286, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8211, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1395, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1391, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1393, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11718, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1390, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1396, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5448, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5448, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18362, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18362, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18362, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11596, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4797, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4797, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (496, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (496, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5924, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5924, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3199, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3199, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19521, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19521, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4798, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14403, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14403, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16777, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (37, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1216, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (985, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21960, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21960, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8349, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8349, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16544, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16544, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11398, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11398, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11398, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3872, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5810, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3010, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6960, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18389, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14726, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7864, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7864, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7864, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6961, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6961, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6962, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2354, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7564, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7564, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10171, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8486, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8486, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4799, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4799, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4799, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22434, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22434, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1276, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1276, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9245, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13381, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13381, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9819, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22730, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22730, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3139, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3139, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3139, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1919, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1919, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1919, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17916, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17916, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22738, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4800, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3082, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3082, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15011, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15011, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1241, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15486, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2488, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19873, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23243, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4801, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12041, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12565, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22388, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14635, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14635, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8561, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8561, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18121, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18121, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (665, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21634, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17897, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9376, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9377, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11027, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11027, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11026, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11026, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23205, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23205, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12566, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22779, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22779, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22779, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14760, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14760, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14760, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14636, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4270, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9073, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5811, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6963, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2249, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2250, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8470, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12567, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4802, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6755, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2661, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6067, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5651, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (768, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19153, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1056, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12568, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12568, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11566, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8447, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17876, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8230, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8230, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14637, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17688, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18217, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18217, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (261, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (261, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (262, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (262, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (264, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (264, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (256, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (256, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (267, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (267, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (268, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (268, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (258, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (258, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (259, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (259, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (269, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (269, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (265, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (265, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (266, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (266, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (252, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (252, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (263, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (263, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4803, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4803, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3874, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3875, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6964, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2592, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2505, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21928, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21928, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9882, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9882, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3873, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17459, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17459, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1873, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8677, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8677, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8676, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8676, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7889, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7888, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10177, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10177, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12569, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12569, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17722, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10184, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8190, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8190, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2283, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2283, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17611, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17611, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17303, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17303, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1973, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12042, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18164, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8678, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16242, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12418, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12418, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12043, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6619, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20326, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14639, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14639, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (666, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (666, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9349, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9349, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4134, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4134, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9353, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5812, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5812, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9351, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9351, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9350, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9350, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9348, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9348, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1273, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1273, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9352, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9352, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17277, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8416, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8416, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7500, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16204, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16204, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16204, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3236, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3236, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5837, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5837, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5837, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18215, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18215, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18215, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9279, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9279, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19884, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19884, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5520, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5521, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5506, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3175, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15126, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15126, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4341, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5670, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12570, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9914, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17987, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18067, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5619, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5619, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12045, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12046, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12044, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17019, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9117, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13588, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12047, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11448, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13550, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14640, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14640, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6370, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6371, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6372, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3469, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5060, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5060, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5060, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19300, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19300, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17224, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10238, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10238, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11291, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11291, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16642, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16642, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18609, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6664, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6663, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6663, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7287, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7287, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17187, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21948, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21948, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21949, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21949, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21950, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21950, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21952, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21951, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1872, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (667, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (668, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2491, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (669, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11870, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18605, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18610, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12419, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6798, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6798, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8998, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7261, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7261, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7260, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7260, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7260, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18516, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18516, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22410, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22410, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15737, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1939, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1939, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19587, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19587, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11174, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11174, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2651, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2652, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2716, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2717, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2717, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18611, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17842, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1168, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1170, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10686, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1169, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1171, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3373, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3373, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3373, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10795, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10795, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16230, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16230, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16230, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14362, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14362, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10858, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10858, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (41, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (41, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19601, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19601, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (43, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (43, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9740, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9740, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9533, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9533, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8287, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8287, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (42, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (42, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9498, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9498, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5591, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5591, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9575, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9575, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9274, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6279, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6279, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18081, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18081, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (134, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (135, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (136, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (112, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20022, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20734, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20734, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4612, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6827, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8798, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7395, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7395, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7395, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11827, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13170, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12572, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4627, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16925, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16925, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16925, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6373, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2813, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2814, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2815, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3470, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (125, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (126, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (126, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (246, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (246, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (120, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (120, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3182, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3182, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22384, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17133, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9821, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9821, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9821, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23881, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23881, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23881, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23881, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6965, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17739, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17739, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13058, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2723, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10912, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10913, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14641, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8234, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8234, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18219, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3876, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17064, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17064, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19341, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2636, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2736, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17686, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17686, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17084, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12932, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12932, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19222, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9521, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9286, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6374, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6375, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6376, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4133, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3877, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15705, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15705, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15705, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8614, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19678, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3878, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11391, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11391, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13561, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5081, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8613, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19737, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18662, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8820, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6377, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11345, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9822, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9822, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3027, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3027, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4132, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5813, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8701, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19591, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8309, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8309, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8309, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16636, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16636, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14648, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14299, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4338, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14649, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14649, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3879, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17671, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17671, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18068, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (524, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (524, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9928, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9928, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7966, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7966, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1902, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11695, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14692, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14693, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4805, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14650, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22700, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6542, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6542, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19351, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11403, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11403, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9823, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9823, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9823, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9824, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9824, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9824, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16276, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6541, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6541, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14651, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8291, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8291, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8291, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8292, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8293, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11694, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11694, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18370, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18370, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7297, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7297, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7298, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7298, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7298, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11594, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11594, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7299, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7299, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11610, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11610, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (533, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14572, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14569, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14568, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14571, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11118, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11118, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9825, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9825, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17818, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6756, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17172, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17829, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4807, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4810, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4809, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4811, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4812, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3880, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3881, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3882, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17753, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5218, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (540, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (540, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17765, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2473, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10791, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10791, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (360, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (360, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3883, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9814, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3885, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3773, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3773, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6380, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6381, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3886, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3887, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20390, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20390, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10662, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17827, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17827, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11348, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11348, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11348, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12048, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9923, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9923, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (391, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9609, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9609, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9609, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16806, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13664, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13664, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13664, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4759, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4759, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12420, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15924, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15924, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (671, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17437, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17437, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13178, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2905, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2905, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2905, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5082, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5082, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5082, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14177, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14177, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11800, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11800, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11800, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16482, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18543, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12050, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12049, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12049, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12357, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12357, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18720, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2679, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2680, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1099, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1098, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1098, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3004, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3004, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3004, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1254, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2888, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (179, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12729, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18368, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18368, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6757, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9636, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17020, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1666, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6966, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1675, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1674, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1674, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1676, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1676, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1673, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1673, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18337, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17163, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17163, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12051, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15014, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23839, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23839, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15391, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12573, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12573, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4816, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6382, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8684, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11668, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11668, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22733, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3114, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3114, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14652, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1857, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14653, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9380, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9380, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16641, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16641, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16767, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16767, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6491, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6491, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14654, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23239, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18612, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6383, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6967, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6970, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6970, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11537, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11537, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3152, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3152, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17832, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17832, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14655, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1089, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1089, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1086, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1086, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1088, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1096, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4817, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1090, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1092, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1094, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1100, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2923, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1087, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5692, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1097, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1091, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1093, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1095, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3889, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3890, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3891, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1665, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1665, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18255, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18603, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18528, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14656, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (673, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7351, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13168, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13168, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13168, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (280, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6968, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (672, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3471, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (312, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16116, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6641, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22431, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3099, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3099, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3099, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3099, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16640, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16640, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18430, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18430, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7677, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7976, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7975, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7978, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3892, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7974, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7977, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15908, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15855, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18041, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18042, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19383, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2963, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2963, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2963, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2963, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17723, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7998, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6787, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6787, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6787, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6787, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6790, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6790, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6790, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6384, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5968, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4699, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4433, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18007, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5375, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5375, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19151, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19151, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16127, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18189, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18189, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18189, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6340, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6340, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3858, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13677, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13677, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5680, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7563, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7563, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7961, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7961, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14872, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3478, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3478, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3476, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3475, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11068, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3895, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14658, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4499, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15489, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17324, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17324, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9189, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18588, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9092, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9092, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9093, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9093, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19594, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19594, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5376, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16688, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5442, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5442, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16479, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9091, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9091, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18104, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18104, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (78, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1887, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1887, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1887, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19135, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19135, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20188, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20188, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20188, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20189, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20189, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20189, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (76, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17465, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17465, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17462, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17462, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17466, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17466, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17464, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17464, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (77, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19314, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19314, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4131, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2558, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2559, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2560, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2560, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2565, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2562, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2562, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21701, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2575, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21196, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2583, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2563, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2564, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2566, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2253, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2252, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2254, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2569, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19835, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19835, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2548, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2578, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21426, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2557, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2570, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3896, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3896, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2567, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2568, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2544, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2545, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2546, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2550, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2576, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2577, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2580, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2572, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6387, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19834, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19834, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2579, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2543, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2574, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2561, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2561, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6386, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19308, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19310, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19311, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19309, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19309, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19309, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2582, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7408, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19449, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19449, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2573, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2573, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6791, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6791, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18226, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3897, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14662, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14662, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14662, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17377, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17377, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17377, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2968, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2968, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2968, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4342, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4342, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9214, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9214, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9214, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1824, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1815, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1820, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6388, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17460, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1822, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16585, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1816, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1817, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1819, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1821, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15888, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5579, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4393, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12055, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17461, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6097, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1812, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1813, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1814, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16584, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1818, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11406, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3002, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3002, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3968, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3968, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16300, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16300, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23292, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21959, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14529, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14529, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4248, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4248, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3898, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3898, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14660, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14660, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14661, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14661, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14659, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14659, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3264, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18617, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2571, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5671, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12056, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10195, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10195, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10195, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10195, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10195, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12574, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2487, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18568, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13048, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5467, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5467, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22705, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5815, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11635, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11663, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8576, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8772, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8770, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8769, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16876, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16876, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12057, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22492, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22494, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22493, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9835, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5032, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5032, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5032, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19083, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11076, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11076, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4821, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4821, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4822, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4820, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4820, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15227, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15227, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15227, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15227, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11234, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11234, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21561, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7336, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7336, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14769, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11712, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11712, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11712, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20179, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20179, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3104, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6971, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6972, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4823, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4823, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12058, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6973, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1962, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1961, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8702, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8702, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11331, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3899, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2489, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3672, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13841, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23332, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23332, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11515, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16772, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17835, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8205, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8205, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8205, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6390, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12059, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12059, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5817, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13231, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1940, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3900, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (675, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4824, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4824, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6758, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (554, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12575, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12265, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12265, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9086, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8823, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9704, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3901, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23859, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6395, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14906, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11488, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11488, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19546, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12421, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12421, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8753, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14663, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14945, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2506, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16356, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19223, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6392, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3477, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15906, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15907, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19548, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19353, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19804, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3336, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11247, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11247, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11247, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2741, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6487, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6487, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6488, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6488, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2904, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8451, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3902, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19853, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19853, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17219, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14664, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18496, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18495, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (957, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (957, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (342, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10680, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6393, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (490, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (956, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (956, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8504, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8505, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8505, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4130, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8503, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18498, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12578, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12578, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6974, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (85, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (85, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (85, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (87, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (87, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (86, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (86, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11332, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11332, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23882, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23882, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23882, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16983, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3043, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17417, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17417, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3202, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19742, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2529, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9827, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9827, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9827, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18788, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18899, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (35, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (35, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (36, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (36, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12278, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12278, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15199, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15199, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15199, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19129, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19129, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (304, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17834, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17834, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3798, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2503, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3801, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3799, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3800, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17419, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17419, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17419, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9683, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9683, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2880, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22459, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22459, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20395, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20395, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20395, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20395, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (329, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9269, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9275, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5988, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9271, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9270, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18013, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18013, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18013, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13657, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19814, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10251, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2017, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17192, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17192, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17192, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8849, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8849, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7829, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7829, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (674, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5819, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5819, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18862, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4486, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18374, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18374, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9767, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5629, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15127, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15127, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6792, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6792, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19476, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6743, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6743, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6743, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17006, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17006, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23504, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23504, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12576, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8850, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8850, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17444, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17444, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21957, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21958, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18746, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19827, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19827, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19828, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19828, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2866, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9759, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9759, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11710, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11710, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11710, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11710, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5633, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5633, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16707, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16707, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2130, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2130, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2130, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2130, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1340, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6341, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6341, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6341, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14992, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14992, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17051, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17051, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19224, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19225, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9132, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9132, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9132, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3042, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3042, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3042, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14670, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14670, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14665, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14665, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14671, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14671, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14669, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14669, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14666, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14666, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14667, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14667, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12422, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18937, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12730, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12730, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22744, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15161, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15161, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6842, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6843, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2982, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2983, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2984, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3007, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5820, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5820, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6975, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6832, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6834, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6833, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6976, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13669, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13669, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6394, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6394, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19267, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6977, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6977, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6978, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6978, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6982, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6982, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6983, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12060, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12060, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8324, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8324, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15850, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8703, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8703, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16504, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16504, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16647, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16647, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15949, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12577, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12577, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8707, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8707, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8707, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8706, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8706, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8706, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13639, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13639, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14744, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6706, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6979, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6979, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6230, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6230, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4825, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4826, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4827, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4828, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10619, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5829, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5829, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5575, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6984, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4784, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4784, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19918, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19918, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9206, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19404, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19404, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7719, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7719, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7719, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14765, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13627, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21554, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5377, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8931, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8931, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8932, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8932, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8934, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8934, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8933, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8933, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8935, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8935, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9427, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9504, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9505, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5583, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5585, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11002, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5584, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11579, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4829, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17867, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17867, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23499, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23499, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23499, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2899, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2899, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7202, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7202, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11229, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3480, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3480, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3481, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3481, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3479, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3482, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19769, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19769, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2014, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2014, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2015, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2015, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2016, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2007, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17480, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19682, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19682, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19682, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6665, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5378, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9188, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5379, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19448, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9514, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10903, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9515, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17514, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17514, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16713, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18050, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6396, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14791, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7693, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7693, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19008, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12423, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12423, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3483, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3483, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2816, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2817, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2722, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2722, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19139, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19139, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19139, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19139, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19139, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14377, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14377, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8392, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8392, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8392, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11159, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16533, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16533, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6986, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6701, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6701, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15736, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15736, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15312, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15312, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (677, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3903, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22765, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1361, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1361, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1361, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1361, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17161, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17161, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15899, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19830, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1360, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3904, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11573, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11573, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11573, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11573, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9828, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6987, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6987, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6987, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9103, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9103, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9103, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9103, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16729, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16729, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17350, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8070, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8070, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2747, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2748, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18127, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18127, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18127, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3151, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17402, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18340, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16680, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16680, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8715, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8715, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9137, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8612, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16666, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16666, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4599, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4599, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4599, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11567, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12061, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12580, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12580, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12062, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11510, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18754, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18754, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12063, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12063, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2951, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2951, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9109, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15442, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15442, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15442, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2955, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2955, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8596, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8596, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17210, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17210, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14395, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14395, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14395, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19133, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2028, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16121, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12064, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12064, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10585, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14737, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14737, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14737, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12581, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16072, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15834, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13635, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2979, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4830, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4831, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12424, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14762, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14762, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16302, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16302, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16302, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16302, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13636, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13637, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12582, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (89, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (89, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7512, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7512, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7512, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11518, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11497, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11395, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (302, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1608, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1608, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1607, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1606, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1609, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18470, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12065, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13207, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13207, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13207, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13640, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (441, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (441, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (441, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12583, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18379, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (678, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19249, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6988, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6988, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12584, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1947, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1345, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1345, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18772, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18772, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13319, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1903, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1903, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9278, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9278, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4832, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4833, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4833, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9634, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16280, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16280, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13642, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18669, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18669, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6666, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6666, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13643, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (679, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5647, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17157, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (680, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13549, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17741, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9699, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17138, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17137, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17137, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14770, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12585, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12585, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16842, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16842, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17606, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2538, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2538, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13201, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13201, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13201, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13202, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13202, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13216, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13216, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11339, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11339, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11182, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11182, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1003, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1003, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19818, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12425, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12425, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22820, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22820, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3138, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3138, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3138, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3086, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7380, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7380, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18076, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18076, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17802, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19867, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19867, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19867, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11425, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12066, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16867, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19615, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22346, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22346, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22346, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1509, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1509, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1510, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1510, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6765, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23496, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23496, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23496, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16576, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11657, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11657, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16939, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17391, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17391, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19304, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19304, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19304, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6667, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8340, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5821, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5821, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12426, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7499, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4835, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (63, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (63, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (63, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15557, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18761, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15536, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18567, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12067, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7590, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7590, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8252, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8252, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8252, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18371, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18371, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9830, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9830, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6668, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8206, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8207, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8208, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23893, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18396, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6669, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6669, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23894, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6989, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5380, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5823, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5824, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6397, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3905, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8906, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3906, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5381, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8834, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5825, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8833, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7881, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7881, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8847, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5826, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8841, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5382, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6398, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6793, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6793, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6670, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6670, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17102, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4477, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5383, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3907, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6766, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15424, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15424, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10905, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6990, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14388, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14388, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14388, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17880, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18544, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18544, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15954, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15954, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5639, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5639, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8923, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11407, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8607, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14716, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14716, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14709, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14709, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14717, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14717, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14718, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14718, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6767, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6767, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6768, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6768, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18224, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18224, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7596, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7596, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15395, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15395, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18426, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11655, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18945, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6653, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3070, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (681, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (681, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2022, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (682, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (683, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (683, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (743, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (684, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1904, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1904, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10282, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10282, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19298, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19298, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19299, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19299, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10283, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10283, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19294, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19294, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10284, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10286, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9670, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9670, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9670, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16967, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (685, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13059, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2584, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2584, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1320, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9267, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16477, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16477, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16477, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18397, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18397, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18397, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20362, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19596, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19596, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19596, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18037, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6399, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10904, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8968, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18293, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18293, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18318, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18317, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4208, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18341, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13184, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (686, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14402, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14402, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14172, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23166, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21835, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13648, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7300, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7301, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7405, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16005, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16005, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3690, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14911, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5827, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5828, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3081, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3081, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13156, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17387, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18332, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4129, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3237, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3237, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15071, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2029, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2029, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11798, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11798, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11798, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3908, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3909, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3910, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10911, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3770, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21626, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20757, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17313, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14174, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14174, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14174, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9291, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9291, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9291, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10967, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10967, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10967, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9290, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9290, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9290, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2635, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4600, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4600, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3337, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4836, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19332, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11585, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11585, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11585, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6671, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6671, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23580, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23580, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6104, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6104, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12068, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12068, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7781, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19578, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7765, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11540, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17643, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17643, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14858, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17336, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17336, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12586, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12586, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22781, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22781, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10425, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10425, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10425, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18474, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18474, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23898, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23898, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16523, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16523, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16523, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10501, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10501, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10501, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10501, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17873, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13652, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14181, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11449, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13654, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6769, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10914, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10914, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12733, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8162, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8539, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8539, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8540, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8542, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9980, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3485, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3486, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4580, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13656, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12069, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5384, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12071, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2524, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12587, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7303, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2215, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2215, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19253, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18724, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19842, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19843, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11689, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3487, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3487, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3488, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3488, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12261, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12084, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12085, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12322, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10206, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (693, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19494, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10759, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10759, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3490, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6400, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3492, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3489, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3489, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3493, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3491, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (517, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (520, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (514, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (518, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5640, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7831, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (519, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12081, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (688, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12082, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4837, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4837, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1375, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1375, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1375, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1374, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1374, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1374, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1373, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1373, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1373, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5586, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5586, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5586, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7866, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7866, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7866, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9272, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9272, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9272, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19405, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19405, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19405, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5830, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5830, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5830, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (689, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (689, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (690, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (690, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3494, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5311, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3495, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (691, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (691, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (691, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12083, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12086, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10348, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10348, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2960, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (521, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7658, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19388, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (522, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (504, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (504, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5624, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5624, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1592, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1592, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (694, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (694, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22722, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22722, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17792, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11740, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2625, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19701, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4852, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11305, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10272, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10272, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10272, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7046, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7046, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7046, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12427, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12427, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16778, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16778, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12523, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12523, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12523, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9703, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10295, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10295, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1928, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17803, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10296, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10296, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22784, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9893, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11502, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6991, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6991, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12088, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (695, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12483, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22098, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22098, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22098, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15036, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15036, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19617, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19617, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17890, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17890, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10299, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10299, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10300, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10300, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10301, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10301, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10302, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10302, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10303, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10303, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9630, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9630, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18029, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18031, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18031, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19534, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19534, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21590, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21590, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21584, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12508, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11119, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11119, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7412, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7412, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12509, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12509, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10304, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10304, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10305, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10305, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10307, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10307, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10306, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10306, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9170, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9170, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9170, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6672, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6674, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6673, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6675, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6677, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6678, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6679, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6679, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2846, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1834, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3913, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6681, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17535, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4785, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18403, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18403, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18403, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12089, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12089, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3914, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3914, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4853, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18558, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6770, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7332, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7332, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7332, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12090, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12090, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18292, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18292, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6684, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6684, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6687, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10392, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10392, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (306, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (361, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (529, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2001, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6801, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6801, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6801, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5831, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4854, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13182, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19520, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19520, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17317, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17317, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9499, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19409, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3180, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10311, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10312, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3181, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3168, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3169, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3176, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3178, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3170, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9765, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19575, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19575, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17164, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17164, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10793, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10793, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2032, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12091, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8927, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8927, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18779, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18287, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14454, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14890, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14886, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9125, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9125, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17891, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17891, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19820, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11199, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5106, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5107, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4435, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6690, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5385, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5386, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10605, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10605, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6992, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4496, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12323, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12323, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15989, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15989, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10998, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15079, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15079, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19799, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19799, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12382, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12504, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12329, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12328, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12331, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12332, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12381, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12381, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8867, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8867, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19247, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2521, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13892, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10966, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10966, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10966, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10966, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10966, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4335, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10528, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10528, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10529, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10529, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13775, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1974, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19525, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8600, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8600, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8601, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16619, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16619, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16619, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16619, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9233, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9233, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9233, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18404, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18404, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18404, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18404, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19876, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19876, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3759, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8321, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18331, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16608, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16608, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16608, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8449, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17295, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17295, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12092, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4855, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4855, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12093, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7726, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7726, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5343, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12094, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12094, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12094, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1991, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1991, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1991, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1991, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7782, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3204, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3204, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19604, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19604, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4613, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9839, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9839, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9840, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9840, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12095, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2975, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (700, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22342, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (696, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3135, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3134, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3133, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (503, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2946, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2153, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2153, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2920, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7574, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11071, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19459, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (697, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (698, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10682, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (699, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (701, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (702, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3136, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (703, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4345, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6691, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4539, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (704, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5832, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5833, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7304, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7433, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (705, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5834, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12324, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5835, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5835, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6356, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6356, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3915, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3915, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5836, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5836, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6993, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16659, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12589, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4636, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4787, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8564, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3496, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1550, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1550, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2660, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12096, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21772, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21772, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21772, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2542, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11615, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12097, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12097, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20329, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19590, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12098, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8191, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7306, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7306, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7306, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (385, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (385, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (407, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (407, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7400, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7400, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (397, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9585, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (401, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19080, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7413, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7413, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18069, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (408, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (387, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (387, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16474, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (395, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (393, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (393, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (400, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (399, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (399, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16587, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (406, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (388, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (421, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (421, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (403, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (403, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (410, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (410, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (428, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (428, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (428, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (428, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2408, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2408, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2408, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2408, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (414, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (414, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (414, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (414, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (394, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (394, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (394, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (394, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (383, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (383, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7399, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7399, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (419, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (419, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (426, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (426, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20655, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (427, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (427, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11169, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11169, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2406, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7398, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7398, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7398, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (404, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (404, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (425, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (425, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (418, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (418, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (413, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (413, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14144, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (411, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (411, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (409, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (409, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (416, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (416, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10319, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (405, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (405, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (402, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (402, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (398, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (398, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (392, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (392, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (389, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (389, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (384, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (384, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14729, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (386, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (386, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14723, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (359, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (359, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (359, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (423, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (423, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19334, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19334, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (420, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (420, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (412, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (415, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (415, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (417, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (417, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17463, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1655, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1655, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1655, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1656, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1656, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1657, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1657, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1657, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1664, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1659, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1660, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1660, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23276, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3776, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3776, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8868, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3781, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16775, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16775, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13142, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11742, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11742, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10321, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10321, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10321, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10321, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12099, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2244, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2244, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3916, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3916, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1439, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1439, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10229, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10229, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10229, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18038, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18038, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1434, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1434, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1433, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1433, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1433, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1443, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1443, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1438, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1438, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1435, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1435, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1435, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1435, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1441, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1441, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1442, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1442, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1436, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1436, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1436, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1444, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1444, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1445, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1445, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1445, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1440, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1440, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1437, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1437, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11734, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18479, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23855, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23855, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6407, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6407, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6408, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6408, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13060, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18565, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13714, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16343, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16343, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3013, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3013, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3013, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13050, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7970, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7970, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19778, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22740, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9730, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17856, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2892, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12429, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12101, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18105, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18105, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22356, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17501, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17501, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10322, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10322, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6995, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5313, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8584, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8584, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12891, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12891, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12891, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8499, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9195, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9196, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11583, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11583, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19320, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19320, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17024, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6721, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (708, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (709, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7671, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23162, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23731, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22735, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22735, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (710, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19833, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4275, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4275, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17357, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17357, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18795, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18795, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18795, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2667, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2667, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2668, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2668, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3778, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22774, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3777, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14803, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18087, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15064, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8789, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8789, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8789, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9842, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12102, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12952, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15221, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3352, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (714, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (715, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12103, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5387, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20330, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20330, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20330, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20330, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4857, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2622, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10323, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21410, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21410, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13219, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14929, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10324, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10324, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10324, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12104, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12590, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12590, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1353, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1354, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1354, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9843, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9843, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17586, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20754, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20754, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20754, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12105, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3917, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22386, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22386, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22386, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10326, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10326, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20400, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12054, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17390, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17390, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3497, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3497, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12106, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12072, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15409, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15409, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15409, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7307, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12325, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4858, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17113, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5673, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11547, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10328, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15222, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (944, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (944, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8971, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8971, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (945, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (945, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (946, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (946, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8972, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8972, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (716, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (716, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (716, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (717, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (717, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (717, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8973, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8973, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8974, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8974, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8975, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8975, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8976, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8976, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16413, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11162, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2036, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2036, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20331, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14411, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1859, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15573, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5626, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14578, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14578, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4867, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4869, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4870, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4868, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4871, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5838, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7521, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7521, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9844, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19741, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17677, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17677, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16314, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16314, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10907, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16652, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16652, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5839, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6794, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6794, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8294, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8295, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8296, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12998, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8302, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8303, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7308, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7308, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8298, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8299, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8300, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8301, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8297, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8304, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5388, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (718, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13385, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13385, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13385, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11231, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13850, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13850, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11246, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11246, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11246, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18009, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18009, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18009, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12643, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15023, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15024, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6409, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23343, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23343, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12526, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12526, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12526, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12526, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19244, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19244, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3047, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7326, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19539, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19539, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3073, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3073, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3072, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3072, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3069, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3069, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3068, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3068, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2131, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2131, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2131, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8558, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8558, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18231, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18231, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18231, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8609, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16692, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5895, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20104, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20104, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20104, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15144, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21961, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21961, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21961, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3498, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15854, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15854, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15854, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15062, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6996, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8261, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8261, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9815, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2619, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2619, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4872, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10908, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11730, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11730, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11821, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8913, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8913, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8913, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (88, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22763, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22763, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17506, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16364, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16364, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17649, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10334, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10334, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10334, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17493, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3918, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6771, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3744, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3744, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3745, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3745, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3746, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3746, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3747, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3747, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3748, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3748, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17296, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3743, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3743, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3749, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3749, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (110, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (110, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9845, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9845, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9846, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9846, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4873, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18428, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18428, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16829, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16829, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (719, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (720, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (720, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (721, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (721, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7116, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7116, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6060, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11297, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3919, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3919, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2124, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2124, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2124, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (722, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3920, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3921, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13717, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13717, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9111, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9111, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11607, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19283, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19283, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8530, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12591, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12591, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4874, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17050, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18553, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18723, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18288, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11475, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11465, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6795, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6795, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11483, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6412, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3922, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11464, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11469, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11469, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11484, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11470, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6411, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3923, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3924, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5674, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3160, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3160, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9632, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9632, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9632, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9632, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22771, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22771, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1498, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1500, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1500, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1507, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1507, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1502, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1502, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1502, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1503, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1503, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1506, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1506, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1501, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1508, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1508, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1499, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10337, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18177, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18177, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18177, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2953, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14771, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17610, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15322, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17526, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6997, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12108, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18695, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15933, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15933, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16521, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16521, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18131, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8914, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8914, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16935, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16935, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2248, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2248, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2248, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18435, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18435, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10338, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10338, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10338, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19917, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19917, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1684, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22709, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22742, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3075, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3075, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3075, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13206, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13206, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (567, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6998, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6998, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7309, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7309, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10339, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10339, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10339, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12109, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17472, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16447, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16447, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5840, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5841, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (180, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (180, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (180, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23335, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19072, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19072, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19071, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19073, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22073, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22073, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14700, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18343, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17026, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17026, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20475, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20475, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8212, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8212, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21787, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1828, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4431, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5822, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12592, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13061, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13061, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11235, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4150, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3925, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3925, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2478, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2478, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11568, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8500, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8500, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5842, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5842, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11673, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9788, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9788, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8011, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15518, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15518, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9238, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9238, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9238, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4876, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4464, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8305, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8305, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8306, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8306, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3500, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8165, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22697, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8166, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14893, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4878, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13618, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13618, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1252, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7859, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7859, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1250, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1250, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4088, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3129, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3129, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3926, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12882, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11564, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7000, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8915, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9375, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9375, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22560, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22560, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14922, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10344, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (724, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (725, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (723, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10345, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16990, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14894, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1031, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1031, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18619, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13065, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13065, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22488, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22488, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5473, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5473, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17833, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17833, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20381, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2751, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15535, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15535, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10762, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10762, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12895, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11203, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11203, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4614, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4614, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6799, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11396, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19436, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8041, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8041, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8041, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9038, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17291, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17291, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8917, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8917, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8918, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8918, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13066, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5843, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5843, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4879, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1710, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1710, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1710, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1687, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1687, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1687, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1689, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1689, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1689, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1690, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1690, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1690, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1688, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1688, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1688, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19815, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2599, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5489, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5489, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7610, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8685, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2659, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16964, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13176, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18260, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1366, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1366, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11177, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11177, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6796, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6796, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6796, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18555, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18555, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15929, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21678, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11785, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11785, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11361, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6357, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17398, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5891, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12111, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12111, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19736, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12112, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15934, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15934, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16141, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16141, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4530, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13856, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3278, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3278, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16247, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16247, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3279, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3279, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8472, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6035, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6035, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23311, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12113, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13662, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13662, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13662, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15134, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15134, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19702, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9837, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9837, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3502, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7294, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7294, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7293, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7293, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3927, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3503, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3503, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7296, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7296, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3501, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5844, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12114, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10355, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10355, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10355, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19595, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15311, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8924, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8924, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (547, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (548, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (492, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11186, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1319, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16605, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2752, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12115, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12116, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3928, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11365, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4128, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4128, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6418, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3285, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3929, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6419, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14775, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17321, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17321, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6325, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6325, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12117, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9531, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9531, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17795, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8362, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8362, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8362, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10149, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19280, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19280, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3930, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3930, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3930, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14683, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14683, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14682, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14682, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14684, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14684, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19784, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12430, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14455, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5389, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18387, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9925, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9925, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22718, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22718, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22718, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22718, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14407, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14407, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7315, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7315, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1453, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1455, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1457, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1451, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11642, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11642, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11642, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4885, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4884, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4884, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4887, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4888, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4886, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4889, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23159, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19152, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19152, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2339, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2339, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7350, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11624, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11624, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16796, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15829, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15829, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14895, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4309, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3505, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3506, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14896, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23324, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15828, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8336, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15423, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23207, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (726, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (726, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6420, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18849, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18849, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4890, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17244, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17244, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18522, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18522, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1348, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1348, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18815, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4534, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4534, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6054, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14555, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (566, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (566, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17106, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17106, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14091, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11337, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6807, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6807, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17114, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17114, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14392, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6817, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6817, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3098, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3098, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3098, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18429, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18429, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12648, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (34, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (34, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (34, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18841, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18841, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3931, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22752, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22752, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22752, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11134, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11134, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10363, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10363, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10363, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12431, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12431, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16677, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7810, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22690, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22690, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11815, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11819, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6106, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10364, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10364, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10364, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10364, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16841, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16841, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8384, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8384, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11338, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16902, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5846, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5846, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3932, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3932, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16563, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6263, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6070, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6070, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6070, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5582, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13051, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6828, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8744, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8744, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10365, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16853, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16853, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13067, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3030, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3484, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3484, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18444, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18444, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (298, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23198, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23198, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23198, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3348, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10366, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10366, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15492, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9627, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9627, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9627, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13722, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15926, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16132, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16137, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16396, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16396, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21632, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21632, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21632, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21632, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6421, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3933, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16675, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18939, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23191, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23191, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5335, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5335, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23192, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23192, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1930, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1930, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1933, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1931, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1931, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3934, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20379, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20379, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20379, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1932, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21971, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21971, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14677, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14677, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11844, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11858, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11858, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11853, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11857, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11857, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11852, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11852, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12514, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12514, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12514, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12514, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8803, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8949, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2526, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (549, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19560, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19560, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (551, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (551, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (499, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1291, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21233, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21233, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (552, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (552, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (550, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (550, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19864, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12118, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12118, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7543, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7543, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7543, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7543, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3115, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3115, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3115, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7744, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3935, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5847, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8731, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4891, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3508, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18454, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18454, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3274, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3274, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3274, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3274, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3274, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13776, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13776, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22731, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22731, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12119, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12599, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12121, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4893, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4893, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5565, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5565, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16214, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16369, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7001, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7001, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13295, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13295, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3374, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12600, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12600, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1172, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1174, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1173, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1173, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17263, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17263, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17263, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18525, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18525, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1647, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1638, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1651, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1632, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19122, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12602, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20382, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18008, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3399, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19837, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20794, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14097, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7552, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7552, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7552, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7552, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6785, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6785, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1906, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1906, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1906, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19002, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19002, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18721, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18721, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18721, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5064, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5064, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5064, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15425, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8163, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10902, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10898, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19667, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22764, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12307, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22411, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22411, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7833, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7833, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7833, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9136, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18909, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18909, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7427, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3936, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3936, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5848, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5848, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19829, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1012, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2261, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2261, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2263, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8330, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2262, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2481, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22461, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22461, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18613, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11738, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5849, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5849, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1476, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1487, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18192, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1484, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1478, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1481, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1486, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1486, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1489, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1488, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12603, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11358, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14248, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12604, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7429, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7429, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1594, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1594, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1597, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1597, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1600, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1600, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1601, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1601, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1604, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1604, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1602, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1602, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1599, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1599, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7316, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8905, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8905, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8905, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1603, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1603, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1598, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1598, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14363, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14363, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14363, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16129, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16129, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13623, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22788, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11814, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11814, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8395, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7496, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7496, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7496, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19163, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19163, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12123, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18103, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18103, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (727, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (727, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (727, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15229, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12124, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (728, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (728, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (728, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (729, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (729, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (729, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13336, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13861, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4894, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7002, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (980, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (980, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (980, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (819, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (819, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3266, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3266, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (730, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (730, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (730, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (731, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (731, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (731, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3174, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3174, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3174, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3265, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3265, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3265, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1020, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1020, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1020, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1020, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3270, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3270, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7003, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3263, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13233, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13233, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13233, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8235, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8235, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8235, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (732, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (732, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (732, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5850, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (733, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (733, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (733, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3262, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4127, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9580, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18071, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11848, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12878, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12878, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6256, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16334, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16334, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18290, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18290, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18290, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7411, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17246, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18173, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18173, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17038, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12125, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12125, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7962, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7962, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7962, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13173, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5851, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5851, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16669, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11701, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12528, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12529, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3117, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4895, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16399, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16399, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17762, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17762, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17762, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16170, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6811, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6811, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2694, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23247, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23247, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5854, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5854, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5855, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5855, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15475, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12605, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18394, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18394, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18394, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8232, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19377, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2138, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6415, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6415, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6415, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18663, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18663, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1907, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1907, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (181, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (181, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (181, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8682, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17095, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23842, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2116, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8950, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8950, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16678, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9904, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9904, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21638, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21638, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18452, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18452, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21687, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3937, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4898, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16149, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16149, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16149, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16148, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16148, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19750, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19750, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (734, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (735, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8786, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8786, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5390, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5856, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8774, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19552, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19552, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17203, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6813, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6813, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6813, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19269, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13225, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13225, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3375, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6425, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6426, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6424, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3938, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (736, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (736, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4899, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14804, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (737, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (737, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (737, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10381, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10381, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (738, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (738, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4838, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4838, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4838, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19121, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19121, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19121, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8862, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8862, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8862, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6741, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6741, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6741, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4314, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16225, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19315, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19315, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7892, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23903, 26);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11447, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11447, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (234, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1183, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13183, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8969, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8947, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (739, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7839, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7839, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9140, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9140, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7004, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7004, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5857, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9148, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9141, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9141, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9142, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9143, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9143, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5644, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13620, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13620, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5642, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4900, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7669, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1285, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2671, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2672, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2676, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2670, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9741, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2677, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2669, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2673, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2674, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7090, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7088, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7089, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2675, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2629, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12606, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3939, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5858, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16541, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1288, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12127, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10382, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10382, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16233, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10450, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14102, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14102, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23720, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23720, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23720, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23720, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17099, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22016, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22016, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22016, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22016, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22016, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9124, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8319, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8599, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8605, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8605, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22713, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3242, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3242, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16854, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16854, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3076, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3076, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3076, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3076, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13187, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13187, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13187, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17010, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17010, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12128, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12129, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19317, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19317, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6405, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6405, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6405, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22745, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6422, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6422, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6422, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10234, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22723, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16558, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19115, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19115, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19125, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19125, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19125, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19126, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19126, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9614, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9614, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12130, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19474, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1431, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18592, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18592, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18465, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10385, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10385, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8578, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8578, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13866, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12308, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12308, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19661, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17229, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17229, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17229, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6112, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11680, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6188, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18093, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18094, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10387, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10387, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10387, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2875, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8438, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8438, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8438, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8438, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16323, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16323, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16323, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8951, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8951, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12131, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1023, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1024, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1024, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12133, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11707, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11707, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18654, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18654, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13867, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8785, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17299, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17299, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17921, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17921, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22468, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3653, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3653, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18858, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18858, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18858, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18858, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16387, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16387, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16387, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (231, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (231, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (231, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (233, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (233, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (233, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9471, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (338, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (247, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (247, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10395, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2549, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2549, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2549, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6738, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6738, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6738, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (232, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (232, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (232, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6744, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6744, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6744, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11748, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11748, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8800, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8800, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8800, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19509, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19509, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12432, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2493, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (986, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3122, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (987, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (989, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (991, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6803, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (988, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11570, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (740, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2640, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (990, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4839, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7849, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7348, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19703, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9666, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9666, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12608, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7891, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7891, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7891, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7891, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9248, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6429, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6428, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6427, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11302, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11638, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11638, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9101, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9101, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9101, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18645, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18645, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18391, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6110, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17697, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7006, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3940, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23685, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23685, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5942, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8410, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8410, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12134, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12135, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7619, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7619, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7619, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13871, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13871, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (532, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17994, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17994, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17171, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17170, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7675, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7675, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7675, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4467, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4467, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12433, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12136, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9549, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9549, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19566, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15697, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15697, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15695, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15695, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22482, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6430, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14897, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14897, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14897, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20337, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12137, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18156, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18156, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7865, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14776, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3941, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3941, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4904, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4905, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3942, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4906, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3011, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3943, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3943, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3943, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (341, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (341, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3944, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21983, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20518, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3376, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3379, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3379, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3381, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3381, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3378, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3378, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3385, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3385, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3391, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3391, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3387, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3387, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3389, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3389, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3377, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3377, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3393, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3393, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3384, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3384, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3390, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3390, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3380, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3380, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3383, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3383, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3386, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3386, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15910, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3382, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3382, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19393, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19393, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7419, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7419, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3392, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3392, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3388, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3388, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15936, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15936, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2900, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4907, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12326, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16542, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6431, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11818, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7857, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7857, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7857, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6805, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11754, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11755, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11771, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11771, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11767, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11768, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9626, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12078, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10091, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16942, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1117, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1117, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4909, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17673, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16552, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16552, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20399, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20399, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20399, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19090, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19090, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19090, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19090, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19090, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1405, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7434, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7434, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22736, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7317, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (182, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6432, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16971, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12138, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12138, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19758, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4350, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4350, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5860, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5860, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15857, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15857, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12139, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12139, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6433, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5391, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17911, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17911, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17911, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1279, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23211, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23211, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23211, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23211, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2037, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2037, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10398, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10398, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10397, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10397, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17023, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17023, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (741, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10400, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10400, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10399, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10399, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10401, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10401, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15894, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15894, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2881, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4910, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4910, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4911, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7318, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7318, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10402, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10402, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (982, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (742, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12141, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12141, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8290, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8290, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5392, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5392, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (493, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1007, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1007, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16285, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16285, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10406, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17441, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17441, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17507, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17507, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5393, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5393, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2509, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2509, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17233, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10407, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18591, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18634, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18635, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18635, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17612, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5618, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5618, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5618, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4297, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4297, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13069, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7603, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7603, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14523, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7262, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7262, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19213, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19213, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19213, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19503, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19503, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8175, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8175, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (325, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (325, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14160, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7463, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3685, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3687, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3688, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3689, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7437, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3691, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3691, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18167, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18167, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14898, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3250, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14899, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9601, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9601, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11346, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11346, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11346, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18438, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6434, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3511, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3511, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6362, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20752, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8419, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15293, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15293, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17301, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17301, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17339, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17339, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9638, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9638, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9638, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9638, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13661, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13661, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13661, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13661, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11708, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11708, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11708, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11708, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7435, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7435, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7435, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17531, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19210, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8435, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7867, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8434, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8139, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13364, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8140, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13363, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7845, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11330, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11330, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11330, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17663, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14824, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17512, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17512, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17512, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17078, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13624, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14990, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19775, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19775, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2611, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2611, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2611, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2611, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7742, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7742, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7742, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (363, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (363, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (363, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (365, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (365, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (365, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (365, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14173, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (364, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (364, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (364, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (366, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (366, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (366, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (366, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (367, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (368, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (368, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (368, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (368, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (369, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (369, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (369, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (369, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (370, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (370, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (370, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (371, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (371, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (371, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (372, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (372, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (372, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (362, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (362, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (362, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13459, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (763, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6806, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17770, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17770, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15474, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5861, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7313, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3226, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3226, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3226, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3226, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7008, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17605, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17490, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17375, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12142, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12142, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12609, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2257, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2257, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9570, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9603, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9603, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11061, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11061, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11060, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11060, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6637, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (745, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3512, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8851, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2732, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8310, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8310, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2513, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6565, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2642, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2819, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2818, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12434, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18201, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (294, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (294, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (107, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (107, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (108, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (108, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15832, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15832, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (746, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6435, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4912, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4912, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6436, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4808, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10150, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10150, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6264, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12610, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10093, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10093, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10093, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15297, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15297, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9356, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9356, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11723, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8037, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9700, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17735, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17735, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12379, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12379, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (747, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14913, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17394, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2527, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7010, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21982, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11157, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11157, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (748, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (748, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6073, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6073, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (530, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (530, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1048, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1050, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1050, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1050, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1049, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5567, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5567, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16232, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5604, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5604, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20874, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20874, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20874, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11631, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11631, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11631, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20995, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7402, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7402, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7402, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14763, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14763, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18585, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11534, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15503, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15504, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8476, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4601, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4601, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8877, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8877, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7203, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7203, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10088, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10088, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7847, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7847, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7766, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14593, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14593, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14593, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14593, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12144, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8936, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8936, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19110, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12880, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12880, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10142, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4523, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14502, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11541, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16301, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16301, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6113, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18414, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3947, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10415, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10415, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10415, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1885, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1886, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3948, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11634, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11634, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11634, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6808, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6808, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (749, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (749, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (750, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (750, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8773, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (751, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (751, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15444, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22486, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9616, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8704, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8704, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8704, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10225, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4914, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13726, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18879, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18879, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16513, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16513, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17896, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11156, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12145, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14900, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (752, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18136, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18136, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20149, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20149, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6437, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12146, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4915, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4917, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3371, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2653, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4916, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5862, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9249, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9249, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (292, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8535, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1384, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2126, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7011, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18439, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23336, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5675, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18903, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11733, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5605, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5605, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5605, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18994, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7420, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7420, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13210, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13210, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (13211, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7012, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17197, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18927, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18927, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11760, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8882, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8883, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8881, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6438, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15538, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3949, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17025, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1938, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1938, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12148, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14545, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14545, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16992, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16992, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8952, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8952, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16809, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5864, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12435, 11);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19847, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9655, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11498, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19728, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19728, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (505, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (505, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12149, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12149, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3950, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5865, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5865, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17749, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17749, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14863, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20248, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (20248, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15443, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15443, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3513, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12150, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9071, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12152, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12152, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3370, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3704, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7691, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7690, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11599, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (10423, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22094, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22094, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22094, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9806, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9806, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9806, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3654, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14316, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18770, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18770, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9871, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9871, 16);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7319, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7320, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7320, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9867, 7);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8902, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9868, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9869, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9870, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9870, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9620, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9866, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12919, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15902, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18126, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18126, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18126, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22785, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22785, 30);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22785, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22043, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22043, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22043, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5314, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11193, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11193, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4920, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (507, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7868, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7868, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18861, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18861, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7578, 2);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7578, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6457, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6457, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8380, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8380, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14987, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17234, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (19844, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14143, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (14143, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17862, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17862, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23884, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23884, 25);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23884, 4);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22345, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22475, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9879, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9879, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9879, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3951, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8559, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15574, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23283, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23283, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9139, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9139, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9289, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9289, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4921, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4922, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6446, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3952, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4923, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3666, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18532, 14);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6447, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18590, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22355, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22355, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (22355, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (753, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (876, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (876, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5621, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5621, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8829, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8953, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8953, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (8953, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7170, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18095, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18095, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18096, 33);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7905, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11538, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16645, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17906, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18515, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (18515, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3394, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3394, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (16144, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7139, 10);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7652, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21986, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21986, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (21986, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9778, 8);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9778, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (9778, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15466, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (15466, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (12153, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3953, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (23873, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (754, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5563, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5563, 24);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17995, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7016, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (755, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (756, 13);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (11662, 5);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3016, 12);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7086, 9);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (7086, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4924, 31);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4926, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17111, 15);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (17111, 32);
-INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4927, 15);
+BEGIN;
+
+INSERT INTO power_up.game_genres ("game_id", "genre_id") 
+SELECT val.game_id, val.genre_id
+FROM (
+	VALUES
+	(9888, 8),
+	(9888, 14),
+	(9888, 32),
+	(8616, 2),
+	(14249, 8),
+	(12693, 15),
+	(19000, 31),
+	(7724, 32),
+	(11811, 12),
+	(11811, 25),
+	(11987, 12),
+	(11988, 12),
+	(12027, 12),
+	(11807, 12),
+	(11807, 25),
+	(11808, 12),
+	(11808, 25),
+	(11809, 12),
+	(11809, 25),
+	(11810, 12),
+	(11810, 25),
+	(9770, 5),
+	(9770, 4),
+	(9770, 32),
+	(7522, 11),
+	(6172, 5),
+	(1649, 5),
+	(1642, 10),
+	(1643, 5),
+	(1645, 5),
+	(1646, 5),
+	(1640, 5),
+	(6173, 9),
+	(9583, 9),
+	(1898, 5),
+	(15938, 32),
+	(15938, 7),
+	(6464, 13),
+	(6464, 14),
+	(9848, 8),
+	(9848, 32),
+	(18686, 33),
+	(14727, 5),
+	(9705, 9),
+	(2733, 14),
+	(8745, 33),
+	(22347, 12),
+	(22347, 32),
+	(11426, 32),
+	(11426, 16),
+	(6281, 31),
+	(6281, 32),
+	(2372, 10),
+	(12347, 10),
+	(12353, 31),
+	(8617, 8),
+	(8617, 31),
+	(23168, 14),
+	(582, 15),
+	(16745, 9),
+	(16745, 15),
+	(4632, 33),
+	(4633, 14),
+	(2361, 8),
+	(2361, 31),
+	(3774, 10),
+	(3774, 14),
+	(3328, 10),
+	(3328, 14),
+	(2373, 14),
+	(14688, 5),
+	(14688, 32),
+	(17481, 31),
+	(9497, 8),
+	(9497, 32),
+	(9497, 7),
+	(13930, 9),
+	(8562, 13),
+	(8562, 33),
+	(3706, 10),
+	(11427, 13),
+	(11428, 13),
+	(12354, 15),
+	(12373, 15),
+	(6761, 13),
+	(6761, 15),
+	(6761, 32),
+	(21627, 13),
+	(21627, 32),
+	(21627, 15),
+	(12494, 15),
+	(3978, 10),
+	(12374, 31),
+	(19749, 31),
+	(19749, 15),
+	(19749, 32),
+	(19749, 33),
+	(19749, 5),
+	(6077, 5),
+	(6077, 33),
+	(6075, 5),
+	(6075, 33),
+	(13931, 31),
+	(2374, 13),
+	(6076, 5),
+	(6076, 33),
+	(6079, 5),
+	(6079, 33),
+	(6733, 5),
+	(9771, 2),
+	(9771, 31),
+	(17886, 15),
+	(7169, 2),
+	(7169, 31),
+	(19313, 2),
+	(19313, 31),
+	(14360, 31),
+	(22428, 14),
+	(19390, 5),
+	(2375, 14),
+	(6078, 5),
+	(6078, 33),
+	(16316, 31),
+	(16316, 2),
+	(16316, 9),
+	(9894, 33),
+	(9894, 10),
+	(11871, 14),
+	(8618, 8),
+	(8618, 31),
+	(12355, 14),
+	(13263, 14),
+	(2292, 31),
+	(14048, 12),
+	(14048, 31),
+	(14048, 32),
+	(583, 14),
+	(5474, 14),
+	(4655, 14),
+	(12290, 9),
+	(12290, 33),
+	(5471, 14),
+	(9105, 9),
+	(9105, 32),
+	(13264, 5),
+	(17828, 5),
+	(17828, 8),
+	(17828, 32),
+	(2293, 31),
+	(2412, 12),
+	(6062, 5),
+	(5714, 5),
+	(19710, 10),
+	(19710, 33),
+	(22192, 10),
+	(7264, 12),
+	(7264, 24),
+	(6734, 4),
+	(5337, 25),
+	(2376, 14),
+	(2204, 31),
+	(9933, 12),
+	(9933, 31),
+	(9933, 32),
+	(2377, 9),
+	(11110, 5),
+	(13268, 30),
+	(20380, 9),
+	(11854, 15),
+	(9116, 10),
+	(2734, 8),
+	(2734, 5),
+	(14470, 31),
+	(14470, 33),
+	(11432, 5),
+	(11432, 12),
+	(19396, 32),
+	(19396, 31),
+	(13667, 12),
+	(8522, 5),
+	(12980, 14),
+	(2383, 13),
+	(2294, 31),
+	(7265, 31),
+	(8523, 8),
+	(11872, 5),
+	(13276, 10),
+	(2384, 5),
+	(2385, 5),
+	(18467, 30),
+	(11873, 14),
+	(12356, 5),
+	(13269, 14),
+	(13270, 5),
+	(13270, 33),
+	(10735, 9),
+	(10735, 13),
+	(9899, 14),
+	(9900, 14),
+	(11874, 14),
+	(12496, 14),
+	(11875, 14),
+	(9934, 9),
+	(9934, 32),
+	(15886, 12),
+	(3701, 10),
+	(9935, 10),
+	(5568, 8),
+	(5568, 25),
+	(12383, 8),
+	(12383, 32),
+	(12383, 9),
+	(19389, 14),
+	(11433, 12),
+	(11433, 32),
+	(7266, 31),
+	(12497, 14),
+	(23505, 13),
+	(8115, 32),
+	(11876, 14),
+	(17630, 10),
+	(5715, 10),
+	(584, 10),
+	(1562, 10),
+	(12287, 10),
+	(5472, 5),
+	(2414, 12),
+	(2414, 13),
+	(21670, 8),
+	(14196, 10),
+	(11877, 5),
+	(11877, 10),
+	(11709, 13),
+	(11709, 31),
+	(11709, 15),
+	(11709, 32),
+	(11435, 8),
+	(11435, 32),
+	(3509, 13),
+	(3433, 14),
+	(3434, 14),
+	(6735, 25),
+	(5338, 13),
+	(585, 13),
+	(11878, 9),
+	(5574, 5),
+	(5574, 31),
+	(5574, 32),
+	(16537, 15),
+	(16537, 32),
+	(19805, 13),
+	(4634, 9),
+	(4634, 31),
+	(4629, 9),
+	(4638, 9),
+	(4637, 9),
+	(4635, 9),
+	(9936, 24),
+	(9936, 11),
+	(9936, 15),
+	(8580, 14),
+	(15580, 13),
+	(15581, 13),
+	(15582, 13),
+	(13279, 10),
+	(6288, 5),
+	(15583, 13),
+	(11817, 12),
+	(11817, 31),
+	(11823, 12),
+	(11826, 12),
+	(11828, 12),
+	(11828, 31),
+	(9895, 11),
+	(12639, 31),
+	(14150, 14),
+	(1975, 8),
+	(1975, 31),
+	(18907, 13),
+	(18907, 11),
+	(18907, 15),
+	(18907, 32),
+	(9171, 32),
+	(21414, 13),
+	(21414, 11),
+	(21414, 15),
+	(21414, 32),
+	(9053, 31),
+	(9053, 2),
+	(9053, 15),
+	(9053, 32),
+	(17034, 15),
+	(17034, 32),
+	(23501, 8),
+	(23501, 32),
+	(23501, 31),
+	(17331, 32),
+	(15584, 33),
+	(17143, 31),
+	(11879, 8),
+	(16837, 32),
+	(3707, 14),
+	(20927, 15),
+	(8619, 9),
+	(8357, 8),
+	(8357, 32),
+	(9937, 31),
+	(9937, 9),
+	(9937, 32),
+	(9937, 16),
+	(9937, 12),
+	(11438, 31),
+	(11438, 9),
+	(11438, 32),
+	(11438, 16),
+	(11438, 12),
+	(11439, 31),
+	(11439, 9),
+	(11439, 32),
+	(11439, 16),
+	(11439, 12),
+	(18881, 5),
+	(22467, 13),
+	(8615, 14),
+	(8794, 31),
+	(8794, 32),
+	(2109, 31),
+	(4656, 8),
+	(4656, 9),
+	(2847, 8),
+	(17702, 32),
+	(8627, 8),
+	(8627, 32),
+	(3245, 2),
+	(3245, 12),
+	(3245, 13),
+	(3245, 31),
+	(3245, 32),
+	(14696, 8),
+	(9941, 16),
+	(2018, 11),
+	(15058, 15),
+	(8819, 31),
+	(8819, 2),
+	(14678, 9),
+	(14678, 32),
+	(6705, 8),
+	(6705, 31),
+	(6705, 32),
+	(23883, 12),
+	(23883, 32),
+	(18302, 12),
+	(18302, 32),
+	(2363, 5),
+	(15860, 33),
+	(15860, 24),
+	(19600, 25),
+	(18205, 12),
+	(18205, 31),
+	(18205, 32),
+	(19719, 8),
+	(19719, 32),
+	(19719, 31),
+	(16309, 12),
+	(16309, 13),
+	(16309, 32),
+	(12440, 15),
+	(16924, 32),
+	(2295, 31),
+	(7147, 2),
+	(7147, 31),
+	(20468, 33),
+	(18653, 31),
+	(23509, 12),
+	(8521, 26),
+	(8521, 14),
+	(18122, 32),
+	(7211, 31),
+	(7211, 32),
+	(15768, 31),
+	(1625, 31),
+	(9718, 8),
+	(9718, 16),
+	(3116, 31),
+	(3040, 9),
+	(3040, 15),
+	(3040, 33),
+	(3040, 32),
+	(16646, 32),
+	(11232, 31),
+	(11232, 33),
+	(14200, 13),
+	(22424, 5),
+	(22424, 31),
+	(8623, 9),
+	(8624, 9),
+	(5355, 31),
+	(9990, 15),
+	(19398, 9),
+	(20175, 5),
+	(20175, 33),
+	(11880, 31),
+	(11880, 33),
+	(18959, 12),
+	(9955, 10),
+	(18960, 12),
+	(11881, 8),
+	(11881, 5),
+	(8639, 8),
+	(6282, 8),
+	(6282, 32),
+	(5360, 5),
+	(5360, 13),
+	(11882, 13),
+	(14201, 13),
+	(14595, 13),
+	(3240, 13),
+	(3240, 32),
+	(3240, 14),
+	(6286, 13),
+	(6286, 32),
+	(6286, 14),
+	(5339, 8),
+	(5339, 31),
+	(11883, 4),
+	(8626, 13),
+	(18637, 5),
+	(18637, 7),
+	(9938, 12),
+	(9938, 31),
+	(9938, 15),
+	(9938, 24),
+	(7171, 8),
+	(7903, 5),
+	(11849, 12),
+	(2415, 12),
+	(3305, 7),
+	(11884, 14),
+	(12914, 14),
+	(17376, 31),
+	(17376, 32),
+	(14202, 31),
+	(8735, 8),
+	(8735, 25),
+	(8735, 32),
+	(3080, 31),
+	(3080, 32),
+	(3080, 9),
+	(5653, 15),
+	(2398, 13),
+	(11587, 13),
+	(11587, 14),
+	(11587, 32),
+	(11587, 10),
+	(12376, 30),
+	(586, 8),
+	(586, 5),
+	(12288, 33),
+	(8524, 31),
+	(14414, 8),
+	(17136, 31),
+	(7352, 31),
+	(7352, 32),
+	(6467, 13),
+	(6467, 7),
+	(4657, 14),
+	(13281, 5),
+	(13282, 13),
+	(18110, 5),
+	(18110, 33),
+	(17155, 14),
+	(17155, 32),
+	(17155, 15),
+	(13283, 13),
+	(1430, 2),
+	(1430, 13),
+	(1430, 31),
+	(9763, 13),
+	(9763, 33),
+	(14750, 13),
+	(14751, 13),
+	(14753, 13),
+	(5476, 13),
+	(5476, 33),
+	(14758, 13),
+	(6297, 5),
+	(6297, 13),
+	(6628, 13),
+	(6628, 33),
+	(14756, 13),
+	(14754, 13),
+	(531, 5),
+	(6745, 13),
+	(6298, 8),
+	(6298, 5),
+	(6298, 31),
+	(11863, 13),
+	(6290, 5),
+	(6290, 32),
+	(4586, 31),
+	(12384, 13),
+	(12385, 13),
+	(12386, 13),
+	(16910, 32),
+	(11820, 31),
+	(2296, 31),
+	(16264, 32),
+	(16264, 15),
+	(2008, 11),
+	(2008, 15),
+	(11111, 9),
+	(11111, 33),
+	(3044, 13),
+	(21991, 16),
+	(21991, 15),
+	(21991, 9),
+	(13284, 13),
+	(8920, 11),
+	(587, 15),
+	(587, 11),
+	(9339, 15),
+	(9339, 11),
+	(12270, 5),
+	(12270, 33),
+	(5340, 33),
+	(14205, 8),
+	(14205, 5),
+	(11885, 5),
+	(11885, 10),
+	(4658, 10),
+	(14550, 8),
+	(14550, 10),
+	(12289, 33),
+	(12387, 15),
+	(4659, 14),
+	(4660, 14),
+	(6631, 14),
+	(6468, 15),
+	(6468, 4),
+	(7704, 8),
+	(12388, 14),
+	(1988, 14),
+	(1993, 14),
+	(1994, 14),
+	(1992, 14),
+	(13230, 31),
+	(13230, 32),
+	(20756, 32),
+	(20756, 31),
+	(20756, 9),
+	(8181, 9),
+	(8181, 31),
+	(8182, 9),
+	(8182, 31),
+	(8183, 9),
+	(8183, 31),
+	(16298, 31),
+	(16298, 32),
+	(6469, 4),
+	(13286, 14),
+	(13287, 14),
+	(20302, 14),
+	(8654, 31),
+	(11886, 14),
+	(18486, 5),
+	(11887, 13),
+	(6300, 25),
+	(1691, 24),
+	(1691, 16),
+	(1692, 24),
+	(1692, 16),
+	(1694, 16),
+	(1693, 24),
+	(1693, 16),
+	(1693, 15),
+	(13791, 13),
+	(13791, 14),
+	(6470, 5),
+	(5654, 31),
+	(8602, 12),
+	(8602, 31),
+	(8602, 33),
+	(8603, 31),
+	(8622, 12),
+	(8622, 31),
+	(8732, 12),
+	(8732, 31),
+	(5655, 12),
+	(13289, 30),
+	(14153, 14),
+	(14154, 14),
+	(13938, 14),
+	(8899, 13),
+	(8899, 33),
+	(2297, 31),
+	(11888, 14),
+	(5716, 5),
+	(5716, 31),
+	(12239, 31),
+	(8253, 31),
+	(9905, 12),
+	(9905, 31),
+	(9591, 32),
+	(2416, 12),
+	(21556, 31),
+	(4594, 8),
+	(4594, 31),
+	(6471, 4),
+	(8737, 8),
+	(8737, 31),
+	(7549, 30),
+	(15589, 31),
+	(4557, 31),
+	(11320, 12),
+	(11320, 31),
+	(2797, 31),
+	(8620, 12),
+	(8620, 31),
+	(2298, 31),
+	(8193, 9),
+	(8193, 31),
+	(23739, 31),
+	(8130, 26),
+	(8130, 31),
+	(8741, 5),
+	(3662, 9),
+	(6472, 15),
+	(7547, 9),
+	(7547, 15),
+	(19865, 12),
+	(19865, 25),
+	(19865, 31),
+	(14681, 8),
+	(23169, 15),
+	(23169, 33),
+	(11112, 8),
+	(8010, 8),
+	(8373, 31),
+	(2601, 5),
+	(8374, 15),
+	(8374, 11),
+	(15847, 31),
+	(11560, 32),
+	(11560, 31),
+	(5441, 32),
+	(5441, 16),
+	(5441, 15),
+	(18233, 5),
+	(23326, 16),
+	(23326, 24),
+	(23326, 15),
+	(12491, 5),
+	(19711, 13),
+	(3147, 5),
+	(3147, 33),
+	(6773, 5),
+	(3330, 5),
+	(5348, 8),
+	(5349, 8),
+	(18199, 33),
+	(5350, 13),
+	(5351, 13),
+	(16383, 32),
+	(17839, 32),
+	(3329, 10),
+	(3329, 33),
+	(7746, 5),
+	(3709, 13),
+	(3708, 13),
+	(9673, 32),
+	(4662, 14),
+	(5477, 14),
+	(6907, 14),
+	(11889, 10),
+	(13290, 10),
+	(7267, 13),
+	(14228, 15),
+	(5478, 25),
+	(5468, 5),
+	(5468, 13),
+	(5352, 5),
+	(5356, 5),
+	(22097, 12),
+	(22097, 32),
+	(22097, 31),
+	(5713, 5),
+	(8375, 5),
+	(175, 15),
+	(13292, 5),
+	(13292, 33),
+	(11283, 32),
+	(8764, 12),
+	(8764, 24),
+	(8764, 15),
+	(17620, 15),
+	(17620, 31),
+	(6301, 14),
+	(4663, 31),
+	(4664, 31),
+	(17470, 2),
+	(17470, 31),
+	(9948, 33),
+	(9948, 11),
+	(9948, 15),
+	(18910, 4),
+	(18910, 32),
+	(270, 12),
+	(588, 12),
+	(16402, 31),
+	(9949, 16),
+	(289, 11),
+	(9951, 15),
+	(9951, 11),
+	(2950, 15),
+	(2950, 11),
+	(327, 11),
+	(599, 11),
+	(9950, 11),
+	(299, 11),
+	(8220, 11),
+	(3017, 11),
+	(5571, 11),
+	(8575, 11),
+	(21221, 15),
+	(291, 11),
+	(324, 11),
+	(9902, 15),
+	(9902, 11),
+	(13186, 11),
+	(8221, 11),
+	(9432, 12),
+	(9432, 13),
+	(9431, 12),
+	(9431, 13),
+	(14229, 15),
+	(9430, 13),
+	(9430, 15),
+	(9428, 13),
+	(9428, 15),
+	(9429, 13),
+	(9429, 15),
+	(16134, 15),
+	(16134, 32),
+	(589, 15),
+	(589, 16),
+	(590, 15),
+	(590, 16),
+	(5652, 12),
+	(5652, 16),
+	(5652, 24),
+	(11085, 12),
+	(11085, 16),
+	(11085, 15),
+	(8863, 16),
+	(591, 15),
+	(591, 16),
+	(1899, 12),
+	(1899, 4),
+	(8628, 31),
+	(1920, 24),
+	(11293, 8),
+	(11293, 5),
+	(11293, 33),
+	(12247, 33),
+	(19440, 5),
+	(3783, 14),
+	(11890, 5),
+	(19453, 32),
+	(19453, 31),
+	(9537, 13),
+	(7747, 10),
+	(592, 13),
+	(6475, 5),
+	(8886, 15),
+	(8886, 32),
+	(7720, 13),
+	(7720, 32),
+	(7720, 11),
+	(8887, 15),
+	(8887, 11),
+	(8885, 15),
+	(8889, 11),
+	(2850, 12),
+	(563, 12),
+	(19841, 12),
+	(11340, 5),
+	(11340, 9),
+	(11340, 33),
+	(3331, 10),
+	(14230, 15),
+	(5353, 5),
+	(14691, 5),
+	(14691, 13),
+	(14749, 13),
+	(14749, 33),
+	(1490, 13),
+	(3829, 13),
+	(3829, 4),
+	(3831, 13),
+	(3830, 13),
+	(3828, 4),
+	(13160, 13),
+	(5354, 13),
+	(14231, 15),
+	(8791, 8),
+	(8791, 5),
+	(11113, 5),
+	(11114, 5),
+	(11114, 13),
+	(14156, 5),
+	(14157, 15),
+	(14157, 33),
+	(12281, 5),
+	(18048, 33),
+	(18048, 10),
+	(18048, 14),
+	(14232, 13),
+	(11859, 5),
+	(8629, 33),
+	(8629, 10),
+	(2302, 31),
+	(8231, 14),
+	(8231, 33),
+	(11891, 33),
+	(9134, 12),
+	(9134, 32),
+	(9134, 15),
+	(3710, 13),
+	(5718, 13),
+	(9957, 13),
+	(9958, 13),
+	(9956, 13),
+	(9956, 15),
+	(9959, 13),
+	(9959, 15),
+	(11086, 13),
+	(11086, 15),
+	(11856, 8),
+	(11856, 33),
+	(1365, 11),
+	(1365, 24),
+	(19899, 24),
+	(19899, 11),
+	(14233, 13),
+	(6476, 15),
+	(17561, 15),
+	(17561, 32),
+	(8630, 8),
+	(8630, 12),
+	(593, 5),
+	(8848, 5),
+	(8848, 13),
+	(8848, 33),
+	(15827, 33),
+	(8631, 2),
+	(5479, 5),
+	(2417, 12),
+	(8376, 8),
+	(1900, 25),
+	(5480, 31),
+	(15887, 12),
+	(8632, 13),
+	(19465, 12),
+	(7268, 31),
+	(1995, 8),
+	(18124, 26),
+	(2340, 31),
+	(14234, 33),
+	(19584, 11),
+	(4145, 31),
+	(1120, 8),
+	(1120, 31),
+	(17330, 31),
+	(17330, 32),
+	(8809, 10),
+	(8809, 14),
+	(2418, 12),
+	(8118, 8),
+	(14235, 5),
+	(4665, 26),
+	(4665, 14),
+	(1062, 5),
+	(1062, 31),
+	(2602, 31),
+	(14161, 33),
+	(13223, 9),
+	(15889, 12),
+	(15891, 12),
+	(2419, 12),
+	(19698, 12),
+	(3651, 12),
+	(11892, 33),
+	(12248, 31),
+	(12248, 33),
+	(3754, 9),
+	(17899, 31),
+	(17899, 32),
+	(14475, 8),
+	(17637, 15),
+	(15691, 5),
+	(15691, 24),
+	(14236, 5),
+	(14237, 5),
+	(2420, 12),
+	(13300, 14),
+	(13299, 14),
+	(3217, 8),
+	(13678, 8),
+	(13678, 33),
+	(2848, 31),
+	(9359, 15),
+	(9359, 11),
+	(12249, 31),
+	(12249, 33),
+	(5721, 12),
+	(5721, 10),
+	(14238, 31),
+	(7749, 8),
+	(10673, 8),
+	(10673, 31),
+	(18750, 12),
+	(21555, 31),
+	(5719, 31),
+	(8776, 33),
+	(12250, 31),
+	(12250, 33),
+	(4666, 31),
+	(1040, 8),
+	(1040, 31),
+	(1040, 25),
+	(12240, 33),
+	(21635, 5),
+	(21636, 5),
+	(8633, 5),
+	(9962, 5),
+	(9962, 33),
+	(9963, 5),
+	(9963, 33),
+	(14239, 5),
+	(14240, 5),
+	(14241, 5),
+	(9964, 5),
+	(9964, 33),
+	(14596, 5),
+	(11087, 5),
+	(11865, 5),
+	(8487, 8),
+	(8487, 5),
+	(12492, 30),
+	(14242, 31),
+	(11294, 31),
+	(2421, 12),
+	(23495, 15),
+	(16246, 15),
+	(16246, 32),
+	(2690, 8),
+	(2168, 31),
+	(14243, 8),
+	(14243, 5),
+	(2422, 12),
+	(7750, 14),
+	(18481, 5),
+	(2551, 5),
+	(12251, 5),
+	(8634, 5),
+	(16367, 32),
+	(11088, 33),
+	(11089, 5),
+	(16016, 32),
+	(11090, 5),
+	(4490, 5),
+	(4490, 33),
+	(9969, 33),
+	(9969, 25),
+	(13950, 5),
+	(7598, 5),
+	(4667, 12),
+	(4667, 5),
+	(4478, 5),
+	(4478, 33),
+	(6825, 5),
+	(2206, 31),
+	(2206, 2),
+	(8477, 5),
+	(13679, 5),
+	(11893, 5),
+	(15146, 32),
+	(4754, 31),
+	(15459, 31),
+	(15460, 31),
+	(15464, 31),
+	(15555, 31),
+	(15552, 31),
+	(15553, 31),
+	(15554, 31),
+	(7600, 5),
+	(13680, 5),
+	(13680, 33),
+	(9979, 5),
+	(594, 5),
+	(5720, 11),
+	(19214, 5),
+	(560, 5),
+	(2169, 31),
+	(1021, 5),
+	(8908, 8),
+	(8908, 5),
+	(8908, 31),
+	(14244, 5),
+	(19508, 8),
+	(19508, 33),
+	(11894, 33),
+	(2796, 31),
+	(17681, 31),
+	(17681, 32),
+	(17681, 15),
+	(14246, 9),
+	(1014, 5),
+	(1014, 31),
+	(4668, 5),
+	(10658, 14),
+	(10659, 14),
+	(2849, 7),
+	(2851, 7),
+	(2851, 14),
+	(3436, 14),
+	(9971, 5),
+	(9972, 5),
+	(8909, 14),
+	(5481, 14),
+	(19998, 14),
+	(10663, 14),
+	(10624, 14),
+	(11557, 14),
+	(11558, 14),
+	(11559, 14),
+	(595, 13),
+	(595, 11),
+	(7751, 33),
+	(11115, 5),
+	(11115, 31),
+	(11296, 31),
+	(13157, 12),
+	(9970, 5),
+	(1958, 5),
+	(1958, 9),
+	(1958, 31),
+	(1956, 9),
+	(1956, 31),
+	(1957, 9),
+	(1957, 31),
+	(1959, 9),
+	(1959, 31),
+	(7716, 5),
+	(1960, 9),
+	(1960, 31),
+	(8635, 9),
+	(8635, 31),
+	(16874, 31),
+	(16874, 32),
+	(16874, 15),
+	(13681, 5),
+	(13681, 33),
+	(14199, 31),
+	(9173, 5),
+	(2539, 12),
+	(2539, 5),
+	(12389, 33),
+	(14250, 5),
+	(19954, 9),
+	(19872, 12),
+	(17849, 31),
+	(1989, 31),
+	(1989, 4),
+	(2303, 31),
+	(2604, 25),
+	(2304, 2),
+	(2304, 31),
+	(7752, 9),
+	(7752, 31),
+	(16304, 13),
+	(16304, 31),
+	(2423, 12),
+	(16031, 31),
+	(13310, 14),
+	(2357, 5),
+	(2357, 32),
+	(17556, 32),
+	(17556, 10),
+	(18130, 32),
+	(22168, 8),
+	(22168, 15),
+	(22168, 32),
+	(22168, 33),
+	(1175, 8),
+	(1175, 12),
+	(1176, 12),
+	(4669, 7),
+	(4670, 7),
+	(4671, 7),
+	(7289, 12),
+	(7289, 31),
+	(7289, 32),
+	(10681, 8),
+	(10681, 31),
+	(10681, 32),
+	(8636, 13),
+	(8916, 8),
+	(8916, 5),
+	(14251, 33),
+	(16744, 8),
+	(16744, 31),
+	(3784, 13),
+	(3784, 31),
+	(18115, 33),
+	(7754, 9),
+	(17235, 31),
+	(2305, 31),
+	(2307, 31),
+	(12390, 2),
+	(12390, 31),
+	(11897, 12),
+	(2424, 12),
+	(11898, 33),
+	(597, 5),
+	(597, 24),
+	(7843, 5),
+	(7843, 24),
+	(5722, 5),
+	(5482, 5),
+	(5482, 24),
+	(13312, 10),
+	(13953, 14),
+	(6302, 14),
+	(3785, 10),
+	(3785, 14),
+	(596, 15),
+	(596, 11),
+	(9361, 15),
+	(9361, 11),
+	(9360, 15),
+	(9360, 11),
+	(13313, 14),
+	(18241, 31),
+	(18242, 31),
+	(18247, 31),
+	(18246, 31),
+	(18245, 31),
+	(4377, 14),
+	(6304, 7),
+	(20289, 8),
+	(20289, 31),
+	(337, 8),
+	(337, 31),
+	(11899, 14),
+	(9667, 13),
+	(13314, 10),
+	(5723, 14),
+	(4672, 14),
+	(4673, 14),
+	(5724, 14),
+	(7755, 9),
+	(11116, 9),
+	(11116, 33),
+	(8637, 2),
+	(1882, 31),
+	(15534, 31),
+	(15534, 32),
+	(15534, 9),
+	(13199, 31),
+	(111, 9),
+	(111, 31),
+	(111, 32),
+	(14254, 5),
+	(7642, 31),
+	(7642, 32),
+	(8061, 4),
+	(8061, 32),
+	(5725, 14),
+	(5483, 14),
+	(5484, 14),
+	(2141, 7),
+	(11081, 33),
+	(11081, 7),
+	(8378, 13),
+	(13315, 14),
+	(13317, 14),
+	(2882, 12),
+	(2425, 12),
+	(2308, 31),
+	(6305, 8),
+	(54, 12),
+	(5622, 12),
+	(10037, 32),
+	(10037, 31),
+	(14163, 5),
+	(1996, 12),
+	(598, 12),
+	(5485, 25),
+	(20471, 32),
+	(11900, 5),
+	(10032, 31),
+	(13193, 32),
+	(13193, 16),
+	(7713, 15),
+	(15463, 12),
+	(15463, 31),
+	(15463, 15),
+	(15463, 32),
+	(14164, 14),
+	(15892, 12),
+	(7676, 11),
+	(19077, 11),
+	(12391, 12),
+	(12392, 12),
+	(16228, 32),
+	(5726, 14),
+	(9772, 8),
+	(9772, 32),
+	(9772, 9),
+	(4953, 9),
+	(5358, 5),
+	(23852, 5),
+	(23852, 8),
+	(18665, 15),
+	(22001, 5),
+	(22001, 8),
+	(22001, 31),
+	(22001, 32),
+	(5359, 25),
+	(11414, 31),
+	(2170, 31),
+	(7269, 12),
+	(17279, 5),
+	(17279, 13),
+	(13323, 14),
+	(2035, 15),
+	(2035, 24),
+	(2035, 32),
+	(19273, 33),
+	(19274, 33),
+	(19276, 33),
+	(19271, 33),
+	(19275, 33),
+	(4674, 9),
+	(4674, 15),
+	(19272, 33),
+	(4675, 9),
+	(4675, 15),
+	(7960, 8),
+	(7960, 31),
+	(7960, 32),
+	(14742, 8),
+	(14742, 5),
+	(14742, 32),
+	(18999, 5),
+	(17082, 32),
+	(2309, 31),
+	(2655, 13),
+	(2688, 13),
+	(10143, 13),
+	(2687, 13),
+	(2645, 13),
+	(13191, 33),
+	(13191, 32),
+	(7756, 8),
+	(19432, 14),
+	(3786, 8),
+	(3786, 31),
+	(6712, 13),
+	(13324, 2),
+	(4849, 31),
+	(11591, 10),
+	(9976, 9),
+	(9977, 31),
+	(9977, 32),
+	(9977, 9),
+	(18666, 14),
+	(11367, 31),
+	(11367, 32),
+	(11903, 15),
+	(1862, 31),
+	(662, 13),
+	(662, 11),
+	(8227, 11),
+	(300, 11),
+	(8224, 11),
+	(303, 11),
+	(8225, 11),
+	(8226, 11),
+	(2959, 13),
+	(2959, 11),
+	(8228, 11),
+	(11205, 13),
+	(11205, 11),
+	(11205, 15),
+	(8111, 11),
+	(4795, 11),
+	(8640, 31),
+	(11092, 31),
+	(11092, 32),
+	(9212, 15),
+	(9212, 32),
+	(8993, 15),
+	(8993, 32),
+	(8760, 15),
+	(8760, 11),
+	(8758, 15),
+	(8758, 11),
+	(8759, 15),
+	(8759, 11),
+	(11776, 31),
+	(9566, 33),
+	(9579, 33),
+	(9582, 33),
+	(4676, 2),
+	(4676, 31),
+	(18595, 2),
+	(18595, 31),
+	(9978, 8),
+	(9978, 32),
+	(9978, 9),
+	(4348, 8),
+	(4348, 31),
+	(16493, 31),
+	(9877, 31),
+	(9877, 32),
+	(11226, 13),
+	(11226, 14),
+	(14257, 26),
+	(14258, 26),
+	(23172, 15),
+	(18016, 32),
+	(11904, 9),
+	(4592, 8),
+	(4592, 10),
+	(17227, 31),
+	(17227, 32),
+	(17227, 15),
+	(1061, 31),
+	(11553, 5),
+	(2064, 8),
+	(2064, 32),
+	(2064, 9),
+	(8946, 9),
+	(18451, 31),
+	(9773, 31),
+	(9773, 15),
+	(9773, 32),
+	(9773, 16),
+	(2426, 12),
+	(5727, 10),
+	(4677, 31),
+	(2427, 12),
+	(600, 13),
+	(14166, 5),
+	(3233, 13),
+	(3233, 24),
+	(14259, 5),
+	(11905, 33),
+	(3762, 9),
+	(6063, 8),
+	(6064, 8),
+	(511, 8),
+	(20906, 33),
+	(14385, 5),
+	(5728, 10),
+	(11906, 5),
+	(15547, 5),
+	(14260, 5),
+	(14357, 32),
+	(14357, 16),
+	(14357, 15),
+	(5487, 12),
+	(5487, 15),
+	(1429, 31),
+	(8641, 5),
+	(9016, 25),
+	(12254, 8),
+	(12255, 8),
+	(17700, 31),
+	(17700, 32),
+	(14167, 8),
+	(14261, 13),
+	(23291, 31),
+	(3714, 10),
+	(8642, 5),
+	(6911, 25),
+	(6911, 10),
+	(6911, 14),
+	(17807, 10),
+	(3788, 31),
+	(14168, 33),
+	(7271, 31),
+	(1997, 5),
+	(1998, 5),
+	(1999, 5),
+	(7272, 33),
+	(7272, 4),
+	(7406, 8),
+	(7406, 31),
+	(7406, 32),
+	(12293, 5),
+	(14263, 5),
+	(5488, 13),
+	(7273, 12),
+	(7274, 12),
+	(16929, 31),
+	(19406, 12),
+	(19406, 32),
+	(19406, 31),
+	(13683, 8),
+	(13683, 33),
+	(13682, 8),
+	(13682, 33),
+	(13684, 33),
+	(13684, 25),
+	(10861, 31),
+	(10861, 33),
+	(10862, 12),
+	(23886, 5),
+	(23886, 33),
+	(11907, 33),
+	(14264, 31),
+	(4678, 12),
+	(4678, 16),
+	(18636, 8),
+	(18636, 9),
+	(12393, 15),
+	(6520, 5),
+	(17247, 33),
+	(11909, 14),
+	(15599, 14),
+	(13328, 26),
+	(19232, 14),
+	(17338, 15),
+	(17338, 32),
+	(16219, 32),
+	(18868, 12),
+	(18868, 24),
+	(8525, 5),
+	(3652, 12),
+	(5490, 4),
+	(16923, 31),
+	(16923, 32),
+	(16923, 15),
+	(3234, 12),
+	(8331, 12),
+	(255, 12),
+	(255, 16),
+	(6451, 12),
+	(11664, 4),
+	(11910, 14),
+	(2197, 13),
+	(22720, 15),
+	(11911, 9),
+	(5539, 15),
+	(5539, 24),
+	(16208, 15),
+	(16208, 32),
+	(11912, 15),
+	(11912, 24),
+	(13242, 30),
+	(8488, 8),
+	(4679, 31),
+	(3703, 10),
+	(11913, 13),
+	(16138, 12),
+	(2208, 31),
+	(6521, 26),
+	(5729, 5),
+	(14599, 5),
+	(14169, 14),
+	(14265, 9),
+	(5731, 14),
+	(17276, 14),
+	(6877, 12),
+	(19694, 5),
+	(19694, 33),
+	(15895, 12),
+	(15896, 12),
+	(13330, 8),
+	(12256, 5),
+	(17660, 31),
+	(17660, 32),
+	(18303, 5),
+	(18303, 31),
+	(18303, 32),
+	(2310, 31),
+	(10239, 5),
+	(10239, 31),
+	(21867, 12),
+	(4595, 33),
+	(13685, 33),
+	(11756, 33),
+	(20982, 5),
+	(20982, 32),
+	(572, 5),
+	(572, 13),
+	(572, 24),
+	(601, 5),
+	(601, 13),
+	(601, 24),
+	(1881, 5),
+	(1881, 13),
+	(1881, 24),
+	(19547, 13),
+	(19547, 5),
+	(19547, 15),
+	(9774, 15),
+	(9774, 32),
+	(9774, 24),
+	(9774, 16),
+	(9775, 13),
+	(9775, 15),
+	(11914, 15),
+	(6713, 12),
+	(6713, 5),
+	(15027, 15),
+	(23137, 9),
+	(13795, 5),
+	(14266, 5),
+	(2311, 2),
+	(2311, 31),
+	(211, 5),
+	(13687, 5),
+	(13687, 33),
+	(10448, 33),
+	(11260, 12),
+	(11260, 16),
+	(18855, 11),
+	(11093, 2),
+	(11093, 31),
+	(11126, 5),
+	(2388, 5),
+	(5656, 5),
+	(12647, 15),
+	(12647, 24),
+	(4144, 5),
+	(4144, 4),
+	(19414, 5),
+	(5491, 4),
+	(5492, 13),
+	(5493, 13),
+	(19410, 5),
+	(19424, 5),
+	(19412, 5),
+	(19428, 5),
+	(5494, 13),
+	(5494, 11),
+	(14984, 13),
+	(2610, 11),
+	(15853, 24),
+	(13688, 33),
+	(13688, 25),
+	(3439, 5),
+	(14267, 13),
+	(11915, 13),
+	(17887, 15),
+	(8643, 15),
+	(6307, 5),
+	(3417, 5),
+	(5732, 5),
+	(6308, 5),
+	(8498, 11),
+	(3440, 5),
+	(3441, 5),
+	(2702, 5),
+	(11916, 5),
+	(18208, 12),
+	(18208, 31),
+	(18208, 32),
+	(996, 5),
+	(996, 24),
+	(997, 5),
+	(997, 24),
+	(1832, 5),
+	(13333, 15),
+	(13797, 5),
+	(14268, 8),
+	(14268, 5),
+	(11917, 5),
+	(12869, 14),
+	(12869, 13),
+	(6309, 31),
+	(22392, 5),
+	(22392, 33),
+	(2009, 11),
+	(2009, 15),
+	(11489, 25),
+	(6555, 15),
+	(4514, 4),
+	(6556, 4),
+	(6566, 4),
+	(21530, 4),
+	(15498, 12),
+	(15498, 11),
+	(14358, 31),
+	(6567, 10),
+	(2360, 11),
+	(2360, 13),
+	(2312, 31),
+	(17281, 33),
+	(17281, 32),
+	(22471, 13),
+	(22472, 13),
+	(14170, 5),
+	(19809, 13),
+	(19808, 13),
+	(19785, 13),
+	(22465, 13),
+	(12241, 5),
+	(11918, 33),
+	(14787, 31),
+	(14787, 32),
+	(602, 12),
+	(17969, 31),
+	(10231, 12),
+	(8638, 15),
+	(17783, 15),
+	(18794, 13),
+	(18794, 32),
+	(18794, 15),
+	(19167, 32),
+	(19167, 31),
+	(10860, 31),
+	(10860, 25),
+	(17001, 12),
+	(17001, 31),
+	(6259, 5),
+	(603, 12),
+	(23737, 12),
+	(23738, 12),
+	(23735, 12),
+	(23736, 12),
+	(4680, 14),
+	(8550, 14),
+	(11919, 13),
+	(11919, 24),
+	(11919, 15),
+	(11666, 11),
+	(11666, 32),
+	(11666, 15),
+	(23295, 10),
+	(6746, 10),
+	(23296, 10),
+	(23303, 10),
+	(23304, 10),
+	(23305, 10),
+	(23306, 10),
+	(23314, 10),
+	(8646, 10),
+	(23310, 10),
+	(18995, 10),
+	(6260, 10),
+	(6261, 10),
+	(23313, 10),
+	(11920, 8),
+	(128, 31),
+	(127, 31),
+	(1266, 31),
+	(3195, 31),
+	(3195, 25),
+	(8218, 31),
+	(1970, 31),
+	(21349, 8),
+	(21349, 31),
+	(3775, 31),
+	(3775, 4),
+	(10661, 31),
+	(113, 31),
+	(8216, 31),
+	(22754, 31),
+	(537, 31),
+	(8217, 31),
+	(7570, 31),
+	(8263, 31),
+	(15169, 31),
+	(5606, 31),
+	(8219, 31),
+	(14601, 8),
+	(14601, 33),
+	(19176, 32),
+	(8223, 8),
+	(8223, 31),
+	(14902, 8),
+	(14902, 31),
+	(14903, 8),
+	(14903, 31),
+	(20864, 31),
+	(6881, 5),
+	(6881, 31),
+	(8644, 5),
+	(8644, 32),
+	(8644, 33),
+	(8645, 5),
+	(18655, 5),
+	(18655, 33),
+	(21064, 5),
+	(21064, 8),
+	(9530, 5),
+	(5597, 13),
+	(5597, 10),
+	(18789, 12),
+	(14171, 8),
+	(14271, 2),
+	(14271, 31),
+	(8356, 5),
+	(8356, 33),
+	(8356, 32),
+	(17536, 31),
+	(17536, 32),
+	(19486, 8),
+	(12242, 33),
+	(7757, 8),
+	(14452, 8),
+	(3789, 31),
+	(8501, 8),
+	(14272, 31),
+	(19781, 8),
+	(4681, 8),
+	(4681, 31),
+	(4681, 14),
+	(2313, 31),
+	(2313, 33),
+	(7758, 5),
+	(7758, 33),
+	(13689, 5),
+	(13689, 33),
+	(18174, 13),
+	(18174, 32),
+	(14273, 8),
+	(16882, 31),
+	(16882, 32),
+	(9769, 31),
+	(9769, 32),
+	(9769, 9),
+	(13959, 5),
+	(13959, 33),
+	(6310, 25),
+	(4682, 8),
+	(12304, 5),
+	(12304, 33),
+	(16265, 32),
+	(9987, 31),
+	(9987, 32),
+	(9987, 2),
+	(22732, 5),
+	(22732, 33),
+	(13205, 31),
+	(13205, 32),
+	(3755, 9),
+	(5657, 5),
+	(11127, 5),
+	(5495, 25),
+	(20038, 5),
+	(20038, 32),
+	(20038, 31),
+	(6311, 33),
+	(16760, 14),
+	(12243, 9),
+	(14274, 5),
+	(7278, 12),
+	(7279, 12),
+	(19634, 12),
+	(7277, 12),
+	(7275, 12),
+	(11513, 12),
+	(12633, 12),
+	(12633, 31),
+	(7276, 12),
+	(15849, 31),
+	(9104, 14),
+	(13693, 31),
+	(9522, 12),
+	(5658, 5),
+	(11094, 31),
+	(11094, 2),
+	(11094, 9),
+	(11095, 2),
+	(11095, 31),
+	(19446, 2),
+	(19446, 31),
+	(6568, 8),
+	(16182, 32),
+	(9056, 31),
+	(2209, 31),
+	(18063, 24),
+	(18063, 16),
+	(13346, 8),
+	(8388, 15),
+	(8388, 32),
+	(6312, 9),
+	(6312, 5),
+	(8649, 33),
+	(7760, 9),
+	(11921, 5),
+	(11922, 9),
+	(11923, 9),
+	(11924, 10),
+	(6569, 7),
+	(18607, 5),
+	(7761, 8),
+	(4683, 5),
+	(4143, 5),
+	(4143, 31),
+	(22695, 5),
+	(22695, 33),
+	(14879, 25),
+	(22555, 12),
+	(22555, 24),
+	(8650, 8),
+	(8650, 32),
+	(8650, 9),
+	(11645, 13),
+	(11645, 32),
+	(11645, 15),
+	(8269, 10),
+	(8270, 10),
+	(8271, 10),
+	(8273, 10),
+	(8274, 10),
+	(8272, 10),
+	(4142, 10),
+	(3790, 10),
+	(18981, 7),
+	(18981, 32),
+	(2956, 9),
+	(2956, 7),
+	(9707, 7),
+	(9555, 7),
+	(15282, 32),
+	(22716, 33),
+	(13350, 8),
+	(12395, 15),
+	(14275, 8),
+	(8746, 12),
+	(9776, 31),
+	(9776, 2),
+	(9776, 9),
+	(18485, 15),
+	(18485, 11),
+	(14224, 12),
+	(14224, 32),
+	(11925, 15),
+	(13352, 14),
+	(14277, 8),
+	(19338, 12),
+	(3791, 10),
+	(5659, 10),
+	(17178, 32),
+	(13353, 33),
+	(13353, 10),
+	(2428, 12),
+	(17239, 15),
+	(3442, 10),
+	(19442, 13),
+	(19442, 10),
+	(22025, 32),
+	(11926, 13),
+	(10036, 12),
+	(23241, 12),
+	(23241, 31),
+	(23241, 15),
+	(23241, 32),
+	(7407, 12),
+	(7407, 32),
+	(3792, 12),
+	(3792, 31),
+	(4684, 31),
+	(4685, 31),
+	(23212, 13),
+	(9777, 12),
+	(7762, 8),
+	(7762, 33),
+	(18878, 9),
+	(18887, 9),
+	(18887, 31),
+	(19580, 12),
+	(19581, 12),
+	(8802, 12),
+	(16337, 12),
+	(16337, 32),
+	(16338, 32),
+	(16339, 32),
+	(8752, 12),
+	(10012, 12),
+	(17821, 31),
+	(17821, 32),
+	(17820, 32),
+	(15710, 31),
+	(15710, 32),
+	(13694, 13),
+	(10007, 13),
+	(17169, 32),
+	(15288, 32),
+	(17667, 31),
+	(17667, 32),
+	(19751, 32),
+	(19751, 31),
+	(19751, 9),
+	(5877, 5),
+	(5877, 33),
+	(12363, 14),
+	(1281, 11),
+	(1281, 4),
+	(5595, 4),
+	(5595, 11),
+	(22380, 9),
+	(22380, 32),
+	(22381, 9),
+	(22381, 32),
+	(19485, 25),
+	(17772, 32),
+	(14845, 32),
+	(11927, 8),
+	(6570, 5),
+	(18827, 15),
+	(18827, 32),
+	(8652, 31),
+	(8652, 32),
+	(13808, 5),
+	(13808, 33),
+	(9652, 8),
+	(9652, 31),
+	(9652, 32),
+	(17740, 32),
+	(6747, 9),
+	(6747, 31),
+	(2210, 31),
+	(16067, 32),
+	(18707, 8),
+	(14278, 8),
+	(8651, 16),
+	(6545, 12),
+	(10373, 8),
+	(18197, 8),
+	(5733, 31),
+	(5660, 5),
+	(10016, 13),
+	(2314, 2),
+	(2314, 31),
+	(2315, 31),
+	(12294, 33),
+	(16235, 32),
+	(11928, 13),
+	(11929, 8),
+	(11929, 5),
+	(6423, 8),
+	(8659, 8),
+	(14279, 33),
+	(11930, 8),
+	(8346, 13),
+	(4686, 13),
+	(11128, 33),
+	(19883, 32),
+	(19883, 31),
+	(9418, 9),
+	(9418, 32),
+	(17366, 31),
+	(17366, 32),
+	(19217, 12),
+	(19217, 25),
+	(8516, 31),
+	(8516, 33),
+	(12396, 33),
+	(8517, 8),
+	(8517, 31),
+	(8517, 9),
+	(8517, 33),
+	(8519, 33),
+	(3232, 2),
+	(3232, 31),
+	(6314, 5),
+	(5496, 14),
+	(17254, 9),
+	(8660, 15),
+	(12397, 15),
+	(11931, 5),
+	(17194, 13),
+	(18152, 32),
+	(19674, 14),
+	(6572, 14),
+	(4687, 14),
+	(4688, 14),
+	(5569, 15),
+	(6315, 14),
+	(6908, 14),
+	(5735, 4),
+	(5735, 14),
+	(5734, 4),
+	(5734, 14),
+	(12884, 31),
+	(11335, 12),
+	(5736, 5),
+	(5736, 31),
+	(12398, 33),
+	(11932, 5),
+	(9164, 33),
+	(9164, 25),
+	(9982, 33),
+	(9982, 32),
+	(604, 2),
+	(604, 31),
+	(9167, 14),
+	(8582, 8),
+	(8582, 9),
+	(9169, 4),
+	(8901, 33),
+	(8901, 31),
+	(8901, 9),
+	(15470, 9),
+	(15470, 31),
+	(20042, 8),
+	(11933, 10),
+	(11934, 8),
+	(11934, 5),
+	(15843, 16),
+	(18781, 10),
+	(5497, 10),
+	(19665, 9),
+	(6909, 31),
+	(15897, 12),
+	(8661, 7),
+	(8662, 7),
+	(11935, 15),
+	(11935, 24),
+	(14608, 24),
+	(14608, 15),
+	(6714, 5),
+	(5, 12),
+	(5613, 12),
+	(5613, 15),
+	(6, 12),
+	(6, 15),
+	(82, 15),
+	(83, 12),
+	(83, 25),
+	(84, 12),
+	(84, 25),
+	(1880, 12),
+	(1880, 15),
+	(14292, 12),
+	(81, 12),
+	(14281, 33),
+	(14282, 33),
+	(17428, 15),
+	(17428, 31),
+	(20895, 15),
+	(176, 14),
+	(177, 10),
+	(17320, 32),
+	(7495, 33),
+	(7495, 10),
+	(5878, 14),
+	(2735, 8),
+	(3682, 8),
+	(4704, 9),
+	(16770, 32),
+	(23165, 33),
+	(23165, 31),
+	(6573, 14),
+	(2316, 31),
+	(12303, 4),
+	(18135, 12),
+	(18135, 31),
+	(18135, 15),
+	(18135, 32),
+	(18825, 31),
+	(18825, 32),
+	(19845, 8),
+	(19845, 33),
+	(9264, 8),
+	(22093, 33),
+	(11677, 33),
+	(2678, 7),
+	(9285, 14),
+	(5498, 7),
+	(9496, 16),
+	(18506, 5),
+	(18506, 33),
+	(3207, 10),
+	(15286, 10),
+	(1861, 13),
+	(3443, 5),
+	(11937, 4),
+	(11937, 14),
+	(2002, 13),
+	(2002, 11),
+	(2002, 15),
+	(2002, 32),
+	(7763, 8),
+	(2148, 8),
+	(2148, 31),
+	(6318, 8),
+	(6318, 31),
+	(3008, 8),
+	(3008, 31),
+	(6316, 10),
+	(3418, 8),
+	(3418, 31),
+	(11938, 33),
+	(6083, 5),
+	(6083, 33),
+	(11939, 5),
+	(15661, 13),
+	(11940, 33),
+	(12642, 31),
+	(3793, 4),
+	(11941, 31),
+	(11941, 33),
+	(11942, 33),
+	(11942, 4),
+	(4640, 4),
+	(4639, 4),
+	(3308, 8),
+	(3309, 8),
+	(16671, 31),
+	(3310, 12),
+	(3310, 31),
+	(3310, 10),
+	(3311, 31),
+	(19401, 2),
+	(19403, 31),
+	(19402, 2),
+	(3313, 14),
+	(3315, 8),
+	(3316, 15),
+	(17450, 13),
+	(3318, 31),
+	(3318, 14),
+	(12775, 8),
+	(12775, 12),
+	(12775, 32),
+	(8379, 12),
+	(8379, 31),
+	(8379, 15),
+	(8379, 32),
+	(2318, 31),
+	(16590, 33),
+	(9875, 5),
+	(9875, 33),
+	(4524, 14),
+	(4520, 14),
+	(18032, 10),
+	(3794, 31),
+	(11866, 5),
+	(14287, 8),
+	(4705, 12),
+	(7438, 33),
+	(18116, 33),
+	(10023, 2),
+	(10023, 31),
+	(13862, 14),
+	(2829, 8),
+	(12349, 8),
+	(12349, 33),
+	(11412, 14),
+	(7582, 14),
+	(7581, 14),
+	(7580, 14),
+	(6319, 14),
+	(605, 13),
+	(605, 14),
+	(9897, 14),
+	(9903, 14),
+	(9942, 14),
+	(19376, 13),
+	(19376, 32),
+	(19376, 15),
+	(7764, 14),
+	(10124, 14),
+	(10257, 14),
+	(10122, 14),
+	(13380, 14),
+	(18407, 14),
+	(16979, 14),
+	(5689, 14),
+	(18344, 33),
+	(14498, 14),
+	(10025, 14),
+	(10026, 13),
+	(10026, 14),
+	(14766, 8),
+	(14766, 31),
+	(14766, 14),
+	(14766, 32),
+	(11867, 4),
+	(11867, 14),
+	(3419, 13),
+	(3419, 14),
+	(3420, 13),
+	(3420, 14),
+	(5737, 5),
+	(5737, 14),
+	(4706, 14),
+	(4141, 13),
+	(19724, 12),
+	(19724, 15),
+	(19724, 24),
+	(19724, 32),
+	(1983, 12),
+	(3796, 12),
+	(3795, 12),
+	(14288, 8),
+	(14288, 10),
+	(14288, 9),
+	(10510, 8),
+	(10510, 4),
+	(18442, 31),
+	(18442, 25),
+	(19563, 31),
+	(3063, 31),
+	(3063, 4),
+	(3444, 25),
+	(7769, 25),
+	(14289, 25),
+	(4379, 25),
+	(500, 25),
+	(500, 31),
+	(501, 31),
+	(501, 25),
+	(5503, 31),
+	(5503, 25),
+	(2003, 4),
+	(2003, 31),
+	(2003, 25),
+	(7689, 31),
+	(7689, 25),
+	(5738, 31),
+	(4489, 8),
+	(19245, 25),
+	(19245, 31),
+	(5739, 25),
+	(4707, 8),
+	(4707, 25),
+	(12401, 31),
+	(12401, 33),
+	(14746, 2),
+	(14746, 31),
+	(16126, 5),
+	(16126, 33),
+	(17446, 5),
+	(17446, 32),
+	(3797, 15),
+	(3797, 11),
+	(4708, 5),
+	(4708, 11),
+	(4708, 15),
+	(17175, 15),
+	(17528, 15),
+	(1417, 4),
+	(1413, 4),
+	(1414, 4),
+	(1415, 4),
+	(11944, 33),
+	(11944, 25),
+	(12402, 15),
+	(12511, 12),
+	(12511, 32),
+	(12511, 31),
+	(23689, 8),
+	(23689, 32),
+	(23689, 31),
+	(2603, 16),
+	(11099, 15),
+	(11099, 24),
+	(11098, 16),
+	(15152, 15),
+	(4596, 5),
+	(4596, 4),
+	(11945, 13),
+	(5741, 5),
+	(5741, 13),
+	(5499, 4),
+	(13382, 15),
+	(21866, 16),
+	(14290, 14),
+	(2365, 24),
+	(2365, 16),
+	(5361, 5),
+	(19093, 4),
+	(19093, 32),
+	(3190, 12),
+	(3190, 15),
+	(3190, 24),
+	(3190, 16),
+	(17502, 15),
+	(9030, 24),
+	(9030, 16),
+	(9030, 15),
+	(9031, 24),
+	(9031, 16),
+	(9031, 15),
+	(9032, 24),
+	(9032, 16),
+	(9032, 15),
+	(11100, 24),
+	(11100, 15),
+	(11101, 15),
+	(9034, 11),
+	(9034, 15),
+	(9034, 24),
+	(9034, 16),
+	(11145, 8),
+	(17427, 15),
+	(17577, 15),
+	(13383, 15),
+	(9892, 15),
+	(9892, 11),
+	(7772, 15),
+	(4709, 7),
+	(13384, 15),
+	(2056, 10),
+	(7774, 14),
+	(9068, 12),
+	(9068, 31),
+	(22407, 4),
+	(22418, 4),
+	(606, 11),
+	(11104, 11),
+	(8938, 14),
+	(8938, 33),
+	(13869, 24),
+	(13869, 16),
+	(4549, 5),
+	(10623, 13),
+	(7775, 5),
+	(11946, 5),
+	(5500, 15),
+	(4608, 5),
+	(4608, 33),
+	(7206, 16),
+	(19010, 5),
+	(2605, 8),
+	(2605, 32),
+	(7687, 5),
+	(7687, 12),
+	(18320, 5),
+	(240, 5),
+	(346, 5),
+	(345, 5),
+	(351, 5),
+	(277, 5),
+	(349, 5),
+	(3814, 5),
+	(3813, 5),
+	(348, 5),
+	(347, 5),
+	(343, 5),
+	(3038, 5),
+	(3037, 5),
+	(3033, 5),
+	(3036, 5),
+	(3039, 5),
+	(1979, 5),
+	(3091, 5),
+	(3095, 5),
+	(3096, 5),
+	(3094, 5),
+	(3093, 5),
+	(13387, 15),
+	(13387, 16),
+	(7081, 5),
+	(18023, 5),
+	(350, 5),
+	(353, 5),
+	(354, 5),
+	(335, 5),
+	(473, 5),
+	(352, 5),
+	(607, 5),
+	(8713, 11),
+	(8713, 24),
+	(18487, 15),
+	(608, 11),
+	(609, 11),
+	(610, 11),
+	(17955, 12),
+	(17955, 32),
+	(178, 13),
+	(11947, 31),
+	(11947, 33),
+	(9779, 12),
+	(9779, 32),
+	(23193, 25),
+	(23193, 4),
+	(611, 16),
+	(19704, 16),
+	(22445, 15),
+	(4710, 5),
+	(4710, 16),
+	(9735, 5),
+	(9735, 33),
+	(22699, 33),
+	(15013, 8),
+	(15013, 5),
+	(15013, 32),
+	(17530, 15),
+	(4223, 11),
+	(4222, 11),
+	(4222, 24),
+	(11948, 5),
+	(8345, 5),
+	(18279, 16),
+	(11949, 12),
+	(2970, 25),
+	(7776, 25),
+	(14591, 4),
+	(14591, 25),
+	(18577, 8),
+	(18577, 4),
+	(18627, 25),
+	(23845, 13),
+	(613, 5),
+	(613, 13),
+	(613, 11),
+	(12916, 5),
+	(12916, 13),
+	(12916, 33),
+	(3423, 11),
+	(2136, 25),
+	(2135, 25),
+	(5362, 10),
+	(21622, 10),
+	(11287, 10),
+	(17451, 5),
+	(11822, 13),
+	(11822, 15),
+	(3805, 14),
+	(11950, 14),
+	(8526, 5),
+	(18200, 5),
+	(14293, 9),
+	(17131, 13),
+	(17131, 10),
+	(5661, 5),
+	(11138, 5),
+	(18098, 13),
+	(18098, 32),
+	(22397, 32),
+	(22397, 31),
+	(22397, 2),
+	(20324, 10),
+	(20324, 32),
+	(17881, 32),
+	(14837, 32),
+	(14837, 14),
+	(11951, 5),
+	(8018, 5),
+	(11952, 31),
+	(11952, 33),
+	(17382, 31),
+	(17382, 32),
+	(11139, 33),
+	(18248, 7),
+	(18860, 13),
+	(18860, 31),
+	(18860, 2),
+	(5745, 4),
+	(7404, 33),
+	(7404, 7),
+	(6280, 32),
+	(9045, 8),
+	(9045, 32),
+	(9045, 7),
+	(7087, 8),
+	(7087, 31),
+	(7087, 32),
+	(7087, 7),
+	(18383, 9),
+	(18383, 7),
+	(6456, 9),
+	(6456, 31),
+	(12350, 8),
+	(7777, 8),
+	(8458, 2),
+	(8458, 31),
+	(8457, 31),
+	(8459, 14),
+	(8461, 31),
+	(8463, 15),
+	(8460, 26),
+	(2390, 5),
+	(2390, 33),
+	(13391, 5),
+	(4711, 31),
+	(12879, 13),
+	(12879, 15),
+	(12879, 31),
+	(12879, 32),
+	(18778, 8),
+	(19684, 8),
+	(2715, 10),
+	(18540, 13),
+	(18540, 31),
+	(7778, 8),
+	(23569, 15),
+	(23569, 24),
+	(9780, 12),
+	(9780, 32),
+	(9780, 7),
+	(14294, 5),
+	(6910, 14),
+	(8318, 9),
+	(614, 9),
+	(14806, 9),
+	(1978, 9),
+	(14295, 8),
+	(9246, 31),
+	(3231, 12),
+	(3231, 31),
+	(3231, 32),
+	(2803, 8),
+	(2802, 31),
+	(2807, 31),
+	(2801, 31),
+	(2806, 10),
+	(2800, 4),
+	(5310, 4),
+	(5310, 25),
+	(2799, 31),
+	(20176, 8),
+	(20176, 32),
+	(20176, 31),
+	(9541, 31),
+	(9541, 32),
+	(9541, 2),
+	(612, 2),
+	(612, 31),
+	(919, 2),
+	(919, 31),
+	(2873, 12),
+	(6024, 8),
+	(6024, 9),
+	(16140, 12),
+	(6912, 25),
+	(23488, 25),
+	(23488, 31),
+	(11953, 31),
+	(11953, 33),
+	(8337, 8),
+	(22557, 5),
+	(22557, 33),
+	(19765, 25),
+	(19157, 9),
+	(19157, 24),
+	(2391, 5),
+	(9047, 9),
+	(9047, 13),
+	(8664, 33),
+	(8665, 15),
+	(21605, 8),
+	(7783, 4),
+	(11954, 15),
+	(2211, 12),
+	(8828, 12),
+	(7711, 31),
+	(11955, 5),
+	(8455, 9),
+	(16985, 31),
+	(16985, 32),
+	(11956, 33),
+	(16895, 15),
+	(16895, 32),
+	(4653, 4),
+	(9726, 4),
+	(3807, 12),
+	(3032, 5),
+	(3032, 31),
+	(11957, 31),
+	(11957, 33),
+	(9781, 12),
+	(11135, 32),
+	(11135, 31),
+	(18350, 5),
+	(1341, 5),
+	(1341, 31),
+	(1936, 31),
+	(15299, 12),
+	(15299, 31),
+	(8698, 31),
+	(8698, 2),
+	(8698, 9),
+	(11958, 8),
+	(11958, 5),
+	(6835, 12),
+	(1951, 31),
+	(1342, 31),
+	(4462, 8),
+	(11163, 9),
+	(5747, 13),
+	(5747, 15),
+	(15421, 32),
+	(3808, 10),
+	(18549, 5),
+	(18549, 33),
+	(4712, 14),
+	(2744, 9),
+	(4713, 9),
+	(4713, 26),
+	(14993, 15),
+	(14993, 31),
+	(2731, 10),
+	(14300, 15),
+	(12403, 14),
+	(615, 9),
+	(13394, 14),
+	(13395, 14),
+	(3756, 9),
+	(3756, 33),
+	(3367, 14),
+	(3809, 10),
+	(5748, 10),
+	(11960, 8),
+	(19233, 10),
+	(7557, 10),
+	(11961, 10),
+	(14301, 15),
+	(21586, 7),
+	(13398, 10),
+	(18117, 33),
+	(4714, 10),
+	(17710, 31),
+	(17710, 32),
+	(17878, 31),
+	(17878, 32),
+	(22352, 13),
+	(22351, 13),
+	(14302, 31),
+	(7784, 9),
+	(7785, 10),
+	(5363, 14),
+	(5364, 14),
+	(14306, 9),
+	(14305, 14),
+	(14304, 14),
+	(3810, 8),
+	(13400, 5),
+	(4717, 8),
+	(4717, 10),
+	(18207, 8),
+	(18207, 32),
+	(6913, 5),
+	(4556, 9),
+	(22429, 33),
+	(3220, 9),
+	(3220, 33),
+	(12917, 8),
+	(3366, 4),
+	(19378, 8),
+	(4517, 5),
+	(8491, 8),
+	(2213, 31),
+	(10685, 5),
+	(14526, 8),
+	(14526, 33),
+	(14526, 25),
+	(6914, 8),
+	(9242, 8),
+	(9242, 5),
+	(7786, 8),
+	(15856, 8),
+	(15856, 33),
+	(15858, 8),
+	(15858, 33),
+	(9221, 12),
+	(9221, 32),
+	(9221, 15),
+	(9896, 8),
+	(9896, 5),
+	(9896, 32),
+	(9782, 31),
+	(9782, 32),
+	(17721, 31),
+	(17721, 32),
+	(13403, 4),
+	(3818, 5),
+	(6322, 31),
+	(6323, 31),
+	(3811, 31),
+	(20, 5),
+	(20, 12),
+	(20, 31),
+	(21, 5),
+	(21, 12),
+	(14543, 5),
+	(538, 5),
+	(10047, 5),
+	(19839, 5),
+	(19839, 31),
+	(17596, 31),
+	(13696, 14),
+	(11962, 13),
+	(6915, 13),
+	(22408, 14),
+	(22408, 33),
+	(16142, 12),
+	(14308, 13),
+	(17943, 31),
+	(17943, 32),
+	(9535, 7),
+	(4719, 7),
+	(15280, 32),
+	(15281, 32),
+	(6246, 8),
+	(6246, 33),
+	(6246, 7),
+	(5749, 5),
+	(3819, 4),
+	(3819, 14),
+	(308, 11),
+	(1921, 11),
+	(1923, 11),
+	(14387, 4),
+	(7787, 14),
+	(12257, 4),
+	(12257, 14),
+	(9297, 31),
+	(9297, 32),
+	(9297, 2),
+	(6916, 14),
+	(8692, 12),
+	(12405, 2),
+	(12405, 31),
+	(6292, 12),
+	(6292, 31),
+	(14609, 15),
+	(5365, 4),
+	(14309, 5),
+	(13971, 9),
+	(17589, 32),
+	(11964, 8),
+	(14610, 33),
+	(12258, 31),
+	(12258, 33),
+	(6739, 8),
+	(6739, 5),
+	(6739, 9),
+	(6739, 32),
+	(11351, 2),
+	(11351, 31),
+	(10049, 2),
+	(10049, 31),
+	(11831, 12),
+	(11965, 2),
+	(11965, 31),
+	(14310, 5),
+	(5750, 12),
+	(11966, 8),
+	(11966, 33),
+	(14311, 5),
+	(14311, 10),
+	(10058, 2),
+	(18455, 5),
+	(18455, 33),
+	(17555, 31),
+	(17555, 32),
+	(17555, 9),
+	(10048, 31),
+	(10048, 32),
+	(5522, 12),
+	(5522, 16),
+	(8335, 12),
+	(8335, 31),
+	(8335, 32),
+	(8335, 16),
+	(13220, 8),
+	(13220, 31),
+	(13220, 32),
+	(2118, 5),
+	(8481, 5),
+	(21974, 15),
+	(21974, 24),
+	(18915, 5),
+	(12979, 5),
+	(12979, 32),
+	(5730, 5),
+	(452, 8),
+	(14206, 5),
+	(14206, 13),
+	(6917, 5),
+	(9041, 31),
+	(9041, 32),
+	(9041, 2),
+	(14312, 12),
+	(8719, 5),
+	(8719, 25),
+	(16741, 12),
+	(22430, 32),
+	(22430, 4),
+	(11860, 5),
+	(14847, 31),
+	(322, 2),
+	(322, 31),
+	(14313, 31),
+	(14313, 25),
+	(19579, 12),
+	(7788, 14),
+	(6918, 25),
+	(6919, 11),
+	(8527, 8),
+	(18489, 31),
+	(18490, 31),
+	(18491, 31),
+	(8489, 5),
+	(8490, 5),
+	(3424, 9),
+	(4720, 5),
+	(14317, 5),
+	(2367, 8),
+	(2367, 31),
+	(11967, 5),
+	(22034, 8),
+	(22034, 32),
+	(11613, 33),
+	(11613, 4),
+	(6441, 33),
+	(6441, 4),
+	(5643, 4),
+	(5643, 33),
+	(11612, 33),
+	(11612, 4),
+	(6750, 4),
+	(6750, 33),
+	(6920, 4),
+	(6920, 33),
+	(11611, 33),
+	(11611, 4),
+	(18249, 12),
+	(18249, 31),
+	(18249, 25),
+	(2128, 5),
+	(14567, 32),
+	(14567, 10),
+	(3125, 13),
+	(3124, 13),
+	(5475, 12),
+	(5475, 24),
+	(10500, 5),
+	(10500, 33),
+	(13407, 5),
+	(3821, 4),
+	(20530, 4),
+	(9706, 33),
+	(8597, 9),
+	(6324, 8),
+	(8210, 9),
+	(8210, 31),
+	(18378, 31),
+	(2432, 12),
+	(10053, 31),
+	(12498, 8),
+	(5752, 8),
+	(5751, 8),
+	(17685, 31),
+	(17685, 32),
+	(17457, 8),
+	(17457, 32),
+	(14611, 14),
+	(23201, 14),
+	(5753, 14),
+	(6921, 14),
+	(10242, 11),
+	(10242, 24),
+	(7288, 11),
+	(11106, 11),
+	(11106, 24),
+	(11107, 11),
+	(11107, 24),
+	(10243, 11),
+	(15702, 15),
+	(14318, 15),
+	(14319, 8),
+	(14320, 9),
+	(8437, 5),
+	(8437, 15),
+	(14321, 9),
+	(14321, 33),
+	(9175, 12),
+	(9175, 31),
+	(9175, 32),
+	(18118, 33),
+	(23864, 5),
+	(23864, 33),
+	(12940, 26),
+	(13408, 26),
+	(14323, 9),
+	(14324, 9),
+	(7591, 13),
+	(7591, 32),
+	(10208, 9),
+	(10208, 33),
+	(8984, 8),
+	(8984, 9),
+	(15404, 15),
+	(15404, 32),
+	(7644, 5),
+	(17454, 5),
+	(17454, 32),
+	(5649, 11),
+	(5649, 14),
+	(5649, 16),
+	(6059, 15),
+	(6059, 14),
+	(16400, 15),
+	(6922, 4),
+	(6922, 10),
+	(11265, 5),
+	(11968, 5),
+	(10056, 8),
+	(10056, 32),
+	(7894, 31),
+	(7894, 25),
+	(13243, 4),
+	(5754, 4),
+	(5754, 10),
+	(18864, 31),
+	(18500, 5),
+	(7334, 12),
+	(14647, 12),
+	(14647, 31),
+	(7310, 25),
+	(2352, 32),
+	(17108, 32),
+	(2214, 12),
+	(2214, 31),
+	(1015, 31),
+	(1015, 25),
+	(1016, 31),
+	(1016, 25),
+	(2606, 8),
+	(2606, 25),
+	(17587, 15),
+	(10760, 8),
+	(2433, 12),
+	(8937, 33),
+	(8937, 4),
+	(2434, 12),
+	(2608, 5),
+	(2749, 4),
+	(4140, 33),
+	(4140, 4),
+	(3824, 4),
+	(18054, 4),
+	(16733, 31),
+	(16733, 32),
+	(22782, 32),
+	(22782, 31),
+	(17520, 15),
+	(17676, 32),
+	(3825, 5),
+	(18322, 8),
+	(18322, 9),
+	(11970, 9),
+	(11971, 13),
+	(15679, 12),
+	(6923, 12),
+	(6923, 31),
+	(19939, 15),
+	(19939, 12),
+	(7439, 5),
+	(8381, 31),
+	(12364, 5),
+	(13817, 5),
+	(13817, 33),
+	(11972, 13),
+	(21980, 8),
+	(21980, 31),
+	(18790, 9),
+	(18790, 31),
+	(7972, 2),
+	(7973, 2),
+	(9701, 7),
+	(9983, 31),
+	(9983, 32),
+	(9983, 9),
+	(18804, 33),
+	(11415, 31),
+	(3425, 8),
+	(3425, 7),
+	(3235, 33),
+	(3235, 10),
+	(13411, 14),
+	(13819, 14),
+	(11973, 10),
+	(11973, 14),
+	(3826, 10),
+	(3826, 14),
+	(19111, 9),
+	(2356, 9),
+	(14329, 33),
+	(2435, 12),
+	(13416, 26),
+	(11140, 8),
+	(14328, 33),
+	(22019, 14),
+	(22019, 32),
+	(11974, 4),
+	(11975, 4),
+	(3426, 5),
+	(3426, 31),
+	(10666, 33),
+	(10666, 14),
+	(6924, 5),
+	(14330, 9),
+	(17646, 11),
+	(17646, 32),
+	(9508, 12),
+	(9508, 5),
+	(11141, 33),
+	(6329, 12),
+	(6326, 12),
+	(7379, 31),
+	(21916, 5),
+	(4723, 31),
+	(21917, 13),
+	(21917, 16),
+	(13420, 8),
+	(6100, 8),
+	(6100, 33),
+	(5662, 9),
+	(17403, 31),
+	(17403, 32),
+	(21918, 33),
+	(14331, 5),
+	(3445, 15),
+	(3445, 33),
+	(3451, 31),
+	(3452, 31),
+	(22773, 10),
+	(3832, 31),
+	(3453, 8),
+	(3447, 9),
+	(3833, 31),
+	(4724, 9),
+	(17456, 15),
+	(17456, 33),
+	(6334, 12),
+	(18786, 15),
+	(16627, 32),
+	(17653, 32),
+	(6810, 12),
+	(6810, 5),
+	(6810, 31),
+	(6810, 33),
+	(17449, 33),
+	(17449, 32),
+	(11976, 9),
+	(4511, 33),
+	(11977, 33),
+	(19752, 15),
+	(19752, 32),
+	(12493, 8),
+	(7794, 8),
+	(7795, 8),
+	(3757, 9),
+	(17634, 31),
+	(17634, 32),
+	(19614, 8),
+	(4725, 7),
+	(4726, 7),
+	(22747, 12),
+	(22747, 32),
+	(8325, 9),
+	(18847, 9),
+	(18847, 7),
+	(12406, 9),
+	(7870, 15),
+	(2259, 9),
+	(2260, 9),
+	(16742, 33),
+	(16742, 7),
+	(10918, 4),
+	(7797, 9),
+	(13509, 31),
+	(13509, 33),
+	(18608, 5),
+	(18608, 33),
+	(17264, 12),
+	(17264, 32),
+	(18388, 12),
+	(18388, 32),
+	(13822, 10),
+	(14333, 9),
+	(6717, 5),
+	(15491, 31),
+	(498, 5),
+	(498, 12),
+	(1011, 5),
+	(1011, 12),
+	(13920, 12),
+	(13920, 5),
+	(13926, 12),
+	(13926, 5),
+	(13927, 12),
+	(13927, 5),
+	(13921, 12),
+	(13921, 5),
+	(13928, 12),
+	(13928, 5),
+	(13922, 12),
+	(13922, 5),
+	(13924, 12),
+	(13924, 5),
+	(13925, 12),
+	(13925, 5),
+	(13923, 12),
+	(13923, 5),
+	(19164, 5),
+	(13916, 12),
+	(13916, 5),
+	(13914, 12),
+	(13914, 5),
+	(14548, 12),
+	(14548, 5),
+	(6032, 12),
+	(6032, 5),
+	(13919, 12),
+	(13919, 5),
+	(13918, 12),
+	(13918, 5),
+	(13917, 12),
+	(13917, 5),
+	(13915, 12),
+	(13915, 5),
+	(13913, 12),
+	(13913, 5),
+	(6101, 5),
+	(6101, 33),
+	(12941, 31),
+	(18764, 5),
+	(18764, 33),
+	(14334, 8),
+	(14334, 10),
+	(14335, 15),
+	(12259, 31),
+	(18758, 5),
+	(18758, 33),
+	(13425, 5),
+	(7730, 33),
+	(7730, 32),
+	(8431, 10),
+	(17971, 32),
+	(10865, 15),
+	(10865, 9),
+	(16835, 31),
+	(16835, 32),
+	(22751, 32),
+	(22751, 33),
+	(6611, 31),
+	(6611, 32),
+	(14336, 14),
+	(3369, 14),
+	(12942, 33),
+	(12943, 33),
+	(13427, 33),
+	(13698, 33),
+	(14790, 8),
+	(14790, 31),
+	(7208, 12),
+	(14365, 12),
+	(14365, 31),
+	(12305, 8),
+	(11802, 13),
+	(11802, 31),
+	(18005, 14),
+	(14337, 14),
+	(15654, 8),
+	(15654, 9),
+	(15747, 9),
+	(13699, 8),
+	(20198, 5),
+	(20198, 7),
+	(20198, 32),
+	(5663, 14),
+	(6335, 14),
+	(13430, 14),
+	(7799, 9),
+	(13431, 10),
+	(13556, 31),
+	(2853, 8),
+	(2853, 32),
+	(2853, 9),
+	(2711, 9),
+	(2711, 26),
+	(2712, 9),
+	(2712, 26),
+	(7281, 9),
+	(13980, 33),
+	(9258, 33),
+	(16288, 12),
+	(14338, 9),
+	(5366, 8),
+	(5366, 5),
+	(5366, 31),
+	(14342, 5),
+	(14342, 31),
+	(14341, 4),
+	(14340, 8),
+	(14339, 25),
+	(16289, 12),
+	(16292, 12),
+	(14343, 33),
+	(14343, 9),
+	(11978, 31),
+	(11978, 33),
+	(6336, 31),
+	(4727, 31),
+	(3835, 31),
+	(3836, 31),
+	(4728, 31),
+	(17695, 15),
+	(17695, 32),
+	(6926, 31),
+	(23722, 32),
+	(23722, 31),
+	(1810, 12),
+	(18823, 31),
+	(18823, 2),
+	(18823, 9),
+	(14607, 12),
+	(14607, 31),
+	(18824, 8),
+	(18824, 12),
+	(18824, 31),
+	(18824, 9),
+	(4729, 31),
+	(8999, 16),
+	(8755, 12),
+	(8755, 16),
+	(8755, 15),
+	(4700, 12),
+	(4700, 16),
+	(11256, 12),
+	(11256, 31),
+	(18250, 33),
+	(18250, 10),
+	(14344, 15),
+	(10233, 8),
+	(10233, 4),
+	(12407, 15),
+	(12407, 24),
+	(8422, 13),
+	(8422, 24),
+	(8422, 15),
+	(14345, 24),
+	(14345, 16),
+	(14345, 15),
+	(18845, 32),
+	(18845, 31),
+	(5755, 15),
+	(5755, 14),
+	(13887, 33),
+	(5756, 5),
+	(5756, 31),
+	(2754, 33),
+	(7800, 9),
+	(16259, 12),
+	(16259, 32),
+	(11617, 12),
+	(6337, 12),
+	(18055, 12),
+	(1280, 12),
+	(18056, 12),
+	(14346, 5),
+	(12283, 14),
+	(5757, 14),
+	(6927, 14),
+	(11979, 8),
+	(13436, 33),
+	(18991, 5),
+	(14347, 31),
+	(14348, 31),
+	(14348, 33),
+	(9784, 13),
+	(9784, 32),
+	(9784, 9),
+	(17098, 32),
+	(9785, 9),
+	(9785, 13),
+	(14349, 15),
+	(13361, 5),
+	(13361, 32),
+	(3127, 12),
+	(3127, 16),
+	(3127, 15),
+	(19484, 8),
+	(19484, 31),
+	(502, 5),
+	(23863, 8),
+	(23863, 33),
+	(13444, 14),
+	(6338, 7),
+	(14458, 9),
+	(17618, 15),
+	(5973, 8),
+	(5973, 5),
+	(5973, 32),
+	(3087, 2),
+	(3087, 31),
+	(19681, 5),
+	(19681, 32),
+	(1150, 31),
+	(1150, 2),
+	(1150, 9),
+	(18933, 2),
+	(21127, 31),
+	(21127, 9),
+	(21127, 2),
+	(1152, 2),
+	(1152, 31),
+	(2924, 2),
+	(2924, 31),
+	(616, 31),
+	(616, 2),
+	(616, 9),
+	(1151, 2),
+	(1151, 31),
+	(19255, 13),
+	(12644, 13),
+	(12644, 31),
+	(19263, 5),
+	(19263, 31),
+	(4730, 5),
+	(4730, 24),
+	(617, 5),
+	(617, 24),
+	(2034, 5),
+	(618, 5),
+	(619, 5),
+	(619, 24),
+	(1334, 9),
+	(1334, 31),
+	(13447, 8),
+	(13447, 25),
+	(5758, 25),
+	(6339, 25),
+	(10607, 14),
+	(4731, 14),
+	(4732, 14),
+	(14759, 31),
+	(14759, 4),
+	(14350, 14),
+	(4449, 4),
+	(5759, 5),
+	(5759, 24),
+	(22372, 12),
+	(19791, 12),
+	(212, 15),
+	(212, 31),
+	(1446, 12),
+	(1446, 24),
+	(11980, 8),
+	(11980, 9),
+	(4373, 8),
+	(2630, 8),
+	(2630, 15),
+	(7801, 8),
+	(11981, 8),
+	(7802, 33),
+	(7803, 8),
+	(7806, 8),
+	(7804, 8),
+	(7805, 8),
+	(2436, 12),
+	(11142, 5),
+	(22741, 32),
+	(19240, 31),
+	(19240, 9),
+	(19240, 2),
+	(4409, 4),
+	(4409, 14),
+	(12284, 33),
+	(5760, 25),
+	(3837, 25),
+	(6343, 25),
+	(18747, 5),
+	(18747, 33),
+	(14351, 33),
+	(19735, 8),
+	(19735, 33),
+	(18390, 10),
+	(12728, 10),
+	(18802, 5),
+	(18802, 33),
+	(3045, 8),
+	(8724, 9),
+	(3052, 8),
+	(8723, 9),
+	(3053, 8),
+	(4733, 10),
+	(14352, 9),
+	(13451, 9),
+	(13451, 33),
+	(19413, 25),
+	(14393, 31),
+	(14393, 32),
+	(14393, 2),
+	(14830, 32),
+	(8683, 5),
+	(5645, 5),
+	(5645, 33),
+	(6928, 5),
+	(494, 5),
+	(2720, 31),
+	(13452, 14),
+	(6574, 31),
+	(16348, 15),
+	(16348, 32),
+	(14353, 10),
+	(5664, 10),
+	(13453, 14),
+	(13454, 8),
+	(6209, 32),
+	(11724, 8),
+	(23274, 33),
+	(22780, 12),
+	(22780, 32),
+	(18656, 5),
+	(18656, 32),
+	(10855, 14),
+	(16661, 8),
+	(16661, 31),
+	(16661, 32),
+	(2382, 5),
+	(16293, 12),
+	(12618, 31),
+	(6575, 15),
+	(18912, 12),
+	(18912, 4),
+	(18912, 32),
+	(4609, 9),
+	(4609, 33),
+	(6576, 9),
+	(6577, 15),
+	(16917, 10),
+	(11143, 33),
+	(14354, 10),
+	(11861, 5),
+	(3838, 10),
+	(14355, 33),
+	(3840, 10),
+	(5761, 10),
+	(20160, 10),
+	(20160, 33),
+	(6203, 10),
+	(10916, 33),
+	(10916, 10),
+	(620, 10),
+	(10067, 10),
+	(2626, 10),
+	(2404, 10),
+	(17747, 31),
+	(17747, 32),
+	(17747, 15),
+	(2453, 12),
+	(19882, 13),
+	(14356, 31),
+	(16294, 12),
+	(1418, 4),
+	(1419, 4),
+	(12409, 15),
+	(4138, 7),
+	(4139, 7),
+	(6826, 9),
+	(4734, 9),
+	(11982, 33),
+	(3841, 10),
+	(17557, 15),
+	(5665, 5),
+	(19675, 31),
+	(18716, 26),
+	(18715, 26),
+	(7282, 26),
+	(7283, 26),
+	(7284, 26),
+	(13456, 14),
+	(6095, 8),
+	(23572, 5),
+	(23572, 32),
+	(23572, 33),
+	(10033, 16),
+	(16833, 5),
+	(16833, 32),
+	(16658, 15),
+	(16658, 32),
+	(5762, 31),
+	(19793, 13),
+	(8611, 31),
+	(6317, 33),
+	(11144, 8),
+	(6648, 14),
+	(7807, 5),
+	(7807, 14),
+	(6931, 5),
+	(6931, 13),
+	(6932, 5),
+	(6932, 13),
+	(6932, 14),
+	(4735, 5),
+	(3842, 5),
+	(3842, 14),
+	(4736, 5),
+	(6649, 13),
+	(6650, 13),
+	(6650, 14),
+	(16631, 13),
+	(5763, 5),
+	(5763, 13),
+	(5763, 14),
+	(3843, 5),
+	(3843, 13),
+	(3843, 14),
+	(4737, 5),
+	(4737, 14),
+	(4738, 5),
+	(5807, 5),
+	(5807, 14),
+	(5764, 5),
+	(5764, 14),
+	(5765, 5),
+	(5765, 14),
+	(7808, 5),
+	(7808, 14),
+	(7809, 5),
+	(7809, 14),
+	(3844, 5),
+	(3844, 14),
+	(6651, 31),
+	(6651, 32),
+	(4739, 5),
+	(4739, 14),
+	(22363, 32),
+	(22363, 33),
+	(22363, 2),
+	(9872, 12),
+	(9872, 32),
+	(6652, 12),
+	(6652, 4),
+	(11983, 31),
+	(11983, 33),
+	(18216, 32),
+	(18216, 7),
+	(5368, 25),
+	(5367, 5),
+	(7416, 15),
+	(7509, 15),
+	(6332, 13),
+	(6332, 15),
+	(7508, 13),
+	(17927, 15),
+	(17927, 32),
+	(4597, 13),
+	(6718, 13),
+	(17854, 31),
+	(17854, 32),
+	(4740, 13),
+	(4740, 15),
+	(18537, 33),
+	(11984, 14),
+	(11985, 14),
+	(3335, 10),
+	(18351, 31),
+	(18351, 32),
+	(4741, 12),
+	(13175, 11),
+	(9176, 12),
+	(2964, 5),
+	(2964, 31),
+	(16667, 31),
+	(16667, 32),
+	(16667, 15),
+	(621, 5),
+	(622, 5),
+	(3845, 5),
+	(949, 5),
+	(623, 5),
+	(623, 13),
+	(6632, 5),
+	(545, 5),
+	(8548, 5),
+	(1122, 5),
+	(9509, 5),
+	(3761, 5),
+	(2033, 5),
+	(18968, 5),
+	(559, 5),
+	(979, 5),
+	(979, 24),
+	(3120, 5),
+	(624, 5),
+	(625, 5),
+	(19836, 5),
+	(429, 5),
+	(430, 5),
+	(430, 31),
+	(1976, 5),
+	(1976, 33),
+	(1976, 31),
+	(543, 5),
+	(17432, 15),
+	(17432, 32),
+	(11266, 15),
+	(11266, 16),
+	(12410, 2),
+	(12410, 31),
+	(17713, 31),
+	(17713, 32),
+	(2808, 9),
+	(14371, 13),
+	(14372, 13),
+	(21404, 31),
+	(2270, 8),
+	(2270, 32),
+	(2270, 33),
+	(4744, 9),
+	(19289, 8),
+	(19289, 32),
+	(19289, 31),
+	(19697, 9),
+	(3269, 2),
+	(3269, 12),
+	(3269, 13),
+	(3269, 31),
+	(3269, 32),
+	(5636, 9),
+	(18061, 9),
+	(13675, 32),
+	(13675, 11),
+	(5519, 5),
+	(5519, 15),
+	(11986, 5),
+	(11986, 15),
+	(6719, 5),
+	(21920, 8),
+	(21920, 33),
+	(16870, 32),
+	(17017, 33),
+	(7875, 8),
+	(7875, 32),
+	(21921, 8),
+	(21921, 33),
+	(14374, 5),
+	(18821, 33),
+	(6933, 33),
+	(5766, 4),
+	(3846, 4),
+	(14373, 4),
+	(14375, 5),
+	(3050, 8),
+	(3050, 32),
+	(17487, 32),
+	(11184, 33),
+	(11184, 32),
+	(7816, 8),
+	(7816, 25),
+	(4745, 25),
+	(11989, 31),
+	(11989, 33),
+	(19821, 25),
+	(11990, 8),
+	(14376, 5),
+	(17360, 5),
+	(17360, 32),
+	(6654, 31),
+	(18986, 8),
+	(11991, 8),
+	(4746, 31),
+	(7337, 8),
+	(7337, 31),
+	(7337, 9),
+	(5369, 14),
+	(3847, 14),
+	(19824, 31),
+	(2454, 12),
+	(6344, 12),
+	(6344, 10),
+	(7571, 13),
+	(17780, 10),
+	(19371, 14),
+	(19290, 32),
+	(19290, 31),
+	(12501, 5),
+	(14565, 31),
+	(14565, 32),
+	(14565, 15),
+	(17231, 15),
+	(12531, 5),
+	(17752, 32),
+	(7880, 8),
+	(7880, 5),
+	(7880, 31),
+	(7880, 32),
+	(9792, 31),
+	(626, 10),
+	(10608, 4),
+	(10608, 10),
+	(951, 10),
+	(1884, 10),
+	(18075, 10),
+	(1883, 10),
+	(2403, 10),
+	(19426, 31),
+	(3848, 8),
+	(3848, 31),
+	(12533, 10),
+	(10073, 10),
+	(18632, 5),
+	(18632, 33),
+	(5666, 5),
+	(4058, 14),
+	(11761, 5),
+	(11761, 14),
+	(17236, 32),
+	(13700, 5),
+	(18432, 9),
+	(18432, 32),
+	(11992, 15),
+	(6934, 5),
+	(6934, 11),
+	(22414, 32),
+	(3849, 31),
+	(3849, 10),
+	(4747, 10),
+	(4748, 10),
+	(4749, 10),
+	(18251, 10),
+	(627, 10),
+	(22497, 15),
+	(22497, 13),
+	(12534, 15),
+	(2785, 10),
+	(2810, 10),
+	(2811, 5),
+	(2809, 9),
+	(2798, 8),
+	(2798, 4),
+	(5767, 10),
+	(14383, 25),
+	(11993, 8),
+	(18212, 31),
+	(18212, 32),
+	(4750, 31),
+	(22373, 13),
+	(22373, 32),
+	(20969, 14),
+	(6345, 31),
+	(3850, 31),
+	(9793, 5),
+	(9793, 31),
+	(9793, 32),
+	(3153, 31),
+	(3153, 25),
+	(9611, 8),
+	(9611, 12),
+	(11994, 31),
+	(11994, 33),
+	(11995, 31),
+	(11995, 33),
+	(7779, 8),
+	(7722, 9),
+	(7722, 31),
+	(11495, 8),
+	(11495, 33),
+	(8122, 8),
+	(4751, 5),
+	(14446, 12),
+	(14447, 12),
+	(4149, 5),
+	(3238, 15),
+	(3238, 32),
+	(12535, 33),
+	(2727, 5),
+	(9794, 32),
+	(11267, 15),
+	(11268, 15),
+	(11269, 15),
+	(19136, 24),
+	(1130, 8),
+	(1130, 31),
+	(1114, 8),
+	(1114, 31),
+	(16476, 8),
+	(19468, 8),
+	(19468, 31),
+	(1123, 8),
+	(1123, 31),
+	(1116, 8),
+	(1116, 12),
+	(1116, 31),
+	(1119, 8),
+	(1119, 31),
+	(1142, 31),
+	(1142, 4),
+	(1142, 25),
+	(1129, 8),
+	(1129, 31),
+	(1148, 9),
+	(1134, 8),
+	(1134, 31),
+	(1127, 31),
+	(1132, 8),
+	(1132, 31),
+	(1137, 31),
+	(1137, 25),
+	(1136, 8),
+	(1136, 12),
+	(1136, 31),
+	(1136, 25),
+	(1147, 31),
+	(1133, 8),
+	(1133, 31),
+	(1135, 31),
+	(1135, 25),
+	(1131, 8),
+	(1131, 31),
+	(491, 31),
+	(1149, 31),
+	(10076, 25),
+	(10076, 31),
+	(10075, 25),
+	(10075, 31),
+	(1182, 12),
+	(1182, 31),
+	(6303, 25),
+	(6303, 31),
+	(9715, 31),
+	(1141, 8),
+	(1141, 12),
+	(1141, 31),
+	(1141, 25),
+	(1140, 31),
+	(1138, 8),
+	(1138, 12),
+	(1138, 31),
+	(1138, 25),
+	(1139, 8),
+	(1139, 31),
+	(1128, 12),
+	(1128, 31),
+	(1118, 8),
+	(1118, 31),
+	(1146, 8),
+	(1146, 31),
+	(1145, 5),
+	(21888, 12),
+	(21888, 8),
+	(21888, 31),
+	(4165, 8),
+	(11533, 33),
+	(22701, 33),
+	(13203, 8),
+	(13203, 32),
+	(23186, 13),
+	(23186, 32),
+	(18014, 32),
+	(18730, 12),
+	(18730, 13),
+	(18730, 32),
+	(8705, 5),
+	(11044, 5),
+	(11045, 5),
+	(17692, 32),
+	(16539, 15),
+	(23724, 15),
+	(23724, 32),
+	(14613, 8),
+	(14613, 33),
+	(19386, 32),
+	(19386, 33),
+	(8537, 4),
+	(2151, 8),
+	(2151, 31),
+	(2151, 9),
+	(11321, 2),
+	(17966, 32),
+	(7820, 9),
+	(23277, 33),
+	(3851, 31),
+	(16616, 13),
+	(13469, 8),
+	(13469, 31),
+	(13469, 33),
+	(7898, 8),
+	(6189, 8),
+	(6189, 5),
+	(6189, 31),
+	(6189, 32),
+	(11783, 8),
+	(8214, 8),
+	(8214, 5),
+	(8214, 31),
+	(8214, 32),
+	(13470, 8),
+	(2876, 12),
+	(7874, 33),
+	(18677, 5),
+	(18677, 33),
+	(17871, 31),
+	(17871, 32),
+	(2874, 12),
+	(12536, 33),
+	(16844, 31),
+	(16844, 32),
+	(14614, 8),
+	(14614, 33),
+	(3852, 10),
+	(5768, 4),
+	(4753, 14),
+	(17978, 31),
+	(17978, 32),
+	(17978, 15),
+	(17693, 32),
+	(11271, 12),
+	(11271, 11),
+	(12537, 15),
+	(14615, 15),
+	(11996, 9),
+	(2237, 5),
+	(2235, 5),
+	(2235, 33),
+	(4760, 5),
+	(13472, 14),
+	(3456, 14),
+	(8257, 15),
+	(21417, 16),
+	(8394, 31),
+	(6103, 8),
+	(6103, 33),
+	(16672, 31),
+	(16672, 32),
+	(16672, 15),
+	(17543, 31),
+	(17543, 32),
+	(17543, 15),
+	(18091, 8),
+	(8625, 33),
+	(8625, 32),
+	(12538, 14),
+	(2455, 12),
+	(2455, 31),
+	(12539, 5),
+	(7821, 8),
+	(7821, 9),
+	(11997, 4),
+	(3427, 8),
+	(6084, 14),
+	(6085, 14),
+	(6086, 14),
+	(12540, 10),
+	(6087, 14),
+	(6088, 14),
+	(6089, 14),
+	(11998, 15),
+	(6090, 14),
+	(6092, 14),
+	(2456, 12),
+	(9813, 12),
+	(9813, 25),
+	(16426, 32),
+	(8583, 12),
+	(10237, 12),
+	(10237, 25),
+	(15207, 14),
+	(4408, 14),
+	(15872, 14),
+	(19772, 14),
+	(15208, 14),
+	(11306, 13),
+	(11306, 14),
+	(5771, 14),
+	(14887, 14),
+	(14840, 14),
+	(14888, 14),
+	(14889, 14),
+	(18870, 14),
+	(5773, 14),
+	(14616, 14),
+	(5769, 14),
+	(5770, 14),
+	(628, 13),
+	(628, 14),
+	(18872, 14),
+	(4538, 14),
+	(13478, 10),
+	(6722, 14),
+	(13827, 14),
+	(12525, 12),
+	(12525, 31),
+	(12525, 25),
+	(12525, 32),
+	(2917, 31),
+	(2917, 25),
+	(5062, 2),
+	(5062, 31),
+	(629, 16),
+	(13222, 12),
+	(13222, 32),
+	(13222, 16),
+	(15833, 12),
+	(15945, 32),
+	(7904, 12),
+	(7904, 15),
+	(17767, 31),
+	(17767, 32),
+	(11393, 31),
+	(11392, 31),
+	(6935, 31),
+	(3853, 5),
+	(3854, 10),
+	(7897, 8),
+	(7897, 31),
+	(7897, 9),
+	(7897, 32),
+	(14617, 33),
+	(3855, 25),
+	(6346, 31),
+	(6802, 33),
+	(6802, 10),
+	(11999, 10),
+	(5774, 10),
+	(3222, 8),
+	(3222, 12),
+	(3222, 32),
+	(12014, 5),
+	(11151, 9),
+	(11151, 15),
+	(15210, 15),
+	(4460, 8),
+	(17917, 32),
+	(8062, 8),
+	(16986, 12),
+	(16986, 32),
+	(10078, 13),
+	(23249, 2),
+	(13246, 10),
+	(9796, 5),
+	(10080, 12),
+	(10080, 31),
+	(10080, 32),
+	(15551, 9),
+	(9165, 15),
+	(17659, 15),
+	(17659, 32),
+	(15211, 15),
+	(4761, 13),
+	(4761, 15),
+	(15212, 15),
+	(15883, 15),
+	(15883, 14),
+	(15876, 15),
+	(15878, 13),
+	(15878, 14),
+	(630, 15),
+	(630, 14),
+	(631, 15),
+	(631, 14),
+	(632, 15),
+	(632, 14),
+	(8192, 5),
+	(8718, 5),
+	(3856, 8),
+	(3856, 31),
+	(11216, 8),
+	(18873, 12),
+	(12000, 10),
+	(5775, 5),
+	(13486, 31),
+	(11713, 5),
+	(11714, 5),
+	(11715, 5),
+	(11716, 5),
+	(11717, 5),
+	(6723, 8),
+	(4762, 5),
+	(19234, 33),
+	(22462, 13),
+	(7822, 5),
+	(6936, 5),
+	(6936, 7),
+	(4756, 8),
+	(4756, 12),
+	(4756, 16),
+	(16859, 32),
+	(14988, 12),
+	(11727, 5),
+	(17907, 9),
+	(17907, 7),
+	(18554, 33),
+	(7597, 31),
+	(7597, 32),
+	(7597, 9),
+	(6490, 8),
+	(6490, 31),
+	(6518, 8),
+	(6518, 31),
+	(12001, 9),
+	(15905, 33),
+	(15905, 7),
+	(2358, 25),
+	(2358, 4),
+	(10083, 5),
+	(10083, 25),
+	(11366, 12),
+	(18070, 12),
+	(15913, 12),
+	(10429, 9),
+	(10429, 32),
+	(22036, 32),
+	(13093, 12),
+	(13093, 32),
+	(17744, 32),
+	(8425, 32),
+	(18252, 13),
+	(6094, 5),
+	(7823, 5),
+	(7823, 15),
+	(7824, 5),
+	(7824, 15),
+	(3428, 5),
+	(16296, 12),
+	(10737, 13),
+	(5588, 5),
+	(9046, 12),
+	(9046, 32),
+	(9046, 16),
+	(23245, 9),
+	(7873, 5),
+	(16147, 5),
+	(6937, 13),
+	(6937, 15),
+	(19433, 15),
+	(19433, 31),
+	(7856, 12),
+	(16043, 31),
+	(18744, 16),
+	(19391, 8),
+	(1804, 12),
+	(14179, 31),
+	(14180, 31),
+	(1802, 12),
+	(9594, 2),
+	(9594, 31),
+	(18974, 12),
+	(18974, 32),
+	(18974, 31),
+	(12002, 8),
+	(6347, 9),
+	(23573, 4),
+	(23573, 33),
+	(10228, 5),
+	(10228, 4),
+	(4516, 8),
+	(4371, 8),
+	(13493, 13),
+	(13494, 13),
+	(16825, 32),
+	(10235, 8),
+	(13495, 8),
+	(3758, 9),
+	(3458, 14),
+	(3459, 14),
+	(14702, 32),
+	(4765, 8),
+	(4765, 31),
+	(6348, 12),
+	(9723, 12),
+	(9723, 31),
+	(16312, 8),
+	(16312, 32),
+	(16312, 9),
+	(9881, 32),
+	(9881, 7),
+	(9881, 9),
+	(5667, 33),
+	(12944, 31),
+	(12003, 33),
+	(12004, 33),
+	(5776, 10),
+	(12005, 10),
+	(22710, 8),
+	(22710, 32),
+	(2804, 15),
+	(1010, 13),
+	(1010, 15),
+	(2931, 13),
+	(2931, 15),
+	(2154, 13),
+	(4213, 13),
+	(4214, 13),
+	(10094, 13),
+	(10094, 11),
+	(9066, 13),
+	(9066, 15),
+	(16604, 13),
+	(16604, 15),
+	(16602, 13),
+	(16602, 15),
+	(8598, 12),
+	(4610, 8),
+	(4610, 10),
+	(15719, 15),
+	(20458, 12),
+	(18354, 12),
+	(18354, 11),
+	(18354, 32),
+	(18354, 24),
+	(20457, 12),
+	(17565, 31),
+	(17565, 32),
+	(18151, 13),
+	(18151, 24),
+	(3083, 15),
+	(17527, 15),
+	(634, 15),
+	(634, 16),
+	(6038, 15),
+	(6038, 16),
+	(9930, 15),
+	(21930, 15),
+	(21930, 16),
+	(12006, 8),
+	(12007, 8),
+	(15284, 32),
+	(18508, 33),
+	(10082, 31),
+	(10082, 32),
+	(14465, 32),
+	(14465, 24),
+	(17121, 12),
+	(19118, 8),
+	(19118, 12),
+	(5589, 15),
+	(17892, 32),
+	(6938, 31),
+	(15707, 15),
+	(4766, 10),
+	(18064, 9),
+	(18065, 8),
+	(18066, 12),
+	(5777, 5),
+	(10159, 26),
+	(10159, 32),
+	(9797, 12),
+	(9797, 32),
+	(9797, 15),
+	(2474, 8),
+	(14005, 31),
+	(3460, 4),
+	(3461, 4),
+	(18784, 33),
+	(18159, 33),
+	(6724, 9),
+	(7511, 13),
+	(7511, 15),
+	(12543, 33),
+	(15563, 32),
+	(10095, 9),
+	(10095, 32),
+	(5370, 8),
+	(18446, 32),
+	(18355, 8),
+	(18355, 31),
+	(18355, 9),
+	(6939, 5),
+	(636, 5),
+	(18718, 2),
+	(19287, 2),
+	(18305, 31),
+	(19288, 2),
+	(12544, 9),
+	(9764, 32),
+	(19756, 8),
+	(19717, 8),
+	(17141, 31),
+	(16218, 15),
+	(16218, 32),
+	(15083, 32),
+	(21923, 13),
+	(21923, 16),
+	(637, 11),
+	(637, 24),
+	(638, 11),
+	(639, 11),
+	(639, 24),
+	(5779, 5),
+	(17346, 15),
+	(22217, 32),
+	(8146, 8),
+	(8146, 32),
+	(8146, 9),
+	(12545, 33),
+	(9864, 8),
+	(16820, 32),
+	(4767, 8),
+	(14618, 9),
+	(14618, 33),
+	(7573, 9),
+	(14619, 14),
+	(14620, 14),
+	(17909, 15),
+	(18597, 9),
+	(18597, 15),
+	(14621, 15),
+	(10349, 5),
+	(10349, 4),
+	(10349, 14),
+	(18484, 32),
+	(16049, 10),
+	(17678, 31),
+	(17678, 32),
+	(14622, 13),
+	(13209, 13),
+	(13209, 31),
+	(6725, 13),
+	(9798, 9),
+	(10097, 9),
+	(5371, 5),
+	(2457, 12),
+	(2457, 31),
+	(13501, 30),
+	(14590, 10),
+	(19537, 8),
+	(11152, 33),
+	(19677, 13),
+	(19677, 14),
+	(3860, 10),
+	(3859, 5),
+	(3861, 8),
+	(8453, 12),
+	(8454, 12),
+	(4768, 12),
+	(7392, 31),
+	(7392, 16),
+	(6751, 12),
+	(6751, 25),
+	(19475, 31),
+	(18072, 31),
+	(21939, 5),
+	(344, 5),
+	(5875, 8),
+	(5875, 33),
+	(11749, 8),
+	(11749, 5),
+	(1929, 31),
+	(2812, 8),
+	(9283, 5),
+	(15762, 15),
+	(15762, 11),
+	(640, 11),
+	(17861, 31),
+	(17861, 32),
+	(10100, 32),
+	(10100, 10),
+	(8426, 31),
+	(8426, 32),
+	(8426, 2),
+	(9984, 9),
+	(9984, 32),
+	(14624, 15),
+	(14623, 15),
+	(14570, 12),
+	(14570, 32),
+	(5780, 5),
+	(5780, 31),
+	(5781, 5),
+	(5781, 24),
+	(8277, 5),
+	(9799, 12),
+	(7967, 10),
+	(7967, 14),
+	(641, 13),
+	(641, 10),
+	(641, 14),
+	(642, 13),
+	(642, 10),
+	(642, 14),
+	(7969, 13),
+	(7969, 10),
+	(7969, 14),
+	(7968, 10),
+	(7968, 14),
+	(943, 10),
+	(943, 14),
+	(561, 10),
+	(561, 14),
+	(12634, 31),
+	(17340, 31),
+	(17340, 32),
+	(17340, 10),
+	(5782, 14),
+	(5783, 14),
+	(6941, 14),
+	(4541, 14),
+	(8280, 13),
+	(19585, 11),
+	(8282, 13),
+	(8281, 13),
+	(8202, 13),
+	(17725, 32),
+	(10851, 31),
+	(10851, 33),
+	(14626, 15),
+	(14626, 24),
+	(4446, 9),
+	(6350, 9),
+	(17232, 31),
+	(17232, 32),
+	(5610, 13),
+	(643, 13),
+	(4203, 13),
+	(4203, 5),
+	(7494, 13),
+	(16759, 5),
+	(12546, 13),
+	(18940, 5),
+	(5784, 12),
+	(644, 13),
+	(645, 16),
+	(646, 16),
+	(646, 24),
+	(7907, 12),
+	(7907, 31),
+	(7907, 4),
+	(7906, 31),
+	(6752, 12),
+	(7908, 25),
+	(7909, 4),
+	(7909, 25),
+	(9800, 13),
+	(9800, 33),
+	(12547, 10),
+	(3071, 33),
+	(3071, 25),
+	(1901, 13),
+	(1901, 11),
+	(647, 11),
+	(707, 11),
+	(321, 11),
+	(670, 11),
+	(11571, 11),
+	(21205, 11),
+	(649, 15),
+	(649, 11),
+	(650, 15),
+	(650, 11),
+	(295, 11),
+	(676, 11),
+	(18785, 11),
+	(652, 11),
+	(245, 15),
+	(245, 11),
+	(648, 11),
+	(959, 11),
+	(833, 11),
+	(759, 11),
+	(706, 5),
+	(664, 11),
+	(663, 11),
+	(18165, 5),
+	(18165, 11),
+	(18165, 15),
+	(340, 11),
+	(900, 11),
+	(11678, 5),
+	(11678, 33),
+	(2447, 8),
+	(2446, 8),
+	(2443, 8),
+	(2445, 8),
+	(2441, 8),
+	(2439, 8),
+	(2440, 8),
+	(2442, 8),
+	(2010, 15),
+	(17607, 15),
+	(5668, 5),
+	(9801, 15),
+	(9801, 32),
+	(11153, 5),
+	(653, 11),
+	(653, 24),
+	(653, 15),
+	(477, 15),
+	(477, 24),
+	(9760, 15),
+	(879, 15),
+	(879, 24),
+	(961, 15),
+	(961, 24),
+	(275, 5),
+	(18890, 9),
+	(18890, 31),
+	(13705, 14),
+	(11154, 5),
+	(11154, 33),
+	(12412, 2),
+	(12412, 31),
+	(654, 11),
+	(1369, 11),
+	(11496, 11),
+	(1370, 11),
+	(1371, 11),
+	(11671, 15),
+	(23571, 16),
+	(11245, 33),
+	(21926, 15),
+	(21926, 13),
+	(2458, 12),
+	(2458, 31),
+	(3862, 31),
+	(3862, 25),
+	(9006, 31),
+	(9006, 25),
+	(12009, 12),
+	(12009, 31),
+	(12009, 33),
+	(4701, 12),
+	(4702, 12),
+	(14148, 32),
+	(14148, 15),
+	(6943, 5),
+	(6943, 31),
+	(6942, 5),
+	(6942, 31),
+	(4770, 5),
+	(6726, 5),
+	(17195, 15),
+	(17195, 32),
+	(6727, 11),
+	(5634, 5),
+	(3863, 5),
+	(3864, 5),
+	(5785, 5),
+	(5785, 24),
+	(14627, 15),
+	(5786, 5),
+	(5786, 24),
+	(17729, 32),
+	(5669, 8),
+	(16107, 33),
+	(1286, 8),
+	(1424, 31),
+	(1425, 8),
+	(1425, 5),
+	(11623, 9),
+	(12413, 2),
+	(12413, 31),
+	(16889, 15),
+	(16889, 32),
+	(15303, 15),
+	(15303, 32),
+	(655, 16),
+	(2616, 15),
+	(19120, 12),
+	(19120, 15),
+	(11278, 11),
+	(7566, 31),
+	(7567, 2),
+	(7567, 31),
+	(15446, 13),
+	(15446, 31),
+	(9572, 12),
+	(9572, 5),
+	(9572, 31),
+	(9572, 32),
+	(18736, 5),
+	(16670, 32),
+	(5787, 5),
+	(5787, 31),
+	(2614, 15),
+	(6404, 31),
+	(6404, 32),
+	(15163, 9),
+	(15163, 32),
+	(12010, 10),
+	(8725, 26),
+	(8725, 31),
+	(4598, 8),
+	(4598, 5),
+	(4598, 33),
+	(9545, 5),
+	(6351, 5),
+	(11300, 33),
+	(20192, 5),
+	(20192, 8),
+	(1336, 5),
+	(18877, 5),
+	(11333, 31),
+	(9802, 13),
+	(9802, 32),
+	(9802, 9),
+	(3839, 8),
+	(3839, 31),
+	(3839, 9),
+	(18765, 13),
+	(18765, 15),
+	(9921, 12),
+	(9921, 15),
+	(9921, 32),
+	(11238, 13),
+	(11238, 32),
+	(11238, 15),
+	(23236, 13),
+	(23236, 32),
+	(3241, 13),
+	(3241, 32),
+	(3241, 2),
+	(3060, 13),
+	(3062, 13),
+	(3065, 13),
+	(11359, 13),
+	(11360, 13),
+	(3061, 13),
+	(18449, 13),
+	(3064, 13),
+	(6728, 7),
+	(19205, 13),
+	(2621, 8),
+	(7825, 8),
+	(11362, 15),
+	(14010, 33),
+	(4771, 31),
+	(11344, 11),
+	(19528, 15),
+	(19528, 13),
+	(20124, 31),
+	(16810, 32),
+	(12011, 12),
+	(5372, 5),
+	(11608, 31),
+	(11601, 31),
+	(11319, 31),
+	(11600, 31),
+	(11000, 31),
+	(11318, 31),
+	(8689, 5),
+	(12012, 31),
+	(10107, 11),
+	(11048, 15),
+	(11048, 11),
+	(10428, 15),
+	(10428, 32),
+	(5788, 10),
+	(8466, 31),
+	(18504, 5),
+	(18504, 33),
+	(10035, 15),
+	(10035, 16),
+	(18846, 5),
+	(18846, 33),
+	(18710, 5),
+	(18547, 5),
+	(18547, 33),
+	(23203, 5),
+	(23203, 33),
+	(16200, 31),
+	(14015, 5),
+	(6729, 14),
+	(7544, 12),
+	(2459, 12),
+	(12013, 8),
+	(12013, 31),
+	(18535, 5),
+	(18535, 33),
+	(23899, 5),
+	(23899, 33),
+	(18382, 9),
+	(7826, 5),
+	(8484, 8),
+	(17230, 31),
+	(17230, 32),
+	(17230, 15),
+	(11369, 13),
+	(11369, 31),
+	(11369, 15),
+	(11369, 32),
+	(15173, 13),
+	(15173, 32),
+	(13215, 11),
+	(13214, 11),
+	(305, 11),
+	(13213, 11),
+	(242, 15),
+	(242, 11),
+	(9362, 15),
+	(9362, 11),
+	(5637, 12),
+	(5638, 12),
+	(13523, 8),
+	(13524, 9),
+	(2612, 15),
+	(2612, 11),
+	(4773, 5),
+	(241, 5),
+	(2997, 5),
+	(9098, 5),
+	(297, 5),
+	(1372, 5),
+	(1372, 24),
+	(307, 5),
+	(2944, 31),
+	(12306, 5),
+	(7612, 32),
+	(13525, 14),
+	(4137, 5),
+	(12015, 5),
+	(11298, 5),
+	(2896, 5),
+	(2896, 31),
+	(2897, 5),
+	(2897, 31),
+	(7333, 5),
+	(23843, 33),
+	(11341, 31),
+	(14554, 31),
+	(14554, 32),
+	(14554, 15),
+	(7656, 31),
+	(11554, 33),
+	(16599, 14),
+	(5789, 10),
+	(1185, 8),
+	(1186, 8),
+	(1198, 8),
+	(1199, 8),
+	(1197, 8),
+	(1188, 8),
+	(1187, 8),
+	(1195, 9),
+	(1196, 9),
+	(8038, 10),
+	(13529, 31),
+	(1193, 10),
+	(1190, 8),
+	(1194, 8),
+	(1194, 10),
+	(1192, 10),
+	(6945, 10),
+	(6946, 10),
+	(6947, 10),
+	(1189, 8),
+	(1191, 8),
+	(22516, 10),
+	(22516, 33),
+	(15389, 12),
+	(15389, 13),
+	(15389, 31),
+	(11049, 12),
+	(11049, 25),
+	(11049, 32),
+	(14946, 9),
+	(14946, 32),
+	(6361, 15),
+	(6361, 33),
+	(12550, 10),
+	(12551, 10),
+	(12552, 10),
+	(4611, 8),
+	(4611, 33),
+	(13531, 14),
+	(13833, 33),
+	(4777, 9),
+	(9803, 9),
+	(9803, 15),
+	(19291, 13),
+	(19291, 32),
+	(19291, 9),
+	(16865, 15),
+	(17214, 15),
+	(17214, 32),
+	(12553, 8),
+	(12553, 9),
+	(12414, 5),
+	(1805, 10),
+	(1806, 10),
+	(1807, 10),
+	(1808, 10),
+	(1809, 10),
+	(17105, 12),
+	(17105, 31),
+	(17105, 32),
+	(17112, 31),
+	(17112, 32),
+	(14629, 5),
+	(14629, 33),
+	(18732, 33),
+	(18732, 4),
+	(9259, 5),
+	(9259, 33),
+	(11374, 8),
+	(11375, 8),
+	(22038, 31),
+	(15035, 32),
+	(7595, 32),
+	(7595, 11),
+	(9809, 32),
+	(9809, 11),
+	(9809, 15),
+	(23902, 33),
+	(5790, 14),
+	(13532, 14),
+	(13533, 14),
+	(14941, 32),
+	(14941, 14),
+	(12016, 2),
+	(12016, 31),
+	(6784, 33),
+	(12554, 31),
+	(12554, 33),
+	(5373, 5),
+	(5373, 33),
+	(4242, 5),
+	(4242, 33),
+	(21931, 31),
+	(12017, 2),
+	(12017, 31),
+	(23837, 33),
+	(12018, 5),
+	(19328, 2),
+	(11750, 12),
+	(11751, 12),
+	(11746, 12),
+	(4757, 5),
+	(22002, 12),
+	(22002, 32),
+	(22002, 25),
+	(5792, 5),
+	(15863, 5),
+	(15863, 13),
+	(5793, 33),
+	(7587, 5),
+	(7587, 33),
+	(7587, 32),
+	(8763, 5),
+	(8763, 33),
+	(4136, 4),
+	(4136, 25),
+	(2407, 12),
+	(2407, 31),
+	(20474, 15),
+	(21932, 8),
+	(9810, 9),
+	(9810, 32),
+	(19165, 4),
+	(13188, 9),
+	(13188, 32),
+	(7902, 8),
+	(7901, 8),
+	(10116, 25),
+	(18911, 5),
+	(18911, 4),
+	(17569, 15),
+	(6948, 12),
+	(6948, 24),
+	(18556, 5),
+	(18556, 33),
+	(7285, 12),
+	(7285, 31),
+	(11868, 5),
+	(14631, 31),
+	(14631, 33),
+	(15920, 14),
+	(13535, 33),
+	(18760, 5),
+	(18760, 33),
+	(9739, 5),
+	(9739, 24),
+	(11176, 31),
+	(10230, 9),
+	(17173, 32),
+	(5794, 31),
+	(17848, 31),
+	(17848, 32),
+	(1126, 4),
+	(1126, 12),
+	(1126, 15),
+	(1126, 24),
+	(1126, 31),
+	(12415, 33),
+	(18977, 15),
+	(18977, 16),
+	(10070, 32),
+	(13521, 31),
+	(13521, 4),
+	(4779, 10),
+	(10163, 10),
+	(3429, 10),
+	(3430, 10),
+	(2477, 2),
+	(2477, 31),
+	(12555, 33),
+	(2922, 11),
+	(2922, 15),
+	(2918, 15),
+	(2918, 11),
+	(23850, 15),
+	(656, 5),
+	(7840, 5),
+	(2011, 15),
+	(2011, 11),
+	(6753, 8),
+	(6753, 9),
+	(17027, 11),
+	(18709, 15),
+	(18709, 24),
+	(17256, 15),
+	(17256, 11),
+	(3084, 31),
+	(2967, 5),
+	(2967, 31),
+	(7886, 12),
+	(7886, 31),
+	(7886, 32),
+	(13365, 5),
+	(13365, 31),
+	(13365, 15),
+	(13365, 32),
+	(18499, 5),
+	(18557, 9),
+	(22691, 33),
+	(296, 5),
+	(296, 31),
+	(471, 5),
+	(471, 31),
+	(1268, 5),
+	(1268, 31),
+	(10117, 5),
+	(10117, 31),
+	(336, 5),
+	(336, 31),
+	(4764, 10),
+	(16297, 12),
+	(11207, 33),
+	(17893, 32),
+	(8483, 8),
+	(12019, 12),
+	(12020, 31),
+	(12020, 33),
+	(15198, 31),
+	(15198, 32),
+	(11648, 12),
+	(11648, 24),
+	(3121, 12),
+	(2460, 12),
+	(10120, 2),
+	(10120, 31),
+	(11281, 30),
+	(5795, 31),
+	(19268, 31),
+	(7632, 31),
+	(4780, 31),
+	(4781, 31),
+	(4782, 31),
+	(6352, 5),
+	(6353, 5),
+	(6055, 5),
+	(8427, 12),
+	(8427, 32),
+	(19086, 13),
+	(22708, 15),
+	(16812, 31),
+	(16812, 32),
+	(13708, 9),
+	(2593, 12),
+	(2593, 31),
+	(17372, 32),
+	(16346, 15),
+	(16346, 32),
+	(6900, 15),
+	(9811, 32),
+	(9811, 9),
+	(9811, 15),
+	(17658, 31),
+	(17658, 32),
+	(17727, 31),
+	(17727, 32),
+	(6754, 8),
+	(6754, 31),
+	(6754, 9),
+	(3865, 31),
+	(3866, 31),
+	(9812, 9),
+	(9812, 32),
+	(12556, 9),
+	(22100, 15),
+	(6949, 15),
+	(9631, 31),
+	(9816, 32),
+	(13537, 14),
+	(9061, 8),
+	(9061, 4),
+	(3867, 31),
+	(12021, 2),
+	(12021, 31),
+	(21977, 15),
+	(21977, 24),
+	(23300, 12),
+	(2461, 12),
+	(18893, 31),
+	(4783, 5),
+	(4783, 31),
+	(16470, 33),
+	(16470, 25),
+	(7497, 9),
+	(12557, 8),
+	(12557, 5),
+	(3462, 12),
+	(3466, 12),
+	(3465, 12),
+	(3464, 12),
+	(3463, 12),
+	(9761, 9),
+	(12394, 31),
+	(12394, 9),
+	(12394, 2),
+	(12394, 32),
+	(12394, 8),
+	(21674, 30),
+	(7828, 8),
+	(7828, 31),
+	(12260, 31),
+	(21995, 32),
+	(21995, 33),
+	(16471, 12),
+	(16472, 12),
+	(19740, 10),
+	(9876, 14),
+	(3431, 14),
+	(19252, 31),
+	(9190, 4),
+	(12022, 14),
+	(12558, 5),
+	(12023, 31),
+	(12023, 33),
+	(11192, 5),
+	(11192, 31),
+	(18998, 12),
+	(18998, 5),
+	(12025, 5),
+	(12024, 5),
+	(1877, 12),
+	(14632, 5),
+	(15447, 31),
+	(20268, 10),
+	(20268, 33),
+	(11028, 24),
+	(11028, 16),
+	(11028, 15),
+	(22809, 5),
+	(22810, 5),
+	(12559, 5),
+	(14022, 33),
+	(18748, 31),
+	(8693, 5),
+	(16937, 31),
+	(19339, 8),
+	(17431, 32),
+	(12560, 5),
+	(22489, 11),
+	(4319, 9),
+	(4319, 31),
+	(14768, 13),
+	(14768, 15),
+	(12417, 15),
+	(14633, 15),
+	(12028, 31),
+	(12028, 33),
+	(4758, 31),
+	(4758, 2),
+	(17691, 32),
+	(2462, 12),
+	(4461, 8),
+	(8132, 8),
+	(8201, 5),
+	(12563, 14),
+	(6657, 13),
+	(3868, 10),
+	(12029, 33),
+	(13564, 14),
+	(12030, 14),
+	(13565, 14),
+	(6952, 5),
+	(10136, 31),
+	(10136, 32),
+	(12031, 31),
+	(12031, 33),
+	(12032, 5),
+	(18953, 7),
+	(3679, 7),
+	(3678, 7),
+	(3681, 7),
+	(3467, 7),
+	(6658, 7),
+	(3680, 7),
+	(6779, 7),
+	(6780, 7),
+	(5799, 7),
+	(5800, 7),
+	(5801, 7),
+	(5802, 7),
+	(6953, 7),
+	(6954, 7),
+	(6955, 7),
+	(4789, 7),
+	(6659, 7),
+	(11641, 13),
+	(11641, 14),
+	(2663, 7),
+	(17484, 32),
+	(6956, 7),
+	(6957, 7),
+	(5803, 7),
+	(5804, 7),
+	(5806, 7),
+	(4790, 7),
+	(4791, 7),
+	(22371, 31),
+	(9694, 31),
+	(9708, 5),
+	(9708, 31),
+	(9708, 25),
+	(7842, 31),
+	(11745, 24),
+	(23309, 12),
+	(17429, 15),
+	(17429, 31),
+	(17429, 32),
+	(2471, 8),
+	(11386, 8),
+	(11387, 8),
+	(11388, 8),
+	(18985, 33),
+	(18985, 14),
+	(15990, 32),
+	(12033, 25),
+	(14789, 15),
+	(17107, 32),
+	(6365, 8),
+	(6366, 8),
+	(12734, 10),
+	(6958, 31),
+	(6958, 25),
+	(6789, 5),
+	(6789, 33),
+	(6788, 5),
+	(6788, 33),
+	(6660, 5),
+	(18193, 5),
+	(2111, 12),
+	(657, 12),
+	(11726, 8),
+	(5868, 25),
+	(6367, 5),
+	(18876, 9),
+	(18876, 31),
+	(12034, 31),
+	(12034, 33),
+	(12035, 5),
+	(11869, 5),
+	(1214, 12),
+	(1214, 31),
+	(1215, 12),
+	(11806, 12),
+	(18137, 31),
+	(18137, 4),
+	(18137, 9),
+	(14197, 31),
+	(14197, 32),
+	(14197, 9),
+	(9817, 31),
+	(9817, 2),
+	(9817, 9),
+	(9818, 31),
+	(9818, 2),
+	(9818, 9),
+	(10139, 2),
+	(10139, 31),
+	(18816, 16),
+	(12036, 8),
+	(12036, 5),
+	(16890, 32),
+	(15898, 12),
+	(16668, 32),
+	(2369, 12),
+	(17238, 5),
+	(17238, 32),
+	(11390, 11),
+	(658, 11),
+	(659, 11),
+	(3468, 4),
+	(3468, 33),
+	(8428, 12),
+	(8428, 31),
+	(8428, 32),
+	(12990, 15),
+	(12990, 31),
+	(6959, 5),
+	(9260, 2),
+	(9260, 31),
+	(9261, 2),
+	(9261, 31),
+	(17109, 12),
+	(17109, 32),
+	(12053, 31),
+	(12053, 33),
+	(2155, 12),
+	(2155, 31),
+	(2155, 25),
+	(2368, 12),
+	(2368, 31),
+	(20341, 12),
+	(22502, 12),
+	(22502, 31),
+	(19924, 12),
+	(8222, 12),
+	(8222, 31),
+	(11133, 25),
+	(23158, 12),
+	(23158, 31),
+	(21988, 12),
+	(21040, 12),
+	(3869, 14),
+	(2466, 12),
+	(2465, 12),
+	(4220, 5),
+	(4220, 13),
+	(10166, 8),
+	(10166, 5),
+	(5374, 12),
+	(5374, 24),
+	(13543, 31),
+	(17217, 32),
+	(3870, 5),
+	(3870, 31),
+	(8965, 12),
+	(8965, 16),
+	(2012, 15),
+	(2012, 11),
+	(4219, 5),
+	(8185, 12),
+	(8185, 25),
+	(2467, 12),
+	(2399, 13),
+	(12037, 8),
+	(12037, 33),
+	(18335, 12),
+	(18335, 32),
+	(12564, 12),
+	(10108, 31),
+	(10108, 32),
+	(1270, 12),
+	(1270, 31),
+	(1270, 25),
+	(1269, 12),
+	(1269, 31),
+	(1269, 25),
+	(20048, 12),
+	(20048, 25),
+	(18638, 12),
+	(4135, 33),
+	(4135, 4),
+	(20013, 4),
+	(2125, 13),
+	(9118, 2),
+	(9118, 31),
+	(660, 12),
+	(5808, 5),
+	(17305, 32),
+	(17305, 10),
+	(17305, 15),
+	(8452, 8),
+	(17032, 31),
+	(17032, 32),
+	(661, 11),
+	(661, 24),
+	(661, 15),
+	(309, 24),
+	(14332, 13),
+	(8981, 10),
+	(17954, 31),
+	(17954, 32),
+	(15145, 32),
+	(11830, 31),
+	(11829, 31),
+	(11504, 13),
+	(17400, 31),
+	(17400, 32),
+	(14527, 31),
+	(12416, 2),
+	(12416, 31),
+	(11389, 8),
+	(4794, 14),
+	(3871, 14),
+	(6368, 10),
+	(6369, 14),
+	(6661, 9),
+	(18703, 33),
+	(18703, 30),
+	(19721, 12),
+	(11024, 12),
+	(11025, 12),
+	(14989, 12),
+	(12038, 13),
+	(11327, 11),
+	(10169, 13),
+	(10169, 12),
+	(10169, 32),
+	(1533, 8),
+	(7551, 5),
+	(3267, 5),
+	(19549, 5),
+	(19549, 15),
+	(19549, 24),
+	(19549, 32),
+	(14634, 15),
+	(14634, 33),
+	(193, 2),
+	(193, 31),
+	(15862, 2),
+	(15862, 31),
+	(12039, 31),
+	(12039, 33),
+	(3046, 31),
+	(3046, 32),
+	(20750, 5),
+	(20750, 8),
+	(20750, 32),
+	(20751, 5),
+	(20751, 8),
+	(20751, 32),
+	(5593, 31),
+	(5593, 32),
+	(23891, 31),
+	(19561, 5),
+	(19561, 31),
+	(12040, 10),
+	(17245, 10),
+	(2117, 5),
+	(2117, 24),
+	(2117, 31),
+	(11575, 5),
+	(11575, 24),
+	(7662, 8),
+	(21953, 5),
+	(576, 12),
+	(3769, 13),
+	(3769, 15),
+	(3769, 4),
+	(3769, 24),
+	(3677, 7),
+	(2637, 8),
+	(2637, 9),
+	(4796, 8),
+	(4796, 9),
+	(18358, 8),
+	(19588, 33),
+	(8429, 5),
+	(8429, 32),
+	(10170, 15),
+	(17159, 32),
+	(18078, 12),
+	(18078, 5),
+	(18078, 32),
+	(14949, 32),
+	(8442, 9),
+	(8442, 32),
+	(18440, 31),
+	(18440, 15),
+	(18440, 32),
+	(18440, 12),
+	(18440, 13),
+	(536, 5),
+	(536, 25),
+	(7329, 25),
+	(19399, 5),
+	(19399, 12),
+	(19397, 25),
+	(2902, 5),
+	(1833, 12),
+	(1833, 5),
+	(16822, 15),
+	(5809, 5),
+	(14851, 31),
+	(2134, 5),
+	(2134, 25),
+	(20336, 5),
+	(1387, 33),
+	(1387, 4),
+	(13575, 5),
+	(1388, 33),
+	(1388, 4),
+	(1389, 4),
+	(1392, 33),
+	(1392, 4),
+	(1383, 4),
+	(11725, 4),
+	(7286, 4),
+	(8211, 4),
+	(1395, 14),
+	(1391, 4),
+	(1393, 14),
+	(11718, 14),
+	(1390, 14),
+	(1396, 4),
+	(5448, 5),
+	(5448, 32),
+	(18362, 5),
+	(18362, 31),
+	(18362, 33),
+	(11596, 32),
+	(4797, 31),
+	(4797, 25),
+	(496, 25),
+	(496, 31),
+	(5924, 31),
+	(5924, 25),
+	(3199, 12),
+	(3199, 31),
+	(19521, 5),
+	(19521, 25),
+	(4798, 25),
+	(14403, 31),
+	(14403, 32),
+	(16777, 32),
+	(37, 5),
+	(1216, 5),
+	(985, 5),
+	(21960, 5),
+	(21960, 32),
+	(8349, 12),
+	(8349, 16),
+	(16544, 15),
+	(16544, 32),
+	(11398, 31),
+	(11398, 32),
+	(11398, 2),
+	(3872, 5),
+	(5810, 5),
+	(3010, 5),
+	(6960, 5),
+	(18389, 32),
+	(14726, 12),
+	(7864, 8),
+	(7864, 5),
+	(7864, 32),
+	(6961, 5),
+	(6961, 31),
+	(6962, 13),
+	(2354, 32),
+	(7564, 9),
+	(7564, 31),
+	(10171, 16),
+	(8486, 8),
+	(8486, 32),
+	(4799, 8),
+	(4799, 4),
+	(4799, 25),
+	(22434, 5),
+	(22434, 33),
+	(1276, 5),
+	(1276, 31),
+	(9245, 5),
+	(13381, 12),
+	(13381, 32),
+	(9819, 12),
+	(22730, 5),
+	(22730, 33),
+	(3139, 5),
+	(3139, 13),
+	(3139, 2),
+	(1919, 5),
+	(1919, 31),
+	(1919, 25),
+	(17916, 32),
+	(17916, 15),
+	(22738, 31),
+	(4800, 26),
+	(3082, 31),
+	(3082, 32),
+	(15011, 8),
+	(15011, 32),
+	(1241, 4),
+	(15486, 15),
+	(2488, 31),
+	(19873, 32),
+	(23243, 31),
+	(4801, 31),
+	(12041, 12),
+	(12565, 5),
+	(22388, 15),
+	(14635, 12),
+	(14635, 15),
+	(8561, 4),
+	(8561, 10),
+	(18121, 33),
+	(18121, 10),
+	(665, 10),
+	(21634, 32),
+	(17897, 32),
+	(9376, 5),
+	(9377, 5),
+	(11027, 5),
+	(11027, 10),
+	(11026, 5),
+	(11026, 10),
+	(23205, 5),
+	(23205, 33),
+	(12566, 25),
+	(22779, 12),
+	(22779, 32),
+	(22779, 31),
+	(14760, 12),
+	(14760, 31),
+	(14760, 32),
+	(14636, 25),
+	(4270, 12),
+	(9073, 5),
+	(5811, 14),
+	(6963, 5),
+	(2249, 12),
+	(2250, 12),
+	(8470, 31),
+	(12567, 15),
+	(4802, 14),
+	(6755, 14),
+	(2661, 14),
+	(6067, 8),
+	(5651, 11),
+	(768, 16),
+	(19153, 2),
+	(1056, 5),
+	(12568, 8),
+	(12568, 5),
+	(11566, 12),
+	(8447, 8),
+	(17876, 31),
+	(8230, 5),
+	(8230, 13),
+	(14637, 5),
+	(17688, 32),
+	(18217, 13),
+	(18217, 32),
+	(261, 5),
+	(261, 14),
+	(262, 5),
+	(262, 14),
+	(264, 5),
+	(264, 14),
+	(256, 5),
+	(256, 14),
+	(267, 5),
+	(267, 14),
+	(268, 5),
+	(268, 14),
+	(258, 5),
+	(258, 14),
+	(259, 5),
+	(259, 14),
+	(269, 5),
+	(269, 14),
+	(265, 5),
+	(265, 14),
+	(266, 5),
+	(266, 14),
+	(252, 5),
+	(252, 14),
+	(263, 5),
+	(263, 14),
+	(4803, 13),
+	(4803, 7),
+	(3874, 14),
+	(3875, 4),
+	(6964, 4),
+	(2592, 11),
+	(2505, 5),
+	(21928, 15),
+	(21928, 32),
+	(9882, 15),
+	(9882, 32),
+	(3873, 5),
+	(17459, 5),
+	(17459, 33),
+	(1873, 15),
+	(8677, 15),
+	(8677, 16),
+	(8676, 15),
+	(8676, 16),
+	(7889, 15),
+	(7888, 15),
+	(10177, 11),
+	(10177, 33),
+	(12569, 8),
+	(12569, 5),
+	(17722, 15),
+	(10184, 15),
+	(8190, 15),
+	(8190, 24),
+	(2283, 12),
+	(2283, 24),
+	(17611, 15),
+	(17611, 32),
+	(17303, 15),
+	(17303, 32),
+	(1973, 5),
+	(12042, 9),
+	(18164, 31),
+	(8678, 32),
+	(16242, 32),
+	(12418, 2),
+	(12418, 31),
+	(12043, 31),
+	(6619, 31),
+	(20326, 31),
+	(14639, 8),
+	(14639, 33),
+	(666, 5),
+	(666, 24),
+	(9349, 5),
+	(9349, 24),
+	(4134, 5),
+	(4134, 24),
+	(9353, 5),
+	(5812, 5),
+	(5812, 24),
+	(9351, 5),
+	(9351, 24),
+	(9350, 5),
+	(9350, 24),
+	(9348, 5),
+	(9348, 24),
+	(1273, 5),
+	(1273, 24),
+	(9352, 5),
+	(9352, 24),
+	(17277, 8),
+	(8416, 5),
+	(8416, 10),
+	(7500, 14),
+	(16204, 31),
+	(16204, 32),
+	(16204, 15),
+	(3236, 12),
+	(3236, 32),
+	(5837, 5),
+	(5837, 31),
+	(5837, 32),
+	(18215, 13),
+	(18215, 31),
+	(18215, 32),
+	(9279, 15),
+	(9279, 11),
+	(19884, 12),
+	(19884, 9),
+	(5520, 13),
+	(5521, 13),
+	(5506, 15),
+	(3175, 13),
+	(15126, 15),
+	(15126, 32),
+	(4341, 8),
+	(5670, 5),
+	(12570, 8),
+	(9914, 12),
+	(17987, 31),
+	(18067, 8),
+	(5619, 12),
+	(5619, 31),
+	(12045, 31),
+	(12046, 12),
+	(12044, 31),
+	(17019, 5),
+	(9117, 5),
+	(13588, 9),
+	(12047, 5),
+	(11448, 4),
+	(13550, 4),
+	(14640, 8),
+	(14640, 33),
+	(6370, 8),
+	(6371, 8),
+	(6372, 8),
+	(3469, 13),
+	(5060, 31),
+	(5060, 32),
+	(5060, 2),
+	(19300, 2),
+	(19300, 31),
+	(17224, 31),
+	(10238, 31),
+	(10238, 32),
+	(11291, 5),
+	(11291, 32),
+	(16642, 31),
+	(16642, 32),
+	(18609, 33),
+	(6664, 31),
+	(6663, 13),
+	(6663, 10),
+	(7287, 13),
+	(7287, 10),
+	(17187, 32),
+	(21948, 5),
+	(21948, 31),
+	(21949, 5),
+	(21949, 31),
+	(21950, 5),
+	(21950, 31),
+	(21952, 5),
+	(21951, 10),
+	(1872, 5),
+	(667, 5),
+	(668, 5),
+	(2491, 12),
+	(669, 13),
+	(11870, 5),
+	(18605, 5),
+	(18610, 5),
+	(12419, 15),
+	(6798, 5),
+	(6798, 15),
+	(8998, 12),
+	(7261, 15),
+	(7261, 24),
+	(7260, 24),
+	(7260, 11),
+	(7260, 15),
+	(18516, 13),
+	(18516, 31),
+	(22410, 13),
+	(22410, 5),
+	(15737, 12),
+	(1939, 5),
+	(1939, 12),
+	(19587, 5),
+	(19587, 12),
+	(11174, 12),
+	(11174, 5),
+	(2651, 31),
+	(2652, 31),
+	(2716, 5),
+	(2717, 5),
+	(2717, 31),
+	(18611, 33),
+	(17842, 32),
+	(1168, 10),
+	(1170, 10),
+	(10686, 10),
+	(1169, 10),
+	(1171, 10),
+	(3373, 31),
+	(3373, 32),
+	(3373, 2),
+	(10795, 2),
+	(10795, 31),
+	(16230, 11),
+	(16230, 32),
+	(16230, 15),
+	(14362, 9),
+	(14362, 31),
+	(10858, 13),
+	(10858, 31),
+	(41, 5),
+	(41, 12),
+	(19601, 9),
+	(19601, 16),
+	(43, 12),
+	(43, 5),
+	(9740, 12),
+	(9740, 5),
+	(9533, 12),
+	(9533, 5),
+	(8287, 12),
+	(8287, 5),
+	(42, 5),
+	(42, 12),
+	(9498, 5),
+	(9498, 31),
+	(5591, 12),
+	(5591, 5),
+	(9575, 13),
+	(9575, 15),
+	(9274, 5),
+	(6279, 32),
+	(6279, 31),
+	(18081, 5),
+	(18081, 32),
+	(134, 25),
+	(135, 25),
+	(136, 25),
+	(112, 25),
+	(20022, 25),
+	(20734, 8),
+	(20734, 25),
+	(4612, 9),
+	(6827, 30),
+	(8798, 25),
+	(7395, 4),
+	(7395, 31),
+	(7395, 25),
+	(11827, 12),
+	(13170, 16),
+	(12572, 9),
+	(4627, 8),
+	(16925, 12),
+	(16925, 31),
+	(16925, 32),
+	(6373, 15),
+	(2813, 31),
+	(2814, 31),
+	(2815, 8),
+	(3470, 5),
+	(125, 12),
+	(126, 12),
+	(126, 25),
+	(246, 12),
+	(246, 25),
+	(120, 12),
+	(120, 25),
+	(3182, 12),
+	(3182, 25),
+	(22384, 5),
+	(17133, 32),
+	(9821, 8),
+	(9821, 31),
+	(9821, 32),
+	(23881, 13),
+	(23881, 12),
+	(23881, 31),
+	(23881, 32),
+	(6965, 12),
+	(17739, 15),
+	(17739, 32),
+	(13058, 33),
+	(2723, 10),
+	(10912, 31),
+	(10913, 31),
+	(14641, 5),
+	(8234, 5),
+	(8234, 10),
+	(18219, 5),
+	(3876, 5),
+	(17064, 31),
+	(17064, 32),
+	(19341, 5),
+	(2636, 33),
+	(2736, 15),
+	(17686, 15),
+	(17686, 32),
+	(17084, 31),
+	(12932, 8),
+	(12932, 31),
+	(19222, 9),
+	(9521, 11),
+	(9286, 4),
+	(6374, 4),
+	(6375, 4),
+	(6376, 10),
+	(4133, 4),
+	(3877, 4),
+	(15705, 31),
+	(15705, 16),
+	(15705, 15),
+	(8614, 12),
+	(19678, 12),
+	(3878, 12),
+	(11391, 12),
+	(11391, 31),
+	(13561, 12),
+	(5081, 12),
+	(8613, 31),
+	(19737, 13),
+	(18662, 5),
+	(8820, 12),
+	(6377, 15),
+	(11345, 12),
+	(9822, 13),
+	(9822, 32),
+	(3027, 5),
+	(3027, 15),
+	(4132, 31),
+	(5813, 31),
+	(8701, 5),
+	(19591, 14),
+	(8309, 10),
+	(8309, 32),
+	(8309, 33),
+	(16636, 32),
+	(16636, 10),
+	(14648, 15),
+	(14299, 8),
+	(4338, 15),
+	(14649, 8),
+	(14649, 33),
+	(3879, 31),
+	(17671, 15),
+	(17671, 32),
+	(18068, 12),
+	(524, 10),
+	(524, 14),
+	(9928, 13),
+	(9928, 10),
+	(7966, 10),
+	(7966, 14),
+	(1902, 5),
+	(11695, 31),
+	(14692, 31),
+	(14693, 31),
+	(4805, 31),
+	(14650, 14),
+	(22700, 33),
+	(6542, 15),
+	(6542, 16),
+	(19351, 15),
+	(11403, 15),
+	(11403, 16),
+	(9823, 12),
+	(9823, 16),
+	(9823, 15),
+	(9824, 12),
+	(9824, 16),
+	(9824, 15),
+	(16276, 15),
+	(6541, 15),
+	(6541, 16),
+	(14651, 15),
+	(8291, 31),
+	(8291, 9),
+	(8291, 2),
+	(8292, 2),
+	(8293, 2),
+	(11694, 12),
+	(11694, 24),
+	(18370, 12),
+	(18370, 24),
+	(7297, 12),
+	(7297, 24),
+	(7298, 12),
+	(7298, 24),
+	(7298, 15),
+	(11594, 12),
+	(11594, 24),
+	(7299, 12),
+	(7299, 24),
+	(11610, 12),
+	(11610, 24),
+	(533, 31),
+	(14572, 31),
+	(14569, 31),
+	(14568, 31),
+	(14571, 31),
+	(11118, 5),
+	(11118, 31),
+	(9825, 31),
+	(9825, 32),
+	(17818, 31),
+	(6756, 13),
+	(17172, 31),
+	(17829, 31),
+	(4807, 7),
+	(4810, 7),
+	(4809, 7),
+	(4811, 7),
+	(4812, 7),
+	(3880, 14),
+	(3881, 14),
+	(3882, 14),
+	(17753, 31),
+	(5218, 26),
+	(540, 8),
+	(540, 31),
+	(17765, 31),
+	(2473, 31),
+	(10791, 8),
+	(10791, 31),
+	(360, 8),
+	(360, 4),
+	(3883, 14),
+	(9814, 8),
+	(3885, 31),
+	(3773, 2),
+	(3773, 31),
+	(6380, 8),
+	(6381, 8),
+	(3886, 8),
+	(3887, 31),
+	(20390, 26),
+	(20390, 2),
+	(10662, 31),
+	(17827, 8),
+	(17827, 32),
+	(11348, 12),
+	(11348, 31),
+	(11348, 32),
+	(12048, 5),
+	(9923, 13),
+	(9923, 15),
+	(391, 31),
+	(9609, 33),
+	(9609, 32),
+	(9609, 10),
+	(16806, 15),
+	(13664, 31),
+	(13664, 32),
+	(13664, 9),
+	(4759, 4),
+	(4759, 32),
+	(12420, 31),
+	(15924, 9),
+	(15924, 32),
+	(671, 12),
+	(17437, 31),
+	(17437, 32),
+	(13178, 12),
+	(2905, 12),
+	(2905, 11),
+	(2905, 16),
+	(5082, 12),
+	(5082, 31),
+	(5082, 32),
+	(14177, 12),
+	(14177, 24),
+	(11800, 12),
+	(11800, 31),
+	(11800, 16),
+	(16482, 32),
+	(18543, 31),
+	(12050, 9),
+	(12049, 31),
+	(12049, 33),
+	(12357, 31),
+	(12357, 33),
+	(18720, 7),
+	(2679, 7),
+	(2680, 7),
+	(1099, 8),
+	(1098, 9),
+	(1098, 8),
+	(3004, 8),
+	(3004, 31),
+	(3004, 32),
+	(1254, 25),
+	(2888, 12),
+	(179, 13),
+	(12729, 33),
+	(18368, 9),
+	(18368, 31),
+	(6757, 31),
+	(9636, 31),
+	(17020, 10),
+	(1666, 33),
+	(6966, 5),
+	(1675, 33),
+	(1674, 5),
+	(1674, 33),
+	(1676, 5),
+	(1676, 33),
+	(1673, 5),
+	(1673, 33),
+	(18337, 16),
+	(17163, 32),
+	(17163, 10),
+	(12051, 13),
+	(15014, 32),
+	(23839, 5),
+	(23839, 32),
+	(15391, 15),
+	(12573, 8),
+	(12573, 25),
+	(4816, 12),
+	(6382, 12),
+	(8684, 31),
+	(11668, 9),
+	(11668, 32),
+	(22733, 33),
+	(3114, 5),
+	(3114, 31),
+	(14652, 25),
+	(1857, 11),
+	(14653, 33),
+	(9380, 15),
+	(9380, 16),
+	(13601, 5),
+	(16641, 32),
+	(16641, 15),
+	(16767, 15),
+	(16767, 32),
+	(6491, 9),
+	(6491, 31),
+	(14654, 15),
+	(23239, 33),
+	(18612, 33),
+	(6383, 33),
+	(6967, 14),
+	(6970, 4),
+	(6970, 14),
+	(11537, 31),
+	(11537, 32),
+	(3152, 31),
+	(3152, 32),
+	(17832, 31),
+	(17832, 32),
+	(14655, 8),
+	(1089, 8),
+	(1089, 9),
+	(1086, 8),
+	(1086, 33),
+	(1088, 8),
+	(1096, 8),
+	(4817, 10),
+	(1090, 8),
+	(1092, 8),
+	(1094, 8),
+	(1100, 8),
+	(2923, 8),
+	(1087, 8),
+	(5692, 8),
+	(1097, 8),
+	(1091, 8),
+	(1093, 8),
+	(1095, 8),
+	(3889, 7),
+	(3890, 7),
+	(3891, 7),
+	(1665, 5),
+	(1665, 33),
+	(18255, 31),
+	(18603, 13),
+	(18528, 9),
+	(14656, 5),
+	(673, 5),
+	(7351, 5),
+	(13168, 12),
+	(13168, 31),
+	(13168, 32),
+	(280, 5),
+	(6968, 5),
+	(672, 5),
+	(3471, 5),
+	(312, 5),
+	(16116, 32),
+	(6641, 5),
+	(22431, 5),
+	(3099, 13),
+	(3099, 11),
+	(3099, 24),
+	(3099, 32),
+	(16640, 31),
+	(16640, 32),
+	(18430, 32),
+	(18430, 31),
+	(7677, 31),
+	(7976, 13),
+	(7975, 31),
+	(7978, 13),
+	(3892, 31),
+	(7974, 31),
+	(7977, 31),
+	(15908, 8),
+	(15855, 31),
+	(18041, 8),
+	(18042, 8),
+	(19383, 9),
+	(2963, 12),
+	(2963, 11),
+	(2963, 15),
+	(2963, 24),
+	(17723, 32),
+	(7998, 33),
+	(6787, 8),
+	(6787, 33),
+	(6787, 4),
+	(6787, 25),
+	(6790, 33),
+	(6790, 4),
+	(6790, 25),
+	(6384, 25),
+	(5968, 25),
+	(4699, 14),
+	(4433, 14),
+	(18007, 14),
+	(5375, 9),
+	(5375, 31),
+	(19151, 2),
+	(19151, 31),
+	(16127, 5),
+	(18189, 31),
+	(18189, 32),
+	(18189, 2),
+	(6340, 10),
+	(6340, 14),
+	(3858, 10),
+	(13677, 8),
+	(13677, 32),
+	(5680, 9),
+	(7563, 9),
+	(7563, 31),
+	(7961, 8),
+	(7961, 31),
+	(14872, 32),
+	(3478, 9),
+	(3478, 15),
+	(3476, 9),
+	(3475, 9),
+	(11068, 9),
+	(3895, 8),
+	(14658, 5),
+	(4499, 33),
+	(15489, 31),
+	(17324, 15),
+	(17324, 32),
+	(9189, 25),
+	(18588, 33),
+	(9092, 2),
+	(9092, 31),
+	(9093, 2),
+	(9093, 31),
+	(19594, 8),
+	(19594, 33),
+	(5376, 31),
+	(16688, 31),
+	(5442, 2),
+	(5442, 31),
+	(16479, 15),
+	(9091, 2),
+	(9091, 31),
+	(18104, 33),
+	(18104, 10),
+	(78, 12),
+	(1887, 12),
+	(1887, 31),
+	(1887, 24),
+	(19135, 12),
+	(19135, 15),
+	(20188, 12),
+	(20188, 24),
+	(20188, 31),
+	(20189, 12),
+	(20189, 24),
+	(20189, 31),
+	(76, 12),
+	(17465, 12),
+	(17465, 31),
+	(17462, 12),
+	(17462, 31),
+	(17466, 12),
+	(17466, 31),
+	(17464, 12),
+	(17464, 31),
+	(77, 12),
+	(19314, 12),
+	(19314, 31),
+	(4131, 4),
+	(2558, 4),
+	(2559, 4),
+	(2560, 4),
+	(2560, 33),
+	(2565, 4),
+	(2562, 4),
+	(2562, 33),
+	(21701, 4),
+	(2575, 4),
+	(21196, 12),
+	(2583, 4),
+	(2563, 4),
+	(2564, 4),
+	(2566, 4),
+	(2253, 4),
+	(2252, 4),
+	(2254, 4),
+	(2569, 4),
+	(19835, 12),
+	(19835, 31),
+	(2548, 4),
+	(2578, 4),
+	(21426, 12),
+	(2557, 4),
+	(2570, 4),
+	(3896, 31),
+	(3896, 25),
+	(2567, 4),
+	(2568, 4),
+	(2544, 4),
+	(2545, 4),
+	(2546, 4),
+	(2550, 4),
+	(2576, 4),
+	(2577, 4),
+	(2580, 4),
+	(2572, 4),
+	(6387, 12),
+	(19834, 12),
+	(19834, 31),
+	(2579, 4),
+	(2543, 4),
+	(2574, 4),
+	(2561, 4),
+	(2561, 33),
+	(6386, 25),
+	(19308, 31),
+	(19310, 4),
+	(19311, 4),
+	(19309, 8),
+	(19309, 25),
+	(19309, 31),
+	(2582, 4),
+	(7408, 4),
+	(19449, 31),
+	(19449, 4),
+	(2573, 4),
+	(2573, 33),
+	(6791, 5),
+	(6791, 33),
+	(18226, 12),
+	(3897, 5),
+	(14662, 5),
+	(14662, 31),
+	(14662, 33),
+	(17377, 12),
+	(17377, 16),
+	(17377, 32),
+	(2968, 12),
+	(2968, 11),
+	(2968, 24),
+	(4342, 12),
+	(4342, 31),
+	(9214, 12),
+	(9214, 31),
+	(9214, 25),
+	(1824, 31),
+	(1815, 12),
+	(1820, 12),
+	(6388, 12),
+	(17460, 12),
+	(1822, 12),
+	(16585, 12),
+	(1816, 12),
+	(1817, 12),
+	(1819, 12),
+	(1821, 12),
+	(15888, 12),
+	(5579, 12),
+	(4393, 12),
+	(12055, 5),
+	(17461, 5),
+	(6097, 4),
+	(1812, 12),
+	(1813, 12),
+	(1814, 12),
+	(16584, 12),
+	(1818, 12),
+	(11406, 12),
+	(3002, 12),
+	(3002, 25),
+	(3968, 12),
+	(3968, 25),
+	(16300, 12),
+	(16300, 31),
+	(23292, 12),
+	(21959, 31),
+	(14529, 8),
+	(14529, 31),
+	(4248, 31),
+	(4248, 33),
+	(3898, 8),
+	(3898, 31),
+	(14660, 31),
+	(14660, 33),
+	(14661, 31),
+	(14661, 33),
+	(14659, 31),
+	(14659, 33),
+	(3264, 12),
+	(18617, 4),
+	(2571, 4),
+	(5671, 33),
+	(12056, 12),
+	(10195, 31),
+	(10195, 15),
+	(10195, 32),
+	(10195, 24),
+	(10195, 12),
+	(12574, 15),
+	(2487, 31),
+	(18568, 12),
+	(13048, 12),
+	(5467, 12),
+	(5467, 13),
+	(22705, 13),
+	(5815, 5),
+	(11635, 12),
+	(11663, 12),
+	(8576, 12),
+	(8772, 12),
+	(8770, 12),
+	(8769, 12),
+	(16876, 15),
+	(16876, 32),
+	(12057, 12),
+	(22492, 31),
+	(22494, 31),
+	(22493, 31),
+	(9835, 31),
+	(5032, 31),
+	(5032, 32),
+	(5032, 9),
+	(19083, 32),
+	(11076, 5),
+	(11076, 25),
+	(4821, 8),
+	(4821, 31),
+	(4822, 8),
+	(4820, 8),
+	(4820, 31),
+	(15227, 31),
+	(15227, 2),
+	(15227, 9),
+	(15227, 32),
+	(11234, 9),
+	(11234, 31),
+	(21561, 32),
+	(7336, 5),
+	(7336, 13),
+	(14769, 15),
+	(11712, 31),
+	(11712, 32),
+	(11712, 9),
+	(20179, 32),
+	(20179, 31),
+	(3104, 31),
+	(6971, 13),
+	(6972, 13),
+	(4823, 33),
+	(4823, 30),
+	(12058, 31),
+	(6973, 33),
+	(1962, 31),
+	(1961, 31),
+	(8702, 31),
+	(8702, 32),
+	(11331, 5),
+	(3899, 4),
+	(2489, 31),
+	(3672, 10),
+	(13841, 15),
+	(23332, 32),
+	(23332, 31),
+	(11515, 10),
+	(16772, 32),
+	(17835, 32),
+	(8205, 12),
+	(8205, 31),
+	(8205, 32),
+	(6390, 8),
+	(12059, 31),
+	(12059, 33),
+	(5817, 5),
+	(13231, 10),
+	(1940, 10),
+	(3900, 10),
+	(675, 10),
+	(4824, 5),
+	(4824, 10),
+	(6758, 10),
+	(554, 10),
+	(12575, 10),
+	(12265, 31),
+	(12265, 32),
+	(9086, 9),
+	(8823, 9),
+	(9704, 5),
+	(3901, 10),
+	(23859, 31),
+	(6395, 14),
+	(14906, 32),
+	(11488, 2),
+	(11488, 31),
+	(19546, 11),
+	(12421, 2),
+	(12421, 31),
+	(8753, 12),
+	(14663, 31),
+	(14945, 32),
+	(2506, 12),
+	(16356, 32),
+	(19223, 9),
+	(6392, 4),
+	(3477, 4),
+	(15906, 12),
+	(15907, 12),
+	(19548, 13),
+	(19353, 10),
+	(19804, 14),
+	(3336, 8),
+	(11247, 8),
+	(11247, 5),
+	(11247, 32),
+	(2741, 5),
+	(6487, 8),
+	(6487, 31),
+	(6488, 8),
+	(6488, 31),
+	(2904, 8),
+	(8451, 8),
+	(3902, 15),
+	(19853, 15),
+	(19853, 32),
+	(17219, 32),
+	(14664, 33),
+	(18496, 5),
+	(18495, 5),
+	(957, 8),
+	(957, 5),
+	(342, 5),
+	(10680, 5),
+	(6393, 5),
+	(490, 5),
+	(956, 8),
+	(956, 5),
+	(8504, 5),
+	(8505, 8),
+	(8505, 5),
+	(4130, 5),
+	(8503, 5),
+	(18498, 5),
+	(12578, 31),
+	(12578, 33),
+	(6974, 31),
+	(85, 31),
+	(85, 11),
+	(85, 15),
+	(87, 15),
+	(87, 11),
+	(86, 15),
+	(86, 11),
+	(11332, 5),
+	(11332, 13),
+	(23882, 12),
+	(23882, 32),
+	(23882, 9),
+	(16983, 12),
+	(3043, 12),
+	(17417, 15),
+	(17417, 32),
+	(3202, 12),
+	(19742, 12),
+	(2529, 12),
+	(9827, 32),
+	(9827, 9),
+	(9827, 15),
+	(18788, 12),
+	(18899, 12),
+	(35, 15),
+	(35, 11),
+	(36, 15),
+	(36, 11),
+	(12278, 13),
+	(12278, 11),
+	(15199, 12),
+	(15199, 31),
+	(15199, 32),
+	(19129, 31),
+	(19129, 32),
+	(304, 12),
+	(17834, 31),
+	(17834, 32),
+	(3798, 12),
+	(2503, 12),
+	(3801, 12),
+	(3799, 12),
+	(3800, 12),
+	(17419, 31),
+	(17419, 32),
+	(17419, 15),
+	(9683, 32),
+	(9683, 11),
+	(2880, 12),
+	(22459, 12),
+	(22459, 9),
+	(20395, 12),
+	(20395, 31),
+	(20395, 15),
+	(20395, 32),
+	(329, 12),
+	(9269, 12),
+	(9275, 12),
+	(5988, 12),
+	(9271, 12),
+	(9270, 12),
+	(18013, 12),
+	(18013, 31),
+	(18013, 32),
+	(13657, 12),
+	(19814, 13),
+	(10251, 15),
+	(2017, 12),
+	(17192, 31),
+	(17192, 32),
+	(17192, 15),
+	(8849, 15),
+	(8849, 11),
+	(7829, 12),
+	(7829, 31),
+	(674, 12),
+	(5819, 12),
+	(5819, 25),
+	(18862, 12),
+	(4486, 12),
+	(18374, 5),
+	(18374, 32),
+	(9767, 11),
+	(5629, 12),
+	(15127, 12),
+	(15127, 25),
+	(6792, 33),
+	(6792, 25),
+	(19476, 12),
+	(6743, 12),
+	(6743, 31),
+	(6743, 32),
+	(17006, 5),
+	(17006, 32),
+	(23504, 12),
+	(23504, 24),
+	(12576, 31),
+	(8850, 15),
+	(8850, 11),
+	(17444, 31),
+	(17444, 32),
+	(21957, 12),
+	(21958, 12),
+	(18746, 12),
+	(19827, 9),
+	(19827, 31),
+	(19828, 9),
+	(19828, 31),
+	(2866, 12),
+	(9759, 5),
+	(9759, 31),
+	(11710, 13),
+	(11710, 31),
+	(11710, 15),
+	(11710, 32),
+	(5633, 13),
+	(5633, 32),
+	(16707, 15),
+	(16707, 32),
+	(2130, 8),
+	(2130, 12),
+	(2130, 31),
+	(2130, 32),
+	(1340, 32),
+	(6341, 13),
+	(6341, 32),
+	(6341, 16),
+	(14992, 15),
+	(14992, 32),
+	(17051, 15),
+	(17051, 32),
+	(19224, 33),
+	(19225, 33),
+	(9132, 7),
+	(9132, 10),
+	(9132, 9),
+	(3042, 12),
+	(3042, 5),
+	(3042, 31),
+	(14670, 31),
+	(14670, 33),
+	(14665, 31),
+	(14665, 33),
+	(14671, 31),
+	(14671, 33),
+	(14669, 31),
+	(14669, 33),
+	(14666, 31),
+	(14666, 33),
+	(14667, 31),
+	(14667, 33),
+	(12422, 31),
+	(18937, 33),
+	(12730, 33),
+	(12730, 25),
+	(22744, 8),
+	(15161, 31),
+	(15161, 32),
+	(6842, 16),
+	(6843, 16),
+	(2982, 4),
+	(2983, 25),
+	(2984, 25),
+	(3007, 25),
+	(5820, 25),
+	(5820, 24),
+	(6975, 25),
+	(6832, 25),
+	(6834, 25),
+	(6833, 25),
+	(6976, 25),
+	(13669, 15),
+	(13669, 25),
+	(6394, 25),
+	(6394, 24),
+	(19267, 25),
+	(6977, 12),
+	(6977, 25),
+	(6978, 12),
+	(6978, 25),
+	(6982, 12),
+	(6982, 25),
+	(6983, 25),
+	(12060, 33),
+	(12060, 25),
+	(8324, 9),
+	(8324, 33),
+	(15850, 2),
+	(8703, 12),
+	(8703, 31),
+	(16504, 31),
+	(16504, 32),
+	(16647, 31),
+	(16647, 32),
+	(15949, 32),
+	(12577, 5),
+	(12577, 33),
+	(8707, 31),
+	(8707, 2),
+	(8707, 9),
+	(8706, 31),
+	(8706, 2),
+	(8706, 9),
+	(13639, 9),
+	(13639, 33),
+	(14744, 5),
+	(6706, 31),
+	(6979, 8),
+	(6979, 25),
+	(6230, 12),
+	(6230, 5),
+	(4825, 14),
+	(4826, 14),
+	(4827, 14),
+	(4828, 14),
+	(10619, 14),
+	(5829, 10),
+	(5829, 14),
+	(5575, 14),
+	(6984, 14),
+	(4784, 4),
+	(4784, 14),
+	(19918, 14),
+	(19918, 4),
+	(9206, 16),
+	(19404, 15),
+	(19404, 32),
+	(7719, 12),
+	(7719, 32),
+	(7719, 16),
+	(14765, 5),
+	(13627, 5),
+	(21554, 14),
+	(5377, 8),
+	(8931, 15),
+	(8931, 11),
+	(8932, 15),
+	(8932, 11),
+	(8934, 15),
+	(8934, 11),
+	(8933, 15),
+	(8933, 11),
+	(8935, 15),
+	(8935, 11),
+	(9427, 31),
+	(9504, 31),
+	(9505, 31),
+	(5583, 5),
+	(5585, 5),
+	(11002, 5),
+	(5584, 5),
+	(11579, 5),
+	(4829, 12),
+	(17867, 15),
+	(17867, 32),
+	(23499, 12),
+	(23499, 32),
+	(23499, 25),
+	(2899, 12),
+	(2899, 16),
+	(7202, 12),
+	(7202, 31),
+	(11229, 13),
+	(3480, 5),
+	(3480, 8),
+	(3481, 8),
+	(3481, 5),
+	(3479, 8),
+	(3482, 8),
+	(19769, 5),
+	(19769, 8),
+	(2014, 11),
+	(2014, 15),
+	(2015, 15),
+	(2015, 11),
+	(2016, 11),
+	(2007, 11),
+	(17480, 31),
+	(19682, 8),
+	(19682, 31),
+	(19682, 9),
+	(6665, 9),
+	(5378, 31),
+	(9188, 31),
+	(5379, 31),
+	(19448, 31),
+	(9514, 31),
+	(10903, 31),
+	(9515, 31),
+	(17514, 31),
+	(17514, 32),
+	(16713, 32),
+	(18050, 9),
+	(6396, 5),
+	(14791, 15),
+	(7693, 2),
+	(7693, 31),
+	(19008, 8),
+	(12423, 31),
+	(12423, 33),
+	(3483, 4),
+	(3483, 14),
+	(2816, 8),
+	(2817, 31),
+	(2722, 8),
+	(2722, 31),
+	(19139, 31),
+	(19139, 4),
+	(19139, 25),
+	(19139, 32),
+	(19139, 8),
+	(14377, 15),
+	(14377, 31),
+	(8392, 8),
+	(8392, 32),
+	(8392, 9),
+	(11159, 31),
+	(16533, 31),
+	(16533, 32),
+	(6986, 31),
+	(6701, 2),
+	(6701, 31),
+	(15736, 31),
+	(15736, 2),
+	(15312, 15),
+	(15312, 32),
+	(677, 13),
+	(3903, 9),
+	(22765, 33),
+	(1361, 12),
+	(1361, 33),
+	(1361, 4),
+	(1361, 25),
+	(17161, 31),
+	(17161, 32),
+	(15899, 12),
+	(19830, 5),
+	(1360, 5),
+	(3904, 9),
+	(11573, 12),
+	(11573, 15),
+	(11573, 24),
+	(11573, 16),
+	(9828, 5),
+	(6987, 8),
+	(6987, 25),
+	(6987, 31),
+	(9103, 8),
+	(9103, 9),
+	(9103, 33),
+	(9103, 32),
+	(16729, 15),
+	(16729, 32),
+	(17350, 32),
+	(8070, 5),
+	(8070, 32),
+	(2747, 5),
+	(2748, 5),
+	(18127, 31),
+	(18127, 32),
+	(18127, 7),
+	(3151, 8),
+	(17402, 32),
+	(18340, 7),
+	(16680, 31),
+	(16680, 32),
+	(8715, 9),
+	(8715, 32),
+	(9137, 5),
+	(8612, 16),
+	(16666, 31),
+	(16666, 32),
+	(4599, 8),
+	(4599, 33),
+	(4599, 9),
+	(11567, 12),
+	(12061, 8),
+	(12580, 31),
+	(12580, 33),
+	(12062, 4),
+	(11510, 33),
+	(18754, 5),
+	(18754, 33),
+	(12063, 5),
+	(12063, 10),
+	(2951, 5),
+	(2951, 13),
+	(9109, 7),
+	(15442, 13),
+	(15442, 31),
+	(15442, 15),
+	(2955, 13),
+	(2955, 32),
+	(8596, 12),
+	(8596, 31),
+	(17210, 15),
+	(17210, 31),
+	(14395, 12),
+	(14395, 31),
+	(14395, 32),
+	(19133, 12),
+	(2028, 16),
+	(16121, 15),
+	(12064, 12),
+	(12064, 31),
+	(10585, 12),
+	(14737, 12),
+	(14737, 31),
+	(14737, 33),
+	(12581, 5),
+	(16072, 31),
+	(15834, 12),
+	(13635, 31),
+	(2979, 15),
+	(4830, 31),
+	(4831, 10),
+	(12424, 13),
+	(14762, 31),
+	(14762, 32),
+	(16302, 31),
+	(16302, 9),
+	(16302, 15),
+	(16302, 32),
+	(13636, 26),
+	(13637, 14),
+	(12582, 15),
+	(89, 15),
+	(89, 11),
+	(7512, 13),
+	(7512, 11),
+	(7512, 15),
+	(11518, 5),
+	(11497, 16),
+	(11395, 16),
+	(302, 11),
+	(1608, 15),
+	(1608, 11),
+	(1607, 11),
+	(1606, 11),
+	(1609, 11),
+	(18470, 31),
+	(12065, 14),
+	(13207, 13),
+	(13207, 32),
+	(13207, 15),
+	(13640, 33),
+	(441, 11),
+	(441, 16),
+	(441, 24),
+	(12583, 15),
+	(18379, 11),
+	(678, 11),
+	(19249, 31),
+	(6988, 12),
+	(6988, 16),
+	(12584, 8),
+	(1947, 31),
+	(1345, 12),
+	(1345, 25),
+	(18772, 5),
+	(18772, 33),
+	(13319, 15),
+	(1903, 11),
+	(1903, 24),
+	(9278, 32),
+	(9278, 16),
+	(4832, 31),
+	(4833, 13),
+	(4833, 31),
+	(9634, 16),
+	(16280, 31),
+	(16280, 32),
+	(13642, 10),
+	(18669, 33),
+	(18669, 10),
+	(6666, 10),
+	(6666, 14),
+	(13643, 14),
+	(679, 13),
+	(5647, 5),
+	(17157, 32),
+	(680, 5),
+	(13549, 31),
+	(17741, 31),
+	(9699, 9),
+	(17138, 31),
+	(17137, 31),
+	(17137, 2),
+	(14770, 31),
+	(12585, 31),
+	(12585, 33),
+	(16842, 31),
+	(16842, 32),
+	(17606, 32),
+	(2538, 8),
+	(2538, 31),
+	(13201, 12),
+	(13201, 31),
+	(13201, 32),
+	(13202, 12),
+	(13202, 32),
+	(13216, 12),
+	(13216, 31),
+	(11339, 9),
+	(11339, 32),
+	(11182, 5),
+	(11182, 32),
+	(1003, 5),
+	(1003, 25),
+	(19818, 10),
+	(12425, 8),
+	(12425, 5),
+	(22820, 15),
+	(22820, 24),
+	(3138, 12),
+	(3138, 31),
+	(3138, 2),
+	(3086, 5),
+	(7380, 33),
+	(7380, 32),
+	(18076, 8),
+	(18076, 31),
+	(17802, 32),
+	(19867, 12),
+	(19867, 32),
+	(19867, 31),
+	(11425, 2),
+	(12066, 5),
+	(16867, 31),
+	(19615, 8),
+	(22346, 32),
+	(22346, 31),
+	(22346, 2),
+	(1509, 8),
+	(1509, 31),
+	(1510, 8),
+	(1510, 31),
+	(6765, 8),
+	(23496, 13),
+	(23496, 24),
+	(23496, 15),
+	(16576, 32),
+	(11657, 31),
+	(11657, 32),
+	(16939, 32),
+	(17391, 15),
+	(17391, 32),
+	(19304, 12),
+	(19304, 32),
+	(19304, 31),
+	(6667, 9),
+	(8340, 5),
+	(5821, 31),
+	(5821, 25),
+	(12426, 31),
+	(7499, 31),
+	(4835, 31),
+	(63, 31),
+	(63, 2),
+	(63, 9),
+	(15557, 11),
+	(18761, 31),
+	(15536, 12),
+	(18567, 9),
+	(12067, 5),
+	(7590, 8),
+	(7590, 32),
+	(8252, 8),
+	(8252, 32),
+	(8252, 9),
+	(18371, 2),
+	(18371, 9),
+	(9830, 9),
+	(9830, 31),
+	(6668, 31),
+	(8206, 12),
+	(8207, 12),
+	(8208, 12),
+	(23893, 9),
+	(18396, 9),
+	(6669, 5),
+	(6669, 11),
+	(23894, 9),
+	(6989, 5),
+	(5380, 14),
+	(5823, 14),
+	(5824, 14),
+	(6397, 14),
+	(3905, 14),
+	(8906, 14),
+	(3906, 14),
+	(5381, 14),
+	(8834, 14),
+	(5825, 14),
+	(8833, 14),
+	(7881, 13),
+	(7881, 14),
+	(8847, 14),
+	(5826, 14),
+	(8841, 14),
+	(5382, 14),
+	(6398, 14),
+	(6793, 8),
+	(6793, 33),
+	(6670, 5),
+	(6670, 33),
+	(17102, 32),
+	(4477, 4),
+	(5383, 4),
+	(3907, 31),
+	(6766, 12),
+	(15424, 31),
+	(15424, 32),
+	(10905, 12),
+	(6990, 12),
+	(14388, 12),
+	(14388, 31),
+	(14388, 32),
+	(17880, 31),
+	(18544, 2),
+	(18544, 31),
+	(15954, 31),
+	(15954, 32),
+	(5639, 31),
+	(5639, 32),
+	(8923, 11),
+	(11407, 16),
+	(8607, 12),
+	(14716, 12),
+	(14716, 31),
+	(14709, 12),
+	(14709, 31),
+	(14717, 12),
+	(14717, 31),
+	(14718, 12),
+	(14718, 31),
+	(6767, 12),
+	(6767, 31),
+	(6768, 12),
+	(6768, 31),
+	(18224, 12),
+	(18224, 31),
+	(7596, 32),
+	(7596, 11),
+	(15395, 15),
+	(15395, 32),
+	(18426, 15),
+	(11655, 31),
+	(18945, 14),
+	(6653, 13),
+	(3070, 13),
+	(681, 13),
+	(681, 11),
+	(2022, 16),
+	(682, 15),
+	(683, 15),
+	(683, 11),
+	(743, 15),
+	(684, 15),
+	(1904, 15),
+	(1904, 11),
+	(10282, 15),
+	(10282, 11),
+	(19298, 15),
+	(19298, 11),
+	(19299, 15),
+	(19299, 11),
+	(10283, 15),
+	(10283, 11),
+	(19294, 15),
+	(19294, 11),
+	(10284, 15),
+	(10286, 15),
+	(9670, 12),
+	(9670, 13),
+	(9670, 15),
+	(16967, 10),
+	(685, 13),
+	(13059, 14),
+	(2584, 12),
+	(2584, 13),
+	(1320, 5),
+	(9267, 13),
+	(16477, 8),
+	(16477, 31),
+	(16477, 32),
+	(18397, 31),
+	(18397, 32),
+	(18397, 9),
+	(20362, 31),
+	(19596, 12),
+	(19596, 31),
+	(19596, 9),
+	(18037, 31),
+	(6399, 8),
+	(10904, 12),
+	(8968, 31),
+	(18293, 12),
+	(18293, 31),
+	(18318, 12),
+	(18317, 12),
+	(4208, 12),
+	(18341, 12),
+	(13184, 12),
+	(686, 12),
+	(14402, 8),
+	(14402, 32),
+	(14172, 5),
+	(23166, 32),
+	(21835, 7),
+	(13648, 26),
+	(7300, 14),
+	(7301, 14),
+	(7405, 31),
+	(16005, 15),
+	(16005, 32),
+	(3690, 9),
+	(14911, 32),
+	(5827, 25),
+	(5828, 25),
+	(3081, 13),
+	(3081, 11),
+	(13156, 12),
+	(17387, 31),
+	(18332, 8),
+	(4129, 4),
+	(3237, 12),
+	(3237, 32),
+	(15071, 32),
+	(2029, 12),
+	(2029, 32),
+	(11798, 12),
+	(11798, 31),
+	(11798, 32),
+	(3908, 14),
+	(3909, 14),
+	(3910, 12),
+	(10911, 5),
+	(3770, 5),
+	(21626, 9),
+	(20757, 5),
+	(17313, 15),
+	(14174, 12),
+	(14174, 31),
+	(14174, 32),
+	(9291, 5),
+	(9291, 33),
+	(9291, 32),
+	(10967, 5),
+	(10967, 33),
+	(10967, 32),
+	(9290, 5),
+	(9290, 33),
+	(9290, 32),
+	(2635, 10),
+	(4600, 10),
+	(4600, 14),
+	(3337, 10),
+	(4836, 10),
+	(19332, 15),
+	(11585, 5),
+	(11585, 32),
+	(11585, 11),
+	(6671, 5),
+	(6671, 33),
+	(23580, 14),
+	(23580, 7),
+	(6104, 5),
+	(6104, 33),
+	(12068, 31),
+	(12068, 33),
+	(7781, 12),
+	(19578, 12),
+	(7765, 12),
+	(11540, 12),
+	(17643, 31),
+	(17643, 32),
+	(14858, 5),
+	(17336, 15),
+	(17336, 32),
+	(12586, 8),
+	(12586, 5),
+	(22781, 12),
+	(22781, 32),
+	(10425, 11),
+	(10425, 24),
+	(10425, 15),
+	(18474, 31),
+	(18474, 32),
+	(23898, 12),
+	(23898, 31),
+	(16523, 32),
+	(16523, 24),
+	(16523, 15),
+	(10501, 12),
+	(10501, 32),
+	(10501, 24),
+	(10501, 16),
+	(17873, 31),
+	(13652, 33),
+	(14181, 31),
+	(11449, 5),
+	(13654, 33),
+	(6769, 12),
+	(10914, 5),
+	(10914, 31),
+	(12733, 33),
+	(8162, 5),
+	(8539, 5),
+	(8539, 14),
+	(8540, 5),
+	(8542, 5),
+	(9980, 5),
+	(3485, 10),
+	(3486, 10),
+	(4580, 10),
+	(13656, 9),
+	(12069, 5),
+	(5384, 12),
+	(12071, 12),
+	(2524, 12),
+	(12587, 5),
+	(7303, 13),
+	(2215, 7),
+	(2215, 14),
+	(19253, 14),
+	(18724, 33),
+	(19842, 33),
+	(19843, 33),
+	(11689, 10),
+	(3487, 13),
+	(3487, 10),
+	(3488, 13),
+	(3488, 10),
+	(12261, 13),
+	(12084, 13),
+	(12085, 13),
+	(12322, 13),
+	(10206, 13),
+	(693, 13),
+	(19494, 13),
+	(10759, 5),
+	(10759, 13),
+	(3490, 10),
+	(6400, 10),
+	(3492, 10),
+	(3489, 10),
+	(3489, 33),
+	(3493, 10),
+	(3491, 10),
+	(517, 5),
+	(520, 5),
+	(514, 5),
+	(518, 5),
+	(5640, 5),
+	(7831, 5),
+	(519, 5),
+	(12081, 13),
+	(688, 13),
+	(12082, 10),
+	(4837, 13),
+	(4837, 10),
+	(1375, 13),
+	(1375, 10),
+	(1375, 14),
+	(1374, 13),
+	(1374, 10),
+	(1374, 14),
+	(1373, 13),
+	(1373, 10),
+	(1373, 14),
+	(5586, 13),
+	(5586, 10),
+	(5586, 14),
+	(7866, 13),
+	(7866, 10),
+	(7866, 14),
+	(9272, 13),
+	(9272, 14),
+	(9272, 10),
+	(19405, 13),
+	(19405, 14),
+	(19405, 10),
+	(5830, 13),
+	(5830, 10),
+	(5830, 14),
+	(689, 13),
+	(689, 10),
+	(690, 13),
+	(690, 10),
+	(3494, 10),
+	(5311, 10),
+	(3495, 10),
+	(691, 13),
+	(691, 10),
+	(691, 14),
+	(12083, 10),
+	(12086, 13),
+	(10348, 13),
+	(10348, 10),
+	(2960, 31),
+	(521, 12),
+	(7658, 12),
+	(19388, 15),
+	(522, 12),
+	(504, 12),
+	(504, 25),
+	(5624, 12),
+	(5624, 15),
+	(1592, 12),
+	(1592, 31),
+	(694, 12),
+	(694, 31),
+	(22722, 9),
+	(22722, 32),
+	(17792, 32),
+	(11740, 32),
+	(2625, 31),
+	(19701, 5),
+	(4852, 14),
+	(11305, 13),
+	(10272, 11),
+	(10272, 24),
+	(10272, 15),
+	(7046, 8),
+	(7046, 32),
+	(7046, 15),
+	(12427, 31),
+	(12427, 33),
+	(16778, 31),
+	(16778, 32),
+	(12523, 32),
+	(12523, 24),
+	(12523, 16),
+	(9703, 9),
+	(10295, 12),
+	(10295, 31),
+	(1928, 31),
+	(17803, 32),
+	(10296, 32),
+	(10296, 25),
+	(22784, 25),
+	(9893, 12),
+	(11502, 12),
+	(6991, 31),
+	(6991, 25),
+	(12088, 13),
+	(695, 13),
+	(12483, 13),
+	(22098, 32),
+	(22098, 31),
+	(22098, 2),
+	(15036, 13),
+	(15036, 32),
+	(19617, 12),
+	(19617, 31),
+	(17890, 15),
+	(17890, 32),
+	(13, 12),
+	(13, 16),
+	(14, 12),
+	(14, 16),
+	(15, 5),
+	(15, 12),
+	(10299, 12),
+	(10299, 5),
+	(10300, 12),
+	(10300, 5),
+	(10301, 12),
+	(10301, 5),
+	(10302, 12),
+	(10302, 5),
+	(10303, 12),
+	(10303, 5),
+	(9630, 12),
+	(9630, 5),
+	(18029, 12),
+	(18031, 12),
+	(18031, 5),
+	(19534, 5),
+	(19534, 12),
+	(21590, 12),
+	(21590, 16),
+	(21584, 12),
+	(12508, 24),
+	(11119, 13),
+	(11119, 15),
+	(17, 12),
+	(17, 16),
+	(17, 24),
+	(7412, 12),
+	(7412, 25),
+	(12509, 12),
+	(12509, 25),
+	(16, 5),
+	(16, 12),
+	(10304, 12),
+	(10304, 5),
+	(10305, 12),
+	(10305, 5),
+	(10307, 12),
+	(10307, 5),
+	(10306, 12),
+	(10306, 5),
+	(9170, 12),
+	(9170, 32),
+	(9170, 15),
+	(6672, 31),
+	(6674, 31),
+	(6673, 31),
+	(6675, 15),
+	(6677, 15),
+	(6678, 13),
+	(6679, 26),
+	(6679, 13),
+	(2846, 31),
+	(1834, 5),
+	(3913, 14),
+	(6681, 14),
+	(17535, 32),
+	(4785, 7),
+	(18403, 13),
+	(18403, 32),
+	(18403, 9),
+	(12089, 31),
+	(12089, 33),
+	(3914, 31),
+	(3914, 25),
+	(4853, 31),
+	(18558, 33),
+	(6770, 12),
+	(7332, 16),
+	(7332, 24),
+	(7332, 15),
+	(12090, 31),
+	(12090, 33),
+	(18292, 5),
+	(18292, 33),
+	(6684, 5),
+	(6684, 33),
+	(6687, 4),
+	(10392, 9),
+	(10392, 11),
+	(306, 5),
+	(361, 5),
+	(529, 5),
+	(2001, 5),
+	(6801, 5),
+	(6801, 31),
+	(6801, 24),
+	(5831, 5),
+	(4854, 5),
+	(13182, 5),
+	(19520, 9),
+	(19520, 31),
+	(17317, 15),
+	(17317, 31),
+	(9499, 13),
+	(19409, 13),
+	(3180, 13),
+	(10311, 13),
+	(10312, 13),
+	(3181, 13),
+	(3168, 13),
+	(3169, 13),
+	(3176, 13),
+	(3178, 13),
+	(3170, 13),
+	(9765, 15),
+	(19575, 5),
+	(19575, 31),
+	(17164, 31),
+	(17164, 32),
+	(10793, 2),
+	(10793, 31),
+	(2032, 10),
+	(12091, 14),
+	(8927, 5),
+	(8927, 33),
+	(18779, 8),
+	(18287, 33),
+	(14454, 33),
+	(14890, 10),
+	(14886, 10),
+	(9125, 5),
+	(9125, 33),
+	(17891, 15),
+	(17891, 32),
+	(19820, 11),
+	(11199, 12),
+	(5106, 31),
+	(5107, 31),
+	(4435, 4),
+	(6690, 4),
+	(5385, 4),
+	(5386, 4),
+	(10605, 33),
+	(10605, 4),
+	(6992, 10),
+	(4496, 12),
+	(12323, 5),
+	(12323, 10),
+	(15989, 31),
+	(15989, 32),
+	(10998, 12),
+	(15079, 15),
+	(15079, 32),
+	(19799, 25),
+	(19799, 4),
+	(12382, 12),
+	(12504, 12),
+	(12329, 31),
+	(12328, 31),
+	(12331, 4),
+	(12332, 4),
+	(12381, 33),
+	(12381, 4),
+	(8867, 12),
+	(8867, 31),
+	(19247, 32),
+	(2521, 12),
+	(13892, 33),
+	(10966, 11),
+	(10966, 32),
+	(10966, 5),
+	(10966, 15),
+	(10966, 24),
+	(4335, 2),
+	(10528, 31),
+	(10528, 32),
+	(10529, 31),
+	(10529, 32),
+	(13775, 31),
+	(1974, 12),
+	(19525, 31),
+	(8600, 5),
+	(8600, 31),
+	(8601, 5),
+	(8601, 31),
+	(16619, 12),
+	(16619, 13),
+	(16619, 32),
+	(16619, 16),
+	(9233, 12),
+	(9233, 31),
+	(9233, 32),
+	(18404, 8),
+	(18404, 5),
+	(18404, 32),
+	(18404, 33),
+	(19876, 13),
+	(19876, 32),
+	(3759, 33),
+	(8321, 33),
+	(18331, 9),
+	(16608, 8),
+	(16608, 31),
+	(16608, 32),
+	(8449, 8),
+	(17295, 31),
+	(17295, 32),
+	(12092, 5),
+	(4855, 13),
+	(4855, 10),
+	(12093, 10),
+	(7726, 2),
+	(7726, 31),
+	(5343, 31),
+	(12094, 31),
+	(12094, 33),
+	(12094, 24),
+	(1991, 8),
+	(1991, 31),
+	(1991, 9),
+	(1991, 32),
+	(7782, 26),
+	(3204, 31),
+	(3204, 32),
+	(19604, 12),
+	(19604, 31),
+	(4613, 5),
+	(9839, 15),
+	(9839, 32),
+	(9840, 15),
+	(9840, 32),
+	(12095, 33),
+	(2975, 12),
+	(700, 14),
+	(22342, 14),
+	(696, 14),
+	(3135, 14),
+	(3134, 14),
+	(3133, 14),
+	(503, 14),
+	(2946, 14),
+	(2153, 13),
+	(2153, 14),
+	(2920, 14),
+	(7574, 14),
+	(11071, 14),
+	(19459, 14),
+	(697, 14),
+	(698, 14),
+	(10682, 14),
+	(699, 14),
+	(701, 14),
+	(702, 14),
+	(3136, 14),
+	(703, 14),
+	(4345, 14),
+	(6691, 14),
+	(4539, 14),
+	(704, 14),
+	(5832, 14),
+	(5833, 14),
+	(7304, 14),
+	(7433, 14),
+	(705, 14),
+	(5834, 4),
+	(12324, 14),
+	(5835, 4),
+	(5835, 14),
+	(6356, 4),
+	(6356, 14),
+	(3915, 4),
+	(3915, 14),
+	(5836, 4),
+	(5836, 14),
+	(6993, 14),
+	(16659, 32),
+	(12589, 13),
+	(4636, 4),
+	(4787, 4),
+	(8564, 4),
+	(3496, 4),
+	(1550, 33),
+	(1550, 4),
+	(2660, 4),
+	(12096, 4),
+	(21772, 12),
+	(21772, 32),
+	(21772, 31),
+	(2542, 25),
+	(11615, 25),
+	(12097, 4),
+	(12097, 14),
+	(20329, 31),
+	(19590, 5),
+	(12098, 14),
+	(8191, 5),
+	(7306, 8),
+	(7306, 5),
+	(7306, 25),
+	(385, 12),
+	(385, 31),
+	(407, 12),
+	(407, 31),
+	(7400, 12),
+	(7400, 31),
+	(397, 12),
+	(9585, 12),
+	(401, 12),
+	(19080, 12),
+	(7413, 12),
+	(7413, 31),
+	(18069, 12),
+	(408, 12),
+	(387, 12),
+	(387, 31),
+	(16474, 12),
+	(395, 12),
+	(393, 12),
+	(393, 31),
+	(400, 12),
+	(399, 12),
+	(399, 31),
+	(16587, 12),
+	(406, 12),
+	(388, 12),
+	(421, 12),
+	(421, 31),
+	(403, 12),
+	(403, 31),
+	(410, 12),
+	(410, 31),
+	(428, 12),
+	(428, 15),
+	(428, 16),
+	(428, 24),
+	(2408, 12),
+	(2408, 15),
+	(2408, 24),
+	(2408, 16),
+	(414, 12),
+	(414, 15),
+	(414, 16),
+	(414, 24),
+	(394, 12),
+	(394, 15),
+	(394, 16),
+	(394, 24),
+	(383, 12),
+	(383, 31),
+	(7399, 12),
+	(7399, 31),
+	(419, 12),
+	(419, 31),
+	(426, 12),
+	(426, 31),
+	(20655, 12),
+	(427, 12),
+	(427, 31),
+	(11169, 12),
+	(11169, 31),
+	(2406, 12),
+	(7398, 12),
+	(7398, 4),
+	(7398, 10),
+	(404, 12),
+	(404, 31),
+	(425, 12),
+	(425, 31),
+	(418, 12),
+	(418, 31),
+	(413, 12),
+	(413, 31),
+	(14144, 12),
+	(411, 12),
+	(411, 31),
+	(409, 12),
+	(409, 31),
+	(416, 12),
+	(416, 31),
+	(10319, 12),
+	(405, 12),
+	(405, 31),
+	(402, 12),
+	(402, 31),
+	(398, 12),
+	(398, 31),
+	(392, 12),
+	(392, 31),
+	(389, 12),
+	(389, 31),
+	(384, 12),
+	(384, 31),
+	(14729, 12),
+	(386, 12),
+	(386, 31),
+	(14723, 12),
+	(359, 4),
+	(359, 12),
+	(359, 31),
+	(423, 12),
+	(423, 31),
+	(19334, 12),
+	(19334, 31),
+	(420, 12),
+	(420, 31),
+	(412, 12),
+	(415, 12),
+	(415, 31),
+	(417, 12),
+	(417, 31),
+	(17463, 12),
+	(1655, 33),
+	(1655, 4),
+	(1655, 25),
+	(1656, 33),
+	(1656, 25),
+	(1657, 33),
+	(1657, 4),
+	(1657, 25),
+	(1664, 25),
+	(1659, 4),
+	(1660, 31),
+	(1660, 25),
+	(23276, 15),
+	(3776, 5),
+	(3776, 32),
+	(8868, 32),
+	(3781, 31),
+	(16775, 31),
+	(16775, 32),
+	(13142, 32),
+	(11742, 13),
+	(11742, 32),
+	(10321, 31),
+	(10321, 2),
+	(10321, 9),
+	(10321, 32),
+	(12099, 8),
+	(2244, 5),
+	(2244, 33),
+	(3916, 5),
+	(3916, 13),
+	(1439, 12),
+	(1439, 24),
+	(10229, 12),
+	(10229, 16),
+	(10229, 15),
+	(18038, 12),
+	(18038, 16),
+	(1434, 12),
+	(1434, 16),
+	(1433, 12),
+	(1433, 16),
+	(1433, 15),
+	(1443, 12),
+	(1443, 15),
+	(1438, 12),
+	(1438, 24),
+	(1435, 12),
+	(1435, 15),
+	(1435, 24),
+	(1435, 16),
+	(1441, 12),
+	(1441, 24),
+	(1442, 12),
+	(1442, 24),
+	(1436, 12),
+	(1436, 16),
+	(1436, 15),
+	(1444, 12),
+	(1444, 24),
+	(1445, 12),
+	(1445, 16),
+	(1445, 15),
+	(1440, 12),
+	(1440, 24),
+	(1437, 12),
+	(1437, 24),
+	(11734, 5),
+	(18479, 33),
+	(23855, 5),
+	(23855, 33),
+	(6407, 4),
+	(6407, 14),
+	(6408, 4),
+	(6408, 14),
+	(13060, 15),
+	(18565, 33),
+	(13714, 8),
+	(16343, 31),
+	(16343, 10),
+	(3013, 12),
+	(3013, 5),
+	(3013, 31),
+	(13050, 33),
+	(7970, 13),
+	(7970, 33),
+	(19778, 5),
+	(22740, 15),
+	(9730, 31),
+	(17856, 13),
+	(2892, 12),
+	(12429, 30),
+	(12101, 31),
+	(18105, 13),
+	(18105, 14),
+	(22356, 13),
+	(17501, 31),
+	(17501, 32),
+	(10322, 25),
+	(10322, 32),
+	(6995, 25),
+	(5313, 25),
+	(8584, 5),
+	(8584, 32),
+	(12891, 8),
+	(12891, 31),
+	(12891, 32),
+	(8499, 2),
+	(9195, 2),
+	(9196, 32),
+	(11583, 2),
+	(11583, 32),
+	(19320, 2),
+	(19320, 32),
+	(17024, 9),
+	(6721, 10),
+	(708, 13),
+	(709, 13),
+	(7671, 33),
+	(23162, 33),
+	(23731, 33),
+	(22735, 5),
+	(22735, 33),
+	(710, 13),
+	(19833, 8),
+	(4275, 8),
+	(4275, 31),
+	(17357, 32),
+	(17357, 10),
+	(18795, 8),
+	(18795, 31),
+	(18795, 32),
+	(2667, 13),
+	(2667, 10),
+	(2668, 10),
+	(2668, 33),
+	(3778, 10),
+	(22774, 10),
+	(3777, 10),
+	(14803, 15),
+	(18087, 31),
+	(15064, 9),
+	(8789, 31),
+	(8789, 2),
+	(8789, 9),
+	(9842, 32),
+	(12102, 13),
+	(12952, 13),
+	(15221, 13),
+	(3352, 13),
+	(714, 13),
+	(715, 13),
+	(12103, 8),
+	(5387, 8),
+	(20330, 5),
+	(20330, 8),
+	(20330, 31),
+	(20330, 32),
+	(4857, 8),
+	(2622, 15),
+	(10323, 8),
+	(21410, 15),
+	(21410, 9),
+	(13219, 32),
+	(14929, 15),
+	(10324, 32),
+	(10324, 9),
+	(10324, 15),
+	(12104, 8),
+	(12590, 13),
+	(12590, 15),
+	(1353, 32),
+	(1354, 31),
+	(1354, 32),
+	(9843, 13),
+	(9843, 32),
+	(17586, 31),
+	(20754, 33),
+	(20754, 31),
+	(20754, 9),
+	(12105, 31),
+	(3917, 31),
+	(22386, 32),
+	(22386, 31),
+	(22386, 15),
+	(10326, 13),
+	(10326, 32),
+	(20400, 32),
+	(12054, 12),
+	(17390, 31),
+	(17390, 32),
+	(3497, 12),
+	(3497, 4),
+	(12106, 5),
+	(12072, 32),
+	(15409, 12),
+	(15409, 32),
+	(15409, 15),
+	(7307, 12),
+	(12325, 33),
+	(4858, 13),
+	(17113, 32),
+	(5673, 14),
+	(11547, 14),
+	(10328, 14),
+	(15222, 14),
+	(944, 15),
+	(944, 14),
+	(8971, 15),
+	(8971, 14),
+	(945, 15),
+	(945, 14),
+	(946, 15),
+	(946, 14),
+	(8972, 15),
+	(8972, 14),
+	(716, 13),
+	(716, 14),
+	(716, 15),
+	(717, 13),
+	(717, 14),
+	(717, 15),
+	(8973, 15),
+	(8973, 14),
+	(8974, 15),
+	(8974, 14),
+	(8975, 15),
+	(8975, 14),
+	(8976, 15),
+	(8976, 14),
+	(16413, 14),
+	(11162, 25),
+	(2036, 11),
+	(2036, 15),
+	(20331, 12),
+	(14411, 31),
+	(1859, 11),
+	(15573, 33),
+	(5626, 12),
+	(14578, 12),
+	(14578, 15),
+	(4867, 10),
+	(4869, 10),
+	(4870, 10),
+	(4868, 10),
+	(4871, 10),
+	(5838, 10),
+	(7521, 5),
+	(7521, 32),
+	(9844, 32),
+	(19741, 14),
+	(17677, 15),
+	(17677, 32),
+	(16314, 2),
+	(16314, 31),
+	(10907, 12),
+	(16652, 31),
+	(16652, 32),
+	(5839, 12),
+	(6794, 5),
+	(6794, 33),
+	(8294, 10),
+	(8295, 10),
+	(8296, 10),
+	(12998, 10),
+	(8302, 10),
+	(8303, 10),
+	(7308, 13),
+	(7308, 10),
+	(8298, 10),
+	(8299, 10),
+	(8300, 10),
+	(8301, 10),
+	(8297, 10),
+	(8304, 10),
+	(5388, 10),
+	(718, 5),
+	(13385, 12),
+	(13385, 31),
+	(13385, 32),
+	(11231, 12),
+	(13850, 5),
+	(13850, 33),
+	(11246, 31),
+	(11246, 32),
+	(11246, 15),
+	(18009, 5),
+	(18009, 32),
+	(18009, 15),
+	(12643, 31),
+	(15023, 32),
+	(15024, 32),
+	(6409, 15),
+	(23343, 5),
+	(23343, 33),
+	(12526, 8),
+	(12526, 12),
+	(12526, 31),
+	(12526, 32),
+	(19244, 9),
+	(19244, 31),
+	(3047, 10),
+	(7326, 10),
+	(19539, 33),
+	(19539, 10),
+	(3073, 10),
+	(3073, 14),
+	(3072, 10),
+	(3072, 14),
+	(3069, 10),
+	(3069, 14),
+	(3068, 10),
+	(3068, 14),
+	(2131, 13),
+	(2131, 10),
+	(2131, 14),
+	(8558, 10),
+	(8558, 14),
+	(18231, 8),
+	(18231, 32),
+	(18231, 31),
+	(8609, 12),
+	(16692, 32),
+	(5895, 25),
+	(20104, 8),
+	(20104, 32),
+	(20104, 9),
+	(15144, 32),
+	(21961, 8),
+	(21961, 32),
+	(21961, 31),
+	(3498, 14),
+	(15854, 31),
+	(15854, 7),
+	(15854, 9),
+	(15062, 32),
+	(6996, 5),
+	(8261, 8),
+	(8261, 31),
+	(9815, 32),
+	(2619, 15),
+	(2619, 11),
+	(4872, 12),
+	(10908, 13),
+	(11730, 9),
+	(11730, 31),
+	(11821, 2),
+	(8913, 13),
+	(8913, 32),
+	(8913, 14),
+	(88, 31),
+	(22763, 8),
+	(22763, 33),
+	(17506, 32),
+	(16364, 15),
+	(16364, 32),
+	(17649, 32),
+	(10334, 5),
+	(10334, 32),
+	(10334, 15),
+	(17493, 14),
+	(3918, 10),
+	(6771, 13),
+	(3744, 2),
+	(3744, 31),
+	(3745, 2),
+	(3745, 31),
+	(3746, 2),
+	(3746, 31),
+	(3747, 2),
+	(3747, 31),
+	(3748, 2),
+	(3748, 31),
+	(17296, 31),
+	(3743, 8),
+	(3743, 31),
+	(3749, 2),
+	(3749, 31),
+	(110, 2),
+	(110, 31),
+	(9845, 32),
+	(9845, 7),
+	(9846, 32),
+	(9846, 7),
+	(4873, 14),
+	(18428, 9),
+	(18428, 33),
+	(16829, 31),
+	(16829, 32),
+	(719, 5),
+	(720, 12),
+	(720, 24),
+	(721, 12),
+	(721, 24),
+	(7116, 8),
+	(7116, 32),
+	(6060, 12),
+	(11297, 26),
+	(3919, 10),
+	(3919, 14),
+	(2124, 5),
+	(2124, 13),
+	(2124, 31),
+	(722, 13),
+	(3920, 14),
+	(3921, 14),
+	(13717, 5),
+	(13717, 33),
+	(9111, 25),
+	(9111, 7),
+	(11607, 31),
+	(19283, 7),
+	(19283, 33),
+	(8530, 25),
+	(12591, 31),
+	(12591, 33),
+	(4874, 15),
+	(17050, 15),
+	(18553, 33),
+	(18723, 32),
+	(18288, 33),
+	(11475, 33),
+	(11465, 33),
+	(6795, 8),
+	(6795, 33),
+	(11483, 33),
+	(6412, 8),
+	(3922, 8),
+	(11464, 33),
+	(11469, 9),
+	(11469, 33),
+	(11484, 33),
+	(11470, 33),
+	(6411, 8),
+	(3923, 31),
+	(3924, 8),
+	(5674, 8),
+	(3160, 13),
+	(3160, 15),
+	(9632, 12),
+	(9632, 31),
+	(9632, 15),
+	(9632, 32),
+	(22771, 5),
+	(22771, 33),
+	(1498, 24),
+	(1500, 12),
+	(1500, 24),
+	(1507, 12),
+	(1507, 24),
+	(1502, 12),
+	(1502, 16),
+	(1502, 15),
+	(1503, 12),
+	(1503, 24),
+	(1506, 12),
+	(1506, 24),
+	(1501, 11),
+	(1508, 5),
+	(1508, 13),
+	(1499, 5),
+	(10337, 14),
+	(18177, 12),
+	(18177, 31),
+	(18177, 32),
+	(2953, 13),
+	(14771, 15),
+	(17610, 15),
+	(15322, 15),
+	(17526, 15),
+	(6997, 5),
+	(12108, 8),
+	(18695, 33),
+	(15933, 31),
+	(15933, 32),
+	(16521, 15),
+	(16521, 32),
+	(18131, 9),
+	(8914, 12),
+	(8914, 11),
+	(16935, 12),
+	(16935, 32),
+	(2248, 32),
+	(2248, 24),
+	(2248, 16),
+	(18435, 15),
+	(18435, 11),
+	(10338, 24),
+	(10338, 16),
+	(10338, 15),
+	(19917, 9),
+	(19917, 8),
+	(1684, 8),
+	(22709, 33),
+	(22742, 32),
+	(3075, 13),
+	(3075, 32),
+	(3075, 15),
+	(13206, 15),
+	(13206, 32),
+	(567, 10),
+	(6998, 4),
+	(6998, 10),
+	(7309, 4),
+	(7309, 10),
+	(10339, 31),
+	(10339, 32),
+	(10339, 9),
+	(12109, 4),
+	(17472, 13),
+	(16447, 12),
+	(16447, 32),
+	(5840, 11),
+	(5841, 11),
+	(180, 31),
+	(180, 2),
+	(180, 9),
+	(23335, 30),
+	(19072, 12),
+	(19072, 31),
+	(19071, 12),
+	(19073, 31),
+	(22073, 14),
+	(22073, 32),
+	(14700, 5),
+	(18343, 12),
+	(17026, 32),
+	(17026, 25),
+	(20475, 9),
+	(20475, 8),
+	(8212, 8),
+	(8212, 9),
+	(21787, 13),
+	(1828, 5),
+	(4431, 12),
+	(5822, 8),
+	(12592, 14),
+	(13061, 5),
+	(13061, 10),
+	(11235, 5),
+	(4150, 10),
+	(3925, 5),
+	(3925, 15),
+	(2478, 2),
+	(2478, 31),
+	(11568, 33),
+	(8500, 5),
+	(8500, 32),
+	(5842, 9),
+	(5842, 26),
+	(11673, 4),
+	(9788, 13),
+	(9788, 14),
+	(8011, 8),
+	(15518, 9),
+	(15518, 32),
+	(9238, 13),
+	(9238, 32),
+	(9238, 14),
+	(4876, 8),
+	(4464, 33),
+	(8305, 5),
+	(8305, 13),
+	(8306, 5),
+	(8306, 13),
+	(3500, 4),
+	(8165, 8),
+	(22697, 33),
+	(8166, 8),
+	(14893, 33),
+	(4878, 10),
+	(13618, 5),
+	(13618, 13),
+	(1252, 31),
+	(7859, 2),
+	(7859, 31),
+	(1250, 2),
+	(1250, 31),
+	(4088, 10),
+	(3129, 33),
+	(3129, 11),
+	(3926, 31),
+	(12882, 13),
+	(11564, 5),
+	(7000, 5),
+	(8915, 32),
+	(9375, 15),
+	(9375, 16),
+	(22560, 5),
+	(22560, 33),
+	(14922, 32),
+	(10344, 16),
+	(724, 16),
+	(725, 16),
+	(723, 16),
+	(10345, 16),
+	(16990, 16),
+	(14894, 5),
+	(1031, 15),
+	(1031, 32),
+	(18619, 15),
+	(13065, 31),
+	(13065, 33),
+	(22488, 15),
+	(22488, 24),
+	(5473, 5),
+	(5473, 32),
+	(17833, 15),
+	(17833, 32),
+	(20381, 30),
+	(2751, 5),
+	(15535, 5),
+	(15535, 33),
+	(10762, 5),
+	(10762, 33),
+	(12895, 5),
+	(11203, 5),
+	(11203, 32),
+	(4614, 5),
+	(4614, 33),
+	(6799, 5),
+	(11396, 5),
+	(19436, 5),
+	(8041, 5),
+	(8041, 13),
+	(8041, 32),
+	(9038, 5),
+	(17291, 15),
+	(17291, 32),
+	(8917, 32),
+	(8917, 11),
+	(8918, 32),
+	(8918, 11),
+	(13066, 12),
+	(5843, 8),
+	(5843, 31),
+	(4879, 13),
+	(1710, 5),
+	(1710, 14),
+	(1710, 9),
+	(1687, 24),
+	(1687, 16),
+	(1687, 15),
+	(1689, 24),
+	(1689, 16),
+	(1689, 15),
+	(1690, 24),
+	(1690, 16),
+	(1690, 15),
+	(1688, 24),
+	(1688, 16),
+	(1688, 15),
+	(19815, 13),
+	(2599, 13),
+	(5489, 12),
+	(5489, 31),
+	(7610, 31),
+	(8685, 12),
+	(2659, 14),
+	(16964, 15),
+	(13176, 13),
+	(18260, 13),
+	(1366, 5),
+	(1366, 33),
+	(11177, 33),
+	(11177, 4),
+	(6796, 33),
+	(6796, 4),
+	(6796, 25),
+	(18555, 5),
+	(18555, 33),
+	(15929, 31),
+	(21678, 5),
+	(11785, 5),
+	(11785, 32),
+	(11361, 13),
+	(6357, 13),
+	(17398, 15),
+	(5891, 31),
+	(12111, 31),
+	(12111, 33),
+	(19736, 8),
+	(12112, 33),
+	(15934, 8),
+	(15934, 12),
+	(16141, 8),
+	(16141, 12),
+	(4530, 8),
+	(13856, 33),
+	(3278, 13),
+	(3278, 32),
+	(16247, 32),
+	(16247, 31),
+	(3279, 31),
+	(3279, 32),
+	(8472, 10),
+	(6035, 5),
+	(6035, 33),
+	(23311, 12),
+	(12113, 12),
+	(13662, 8),
+	(13662, 32),
+	(13662, 9),
+	(15134, 31),
+	(15134, 32),
+	(19702, 13),
+	(9837, 33),
+	(9837, 32),
+	(3502, 25),
+	(7294, 33),
+	(7294, 25),
+	(7293, 12),
+	(7293, 25),
+	(3927, 25),
+	(3503, 25),
+	(3503, 33),
+	(7296, 5),
+	(7296, 33),
+	(3501, 25),
+	(5844, 25),
+	(12114, 14),
+	(10355, 13),
+	(10355, 32),
+	(10355, 15),
+	(19595, 4),
+	(15311, 32),
+	(8924, 32),
+	(8924, 33),
+	(547, 5),
+	(548, 5),
+	(492, 5),
+	(11186, 5),
+	(1319, 5),
+	(16605, 5),
+	(2752, 30),
+	(12115, 10),
+	(12116, 31),
+	(3928, 31),
+	(11365, 25),
+	(4128, 4),
+	(4128, 25),
+	(6418, 25),
+	(3285, 8),
+	(3929, 14),
+	(6419, 9),
+	(14775, 5),
+	(17321, 15),
+	(17321, 32),
+	(6325, 2),
+	(6325, 31),
+	(12117, 5),
+	(9531, 9),
+	(9531, 12),
+	(17795, 32),
+	(8362, 12),
+	(8362, 32),
+	(8362, 16),
+	(10149, 11),
+	(19280, 10),
+	(19280, 33),
+	(3930, 11),
+	(3930, 16),
+	(3930, 15),
+	(14683, 12),
+	(14683, 31),
+	(14682, 12),
+	(14682, 31),
+	(14684, 12),
+	(14684, 31),
+	(19784, 8),
+	(12430, 15),
+	(14455, 11),
+	(5389, 15),
+	(18387, 32),
+	(9925, 13),
+	(9925, 15),
+	(22718, 31),
+	(22718, 15),
+	(22718, 9),
+	(22718, 32),
+	(14407, 31),
+	(14407, 25),
+	(7315, 31),
+	(7315, 25),
+	(1453, 12),
+	(1455, 31),
+	(1457, 31),
+	(1451, 15),
+	(11642, 8),
+	(11642, 32),
+	(11642, 7),
+	(4885, 5),
+	(4884, 5),
+	(4884, 33),
+	(4887, 5),
+	(4888, 5),
+	(4886, 5),
+	(4889, 8),
+	(23159, 16),
+	(19152, 2),
+	(19152, 31),
+	(2339, 9),
+	(2339, 32),
+	(7350, 32),
+	(11624, 13),
+	(11624, 14),
+	(16796, 32),
+	(15829, 8),
+	(15829, 25),
+	(14895, 15),
+	(4309, 8),
+	(3505, 8),
+	(3506, 8),
+	(14896, 14),
+	(23324, 31),
+	(15828, 25),
+	(8336, 5),
+	(15423, 5),
+	(23207, 33),
+	(726, 9),
+	(726, 15),
+	(6420, 31),
+	(18849, 8),
+	(18849, 5),
+	(18849, 31),
+	(4890, 5),
+	(17244, 12),
+	(17244, 31),
+	(18522, 9),
+	(18522, 31),
+	(1348, 9),
+	(1348, 31),
+	(18815, 31),
+	(4534, 8),
+	(4534, 5),
+	(6054, 33),
+	(14555, 33),
+	(14849, 31),
+	(566, 5),
+	(566, 31),
+	(17106, 15),
+	(17106, 32),
+	(14091, 33),
+	(11337, 2),
+	(6807, 8),
+	(6807, 33),
+	(17114, 31),
+	(17114, 32),
+	(14392, 5),
+	(6817, 8),
+	(6817, 33),
+	(3098, 8),
+	(3098, 31),
+	(3098, 32),
+	(18429, 32),
+	(18429, 31),
+	(12648, 31),
+	(34, 5),
+	(34, 11),
+	(34, 15),
+	(18841, 2),
+	(18841, 31),
+	(3931, 31),
+	(22752, 8),
+	(22752, 31),
+	(22752, 9),
+	(11134, 15),
+	(11134, 11),
+	(10363, 5),
+	(10363, 32),
+	(10363, 33),
+	(12431, 2),
+	(12431, 31),
+	(16677, 32),
+	(7810, 5),
+	(22690, 14),
+	(22690, 32),
+	(11815, 13),
+	(11819, 31),
+	(6106, 13),
+	(10364, 12),
+	(10364, 31),
+	(10364, 15),
+	(10364, 32),
+	(16841, 31),
+	(16841, 32),
+	(8384, 8),
+	(8384, 33),
+	(11338, 7),
+	(16902, 10),
+	(5846, 8),
+	(5846, 25),
+	(3932, 12),
+	(3932, 16),
+	(16563, 32),
+	(6263, 10),
+	(6070, 31),
+	(6070, 32),
+	(6070, 9),
+	(5582, 16),
+	(13051, 15),
+	(6828, 8),
+	(8744, 5),
+	(8744, 24),
+	(10365, 5),
+	(16853, 15),
+	(16853, 32),
+	(13067, 8),
+	(3030, 5),
+	(3484, 13),
+	(3484, 14),
+	(18444, 5),
+	(18444, 32),
+	(298, 11),
+	(23198, 12),
+	(23198, 25),
+	(23198, 31),
+	(3348, 8),
+	(10366, 32),
+	(10366, 31),
+	(15492, 31),
+	(9627, 13),
+	(9627, 16),
+	(9627, 15),
+	(13722, 24),
+	(15926, 8),
+	(16132, 8),
+	(16137, 8),
+	(16396, 15),
+	(16396, 32),
+	(21632, 5),
+	(21632, 31),
+	(21632, 15),
+	(21632, 32),
+	(6421, 8),
+	(3933, 14),
+	(16675, 31),
+	(18939, 14),
+	(23191, 13),
+	(23191, 31),
+	(5335, 13),
+	(5335, 32),
+	(23192, 13),
+	(23192, 31),
+	(1930, 9),
+	(1930, 31),
+	(1933, 31),
+	(1931, 2),
+	(1931, 31),
+	(3934, 11),
+	(20379, 8),
+	(20379, 32),
+	(20379, 31),
+	(1932, 31),
+	(21971, 15),
+	(21971, 24),
+	(14677, 5),
+	(14677, 32),
+	(11844, 12),
+	(11858, 12),
+	(11858, 25),
+	(11853, 12),
+	(11857, 12),
+	(11857, 25),
+	(11852, 12),
+	(11852, 31),
+	(12514, 5),
+	(12514, 13),
+	(12514, 15),
+	(12514, 32),
+	(8803, 25),
+	(8949, 5),
+	(2526, 12),
+	(549, 31),
+	(19560, 12),
+	(19560, 31),
+	(551, 25),
+	(551, 31),
+	(499, 25),
+	(1291, 25),
+	(21233, 25),
+	(21233, 31),
+	(552, 25),
+	(552, 31),
+	(550, 25),
+	(550, 31),
+	(19864, 12),
+	(12118, 8),
+	(12118, 31),
+	(7543, 9),
+	(7543, 2),
+	(7543, 32),
+	(7543, 16),
+	(3115, 11),
+	(3115, 2),
+	(3115, 15),
+	(7744, 16),
+	(3935, 4),
+	(5847, 4),
+	(8731, 4),
+	(4891, 4),
+	(3508, 8),
+	(18454, 2),
+	(18454, 31),
+	(3274, 2),
+	(3274, 12),
+	(3274, 13),
+	(3274, 31),
+	(3274, 32),
+	(13776, 2),
+	(13776, 31),
+	(22731, 8),
+	(22731, 33),
+	(12119, 15),
+	(12599, 12),
+	(12121, 31),
+	(4893, 13),
+	(4893, 14),
+	(5565, 33),
+	(5565, 25),
+	(16214, 25),
+	(16369, 25),
+	(7001, 31),
+	(7001, 25),
+	(13295, 31),
+	(13295, 33),
+	(3374, 13),
+	(12600, 31),
+	(12600, 33),
+	(1172, 12),
+	(1174, 12),
+	(1173, 12),
+	(1173, 31),
+	(17263, 13),
+	(17263, 33),
+	(17263, 14),
+	(18525, 9),
+	(18525, 31),
+	(1647, 5),
+	(1638, 5),
+	(1651, 5),
+	(1632, 5),
+	(19122, 12),
+	(12601, 5),
+	(12602, 5),
+	(20382, 14),
+	(18008, 14),
+	(3399, 14),
+	(19837, 15),
+	(20794, 14),
+	(14097, 14),
+	(7552, 31),
+	(7552, 2),
+	(7552, 9),
+	(7552, 32),
+	(6785, 8),
+	(6785, 31),
+	(1906, 32),
+	(1906, 31),
+	(1906, 2),
+	(19002, 8),
+	(19002, 32),
+	(18721, 12),
+	(18721, 5),
+	(18721, 32),
+	(5064, 31),
+	(5064, 2),
+	(5064, 9),
+	(15425, 32),
+	(8163, 31),
+	(10902, 13),
+	(10898, 26),
+	(19667, 5),
+	(22764, 33),
+	(12307, 5),
+	(22411, 5),
+	(22411, 33),
+	(7833, 12),
+	(7833, 24),
+	(7833, 15),
+	(9136, 9),
+	(18909, 33),
+	(18909, 32),
+	(7427, 33),
+	(3936, 5),
+	(3936, 4),
+	(5848, 5),
+	(5848, 14),
+	(19829, 31),
+	(1012, 5),
+	(2261, 12),
+	(2261, 31),
+	(2263, 12),
+	(8330, 12),
+	(2262, 12),
+	(2481, 12),
+	(22461, 15),
+	(22461, 12),
+	(18613, 10),
+	(11738, 13),
+	(5849, 31),
+	(5849, 25),
+	(1476, 5),
+	(1487, 5),
+	(18192, 5),
+	(1484, 5),
+	(1478, 5),
+	(1481, 5),
+	(1486, 5),
+	(1486, 33),
+	(1489, 5),
+	(1488, 5),
+	(12603, 14),
+	(11358, 12),
+	(14248, 14),
+	(12604, 14),
+	(7429, 33),
+	(7429, 10),
+	(1594, 13),
+	(1594, 10),
+	(1597, 13),
+	(1597, 10),
+	(1600, 13),
+	(1600, 10),
+	(1601, 13),
+	(1601, 10),
+	(1604, 13),
+	(1604, 10),
+	(1602, 13),
+	(1602, 10),
+	(1599, 13),
+	(1599, 10),
+	(7316, 10),
+	(8905, 13),
+	(8905, 10),
+	(8905, 14),
+	(1603, 13),
+	(1603, 10),
+	(1598, 13),
+	(1598, 10),
+	(14363, 13),
+	(14363, 14),
+	(14363, 10),
+	(16129, 12),
+	(16129, 15),
+	(13623, 12),
+	(22788, 12),
+	(11814, 15),
+	(11814, 11),
+	(8395, 15),
+	(7496, 8),
+	(7496, 12),
+	(7496, 4),
+	(19163, 12),
+	(19163, 24),
+	(12123, 14),
+	(18103, 10),
+	(18103, 33),
+	(727, 13),
+	(727, 10),
+	(727, 14),
+	(15229, 10),
+	(12124, 10),
+	(728, 13),
+	(728, 10),
+	(728, 14),
+	(729, 13),
+	(729, 10),
+	(729, 14),
+	(13336, 10),
+	(13861, 10),
+	(4894, 14),
+	(7002, 14),
+	(980, 5),
+	(980, 10),
+	(980, 31),
+	(819, 5),
+	(819, 10),
+	(3266, 5),
+	(3266, 31),
+	(730, 5),
+	(730, 10),
+	(730, 31),
+	(731, 5),
+	(731, 10),
+	(731, 31),
+	(3174, 5),
+	(3174, 4),
+	(3174, 10),
+	(3265, 5),
+	(3265, 31),
+	(3265, 10),
+	(1020, 5),
+	(1020, 13),
+	(1020, 31),
+	(1020, 10),
+	(3270, 5),
+	(3270, 31),
+	(7003, 31),
+	(3263, 31),
+	(13233, 5),
+	(13233, 31),
+	(13233, 10),
+	(8235, 5),
+	(8235, 31),
+	(8235, 10),
+	(732, 5),
+	(732, 10),
+	(732, 31),
+	(5850, 31),
+	(733, 5),
+	(733, 10),
+	(733, 31),
+	(3262, 31),
+	(4127, 12),
+	(9580, 12),
+	(18071, 12),
+	(11848, 31),
+	(12878, 8),
+	(12878, 32),
+	(6256, 11),
+	(16334, 15),
+	(16334, 32),
+	(18290, 5),
+	(18290, 31),
+	(18290, 32),
+	(7411, 31),
+	(17246, 5),
+	(18173, 13),
+	(18173, 15),
+	(17038, 15),
+	(12125, 15),
+	(12125, 33),
+	(7962, 8),
+	(7962, 13),
+	(7962, 32),
+	(13173, 33),
+	(5851, 10),
+	(5851, 14),
+	(16669, 32),
+	(11701, 31),
+	(12528, 31),
+	(12529, 31),
+	(3117, 31),
+	(4895, 7),
+	(16399, 15),
+	(16399, 32),
+	(17762, 32),
+	(17762, 9),
+	(17762, 15),
+	(16170, 15),
+	(6811, 8),
+	(6811, 33),
+	(2694, 7),
+	(23247, 2),
+	(23247, 31),
+	(5854, 5),
+	(5854, 14),
+	(5855, 5),
+	(5855, 14),
+	(15475, 14),
+	(12605, 8),
+	(18394, 32),
+	(18394, 16),
+	(18394, 15),
+	(8232, 11),
+	(19377, 12),
+	(2138, 10),
+	(6415, 13),
+	(6415, 10),
+	(6415, 14),
+	(18663, 5),
+	(18663, 33),
+	(1907, 12),
+	(1907, 25),
+	(181, 31),
+	(181, 2),
+	(181, 9),
+	(8682, 31),
+	(17095, 31),
+	(23842, 16),
+	(2116, 11),
+	(8950, 31),
+	(8950, 32),
+	(16678, 32),
+	(9904, 5),
+	(9904, 32),
+	(21638, 2),
+	(21638, 32),
+	(18452, 32),
+	(18452, 10),
+	(21687, 5),
+	(3937, 10),
+	(4898, 9),
+	(16149, 31),
+	(16149, 32),
+	(16149, 15),
+	(16148, 15),
+	(16148, 32),
+	(19750, 15),
+	(19750, 32),
+	(734, 11),
+	(735, 11),
+	(8786, 15),
+	(8786, 24),
+	(5390, 5),
+	(5856, 10),
+	(8774, 31),
+	(19552, 8),
+	(19552, 31),
+	(17203, 32),
+	(6813, 33),
+	(6813, 4),
+	(6813, 25),
+	(19269, 4),
+	(13225, 9),
+	(13225, 15),
+	(3375, 10),
+	(6425, 10),
+	(6426, 10),
+	(6424, 10),
+	(3938, 10),
+	(736, 13),
+	(736, 10),
+	(4899, 10),
+	(14804, 10),
+	(737, 13),
+	(737, 10),
+	(737, 14),
+	(10381, 13),
+	(10381, 10),
+	(738, 13),
+	(738, 10),
+	(4838, 8),
+	(4838, 25),
+	(4838, 32),
+	(19121, 8),
+	(19121, 25),
+	(19121, 32),
+	(8862, 8),
+	(8862, 25),
+	(8862, 32),
+	(6741, 8),
+	(6741, 5),
+	(6741, 9),
+	(4314, 12),
+	(16225, 15),
+	(19315, 2),
+	(19315, 31),
+	(7892, 25),
+	(23903, 26),
+	(11447, 12),
+	(11447, 32),
+	(234, 12),
+	(1183, 12),
+	(13183, 12),
+	(8969, 12),
+	(8947, 12),
+	(739, 12),
+	(7839, 2),
+	(7839, 31),
+	(9140, 33),
+	(9140, 4),
+	(7004, 31),
+	(7004, 11),
+	(5857, 4),
+	(9148, 4),
+	(9141, 33),
+	(9141, 4),
+	(9142, 4),
+	(9143, 33),
+	(9143, 4),
+	(5644, 4),
+	(13620, 33),
+	(13620, 4),
+	(5642, 4),
+	(4900, 9),
+	(7669, 31),
+	(1285, 7),
+	(2671, 7),
+	(2672, 7),
+	(2676, 7),
+	(2670, 7),
+	(9741, 7),
+	(2677, 7),
+	(2669, 7),
+	(2673, 7),
+	(2674, 7),
+	(7090, 7),
+	(7088, 7),
+	(7089, 7),
+	(2675, 7),
+	(2629, 7),
+	(12606, 9),
+	(3939, 31),
+	(5858, 5),
+	(16541, 32),
+	(1288, 5),
+	(12127, 13),
+	(10382, 5),
+	(10382, 32),
+	(16233, 32),
+	(10450, 5),
+	(14102, 31),
+	(14102, 33),
+	(23720, 5),
+	(23720, 8),
+	(23720, 31),
+	(23720, 32),
+	(17099, 32),
+	(22016, 14),
+	(22016, 32),
+	(22016, 4),
+	(22016, 33),
+	(22016, 5),
+	(9124, 33),
+	(8319, 5),
+	(8599, 31),
+	(8605, 8),
+	(8605, 31),
+	(22713, 8),
+	(3242, 8),
+	(3242, 9),
+	(16854, 31),
+	(16854, 32),
+	(3076, 13),
+	(3076, 31),
+	(3076, 24),
+	(3076, 32),
+	(13187, 8),
+	(13187, 5),
+	(13187, 32),
+	(17010, 5),
+	(17010, 32),
+	(12128, 13),
+	(12129, 13),
+	(19317, 5),
+	(19317, 33),
+	(6405, 8),
+	(6405, 5),
+	(6405, 33),
+	(22745, 8),
+	(6422, 8),
+	(6422, 5),
+	(6422, 33),
+	(10234, 5),
+	(22723, 8),
+	(16558, 32),
+	(19115, 12),
+	(19115, 31),
+	(19125, 12),
+	(19125, 31),
+	(19125, 16),
+	(19126, 12),
+	(19126, 31),
+	(9614, 12),
+	(9614, 31),
+	(12130, 33),
+	(19474, 16),
+	(1431, 31),
+	(18592, 5),
+	(18592, 32),
+	(18465, 14),
+	(10385, 9),
+	(10385, 12),
+	(8578, 8),
+	(8578, 9),
+	(13866, 33),
+	(12308, 5),
+	(12308, 33),
+	(19661, 25),
+	(17229, 5),
+	(17229, 24),
+	(17229, 32),
+	(6112, 33),
+	(11680, 5),
+	(6188, 31),
+	(18093, 12),
+	(18094, 12),
+	(10387, 13),
+	(10387, 32),
+	(10387, 11),
+	(2875, 12),
+	(8438, 31),
+	(8438, 9),
+	(8438, 32),
+	(8438, 25),
+	(16323, 13),
+	(16323, 31),
+	(16323, 15),
+	(8951, 12),
+	(8951, 32),
+	(12131, 31),
+	(1023, 13),
+	(1024, 13),
+	(1024, 15),
+	(12133, 31),
+	(11707, 13),
+	(11707, 32),
+	(18654, 9),
+	(18654, 31),
+	(13867, 5),
+	(8785, 11),
+	(17299, 15),
+	(17299, 32),
+	(17921, 31),
+	(17921, 32),
+	(22468, 13),
+	(3653, 13),
+	(3653, 14),
+	(18858, 13),
+	(18858, 15),
+	(18858, 32),
+	(18858, 16),
+	(16387, 12),
+	(16387, 5),
+	(16387, 15),
+	(231, 5),
+	(231, 8),
+	(231, 9),
+	(233, 5),
+	(233, 8),
+	(233, 9),
+	(9471, 5),
+	(338, 5),
+	(247, 5),
+	(247, 9),
+	(10395, 5),
+	(2549, 5),
+	(2549, 8),
+	(2549, 9),
+	(6738, 8),
+	(6738, 5),
+	(6738, 9),
+	(232, 5),
+	(232, 8),
+	(232, 9),
+	(6744, 8),
+	(6744, 5),
+	(6744, 9),
+	(11748, 5),
+	(11748, 32),
+	(8800, 12),
+	(8800, 16),
+	(8800, 15),
+	(19509, 5),
+	(19509, 33),
+	(12432, 15),
+	(2493, 12),
+	(986, 5),
+	(3122, 5),
+	(987, 5),
+	(989, 5),
+	(991, 5),
+	(6803, 5),
+	(988, 11),
+	(11570, 11),
+	(740, 5),
+	(2640, 5),
+	(990, 5),
+	(4839, 5),
+	(7849, 5),
+	(7348, 5),
+	(19703, 16),
+	(9666, 4),
+	(9666, 32),
+	(12608, 25),
+	(7891, 12),
+	(7891, 31),
+	(7891, 25),
+	(7891, 32),
+	(9248, 13),
+	(6429, 14),
+	(6428, 31),
+	(6427, 31),
+	(11302, 13),
+	(11638, 31),
+	(11638, 7),
+	(9101, 12),
+	(9101, 32),
+	(9101, 15),
+	(18645, 12),
+	(18645, 32),
+	(18391, 14),
+	(6110, 14),
+	(17697, 32),
+	(7006, 7),
+	(3940, 31),
+	(23685, 15),
+	(23685, 33),
+	(5942, 9),
+	(8410, 12),
+	(8410, 24),
+	(12134, 10),
+	(12135, 10),
+	(7619, 31),
+	(7619, 2),
+	(7619, 9),
+	(13871, 8),
+	(13871, 33),
+	(532, 5),
+	(17994, 5),
+	(17994, 31),
+	(17171, 10),
+	(17170, 10),
+	(7675, 12),
+	(7675, 31),
+	(7675, 24),
+	(4467, 13),
+	(4467, 14),
+	(12433, 14),
+	(12136, 14),
+	(9549, 12),
+	(9549, 31),
+	(19566, 13),
+	(15697, 5),
+	(15697, 10),
+	(15695, 5),
+	(15695, 10),
+	(22482, 13),
+	(6430, 14),
+	(14897, 8),
+	(14897, 31),
+	(14897, 33),
+	(20337, 8),
+	(12137, 10),
+	(18156, 8),
+	(18156, 7),
+	(7865, 8),
+	(14776, 14),
+	(3941, 8),
+	(3941, 31),
+	(4904, 5),
+	(4905, 5),
+	(3942, 31),
+	(4906, 31),
+	(3011, 31),
+	(3943, 8),
+	(3943, 12),
+	(3943, 31),
+	(341, 8),
+	(341, 31),
+	(3944, 14),
+	(21983, 16),
+	(20518, 12),
+	(3376, 13),
+	(3379, 12),
+	(3379, 13),
+	(3381, 12),
+	(3381, 13),
+	(3378, 12),
+	(3378, 13),
+	(3385, 12),
+	(3385, 13),
+	(3391, 12),
+	(3391, 13),
+	(3387, 12),
+	(3387, 13),
+	(3389, 12),
+	(3389, 13),
+	(3377, 12),
+	(3377, 13),
+	(3393, 12),
+	(3393, 13),
+	(3384, 12),
+	(3384, 13),
+	(3390, 12),
+	(3390, 13),
+	(3380, 12),
+	(3380, 13),
+	(3383, 12),
+	(3383, 13),
+	(3386, 12),
+	(3386, 13),
+	(15910, 12),
+	(3382, 12),
+	(3382, 13),
+	(19393, 13),
+	(19393, 12),
+	(7419, 15),
+	(7419, 31),
+	(3392, 12),
+	(3392, 13),
+	(3388, 12),
+	(3388, 13),
+	(15936, 15),
+	(15936, 32),
+	(2900, 31),
+	(4907, 31),
+	(12326, 14),
+	(16542, 32),
+	(6431, 9),
+	(11818, 33),
+	(7857, 12),
+	(7857, 5),
+	(7857, 4),
+	(6805, 7),
+	(11754, 7),
+	(11755, 7),
+	(11771, 33),
+	(11771, 7),
+	(11767, 7),
+	(11768, 7),
+	(9626, 7),
+	(12078, 7),
+	(10091, 7),
+	(16942, 32),
+	(1117, 8),
+	(1117, 31),
+	(4909, 31),
+	(17673, 31),
+	(16552, 31),
+	(16552, 32),
+	(20399, 32),
+	(20399, 31),
+	(20399, 2),
+	(19090, 31),
+	(19090, 9),
+	(19090, 10),
+	(19090, 8),
+	(19090, 5),
+	(1405, 5),
+	(7434, 13),
+	(7434, 31),
+	(22736, 9),
+	(7317, 5),
+	(182, 13),
+	(6432, 12),
+	(16971, 10),
+	(12138, 31),
+	(12138, 33),
+	(19758, 14),
+	(4350, 5),
+	(4350, 31),
+	(5860, 5),
+	(5860, 31),
+	(15857, 8),
+	(15857, 31),
+	(12139, 2),
+	(12139, 31),
+	(6433, 8),
+	(5391, 8),
+	(17911, 25),
+	(17911, 31),
+	(17911, 32),
+	(1279, 15),
+	(23211, 13),
+	(23211, 5),
+	(23211, 32),
+	(23211, 33),
+	(2037, 15),
+	(2037, 11),
+	(10398, 15),
+	(10398, 24),
+	(10397, 24),
+	(10397, 15),
+	(17023, 15),
+	(17023, 24),
+	(741, 11),
+	(10400, 24),
+	(10400, 15),
+	(10399, 24),
+	(10399, 15),
+	(10401, 15),
+	(10401, 24),
+	(15894, 15),
+	(15894, 11),
+	(2881, 12),
+	(4910, 5),
+	(4910, 13),
+	(4911, 5),
+	(7318, 31),
+	(7318, 25),
+	(10402, 5),
+	(10402, 32),
+	(982, 5),
+	(742, 11),
+	(12141, 13),
+	(12141, 33),
+	(8290, 5),
+	(8290, 31),
+	(5392, 8),
+	(5392, 4),
+	(493, 31),
+	(1007, 2),
+	(1007, 31),
+	(16285, 15),
+	(16285, 32),
+	(10406, 15),
+	(17441, 31),
+	(17441, 32),
+	(17507, 31),
+	(17507, 32),
+	(5393, 12),
+	(5393, 31),
+	(2509, 12),
+	(2509, 31),
+	(17233, 32),
+	(10407, 13),
+	(18591, 5),
+	(18634, 15),
+	(18635, 9),
+	(18635, 15),
+	(17612, 15),
+	(5618, 8),
+	(5618, 31),
+	(5618, 33),
+	(4297, 2),
+	(4297, 31),
+	(13069, 5),
+	(7603, 31),
+	(7603, 25),
+	(14523, 5),
+	(7262, 15),
+	(7262, 24),
+	(19213, 32),
+	(19213, 4),
+	(19213, 33),
+	(19503, 5),
+	(19503, 33),
+	(8175, 12),
+	(8175, 25),
+	(325, 5),
+	(325, 12),
+	(14160, 9),
+	(7463, 10),
+	(3685, 12),
+	(3687, 9),
+	(3688, 8),
+	(3689, 31),
+	(7437, 31),
+	(3691, 8),
+	(3691, 31),
+	(18167, 9),
+	(18167, 32),
+	(14898, 31),
+	(3250, 4),
+	(14899, 5),
+	(9601, 8),
+	(9601, 9),
+	(11346, 31),
+	(11346, 32),
+	(11346, 2),
+	(18438, 12),
+	(6434, 10),
+	(3511, 12),
+	(3511, 31),
+	(6362, 5),
+	(20752, 31),
+	(8419, 5),
+	(15293, 15),
+	(15293, 32),
+	(17301, 15),
+	(17301, 32),
+	(17339, 31),
+	(17339, 32),
+	(9638, 12),
+	(9638, 31),
+	(9638, 2),
+	(9638, 32),
+	(13661, 12),
+	(13661, 31),
+	(13661, 2),
+	(13661, 32),
+	(11708, 12),
+	(11708, 31),
+	(11708, 25),
+	(11708, 32),
+	(7435, 5),
+	(7435, 24),
+	(7435, 32),
+	(17531, 12),
+	(19210, 12),
+	(8435, 16),
+	(7867, 16),
+	(8434, 16),
+	(8139, 16),
+	(13364, 16),
+	(8140, 16),
+	(13363, 16),
+	(7845, 16),
+	(11330, 33),
+	(11330, 32),
+	(11330, 9),
+	(17663, 32),
+	(14824, 15),
+	(17512, 31),
+	(17512, 32),
+	(17512, 15),
+	(17078, 32),
+	(13624, 12),
+	(14990, 12),
+	(19775, 15),
+	(19775, 16),
+	(2611, 12),
+	(2611, 15),
+	(2611, 16),
+	(2611, 24),
+	(7742, 12),
+	(7742, 16),
+	(7742, 15),
+	(363, 12),
+	(363, 16),
+	(363, 15),
+	(365, 12),
+	(365, 15),
+	(365, 16),
+	(365, 24),
+	(14173, 16),
+	(364, 12),
+	(364, 16),
+	(364, 15),
+	(366, 12),
+	(366, 15),
+	(366, 16),
+	(366, 24),
+	(367, 16),
+	(368, 12),
+	(368, 15),
+	(368, 16),
+	(368, 24),
+	(369, 12),
+	(369, 15),
+	(369, 16),
+	(369, 24),
+	(370, 12),
+	(370, 16),
+	(370, 15),
+	(371, 12),
+	(371, 16),
+	(371, 15),
+	(372, 12),
+	(372, 16),
+	(372, 15),
+	(362, 12),
+	(362, 16),
+	(362, 15),
+	(13459, 16),
+	(763, 11),
+	(6806, 12),
+	(17770, 15),
+	(17770, 32),
+	(15474, 13),
+	(5861, 13),
+	(7313, 11),
+	(3226, 8),
+	(3226, 12),
+	(3226, 25),
+	(3226, 32),
+	(7008, 13),
+	(17605, 32),
+	(17490, 32),
+	(17375, 32),
+	(12142, 12),
+	(12142, 31),
+	(12609, 12),
+	(2257, 9),
+	(2257, 32),
+	(9570, 15),
+	(9603, 9),
+	(9603, 32),
+	(11061, 9),
+	(11061, 32),
+	(11060, 9),
+	(11060, 32),
+	(6637, 5),
+	(745, 5),
+	(3512, 5),
+	(8851, 5),
+	(2732, 9),
+	(8310, 9),
+	(8310, 12),
+	(2513, 12),
+	(6565, 8),
+	(2642, 13),
+	(2819, 8),
+	(2818, 31),
+	(12434, 10),
+	(18201, 33),
+	(294, 5),
+	(294, 24),
+	(107, 5),
+	(107, 24),
+	(108, 5),
+	(108, 24),
+	(15832, 15),
+	(15832, 16),
+	(746, 14),
+	(6435, 14),
+	(4912, 31),
+	(4912, 7),
+	(6436, 8),
+	(4808, 7),
+	(10150, 8),
+	(10150, 31),
+	(6264, 16),
+	(12610, 9),
+	(10093, 12),
+	(10093, 31),
+	(10093, 32),
+	(15297, 15),
+	(15297, 32),
+	(9356, 15),
+	(9356, 11),
+	(11723, 5),
+	(8037, 10),
+	(9700, 31),
+	(17735, 15),
+	(17735, 32),
+	(12379, 13),
+	(12379, 31),
+	(747, 13),
+	(14913, 15),
+	(17394, 32),
+	(2527, 12),
+	(7010, 5),
+	(21982, 5),
+	(11157, 24),
+	(11157, 31),
+	(748, 5),
+	(748, 24),
+	(6073, 9),
+	(6073, 16),
+	(530, 5),
+	(530, 24),
+	(1048, 5),
+	(1050, 5),
+	(1050, 31),
+	(1050, 24),
+	(1049, 5),
+	(5567, 5),
+	(5567, 24),
+	(16232, 32),
+	(5604, 15),
+	(5604, 32),
+	(20874, 5),
+	(20874, 8),
+	(20874, 32),
+	(11631, 31),
+	(11631, 2),
+	(11631, 9),
+	(20995, 13),
+	(7402, 33),
+	(7402, 32),
+	(7402, 11),
+	(14763, 9),
+	(14763, 31),
+	(18585, 33),
+	(11534, 14),
+	(15503, 14),
+	(15504, 14),
+	(8476, 8),
+	(4601, 5),
+	(4601, 33),
+	(8877, 24),
+	(8877, 16),
+	(7203, 2),
+	(7203, 31),
+	(10088, 31),
+	(10088, 7),
+	(7847, 9),
+	(7847, 31),
+	(7766, 15),
+	(14593, 8),
+	(14593, 31),
+	(14593, 25),
+	(14593, 32),
+	(12144, 31),
+	(8936, 31),
+	(8936, 33),
+	(19110, 8),
+	(12880, 13),
+	(12880, 32),
+	(10142, 31),
+	(4523, 31),
+	(14502, 31),
+	(11541, 8),
+	(16301, 13),
+	(16301, 32),
+	(6113, 9),
+	(18414, 14),
+	(3947, 14),
+	(10415, 31),
+	(10415, 32),
+	(10415, 9),
+	(1885, 5),
+	(1886, 5),
+	(3948, 12),
+	(11634, 9),
+	(11634, 31),
+	(11634, 32),
+	(6808, 12),
+	(6808, 13),
+	(749, 11),
+	(749, 31),
+	(750, 11),
+	(750, 31),
+	(8773, 11),
+	(751, 11),
+	(751, 31),
+	(15444, 11),
+	(22486, 13),
+	(9616, 5),
+	(8704, 31),
+	(8704, 2),
+	(8704, 9),
+	(10225, 9),
+	(4914, 13),
+	(13726, 33),
+	(18879, 32),
+	(18879, 11),
+	(16513, 15),
+	(16513, 32),
+	(17896, 32),
+	(11156, 12),
+	(12145, 33),
+	(14900, 33),
+	(752, 15),
+	(18136, 13),
+	(18136, 32),
+	(20149, 32),
+	(20149, 31),
+	(6437, 9),
+	(12146, 10),
+	(4915, 10),
+	(4917, 10),
+	(3371, 10),
+	(2653, 10),
+	(4916, 10),
+	(5862, 10),
+	(9249, 2),
+	(9249, 31),
+	(292, 13),
+	(8535, 9),
+	(1384, 32),
+	(2126, 5),
+	(7011, 5),
+	(18439, 12),
+	(23336, 31),
+	(5675, 13),
+	(18903, 5),
+	(11733, 10),
+	(5605, 8),
+	(5605, 31),
+	(5605, 32),
+	(18994, 5),
+	(7420, 12),
+	(7420, 24),
+	(13210, 12),
+	(13210, 31),
+	(13211, 12),
+	(7012, 31),
+	(17197, 10),
+	(18927, 8),
+	(18927, 9),
+	(11760, 31),
+	(8882, 31),
+	(8883, 31),
+	(8881, 31),
+	(6438, 8),
+	(15538, 31),
+	(3949, 31),
+	(17025, 15),
+	(1938, 5),
+	(1938, 31),
+	(12148, 4),
+	(14545, 9),
+	(14545, 32),
+	(16992, 9),
+	(16992, 32),
+	(8952, 8),
+	(8952, 32),
+	(16809, 32),
+	(5864, 10),
+	(12435, 11),
+	(19847, 13),
+	(9655, 9),
+	(11498, 31),
+	(19728, 5),
+	(19728, 33),
+	(505, 31),
+	(505, 25),
+	(12149, 31),
+	(12149, 33),
+	(3950, 25),
+	(5865, 4),
+	(5865, 25),
+	(17749, 15),
+	(17749, 32),
+	(14863, 14),
+	(20248, 13),
+	(20248, 32),
+	(15443, 5),
+	(15443, 31),
+	(3513, 12),
+	(12150, 5),
+	(9071, 31),
+	(12152, 5),
+	(12152, 10),
+	(3370, 10),
+	(3704, 10),
+	(7691, 31),
+	(7690, 31),
+	(11599, 12),
+	(10423, 5),
+	(22094, 5),
+	(22094, 32),
+	(22094, 33),
+	(9806, 12),
+	(9806, 31),
+	(9806, 32),
+	(3654, 5),
+	(14316, 14),
+	(18770, 33),
+	(18770, 10),
+	(9871, 12),
+	(9871, 16),
+	(7319, 12),
+	(7320, 12),
+	(7320, 24),
+	(9867, 7),
+	(8902, 12),
+	(9868, 12),
+	(9869, 12),
+	(9870, 12),
+	(9870, 25),
+	(9620, 12),
+	(9866, 12),
+	(12919, 5),
+	(15902, 32),
+	(18126, 5),
+	(18126, 31),
+	(18126, 32),
+	(22785, 13),
+	(22785, 30),
+	(22785, 33),
+	(22043, 5),
+	(22043, 32),
+	(22043, 33),
+	(5314, 25),
+	(11193, 31),
+	(11193, 25),
+	(4920, 15),
+	(507, 31),
+	(7868, 31),
+	(7868, 32),
+	(18861, 12),
+	(18861, 31),
+	(7578, 2),
+	(7578, 31),
+	(6457, 9),
+	(6457, 31),
+	(8380, 8),
+	(8380, 9),
+	(14987, 4),
+	(17234, 32),
+	(19844, 9),
+	(14143, 8),
+	(14143, 32),
+	(17862, 31),
+	(17862, 32),
+	(23884, 8),
+	(23884, 25),
+	(23884, 4),
+	(22345, 31),
+	(22475, 13),
+	(9879, 33),
+	(9879, 32),
+	(9879, 15),
+	(3951, 8),
+	(8559, 5),
+	(15574, 14),
+	(23283, 32),
+	(23283, 31),
+	(9139, 8),
+	(9139, 9),
+	(9289, 31),
+	(9289, 32),
+	(4921, 31),
+	(4922, 31),
+	(6446, 8),
+	(3952, 31),
+	(4923, 8),
+	(3666, 8),
+	(18532, 14),
+	(6447, 5),
+	(18590, 33),
+	(22355, 5),
+	(22355, 8),
+	(22355, 32),
+	(753, 12),
+	(876, 12),
+	(876, 15),
+	(5621, 12),
+	(5621, 15),
+	(8829, 12),
+	(8953, 32),
+	(8953, 9),
+	(8953, 15),
+	(7170, 31),
+	(18095, 8),
+	(18095, 33),
+	(18096, 33),
+	(7905, 31),
+	(11538, 31),
+	(16645, 32),
+	(17906, 31),
+	(18515, 8),
+	(18515, 31),
+	(3394, 8),
+	(3394, 10),
+	(16144, 10),
+	(7139, 10),
+	(7652, 31),
+	(21986, 13),
+	(21986, 12),
+	(21986, 32),
+	(9778, 8),
+	(9778, 12),
+	(9778, 5),
+	(15466, 31),
+	(15466, 32),
+	(12153, 5),
+	(3953, 5),
+	(23873, 12),
+	(754, 13),
+	(5563, 5),
+	(5563, 24),
+	(17995, 13),
+	(7016, 13),
+	(755, 13),
+	(756, 13),
+	(11662, 5),
+	(3016, 12),
+	(7086, 9),
+	(7086, 32),
+	(4924, 31),
+	(4926, 15),
+	(17111, 15),
+	(17111, 32),
+	(4927, 15)
+) AS val (game_id, genre_id)
+INNER JOIN power_up.games ON val.game_id = power_up.games.id
+INNER JOIN power_up.genres ON val.genre_id = power_up.genres.id
+ON CONFLICT DO NOTHING;
+
 COMMIT;
+

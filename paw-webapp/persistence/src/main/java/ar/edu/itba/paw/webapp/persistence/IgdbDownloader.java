@@ -15,6 +15,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+/**
+ * Class used to download data from <a href="igdb.com">IGDB.com</a> and generate SQL INSERT files.
+ * <b>NOTE: </b> Do not use this class often. It has an API key which has a limited number of requests per day which
+ * will get exceeded under heavy use (and this class makes heavy use of the API).
+ * @author Juan Li Puma
+ */
 public class IgdbDownloader {
     private static final String IGDB_API_BASE_URL = "https://igdbcom-internet-game-database-v1.p.mashape.com/",
             IGDB_API_KEY = "yZykcOVSIsmshHJqdjCtRKXqIvHap1IC6HPjsnFzCYzfhEb7vv";
@@ -62,7 +68,7 @@ public class IgdbDownloader {
             paginate("genres/?fields=*", new Consumer<JSONObject>() {
                 @Override
                 public void accept(JSONObject genre) {
-                    String query = "INSERT INTO power_up.genres ('id', 'name') VALUES (" + genre.getInt("id") + ", '" + escapeQuotes(genre.getString("name")) + "');\n";
+                    String query = "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         IgdbDownloader.this.genresFile.write(query);
@@ -84,7 +90,7 @@ public class IgdbDownloader {
             paginate("platforms/?fields=*", new Consumer<JSONObject>() {
                 @Override
                 public void accept(JSONObject genre) {
-                    String query = "INSERT INTO power_up.consoles ('id', 'name') VALUES (" + genre.getInt("id") + ", '" + escapeQuotes(genre.getString("name")) + "');\n";
+                    String query = "INSERT INTO power_up.consoles (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         IgdbDownloader.this.consolesFile.write(query);
@@ -103,10 +109,10 @@ public class IgdbDownloader {
     public void downloadAllCompanies() {
         try {
             companiesFile.write("BEGIN;\n");
-            paginate("companies/?fields=*", 9856, new Consumer<JSONObject>() {
+            paginate("companies/?fields=*", new Consumer<JSONObject>() {
                 @Override
                 public void accept(JSONObject company) {
-                    String query = "INSERT INTO power_up.companies ('id', 'name') VALUES (" + company.getInt("id") + ", '" + escapeQuotes(company.getString("name")) + "');\n";
+                    String query = "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (" + company.getInt("id") + ", '" + escapeQuotesToPostgres(company.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         IgdbDownloader.this.companiesFile.write(query);
@@ -124,6 +130,9 @@ public class IgdbDownloader {
 
     public void downloadAllGames() {
         try {
+            gameGenresFile.write("BEGIN;\n");
+            gameDevelopersFile.write("BEGIN;\n");
+            gamePublishersFile.write("BEGIN;\n");
             gamesFile.write("BEGIN;\n");
             gamesFile.write("SET DATESTYLE TO ISO, YMD;\n");
             gamesFile.write("\\encoding utf8;\n");
@@ -131,11 +140,11 @@ public class IgdbDownloader {
                 @Override
                 public void accept(JSONObject game) {
                     //Game
-                    String name = "'" + escapeQuotes(game.getString("name")) + "'",
+                    String name = "'" + escapeQuotesToPostgres(game.getString("name")) + "'",
                             summary = "null",
                             dateStr = "null";
                     if(game.has("summary")) {
-                        summary = "'" + escapeQuotes(game.getString("summary")) + "'";
+                        summary = "'" + escapeQuotesToPostgres(game.getString("summary")) + "'";
                     }
                     if(game.has("first_release_date")) {
                         dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
@@ -149,23 +158,25 @@ public class IgdbDownloader {
                     if(game.has("genres")) {
                         JSONArray genres = game.getJSONArray("genres");
                         for (int i = 0; i < genres.length(); i++) {
-                            genreQueries.append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append(");\n");
+                            genreQueries.append("INSERT INTO power_up.game_genres (\"game_id\", \"genre_id\") VALUES (").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append(") ON CONFLICT DO NOTHING;\n");
                         }
                     }
                     //Developers
                     if(game.has("developers")) {
                         JSONArray developers = game.getJSONArray("developers");
                         for (int i = 0; i < developers.length(); i++) {
-                            developerQueries.append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (").append(game.getInt("id")).append(", ").append(developers.getInt(i)).append(");\n");
+                            developerQueries.append("INSERT INTO power_up.game_developers (\"game_id\", \"developer_id\") VALUES (").append(game.getInt("id")).append(", ").append(developers.getInt(i)).append(")  ON CONFLICT DO NOTHING;\n");
                         }
                     }
                     //Publishers
                     if(game.has("publishers")) {
                         JSONArray publishers = game.getJSONArray("publishers");
                         for (int i = 0; i < publishers.length(); i++) {
-                            publisherQueries.append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (").append(game.getInt("id")).append(", ").append(publishers.getInt(i)).append(");\n");
+                            publisherQueries.append("INSERT INTO power_up.game_publishers (\"game_id\", \"publisher_id\") VALUES (").append(game.getInt("id")).append(", ").append(publishers.getInt(i)).append(")  ON CONFLICT DO NOTHING;\n");
                         }
                     }
+                    //Consoles
+                    //TODO
                     //Keywords
                     //TODO schema declares keyword names should go here rather than keyword IDs.
 //                    if(game.has("keywords")) {
@@ -202,6 +213,16 @@ public class IgdbDownloader {
         }
     }
 
+    /**
+     * IGDB's free API access tier limits queries to 50 results per page, and offset + pageSize must be less that or
+     * equal to 10000. This function "paginates" through results until it receives an empty page.
+     *
+     * @param request The paginateable request to perform numerous times.
+     * @param offset Where, in the total result set, the current page should start.
+     * @param pageSize The page size. Max is 50.
+     * @param output Consumer for the produced output.
+     * @throws UnirestException On API errors.
+     */
     public void paginate(String request, int offset, int pageSize, Consumer<JSONObject> output) throws UnirestException {
         boolean done = false;
         do {
@@ -239,10 +260,20 @@ public class IgdbDownloader {
                 .asJson();
     }
 
-    private String escapeQuotes(String text) {
+    /**
+     * Converts single simple quotes to two single quotes (' => ''), as specified by PostgreSQL.
+     * @param text The text to escape.
+     * @return The escaped text.
+     */
+    private String escapeQuotesToPostgres(String text) {
         return text.replace("'", "''");
     }
 
+    /**
+     * Converts a timestamp to YYYY-MM-DD format.
+     * @param timestamp The timestamp to convert.
+     * @return The converted timestamp.
+     */
     private String getISODateString(long timestamp) {
         return new DateTime(timestamp).toString(ISO8601Formatter);
     }

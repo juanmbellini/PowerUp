@@ -1,7284 +1,7295 @@
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9888, 805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8616, 3017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19000, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7724, 3455);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11811, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11987, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11988, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12027, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11807, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11808, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11809, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11810, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9770, 5215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7522, 3113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6172, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1649, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1642, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1643, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1643, 11);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1645, 11);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1645, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1646, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1646, 432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1646, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1646, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1640, 877);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6173, 2702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9583, 6052);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1898, 58);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15938, 7448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9848, 9388);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14727, 7386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9705, 5194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2733, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2733, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8745, 4676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22347, 10532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11426, 6082);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6281, 2740);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2372, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8617, 3701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23168, 7901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (582, 618);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4632, 2079);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4633, 2079);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2361, 552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3774, 768);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3328, 421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2373, 1131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5470, 2427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14688, 7299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17481, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17481, 74);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17481, 8777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9497, 5088);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8562, 4529);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3706, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11427, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11428, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11429, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21627, 10415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3978, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19749, 10191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6077, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6075, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13931, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2374, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6076, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6079, 883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6079, 1296);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6733, 2896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17886, 8696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7169, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19313, 9955);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19313, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14360, 6658);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22428, 10574);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19390, 10008);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2375, 1132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6078, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16316, 8039);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9894, 5314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2292, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14048, 6082);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (583, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5474, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5474, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4655, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4655, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12290, 6416);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5471, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13264, 7132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17828, 9050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2293, 1077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2412, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6062, 749);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5714, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19710, 10173);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22192, 8845);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2362, 1126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7264, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6734, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5337, 2352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2376, 1133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2204, 1028);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9933, 4094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2377, 1078);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20380, 1851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11854, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9116, 257);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2734, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14470, 9398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11432, 6962);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19396, 10011);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13667, 6219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13667, 7074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8522, 4503);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2294, 1078);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7265, 2099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8523, 4504);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11872, 1210);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13276, 4508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2384, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2385, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18467, 1139);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13270, 115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10735, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9899, 5318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9900, 5318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12496, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9934, 2973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3701, 1779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9935, 8885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5568, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12383, 6532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19389, 10007);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11433, 6962);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7266, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23505, 10850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8115, 4061);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11876, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17630, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5715, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (584, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1562, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5472, 2429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4011, 1987);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4011, 1988);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4011, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2414, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2414, 1989);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21670, 1102);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11709, 6187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11435, 9399);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11435, 7620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3509, 1816);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3435, 1788);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3433, 1788);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3434, 1788);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6735, 2897);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5338, 2353);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (585, 455);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5574, 2474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5574, 2121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16537, 5091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19805, 2451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4634, 2078);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4629, 2078);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4637, 1668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9936, 1064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8580, 1746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11817, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11823, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11826, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11828, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9895, 5315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9895, 206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12639, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18907, 67);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9171, 4893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21414, 67);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9053, 4791);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9053, 9435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17034, 7547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23501, 10849);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17331, 8638);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17143, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16837, 2682);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3707, 874);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20927, 10634);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11436, 340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8619, 4595);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8357, 4364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8357, 4365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9937, 6086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11438, 6086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11439, 6086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18881, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22467, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8615, 4593);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8794, 2236);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2109, 191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4656, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4656, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2847, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2847, 285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17702, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8627, 4601);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3245, 1664);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9941, 9377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14396, 10020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2018, 1068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15058, 3121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15058, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8819, 5274);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14678, 7278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14678, 7279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6705, 2884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23883, 10892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18302, 9382);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2363, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15860, 4754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18205, 8822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19719, 10181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16309, 8032);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16924, 8409);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2295, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7147, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20468, 10371);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18653, 9514);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8521, 1339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18122, 9296);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7211, 3030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15768, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1625, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9718, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3116, 1485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3137, 1485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3040, 1425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11232, 5915);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22424, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8623, 4598);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8624, 4598);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5355, 41);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19398, 9721);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20175, 1831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20175, 10328);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8639, 4609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6282, 2741);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5360, 2365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5360, 1000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3240, 1660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3240, 1661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6286, 1660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5339, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11883, 3838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11883, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8626, 4600);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18637, 9506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9938, 7613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7171, 6979);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7903, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11849, 1153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2415, 1153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3305, 841);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3305, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17376, 8668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8735, 4646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3080, 1451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5653, 2520);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2398, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11587, 6100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (586, 456);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (586, 1899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8524, 4505);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14414, 954);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17136, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7352, 4681);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6467, 362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6467, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4657, 2082);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3283, 1743);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17155, 3213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1430, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9763, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14750, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14751, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14753, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5476, 419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14758, 419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6297, 1381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6628, 419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14756, 3958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14754, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (531, 419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6745, 831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6298, 2754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6298, 285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11863, 6362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6290, 2050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4586, 2062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15766, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16910, 8394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11820, 6336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2296, 1079);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16264, 8012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2008, 942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11111, 5894);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21991, 10488);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8920, 457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (587, 457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9339, 457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12270, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5340, 1254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5340, 4013);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11885, 4003);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4658, 1014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14550, 5048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14550, 8590);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6299, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4659, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4660, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6631, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6468, 1415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7704, 1415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1988, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1993, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1994, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1992, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13230, 7032);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8181, 4096);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8182, 4096);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8183, 4097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16298, 4097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6469, 2193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8654, 4620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18486, 311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6300, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1691, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1692, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1694, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1693, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13791, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6470, 2809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5654, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8602, 227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8603, 227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8603, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8622, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8622, 4597);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8732, 1486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5655, 2520);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2297, 1080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5716, 2532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5716, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8253, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9591, 5129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2416, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4594, 2065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4594, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6471, 1976);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8737, 1976);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7549, 17);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15589, 7784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4557, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11320, 448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2797, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16597, 2219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8620, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2298, 1081);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23739, 10877);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8130, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8741, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3662, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6472, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7547, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19865, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14681, 7280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8010, 3950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8373, 4412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2601, 1227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8374, 4413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15847, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11560, 9945);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5441, 2409);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18233, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18233, 4009);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19711, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3147, 1489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6773, 1489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3330, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5348, 810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5348, 1984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5349, 810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18199, 9338);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5350, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5351, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16383, 8075);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17839, 8075);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3329, 839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7746, 1192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3709, 1885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3708, 1884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3708, 667);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9673, 5164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9673, 5165);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4662, 2084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5477, 2431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6907, 2084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7267, 3043);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5478, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5468, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5352, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5356, 1885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7748, 1828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22097, 10523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5713, 2531);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6711, 2885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8375, 4381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (175, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13292, 10284);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11283, 9357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8764, 3016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17620, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6301, 1070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4663, 2085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4664, 2085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17470, 5283);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17470, 3369);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9948, 57);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (270, 127);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (588, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16402, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9949, 6973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (289, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9951, 4355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9951, 6019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9951, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2950, 150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (327, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (599, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9950, 4355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9950, 6019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (299, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (299, 130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (299, 131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8220, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8220, 579);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8220, 130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3017, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3017, 130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8575, 4533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8575, 1010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21221, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (291, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (324, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9902, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9902, 4355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13186, 4355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8221, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9432, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9431, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14229, 7791);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9430, 267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9428, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9429, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16134, 7960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (589, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (589, 206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (590, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5652, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11085, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8863, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (591, 331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1899, 911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8628, 4602);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1920, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11293, 1959);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19440, 507);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3783, 379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3783, 1817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11890, 6366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19453, 10319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9537, 5109);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7747, 1804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (592, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (592, 622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6475, 2810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8886, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7720, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8887, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8885, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8889, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2850, 1334);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (563, 450);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19841, 256);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11340, 6015);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11411, 3031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3331, 1744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5353, 2360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14691, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14691, 7301);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14749, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3831, 2941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3830, 2941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13160, 6975);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5354, 2362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16183, 3921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8791, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11113, 5895);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18048, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11859, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8629, 4594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2302, 1085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8231, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9134, 5365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3710, 1886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5718, 2533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9957, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9958, 5959);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11856, 6361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1365, 10321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1365, 1227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19899, 10321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6476, 2811);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16899, 8136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17561, 8836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8630, 4603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (593, 623);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8848, 4703);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8848, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8631, 4604);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5479, 2433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8376, 4414);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1900, 740);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5480, 74);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5480, 2434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19465, 1383);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7268, 1383);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1995, 934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2340, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19584, 10108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4145, 552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4145, 52);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1120, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17330, 8637);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8809, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2418, 201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8118, 426);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8118, 1238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8118, 1233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8118, 141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4665, 2086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1062, 305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2602, 305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13223, 7027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2419, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3651, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3754, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17899, 9107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17637, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15691, 3037);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2420, 1156);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13678, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2848, 1333);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2848, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9359, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5721, 1459);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7749, 3668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7749, 3669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10673, 5754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5719, 287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8776, 4690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4666, 1909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1040, 740);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21635, 10462);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8633, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9962, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9963, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14239, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14240, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14241, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9964, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14596, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11087, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11865, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8487, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11294, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2421, 1158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3711, 1177);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23495, 366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16246, 7934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2690, 1228);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2690, 1265);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2168, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2422, 1159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7750, 1525);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18481, 9452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2551, 1212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8634, 4605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16367, 7934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11088, 4605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11089, 4605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16016, 7934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11090, 4605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4490, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9969, 10084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9969, 10180);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13950, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7598, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4667, 77);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4478, 6367);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4478, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6825, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2206, 1089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8477, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15146, 7554);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4754, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4754, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15459, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15459, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15460, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15460, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15464, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15464, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15555, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15555, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15552, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15552, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15553, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15553, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15554, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15554, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15554, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7600, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9979, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (594, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (594, 624);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14818, 7421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5720, 2534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19214, 9908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (560, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2169, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1021, 408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1021, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8908, 10164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8908, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8908, 2566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19508, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16065, 7938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2796, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17681, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1014, 949);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1014, 733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4668, 1069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4668, 2087);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10659, 287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2849, 1239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2851, 1239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3436, 1789);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9971, 807);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8909, 3038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5481, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10624, 2005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11557, 2005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11557, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11558, 2005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11559, 2005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (595, 625);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23860, 9466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7751, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7751, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16253, 3727);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11296, 10685);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13157, 6965);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9970, 6214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1958, 2251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1958, 2053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1956, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1956, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1956, 3022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1957, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1957, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1959, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7716, 5912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1960, 669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1960, 1385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1960, 397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8635, 4606);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3252, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3252, 1689);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16874, 8360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8911, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8911, 2153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14199, 7106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9173, 2672);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2539, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17629, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19954, 7216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17849, 9066);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1989, 505);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2303, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2604, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2304, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7752, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16031, 7528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17556, 8832);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18130, 10385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18130, 4697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22168, 10526);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1175, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1176, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4669, 1319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4670, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4671, 1865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7289, 3050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10681, 10296);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8636, 836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8916, 3038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15711, 7417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15648, 7417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16744, 8259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3784, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3784, 1568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18115, 566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7753, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7754, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17235, 8583);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2305, 1086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2307, 553);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12390, 7303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11897, 1160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2424, 1160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11898, 114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (597, 465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15798, 465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7843, 465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5722, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5722, 465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5722, 2207);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5482, 717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6302, 2200);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3785, 1907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (596, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9361, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9360, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8464, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18244, 1277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18241, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18242, 1865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18247, 3379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18247, 1865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18246, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18245, 1267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18245, 3379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4377, 4435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6304, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20289, 10346);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (337, 133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (337, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9667, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5723, 2089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4672, 1984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4672, 2090);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4673, 2090);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5724, 2089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7755, 3670);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11116, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8637, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1882, 1364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15534, 36);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13199, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (111, 36);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7642, 3192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8061, 4012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5725, 2317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5483, 2317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5484, 2317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2141, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11081, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8378, 4415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2425, 1161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3416, 1781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2308, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6305, 2755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (54, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5622, 25);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11506, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1996, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (598, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5485, 852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20471, 10373);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10032, 5370);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13193, 7007);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7713, 3402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7676, 3225);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19077, 9836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16228, 7993);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5726, 877);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9772, 4226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4953, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5358, 1744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23852, 10882);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18665, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22001, 10495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5359, 829);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11414, 3031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2170, 1020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7269, 3044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17279, 8605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16064, 7938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2035, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2035, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19273, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19274, 7043);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19276, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19271, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19275, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16365, 8065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4674, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4674, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19272, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4675, 950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4675, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4675, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4675, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7960, 4292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14742, 4292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18999, 9731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17082, 8488);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2386, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2309, 1088);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2655, 421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11190, 1100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11190, 7902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10143, 1246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2687, 1246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2645, 1246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13191, 7005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7756, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7756, 75);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6306, 50);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6306, 259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19432, 325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3786, 50);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3786, 259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6712, 1850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13324, 7420);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4849, 2172);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15785, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11591, 6108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17040, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9976, 6386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9977, 6386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18666, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11367, 9215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11367, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1862, 717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (662, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (662, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8227, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8227, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (300, 134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8224, 134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (303, 134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8225, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8226, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2959, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2959, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8228, 647);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8228, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11205, 1897);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4795, 2154);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8640, 4611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11092, 6180);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9212, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8993, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8760, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8758, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8759, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11776, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9566, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9579, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9582, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7270, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4676, 2091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18595, 2091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4348, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16493, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9877, 5299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11226, 373);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18016, 9203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4592, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17227, 8575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1061, 750);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2064, 956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8946, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18451, 9440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9773, 5251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2426, 1162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5727, 2166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5727, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4677, 1014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2427, 606);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (600, 467);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3233, 1018);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3762, 1778);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6063, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6064, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (511, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6065, 1778);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20906, 632);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14385, 7204);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5728, 1459);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15547, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14357, 7196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5487, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1429, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8641, 4613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9016, 1434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17700, 8421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3714, 1888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8642, 4614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6911, 1907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17807, 9038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3788, 1908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7271, 1221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16708, 7416);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7272, 2436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7406, 3073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5488, 2435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7273, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7274, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7274, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16929, 8413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19406, 10012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13682, 9489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10861, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10862, 1823);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18853, 9579);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4678, 782);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4678, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18636, 9504);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17247, 2519);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19232, 9917);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17338, 8643);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18868, 10838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8525, 4506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3652, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5490, 2436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16923, 8408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3234, 1463);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3234, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8331, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (255, 117);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4515, 566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6451, 2808);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11664, 6145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2197, 3117);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22720, 5904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5539, 4750);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16208, 7985);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11912, 4750);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8488, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4679, 1984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3703, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3703, 1853);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6521, 1865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5729, 2536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5731, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17276, 555);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17276, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6877, 2930);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19694, 10164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13330, 10148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17660, 8913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18303, 4096);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18303, 9383);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2310, 1089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10239, 5750);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10239, 6068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21867, 5318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4595, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13685, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11756, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9024, 4719);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20982, 10417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (572, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (601, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1881, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19547, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9774, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15626, 7528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9775, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6713, 2083);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15027, 2776);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2311, 1091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (211, 136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10448, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11260, 6150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18855, 103);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11093, 6978);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2388, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5656, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12647, 6566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4144, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19414, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5491, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5492, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5493, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19410, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19424, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19412, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19428, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5494, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5494, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14984, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14962, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2610, 1231);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15853, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3439, 1792);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3439, 1793);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11915, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17887, 9099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8643, 4615);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6307, 1322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3417, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5732, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6308, 1385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8498, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3440, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3441, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2702, 268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18208, 9342);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (996, 351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (997, 351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (997, 725);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1832, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1832, 351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12869, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6309, 325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22392, 10563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2009, 941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11489, 8482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11489, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6849, 2202);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2389, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6555, 2807);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6556, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6566, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21530, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15498, 4724);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14361, 926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9986, 926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6567, 1934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2312, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17281, 9393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22471, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22472, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19809, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19808, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19785, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22465, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12241, 10856);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14787, 4094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (602, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (602, 1168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10231, 5528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17783, 9009);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18794, 9561);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19167, 9866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10860, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17001, 8448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6259, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (603, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23737, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23738, 10876);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23735, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23736, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4680, 2093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4680, 2094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8550, 2975);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11666, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11666, 7101);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7798, 3672);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23295, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6746, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23296, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23303, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23304, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23305, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23306, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23314, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8646, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23310, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18995, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6260, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6261, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23313, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (128, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17028, 1897);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (127, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9562, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9562, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18865, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1266, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1266, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1266, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1266, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1266, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3195, 840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3195, 899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8218, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8218, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1970, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1970, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1970, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1970, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1970, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21349, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3775, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3775, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (113, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (113, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (113, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8216, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22754, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (537, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8217, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 3928);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7570, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 3928);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8263, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15169, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5606, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5606, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8219, 702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19176, 9875);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8223, 163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14902, 163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14903, 163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6881, 2931);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8644, 4616);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18655, 8433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21064, 10427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21064, 2888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9530, 5106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5597, 2490);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8356, 4362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17536, 8822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19486, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7757, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7757, 1642);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14452, 1475);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14452, 1642);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3789, 1910);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3789, 1909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8501, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19781, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4681, 1909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2313, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7758, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7758, 6364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13689, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18174, 9321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16882, 8368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9769, 5250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13959, 9528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6310, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6310, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4682, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4682, 1313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12304, 4886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7759, 3672);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16265, 7554);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9987, 9205);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22732, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13205, 9437);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19527, 10092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3755, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5657, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9036, 3038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5495, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6311, 888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16760, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18437, 7700);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7278, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7279, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19634, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7277, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7275, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11513, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12633, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7276, 3046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9052, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9052, 4110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9052, 1271);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15849, 7897);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9104, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13693, 3772);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9522, 1414);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5658, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11094, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11095, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19446, 10026);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6568, 1430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16182, 2245);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9056, 4794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2209, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18063, 315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13346, 7127);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18180, 9326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8388, 3921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6312, 2205);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8649, 2914);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7760, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11924, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6569, 2823);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7761, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4683, 2095);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4143, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14879, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22555, 10591);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11645, 6340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8269, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8270, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8271, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8273, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8274, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8272, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4142, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4142, 806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3790, 1911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18981, 5196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2956, 1376);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9707, 5196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15282, 6131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22716, 6131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8746, 4677);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9776, 5253);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18485, 2134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18485, 9454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14224, 7114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9107, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18385, 266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19338, 9988);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3791, 660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5659, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17178, 8548);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13353, 7082);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2428, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17239, 8587);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3442, 1404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19442, 8436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10036, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23241, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7407, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3792, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3792, 1912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3792, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4684, 1307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4685, 197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4685, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23212, 10798);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9777, 5254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7762, 2897);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18878, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18887, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19580, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19581, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8802, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16337, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16338, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16339, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8752, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10012, 7400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17821, 4706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17820, 4706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15710, 7868);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10007, 9355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17169, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15288, 7609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17667, 8923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19751, 10194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5877, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1281, 9590);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1281, 835);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5595, 835);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22380, 10554);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22381, 10554);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19485, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17772, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14845, 2001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6570, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18827, 9571);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8652, 4602);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8652, 4834);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8652, 10023);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9652, 5156);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17740, 8982);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6747, 2452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2210, 178);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16067, 7939);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18707, 6403);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13809, 9585);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6545, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10373, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18197, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5733, 1972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5660, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16235, 7997);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11928, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6423, 2803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8346, 342);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4686, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11128, 4509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7994, 197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19883, 10294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9418, 6916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17366, 8666);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19217, 9910);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8516, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8517, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8519, 10083);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8519, 1098);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3232, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6314, 2759);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6314, 1966);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5496, 2439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17254, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8660, 4622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11931, 7162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19257, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17194, 5291);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18152, 9309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19674, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6572, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6572, 2845);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4687, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4688, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5569, 2472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6315, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6908, 2588);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6908, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6908, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5735, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5734, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12884, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11335, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5736, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9164, 4885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9164, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9982, 5358);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (604, 471);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9167, 4453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8582, 7484);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9169, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8901, 4713);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15470, 4713);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15843, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18781, 3033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5497, 2440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19665, 10140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19665, 2327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4703, 1976);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8662, 1772);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6714, 2887);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 222);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5613, 2501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 222);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (82, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (82, 222);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (83, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (83, 78);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (83, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (84, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1880, 2501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14292, 5071);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (81, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (81, 222);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17428, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (176, 9);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (177, 75);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17320, 6067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7495, 842);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5878, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5878, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2735, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3682, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3682, 1094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16770, 8282);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6573, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2316, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18135, 9310);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19845, 10281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9264, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22093, 10521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11677, 6160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2678, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2678, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2678, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9285, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9285, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5498, 2441);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9496, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3207, 842);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15286, 7438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1861, 900);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3443, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2002, 936);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7763, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2148, 279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2148, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6318, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3008, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6316, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3418, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3418, 279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11129, 2097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6083, 4009);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11939, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15661, 10150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12642, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3793, 325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11941, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4640, 2080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4639, 2080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3308, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3307, 1730);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3309, 1732);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3309, 1381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16671, 1737);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3310, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3310, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3311, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3311, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3313, 1736);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3313, 1735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3314, 1735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3315, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3316, 1738);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3312, 1735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3317, 1739);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3318, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12775, 6575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8379, 4371);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2318, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16590, 8168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9875, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18032, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3794, 1303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3794, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11866, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4705, 1952);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7438, 2430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18116, 9291);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10023, 6376);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2829, 191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7582, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7580, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6319, 874);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (605, 472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9897, 1816);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9903, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9942, 5341);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19376, 10001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7764, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7764, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10124, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10257, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10122, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17258, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18407, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16979, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5689, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18344, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14766, 7218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11867, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3419, 1782);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3420, 1695);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4706, 233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4141, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19724, 10186);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1983, 928);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3796, 1913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3796, 1119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3795, 1913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3795, 1119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10510, 251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18442, 164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19563, 164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3063, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3063, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3444, 1281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7769, 1792);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7769, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7769, 1791);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 2366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 787);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 2352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 2368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4379, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (500, 164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (500, 3989);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (501, 164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (501, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5503, 164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2003, 937);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2003, 413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2003, 221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7689, 3226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5738, 706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4489, 251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4489, 2377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19245, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5739, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7771, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4707, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14746, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5740, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16126, 2073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17446, 8714);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3797, 1125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4708, 1125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17175, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17528, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1417, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1413, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1414, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1415, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1415, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7770, 2305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12511, 6542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23689, 10864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2603, 278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2603, 5);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11099, 903);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15152, 7561);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4596, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4596, 2066);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4596, 2067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5741, 2537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5499, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21866, 9543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5361, 880);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3190, 313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17502, 8794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9030, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9031, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9032, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11101, 646);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9034, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11145, 5902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17427, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17577, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9892, 5313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17815, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7772, 3692);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4709, 136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2056, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7774, 1827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9068, 4806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9068, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22407, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22418, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (606, 474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11104, 474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8938, 4435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4549, 7166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4549, 6384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10623, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3421, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3422, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7775, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5500, 2442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5500, 2443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7206, 2397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19010, 946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2605, 1228);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7687, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6320, 699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6320, 2762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6321, 2762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6321, 699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7210, 3029);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18320, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (240, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (346, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (345, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (351, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (277, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (349, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3814, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3813, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (348, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (347, 153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (347, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (343, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3038, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3037, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3033, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3036, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3039, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1979, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3091, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3095, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3096, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3094, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3093, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13387, 7213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7081, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7081, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18023, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (350, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (350, 155);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (353, 154);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (353, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (354, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (354, 155);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (335, 153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (473, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (352, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (607, 94);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8713, 5067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18487, 9455);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (608, 267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (609, 267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (610, 267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17955, 9154);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (178, 9);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9779, 5256);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23193, 1109);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (611, 639);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19704, 10170);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22445, 6970);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4710, 160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4710, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9735, 5216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22699, 10600);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15013, 9568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17530, 8817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5744, 595);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5744, 259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4223, 4);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4223, 411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4222, 2444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4222, 411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8345, 926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18279, 1419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2970, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2970, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2970, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7776, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14591, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18577, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18577, 2816);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18627, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23845, 10881);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (613, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14368, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12916, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3423, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2136, 852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2136, 2675);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2136, 3775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2135, 852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5362, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22216, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21622, 1883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11287, 1883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17451, 8515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11822, 6341);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3805, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8526, 553);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18200, 9339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17131, 8524);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5661, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18098, 9287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22397, 7785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20324, 10348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17881, 9095);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14837, 7430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8018, 183);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17382, 8674);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11139, 4509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18248, 389);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5745, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6280, 2701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9045, 4774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7087, 2994);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18383, 308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6456, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6456, 1976);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7777, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7777, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7777, 3694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7777, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8458, 1338);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8457, 1045);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8459, 203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8460, 1045);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2390, 1138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13391, 7046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4711, 432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4711, 1252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4711, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12879, 6923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19684, 3954);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19684, 10157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2715, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18540, 9477);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7778, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8653, 1715);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9780, 5258);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6910, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (614, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14806, 7417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1978, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15712, 7417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9246, 5050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3231, 1398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2803, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2802, 1314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2802, 1128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2807, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2807, 1314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2801, 1128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2801, 1315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2806, 1315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2806, 1320);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2800, 1128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2800, 448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5310, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5310, 1128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20176, 10331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9541, 5111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (612, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (919, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6024, 137);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16140, 251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6912, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6912, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23488, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8337, 4299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22557, 6361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19765, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19157, 9861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2391, 1107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9047, 4930);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8664, 3077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8665, 1803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21605, 3753);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7783, 3698);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7783, 3699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2211, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8828, 24);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7711, 3398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8455, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16985, 9351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16895, 8380);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4653, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3807, 1004);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3032, 1284);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9781, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11135, 6080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18350, 9400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1341, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1341, 899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1341, 702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1936, 702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17728, 8971);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15299, 1568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8698, 2374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6835, 1983);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1951, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1342, 261);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4462, 5909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11163, 5909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5747, 1047);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15421, 5055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3808, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18549, 5089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4712, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2744, 1048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4713, 1048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14993, 7489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2731, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (615, 481);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3756, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3367, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3809, 713);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3809, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5748, 340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19233, 9487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7557, 3125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21586, 10441);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13398, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18117, 9292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4714, 81);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17710, 8958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17878, 9090);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22350, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22352, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22351, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14302, 569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7784, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7785, 1027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5363, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5363, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5364, 692);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16601, 2219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3810, 395);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4717, 1014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18207, 9341);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6913, 2942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6913, 2943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4556, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22429, 10575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3220, 1626);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12917, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3366, 325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4517, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8491, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2213, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10685, 1752);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14526, 4440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6914, 842);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9242, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7786, 1403);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15856, 842);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15858, 860);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9221, 2614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9896, 5316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9782, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17721, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13403, 10132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3818, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3818, 1326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6322, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15738, 1333);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6323, 107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3811, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3811, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3811, 631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20, 17);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20, 649);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21, 15);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21, 17);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21, 18);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21, 20);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14543, 15);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (538, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (538, 3023);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10047, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19839, 8);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17596, 8862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6915, 1018);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22408, 10569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4718, 2001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16142, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17943, 4545);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9535, 2728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4719, 6017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15280, 2728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15281, 2728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6246, 2728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5749, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3819, 1918);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (308, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1921, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1921, 411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14387, 7205);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14387, 7206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7787, 3700);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9297, 10313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6916, 2944);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8692, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12405, 139);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6292, 2746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14609, 7115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5365, 2369);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17589, 8856);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6739, 2898);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11351, 6031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10049, 6031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11831, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11965, 6372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5750, 1863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10058, 5283);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18455, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17555, 8831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10048, 6929);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5522, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8335, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13220, 7023);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2118, 2046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2118, 4463);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2118, 5847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8481, 2046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21974, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18915, 9589);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12979, 10122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5730, 2536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (452, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (452, 1695);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (452, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6917, 2046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9041, 2763);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19394, 10010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8719, 359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16741, 8258);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22430, 10576);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14847, 385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (322, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8408, 4379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19579, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7788, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7788, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6918, 1018);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6919, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18489, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18490, 413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18491, 149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8489, 4472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8490, 4472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3424, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4720, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2367, 251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7790, 3038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11967, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22034, 10506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11613, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6441, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5643, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11612, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6750, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6920, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11611, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18249, 1795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18249, 1851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2128, 1004);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14567, 2442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3125, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3124, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5475, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10500, 5675);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3820, 1919);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3821, 1919);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7280, 2292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3822, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9706, 5195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8597, 4541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6324, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18378, 9419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2432, 1164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10053, 7828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5752, 2175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5751, 2175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17685, 8940);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17457, 9197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23201, 9539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5753, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5753, 1295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6921, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10242, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7288, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11106, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11107, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10243, 6424);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14320, 7183);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8437, 2050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8437, 4427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9175, 4931);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18118, 1297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17438, 8708);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23864, 6418);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10208, 6406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8984, 4759);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15404, 7703);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7644, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17454, 9313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5649, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6058, 2677);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6059, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16400, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6922, 1318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11265, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8421, 4416);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10056, 2227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7894, 1951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5754, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18864, 7052);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18864, 2233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18500, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7334, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14647, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7310, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7310, 1010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2352, 1109);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17108, 8508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2214, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1015, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1016, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2606, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2606, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17587, 8855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10760, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10760, 3226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2433, 1165);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8937, 4435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2608, 1229);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2749, 1296);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2749, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4140, 802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3824, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3824, 802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18054, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16733, 8252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22782, 10677);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17520, 8810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17676, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3825, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14325, 7184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18322, 9386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18253, 9369);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15679, 2221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6923, 2221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6923, 2175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19939, 2221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19939, 2214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19939, 1866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8381, 4372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13817, 9466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6715, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18790, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7972, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7973, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9701, 1045);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18804, 9565);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11415, 6056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3425, 1777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3235, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3826, 1817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19111, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2356, 1114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4722, 2106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4722, 1984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2435, 1162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11140, 5899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3827, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22019, 10500);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11974, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11975, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3426, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10666, 5753);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6924, 2945);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17646, 8898);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9508, 5090);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11141, 4886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6329, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6326, 312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7379, 3063);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21916, 10472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4723, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4723, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6100, 2918);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5662, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17403, 8692);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21918, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14331, 7188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3445, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3445, 1797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3448, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3448, 1802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3446, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3451, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3452, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22773, 10672);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7793, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3832, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3453, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3447, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3833, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3834, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4724, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4724, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17456, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6331, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6333, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6716, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6334, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6925, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18786, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16627, 4070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17653, 8904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6810, 1134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17449, 8716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4511, 2516);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4511, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4511, 3668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4511, 10073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19752, 10195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7794, 1838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7794, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7795, 1838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3757, 1896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20902, 10394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17634, 8887);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7796, 3705);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19614, 1882);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4725, 351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4726, 351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22747, 10635);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16160, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8325, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8325, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14885, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15714, 7417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18847, 9386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7870, 2483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2259, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2259, 4227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2260, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2260, 4227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16742, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10918, 1017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7797, 1850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14948, 7474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13509, 312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18608, 566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17264, 8600);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18388, 8600);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14333, 8594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6717, 1963);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15491, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (498, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (498, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (498, 166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (498, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1011, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1011, 2121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1011, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13920, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13920, 232);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13926, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13927, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13921, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13928, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13922, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13922, 232);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13924, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13924, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13925, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13923, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13923, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19164, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13916, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13914, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14548, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14548, 3226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14548, 2121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6032, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6032, 2492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13919, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13917, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13917, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13917, 2492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13915, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13913, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6101, 1831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6101, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18764, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18758, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7730, 3593);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8431, 1844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17971, 9172);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10865, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16835, 8325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22751, 10658);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6611, 1396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3369, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13427, 4886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14790, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14790, 3496);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7208, 405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14365, 4748);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11802, 6326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18005, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15654, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15747, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20198, 10343);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5663, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6335, 1918);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7799, 3706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2853, 1335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2711, 1276);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2712, 866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7281, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9258, 5058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5366, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14342, 7233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14341, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14340, 1098);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14339, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16292, 2400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6336, 1923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6336, 1300);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4727, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3835, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3835, 1923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3836, 1300);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3836, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4728, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4728, 1923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17695, 8949);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6926, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1810, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18823, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14607, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18824, 45);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4729, 1321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8999, 4696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8755, 4696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4700, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4700, 2099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11256, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11256, 2099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18250, 5830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10233, 5531);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12407, 7191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8422, 4417);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18845, 10287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5755, 2539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5756, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2754, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7800, 3227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7800, 2609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7800, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7800, 3708);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16259, 4423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11617, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6337, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18055, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1280, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18056, 9216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5757, 2429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6927, 115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13436, 10336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14347, 7109);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9784, 5254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17098, 3010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9785, 5259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14349, 7194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13361, 7038);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19484, 10060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (502, 221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17918, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23863, 4886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6338, 2768);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14458, 9918);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17618, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17618, 8386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5973, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5973, 2603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3087, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19681, 10155);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1150, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21127, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1152, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1152, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2924, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (616, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1151, 482);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19255, 1267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12644, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19263, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4730, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4730, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4730, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (617, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (617, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2034, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (618, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (619, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (619, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1334, 280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13447, 1076);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5758, 76);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6339, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10607, 10423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10607, 1295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4731, 1295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4731, 1254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4732, 2108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14759, 7396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4449, 1019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4449, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5759, 1140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22372, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (212, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1446, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11980, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4373, 1292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2630, 1375);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2630, 4099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2630, 2067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2630, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2630, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7801, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7802, 213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7803, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7806, 2024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7804, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7804, 3710);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7805, 1175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3368, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2436, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11142, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22366, 10544);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22741, 10630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19240, 3161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12284, 4076);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5760, 271);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3837, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6343, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18747, 9544);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19735, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19735, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18390, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12728, 7195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12728, 1339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18802, 6361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3045, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8724, 1281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3052, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3054, 1045);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8723, 1281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3053, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4733, 2109);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16086, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16087, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16088, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16089, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19413, 2233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19413, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14393, 7209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8683, 2206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5645, 2273);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20455, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6928, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (494, 167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (494, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2720, 636);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2720, 637);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6574, 306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6574, 636);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6574, 637);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16348, 1116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5664, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6209, 2701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11724, 3698);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23274, 8091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18656, 9516);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10855, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16661, 8204);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2382, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12618, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6575, 2847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6575, 584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4609, 2064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6576, 2849);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6577, 2205);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16917, 8402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11143, 5901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3838, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3840, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5761, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20160, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6203, 276);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10916, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10916, 1411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (620, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2626, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2404, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17747, 8986);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2453, 1171);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19882, 8334);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16700, 8238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16294, 1617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1418, 4106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1419, 4106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4138, 2030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4139, 2030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6826, 74);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4734, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4734, 2110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3841, 1735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17557, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5665, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19675, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18716, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18715, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7282, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7283, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7284, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6095, 1831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10033, 5371);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16833, 8324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16658, 8203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5762, 2540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19793, 3709);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19793, 1221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8611, 4591);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11144, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6648, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7807, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6931, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6931, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6931, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6932, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6932, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6932, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4735, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4735, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4735, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3842, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3842, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3842, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3842, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4736, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6649, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6650, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16631, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5763, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5763, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3843, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4737, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4737, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4737, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4738, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5764, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5764, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5765, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5765, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5765, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7808, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7809, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3844, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3844, 1927);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3844, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6651, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4739, 1926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4739, 1925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22363, 10541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9872, 5297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6652, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18216, 9352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5368, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5367, 569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7416, 575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6332, 575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13985, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17927, 9132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4597, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4597, 2068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6718, 1735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17854, 9072);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4740, 584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14996, 584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18537, 9476);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3335, 1746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18351, 9401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18351, 9402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4741, 2111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13175, 6993);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9176, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2964, 381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16667, 8209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (621, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (622, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3845, 367);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3845, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (949, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (949, 4176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (623, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (623, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (623, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6632, 659);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6632, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6632, 434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (545, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (545, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8548, 4523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1122, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9509, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19948, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20292, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20291, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23727, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3761, 1899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3761, 948);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2033, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2033, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2033, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2033, 57);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2033, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18968, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (559, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (559, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (979, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (979, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (979, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (979, 659);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (979, 438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3120, 1326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (624, 367);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (625, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (625, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (625, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (625, 1899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (625, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (429, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (430, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1976, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (543, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17432, 780);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11266, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12410, 560);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4742, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4743, 2019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17713, 8961);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2808, 1321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21404, 10429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2270, 1063);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4744, 132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19289, 9944);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19697, 10165);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3269, 1700);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18061, 1285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13675, 7077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5519, 2453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15296, 7486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6719, 2888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21920, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16870, 8357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17017, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7875, 3819);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6933, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5766, 892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3846, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17487, 5462);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11184, 6939);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7816, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7816, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4745, 1054);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4745, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4745, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19821, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17360, 8664);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17360, 8663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6654, 1168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4746, 1934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7337, 1246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5369, 2020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3847, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19824, 10223);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2454, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6344, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6344, 1568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7571, 3148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17780, 9005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19371, 2523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19290, 9946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14565, 1114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17231, 8579);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18353, 9405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17752, 8990);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7880, 3827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9792, 1701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (626, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10608, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (951, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1884, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18075, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1883, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2403, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19426, 195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3848, 189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3848, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10073, 6157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18632, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5666, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4056, 2000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4058, 2000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11761, 5070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17236, 8584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18432, 8506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6720, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6934, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6934, 832);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22414, 10571);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3849, 839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3849, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3849, 1905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3849, 432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4747, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4747, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4747, 2112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4748, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4748, 806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4749, 806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4749, 1308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18251, 1300);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (627, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22497, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2785, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2785, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2785, 1310);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2810, 1322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2811, 1323);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2811, 1311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2809, 700);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2798, 1314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5767, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18212, 9347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4750, 782);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22373, 10548);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22373, 10547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6345, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6345, 1000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6345, 2774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6345, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3850, 1908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9793, 5261);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3153, 1228);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9611, 7909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11994, 5062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11995, 5062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7779, 3695);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7722, 316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8122, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4751, 828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4751, 2115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4751, 2116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14446, 10105);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14447, 10105);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4149, 828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3238, 1658);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12535, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2727, 1284);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17407, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17407, 2329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9794, 5262);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19136, 453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1130, 777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1114, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19468, 609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19468, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1123, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1116, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1119, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1142, 779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1129, 776);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1148, 161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1134, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1127, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1132, 777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1137, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1136, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1147, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1133, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1135, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1131, 777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (491, 170);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (491, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1149, 161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10076, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10075, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1182, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6303, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9715, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1141, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1140, 778);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1138, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1139, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1128, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1128, 1822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1118, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1146, 781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1145, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21888, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4165, 236);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4165, 1779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4165, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11533, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22701, 8609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13203, 7092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23186, 10701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18014, 9201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18014, 9202);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11042, 5980);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8705, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11045, 1166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17692, 8946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16539, 8142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23724, 10868);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19386, 10005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7569, 3146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4752, 2117);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8537, 4515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2151, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17966, 9167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7820, 1850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23277, 10812);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3851, 143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3851, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3851, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13468, 2080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6189, 3923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8214, 3701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2876, 1351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18677, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17871, 8421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16844, 8331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3852, 1930);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5768, 69);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4753, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17978, 9176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17693, 2561);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11271, 175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14615, 114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2237, 1047);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2237, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2235, 1122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2235, 217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2235, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4760, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16566, 8155);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3456, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21417, 10430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8394, 1065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6103, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15781, 468);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16672, 8212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17543, 8212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18091, 676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8625, 4599);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11150, 5906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2455, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7821, 1784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3427, 1784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6087, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6087, 4140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6089, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6090, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6092, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6092, 2379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9813, 78);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16426, 8091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8583, 916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10237, 78);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19772, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11306, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5771, 2093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5771, 2541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14840, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18870, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5773, 2541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14616, 7269);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5769, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5770, 4);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (628, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18872, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4538, 3720);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6722, 385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12525, 6553);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2917, 1360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2917, 5837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5062, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (629, 488);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13222, 7025);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15945, 7917);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7904, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17767, 8998);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11393, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11392, 2946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11392, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6935, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6935, 2946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3853, 592);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3854, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7897, 3844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3855, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6346, 1267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6802, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5774, 2543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3222, 1640);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12014, 9732);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4460, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17917, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8062, 4013);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23249, 4826);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9796, 5263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10080, 5751);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15551, 1427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9165, 2039);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17659, 8912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4761, 2124);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15883, 697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15878, 10161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (630, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (631, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (632, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8192, 4116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8718, 4116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3856, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3856, 1934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11216, 1934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11216, 1759);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18873, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5775, 2544);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11713, 6189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11714, 6190);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11715, 6189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11716, 6189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11717, 6189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3006, 1336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3006, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3006, 789);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6723, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4762, 2125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4762, 2126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19234, 9914);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22462, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7822, 1851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6936, 786);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4756, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16859, 8347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14988, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11727, 2523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16196, 7978);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17907, 4461);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18554, 5905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6490, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6518, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15905, 7907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2358, 1118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10083, 1118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11366, 3055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18070, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15913, 797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10429, 5548);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14999, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22036, 7218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13093, 6950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17744, 6950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8425, 4421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6094, 3721);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6094, 6365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15158, 393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7823, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7824, 1329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7824, 608);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7824, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3428, 1785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18408, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10737, 369);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5588, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9046, 5456);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23245, 10807);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7873, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16147, 468);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6937, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19433, 2050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7856, 3774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16043, 926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18744, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1804, 335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1802, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9594, 606);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18974, 10809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6347, 395);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23573, 6395);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10228, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4516, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4371, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16825, 8315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10235, 5533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19838, 1715);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3758, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3458, 1804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3459, 1804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14702, 7319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4765, 1942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4765, 2131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6348, 819);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9723, 5209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9881, 5306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5776, 1852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22710, 10610);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1010, 943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2931, 943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2154, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4213, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4214, 2451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4214, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10094, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9066, 943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16604, 943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16602, 943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8598, 4542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4610, 2074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15719, 110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7830, 916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7830, 3726);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20458, 3726);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20458, 916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18354, 9406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20457, 3726);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20457, 916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17565, 8840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18151, 9307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17494, 7984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3083, 645);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3083, 377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17527, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (634, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19335, 18);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19335, 377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6038, 377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21930, 1176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15284, 2262);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10082, 6941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16341, 2262);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14465, 5676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9607, 3031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17121, 8113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19118, 1192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5589, 2483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17892, 1493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6938, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6938, 2670);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15707, 2483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4766, 1014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18064, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18065, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18066, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5777, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9797, 5264);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2474, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3460, 5);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3461, 5);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18784, 9539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6724, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6724, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7511, 635);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15563, 7847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10095, 2309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5370, 2352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18355, 9407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6939, 169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (636, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (636, 850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19287, 1744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19288, 1744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9764, 2902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19756, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19717, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17141, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16218, 7988);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15083, 4754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21923, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (637, 492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (638, 492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (639, 492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5779, 132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17346, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8146, 4070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9864, 5293);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16820, 8309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4767, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14618, 7115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7573, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22211, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17909, 9116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18597, 9246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10349, 5545);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18484, 9453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16049, 7486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17678, 8935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13209, 7017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6725, 2890);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6725, 1788);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2999, 1401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9798, 5265);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10097, 5265);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5371, 2064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5371, 829);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5371, 2370);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5371, 2371);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2457, 1172);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14590, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19537, 787);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11152, 5907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16085, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19677, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3860, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3859, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3861, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8453, 1322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8454, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4768, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4768, 2133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7392, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6751, 2163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6751, 2904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19475, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21939, 1907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (344, 138);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5875, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11749, 6216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2812, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9283, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15762, 493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15762, 7881);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (640, 493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17861, 9076);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10100, 6940);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8426, 2460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9984, 5360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5780, 397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5781, 2547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8277, 2429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9799, 5266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7967, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (641, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (642, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7969, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7969, 3924);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7968, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (943, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (561, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (561, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (561, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (561, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12634, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17340, 8645);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5782, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5783, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6941, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4541, 810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8280, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19585, 10110);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8282, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8281, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8202, 1254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17725, 8968);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10851, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4446, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6350, 1177);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17232, 8580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (643, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4203, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16759, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18940, 9725);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5784, 2550);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (644, 53);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (645, 495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (646, 495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7907, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7906, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6752, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7908, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7909, 896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9800, 926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13831, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16858, 8346);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3071, 1444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1901, 1504);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (647, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (647, 3);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (707, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (707, 635);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (321, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (321, 54);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (670, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11571, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21205, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (649, 496);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (649, 4288);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (650, 4288);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (650, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (295, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (676, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (652, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (245, 142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (648, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (959, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (833, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (759, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (706, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (664, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (663, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18165, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18165, 1923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18165, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18165, 9314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18165, 9315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (340, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (900, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11678, 6162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2447, 1169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2446, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2443, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2445, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2441, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2439, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2440, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2442, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17607, 8871);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5668, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5668, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9801, 5267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11153, 9520);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (653, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (653, 631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (477, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (477, 631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9760, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (879, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (961, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (275, 498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18890, 9017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11154, 9485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12412, 560);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (654, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1369, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8445, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8444, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1370, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1371, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11671, 6153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23571, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11245, 5955);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21926, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2458, 1173);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3862, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9006, 182);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16999, 127);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4701, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4702, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14148, 7098);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6943, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6942, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4770, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6726, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17195, 2413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6727, 2891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5634, 1935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3863, 1935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3864, 1935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5785, 1935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5786, 1935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17729, 8972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5669, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16107, 7951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1286, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1424, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1425, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18820, 9569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16889, 8376);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15303, 7619);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (655, 304);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2616, 304);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11278, 6943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7567, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15446, 7720);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9572, 6942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18736, 6942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16670, 8211);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5787, 485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5787, 1330);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2614, 1234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6404, 2797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15163, 7567);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15305, 7622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4598, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9545, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6351, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11300, 781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20192, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1336, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11333, 6001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9802, 5268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3839, 1924);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18765, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9921, 5339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11238, 10803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23236, 10803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3241, 1662);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17826, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16068, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3060, 1438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3060, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3062, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3062, 1438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3065, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11359, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11360, 1438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11360, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3061, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3061, 1438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18449, 9436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3064, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6728, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2621, 1238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2621, 141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7825, 3668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11362, 6034);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4771, 1314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4771, 1313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19528, 8532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19528, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20124, 10312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16810, 8303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12011, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12011, 10088);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12011, 10087);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5372, 1181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11490, 2190);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11608, 5846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11608, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11608, 5996);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11601, 6112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11319, 5846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11600, 5846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11600, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11000, 5846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11000, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11318, 5846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11318, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8689, 4626);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12012, 1067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10107, 5283);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11048, 594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10428, 6948);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5788, 1411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5788, 2014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8466, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18504, 9464);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18846, 9539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18547, 5907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4772, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23203, 4639);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16200, 326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6729, 2892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7544, 2434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18535, 9476);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18382, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7826, 3723);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8484, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17230, 8578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11369, 6116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15173, 7568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13215, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13214, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (305, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13213, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (242, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9362, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5637, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5638, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5638, 2512);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2612, 1232);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4773, 2135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4773, 2136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (241, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9098, 4821);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16957, 8432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (297, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (297, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (297, 149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (297, 55);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1372, 150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1372, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (307, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (307, 150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2944, 1370);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12306, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7612, 5985);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4137, 2029);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11298, 5988);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2896, 733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2897, 1359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7333, 6154);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23843, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11341, 6016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16095, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15003, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14554, 7251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16514, 8132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11554, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5789, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1185, 401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1186, 401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1198, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1199, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1197, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1188, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1187, 401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1195, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1196, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8038, 3957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4775, 2131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1193, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1190, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1190, 814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1190, 1326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1194, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1192, 401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6945, 2950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6946, 2950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6947, 2950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1189, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1191, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1191, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1191, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22516, 3035);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16327, 8050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15389, 7693);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11049, 6132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14946, 7472);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4776, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4611, 2075);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13833, 9510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4777, 2141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9803, 2141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19291, 2141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16865, 8352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19569, 10102);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17214, 8187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1805, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1806, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1807, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1808, 1263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1809, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1809, 2893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17105, 8504);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4778, 2142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17112, 8512);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14629, 7198);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18732, 9540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9259, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9259, 1758);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11374, 9584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11375, 9584);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22038, 10511);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15035, 1448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7595, 3158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9809, 3158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5790, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14941, 7468);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7872, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6784, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5791, 194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5373, 2372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4242, 2372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21931, 10477);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15005, 7497);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11750, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11751, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11746, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4757, 2120);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22002, 10496);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5792, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15863, 3062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5793, 685);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7587, 3152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8763, 4705);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4136, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2407, 799);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20474, 1044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20474, 10376);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21932, 10328);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9810, 5270);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19165, 343);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13188, 1398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7902, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7901, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10116, 6937);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18911, 9588);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17569, 7438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6948, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18556, 5905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7285, 3049);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13535, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18760, 708);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9739, 5220);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11176, 9583);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10230, 768);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10635, 5757);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17173, 1933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5794, 1804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5794, 2551);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17848, 8668);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1126, 4994);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18977, 58);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10070, 9734);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13521, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4779, 886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10163, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10163, 1783);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10163, 1468);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10163, 901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3429, 665);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3429, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3430, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3430, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2477, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2922, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2922, 5891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2918, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23850, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (656, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7840, 295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7840, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13541, 7045);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6753, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17027, 8461);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18709, 1348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3084, 1456);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2967, 5070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7886, 3835);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13365, 1434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18499, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22691, 9483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (296, 122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (471, 122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (471, 158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1268, 122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1268, 158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10117, 249);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (336, 125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4764, 2130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16297, 8025);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11207, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17893, 1493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8483, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7827, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7827, 3724);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15198, 7577);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11648, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3121, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3121, 768);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2460, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10120, 6130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10120, 737);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11281, 3694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5795, 2552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5795, 2553);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19268, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4780, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4780, 805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4781, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4782, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6352, 2181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6353, 2181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6055, 442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8427, 4423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19086, 9839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22708, 10608);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16812, 8304);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2593, 3822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17372, 8667);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16346, 8057);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6900, 2937);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9811, 5271);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17658, 8911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17727, 8970);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3865, 1937);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3865, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3866, 1938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3866, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3866, 1939);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3866, 1940);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9812, 9345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6949, 1622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6949, 2951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9816, 5277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9061, 4796);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23164, 1531);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3867, 1315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21977, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23300, 366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2461, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5796, 2159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4783, 2143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4783, 2144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7497, 3818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8529, 4509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3462, 1805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3466, 1805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3465, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3465, 1805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3464, 1805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3463, 1805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9761, 5226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12394, 8770);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21674, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7828, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12260, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19740, 323);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9876, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3431, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3431, 1786);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6951, 2327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19252, 1906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9190, 2327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9190, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12558, 7166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11192, 4532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18998, 522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1877, 908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15447, 7721);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20268, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11028, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22809, 10690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22810, 10690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18748, 9545);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8693, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16937, 8420);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17431, 8701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4319, 10157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4319, 7053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14633, 1356);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4758, 831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17691, 8945);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2462, 1175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4461, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8132, 2374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8201, 25);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8201, 1281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8201, 865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6657, 1321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3868, 1834);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16392, 1266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6952, 2953);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10136, 6949);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18953, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3679, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3678, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3681, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3467, 1806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6658, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3680, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6779, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6780, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5799, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5800, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5801, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5802, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6953, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6954, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6955, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4789, 1806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4789, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6659, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11641, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2663, 399);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2663, 1257);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17484, 1460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6956, 2148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6957, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5803, 2148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5804, 2148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5806, 2148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4790, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4790, 2150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4790, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4791, 2151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4791, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22371, 10546);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17800, 9029);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9694, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9694, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9708, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7842, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7842, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11745, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23309, 1348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17429, 8699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2471, 1178);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11386, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11386, 6431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11387, 1166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11388, 6431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18985, 10349);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15990, 5091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14789, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17107, 8507);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6365, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6366, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6958, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6958, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18254, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6789, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6788, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6660, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18193, 1216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2111, 1065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (657, 87);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5868, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6367, 1263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12034, 10062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11869, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1214, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1215, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1215, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11806, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18137, 1779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14197, 9457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9817, 5278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9818, 5278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10139, 5278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16890, 8377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16668, 2776);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2369, 1125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2369, 1124);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2369, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2369, 39);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17238, 8586);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11390, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (658, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (659, 500);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3468, 343);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8428, 4424);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12990, 3193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6959, 17);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6959, 2129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9260, 1704);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9260, 5062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9261, 1704);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9261, 5063);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17109, 8509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2155, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2368, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20341, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22502, 8067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19924, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8222, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11133, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23158, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21988, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21040, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13571, 7408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3869, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2466, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2465, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4220, 1170);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4220, 2121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10166, 805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5374, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13543, 7048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17217, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3870, 1943);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8965, 7912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2012, 944);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4219, 2955);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4219, 4758);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8185, 4102);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2467, 1176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2399, 543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18335, 9389);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10165, 8665);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10108, 6158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1270, 825);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1269, 7416);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1269, 825);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18638, 284);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4135, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20013, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2125, 373);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9118, 4828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (660, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5808, 434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17305, 8615);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8452, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17032, 8464);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (661, 503);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (309, 24);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8981, 4754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4793, 2153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17954, 9153);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15145, 5034);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11830, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11830, 5295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11829, 5295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11829, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11504, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11504, 1952);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17400, 4740);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14527, 3496);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11389, 6431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4794, 1748);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3871, 1817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3871, 379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6368, 379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6369, 543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6369, 2778);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6661, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18703, 608);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19721, 8589);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11024, 5851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11025, 5851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11327, 5998);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10169, 10152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1533, 431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7551, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3267, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19549, 3150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (193, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15862, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3046, 1431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20750, 10378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20751, 10378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5593, 2046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23891, 10895);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19561, 10019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17245, 6003);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17245, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2117, 116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11575, 6090);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7662, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21953, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (576, 6997);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (576, 243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3769, 530);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3677, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4796, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4796, 1303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18358, 9412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19588, 431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8429, 4425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10170, 9304);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18866, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17159, 8537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18078, 8537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14949, 7474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8442, 4430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18440, 9434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (536, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7329, 902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7329, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19399, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19397, 2197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2902, 423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1833, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16822, 7563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5809, 413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14851, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2134, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2134, 163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20336, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1387, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13575, 9148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1388, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1389, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1392, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1383, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11725, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7286, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8211, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1395, 4462);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1391, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1393, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11718, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1390, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1396, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5448, 2415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18362, 2415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11596, 3763);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4797, 774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4797, 660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (496, 1099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (496, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (496, 211);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5924, 1099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5924, 1611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3199, 1611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19521, 1611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4798, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14403, 7214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (37, 11);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (38, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1216, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10173, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (985, 7);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (985, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21960, 3226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8349, 4352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16544, 4352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11398, 7217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3872, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5810, 254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6960, 2612);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19582, 10106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18389, 1532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14726, 7385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7864, 3798);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6961, 893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6962, 2957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2354, 1113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7564, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10171, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8486, 4470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8486, 4469);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4799, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22434, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1276, 831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9245, 2923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13381, 7040);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9819, 5180);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22730, 10593);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3139, 563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1919, 434);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1919, 1099);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17916, 9123);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22738, 10628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4800, 2156);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4800, 2000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4800, 2157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4800, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3082, 1364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15011, 7502);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1241, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15486, 7780);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2488, 560);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19873, 10292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23243, 9512);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4801, 1267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22388, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13578, 6980);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8561, 2523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18121, 305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18121, 648);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (665, 648);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (665, 305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21634, 9935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17897, 9106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19564, 170);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9376, 5080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9377, 5080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11027, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11026, 5851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11026, 1018);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23205, 1352);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22779, 10674);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14760, 7397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4270, 4115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9073, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5811, 933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6963, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2249, 1051);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2250, 1051);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7699, 1243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8470, 4444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4802, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6755, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2661, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6067, 1192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5651, 858);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (768, 639);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19153, 9859);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1056, 744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11566, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11566, 6085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8447, 787);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17876, 1389);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8230, 347);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17688, 8104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18217, 9353);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18217, 9354);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17940, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17940, 3037);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (261, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (262, 210);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (264, 210);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (256, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (256, 214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (267, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (268, 216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (258, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (259, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (259, 214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (269, 216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (265, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (266, 210);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (252, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (263, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (263, 217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4803, 2158);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3874, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3874, 1408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3875, 1408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3875, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6964, 2558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6964, 2959);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2592, 1224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2505, 1084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21928, 10475);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9882, 5307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3873, 1839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17459, 1840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1873, 750);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8677, 4638);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8676, 2847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7889, 3837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7888, 3837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10177, 6521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17722, 8966);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10184, 150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8190, 150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17611, 8613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17303, 8613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1973, 315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8678, 4623);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16242, 7539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20326, 10351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (666, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9349, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4134, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9353, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5812, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5812, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5812, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5812, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9351, 149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9351, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9350, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9348, 2046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1273, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9352, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17277, 9194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8416, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11676, 6159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16204, 7980);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3236, 1655);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5837, 2560);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9279, 239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19884, 10297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5520, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5520, 2457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5521, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5521, 2457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5506, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8766, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3175, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15126, 7542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4341, 287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4341, 141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4341, 2373);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5670, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9914, 836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9914, 5324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17987, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18067, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5619, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5619, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12046, 1486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17813, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17019, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9117, 4827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11448, 6058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11448, 6059);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13550, 6058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13550, 6059);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6370, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6371, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6372, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3469, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5060, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19300, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17224, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10238, 5541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11291, 5984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16642, 8191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18609, 1297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6664, 2257);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7287, 45);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17187, 8550);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21948, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21949, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21950, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21952, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21951, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1872, 903);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1872, 506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (667, 505);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (667, 106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (668, 506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2491, 903);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (669, 507);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (669, 361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18982, 10027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4518, 1402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11870, 6364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18605, 9372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18610, 566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17116, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8098, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6798, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9820, 2586);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9820, 2182);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8998, 5053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7261, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7260, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18516, 474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22410, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15737, 7872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1939, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19587, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11174, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2651, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2652, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2716, 839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2717, 1279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18611, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17842, 6017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1168, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1168, 3);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1170, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10686, 3);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1169, 785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16991, 8444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3373, 1765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16230, 4793);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14362, 261);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10858, 1196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (41, 25);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (41, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19601, 2683);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (43, 27);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9740, 8367);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9740, 6103);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9740, 27);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9533, 27);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8287, 25);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (42, 25);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9498, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9498, 27);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5591, 27);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9274, 9446);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9274, 4132);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6279, 2701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18081, 9277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (134, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (135, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (136, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (112, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20022, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20734, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4612, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6827, 1831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6827, 2924);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6827, 2839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8798, 4757);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7395, 3066);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11827, 3115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13170, 6987);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4627, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16925, 8410);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6373, 1325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2813, 889);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2814, 1324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2815, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8003, 189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3470, 1752);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (125, 59);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (125, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (126, 59);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (246, 59);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (120, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3182, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22384, 10557);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17133, 7996);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9821, 5279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16069, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23881, 10890);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6965, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17739, 8981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2723, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10912, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10913, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8234, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18219, 233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3876, 1330);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17064, 8479);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2636, 6364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2737, 1288);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2736, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2736, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17593, 8229);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17686, 8941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17084, 8490);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12932, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19222, 9911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9521, 5097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9286, 2209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6374, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6375, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6376, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4133, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4133, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3877, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15705, 2676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8614, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8614, 2827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19678, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3878, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13561, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5081, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8613, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19737, 10188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18662, 9466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16152, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8820, 4699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6377, 2779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16070, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15001, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15000, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11345, 6025);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9822, 5280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3027, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4132, 663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5813, 663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8701, 5133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19591, 9603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8309, 4238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16636, 8188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14299, 7171);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4338, 4046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3879, 448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6378, 1847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17671, 8402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17671, 8931);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18068, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (524, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9928, 115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7966, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1902, 221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11695, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14693, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14693, 6567);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4805, 1119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14650, 3698);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22700, 10603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22700, 10602);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22700, 10601);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6542, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19351, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11403, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9823, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9824, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9824, 5281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16276, 7438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6541, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8291, 4231);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8292, 4231);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8293, 4231);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11694, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18370, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7297, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7298, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11594, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7299, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11610, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (533, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14572, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14569, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14568, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14571, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11118, 19);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9825, 5282);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4806, 1268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17758, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2926, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17818, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11083, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6756, 797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17172, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17829, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5187, 197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5187, 1268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4807, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4810, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4809, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4811, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4812, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3880, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3881, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3882, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17753, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5218, 1693);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (540, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17765, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2473, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10791, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (360, 95);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (360, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3883, 741);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3883, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9814, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3885, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3773, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6380, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6380, 2780);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6381, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6381, 2780);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3886, 800);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3886, 819);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3887, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20390, 426);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17827, 9048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11348, 6027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (391, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9609, 5136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16806, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13664, 7071);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16206, 7984);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4759, 2121);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4759, 2122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18364, 9413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15924, 7910);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15924, 7911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (671, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22215, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17437, 8707);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13178, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2905, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5082, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14177, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11800, 510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16482, 8116);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18543, 6176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18720, 3048);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2679, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2679, 1259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2680, 1259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1099, 775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1098, 775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3004, 1406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1254, 795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2888, 1355);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (179, 9);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18368, 9415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6757, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6757, 2905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4813, 2159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9636, 4895);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17020, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1666, 2433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6966, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1675, 2433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1674, 2515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1676, 2433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1673, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18337, 9165);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17163, 8541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15014, 7507);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23839, 8530);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15391, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3888, 1850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4816, 1952);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6382, 1850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8684, 4624);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11668, 9308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22733, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3114, 1467);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1857, 717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9380, 790);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13601, 1234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16641, 7619);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16767, 7619);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6491, 2819);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23239, 1436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18612, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6383, 1814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6967, 2431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6970, 429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11537, 1639);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3152, 1005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3152, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17832, 1005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14655, 7275);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1089, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1088, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1096, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4817, 775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1090, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1092, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1094, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1100, 766);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2923, 766);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1087, 855);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5692, 1774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1097, 773);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1093, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1095, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3889, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3890, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3891, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1665, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1665, 2400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18603, 9372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18528, 9473);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 1169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 4111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (673, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7351, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13168, 6983);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (280, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (280, 221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (280, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (280, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6968, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (672, 187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3471, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3471, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (312, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (312, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (312, 4115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (312, 230);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (312, 187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16116, 7954);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22431, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3099, 966);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16987, 8598);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16640, 8190);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18430, 8190);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7677, 3224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3892, 1315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7974, 1865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7977, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3473, 1808);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3474, 1274);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4818, 883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3893, 1808);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3472, 1808);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18041, 5318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18041, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18042, 1260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3894, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19383, 10003);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2963, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17723, 8967);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7998, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6787, 1753);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6790, 1753);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6384, 2781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6384, 775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6384, 2782);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5968, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5968, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4699, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18007, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5375, 1181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19151, 9857);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16127, 7956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18189, 6393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6340, 1613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3858, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13677, 7078);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13677, 9729);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5680, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15790, 1305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7563, 3127);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14872, 7444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3478, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3478, 803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3476, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3475, 5953);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11068, 803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3895, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4499, 1831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5814, 813);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5814, 1693);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15489, 1316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17324, 8633);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9189, 428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18588, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9092, 2040);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9092, 1411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9092, 1041);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9092, 5884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9093, 3906);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9093, 5283);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19594, 10117);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5376, 2374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5442, 2410);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16479, 8113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9091, 594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9091, 5885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17947, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18104, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18104, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (78, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1887, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19135, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20188, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20189, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (76, 223);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (76, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17465, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17462, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17466, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17464, 2);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (77, 222);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19314, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4131, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2558, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2559, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2559, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2560, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2565, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2562, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21701, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2575, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21196, 1119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2583, 1221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2563, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2563, 1216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2564, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2566, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2253, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2252, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2254, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2569, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2569, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2548, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2578, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21426, 9862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2557, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2570, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3896, 1309);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2567, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2568, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2544, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2545, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2546, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2550, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2576, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2576, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2577, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2577, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2580, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2572, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6387, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2579, 617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2543, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2574, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2561, 1215);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6386, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19308, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19310, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19311, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19309, 2676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7408, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19449, 10676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2573, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4819, 1690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6791, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18226, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3897, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17931, 6017);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14662, 7188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17377, 8669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2968, 1382);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2968, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16764, 8280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9214, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1824, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1820, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1820, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6388, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17460, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1822, 883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1822, 1095);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1816, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1816, 2254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1816, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1817, 4242);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1817, 2254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1819, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1821, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1821, 2161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11667, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11667, 2161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15888, 7905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5579, 2751);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4393, 2751);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17461, 1976);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6389, 1249);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6097, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1812, 2161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1812, 4141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1812, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1812, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1813, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1813, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1814, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1814, 4242);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1814, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1818, 4242);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1818, 2254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11406, 1882);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3002, 1060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3002, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3968, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16300, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23292, 10814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21959, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14529, 2186);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14529, 1339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4248, 2419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3898, 1948);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14660, 5058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14661, 5058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3264, 1696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18617, 141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2571, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5671, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10195, 6569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10195, 6570);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2487, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18568, 5908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5467, 2378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22705, 6570);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5815, 2555);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6385, 1336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11635, 4010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11635, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11663, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8576, 831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8772, 6995);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8770, 2259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8769, 2259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16876, 8362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22492, 10582);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22494, 2946);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22493, 10582);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9835, 3207);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5032, 2243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19083, 3697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11076, 10332);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4821, 2162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4822, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4820, 2162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4820, 136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15227, 2452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11234, 2452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21561, 10440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7336, 902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11712, 6188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20179, 6188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3104, 1465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16071, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6971, 2960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6971, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6971, 2961);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6972, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4823, 10443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6973, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1962, 3207);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1961, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8702, 4631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11331, 2547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3899, 1949);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11155, 746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2489, 1182);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3672, 1864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3672, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13841, 9466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23332, 10826);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11515, 6070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16772, 8284);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17835, 9056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8205, 4144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6390, 1617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12059, 5062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5817, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13231, 7033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1940, 1213);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3900, 189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3900, 901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (675, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (675, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6391, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6391, 1667);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4824, 650);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6758, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (554, 433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12265, 6409);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9086, 7835);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8823, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9704, 5193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6098, 195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3901, 1523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3901, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6395, 1642);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14906, 7448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11488, 6064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19546, 10832);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8753, 4699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14945, 7471);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2506, 1193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16356, 7448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19223, 9912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6392, 2793);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3477, 1810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19353, 9997);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3336, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11247, 7900);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2741, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6487, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6488, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2904, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2904, 1021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8451, 4435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3902, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19853, 10697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17219, 8572);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14664, 7159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18496, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18495, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (957, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (957, 1134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (342, 224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (342, 225);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (342, 226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (342, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10680, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10680, 224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6393, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (490, 224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (490, 232);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (490, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (490, 233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (956, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (956, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (956, 1134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8504, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8505, 212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8505, 224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8505, 4493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4130, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8503, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18498, 9461);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6974, 2428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (85, 234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (87, 178);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (87, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (86, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11332, 436);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23882, 10891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3043, 1428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17417, 1428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3202, 1428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19742, 1802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19742, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2529, 606);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9827, 5285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (35, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (36, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12278, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15199, 7578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19129, 9849);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (304, 235);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17834, 9055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3798, 1191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2503, 1191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3801, 1191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3799, 1191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3800, 1191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3800, 5886);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17419, 8540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9683, 5145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15317, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22459, 10580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20395, 10870);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (329, 239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (329, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9269, 239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9275, 239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5988, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9271, 239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9270, 814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18013, 10335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13657, 1952);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19814, 10218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2017, 1071);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17192, 8557);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8849, 1065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7829, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (674, 474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5819, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18862, 916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4486, 2378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18374, 9418);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9767, 1065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5629, 470);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15127, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6792, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6743, 2902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17006, 7040);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23504, 10851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8850, 1065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17444, 8712);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21957, 1348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21958, 1348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18746, 1348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19827, 10223);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19828, 10227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2866, 1344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9759, 314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11710, 6187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5633, 2510);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17738, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16707, 1425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2130, 5228);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1340, 3011);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6341, 2770);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14992, 743);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17051, 8476);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19225, 9913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3042, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15445, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14670, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14665, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14671, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14669, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14666, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14667, 1130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18937, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2981, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22744, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15161, 7566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6842, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6843, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2982, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2983, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2984, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3007, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5820, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19618, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6975, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6832, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6834, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6833, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6976, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13669, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6394, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6394, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19267, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6977, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6977, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6978, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6978, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6982, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6982, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6983, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8324, 4281);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8324, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15850, 7898);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8703, 1431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16504, 1661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16647, 8193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8707, 2374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8706, 2374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8706, 1848);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14744, 7394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6706, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6979, 1856);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6230, 2723);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4825, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4826, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4827, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4828, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10619, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5829, 661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5575, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6984, 555);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4784, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19918, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9206, 3453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19404, 3453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7719, 3453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14765, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21554, 10437);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5377, 829);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8931, 2973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8931, 2549);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8931, 4723);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8932, 2973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8932, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8934, 2443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8933, 1189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8935, 2973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9427, 5084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9504, 5084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9505, 5084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5583, 2481);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5585, 2481);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11001, 2187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11002, 2481);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5584, 448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11579, 2601);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4829, 1220);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4829, 836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17867, 9083);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23499, 10848);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2899, 1393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2899, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7202, 3024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11229, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3480, 88);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3480, 91);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3481, 88);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3481, 1812);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3479, 1250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3482, 1169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19769, 88);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19769, 5340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2016, 945);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2007, 941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17480, 8776);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (574, 448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19682, 811);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6665, 1666);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6665, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5378, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9188, 811);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5379, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17578, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19448, 10821);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9514, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10903, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9515, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17514, 8804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16713, 131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22212, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18240, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6396, 901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7693, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3483, 1813);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2816, 189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2816, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2817, 1311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2817, 1313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2722, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19139, 9932);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14377, 7200);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8392, 1108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8392, 9493);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11159, 834);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16533, 8043);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6986, 2964);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6701, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6701, 2465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15736, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15312, 1005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (677, 513);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3903, 706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22765, 10669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1361, 2028);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17161, 8539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19830, 1033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1360, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3904, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18726, 9536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11181, 6151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11573, 6089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9828, 5286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6987, 2966);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7995, 1303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7995, 1923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16729, 8248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17350, 8652);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8070, 4016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2747, 161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2748, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18127, 9299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18127, 9301);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15836, 7896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3151, 1495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17402, 8691);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18340, 2527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16680, 7448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8715, 4635);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9137, 828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8612, 4592);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16666, 8208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4599, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11729, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11567, 1056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12062, 7237);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11510, 6069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18754, 9528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9109, 1728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15442, 208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2955, 208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14968, 1305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8596, 4540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17210, 8563);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14395, 7837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14395, 7838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14395, 7839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14395, 7840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14395, 7843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19133, 3097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10274, 964);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16121, 157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14737, 1696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16072, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2979, 1462);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4830, 1990);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4830, 433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4831, 2166);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (89, 178);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (89, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7512, 575);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7512, 635);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (302, 240);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1608, 2846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1607, 2846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1606, 2846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1609, 2846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18470, 9447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13207, 7016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (441, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (441, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18379, 9420);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (678, 240);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19249, 9934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6988, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1947, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1345, 2506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1345, 280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18772, 6361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1903, 315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9278, 5145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4832, 803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4833, 803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9634, 5145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11550, 5145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16280, 8022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18669, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6666, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (679, 515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (679, 631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5647, 1212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17157, 8535);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (680, 187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (680, 657);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (680, 221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (680, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13549, 7053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17741, 4726);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17741, 7140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9699, 5186);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17138, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17137, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4834, 248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16842, 8329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17606, 8869);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2538, 795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13201, 5324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13201, 7014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13202, 5324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13202, 7014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13216, 5324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11182, 8595);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1003, 88);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22820, 9521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3138, 201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3138, 1486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3086, 1458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7380, 3069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18076, 9217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17802, 9032);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19867, 10288);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11425, 6541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16867, 8354);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19615, 10127);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22346, 10530);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1509, 868);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1510, 868);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6765, 2907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23496, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16576, 8161);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11657, 6142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16939, 8422);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17391, 8684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6667, 2875);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8340, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5821, 1326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5821, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12426, 560);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7499, 860);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4835, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (63, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (63, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16158, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16159, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15557, 2803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18761, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15536, 7795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18567, 5908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8252, 4180);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9830, 5287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6668, 2876);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8206, 4145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8207, 4145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8208, 4145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6669, 2878);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23894, 9426);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6989, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5380, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5380, 2376);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5823, 1992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5824, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6397, 1822);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3905, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8906, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3906, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5381, 2351);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5381, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8834, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5825, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8833, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7881, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8847, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5826, 1992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8841, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5382, 2377);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6398, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6793, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6670, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17102, 8501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4477, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5383, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3907, 1951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6766, 2908);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15424, 7717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10905, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6990, 1913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14388, 1184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17880, 9092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18544, 720);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15954, 7922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5639, 2513);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8923, 5067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11407, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8607, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14716, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14709, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14717, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14718, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6767, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6768, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18224, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13141, 6960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15395, 3159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18426, 9429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11655, 6141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18945, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17666, 7701);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6653, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3070, 1443);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (681, 516);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2022, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (682, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (683, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (743, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (684, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1904, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10282, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19298, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19299, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10283, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19294, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10284, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10285, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16967, 8438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (685, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2584, 853);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1320, 853);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9267, 853);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16477, 8170);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16477, 8171);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18397, 9427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20362, 10448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19596, 739);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18037, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6399, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10904, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8968, 4751);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (282, 241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (282, 242);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (282, 243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18293, 8021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4208, 243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18341, 6997);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13184, 6997);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (686, 243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14402, 7211);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14172, 7100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23166, 10694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21835, 786);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7300, 2292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7300, 3051);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7301, 3051);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7405, 1364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16005, 7932);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3690, 1876);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5827, 1250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5828, 2010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3081, 1455);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19123, 6424);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13156, 6424);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17387, 8681);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4129, 2027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3237, 1657);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15071, 7530);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2029, 1097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11798, 1097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3908, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3909, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3910, 1952);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10911, 2713);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3770, 55);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21626, 2000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20757, 55);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17313, 8621);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14174, 7102);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15514, 10558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15514, 10559);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9291, 7085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10967, 7085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9290, 7087);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2635, 610);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4600, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4600, 803);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4600, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3337, 1748);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4836, 610);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4836, 2167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19332, 9983);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11585, 6098);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6671, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23580, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6104, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6104, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6104, 4457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12068, 1292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7781, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19578, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7765, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11540, 1983);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18542, 9479);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17643, 8896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14858, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17336, 8641);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11164, 5105);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22781, 10675);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23898, 6405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16523, 5676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10501, 5676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17873, 6169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11449, 6060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6769, 2909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10914, 5831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8161, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8162, 4073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8539, 4516);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8540, 4517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8542, 2000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9980, 188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16962, 8136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3485, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3486, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4580, 1834);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8160, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5384, 2378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2524, 528);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5559, 2463);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7303, 1033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7303, 384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2215, 1033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2215, 384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19253, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18724, 10280);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11689, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11689, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3487, 1489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3487, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3488, 1278);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3488, 1489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17950, 7432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17950, 3162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12261, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12084, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16011, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (693, 513);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19494, 10066);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16012, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10759, 92);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3490, 421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6400, 1814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3492, 1096);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3489, 421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3493, 1814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3491, 1100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3491, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (517, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (517, 402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (520, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (514, 402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (518, 408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5640, 402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5640, 408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7831, 3727);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (519, 408);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12081, 6380);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (688, 519);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4837, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1375, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1374, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1374, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1373, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1373, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5586, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5586, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7866, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9272, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19405, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5830, 661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5830, 662);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (689, 661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (689, 662);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (690, 661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3494, 1744);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5311, 2340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3495, 899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3495, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (691, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10348, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10348, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10348, 287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2960, 1378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (521, 410);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7658, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19388, 10006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (522, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (504, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5624, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1592, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (694, 6);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (694, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22722, 10615);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17792, 9016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2625, 1469);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19701, 10167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4852, 2174);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11305, 5991);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10272, 1703);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16778, 8289);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12523, 6552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9703, 5192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10295, 405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1928, 261);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6612, 9723);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17803, 9033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10296, 4362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22784, 4362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9893, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11502, 5322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6991, 384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (695, 524);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12483, 1044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22098, 10523);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15036, 7521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15150, 7558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19617, 10135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19617, 10134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17890, 9101);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10299, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10300, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10301, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10302, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10303, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9630, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19532, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18031, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19534, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21584, 903);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21584, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12508, 247);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11119, 126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17, 246);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7412, 1882);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12509, 5);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10304, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10305, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10307, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10306, 47);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9170, 4892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6672, 421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6674, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6673, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6675, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6677, 2844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6678, 2844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6679, 2844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2846, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1834, 895);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5312, 1313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3913, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6681, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17535, 8821);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4785, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18403, 8104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18403, 7712);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3914, 1244);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4853, 1244);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4853, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12507, 6540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18558, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6770, 837);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6770, 797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6770, 2910);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7332, 3056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12090, 115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18292, 4009);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6684, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6687, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10392, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (306, 122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (361, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (529, 406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (529, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (529, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2001, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2001, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6801, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6801, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6801, 2921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6801, 717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6801, 847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5831, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4854, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13182, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19520, 10353);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16090, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16091, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16093, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16094, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17317, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16092, 7495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9499, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19409, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3180, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3181, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3168, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3169, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3176, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3178, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3170, 1527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9765, 5229);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19575, 10107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17164, 8542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10793, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2032, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8927, 2372);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8927, 2389);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18779, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18287, 5907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8912, 1235);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14890, 2807);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14886, 2807);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9125, 5361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17891, 9102);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19820, 7963);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19820, 10220);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11199, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11199, 7963);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5106, 2020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5105, 2020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5107, 2020);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11224, 6065);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11224, 2935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9672, 858);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9672, 2935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4435, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4435, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6690, 3694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6690, 5340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6690, 1069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6690, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5385, 2380);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5385, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5385, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5385, 787);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5385, 458);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5386, 10095);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5386, 863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5386, 1474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10605, 2582);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6992, 2967);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4496, 1666);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4496, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12323, 387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15989, 5055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10998, 4710);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15079, 7532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19799, 6071);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12382, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12382, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12504, 2092);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12504, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12329, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12328, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12331, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12331, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12332, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12381, 6429);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12381, 329);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12381, 2821);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8867, 4710);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19247, 9926);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2521, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13892, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10528, 5679);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10529, 5678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1974, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19525, 2219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8600, 343);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8601, 343);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16619, 8195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6406, 1322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9233, 5039);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18404, 9428);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3759, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8321, 4279);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18331, 395);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16608, 8172);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8449, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17295, 8043);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4855, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4855, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7726, 3495);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5343, 251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1991, 1013);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7782, 3697);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19604, 10119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4613, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9839, 5290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9840, 5290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2975, 1390);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (700, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (700, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22342, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (696, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (696, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3135, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3134, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3134, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3134, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3133, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3133, 696);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3133, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3133, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (503, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2946, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2153, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2920, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7574, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11071, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19459, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (697, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (698, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10682, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (699, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (701, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (702, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (702, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3136, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3136, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (703, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4345, 676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6691, 439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (704, 676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (704, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5832, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5833, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5833, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7304, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7304, 348);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7433, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (705, 676);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (705, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (705, 677);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (705, 285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5834, 1987);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5834, 2557);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12324, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5835, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6356, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3915, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3915, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5836, 2558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6993, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16659, 2937);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12589, 6558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4636, 1821);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4787, 2146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8564, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3496, 1804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1550, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2660, 1255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12096, 6381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20571, 8291);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21772, 8421);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2542, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11615, 1031);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20329, 6916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19590, 10113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8191, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8191, 665);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7306, 3052);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (385, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (407, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7400, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8549, 4524);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (397, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9585, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (401, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7413, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18069, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (408, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (387, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (387, 320);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (387, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (395, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (393, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (400, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (399, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (399, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (406, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (388, 322);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21779, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (421, 324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (403, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (403, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (403, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (410, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (410, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (428, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2408, 337);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (414, 337);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (394, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (394, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (383, 93);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (419, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (419, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (426, 324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (426, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (426, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20655, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (427, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11169, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2406, 1150);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7398, 2438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (404, 93);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (425, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (418, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (413, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14144, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14144, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (411, 335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (411, 336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (409, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (416, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10319, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (405, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (402, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (398, 337);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (392, 345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (389, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (384, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (384, 1983);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14729, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (386, 335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14723, 335);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (359, 93);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (359, 2670);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (359, 1863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (423, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19334, 10130);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19334, 9986);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (420, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (420, 321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (412, 346);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (415, 324);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (417, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17463, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1655, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1656, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1657, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1664, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1663, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1659, 3393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1660, 2559);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1660, 2207);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3776, 1902);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3776, 1903);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8868, 4711);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3781, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3781, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3781, 258);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18259, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16775, 8287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16775, 1460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11742, 4672);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10321, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3916, 1125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1439, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10229, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10229, 2935);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18038, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1434, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1433, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1433, 761);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1443, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1438, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1438, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1435, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1441, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1442, 866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1442, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1436, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1444, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1444, 866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1445, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1440, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1437, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11734, 6206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18479, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23855, 10883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6407, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6408, 1053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18565, 9485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16343, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3013, 1413);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17208, 8229);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7970, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19778, 485);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19778, 10206);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22740, 10629);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9730, 5212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17856, 9074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2892, 1356);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12101, 1067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18105, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22356, 10541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17501, 8793);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10322, 9438);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6995, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5313, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8584, 10370);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16078, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12891, 6931);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8499, 8653);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9195, 8653);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9196, 8653);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11583, 8653);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19320, 8653);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17024, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6721, 2829);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (708, 529);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (709, 530);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23162, 10693);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23731, 10874);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22735, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (710, 622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19833, 1781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4275, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4275, 285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17357, 8660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18795, 9562);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5609, 2479);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2667, 427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2668, 427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3778, 1904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22774, 427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3777, 427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14803, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17951, 7432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17951, 3162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15064, 1299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8789, 4728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8789, 4182);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9842, 1448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12102, 1044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12102, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12102, 559);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (714, 3);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (715, 3);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4856, 2175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5387, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19957, 10306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20330, 2688);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4857, 2176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2622, 1239);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10323, 7797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21410, 611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13219, 1663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14929, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10324, 614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12104, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16047, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1353, 857);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1353, 814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1354, 857);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1354, 1030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9843, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9843, 5291);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17586, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20754, 10165);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3917, 1315);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3917, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3917, 1313);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22386, 9964);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10326, 6338);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20400, 6958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12054, 6373);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12054, 6374);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17390, 2852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3497, 1816);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12072, 2462);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15409, 7709);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7307, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12325, 6364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4858, 391);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17113, 8513);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5673, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5673, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11547, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (944, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8971, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (945, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (946, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8972, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (716, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (717, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8973, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8974, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8975, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8976, 486);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16413, 8086);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16413, 8085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11162, 38);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2036, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20331, 10354);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14411, 7219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1859, 717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15573, 7848);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5626, 2509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14578, 2509);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4867, 2184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4867, 2185);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4867, 2186);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4867, 631);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4869, 515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4870, 515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4870, 1411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4868, 515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4871, 515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5838, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7521, 3112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19741, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17677, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16314, 8037);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10907, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5839, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5839, 2534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6794, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8294, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8295, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8296, 662);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8302, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8303, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7308, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8298, 785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8299, 785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8299, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8300, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8301, 3053);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8297, 785);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8304, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5388, 2382);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (718, 532);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (718, 4285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13385, 7040);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11231, 917);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13850, 9466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11246, 5956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18009, 9196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12643, 4607);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15023, 7511);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15024, 7511);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1905, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6409, 699);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23343, 9539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10331, 4415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19930, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12526, 6556);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19244, 9924);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3047, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3047, 1432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7326, 1432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19539, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3073, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3072, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3069, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3068, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2131, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8558, 1022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18231, 10364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8609, 2233);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8609, 1217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6410, 1321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8004, 1319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16692, 7829);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5895, 2581);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19568, 10101);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20104, 10307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15144, 7552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21961, 10479);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3498, 1817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15854, 7904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15062, 6131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6996, 402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8261, 4224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9815, 5275);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2619, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2619, 1236);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4872, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4872, 1913);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12518, 6546);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10908, 1012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11730, 6200);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11821, 6339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8913, 571);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (88, 254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22763, 6361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17506, 8419);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16364, 8064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17649, 8901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10334, 9459);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17493, 2297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3918, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6771, 2911);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3744, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3745, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3745, 1890);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3746, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3747, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3748, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3748, 1890);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17296, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17296, 3162);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3743, 603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3743, 1889);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3749, 1892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3749, 1128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (110, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9845, 4741);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9846, 4741);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4873, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18428, 9430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16829, 8321);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (719, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (720, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (721, 21);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7116, 4534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6060, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6060, 396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6060, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3919, 1268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3919, 379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3919, 683);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2124, 1140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (722, 507);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3920, 1954);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3921, 1775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18045, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16100, 7947);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13717, 1107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9111, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11607, 1759);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19283, 9941);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8530, 1766);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14389, 4466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4874, 2189);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17050, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18553, 2520);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18723, 9534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11465, 9966);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6795, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6772, 2912);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6412, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3922, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11484, 2831);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6411, 2798);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3923, 1955);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3924, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5674, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3160, 702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9632, 5144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22771, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1498, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1500, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1507, 867);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1502, 4452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1503, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1506, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1501, 250);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1508, 160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1499, 1622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18177, 9325);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2953, 208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17610, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15322, 10859);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15322, 8975);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17526, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6997, 2968);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6997, 2969);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18695, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23248, 4133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15933, 7915);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15933, 7916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16521, 1050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18131, 814);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8914, 4715);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16935, 8418);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2248, 1050);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18435, 9432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10338, 748);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19917, 10300);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1684, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22709, 10609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22742, 5217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3075, 1447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13206, 7015);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (567, 442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6998, 1930);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7309, 2234);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7309, 1930);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10339, 6182);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17472, 385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16447, 8096);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5840, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5840, 1695);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5841, 1695);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5841, 63);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (180, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23335, 10828);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19072, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19071, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19073, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22073, 10520);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18360, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14700, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18343, 9396);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18343, 9397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17026, 8460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20475, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4875, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4875, 445);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8212, 1779);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21787, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1828, 834);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10207, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19571, 10103);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5822, 1991);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11235, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4150, 2036);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3925, 1754);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2478, 501);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11568, 6087);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8500, 4483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5842, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6999, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11673, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9788, 176);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8011, 3690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15518, 7792);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9238, 5044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4876, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4876, 2154);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4464, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8305, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8306, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3500, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8165, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22697, 1740);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8166, 1135);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4877, 160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4877, 1267);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4878, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13618, 7060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1252, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7859, 2459);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1250, 32);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4866, 2183);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4088, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3129, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3926, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12882, 5024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11564, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7000, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8915, 4717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9375, 790);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22560, 10594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14922, 7461);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10344, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (724, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (725, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (723, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10345, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16990, 533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17156, 7938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1031, 738);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18619, 195);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5473, 2430);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17833, 1460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17833, 9054);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20381, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2751, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2751, 566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2751, 6364);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15535, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10762, 3958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11203, 4769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4614, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6799, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19436, 10021);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9038, 8068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17291, 7566);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8917, 4720);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8918, 4720);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5843, 2564);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4411, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1687, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1687, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1689, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1690, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1688, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19815, 10218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2599, 1226);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5489, 404);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7610, 294);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8685, 4625);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4880, 1254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4881, 2190);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2659, 1254);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16964, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13176, 6994);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18260, 2126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1366, 4361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11177, 5957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6796, 2300);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18555, 5905);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18883, 61);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15929, 3692);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21678, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11361, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11361, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6357, 1439);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6357, 1922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17398, 3118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5891, 2579);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6417, 2800);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4882, 2192);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23734, 442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23734, 1108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19736, 2359);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19736, 10187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19736, 1295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6416, 2799);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16141, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4530, 426);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3278, 1715);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16247, 1718);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3279, 1717);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3279, 1718);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8472, 4445);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6035, 366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23311, 10818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23311, 366);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13662, 7069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15134, 7548);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19702, 576);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9837, 10449);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3502, 1746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7293, 953);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3927, 1957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3503, 1746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3501, 1746);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5844, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10355, 6185);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19595, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15311, 7628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8924, 7059);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (547, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (547, 167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (548, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (492, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11186, 5961);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1319, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1319, 167);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16605, 168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2752, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2752, 1297);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3928, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3928, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11365, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4128, 2026);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4128, 578);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6418, 2026);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3285, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3929, 1177);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6419, 2801);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17321, 8630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16080, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6325, 2763);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9531, 5107);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17795, 9019);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8362, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8363, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8365, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8369, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8370, 3074);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10149, 5461);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3930, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14683, 7014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14682, 7014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14684, 7014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19784, 10211);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14455, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5389, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9925, 2259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22718, 10613);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22718, 10612);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7315, 1214);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1453, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1455, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1457, 159);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1451, 865);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11642, 6133);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4885, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17573, 316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17573, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17573, 8847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4884, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4884, 1125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15756, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4887, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4888, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4886, 1208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4889, 1244);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4889, 1314);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19152, 9859);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2339, 1101);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7350, 893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11624, 6119);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16796, 8145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15829, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3504, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4309, 552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4309, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3505, 552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3505, 1169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3505, 1468);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3506, 552);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3506, 1312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3506, 1169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8336, 4298);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15423, 7716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23207, 6395);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (726, 534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (726, 669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6420, 60);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18849, 9577);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4890, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4890, 1919);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17244, 8410);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18522, 1081);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1348, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18815, 10302);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6054, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14552, 317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14849, 7433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (566, 453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (566, 451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (566, 452);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (566, 391);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (566, 2134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17106, 8506);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11337, 6012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6807, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6807, 1339);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17114, 8331);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6817, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3098, 1463);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18429, 805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12648, 6567);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (34, 136);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (34, 173);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (34, 174);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3931, 1934);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22752, 1617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11134, 5962);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10363, 6184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12431, 10661);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16677, 8216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7810, 3711);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22690, 10596);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11815, 6333);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11819, 6333);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6106, 2753);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10364, 4094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16841, 8220);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8384, 7034);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11338, 630);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11338, 1728);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16902, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16902, 8386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5846, 2565);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3932, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6263, 427);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6070, 2682);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16945, 8224);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5582, 2484);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6828, 1238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8744, 542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10365, 7836);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16853, 8340);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3030, 1423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3484, 1755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18444, 4238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (298, 175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3348, 1758);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10366, 3118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15492, 7784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9627, 5143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16137, 787);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16396, 7540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21632, 10457);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6421, 2802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3933, 1958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16675, 5188);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18939, 9603);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5335, 999);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5335, 748);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23190, 3030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23192, 3030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1930, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1933, 1209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1931, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3934, 303);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20379, 10360);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20379, 8615);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1932, 938);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21971, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14677, 7277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11844, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11858, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11858, 8134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11853, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11857, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11857, 8134);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11852, 2216);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12514, 6544);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8803, 2055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8949, 4733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2526, 1202);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (549, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19560, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (551, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (499, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1291, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21233, 10529);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (552, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (552, 431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (550, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (550, 431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19864, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12118, 1714);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7543, 3122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7543, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3115, 1531);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7744, 3664);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8164, 901);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3935, 680);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5847, 680);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8731, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4891, 680);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3507, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3508, 1818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18454, 9442);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3274, 1713);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12121, 316);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4893, 2194);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5565, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16214, 4981);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7001, 2207);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3374, 113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1172, 784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1174, 784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1173, 784);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17263, 8599);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18525, 1081);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1638, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1651, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1632, 140);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1632, 555);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1632, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19122, 7614);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12601, 1085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12602, 1085);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20382, 1851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18008, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3399, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19837, 10230);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20794, 1006);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7552, 6198);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6785, 2344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1906, 918);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19002, 9735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18721, 4702);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5064, 2248);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15425, 7718);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8163, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19667, 850);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22764, 10669);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12307, 8588);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22411, 9465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7833, 2972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7833, 361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7833, 5892);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7427, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3936, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5848, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19829, 402);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1012, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2261, 1056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2263, 1056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8330, 4295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8330, 4296);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2262, 1056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2481, 1056);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22461, 1568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6108, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18613, 2802);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5849, 771);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1476, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1487, 2533);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18192, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1484, 609);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1478, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1481, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1486, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1489, 781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1488, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11358, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12604, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7429, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1594, 871);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1594, 45);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1594, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1597, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1600, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1601, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1604, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1602, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1599, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7316, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8905, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1603, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1598, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14363, 884);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16129, 264);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16129, 7208);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13623, 6181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22788, 6181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22788, 852);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8395, 175);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7496, 3097);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19163, 9864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12123, 7255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18103, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (727, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (728, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (729, 670);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4894, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7002, 277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (980, 266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (980, 662);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (980, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (819, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (819, 266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3266, 888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (730, 307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (730, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (731, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (731, 306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3174, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3174, 306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3265, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3265, 306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1020, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3270, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3270, 308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7003, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7003, 306);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3263, 308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3263, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13233, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8235, 536);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (732, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5850, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (733, 307);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (733, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3262, 308);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3262, 365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4127, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9580, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18071, 1151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12878, 6922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6256, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16334, 2448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18290, 8378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7411, 3075);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17246, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18173, 942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17038, 942);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15963, 7925);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12125, 1917);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7962, 3921);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13173, 6991);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5851, 327);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16669, 6277);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11701, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12528, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12529, 400);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12529, 1030);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3117, 1168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3117, 405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4895, 2149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4895, 2196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16399, 8080);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17762, 8996);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16170, 7973);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6811, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2694, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2694, 13);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6354, 2775);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4896, 160);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4896, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4896, 805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23247, 7492);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5854, 1386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5855, 1386);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18394, 9422);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18394, 9423);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18394, 9424);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8232, 67);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4897, 399);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2138, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2138, 23);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6415, 412);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16885, 8371);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18663, 7473);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14947, 7473);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1907, 915);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19895, 10299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (181, 10);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8682, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17095, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17142, 8290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2116, 1405);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2116, 1060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8950, 4734);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16678, 8217);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9904, 5320);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21638, 10465);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18452, 9441);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21687, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3937, 1959);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4898, 2197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16149, 3010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16148, 3010);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19750, 10193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (734, 537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (735, 537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8786, 537);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8786, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5390, 1181);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5856, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8774, 433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19552, 433);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17203, 7616);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6813, 817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19269, 10558);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13225, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6425, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6426, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6424, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3938, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (736, 539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4899, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14804, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (737, 673);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10381, 539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (738, 539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4838, 2168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19121, 2168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8862, 2168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6741, 2899);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16225, 587);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19315, 3114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7892, 407);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23903, 10896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11447, 6057);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (234, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1183, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13183, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8969, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8947, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (739, 255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7839, 10143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9140, 625);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7004, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5857, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9148, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9141, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9142, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9143, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5644, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13620, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5642, 1218);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4900, 209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4901, 1290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7669, 2534);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1285, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2671, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2671, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2671, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2672, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2672, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2672, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2676, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2670, 843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9741, 1259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2677, 432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2669, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2669, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2669, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2673, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2673, 684);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2673, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2674, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7090, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7088, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7089, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2675, 657);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2675, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2629, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2629, 72);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3939, 318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3939, 90);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3939, 432);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5858, 543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16541, 5111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1288, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12127, 547);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10382, 6147);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16233, 7996);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10450, 1287);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14102, 3772);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23720, 9022);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18363, 853);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17099, 8499);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22016, 10499);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9124, 5361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8319, 4243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8605, 4543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22713, 4016);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3242, 1663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3242, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16854, 8341);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3076, 1448);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13187, 7000);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17010, 8454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12128, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12128, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12129, 152);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19317, 9957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6405, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6405, 781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22745, 781);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22745, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6422, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10234, 874);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22723, 10616);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16558, 8151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19115, 9844);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19125, 9845);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19126, 9847);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9614, 2751);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21162, 2958);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12130, 5058);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19474, 4291);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1431, 37);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18465, 9445);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10385, 1893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10385, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8578, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12308, 2843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19661, 10139);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19661, 2387);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17229, 8576);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11680, 6164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6188, 243);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10387, 6572);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8438, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16323, 8044);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8951, 4735);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1023, 737);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1024, 737);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11707, 6186);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18654, 9515);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8785, 5357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17299, 6169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7005, 209);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17921, 9126);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22468, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3653, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18858, 9581);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16387, 8077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (231, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (231, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (233, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9471, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (338, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (247, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10395, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19348, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2549, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6738, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6738, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (232, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6744, 56);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8800, 4747);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19509, 1440);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12432, 639);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2493, 1185);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (986, 362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (986, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (986, 53);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18286, 9379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3122, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (987, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (989, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (991, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6803, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (988, 68);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11570, 111);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11570, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (740, 148);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (740, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (740, 378);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2640, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (990, 620);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4839, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4839, 2169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7849, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7849, 2169);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7348, 722);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19703, 10168);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7891, 3840);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7891, 3841);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7891, 3839);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4902, 1014);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9248, 1960);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6429, 1760);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6428, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6427, 1760);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11638, 3253);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9101, 4824);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18645, 4824);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18391, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6110, 830);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6110, 1094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17697, 8951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17259, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7006, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22487, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3940, 1336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23685, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5942, 628);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8410, 4266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12134, 880);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12135, 880);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7619, 3164);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (532, 420);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17994, 420);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20779, 1363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20779, 10538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17171, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17170, 2992);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7675, 3225);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4467, 4815);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4467, 9605);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9549, 648);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19566, 3012);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15697, 1033);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15695, 7854);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22482, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6430, 379);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20337, 694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18156, 1617);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7865, 3797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3941, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3941, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3941, 73);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3941, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4904, 2142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4905, 2142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3942, 276);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4906, 2142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3011, 1411);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3011, 276);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3943, 258);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3943, 276);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3943, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (341, 258);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (341, 259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (341, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (341, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3944, 143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3944, 454);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3944, 79);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20518, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3376, 1766);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3379, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3379, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3381, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3381, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3378, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3378, 1768);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3385, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3391, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3387, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3389, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3377, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3393, 1772);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3384, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3390, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3380, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3380, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3383, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3386, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15910, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3382, 1767);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19393, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7419, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7419, 5975);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3392, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3388, 1769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15936, 1401);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2900, 3163);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4907, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4908, 2142);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4908, 794);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12326, 6365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16542, 8143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6431, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7857, 3817);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6805, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11754, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11754, 6219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11755, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11755, 6219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11771, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11767, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11767, 6219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11768, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9626, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9626, 2922);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12078, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10091, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16942, 8425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1117, 129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11517, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4909, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17673, 82);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16552, 8146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14605, 660);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8100, 1);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20399, 10363);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19090, 292);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1405, 7557);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1405, 2736);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7434, 2483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22736, 10622);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7317, 1008);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16153, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (182, 9);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6432, 2712);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16971, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19758, 1027);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19758, 227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4350, 2568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5860, 2568);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15857, 85);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6433, 2804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5391, 5);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17911, 9118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1279, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23211, 10797);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2037, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10398, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10397, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17023, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (741, 517);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10400, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10399, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10401, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15894, 7466);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18578, 9488);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10160, 1663);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4910, 115);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4910, 2199);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4910, 891);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17992, 9191);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4911, 2200);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7318, 795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (982, 709);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (742, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8290, 149);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5392, 2365);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (493, 261);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1007, 730);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16285, 6073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11524, 6073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17441, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17507, 4755);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5393, 2384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2509, 2384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17233, 8581);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18591, 9490);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18634, 9502);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18635, 9503);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17612, 8299);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5618, 5089);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4297, 139);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4297, 5060);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7603, 795);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7007, 385);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7007, 2431);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14523, 953);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7262, 580);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19213, 9907);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19503, 2073);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8175, 3838);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (325, 262);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14160, 818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7463, 3091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3685, 238);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3685, 1867);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3687, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3687, 1873);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3688, 1875);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3686, 1867);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3689, 1219);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7437, 3084);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3691, 1863);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18167, 9317);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3250, 108);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9601, 555);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11346, 6026);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6434, 426);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3511, 1777);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6362, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20752, 120);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20752, 361);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20752, 106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20752, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8419, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15293, 131);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17301, 8611);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17339, 8644);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9638, 7068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13661, 7068);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11708, 3145);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7435, 3083);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17531, 4422);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19210, 9928);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8435, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7867, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8434, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8139, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13364, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8140, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13363, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7845, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11330, 7259);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17663, 8916);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14824, 144);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17512, 8801);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17078, 4706);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13624, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13624, 7064);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2611, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7742, 201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (363, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (365, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (364, 106);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (364, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (366, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (367, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (367, 265);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (368, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (369, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (370, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (371, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (372, 100);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (362, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13459, 97);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (763, 688);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6806, 319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17770, 9001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5861, 2094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7313, 51);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3226, 1656);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7008, 2094);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17605, 6950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17490, 6950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17375, 6950);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12142, 885);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2257, 489);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9603, 5887);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11061, 5887);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11060, 5887);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (745, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3512, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3512, 1201);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3512, 1435);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3512, 4410);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8851, 71);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2732, 1227);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8310, 1846);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2513, 764);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6565, 197);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2642, 1245);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2819, 872);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2818, 1319);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12434, 14);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18201, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (294, 203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (294, 266);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (107, 203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (108, 203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16176, 2245);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16177, 2245);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16178, 2245);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15832, 7055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (746, 541);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6435, 487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6435, 1733);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4912, 1268);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6436, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4808, 1241);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10150, 2678);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6264, 1009);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10093, 5450);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10093, 5451);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15297, 7615);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9356, 5076);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22213, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22214, 10527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11723, 6193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8037, 3957);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9700, 5187);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17735, 1460);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12379, 2909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (747, 467);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14913, 7453);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17394, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2527, 1203);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7010, 1487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21982, 10484);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21982, 10483);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11157, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (748, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6073, 2683);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (530, 26);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1048, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1050, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1049, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5567, 290);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16232, 7996);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5604, 2496);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20874, 10390);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11631, 6125);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7402, 3070);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14763, 859);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11534, 3151);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8476, 4456);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4601, 765);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8877, 5353);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7203, 3024);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10088, 4357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10088, 5447);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7766, 951);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14593, 7263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7607, 118);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12144, 368);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8936, 4721);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19110, 5896);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12880, 6924);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10142, 4606);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4523, 28);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4523, 229);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4523, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11541, 1731);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16301, 8026);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6113, 112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18414, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3947, 1177);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3947, 1962);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10415, 9449);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10415, 9450);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1885, 2968);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1885, 17);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1886, 3594);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3948, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11634, 6129);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6808, 2923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (749, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (750, 196);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (751, 542);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15444, 3869);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22486, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9616, 5141);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8704, 1271);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8704, 4633);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10225, 5527);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4914, 1069);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14735, 7390);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13881, 804);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16513, 2776);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10734, 6067);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17896, 3820);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11156, 1843);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (752, 543);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15789, 1305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19147, 7193);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20149, 1005);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6437, 2805);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4915, 1318);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4917, 357);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3371, 1046);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2653, 1251);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4916, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4916, 1381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5862, 2569);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16171, 508);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9249, 2091);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (292, 269);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15004, 4694);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8535, 1037);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1384, 1003);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1384, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2126, 1003);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2126, 2345);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7011, 1362);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5675, 2521);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18903, 9582);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11733, 128);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5605, 2498);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18994, 184);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7420, 3077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13210, 3077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (13211, 3077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7012, 1909);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7012, 62);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19592, 10114);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17197, 6972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18927, 9595);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11760, 6221);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8882, 5311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8883, 5311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8881, 5311);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6438, 2806);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3949, 444);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17025, 2406);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1938, 1211);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14545, 2766);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16992, 10474);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8952, 4736);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16809, 8301);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5864, 1001);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (19847, 5157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9655, 5157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7291, 122);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (505, 393);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12149, 66);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3950, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5865, 392);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17749, 146);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14863, 1305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (14865, 1305);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (20248, 10344);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15443, 7719);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3513, 1818);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (12150, 6384);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9071, 1851);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3370, 1763);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3704, 1883);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7691, 5827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7690, 5827);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (10423, 1904);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22094, 10522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9806, 4998);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3654, 762);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18770, 9539);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9871, 5295);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7319, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7319, 3055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7319, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7320, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7320, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9867, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8902, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8902, 3055);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9868, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9869, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9870, 862);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9620, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9620, 1956);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9866, 2252);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15902, 7011);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18126, 9298);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22785, 10679);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22043, 10518);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5314, 858);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5314, 70);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11193, 1394);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11193, 769);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4920, 2204);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (507, 397);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (507, 398);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7868, 1389);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18861, 7066);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17426, 6972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7578, 1185);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6457, 263);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8380, 999);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17234, 8582);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17862, 9077);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23884, 10893);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22345, 10500);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22475, 10212);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3951, 260);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8559, 1610);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23283, 10866);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9139, 5312);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4921, 1381);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4921, 1286);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4922, 2205);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6446, 1336);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3952, 80);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3952, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3952, 1326);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4923, 425);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3666, 864);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3666, 1809);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18532, 773);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18532, 1774);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6447, 690);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18590, 2522);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (22355, 10540);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (753, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (876, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5621, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8829, 12);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (8953, 4737);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7170, 44);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18095, 9285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18096, 9285);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7905, 716);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11538, 6062);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16645, 4741);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17906, 9113);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (18515, 7972);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3394, 810);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (16144, 7511);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7139, 1991);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7652, 370);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (21986, 10487);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17793, 538);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (9778, 5255);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (15466, 3923);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3953, 861);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3953, 1963);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (23873, 10888);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (754, 157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (754, 674);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5563, 2562);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7016, 1018);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7016, 2970);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7016, 2971);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (755, 157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (755, 674);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (756, 157);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (756, 674);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (11662, 6143);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3016, 1415);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (7086, 933);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4924, 1093);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4926, 104);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (17111, 8511);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4927, 2112);
-INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4927, 1780);
+BEGIN;
+
+INSERT INTO power_up.game_developers ("game_id", "developer_id") 
+SELECT val.game_id, val.developer_id
+FROM (
+	VALUES
+	(9888, 805),
+	(8616, 3017),
+	(19000, 294),
+	(7724, 3455),
+	(11811, 2438),
+	(11987, 2438),
+	(11988, 2438),
+	(12027, 2438),
+	(11807, 2438),
+	(11808, 2438),
+	(11809, 2438),
+	(11810, 2438),
+	(9770, 5215),
+	(7522, 3113),
+	(6172, 26),
+	(1649, 425),
+	(1642, 1001),
+	(1643, 1),
+	(1643, 11),
+	(1645, 11),
+	(1645, 318),
+	(1646, 428),
+	(1646, 432),
+	(1646, 72),
+	(1646, 425),
+	(1640, 877),
+	(6173, 2702),
+	(9583, 6052),
+	(1898, 58),
+	(15938, 7448),
+	(9848, 9388),
+	(14727, 7386),
+	(9705, 5194),
+	(2733, 1287),
+	(2733, 761),
+	(8745, 4676),
+	(22347, 10532),
+	(11426, 6082),
+	(6281, 2740),
+	(2372, 1130),
+	(8617, 3701),
+	(23168, 7901),
+	(582, 618),
+	(4632, 2079),
+	(4633, 2079),
+	(2361, 552),
+	(3774, 768),
+	(3328, 421),
+	(2373, 1131),
+	(5470, 2427),
+	(14688, 7299),
+	(17481, 1135),
+	(17481, 74),
+	(17481, 8777),
+	(9497, 5088),
+	(8562, 4529),
+	(3706, 830),
+	(11427, 1443),
+	(11428, 1443),
+	(11429, 1443),
+	(21627, 10415),
+	(3978, 104),
+	(19749, 10191),
+	(6077, 37),
+	(6075, 37),
+	(13931, 37),
+	(2374, 152),
+	(6076, 37),
+	(6079, 883),
+	(6079, 1296),
+	(6733, 2896),
+	(17886, 8696),
+	(7169, 2248),
+	(19313, 9955),
+	(19313, 2248),
+	(14360, 6658),
+	(22428, 10574),
+	(19390, 10008),
+	(2375, 1132),
+	(6078, 37),
+	(16316, 8039),
+	(9894, 5314),
+	(2292, 938),
+	(14048, 6082),
+	(583, 277),
+	(5474, 277),
+	(5474, 348),
+	(4655, 277),
+	(4655, 696),
+	(12290, 6416),
+	(5471, 277),
+	(13264, 7132),
+	(17828, 9050),
+	(2293, 1077),
+	(2412, 295),
+	(6062, 749),
+	(5714, 1309),
+	(19710, 10173),
+	(22192, 8845),
+	(2362, 1126),
+	(7264, 1215),
+	(6734, 1474),
+	(5337, 2352),
+	(2376, 1133),
+	(2204, 1028),
+	(9933, 4094),
+	(2377, 1078),
+	(20380, 1851),
+	(11854, 82),
+	(9116, 257),
+	(2734, 250),
+	(14470, 9398),
+	(11432, 6962),
+	(19396, 10011),
+	(13667, 6219),
+	(13667, 7074),
+	(8522, 4503),
+	(2294, 1078),
+	(7265, 2099),
+	(8523, 4504),
+	(11872, 1210),
+	(13276, 4508),
+	(2384, 1138),
+	(2385, 1138),
+	(18467, 1139),
+	(13270, 115),
+	(10735, 317),
+	(9899, 5318),
+	(9900, 5318),
+	(12496, 1130),
+	(9934, 2973),
+	(3701, 1779),
+	(9935, 8885),
+	(5568, 425),
+	(12383, 6532),
+	(19389, 10007),
+	(11433, 6962),
+	(7266, 1093),
+	(23505, 10850),
+	(8115, 4061),
+	(11876, 387),
+	(17630, 146),
+	(5715, 451),
+	(584, 451),
+	(1562, 451),
+	(5472, 2429),
+	(4011, 1987),
+	(4011, 1988),
+	(4011, 392),
+	(2414, 528),
+	(2414, 1989),
+	(21670, 1102),
+	(11709, 6187),
+	(11435, 9399),
+	(11435, 7620),
+	(3509, 1816),
+	(3435, 1788),
+	(3433, 1788),
+	(3434, 1788),
+	(6735, 2897),
+	(5338, 2353),
+	(585, 455),
+	(5574, 2474),
+	(5574, 2121),
+	(16537, 5091),
+	(19805, 2451),
+	(4634, 2078),
+	(4629, 2078),
+	(4637, 1668),
+	(9936, 1064),
+	(8580, 1746),
+	(11817, 2092),
+	(11823, 2092),
+	(11826, 2092),
+	(11828, 112),
+	(9895, 5315),
+	(9895, 206),
+	(12639, 4607),
+	(18907, 67),
+	(9171, 4893),
+	(21414, 67),
+	(9053, 4791),
+	(9053, 9435),
+	(17034, 7547),
+	(23501, 10849),
+	(17331, 8638),
+	(17143, 8290),
+	(16837, 2682),
+	(3707, 874),
+	(20927, 10634),
+	(11436, 340),
+	(8619, 4595),
+	(8357, 4364),
+	(8357, 4365),
+	(9937, 6086),
+	(11438, 6086),
+	(11439, 6086),
+	(18881, 61),
+	(22467, 10212),
+	(8615, 4593),
+	(8794, 2236),
+	(2109, 191),
+	(4656, 1021),
+	(4656, 2345),
+	(2847, 292),
+	(2847, 285),
+	(17702, 843),
+	(8627, 4601),
+	(3245, 1664),
+	(9941, 9377),
+	(14396, 10020),
+	(2018, 1068),
+	(15058, 3121),
+	(15058, 404),
+	(8819, 5274),
+	(14678, 7278),
+	(14678, 7279),
+	(6705, 2884),
+	(23883, 10892),
+	(18302, 9382),
+	(2363, 129),
+	(15860, 4754),
+	(18205, 8822),
+	(19719, 10181),
+	(16309, 8032),
+	(16924, 8409),
+	(2295, 368),
+	(7147, 2248),
+	(20468, 10371),
+	(18653, 9514),
+	(8521, 1339),
+	(18122, 9296),
+	(7211, 3030),
+	(15768, 1363),
+	(1625, 2614),
+	(9718, 2614),
+	(3116, 1485),
+	(3137, 1485),
+	(3040, 1425),
+	(11232, 5915),
+	(22424, 10212),
+	(8623, 4598),
+	(8624, 4598),
+	(5355, 41),
+	(19398, 9721),
+	(20175, 1831),
+	(20175, 10328),
+	(8639, 4609),
+	(6282, 2741),
+	(5360, 2365),
+	(5360, 1000),
+	(3240, 1660),
+	(3240, 1661),
+	(6286, 1660),
+	(5339, 1312),
+	(11883, 3838),
+	(11883, 387),
+	(8626, 4600),
+	(18637, 9506),
+	(9938, 7613),
+	(7171, 6979),
+	(7903, 716),
+	(11849, 1153),
+	(2415, 1153),
+	(3305, 841),
+	(3305, 697),
+	(17376, 8668),
+	(8735, 4646),
+	(3080, 1451),
+	(5653, 2520),
+	(2398, 317),
+	(11587, 6100),
+	(586, 456),
+	(586, 1899),
+	(8524, 4505),
+	(14414, 954),
+	(17136, 8290),
+	(7352, 4681),
+	(6467, 362),
+	(6467, 843),
+	(4657, 2082),
+	(3283, 1743),
+	(17155, 3213),
+	(1430, 37),
+	(9763, 263),
+	(14750, 263),
+	(14751, 263),
+	(14753, 263),
+	(5476, 419),
+	(14758, 419),
+	(6297, 1381),
+	(6628, 419),
+	(14756, 3958),
+	(14754, 263),
+	(531, 419),
+	(6745, 831),
+	(6298, 2754),
+	(6298, 285),
+	(11863, 6362),
+	(6290, 2050),
+	(4586, 2062),
+	(15766, 66),
+	(16910, 8394),
+	(11820, 6336),
+	(2296, 1079),
+	(16264, 8012),
+	(2008, 942),
+	(11111, 5894),
+	(21991, 10488),
+	(8920, 457),
+	(587, 457),
+	(9339, 457),
+	(12270, 2678),
+	(5340, 1254),
+	(5340, 4013),
+	(11885, 4003),
+	(4658, 1014),
+	(14550, 5048),
+	(14550, 8590),
+	(6299, 79),
+	(4659, 248),
+	(4660, 248),
+	(6631, 1),
+	(6468, 1415),
+	(7704, 1415),
+	(1988, 578),
+	(1993, 578),
+	(1994, 578),
+	(1992, 578),
+	(13230, 7032),
+	(8181, 4096),
+	(8182, 4096),
+	(8183, 4097),
+	(16298, 4097),
+	(6469, 2193),
+	(8654, 4620),
+	(18486, 311),
+	(6300, 861),
+	(1691, 765),
+	(1692, 765),
+	(1694, 765),
+	(1693, 765),
+	(13791, 387),
+	(6470, 2809),
+	(5654, 2521),
+	(8602, 227),
+	(8603, 227),
+	(8603, 716),
+	(8622, 113),
+	(8622, 4597),
+	(8732, 1486),
+	(5655, 2520),
+	(2297, 1080),
+	(5716, 2532),
+	(5716, 13),
+	(8253, 2406),
+	(9591, 5129),
+	(2416, 1),
+	(4594, 2065),
+	(4594, 864),
+	(6471, 1976),
+	(8737, 1976),
+	(7549, 17),
+	(15589, 7784),
+	(4557, 1021),
+	(11320, 448),
+	(2797, 1021),
+	(16597, 2219),
+	(8620, 1021),
+	(2298, 1081),
+	(23739, 10877),
+	(8130, 37),
+	(8741, 864),
+	(3662, 762),
+	(6472, 762),
+	(7547, 762),
+	(19865, 26),
+	(14681, 7280),
+	(8010, 3950),
+	(8373, 4412),
+	(2601, 1227),
+	(8374, 4413),
+	(15847, 234),
+	(11560, 9945),
+	(5441, 2409),
+	(18233, 4981),
+	(18233, 4009),
+	(19711, 830),
+	(3147, 1489),
+	(6773, 1489),
+	(3330, 1278),
+	(5348, 810),
+	(5348, 1984),
+	(5349, 810),
+	(18199, 9338),
+	(5350, 630),
+	(5351, 630),
+	(16383, 8075),
+	(17839, 8075),
+	(3329, 839),
+	(7746, 1192),
+	(3709, 1885),
+	(3708, 1884),
+	(3708, 667),
+	(9673, 5164),
+	(9673, 5165),
+	(4662, 2084),
+	(5477, 2431),
+	(6907, 2084),
+	(7267, 3043),
+	(5478, 248),
+	(5468, 830),
+	(5352, 830),
+	(5356, 1885),
+	(7748, 1828),
+	(22097, 10523),
+	(5713, 2531),
+	(6711, 2885),
+	(8375, 4381),
+	(175, 10),
+	(13292, 10284),
+	(11283, 9357),
+	(8764, 3016),
+	(17620, 1956),
+	(6301, 1070),
+	(4663, 2085),
+	(4664, 2085),
+	(17470, 5283),
+	(17470, 3369),
+	(9948, 57),
+	(270, 127),
+	(588, 458),
+	(16402, 458),
+	(9949, 6973),
+	(289, 68),
+	(9951, 4355),
+	(9951, 6019),
+	(9951, 68),
+	(2950, 150),
+	(327, 68),
+	(599, 68),
+	(9950, 4355),
+	(9950, 6019),
+	(299, 68),
+	(299, 130),
+	(299, 131),
+	(8220, 68),
+	(8220, 579),
+	(8220, 130),
+	(3017, 68),
+	(3017, 130),
+	(8575, 4533),
+	(8575, 1010),
+	(21221, 62),
+	(291, 68),
+	(324, 68),
+	(9902, 68),
+	(9902, 4355),
+	(13186, 4355),
+	(8221, 68),
+	(9432, 1363),
+	(9431, 1363),
+	(14229, 7791),
+	(9430, 267),
+	(9428, 1363),
+	(9429, 1363),
+	(16134, 7960),
+	(589, 331),
+	(589, 206),
+	(590, 331),
+	(5652, 331),
+	(11085, 331),
+	(8863, 331),
+	(591, 331),
+	(1899, 911),
+	(8628, 4602),
+	(1920, 365),
+	(11293, 1959),
+	(19440, 507),
+	(3783, 379),
+	(3783, 1817),
+	(11890, 6366),
+	(19453, 10319),
+	(9537, 5109),
+	(7747, 1804),
+	(592, 295),
+	(592, 622),
+	(6475, 2810),
+	(8886, 2614),
+	(7720, 2614),
+	(8887, 2614),
+	(8885, 2614),
+	(8889, 2614),
+	(2850, 1334),
+	(563, 450),
+	(19841, 256),
+	(11340, 6015),
+	(11411, 3031),
+	(3331, 1744),
+	(5353, 2360),
+	(14691, 263),
+	(14691, 7301),
+	(14749, 263),
+	(3831, 2941),
+	(3830, 2941),
+	(13160, 6975),
+	(5354, 2362),
+	(16183, 3921),
+	(8791, 762),
+	(11113, 5895),
+	(18048, 112),
+	(11859, 82),
+	(8629, 4594),
+	(2302, 1085),
+	(8231, 347),
+	(9134, 5365),
+	(3710, 1886),
+	(5718, 2533),
+	(9957, 580),
+	(9958, 5959),
+	(11856, 6361),
+	(1365, 10321),
+	(1365, 1227),
+	(19899, 10321),
+	(6476, 2811),
+	(16899, 8136),
+	(17561, 8836),
+	(8630, 4603),
+	(593, 623),
+	(8848, 4703),
+	(8848, 804),
+	(8631, 4604),
+	(5479, 2433),
+	(8376, 4414),
+	(1900, 740),
+	(5480, 74),
+	(5480, 2434),
+	(19465, 1383),
+	(7268, 1383),
+	(1995, 934),
+	(2340, 321),
+	(19584, 10108),
+	(4145, 552),
+	(4145, 52),
+	(1120, 129),
+	(17330, 8637),
+	(8809, 2678),
+	(2418, 201),
+	(8118, 426),
+	(8118, 1238),
+	(8118, 1233),
+	(8118, 141),
+	(4665, 2086),
+	(1062, 305),
+	(2602, 305),
+	(13223, 7027),
+	(2419, 646),
+	(3651, 762),
+	(3754, 1893),
+	(17899, 9107),
+	(17637, 8299),
+	(15691, 3037),
+	(2420, 1156),
+	(13678, 112),
+	(2848, 1333),
+	(2848, 872),
+	(9359, 144),
+	(5721, 1459),
+	(7749, 3668),
+	(7749, 3669),
+	(10673, 5754),
+	(5719, 287),
+	(8776, 4690),
+	(4666, 1909),
+	(1040, 740),
+	(21635, 10462),
+	(8633, 614),
+	(9962, 614),
+	(9963, 614),
+	(14239, 614),
+	(14240, 614),
+	(14241, 614),
+	(9964, 614),
+	(14596, 614),
+	(11087, 614),
+	(11865, 82),
+	(8487, 188),
+	(11294, 804),
+	(2421, 1158),
+	(3711, 1177),
+	(23495, 366),
+	(16246, 7934),
+	(2690, 1228),
+	(2690, 1265),
+	(2168, 1006),
+	(2422, 1159),
+	(7750, 1525),
+	(18481, 9452),
+	(2551, 1212),
+	(8634, 4605),
+	(16367, 7934),
+	(11088, 4605),
+	(11089, 4605),
+	(16016, 7934),
+	(11090, 4605),
+	(4490, 861),
+	(9969, 10084),
+	(9969, 10180),
+	(13950, 56),
+	(7598, 56),
+	(4667, 77),
+	(4478, 6367),
+	(4478, 112),
+	(6825, 532),
+	(2206, 1089),
+	(8477, 318),
+	(15146, 7554),
+	(4754, 111),
+	(4754, 23),
+	(15459, 111),
+	(15459, 23),
+	(15460, 111),
+	(15460, 23),
+	(15464, 111),
+	(15464, 23),
+	(15555, 111),
+	(15555, 23),
+	(15552, 111),
+	(15552, 23),
+	(15553, 111),
+	(15553, 23),
+	(15554, 111),
+	(15554, 112),
+	(15554, 23),
+	(7600, 1006),
+	(9979, 318),
+	(594, 407),
+	(594, 624),
+	(14818, 7421),
+	(5720, 2534),
+	(19214, 9908),
+	(560, 318),
+	(2169, 234),
+	(1021, 408),
+	(1021, 148),
+	(8908, 10164),
+	(8908, 532),
+	(8908, 2566),
+	(19508, 1151),
+	(16065, 7938),
+	(2796, 872),
+	(17681, 3820),
+	(1014, 949),
+	(1014, 733),
+	(4668, 1069),
+	(4668, 2087),
+	(10659, 287),
+	(2849, 1239),
+	(2851, 1239),
+	(3436, 1789),
+	(9971, 807),
+	(8909, 3038),
+	(5481, 694),
+	(10624, 2005),
+	(11557, 2005),
+	(11557, 1201),
+	(11558, 2005),
+	(11559, 2005),
+	(595, 625),
+	(23860, 9466),
+	(7751, 1809),
+	(7751, 765),
+	(16253, 3727),
+	(11296, 10685),
+	(13157, 6965),
+	(9970, 6214),
+	(1958, 2251),
+	(1958, 2053),
+	(1956, 213),
+	(1956, 885),
+	(1956, 3022),
+	(1957, 213),
+	(1957, 885),
+	(1959, 213),
+	(7716, 5912),
+	(1960, 669),
+	(1960, 1385),
+	(1960, 397),
+	(8635, 4606),
+	(3252, 855),
+	(3252, 1689),
+	(16874, 8360),
+	(8911, 1474),
+	(8911, 2153),
+	(14199, 7106),
+	(9173, 2672),
+	(2539, 47),
+	(17629, 146),
+	(19954, 7216),
+	(17849, 9066),
+	(1989, 505),
+	(2303, 66),
+	(2604, 112),
+	(2304, 547),
+	(7752, 1201),
+	(16031, 7528),
+	(17556, 8832),
+	(18130, 10385),
+	(18130, 4697),
+	(22168, 10526),
+	(1175, 322),
+	(1176, 322),
+	(4669, 1319),
+	(4670, 1260),
+	(4671, 1865),
+	(7289, 3050),
+	(10681, 10296),
+	(8636, 836),
+	(8916, 3038),
+	(15711, 7417),
+	(15648, 7417),
+	(16744, 8259),
+	(3784, 1906),
+	(3784, 1568),
+	(18115, 566),
+	(7753, 716),
+	(7754, 818),
+	(17235, 8583),
+	(2305, 1086),
+	(2307, 553),
+	(12390, 7303),
+	(11897, 1160),
+	(2424, 1160),
+	(11898, 114),
+	(597, 465),
+	(15798, 465),
+	(7843, 465),
+	(5722, 104),
+	(5722, 465),
+	(5722, 2207),
+	(5482, 717),
+	(6302, 2200),
+	(3785, 1907),
+	(596, 144),
+	(9361, 144),
+	(9360, 144),
+	(8464, 1021),
+	(18244, 1277),
+	(18241, 1219),
+	(18242, 1865),
+	(18247, 3379),
+	(18247, 1865),
+	(18246, 1219),
+	(18245, 1267),
+	(18245, 3379),
+	(4377, 4435),
+	(6304, 1733),
+	(20289, 10346),
+	(337, 133),
+	(337, 378),
+	(9667, 1443),
+	(5723, 2089),
+	(4672, 1984),
+	(4672, 2090),
+	(4673, 2090),
+	(5724, 2089),
+	(7755, 3670),
+	(11116, 129),
+	(8637, 4607),
+	(1882, 1364),
+	(15534, 36),
+	(13199, 4607),
+	(111, 36),
+	(7642, 3192),
+	(8061, 4012),
+	(5725, 2317),
+	(5483, 2317),
+	(5484, 2317),
+	(2141, 843),
+	(11081, 843),
+	(8378, 4415),
+	(2425, 1161),
+	(3416, 1781),
+	(2308, 864),
+	(6305, 2755),
+	(54, 28),
+	(5622, 25),
+	(11506, 3151),
+	(1996, 458),
+	(598, 458),
+	(5485, 852),
+	(20471, 10373),
+	(10032, 5370),
+	(13193, 7007),
+	(7713, 3402),
+	(7676, 3225),
+	(19077, 9836),
+	(16228, 7993),
+	(5726, 877),
+	(9772, 4226),
+	(4953, 2216),
+	(5358, 1744),
+	(23852, 10882),
+	(18665, 9447),
+	(22001, 10495),
+	(5359, 829),
+	(11414, 3031),
+	(2170, 1020),
+	(7269, 3044),
+	(17279, 8605),
+	(16064, 7938),
+	(2035, 950),
+	(2035, 2345),
+	(19273, 950),
+	(19274, 7043),
+	(19276, 950),
+	(19271, 950),
+	(19275, 950),
+	(16365, 8065),
+	(4674, 950),
+	(4674, 348),
+	(19272, 950),
+	(4675, 950),
+	(4675, 1006),
+	(4675, 348),
+	(4675, 1926),
+	(7960, 4292),
+	(14742, 4292),
+	(18999, 9731),
+	(17082, 8488),
+	(2386, 1138),
+	(2309, 1088),
+	(2655, 421),
+	(11190, 1100),
+	(11190, 7902),
+	(10143, 1246),
+	(2687, 1246),
+	(2645, 1246),
+	(13191, 7005),
+	(7756, 129),
+	(7756, 75),
+	(6306, 50),
+	(6306, 259),
+	(19432, 325),
+	(3786, 50),
+	(3786, 259),
+	(6712, 1850),
+	(13324, 7420),
+	(4849, 2172),
+	(15785, 146),
+	(11591, 6108),
+	(17040, 146),
+	(9976, 6386),
+	(9977, 6386),
+	(18666, 263),
+	(11367, 9215),
+	(11367, 2248),
+	(1862, 717),
+	(662, 646),
+	(662, 647),
+	(8227, 647),
+	(8227, 646),
+	(300, 134),
+	(8224, 134),
+	(303, 134),
+	(8225, 647),
+	(8226, 647),
+	(2959, 647),
+	(2959, 646),
+	(8228, 647),
+	(8228, 646),
+	(11205, 1897),
+	(4795, 2154),
+	(8640, 4611),
+	(11092, 6180),
+	(9212, 4133),
+	(8993, 4133),
+	(8760, 4133),
+	(8758, 4133),
+	(8759, 4133),
+	(11776, 2428),
+	(9566, 1012),
+	(9579, 1012),
+	(9582, 1012),
+	(7270, 1012),
+	(4676, 2091),
+	(18595, 2091),
+	(4348, 501),
+	(16493, 110),
+	(9877, 5299),
+	(11226, 373),
+	(18016, 9203),
+	(4592, 129),
+	(17227, 8575),
+	(1061, 750),
+	(2064, 956),
+	(8946, 771),
+	(18451, 9440),
+	(9773, 5251),
+	(2426, 1162),
+	(5727, 2166),
+	(5727, 79),
+	(4677, 1014),
+	(2427, 606),
+	(600, 467),
+	(3233, 1018),
+	(3762, 1778),
+	(6063, 400),
+	(6064, 400),
+	(511, 400),
+	(6065, 1778),
+	(20906, 632),
+	(14385, 7204),
+	(5728, 1459),
+	(15547, 90),
+	(14357, 7196),
+	(5487, 1956),
+	(1429, 37),
+	(8641, 4613),
+	(9016, 1434),
+	(17700, 8421),
+	(3714, 1888),
+	(8642, 4614),
+	(6911, 1907),
+	(17807, 9038),
+	(3788, 1908),
+	(7271, 1221),
+	(16708, 7416),
+	(7272, 2436),
+	(7406, 3073),
+	(5488, 2435),
+	(7273, 3046),
+	(7274, 1215),
+	(7274, 3046),
+	(16929, 8413),
+	(19406, 10012),
+	(13682, 9489),
+	(10861, 885),
+	(10862, 1823),
+	(18853, 9579),
+	(4678, 782),
+	(4678, 2092),
+	(18636, 9504),
+	(17247, 2519),
+	(19232, 9917),
+	(17338, 8643),
+	(18868, 10838),
+	(8525, 4506),
+	(3652, 762),
+	(5490, 2436),
+	(16923, 8408),
+	(3234, 1463),
+	(3234, 580),
+	(8331, 580),
+	(255, 117),
+	(4515, 566),
+	(6451, 2808),
+	(11664, 6145),
+	(2197, 3117),
+	(22720, 5904),
+	(5539, 4750),
+	(16208, 7985),
+	(11912, 4750),
+	(8488, 188),
+	(4679, 1984),
+	(3703, 327),
+	(3703, 1853),
+	(6521, 1865),
+	(5729, 2536),
+	(5731, 454),
+	(17276, 555),
+	(17276, 684),
+	(6877, 2930),
+	(19694, 10164),
+	(13330, 10148),
+	(17660, 8913),
+	(18303, 4096),
+	(18303, 9383),
+	(2310, 1089),
+	(10239, 5750),
+	(10239, 6068),
+	(21867, 5318),
+	(4595, 817),
+	(13685, 1440),
+	(11756, 817),
+	(9024, 4719),
+	(20982, 10417),
+	(572, 116),
+	(601, 116),
+	(1881, 116),
+	(19547, 116),
+	(9774, 116),
+	(15626, 7528),
+	(9775, 116),
+	(6713, 2083),
+	(15027, 2776),
+	(2311, 1091),
+	(211, 136),
+	(10448, 1287),
+	(11260, 6150),
+	(18855, 103),
+	(11093, 6978),
+	(2388, 1138),
+	(5656, 2521),
+	(12647, 6566),
+	(4144, 1012),
+	(19414, 8067),
+	(5491, 1012),
+	(5492, 1012),
+	(5493, 1012),
+	(19410, 8067),
+	(19424, 8067),
+	(19412, 8067),
+	(19428, 8067),
+	(5494, 1012),
+	(5494, 248),
+	(14984, 92),
+	(14962, 92),
+	(2610, 1231),
+	(15853, 47),
+	(3439, 1792),
+	(3439, 1793),
+	(11915, 764),
+	(17887, 9099),
+	(8643, 4615),
+	(6307, 1322),
+	(3417, 487),
+	(5732, 614),
+	(6308, 1385),
+	(8498, 63),
+	(3440, 487),
+	(3441, 487),
+	(2702, 268),
+	(18208, 9342),
+	(996, 351),
+	(997, 351),
+	(997, 725),
+	(1832, 7),
+	(1832, 351),
+	(12869, 112),
+	(6309, 325),
+	(22392, 10563),
+	(2009, 941),
+	(11489, 8482),
+	(11489, 1394),
+	(6849, 2202),
+	(2389, 1138),
+	(6555, 2807),
+	(6556, 1474),
+	(6566, 1474),
+	(21530, 1474),
+	(15498, 4724),
+	(14361, 926),
+	(9986, 926),
+	(6567, 1934),
+	(2312, 368),
+	(17281, 9393),
+	(22471, 10212),
+	(22472, 10212),
+	(19809, 10212),
+	(19808, 10212),
+	(19785, 10212),
+	(22465, 10212),
+	(12241, 10856),
+	(14787, 4094),
+	(602, 19),
+	(602, 1168),
+	(10231, 5528),
+	(17783, 9009),
+	(18794, 9561),
+	(19167, 9866),
+	(10860, 1196),
+	(17001, 8448),
+	(6259, 690),
+	(603, 470),
+	(23737, 470),
+	(23738, 10876),
+	(23735, 470),
+	(23736, 470),
+	(4680, 2093),
+	(4680, 2094),
+	(8550, 2975),
+	(11666, 533),
+	(11666, 7101),
+	(7798, 3672),
+	(23295, 61),
+	(6746, 61),
+	(23296, 61),
+	(23303, 61),
+	(23304, 61),
+	(23305, 61),
+	(23306, 61),
+	(23314, 61),
+	(8646, 61),
+	(23310, 61),
+	(18995, 61),
+	(6260, 61),
+	(6261, 794),
+	(23313, 61),
+	(128, 38),
+	(17028, 1897),
+	(127, 38),
+	(9562, 38),
+	(9562, 822),
+	(18865, 62),
+	(1266, 822),
+	(1266, 39),
+	(1266, 38),
+	(1266, 2921),
+	(1266, 896),
+	(3195, 840),
+	(3195, 899),
+	(8218, 38),
+	(8218, 896),
+	(1970, 38),
+	(1970, 39),
+	(1970, 822),
+	(1970, 896),
+	(1970, 2921),
+	(21349, 61),
+	(3775, 38),
+	(3775, 896),
+	(113, 39),
+	(113, 38),
+	(113, 896),
+	(8216, 38),
+	(22754, 38),
+	(537, 697),
+	(537, 822),
+	(537, 406),
+	(537, 38),
+	(537, 2921),
+	(537, 39),
+	(537, 896),
+	(8217, 38),
+	(7570, 697),
+	(7570, 899),
+	(7570, 3928),
+	(7570, 38),
+	(7570, 822),
+	(7570, 840),
+	(7570, 2921),
+	(7570, 896),
+	(8263, 2921),
+	(8263, 840),
+	(8263, 398),
+	(8263, 3928),
+	(8263, 433),
+	(8263, 702),
+	(8263, 39),
+	(8263, 822),
+	(8263, 38),
+	(8263, 896),
+	(15169, 896),
+	(5606, 38),
+	(5606, 896),
+	(8219, 702),
+	(19176, 9875),
+	(8223, 163),
+	(14902, 163),
+	(14903, 163),
+	(6881, 2931),
+	(8644, 4616),
+	(18655, 8433),
+	(21064, 10427),
+	(21064, 2888),
+	(9530, 5106),
+	(5597, 2490),
+	(8356, 4362),
+	(17536, 8822),
+	(19486, 4981),
+	(7757, 213),
+	(7757, 1642),
+	(14452, 1475),
+	(14452, 1642),
+	(3789, 1910),
+	(3789, 1909),
+	(8501, 1031),
+	(19781, 1031),
+	(4681, 1909),
+	(2313, 938),
+	(7758, 2406),
+	(7758, 6364),
+	(13689, 2406),
+	(18174, 9321),
+	(16882, 8368),
+	(9769, 5250),
+	(13959, 9528),
+	(6310, 861),
+	(6310, 1906),
+	(4682, 392),
+	(4682, 1313),
+	(12304, 4886),
+	(7759, 3672),
+	(16265, 7554),
+	(9987, 9205),
+	(22732, 4981),
+	(13205, 9437),
+	(19527, 10092),
+	(3755, 1893),
+	(5657, 2521),
+	(9036, 3038),
+	(5495, 2438),
+	(6311, 888),
+	(16760, 2406),
+	(18437, 7700),
+	(7278, 3046),
+	(7279, 3046),
+	(19634, 3046),
+	(7277, 3046),
+	(7275, 3046),
+	(11513, 3046),
+	(12633, 3046),
+	(7276, 3046),
+	(9052, 1474),
+	(9052, 4110),
+	(9052, 1271),
+	(15849, 7897),
+	(9104, 617),
+	(13693, 3772),
+	(9522, 1414),
+	(5658, 2522),
+	(11094, 234),
+	(11095, 234),
+	(19446, 10026),
+	(6568, 1430),
+	(16182, 2245),
+	(9056, 4794),
+	(2209, 234),
+	(18063, 315),
+	(13346, 7127),
+	(18180, 9326),
+	(8388, 3921),
+	(6312, 2205),
+	(8649, 2914),
+	(7760, 864),
+	(11924, 614),
+	(6569, 2823),
+	(7761, 1731),
+	(4683, 2095),
+	(4143, 764),
+	(14879, 1394),
+	(22555, 10591),
+	(11645, 6340),
+	(8269, 563),
+	(8270, 563),
+	(8271, 2569),
+	(8273, 2569),
+	(8274, 2569),
+	(8272, 2569),
+	(4142, 60),
+	(4142, 806),
+	(3790, 1911),
+	(18981, 5196),
+	(2956, 1376),
+	(9707, 5196),
+	(15282, 6131),
+	(22716, 6131),
+	(8746, 4677),
+	(9776, 5253),
+	(18485, 2134),
+	(18485, 9454),
+	(14224, 7114),
+	(9107, 804),
+	(18385, 266),
+	(19338, 9988),
+	(3791, 660),
+	(5659, 2521),
+	(17178, 8548),
+	(13353, 7082),
+	(2428, 295),
+	(17239, 8587),
+	(3442, 1404),
+	(19442, 8436),
+	(10036, 3074),
+	(23241, 3074),
+	(7407, 3074),
+	(3792, 321),
+	(3792, 1912),
+	(3792, 891),
+	(4684, 1307),
+	(4685, 197),
+	(4685, 891),
+	(23212, 10798),
+	(9777, 5254),
+	(7762, 2897),
+	(18878, 508),
+	(18887, 508),
+	(19580, 3074),
+	(19581, 3074),
+	(8802, 3074),
+	(16337, 3074),
+	(16338, 3074),
+	(16339, 3074),
+	(8752, 3074),
+	(10012, 7400),
+	(17821, 4706),
+	(17820, 4706),
+	(15710, 7868),
+	(10007, 9355),
+	(17169, 146),
+	(15288, 7609),
+	(17667, 8923),
+	(19751, 10194),
+	(5877, 650),
+	(1281, 9590),
+	(1281, 835),
+	(5595, 835),
+	(22380, 10554),
+	(22381, 10554),
+	(19485, 4981),
+	(17772, 3820),
+	(14845, 2001),
+	(6570, 129),
+	(18827, 9571),
+	(8652, 4602),
+	(8652, 4834),
+	(8652, 10023),
+	(9652, 5156),
+	(17740, 8982),
+	(6747, 2452),
+	(2210, 178),
+	(16067, 7939),
+	(18707, 6403),
+	(13809, 9585),
+	(6545, 129),
+	(10373, 2344),
+	(18197, 2344),
+	(5733, 1972),
+	(5660, 2521),
+	(16235, 7997),
+	(11928, 152),
+	(6423, 2803),
+	(8346, 342),
+	(4686, 1439),
+	(11128, 4509),
+	(7994, 197),
+	(19883, 10294),
+	(9418, 6916),
+	(17366, 8666),
+	(19217, 9910),
+	(8516, 804),
+	(8517, 804),
+	(8519, 10083),
+	(8519, 1098),
+	(3232, 294),
+	(6314, 2759),
+	(6314, 1966),
+	(5496, 2439),
+	(17254, 2406),
+	(8660, 4622),
+	(11931, 7162),
+	(19257, 61),
+	(17194, 5291),
+	(18152, 9309),
+	(19674, 603),
+	(6572, 603),
+	(6572, 2845),
+	(4687, 603),
+	(4688, 603),
+	(5569, 2472),
+	(6315, 603),
+	(6908, 2588),
+	(6908, 696),
+	(6908, 603),
+	(5735, 118),
+	(5734, 118),
+	(12884, 4607),
+	(11335, 295),
+	(5736, 1286),
+	(9164, 4885),
+	(9164, 2678),
+	(9982, 5358),
+	(604, 471),
+	(9167, 4453),
+	(8582, 7484),
+	(9169, 804),
+	(8901, 4713),
+	(15470, 4713),
+	(15843, 250),
+	(18781, 3033),
+	(5497, 2440),
+	(19665, 10140),
+	(19665, 2327),
+	(4703, 1976),
+	(8662, 1772),
+	(6714, 2887),
+	(5, 2),
+	(5, 222),
+	(5613, 2501),
+	(6, 2),
+	(6, 222),
+	(82, 2),
+	(82, 222),
+	(83, 79),
+	(83, 78),
+	(83, 392),
+	(84, 12),
+	(1880, 2501),
+	(14292, 5071),
+	(81, 2),
+	(81, 222),
+	(17428, 2992),
+	(176, 9),
+	(177, 75),
+	(17320, 6067),
+	(7495, 842),
+	(5878, 650),
+	(5878, 764),
+	(2735, 761),
+	(3682, 1809),
+	(3682, 1094),
+	(16770, 8282),
+	(6573, 1316),
+	(2316, 368),
+	(18135, 9310),
+	(19845, 10281),
+	(9264, 1135),
+	(22093, 10521),
+	(11677, 6160),
+	(2678, 90),
+	(2678, 72),
+	(2678, 684),
+	(9285, 321),
+	(9285, 617),
+	(5498, 2441),
+	(9496, 630),
+	(3207, 842),
+	(15286, 7438),
+	(1861, 900),
+	(3443, 861),
+	(2002, 936),
+	(7763, 303),
+	(2148, 279),
+	(2148, 771),
+	(6318, 771),
+	(3008, 771),
+	(6316, 771),
+	(3418, 771),
+	(3418, 279),
+	(11129, 2097),
+	(6083, 4009),
+	(11939, 1031),
+	(15661, 10150),
+	(12642, 4607),
+	(3793, 325),
+	(11941, 764),
+	(4640, 2080),
+	(4639, 2080),
+	(3308, 1731),
+	(3307, 1730),
+	(3309, 1732),
+	(3309, 1381),
+	(16671, 1737),
+	(3310, 1286),
+	(3310, 1733),
+	(3311, 1286),
+	(3311, 1733),
+	(3313, 1736),
+	(3313, 1735),
+	(3314, 1735),
+	(3315, 1731),
+	(3316, 1738),
+	(3312, 1735),
+	(3317, 1739),
+	(3318, 1201),
+	(12775, 6575),
+	(8379, 4371),
+	(2318, 938),
+	(16590, 8168),
+	(9875, 70),
+	(18032, 66),
+	(3794, 1303),
+	(3794, 891),
+	(11866, 82),
+	(4705, 1952),
+	(7438, 2430),
+	(18116, 9291),
+	(10023, 6376),
+	(2829, 191),
+	(7582, 3151),
+	(7580, 761),
+	(6319, 874),
+	(605, 472),
+	(9897, 1816),
+	(9903, 1474),
+	(9942, 5341),
+	(19376, 10001),
+	(7764, 303),
+	(7764, 321),
+	(10124, 321),
+	(10257, 321),
+	(10122, 321),
+	(17258, 2406),
+	(18407, 2406),
+	(16979, 1440),
+	(5689, 2521),
+	(18344, 3151),
+	(14766, 7218),
+	(11867, 82),
+	(3419, 1782),
+	(3420, 1695),
+	(4706, 233),
+	(4141, 617),
+	(19724, 10186),
+	(1983, 928),
+	(3796, 1913),
+	(3796, 1119),
+	(3795, 1913),
+	(3795, 1119),
+	(10510, 251),
+	(18442, 164),
+	(19563, 164),
+	(3063, 425),
+	(3063, 72),
+	(3444, 1281),
+	(7769, 1792),
+	(7769, 532),
+	(7769, 1791),
+	(4379, 82),
+	(4379, 2366),
+	(4379, 787),
+	(4379, 2352),
+	(4379, 2368),
+	(4379, 129),
+	(500, 164),
+	(500, 3989),
+	(501, 164),
+	(501, 23),
+	(5503, 164),
+	(2003, 937),
+	(2003, 413),
+	(2003, 221),
+	(7689, 3226),
+	(5738, 706),
+	(4489, 251),
+	(4489, 2377),
+	(19245, 794),
+	(5739, 38),
+	(7771, 129),
+	(4707, 1021),
+	(14746, 294),
+	(5740, 38),
+	(16126, 2073),
+	(17446, 8714),
+	(3797, 1125),
+	(4708, 1125),
+	(17175, 8299),
+	(17528, 8299),
+	(1417, 862),
+	(1413, 862),
+	(1414, 862),
+	(1415, 863),
+	(1415, 862),
+	(7770, 2305),
+	(12511, 6542),
+	(23689, 10864),
+	(2603, 278),
+	(2603, 5),
+	(11099, 903),
+	(15152, 7561),
+	(4596, 263),
+	(4596, 2066),
+	(4596, 2067),
+	(5741, 2537),
+	(5499, 1218),
+	(21866, 9543),
+	(5361, 880),
+	(3190, 313),
+	(17502, 8794),
+	(9030, 646),
+	(9031, 646),
+	(9032, 646),
+	(11101, 646),
+	(9034, 1487),
+	(11145, 5902),
+	(17427, 2992),
+	(17577, 2992),
+	(9892, 5313),
+	(17815, 146),
+	(7772, 3692),
+	(4709, 136),
+	(2056, 112),
+	(7774, 1827),
+	(9068, 4806),
+	(9068, 1405),
+	(22407, 10212),
+	(22418, 10212),
+	(606, 474),
+	(11104, 474),
+	(8938, 4435),
+	(4549, 7166),
+	(4549, 6384),
+	(10623, 1731),
+	(3421, 487),
+	(3422, 487),
+	(7775, 303),
+	(5500, 2442),
+	(5500, 2443),
+	(7206, 2397),
+	(19010, 946),
+	(2605, 1228),
+	(7687, 148),
+	(6320, 699),
+	(6320, 2762),
+	(6321, 2762),
+	(6321, 699),
+	(7210, 3029),
+	(18320, 94),
+	(240, 94),
+	(346, 94),
+	(345, 94),
+	(351, 94),
+	(277, 94),
+	(349, 94),
+	(3814, 94),
+	(3813, 94),
+	(348, 94),
+	(347, 153),
+	(347, 94),
+	(343, 94),
+	(3038, 94),
+	(3037, 94),
+	(3033, 94),
+	(3036, 94),
+	(3039, 94),
+	(1979, 94),
+	(3091, 94),
+	(3095, 94),
+	(3096, 94),
+	(3094, 94),
+	(3093, 94),
+	(13387, 7213),
+	(7081, 7),
+	(7081, 94),
+	(18023, 7),
+	(350, 94),
+	(350, 155),
+	(353, 154),
+	(353, 94),
+	(354, 94),
+	(354, 155),
+	(335, 153),
+	(473, 94),
+	(352, 94),
+	(607, 94),
+	(8713, 5067),
+	(18487, 9455),
+	(608, 267),
+	(609, 267),
+	(610, 267),
+	(17955, 9154),
+	(178, 9),
+	(9779, 5256),
+	(23193, 1109),
+	(611, 639),
+	(19704, 10170),
+	(22445, 6970),
+	(4710, 160),
+	(4710, 79),
+	(9735, 5216),
+	(22699, 10600),
+	(15013, 9568),
+	(17530, 8817),
+	(5744, 595),
+	(5744, 259),
+	(4223, 4),
+	(4223, 411),
+	(4222, 2444),
+	(4222, 411),
+	(8345, 926),
+	(18279, 1419),
+	(2970, 771),
+	(2970, 1218),
+	(2970, 489),
+	(7776, 771),
+	(14591, 771),
+	(18577, 771),
+	(18577, 2816),
+	(18627, 771),
+	(23845, 10881),
+	(613, 66),
+	(14368, 318),
+	(12916, 2406),
+	(3423, 60),
+	(2136, 852),
+	(2136, 2675),
+	(2136, 3775),
+	(2135, 852),
+	(5362, 1031),
+	(22216, 10527),
+	(21622, 1883),
+	(11287, 1883),
+	(17451, 8515),
+	(11822, 6341),
+	(3805, 830),
+	(8526, 553),
+	(18200, 9339),
+	(17131, 8524),
+	(5661, 66),
+	(18098, 9287),
+	(22397, 7785),
+	(20324, 10348),
+	(17881, 9095),
+	(14837, 7430),
+	(8018, 183),
+	(17382, 8674),
+	(11139, 4509),
+	(18248, 389),
+	(5745, 329),
+	(6280, 2701),
+	(9045, 4774),
+	(7087, 2994),
+	(18383, 308),
+	(6456, 263),
+	(6456, 1976),
+	(7777, 444),
+	(7777, 1312),
+	(7777, 3694),
+	(7777, 690),
+	(8458, 1338),
+	(8457, 1045),
+	(8459, 203),
+	(8460, 1045),
+	(2390, 1138),
+	(13391, 7046),
+	(4711, 432),
+	(4711, 1252),
+	(4711, 72),
+	(12879, 6923),
+	(19684, 3954),
+	(19684, 10157),
+	(2715, 1278),
+	(18540, 9477),
+	(7778, 771),
+	(8653, 1715),
+	(9780, 5258),
+	(6910, 425),
+	(614, 1893),
+	(14806, 7417),
+	(1978, 1893),
+	(15712, 7417),
+	(9246, 5050),
+	(3231, 1398),
+	(2803, 1316),
+	(2802, 1314),
+	(2802, 1128),
+	(2807, 62),
+	(2807, 1314),
+	(2801, 1128),
+	(2801, 1315),
+	(2806, 1315),
+	(2806, 1320),
+	(2800, 1128),
+	(2800, 448),
+	(5310, 392),
+	(5310, 1128),
+	(20176, 10331),
+	(9541, 5111),
+	(612, 482),
+	(919, 482),
+	(6024, 137),
+	(16140, 251),
+	(6912, 104),
+	(6912, 794),
+	(23488, 61),
+	(8337, 4299),
+	(22557, 6361),
+	(19765, 1394),
+	(19157, 9861),
+	(2391, 1107),
+	(9047, 4930),
+	(8664, 3077),
+	(8665, 1803),
+	(21605, 3753),
+	(7783, 3698),
+	(7783, 3699),
+	(2211, 317),
+	(8828, 24),
+	(7711, 3398),
+	(8455, 1316),
+	(16985, 9351),
+	(16895, 8380),
+	(4653, 863),
+	(3807, 1004),
+	(3032, 1284),
+	(9781, 510),
+	(11135, 6080),
+	(18350, 9400),
+	(1341, 398),
+	(1341, 899),
+	(1341, 702),
+	(1936, 702),
+	(17728, 8971),
+	(15299, 1568),
+	(8698, 2374),
+	(6835, 1983),
+	(1951, 368),
+	(1342, 261),
+	(4462, 5909),
+	(11163, 5909),
+	(5747, 1047),
+	(15421, 5055),
+	(3808, 1278),
+	(18549, 5089),
+	(4712, 696),
+	(2744, 1048),
+	(4713, 1048),
+	(14993, 7489),
+	(2731, 1286),
+	(615, 481),
+	(3756, 1893),
+	(3367, 716),
+	(3809, 713),
+	(3809, 1001),
+	(5748, 340),
+	(19233, 9487),
+	(7557, 3125),
+	(21586, 10441),
+	(13398, 804),
+	(18117, 9292),
+	(4714, 81),
+	(17710, 8958),
+	(17878, 9090),
+	(22350, 10212),
+	(22352, 10212),
+	(22351, 10212),
+	(14302, 569),
+	(7784, 804),
+	(7785, 1027),
+	(5363, 1),
+	(5363, 694),
+	(5364, 692),
+	(16601, 2219),
+	(3810, 395),
+	(4717, 1014),
+	(18207, 9341),
+	(6913, 2942),
+	(6913, 2943),
+	(4556, 864),
+	(22429, 10575),
+	(3220, 1626),
+	(12917, 501),
+	(3366, 325),
+	(4517, 112),
+	(8491, 188),
+	(2213, 295),
+	(10685, 1752),
+	(14526, 4440),
+	(6914, 842),
+	(9242, 37),
+	(7786, 1403),
+	(15856, 842),
+	(15858, 860),
+	(9221, 2614),
+	(9896, 5316),
+	(9782, 4755),
+	(17721, 4755),
+	(13403, 10132),
+	(3818, 292),
+	(3818, 1326),
+	(6322, 260),
+	(15738, 1333),
+	(6323, 107),
+	(3811, 260),
+	(3811, 1733),
+	(3811, 631),
+	(20, 13),
+	(20, 17),
+	(20, 649),
+	(20, 23),
+	(20, 21),
+	(21, 15),
+	(21, 17),
+	(21, 18),
+	(21, 20),
+	(21, 21),
+	(14543, 15),
+	(538, 21),
+	(538, 3023),
+	(10047, 21),
+	(19839, 8),
+	(17596, 8862),
+	(6915, 1018),
+	(22408, 10569),
+	(4718, 2001),
+	(16142, 617),
+	(17943, 4545),
+	(9535, 2728),
+	(4719, 6017),
+	(15280, 2728),
+	(15281, 2728),
+	(6246, 2728),
+	(5749, 347),
+	(3819, 1918),
+	(308, 6),
+	(1921, 6),
+	(1921, 411),
+	(14387, 7205),
+	(14387, 7206),
+	(7787, 3700),
+	(9297, 10313),
+	(6916, 2944),
+	(8692, 71),
+	(12405, 139),
+	(6292, 2746),
+	(14609, 7115),
+	(5365, 2369),
+	(17589, 8856),
+	(6739, 2898),
+	(11351, 6031),
+	(10049, 6031),
+	(11831, 2092),
+	(11965, 6372),
+	(5750, 1863),
+	(10058, 5283),
+	(18455, 2406),
+	(17555, 8831),
+	(10048, 6929),
+	(5522, 2248),
+	(8335, 2248),
+	(13220, 7023),
+	(2118, 2046),
+	(2118, 4463),
+	(2118, 5847),
+	(8481, 2046),
+	(21974, 51),
+	(18915, 9589),
+	(12979, 10122),
+	(5730, 2536),
+	(452, 51),
+	(452, 1695),
+	(452, 118),
+	(6917, 2046),
+	(9041, 2763),
+	(19394, 10010),
+	(8719, 359),
+	(16741, 8258),
+	(22430, 10576),
+	(14847, 385),
+	(322, 113),
+	(8408, 4379),
+	(19579, 3074),
+	(7788, 2359),
+	(7788, 129),
+	(6918, 1018),
+	(6919, 1394),
+	(18489, 451),
+	(18490, 413),
+	(18491, 149),
+	(8489, 4472),
+	(8490, 4472),
+	(3424, 771),
+	(4720, 684),
+	(2367, 251),
+	(7790, 3038),
+	(11967, 82),
+	(22034, 10506),
+	(11613, 1218),
+	(6441, 1218),
+	(5643, 1218),
+	(11612, 1218),
+	(6750, 1218),
+	(6920, 1218),
+	(11611, 1218),
+	(18249, 1795),
+	(18249, 1851),
+	(2128, 1004),
+	(14567, 2442),
+	(3125, 697),
+	(3124, 697),
+	(5475, 1956),
+	(10500, 5675),
+	(3820, 1919),
+	(3821, 1919),
+	(7280, 2292),
+	(3822, 861),
+	(9706, 5195),
+	(8597, 4541),
+	(6324, 864),
+	(18378, 9419),
+	(2432, 1164),
+	(10053, 7828),
+	(5752, 2175),
+	(5751, 2175),
+	(17685, 8940),
+	(17457, 9197),
+	(23201, 9539),
+	(5753, 327),
+	(5753, 1295),
+	(6921, 327),
+	(10242, 100),
+	(7288, 100),
+	(11106, 100),
+	(11107, 100),
+	(10243, 6424),
+	(14320, 7183),
+	(8437, 2050),
+	(8437, 4427),
+	(9175, 4931),
+	(18118, 1297),
+	(17438, 8708),
+	(23864, 6418),
+	(10208, 6406),
+	(8984, 4759),
+	(15404, 7703),
+	(7644, 407),
+	(17454, 9313),
+	(5649, 404),
+	(6058, 2677),
+	(6059, 404),
+	(16400, 404),
+	(6922, 1318),
+	(11265, 407),
+	(8421, 4416),
+	(10056, 2227),
+	(7894, 1951),
+	(5754, 1046),
+	(18864, 7052),
+	(18864, 2233),
+	(18500, 407),
+	(7334, 1012),
+	(14647, 1012),
+	(7310, 60),
+	(7310, 1010),
+	(2352, 1109),
+	(17108, 8508),
+	(2214, 152),
+	(1015, 451),
+	(1016, 451),
+	(2606, 1021),
+	(2606, 2345),
+	(17587, 8855),
+	(10760, 2344),
+	(10760, 3226),
+	(2433, 1165),
+	(8937, 4435),
+	(2608, 1229),
+	(2749, 1296),
+	(2749, 864),
+	(4140, 802),
+	(3824, 864),
+	(3824, 802),
+	(18054, 864),
+	(16733, 8252),
+	(22782, 10677),
+	(17520, 8810),
+	(17676, 3820),
+	(3825, 451),
+	(14325, 7184),
+	(18322, 9386),
+	(18253, 9369),
+	(15679, 2221),
+	(6923, 2221),
+	(6923, 2175),
+	(19939, 2221),
+	(19939, 2214),
+	(19939, 1866),
+	(8381, 4372),
+	(13817, 9466),
+	(6715, 60),
+	(18790, 3048),
+	(7972, 603),
+	(7973, 213),
+	(9701, 1045),
+	(18804, 9565),
+	(11415, 6056),
+	(3425, 1777),
+	(3235, 1208),
+	(3826, 1817),
+	(19111, 1316),
+	(2356, 1114),
+	(4722, 2106),
+	(4722, 1984),
+	(2435, 1162),
+	(11140, 5899),
+	(3827, 864),
+	(22019, 10500),
+	(11974, 614),
+	(11975, 614),
+	(3426, 536),
+	(10666, 5753),
+	(6924, 2945),
+	(17646, 8898),
+	(9508, 5090),
+	(11141, 4886),
+	(6329, 129),
+	(6326, 312),
+	(7379, 3063),
+	(21916, 10472),
+	(4723, 872),
+	(4723, 1309),
+	(6100, 2918),
+	(5662, 2521),
+	(17403, 8692),
+	(21918, 9447),
+	(14331, 7188),
+	(3445, 864),
+	(3445, 1797),
+	(3448, 864),
+	(3448, 1802),
+	(3446, 864),
+	(3451, 864),
+	(3452, 864),
+	(22773, 10672),
+	(7793, 864),
+	(3832, 1151),
+	(3453, 864),
+	(3447, 864),
+	(3833, 864),
+	(3834, 1922),
+	(4724, 864),
+	(4724, 1922),
+	(17456, 864),
+	(6331, 864),
+	(6333, 864),
+	(6716, 864),
+	(6334, 864),
+	(6925, 864),
+	(18786, 864),
+	(16627, 4070),
+	(17653, 8904),
+	(6810, 1134),
+	(17449, 8716),
+	(4511, 2516),
+	(4511, 4981),
+	(4511, 3668),
+	(4511, 10073),
+	(19752, 10195),
+	(7794, 1838),
+	(7794, 818),
+	(7795, 1838),
+	(3757, 1896),
+	(20902, 10394),
+	(17634, 8887),
+	(7796, 3705),
+	(19614, 1882),
+	(4725, 351),
+	(4726, 351),
+	(22747, 10635),
+	(16160, 7495),
+	(8325, 1893),
+	(8325, 1316),
+	(14885, 1893),
+	(15714, 7417),
+	(18847, 9386),
+	(7870, 2483),
+	(2259, 140),
+	(2259, 4227),
+	(2260, 140),
+	(2260, 4227),
+	(16742, 1208),
+	(10918, 1017),
+	(7797, 1850),
+	(14948, 7474),
+	(13509, 312),
+	(18608, 566),
+	(17264, 8600),
+	(18388, 8600),
+	(14333, 8594),
+	(6717, 1963),
+	(15491, 368),
+	(498, 148),
+	(498, 23),
+	(498, 166),
+	(498, 13),
+	(1011, 148),
+	(1011, 2121),
+	(1011, 73),
+	(13920, 148),
+	(13920, 232),
+	(13926, 148),
+	(13927, 148),
+	(13921, 148),
+	(13928, 148),
+	(13922, 148),
+	(13922, 232),
+	(13924, 148),
+	(13924, 73),
+	(13925, 148),
+	(13923, 148),
+	(13923, 73),
+	(19164, 148),
+	(13916, 148),
+	(13914, 148),
+	(14548, 148),
+	(14548, 3226),
+	(14548, 2121),
+	(6032, 148),
+	(6032, 2492),
+	(13919, 148),
+	(13917, 148),
+	(13917, 73),
+	(13917, 2492),
+	(13915, 148),
+	(13913, 148),
+	(6101, 1831),
+	(6101, 4981),
+	(18764, 9465),
+	(18758, 263),
+	(7730, 3593),
+	(8431, 1844),
+	(17971, 9172),
+	(10865, 1196),
+	(16835, 8325),
+	(22751, 10658),
+	(6611, 1396),
+	(3369, 129),
+	(13427, 4886),
+	(14790, 4357),
+	(14790, 3496),
+	(7208, 405),
+	(14365, 4748),
+	(11802, 6326),
+	(18005, 2406),
+	(15654, 762),
+	(15747, 762),
+	(20198, 10343),
+	(5663, 2521),
+	(6335, 1918),
+	(7799, 3706),
+	(2853, 1335),
+	(2711, 1276),
+	(2712, 866),
+	(7281, 61),
+	(9258, 5058),
+	(5366, 292),
+	(14342, 7233),
+	(14341, 764),
+	(14340, 1098),
+	(14339, 764),
+	(16292, 2400),
+	(6336, 1923),
+	(6336, 1300),
+	(4727, 1933),
+	(3835, 1286),
+	(3835, 1923),
+	(3836, 1300),
+	(3836, 1286),
+	(4728, 1286),
+	(4728, 1923),
+	(17695, 8949),
+	(6926, 1260),
+	(1810, 250),
+	(18823, 5024),
+	(14607, 1214),
+	(18824, 45),
+	(4729, 1321),
+	(8999, 4696),
+	(8755, 4696),
+	(4700, 26),
+	(4700, 2099),
+	(11256, 26),
+	(11256, 2099),
+	(18250, 5830),
+	(10233, 5531),
+	(12407, 7191),
+	(8422, 4417),
+	(18845, 10287),
+	(5755, 2539),
+	(5756, 263),
+	(2754, 855),
+	(7800, 3227),
+	(7800, 2609),
+	(7800, 1312),
+	(7800, 3708),
+	(16259, 4423),
+	(11617, 37),
+	(6337, 37),
+	(18055, 37),
+	(1280, 37),
+	(18056, 9216),
+	(5757, 2429),
+	(6927, 115),
+	(13436, 10336),
+	(14347, 7109),
+	(9784, 5254),
+	(17098, 3010),
+	(9785, 5259),
+	(14349, 7194),
+	(13361, 7038),
+	(19484, 10060),
+	(502, 221),
+	(17918, 538),
+	(23863, 4886),
+	(6338, 2768),
+	(14458, 9918),
+	(17618, 3820),
+	(17618, 8386),
+	(5973, 2345),
+	(5973, 2603),
+	(3087, 85),
+	(19681, 10155),
+	(1150, 482),
+	(21127, 482),
+	(1152, 439),
+	(1152, 482),
+	(2924, 482),
+	(616, 482),
+	(1151, 482),
+	(19255, 1267),
+	(12644, 4607),
+	(19263, 61),
+	(4730, 148),
+	(4730, 13),
+	(4730, 23),
+	(617, 148),
+	(617, 13),
+	(2034, 148),
+	(618, 148),
+	(619, 148),
+	(619, 13),
+	(1334, 280),
+	(13447, 1076),
+	(5758, 76),
+	(6339, 72),
+	(10607, 10423),
+	(10607, 1295),
+	(4731, 1295),
+	(4731, 1254),
+	(4732, 2108),
+	(14759, 7396),
+	(4449, 1019),
+	(4449, 425),
+	(5759, 1140),
+	(22372, 10212),
+	(212, 85),
+	(1446, 765),
+	(11980, 1031),
+	(4373, 1292),
+	(2630, 1375),
+	(2630, 4099),
+	(2630, 2067),
+	(2630, 817),
+	(2630, 1201),
+	(7801, 1440),
+	(7802, 213),
+	(7803, 547),
+	(7806, 2024),
+	(7804, 547),
+	(7804, 3710),
+	(7805, 1175),
+	(3368, 260),
+	(2436, 528),
+	(11142, 112),
+	(22366, 10544),
+	(22741, 10630),
+	(19240, 3161),
+	(12284, 4076),
+	(5760, 271),
+	(3837, 425),
+	(6343, 716),
+	(18747, 9544),
+	(19735, 1312),
+	(19735, 804),
+	(18390, 578),
+	(12728, 7195),
+	(12728, 1339),
+	(18802, 6361),
+	(3045, 1241),
+	(8724, 1281),
+	(3052, 532),
+	(3054, 1045),
+	(8723, 1281),
+	(3053, 1260),
+	(4733, 2109),
+	(16086, 7495),
+	(16087, 7495),
+	(16088, 7495),
+	(16089, 7495),
+	(19413, 2233),
+	(19413, 817),
+	(14393, 7209),
+	(8683, 2206),
+	(5645, 2273),
+	(20455, 168),
+	(6928, 329),
+	(494, 167),
+	(494, 168),
+	(2720, 636),
+	(2720, 637),
+	(6574, 306),
+	(6574, 636),
+	(6574, 637),
+	(16348, 1116),
+	(5664, 2678),
+	(6209, 2701),
+	(11724, 3698),
+	(23274, 8091),
+	(18656, 9516),
+	(10855, 1196),
+	(16661, 8204),
+	(2382, 1135),
+	(12618, 368),
+	(6575, 2847),
+	(6575, 584),
+	(4609, 2064),
+	(6576, 2849),
+	(6577, 2205),
+	(16917, 8402),
+	(11143, 5901),
+	(3838, 347),
+	(3840, 347),
+	(5761, 347),
+	(20160, 347),
+	(6203, 276),
+	(10916, 347),
+	(10916, 1411),
+	(620, 347),
+	(2626, 347),
+	(2404, 28),
+	(17747, 8986),
+	(2453, 1171),
+	(19882, 8334),
+	(16700, 8238),
+	(16294, 1617),
+	(1418, 4106),
+	(1419, 4106),
+	(4138, 2030),
+	(4139, 2030),
+	(6826, 74),
+	(4734, 817),
+	(4734, 2110),
+	(3841, 1735),
+	(17557, 8299),
+	(5665, 2521),
+	(19675, 292),
+	(18716, 3048),
+	(18715, 3048),
+	(7282, 3048),
+	(7283, 3048),
+	(7284, 3048),
+	(6095, 1831),
+	(10033, 5371),
+	(16833, 8324),
+	(16658, 8203),
+	(5762, 2540),
+	(19793, 3709),
+	(19793, 1221),
+	(8611, 4591),
+	(11144, 129),
+	(6648, 1487),
+	(7807, 1926),
+	(6931, 1927),
+	(6931, 1925),
+	(6931, 1926),
+	(6932, 1927),
+	(6932, 1926),
+	(6932, 1925),
+	(4735, 1927),
+	(4735, 1925),
+	(4735, 1926),
+	(3842, 1925),
+	(3842, 1926),
+	(3842, 1927),
+	(3842, 690),
+	(4736, 66),
+	(6649, 1487),
+	(6650, 1487),
+	(16631, 66),
+	(5763, 1926),
+	(5763, 1927),
+	(3843, 1927),
+	(4737, 1925),
+	(4737, 1926),
+	(4737, 1927),
+	(4738, 66),
+	(5764, 1926),
+	(5764, 1927),
+	(5765, 1927),
+	(5765, 1925),
+	(5765, 1926),
+	(7808, 1926),
+	(7809, 66),
+	(3844, 1926),
+	(3844, 1927),
+	(3844, 1925),
+	(6651, 1926),
+	(4739, 1926),
+	(4739, 1925),
+	(22363, 10541),
+	(9872, 5297),
+	(6652, 1440),
+	(18216, 9352),
+	(5368, 37),
+	(5367, 569),
+	(7416, 575),
+	(6332, 575),
+	(13985, 2359),
+	(17927, 9132),
+	(4597, 1312),
+	(4597, 2068),
+	(6718, 1735),
+	(17854, 9072),
+	(4740, 584),
+	(14996, 584),
+	(18537, 9476),
+	(3335, 1746),
+	(18351, 9401),
+	(18351, 9402),
+	(4741, 2111),
+	(13175, 6993),
+	(9176, 404),
+	(2964, 381),
+	(16667, 8209),
+	(621, 438),
+	(622, 438),
+	(3845, 367),
+	(3845, 428),
+	(949, 428),
+	(949, 4176),
+	(623, 438),
+	(623, 319),
+	(623, 428),
+	(6632, 659),
+	(6632, 71),
+	(6632, 434),
+	(545, 319),
+	(545, 428),
+	(8548, 4523),
+	(1122, 428),
+	(9509, 428),
+	(19948, 428),
+	(20292, 428),
+	(20291, 428),
+	(23727, 428),
+	(3761, 1899),
+	(3761, 948),
+	(2033, 90),
+	(2033, 438),
+	(2033, 71),
+	(2033, 57),
+	(2033, 428),
+	(18968, 438),
+	(559, 319),
+	(559, 438),
+	(979, 319),
+	(979, 428),
+	(979, 71),
+	(979, 659),
+	(979, 438),
+	(3120, 1326),
+	(624, 367),
+	(625, 319),
+	(625, 428),
+	(625, 19),
+	(625, 1899),
+	(625, 318),
+	(429, 108),
+	(430, 108),
+	(1976, 108),
+	(543, 108),
+	(17432, 780),
+	(11266, 66),
+	(12410, 560),
+	(4742, 864),
+	(4743, 2019),
+	(17713, 8961),
+	(2808, 1321),
+	(21404, 10429),
+	(2270, 1063),
+	(4744, 132),
+	(19289, 9944),
+	(19697, 10165),
+	(3269, 1700),
+	(18061, 1285),
+	(13675, 7077),
+	(5519, 2453),
+	(15296, 7486),
+	(6719, 2888),
+	(21920, 32),
+	(16870, 8357),
+	(17017, 2406),
+	(7875, 3819),
+	(6933, 37),
+	(5766, 892),
+	(3846, 37),
+	(17487, 5462),
+	(11184, 6939),
+	(7816, 2678),
+	(7816, 1312),
+	(4745, 1054),
+	(4745, 392),
+	(4745, 62),
+	(19821, 37),
+	(17360, 8664),
+	(17360, 8663),
+	(6654, 1168),
+	(4746, 1934),
+	(7337, 1246),
+	(5369, 2020),
+	(3847, 129),
+	(19824, 10223),
+	(2454, 489),
+	(6344, 716),
+	(6344, 1568),
+	(7571, 3148),
+	(17780, 9005),
+	(19371, 2523),
+	(19290, 9946),
+	(14565, 1114),
+	(17231, 8579),
+	(18353, 9405),
+	(17752, 8990),
+	(7880, 3827),
+	(9792, 1701),
+	(626, 628),
+	(10608, 1201),
+	(951, 628),
+	(1884, 690),
+	(18075, 628),
+	(1883, 628),
+	(2403, 628),
+	(19426, 195),
+	(3848, 189),
+	(3848, 1241),
+	(10073, 6157),
+	(18632, 327),
+	(5666, 112),
+	(4056, 2000),
+	(4058, 2000),
+	(11761, 5070),
+	(17236, 8584),
+	(18432, 8506),
+	(6720, 303),
+	(6934, 116),
+	(6934, 832),
+	(22414, 10571),
+	(3849, 839),
+	(3849, 563),
+	(3849, 1905),
+	(3849, 432),
+	(4747, 1309),
+	(4747, 357),
+	(4747, 2112),
+	(4748, 563),
+	(4748, 806),
+	(4749, 806),
+	(4749, 1308),
+	(18251, 1300),
+	(627, 451),
+	(22497, 528),
+	(2785, 357),
+	(2785, 1001),
+	(2785, 1310),
+	(2810, 1322),
+	(2811, 1323),
+	(2811, 1311),
+	(2809, 700),
+	(2798, 1314),
+	(5767, 260),
+	(18212, 9347),
+	(4750, 782),
+	(22373, 10548),
+	(22373, 10547),
+	(6345, 716),
+	(6345, 1000),
+	(6345, 2774),
+	(6345, 458),
+	(3850, 1908),
+	(9793, 5261),
+	(3153, 1228),
+	(9611, 7909),
+	(11994, 5062),
+	(11995, 5062),
+	(7779, 3695),
+	(7722, 316),
+	(8122, 112),
+	(4751, 828),
+	(4751, 2115),
+	(4751, 2116),
+	(14446, 10105),
+	(14447, 10105),
+	(4149, 828),
+	(3238, 1658),
+	(12535, 501),
+	(2727, 1284),
+	(17407, 538),
+	(17407, 2329),
+	(9794, 5262),
+	(19136, 453),
+	(1130, 777),
+	(1114, 129),
+	(19468, 609),
+	(19468, 129),
+	(1123, 129),
+	(1116, 129),
+	(1119, 129),
+	(1142, 779),
+	(1129, 776),
+	(1148, 161),
+	(1134, 159),
+	(1127, 129),
+	(1132, 777),
+	(1137, 129),
+	(1136, 129),
+	(1147, 129),
+	(1133, 159),
+	(1135, 129),
+	(1131, 777),
+	(491, 170),
+	(491, 169),
+	(1149, 161),
+	(10076, 169),
+	(10075, 169),
+	(1182, 169),
+	(6303, 169),
+	(9715, 169),
+	(1141, 129),
+	(1140, 778),
+	(1138, 129),
+	(1139, 129),
+	(1128, 159),
+	(1128, 1822),
+	(1118, 129),
+	(1146, 781),
+	(1145, 129),
+	(21888, 129),
+	(4165, 236),
+	(4165, 1779),
+	(4165, 79),
+	(11533, 3151),
+	(22701, 8609),
+	(13203, 7092),
+	(23186, 10701),
+	(18014, 9201),
+	(18014, 9202),
+	(11042, 5980),
+	(8705, 184),
+	(11045, 1166),
+	(17692, 8946),
+	(16539, 8142),
+	(23724, 10868),
+	(19386, 10005),
+	(7569, 3146),
+	(4752, 2117),
+	(8537, 4515),
+	(2151, 818),
+	(17966, 9167),
+	(7820, 1850),
+	(23277, 10812),
+	(3851, 143),
+	(3851, 79),
+	(3851, 260),
+	(13468, 2080),
+	(6189, 3923),
+	(8214, 3701),
+	(2876, 1351),
+	(18677, 855),
+	(17871, 8421),
+	(16844, 8331),
+	(3852, 1930),
+	(5768, 69),
+	(4753, 277),
+	(17978, 9176),
+	(17693, 2561),
+	(11271, 175),
+	(14615, 114),
+	(2237, 1047),
+	(2237, 855),
+	(2235, 1122),
+	(2235, 217),
+	(2235, 855),
+	(4760, 1021),
+	(16566, 8155),
+	(3456, 864),
+	(21417, 10430),
+	(8394, 1065),
+	(6103, 1440),
+	(15781, 468),
+	(16672, 8212),
+	(17543, 8212),
+	(18091, 676),
+	(8625, 4599),
+	(11150, 5906),
+	(2455, 152),
+	(7821, 1784),
+	(3427, 1784),
+	(6087, 112),
+	(6087, 4140),
+	(6089, 112),
+	(6090, 112),
+	(6092, 112),
+	(6092, 2379),
+	(9813, 78),
+	(16426, 8091),
+	(8583, 916),
+	(10237, 78),
+	(19772, 1),
+	(11306, 486),
+	(5771, 2093),
+	(5771, 2541),
+	(14840, 26),
+	(18870, 486),
+	(5773, 2541),
+	(14616, 7269),
+	(5769, 486),
+	(5770, 4),
+	(628, 486),
+	(18872, 486),
+	(4538, 3720),
+	(6722, 385),
+	(12525, 6553),
+	(2917, 1360),
+	(2917, 5837),
+	(5062, 2248),
+	(629, 488),
+	(13222, 7025),
+	(15945, 7917),
+	(7904, 716),
+	(17767, 8998),
+	(11393, 2428),
+	(11392, 2946),
+	(11392, 2428),
+	(6935, 2428),
+	(6935, 2946),
+	(3853, 592),
+	(3854, 1215),
+	(7897, 3844),
+	(3855, 1933),
+	(6346, 1267),
+	(6802, 817),
+	(5774, 2543),
+	(3222, 1640),
+	(12014, 9732),
+	(4460, 234),
+	(17917, 146),
+	(8062, 4013),
+	(23249, 4826),
+	(9796, 5263),
+	(10080, 5751),
+	(15551, 1427),
+	(9165, 2039),
+	(17659, 8912),
+	(4761, 2124),
+	(15883, 697),
+	(15878, 10161),
+	(630, 489),
+	(631, 489),
+	(632, 489),
+	(8192, 4116),
+	(8718, 4116),
+	(3856, 70),
+	(3856, 1934),
+	(11216, 1934),
+	(11216, 1759),
+	(18873, 580),
+	(5775, 2544),
+	(11713, 6189),
+	(11714, 6190),
+	(11715, 6189),
+	(11716, 6189),
+	(11717, 6189),
+	(3006, 1336),
+	(3006, 1309),
+	(3006, 789),
+	(6723, 1286),
+	(4762, 2125),
+	(4762, 2126),
+	(19234, 9914),
+	(22462, 10212),
+	(7822, 1851),
+	(6936, 786),
+	(4756, 38),
+	(16859, 8347),
+	(14988, 26),
+	(11727, 2523),
+	(16196, 7978),
+	(17907, 4461),
+	(18554, 5905),
+	(6490, 37),
+	(6518, 37),
+	(15905, 7907),
+	(2358, 1118),
+	(10083, 1118),
+	(11366, 3055),
+	(18070, 26),
+	(15913, 797),
+	(10429, 5548),
+	(14999, 508),
+	(22036, 7218),
+	(13093, 6950),
+	(17744, 6950),
+	(8425, 4421),
+	(6094, 3721),
+	(6094, 6365),
+	(15158, 393),
+	(7823, 804),
+	(7824, 1329),
+	(7824, 608),
+	(7824, 804),
+	(3428, 1785),
+	(18408, 66),
+	(10737, 369),
+	(5588, 843),
+	(9046, 5456),
+	(23245, 10807),
+	(7873, 108),
+	(16147, 468),
+	(6937, 1012),
+	(19433, 2050),
+	(7856, 3774),
+	(16043, 926),
+	(18744, 528),
+	(1804, 335),
+	(1802, 250),
+	(9594, 606),
+	(18974, 10809),
+	(6347, 395),
+	(23573, 6395),
+	(10228, 61),
+	(4516, 1031),
+	(4371, 1031),
+	(16825, 8315),
+	(10235, 5533),
+	(19838, 1715),
+	(3758, 1893),
+	(3458, 1804),
+	(3459, 1804),
+	(14702, 7319),
+	(4765, 1942),
+	(4765, 2131),
+	(6348, 819),
+	(9723, 5209),
+	(9881, 5306),
+	(5776, 1852),
+	(22710, 10610),
+	(1010, 943),
+	(2931, 943),
+	(2154, 110),
+	(4213, 110),
+	(4214, 2451),
+	(4214, 110),
+	(10094, 110),
+	(9066, 943),
+	(16604, 943),
+	(16602, 943),
+	(8598, 4542),
+	(4610, 2074),
+	(15719, 110),
+	(7830, 916),
+	(7830, 3726),
+	(20458, 3726),
+	(20458, 916),
+	(18354, 9406),
+	(20457, 3726),
+	(20457, 916),
+	(17565, 8840),
+	(18151, 9307),
+	(17494, 7984),
+	(3083, 645),
+	(3083, 377),
+	(17527, 8299),
+	(634, 152),
+	(19335, 18),
+	(19335, 377),
+	(6038, 377),
+	(21930, 1176),
+	(15284, 2262),
+	(10082, 6941),
+	(16341, 2262),
+	(14465, 5676),
+	(9607, 3031),
+	(17121, 8113),
+	(19118, 1192),
+	(5589, 2483),
+	(17892, 1493),
+	(6938, 1214),
+	(6938, 2670),
+	(15707, 2483),
+	(4766, 1014),
+	(18064, 70),
+	(18065, 70),
+	(18066, 70),
+	(5777, 690),
+	(9797, 5264),
+	(2474, 863),
+	(3460, 5),
+	(3461, 5),
+	(18784, 9539),
+	(6724, 716),
+	(6724, 817),
+	(7511, 635),
+	(15563, 7847),
+	(10095, 2309),
+	(5370, 2352),
+	(18355, 9407),
+	(6939, 169),
+	(636, 378),
+	(636, 850),
+	(19287, 1744),
+	(19288, 1744),
+	(9764, 2902),
+	(19756, 4981),
+	(19717, 4981),
+	(17141, 8290),
+	(16218, 7988),
+	(15083, 4754),
+	(21923, 9447),
+	(637, 492),
+	(638, 492),
+	(639, 492),
+	(5779, 132),
+	(17346, 8299),
+	(8146, 4070),
+	(9864, 5293),
+	(16820, 8309),
+	(4767, 398),
+	(14618, 7115),
+	(7573, 761),
+	(22211, 10527),
+	(17909, 9116),
+	(18597, 9246),
+	(10349, 5545),
+	(18484, 9453),
+	(16049, 7486),
+	(17678, 8935),
+	(13209, 7017),
+	(6725, 2890),
+	(6725, 1788),
+	(2999, 1401),
+	(9798, 5265),
+	(10097, 5265),
+	(5371, 2064),
+	(5371, 829),
+	(5371, 2370),
+	(5371, 2371),
+	(2457, 1172),
+	(14590, 771),
+	(19537, 787),
+	(11152, 5907),
+	(16085, 7495),
+	(19677, 1933),
+	(3860, 1933),
+	(3859, 1933),
+	(3861, 1933),
+	(8453, 1322),
+	(8454, 1933),
+	(4768, 1933),
+	(4768, 2133),
+	(7392, 765),
+	(6751, 2163),
+	(6751, 2904),
+	(19475, 4607),
+	(21939, 1907),
+	(344, 138),
+	(5875, 650),
+	(11749, 6216),
+	(2812, 392),
+	(9283, 144),
+	(15762, 493),
+	(15762, 7881),
+	(640, 493),
+	(17861, 9076),
+	(10100, 6940),
+	(8426, 2460),
+	(9984, 5360),
+	(5780, 397),
+	(5781, 2547),
+	(8277, 2429),
+	(9799, 5266),
+	(7967, 412),
+	(641, 412),
+	(642, 412),
+	(7969, 412),
+	(7969, 3924),
+	(7968, 412),
+	(943, 412),
+	(561, 357),
+	(561, 23),
+	(561, 439),
+	(561, 412),
+	(12634, 4607),
+	(17340, 8645),
+	(5782, 694),
+	(5783, 694),
+	(6941, 694),
+	(4541, 810),
+	(8280, 764),
+	(19585, 10110),
+	(8282, 764),
+	(8281, 764),
+	(8202, 1254),
+	(17725, 8968),
+	(10851, 1196),
+	(4446, 4981),
+	(6350, 1177),
+	(17232, 8580),
+	(643, 92),
+	(4203, 92),
+	(16759, 2406),
+	(18940, 9725),
+	(5784, 2550),
+	(644, 53),
+	(645, 495),
+	(646, 495),
+	(7907, 896),
+	(7906, 896),
+	(6752, 896),
+	(7908, 896),
+	(7909, 896),
+	(9800, 926),
+	(13831, 129),
+	(16858, 8346),
+	(3071, 1444),
+	(1901, 1504),
+	(647, 113),
+	(647, 3),
+	(707, 140),
+	(707, 635),
+	(321, 140),
+	(321, 54),
+	(670, 140),
+	(11571, 2),
+	(21205, 140),
+	(649, 496),
+	(649, 4288),
+	(650, 4288),
+	(650, 140),
+	(295, 113),
+	(676, 113),
+	(652, 113),
+	(245, 142),
+	(648, 113),
+	(959, 140),
+	(833, 140),
+	(759, 140),
+	(706, 113),
+	(664, 113),
+	(663, 113),
+	(18165, 140),
+	(18165, 1923),
+	(18165, 113),
+	(18165, 9314),
+	(18165, 9315),
+	(340, 113),
+	(900, 1),
+	(11678, 6162),
+	(2447, 1169),
+	(2446, 184),
+	(2443, 184),
+	(2445, 184),
+	(2441, 184),
+	(2439, 184),
+	(2440, 184),
+	(2442, 184),
+	(17607, 8871),
+	(5668, 37),
+	(5668, 387),
+	(9801, 5267),
+	(11153, 9520),
+	(653, 498),
+	(653, 631),
+	(477, 498),
+	(477, 631),
+	(9760, 498),
+	(879, 498),
+	(961, 498),
+	(275, 498),
+	(18890, 9017),
+	(11154, 9485),
+	(12412, 560),
+	(654, 196),
+	(1369, 196),
+	(8445, 196),
+	(8444, 196),
+	(1370, 196),
+	(1371, 196),
+	(11671, 6153),
+	(23571, 528),
+	(11245, 5955),
+	(21926, 9447),
+	(2458, 1173),
+	(3862, 1487),
+	(9006, 182),
+	(16999, 127),
+	(4701, 1217),
+	(4702, 1053),
+	(14148, 7098),
+	(6943, 407),
+	(6942, 407),
+	(4770, 392),
+	(6726, 1906),
+	(17195, 2413),
+	(6727, 2891),
+	(5634, 1935),
+	(3863, 1935),
+	(3864, 1935),
+	(5785, 1935),
+	(5786, 1935),
+	(17729, 8972),
+	(5669, 112),
+	(16107, 7951),
+	(1286, 771),
+	(1424, 771),
+	(1425, 771),
+	(18820, 9569),
+	(16889, 8376),
+	(15303, 7619),
+	(655, 304),
+	(2616, 304),
+	(11278, 6943),
+	(7567, 32),
+	(15446, 7720),
+	(9572, 6942),
+	(18736, 6942),
+	(16670, 8211),
+	(5787, 485),
+	(5787, 1330),
+	(2614, 1234),
+	(6404, 2797),
+	(15163, 7567),
+	(15305, 7622),
+	(4598, 129),
+	(9545, 1021),
+	(6351, 129),
+	(11300, 781),
+	(20192, 129),
+	(1336, 407),
+	(11333, 6001),
+	(9802, 5268),
+	(3839, 1924),
+	(18765, 9447),
+	(9921, 5339),
+	(11238, 10803),
+	(23236, 10803),
+	(3241, 1662),
+	(17826, 538),
+	(16068, 508),
+	(3060, 1438),
+	(3060, 1440),
+	(3062, 1439),
+	(3062, 1438),
+	(3065, 1440),
+	(11359, 1439),
+	(11360, 1438),
+	(11360, 1439),
+	(3061, 1439),
+	(3061, 1438),
+	(18449, 9436),
+	(3064, 1439),
+	(6728, 1474),
+	(2621, 1238),
+	(2621, 141),
+	(7825, 3668),
+	(11362, 6034),
+	(4771, 1314),
+	(4771, 1313),
+	(19528, 8532),
+	(19528, 152),
+	(20124, 10312),
+	(16810, 8303),
+	(12011, 1031),
+	(12011, 10088),
+	(12011, 10087),
+	(5372, 1181),
+	(11490, 2190),
+	(11608, 5846),
+	(11608, 2428),
+	(11608, 5996),
+	(11601, 6112),
+	(11319, 5846),
+	(11600, 5846),
+	(11600, 2428),
+	(11000, 5846),
+	(11000, 2428),
+	(11318, 5846),
+	(11318, 2428),
+	(8689, 4626),
+	(12012, 1067),
+	(10107, 5283),
+	(11048, 594),
+	(10428, 6948),
+	(5788, 1411),
+	(5788, 2014),
+	(8466, 2522),
+	(18504, 9464),
+	(18846, 9539),
+	(18547, 5907),
+	(4772, 104),
+	(23203, 4639),
+	(16200, 326),
+	(6729, 2892),
+	(7544, 2434),
+	(18535, 9476),
+	(18382, 263),
+	(7826, 3723),
+	(8484, 188),
+	(17230, 8578),
+	(11369, 6116),
+	(15173, 7568),
+	(13215, 144),
+	(13214, 144),
+	(305, 144),
+	(13213, 144),
+	(242, 144),
+	(9362, 144),
+	(5637, 85),
+	(5638, 85),
+	(5638, 2512),
+	(2612, 1232),
+	(4773, 2135),
+	(4773, 2136),
+	(241, 56),
+	(9098, 4821),
+	(16957, 8432),
+	(297, 56),
+	(297, 148),
+	(297, 149),
+	(297, 55),
+	(1372, 150),
+	(1372, 56),
+	(307, 56),
+	(307, 150),
+	(2944, 1370),
+	(12306, 82),
+	(7612, 5985),
+	(4137, 2029),
+	(11298, 5988),
+	(2896, 733),
+	(2897, 1359),
+	(7333, 6154),
+	(23843, 66),
+	(11341, 6016),
+	(16095, 7495),
+	(15003, 7495),
+	(14554, 7251),
+	(16514, 8132),
+	(11554, 2406),
+	(5789, 2569),
+	(1185, 401),
+	(1186, 401),
+	(1198, 72),
+	(1199, 72),
+	(1197, 72),
+	(1188, 292),
+	(1187, 401),
+	(1195, 425),
+	(1196, 396),
+	(8038, 3957),
+	(4775, 2131),
+	(1193, 72),
+	(1190, 444),
+	(1190, 814),
+	(1190, 1326),
+	(1194, 444),
+	(1192, 401),
+	(6945, 2950),
+	(6946, 2950),
+	(6947, 2950),
+	(1189, 292),
+	(1191, 444),
+	(1191, 321),
+	(1191, 794),
+	(22516, 3035),
+	(16327, 8050),
+	(15389, 7693),
+	(11049, 6132),
+	(14946, 7472),
+	(4776, 1215),
+	(4611, 2075),
+	(13833, 9510),
+	(4777, 2141),
+	(9803, 2141),
+	(19291, 2141),
+	(16865, 8352),
+	(19569, 10102),
+	(17214, 8187),
+	(1805, 112),
+	(1806, 1906),
+	(1807, 1906),
+	(1808, 1263),
+	(1809, 1906),
+	(1809, 2893),
+	(17105, 8504),
+	(4778, 2142),
+	(17112, 8512),
+	(14629, 7198),
+	(18732, 9540),
+	(9259, 260),
+	(9259, 1758),
+	(11374, 9584),
+	(11375, 9584),
+	(22038, 10511),
+	(15035, 1448),
+	(7595, 3158),
+	(9809, 3158),
+	(5790, 696),
+	(14941, 7468),
+	(7872, 108),
+	(6784, 817),
+	(5791, 194),
+	(5373, 2372),
+	(4242, 2372),
+	(21931, 10477),
+	(15005, 7497),
+	(11750, 2092),
+	(11751, 1405),
+	(11746, 2092),
+	(4757, 2120),
+	(22002, 10496),
+	(5792, 630),
+	(15863, 3062),
+	(5793, 685),
+	(7587, 3152),
+	(8763, 4705),
+	(4136, 617),
+	(2407, 799),
+	(20474, 1044),
+	(20474, 10376),
+	(21932, 10328),
+	(9810, 5270),
+	(19165, 343),
+	(13188, 1398),
+	(7902, 260),
+	(7901, 260),
+	(10116, 6937),
+	(18911, 9588),
+	(17569, 7438),
+	(6948, 1956),
+	(18556, 5905),
+	(7285, 3049),
+	(13535, 2406),
+	(18760, 708),
+	(9739, 5220),
+	(11176, 9583),
+	(10230, 768),
+	(10635, 5757),
+	(17173, 1933),
+	(5794, 1804),
+	(5794, 2551),
+	(17848, 8668),
+	(1126, 4994),
+	(18977, 58),
+	(10070, 9734),
+	(13521, 5024),
+	(4779, 886),
+	(10163, 327),
+	(10163, 1783),
+	(10163, 1468),
+	(10163, 901),
+	(3429, 665),
+	(3429, 327),
+	(3430, 327),
+	(3430, 425),
+	(2477, 501),
+	(2922, 118),
+	(2922, 5891),
+	(2918, 7466),
+	(23850, 7466),
+	(656, 295),
+	(7840, 295),
+	(7840, 1312),
+	(13541, 7045),
+	(6753, 2149),
+	(17027, 8461),
+	(18709, 1348),
+	(3084, 1456),
+	(2967, 5070),
+	(7886, 3835),
+	(13365, 1434),
+	(18499, 212),
+	(22691, 9483),
+	(296, 122),
+	(471, 122),
+	(471, 158),
+	(1268, 122),
+	(1268, 158),
+	(10117, 249),
+	(336, 125),
+	(4764, 2130),
+	(16297, 8025),
+	(11207, 855),
+	(17893, 1493),
+	(8483, 188),
+	(7827, 628),
+	(7827, 3724),
+	(15198, 7577),
+	(11648, 4981),
+	(3121, 1474),
+	(3121, 768),
+	(2460, 1196),
+	(10120, 6130),
+	(10120, 737),
+	(11281, 3694),
+	(5795, 2552),
+	(5795, 2553),
+	(19268, 294),
+	(4780, 294),
+	(4780, 805),
+	(4781, 294),
+	(4782, 294),
+	(6352, 2181),
+	(6353, 2181),
+	(6055, 442),
+	(8427, 4423),
+	(19086, 9839),
+	(22708, 10608),
+	(16812, 8304),
+	(2593, 3822),
+	(17372, 8667),
+	(16346, 8057),
+	(6900, 2937),
+	(9811, 5271),
+	(17658, 8911),
+	(17727, 8970),
+	(3865, 1937),
+	(3865, 765),
+	(3866, 1938),
+	(3866, 1286),
+	(3866, 1939),
+	(3866, 1940),
+	(9812, 9345),
+	(6949, 1622),
+	(6949, 2951),
+	(9816, 5277),
+	(9061, 4796),
+	(23164, 1531),
+	(3867, 1315),
+	(21977, 51),
+	(23300, 366),
+	(2461, 528),
+	(5796, 2159),
+	(4783, 2143),
+	(4783, 2144),
+	(7497, 3818),
+	(8529, 4509),
+	(3462, 1805),
+	(3466, 1805),
+	(3465, 70),
+	(3465, 1805),
+	(3464, 1805),
+	(3463, 1805),
+	(9761, 5226),
+	(12394, 8770),
+	(21674, 263),
+	(7828, 1201),
+	(12260, 368),
+	(19740, 323),
+	(9876, 129),
+	(3431, 1),
+	(3431, 1786),
+	(6951, 2327),
+	(19252, 1906),
+	(9190, 2327),
+	(9190, 830),
+	(12558, 7166),
+	(11192, 4532),
+	(18998, 522),
+	(1877, 908),
+	(15447, 7721),
+	(20268, 489),
+	(11028, 317),
+	(22809, 10690),
+	(22810, 10690),
+	(18748, 9545),
+	(8693, 71),
+	(16937, 8420),
+	(17431, 8701),
+	(4319, 10157),
+	(4319, 7053),
+	(14633, 1356),
+	(4758, 831),
+	(17691, 8945),
+	(2462, 1175),
+	(4461, 532),
+	(8132, 2374),
+	(8201, 25),
+	(8201, 1281),
+	(8201, 865),
+	(6657, 1321),
+	(3868, 1834),
+	(16392, 1266),
+	(6952, 2953),
+	(10136, 6949),
+	(18953, 843),
+	(3679, 129),
+	(3678, 129),
+	(3681, 129),
+	(3467, 1806),
+	(6658, 159),
+	(3680, 129),
+	(6779, 129),
+	(6780, 129),
+	(5799, 129),
+	(5800, 129),
+	(5801, 129),
+	(5802, 129),
+	(6953, 129),
+	(6954, 129),
+	(6955, 129),
+	(4789, 1806),
+	(4789, 563),
+	(6659, 159),
+	(11641, 129),
+	(2663, 399),
+	(2663, 1257),
+	(17484, 1460),
+	(6956, 2148),
+	(6957, 129),
+	(5803, 2148),
+	(5804, 2148),
+	(5806, 2148),
+	(4790, 2149),
+	(4790, 2150),
+	(4790, 319),
+	(4791, 2151),
+	(4791, 2149),
+	(22371, 10546),
+	(17800, 9029),
+	(9694, 2345),
+	(9694, 1217),
+	(9708, 1217),
+	(7842, 2345),
+	(7842, 1217),
+	(11745, 1217),
+	(23309, 1348),
+	(17429, 8699),
+	(2471, 1178),
+	(11386, 184),
+	(11386, 6431),
+	(11387, 1166),
+	(11388, 6431),
+	(18985, 10349),
+	(15990, 5091),
+	(14789, 146),
+	(17107, 8507),
+	(6365, 872),
+	(6366, 872),
+	(6958, 7),
+	(6958, 1241),
+	(18254, 62),
+	(6789, 817),
+	(6788, 817),
+	(6660, 1440),
+	(18193, 1216),
+	(2111, 1065),
+	(657, 87),
+	(5868, 444),
+	(6367, 1263),
+	(12034, 10062),
+	(11869, 387),
+	(1214, 837),
+	(1215, 837),
+	(1215, 400),
+	(11806, 837),
+	(18137, 1779),
+	(14197, 9457),
+	(9817, 5278),
+	(9818, 5278),
+	(10139, 5278),
+	(16890, 8377),
+	(16668, 2776),
+	(2369, 1125),
+	(2369, 1124),
+	(2369, 19),
+	(2369, 39),
+	(17238, 8586),
+	(11390, 63),
+	(658, 66),
+	(659, 500),
+	(3468, 343),
+	(8428, 4424),
+	(12990, 3193),
+	(6959, 17),
+	(6959, 2129),
+	(9260, 1704),
+	(9260, 5062),
+	(9261, 1704),
+	(9261, 5063),
+	(17109, 8509),
+	(2155, 1012),
+	(2368, 1012),
+	(20341, 1012),
+	(22502, 8067),
+	(19924, 1012),
+	(8222, 1012),
+	(11133, 1012),
+	(23158, 1012),
+	(21988, 1012),
+	(21040, 1012),
+	(13571, 7408),
+	(3869, 444),
+	(2466, 528),
+	(2465, 528),
+	(4220, 1170),
+	(4220, 2121),
+	(10166, 805),
+	(5374, 112),
+	(13543, 7048),
+	(17217, 3820),
+	(3870, 1943),
+	(8965, 7912),
+	(2012, 944),
+	(4219, 2955),
+	(4219, 4758),
+	(8185, 4102),
+	(2467, 1176),
+	(2399, 543),
+	(18335, 9389),
+	(10165, 8665),
+	(10108, 6158),
+	(1270, 825),
+	(1269, 7416),
+	(1269, 825),
+	(18638, 284),
+	(4135, 37),
+	(20013, 37),
+	(2125, 373),
+	(9118, 4828),
+	(660, 501),
+	(5808, 434),
+	(17305, 8615),
+	(8452, 37),
+	(17032, 8464),
+	(661, 503),
+	(309, 24),
+	(8981, 4754),
+	(4793, 2153),
+	(17954, 9153),
+	(15145, 5034),
+	(11830, 2252),
+	(11830, 5295),
+	(11829, 5295),
+	(11829, 2252),
+	(11504, 2252),
+	(11504, 1952),
+	(17400, 4740),
+	(14527, 3496),
+	(11389, 6431),
+	(4794, 1748),
+	(3871, 1817),
+	(3871, 379),
+	(6368, 379),
+	(6369, 543),
+	(6369, 2778),
+	(6661, 1731),
+	(18703, 608),
+	(19721, 8589),
+	(11024, 5851),
+	(11025, 5851),
+	(11327, 5998),
+	(10169, 10152),
+	(1533, 431),
+	(7551, 56),
+	(3267, 56),
+	(19549, 3150),
+	(193, 10),
+	(15862, 85),
+	(3046, 1431),
+	(20750, 10378),
+	(20751, 10378),
+	(5593, 2046),
+	(23891, 10895),
+	(19561, 10019),
+	(17245, 6003),
+	(17245, 830),
+	(2117, 116),
+	(11575, 6090),
+	(7662, 458),
+	(21953, 10212),
+	(576, 6997),
+	(576, 243),
+	(3769, 530),
+	(3677, 129),
+	(4796, 891),
+	(4796, 1303),
+	(18358, 9412),
+	(19588, 431),
+	(8429, 4425),
+	(10170, 9304),
+	(18866, 1260),
+	(17159, 8537),
+	(18078, 8537),
+	(14949, 7474),
+	(8442, 4430),
+	(18440, 9434),
+	(536, 108),
+	(7329, 902),
+	(7329, 439),
+	(19399, 108),
+	(19397, 2197),
+	(2902, 423),
+	(1833, 108),
+	(16822, 7563),
+	(5809, 413),
+	(14851, 1363),
+	(2134, 1006),
+	(2134, 163),
+	(20336, 1006),
+	(1387, 769),
+	(13575, 9148),
+	(1388, 769),
+	(1389, 769),
+	(1392, 769),
+	(1383, 769),
+	(11725, 769),
+	(7286, 769),
+	(8211, 769),
+	(1395, 4462),
+	(1391, 769),
+	(1393, 769),
+	(11718, 769),
+	(1390, 769),
+	(1396, 769),
+	(5448, 2415),
+	(18362, 2415),
+	(11596, 3763),
+	(4797, 774),
+	(4797, 660),
+	(496, 1099),
+	(496, 37),
+	(496, 211),
+	(5924, 1099),
+	(5924, 1611),
+	(3199, 1611),
+	(19521, 1611),
+	(4798, 321),
+	(14403, 7214),
+	(37, 11),
+	(38, 7),
+	(1216, 7),
+	(10173, 7),
+	(985, 7),
+	(985, 425),
+	(21960, 3226),
+	(8349, 4352),
+	(16544, 4352),
+	(11398, 7217),
+	(3872, 263),
+	(5810, 254),
+	(6960, 2612),
+	(19582, 10106),
+	(18389, 1532),
+	(14726, 7385),
+	(7864, 3798),
+	(6961, 893),
+	(6962, 2957),
+	(2354, 1113),
+	(7564, 368),
+	(10171, 547),
+	(8486, 4470),
+	(8486, 4469),
+	(4799, 563),
+	(22434, 9465),
+	(1276, 831),
+	(9245, 2923),
+	(13381, 7040),
+	(9819, 5180),
+	(22730, 10593),
+	(3139, 563),
+	(1919, 434),
+	(1919, 1099),
+	(17916, 9123),
+	(22738, 10628),
+	(4800, 2156),
+	(4800, 2000),
+	(4800, 2157),
+	(4800, 1316),
+	(3082, 1364),
+	(15011, 7502),
+	(1241, 263),
+	(15486, 7780),
+	(2488, 560),
+	(19873, 10292),
+	(23243, 9512),
+	(4801, 1267),
+	(22388, 129),
+	(13578, 6980),
+	(8561, 2523),
+	(18121, 305),
+	(18121, 648),
+	(665, 648),
+	(665, 305),
+	(21634, 9935),
+	(17897, 9106),
+	(19564, 170),
+	(9376, 5080),
+	(9377, 5080),
+	(11027, 317),
+	(11026, 5851),
+	(11026, 1018),
+	(23205, 1352),
+	(22779, 10674),
+	(14760, 7397),
+	(4270, 4115),
+	(9073, 56),
+	(5811, 933),
+	(6963, 2958),
+	(2249, 1051),
+	(2250, 1051),
+	(7699, 1243),
+	(8470, 4444),
+	(4802, 864),
+	(6755, 864),
+	(2661, 864),
+	(6067, 1192),
+	(5651, 858),
+	(768, 639),
+	(19153, 9859),
+	(1056, 744),
+	(11566, 400),
+	(11566, 6085),
+	(8447, 787),
+	(17876, 1389),
+	(8230, 347),
+	(17688, 8104),
+	(18217, 9353),
+	(18217, 9354),
+	(17940, 3820),
+	(17940, 3037),
+	(261, 212),
+	(262, 210),
+	(264, 210),
+	(256, 212),
+	(256, 214),
+	(267, 212),
+	(268, 216),
+	(258, 212),
+	(259, 212),
+	(259, 214),
+	(269, 216),
+	(265, 212),
+	(266, 210),
+	(252, 212),
+	(263, 212),
+	(263, 217),
+	(4803, 2158),
+	(3874, 277),
+	(3874, 1408),
+	(3875, 1408),
+	(3875, 277),
+	(6964, 2558),
+	(6964, 2959),
+	(2592, 1224),
+	(2505, 1084),
+	(21928, 10475),
+	(9882, 5307),
+	(3873, 1839),
+	(17459, 1840),
+	(1873, 750),
+	(8677, 4638),
+	(8676, 2847),
+	(7889, 3837),
+	(7888, 3837),
+	(10177, 6521),
+	(17722, 8966),
+	(10184, 150),
+	(8190, 150),
+	(17611, 8613),
+	(17303, 8613),
+	(1973, 315),
+	(8678, 4623),
+	(16242, 7539),
+	(20326, 10351),
+	(666, 92),
+	(9349, 92),
+	(4134, 318),
+	(9353, 92),
+	(5812, 60),
+	(5812, 318),
+	(5812, 92),
+	(5812, 73),
+	(9351, 149),
+	(9351, 318),
+	(9350, 92),
+	(9348, 2046),
+	(1273, 92),
+	(9352, 92),
+	(17277, 9194),
+	(8416, 28),
+	(11676, 6159),
+	(16204, 7980),
+	(3236, 1655),
+	(5837, 2560),
+	(9279, 239),
+	(19884, 10297),
+	(5520, 2448),
+	(5520, 2457),
+	(5521, 2448),
+	(5521, 2457),
+	(5506, 2448),
+	(8766, 2448),
+	(3175, 1527),
+	(15126, 7542),
+	(4341, 287),
+	(4341, 141),
+	(4341, 2373),
+	(5670, 2522),
+	(9914, 836),
+	(9914, 5324),
+	(17987, 8290),
+	(18067, 37),
+	(5619, 1012),
+	(5619, 400),
+	(12046, 1486),
+	(17813, 146),
+	(17019, 2406),
+	(9117, 4827),
+	(11448, 6058),
+	(11448, 6059),
+	(13550, 6058),
+	(13550, 6059),
+	(6370, 321),
+	(6371, 321),
+	(6372, 321),
+	(3469, 817),
+	(5060, 2248),
+	(19300, 2248),
+	(17224, 2248),
+	(10238, 5541),
+	(11291, 5984),
+	(16642, 8191),
+	(18609, 1297),
+	(6664, 2257),
+	(7287, 45),
+	(17187, 8550),
+	(21948, 10212),
+	(21949, 10212),
+	(21950, 10212),
+	(21952, 10212),
+	(21951, 10212),
+	(1872, 903),
+	(1872, 506),
+	(667, 505),
+	(667, 106),
+	(668, 506),
+	(2491, 903),
+	(669, 507),
+	(669, 361),
+	(18982, 10027),
+	(4518, 1402),
+	(11870, 6364),
+	(18605, 9372),
+	(18610, 566),
+	(17116, 146),
+	(8098, 532),
+	(6798, 1),
+	(9820, 2586),
+	(9820, 2182),
+	(8998, 5053),
+	(7261, 580),
+	(7260, 580),
+	(18516, 474),
+	(22410, 1731),
+	(15737, 7872),
+	(1939, 620),
+	(19587, 620),
+	(11174, 620),
+	(2651, 63),
+	(2652, 63),
+	(2716, 839),
+	(2717, 1279),
+	(18611, 2406),
+	(17842, 6017),
+	(1168, 650),
+	(1168, 3),
+	(1170, 650),
+	(10686, 3),
+	(1169, 785),
+	(16991, 8444),
+	(3373, 1765),
+	(16230, 4793),
+	(14362, 261),
+	(10858, 1196),
+	(41, 25),
+	(41, 378),
+	(19601, 2683),
+	(43, 27),
+	(9740, 8367),
+	(9740, 6103),
+	(9740, 27),
+	(9533, 27),
+	(8287, 25),
+	(42, 25),
+	(9498, 26),
+	(9498, 27),
+	(5591, 27),
+	(9274, 9446),
+	(9274, 4132),
+	(6279, 2701),
+	(18081, 9277),
+	(134, 37),
+	(135, 37),
+	(136, 37),
+	(112, 37),
+	(20022, 37),
+	(20734, 37),
+	(4612, 70),
+	(6827, 1831),
+	(6827, 2924),
+	(6827, 2839),
+	(8798, 4757),
+	(7395, 3066),
+	(11827, 3115),
+	(13170, 6987),
+	(4627, 129),
+	(16925, 8410),
+	(6373, 1325),
+	(2813, 889),
+	(2814, 1324),
+	(2815, 872),
+	(8003, 189),
+	(3470, 1752),
+	(125, 59),
+	(125, 60),
+	(126, 59),
+	(246, 59),
+	(120, 51),
+	(3182, 51),
+	(22384, 10557),
+	(17133, 7996),
+	(9821, 5279),
+	(16069, 508),
+	(23881, 10890),
+	(6965, 1956),
+	(17739, 8981),
+	(2723, 771),
+	(10912, 428),
+	(10913, 428),
+	(8234, 532),
+	(18219, 233),
+	(3876, 1330),
+	(17064, 8479),
+	(2636, 6364),
+	(2737, 1288),
+	(2736, 617),
+	(2736, 263),
+	(17593, 8229),
+	(17686, 8941),
+	(17084, 8490),
+	(12932, 771),
+	(19222, 9911),
+	(9521, 5097),
+	(9286, 2209),
+	(6374, 396),
+	(6375, 396),
+	(6376, 62),
+	(4133, 617),
+	(4133, 864),
+	(3877, 617),
+	(15705, 2676),
+	(8614, 617),
+	(8614, 2827),
+	(19678, 617),
+	(3878, 617),
+	(13561, 5024),
+	(5081, 818),
+	(8613, 321),
+	(19737, 10188),
+	(18662, 9466),
+	(16152, 146),
+	(8820, 4699),
+	(6377, 2779),
+	(16070, 508),
+	(15001, 508),
+	(15000, 508),
+	(11345, 6025),
+	(9822, 5280),
+	(3027, 37),
+	(4132, 663),
+	(5813, 663),
+	(8701, 5133),
+	(19591, 9603),
+	(8309, 4238),
+	(16636, 8188),
+	(14299, 7171),
+	(4338, 4046),
+	(3879, 448),
+	(6378, 1847),
+	(17671, 8402),
+	(17671, 8931),
+	(18068, 26),
+	(524, 412),
+	(9928, 115),
+	(7966, 412),
+	(1902, 221),
+	(11695, 1287),
+	(14693, 1287),
+	(14693, 6567),
+	(4805, 1119),
+	(14650, 3698),
+	(22700, 10603),
+	(22700, 10602),
+	(22700, 10601),
+	(6542, 146),
+	(19351, 146),
+	(11403, 146),
+	(9823, 1363),
+	(9824, 1363),
+	(9824, 5281),
+	(16276, 7438),
+	(6541, 146),
+	(8291, 4231),
+	(8292, 4231),
+	(8293, 4231),
+	(11694, 1405),
+	(18370, 1405),
+	(7297, 1405),
+	(7298, 1405),
+	(11594, 1405),
+	(7299, 1405),
+	(11610, 1405),
+	(533, 19),
+	(14572, 19),
+	(14569, 19),
+	(14568, 19),
+	(14571, 19),
+	(11118, 19),
+	(9825, 5282),
+	(4806, 1268),
+	(17758, 95),
+	(2926, 1309),
+	(17818, 95),
+	(11083, 1309),
+	(6756, 797),
+	(17172, 95),
+	(17829, 95),
+	(5187, 197),
+	(5187, 1268),
+	(4807, 2149),
+	(4810, 2149),
+	(4809, 2149),
+	(4811, 2149),
+	(4812, 2149),
+	(3880, 129),
+	(3881, 129),
+	(3882, 129),
+	(17753, 95),
+	(5218, 1693),
+	(540, 425),
+	(17765, 95),
+	(2473, 37),
+	(10791, 260),
+	(360, 95),
+	(360, 38),
+	(3883, 741),
+	(3883, 72),
+	(9814, 425),
+	(3885, 37),
+	(3773, 37),
+	(6380, 37),
+	(6380, 2780),
+	(6381, 37),
+	(6381, 2780),
+	(3886, 800),
+	(3886, 819),
+	(3887, 104),
+	(20390, 426),
+	(17827, 9048),
+	(11348, 6027),
+	(391, 26),
+	(9609, 5136),
+	(16806, 8299),
+	(13664, 7071),
+	(16206, 7984),
+	(4759, 2121),
+	(4759, 2122),
+	(18364, 9413),
+	(15924, 7910),
+	(15924, 7911),
+	(671, 510),
+	(22215, 10527),
+	(17437, 8707),
+	(13178, 510),
+	(2905, 510),
+	(5082, 510),
+	(14177, 510),
+	(11800, 510),
+	(16482, 8116),
+	(18543, 6176),
+	(18720, 3048),
+	(2679, 348),
+	(2679, 1259),
+	(2680, 1259),
+	(1099, 775),
+	(1098, 775),
+	(3004, 1406),
+	(1254, 795),
+	(2888, 1355),
+	(179, 9),
+	(18368, 9415),
+	(6757, 129),
+	(6757, 2905),
+	(4813, 2159),
+	(9636, 4895),
+	(17020, 2406),
+	(1666, 2433),
+	(6966, 2958),
+	(1675, 2433),
+	(1674, 2515),
+	(1676, 2433),
+	(1673, 2958),
+	(18337, 9165),
+	(17163, 8541),
+	(15014, 7507),
+	(23839, 8530),
+	(15391, 404),
+	(3888, 1850),
+	(4816, 1952),
+	(6382, 1850),
+	(8684, 4624),
+	(11668, 9308),
+	(22733, 66),
+	(3114, 1467),
+	(1857, 717),
+	(9380, 790),
+	(13601, 1234),
+	(16641, 7619),
+	(16767, 7619),
+	(6491, 2819),
+	(23239, 1436),
+	(18612, 2406),
+	(6383, 1814),
+	(6967, 2431),
+	(6970, 429),
+	(11537, 1639),
+	(3152, 1005),
+	(3152, 2345),
+	(17832, 1005),
+	(14655, 7275),
+	(1089, 70),
+	(1088, 70),
+	(1096, 771),
+	(4817, 775),
+	(1090, 771),
+	(1092, 771),
+	(1094, 771),
+	(1100, 766),
+	(2923, 766),
+	(1087, 855),
+	(5692, 1774),
+	(1097, 773),
+	(1093, 771),
+	(1095, 771),
+	(3889, 263),
+	(3890, 263),
+	(3891, 263),
+	(1665, 2958),
+	(1665, 2400),
+	(18603, 9372),
+	(18528, 9473),
+	(673, 187),
+	(673, 543),
+	(673, 1169),
+	(673, 360),
+	(673, 112),
+	(673, 387),
+	(673, 4111),
+	(673, 184),
+	(7351, 184),
+	(13168, 6983),
+	(280, 184),
+	(280, 221),
+	(280, 72),
+	(280, 73),
+	(6968, 184),
+	(672, 187),
+	(3471, 327),
+	(3471, 184),
+	(312, 184),
+	(312, 690),
+	(312, 4115),
+	(312, 230),
+	(312, 187),
+	(16116, 7954),
+	(22431, 28),
+	(3099, 966),
+	(16987, 8598),
+	(16640, 8190),
+	(18430, 8190),
+	(7677, 3224),
+	(3892, 1315),
+	(7974, 1865),
+	(7977, 392),
+	(3473, 1808),
+	(3474, 1274),
+	(4818, 883),
+	(3893, 1808),
+	(3472, 1808),
+	(18041, 5318),
+	(18041, 1260),
+	(18042, 1260),
+	(3894, 70),
+	(19383, 10003),
+	(2963, 56),
+	(17723, 8967),
+	(7998, 771),
+	(6787, 1753),
+	(6790, 1753),
+	(6384, 2781),
+	(6384, 775),
+	(6384, 2782),
+	(5968, 1021),
+	(5968, 2345),
+	(4699, 129),
+	(18007, 2406),
+	(5375, 1181),
+	(19151, 9857),
+	(16127, 7956),
+	(18189, 6393),
+	(6340, 1613),
+	(3858, 104),
+	(13677, 7078),
+	(13677, 9729),
+	(5680, 70),
+	(15790, 1305),
+	(7563, 3127),
+	(14872, 7444),
+	(3478, 70),
+	(3478, 803),
+	(3476, 1809),
+	(3475, 5953),
+	(11068, 803),
+	(3895, 327),
+	(4499, 1831),
+	(5814, 813),
+	(5814, 1693),
+	(15489, 1316),
+	(17324, 8633),
+	(9189, 428),
+	(18588, 2522),
+	(9092, 2040),
+	(9092, 1411),
+	(9092, 1041),
+	(9092, 5884),
+	(9093, 3906),
+	(9093, 5283),
+	(19594, 10117),
+	(5376, 2374),
+	(5442, 2410),
+	(16479, 8113),
+	(9091, 594),
+	(9091, 5885),
+	(17947, 538),
+	(18104, 2406),
+	(18104, 66),
+	(78, 2),
+	(1887, 2),
+	(19135, 2),
+	(20188, 2),
+	(20189, 2),
+	(76, 223),
+	(76, 2),
+	(17465, 2),
+	(17462, 2),
+	(17466, 2),
+	(17464, 2),
+	(77, 222),
+	(19314, 5024),
+	(4131, 617),
+	(2558, 321),
+	(2559, 248),
+	(2559, 1214),
+	(2560, 1215),
+	(2565, 396),
+	(2562, 1215),
+	(21701, 396),
+	(2575, 1217),
+	(21196, 1119),
+	(2583, 1221),
+	(2563, 396),
+	(2563, 1216),
+	(2564, 396),
+	(2566, 396),
+	(2253, 1053),
+	(2252, 1053),
+	(2254, 1053),
+	(2569, 248),
+	(2569, 396),
+	(2548, 321),
+	(2578, 321),
+	(21426, 9862),
+	(2557, 321),
+	(2570, 396),
+	(3896, 1309),
+	(2567, 396),
+	(2568, 396),
+	(2544, 321),
+	(2545, 321),
+	(2546, 321),
+	(2550, 321),
+	(2576, 1218),
+	(2576, 1215),
+	(2577, 329),
+	(2577, 1218),
+	(2580, 1219),
+	(2572, 1053),
+	(6387, 1219),
+	(2579, 617),
+	(2543, 321),
+	(2574, 1053),
+	(2561, 1215),
+	(6386, 396),
+	(19308, 1214),
+	(19310, 1053),
+	(19311, 1053),
+	(19309, 2676),
+	(7408, 396),
+	(19449, 10676),
+	(2573, 248),
+	(4819, 1690),
+	(6791, 1287),
+	(18226, 4981),
+	(3897, 861),
+	(17931, 6017),
+	(14662, 7188),
+	(17377, 8669),
+	(2968, 1382),
+	(2968, 112),
+	(16764, 8280),
+	(9214, 1394),
+	(1824, 321),
+	(1820, 837),
+	(1820, 26),
+	(6388, 321),
+	(17460, 321),
+	(1822, 883),
+	(1822, 1095),
+	(1816, 1093),
+	(1816, 2254),
+	(1816, 322),
+	(1817, 4242),
+	(1817, 2254),
+	(1819, 837),
+	(1821, 26),
+	(1821, 2161),
+	(11667, 26),
+	(11667, 2161),
+	(15888, 7905),
+	(5579, 2751),
+	(4393, 2751),
+	(17461, 1976),
+	(6389, 1249),
+	(6097, 112),
+	(1812, 2161),
+	(1812, 4141),
+	(1812, 1217),
+	(1812, 1093),
+	(1813, 1093),
+	(1813, 26),
+	(1814, 1093),
+	(1814, 4242),
+	(1814, 321),
+	(1818, 4242),
+	(1818, 2254),
+	(11406, 1882),
+	(3002, 1060),
+	(3002, 818),
+	(3968, 37),
+	(16300, 37),
+	(23292, 10814),
+	(21959, 32),
+	(14529, 2186),
+	(14529, 1339),
+	(4248, 2419),
+	(3898, 1948),
+	(14660, 5058),
+	(14661, 5058),
+	(3264, 1696),
+	(18617, 141),
+	(2571, 396),
+	(5671, 2522),
+	(10195, 6569),
+	(10195, 6570),
+	(2487, 152),
+	(18568, 5908),
+	(5467, 2378),
+	(22705, 6570),
+	(5815, 2555),
+	(6385, 1336),
+	(11635, 4010),
+	(11635, 329),
+	(11663, 329),
+	(8576, 831),
+	(8772, 6995),
+	(8770, 2259),
+	(8769, 2259),
+	(16876, 8362),
+	(22492, 10582),
+	(22494, 2946),
+	(22493, 10582),
+	(9835, 3207),
+	(5032, 2243),
+	(19083, 3697),
+	(11076, 10332),
+	(4821, 2162),
+	(4822, 872),
+	(4820, 2162),
+	(4820, 136),
+	(15227, 2452),
+	(11234, 2452),
+	(21561, 10440),
+	(7336, 902),
+	(11712, 6188),
+	(20179, 6188),
+	(3104, 1465),
+	(16071, 508),
+	(6971, 2960),
+	(6971, 862),
+	(6971, 2961),
+	(6972, 862),
+	(4823, 10443),
+	(6973, 112),
+	(1962, 3207),
+	(1961, 458),
+	(8702, 4631),
+	(11331, 2547),
+	(3899, 1949),
+	(11155, 746),
+	(2489, 1182),
+	(3672, 1864),
+	(3672, 794),
+	(13841, 9466),
+	(23332, 10826),
+	(11515, 6070),
+	(16772, 8284),
+	(17835, 9056),
+	(8205, 4144),
+	(6390, 1617),
+	(12059, 5062),
+	(5817, 650),
+	(13231, 7033),
+	(1940, 1213),
+	(3900, 189),
+	(3900, 901),
+	(675, 650),
+	(675, 61),
+	(6391, 650),
+	(6391, 1667),
+	(4824, 650),
+	(6758, 104),
+	(554, 433),
+	(12265, 6409),
+	(9086, 7835),
+	(8823, 1219),
+	(9704, 5193),
+	(6098, 195),
+	(3901, 1523),
+	(3901, 1733),
+	(6395, 1642),
+	(14906, 7448),
+	(11488, 6064),
+	(19546, 10832),
+	(8753, 4699),
+	(14945, 7471),
+	(2506, 1193),
+	(16356, 7448),
+	(19223, 9912),
+	(6392, 2793),
+	(3477, 1810),
+	(19353, 9997),
+	(3336, 1278),
+	(11247, 7900),
+	(2741, 761),
+	(6487, 37),
+	(6488, 37),
+	(2904, 37),
+	(2904, 1021),
+	(8451, 4435),
+	(3902, 863),
+	(19853, 10697),
+	(17219, 8572),
+	(14664, 7159),
+	(18496, 212),
+	(18495, 212),
+	(957, 188),
+	(957, 1134),
+	(342, 224),
+	(342, 225),
+	(342, 226),
+	(342, 2345),
+	(10680, 425),
+	(10680, 224),
+	(6393, 690),
+	(490, 224),
+	(490, 232),
+	(490, 148),
+	(490, 233),
+	(956, 188),
+	(956, 690),
+	(956, 1134),
+	(8504, 319),
+	(8505, 212),
+	(8505, 224),
+	(8505, 4493),
+	(4130, 319),
+	(8503, 425),
+	(18498, 9461),
+	(6974, 2428),
+	(85, 234),
+	(87, 178),
+	(87, 113),
+	(86, 113),
+	(11332, 436),
+	(23882, 10891),
+	(3043, 1428),
+	(17417, 1428),
+	(3202, 1428),
+	(19742, 1802),
+	(19742, 864),
+	(2529, 606),
+	(9827, 5285),
+	(35, 14),
+	(36, 14),
+	(12278, 14),
+	(15199, 7578),
+	(19129, 9849),
+	(304, 235),
+	(17834, 9055),
+	(3798, 1191),
+	(2503, 1191),
+	(3801, 1191),
+	(3799, 1191),
+	(3800, 1191),
+	(3800, 5886),
+	(17419, 8540),
+	(9683, 5145),
+	(15317, 404),
+	(22459, 10580),
+	(20395, 10870),
+	(329, 239),
+	(329, 378),
+	(9269, 239),
+	(9275, 239),
+	(5988, 47),
+	(9271, 239),
+	(9270, 814),
+	(18013, 10335),
+	(13657, 1952),
+	(19814, 10218),
+	(2017, 1071),
+	(17192, 8557),
+	(8849, 1065),
+	(7829, 470),
+	(674, 474),
+	(5819, 82),
+	(18862, 916),
+	(4486, 2378),
+	(18374, 9418),
+	(9767, 1065),
+	(5629, 470),
+	(15127, 82),
+	(6792, 37),
+	(6743, 2902),
+	(17006, 7040),
+	(23504, 10851),
+	(8850, 1065),
+	(17444, 8712),
+	(21957, 1348),
+	(21958, 1348),
+	(18746, 1348),
+	(19827, 10223),
+	(19828, 10227),
+	(2866, 1344),
+	(9759, 314),
+	(11710, 6187),
+	(5633, 2510),
+	(17738, 2992),
+	(16707, 1425),
+	(2130, 5228),
+	(1340, 3011),
+	(6341, 2770),
+	(14992, 743),
+	(17051, 8476),
+	(19225, 9913),
+	(3042, 108),
+	(15445, 108),
+	(14670, 1130),
+	(14665, 1130),
+	(14671, 1130),
+	(14669, 1130),
+	(14666, 1130),
+	(14667, 1130),
+	(18937, 864),
+	(2981, 250),
+	(22744, 861),
+	(15161, 7566),
+	(6842, 630),
+	(6843, 630),
+	(2982, 1394),
+	(2983, 1394),
+	(2984, 1394),
+	(3007, 1394),
+	(5820, 1394),
+	(19618, 1394),
+	(6975, 1394),
+	(6832, 1394),
+	(6834, 1394),
+	(6833, 1394),
+	(6976, 1394),
+	(13669, 1394),
+	(6394, 1394),
+	(6394, 630),
+	(19267, 1394),
+	(6977, 630),
+	(6977, 1394),
+	(6978, 630),
+	(6978, 1394),
+	(6982, 630),
+	(6982, 1394),
+	(6983, 1394),
+	(8324, 4281),
+	(8324, 1893),
+	(15850, 7898),
+	(8703, 1431),
+	(16504, 1661),
+	(16647, 8193),
+	(8707, 2374),
+	(8706, 2374),
+	(8706, 1848),
+	(14744, 7394),
+	(6706, 2406),
+	(6979, 1856),
+	(6230, 2723),
+	(4825, 277),
+	(4826, 277),
+	(4827, 277),
+	(4828, 277),
+	(10619, 696),
+	(5829, 661),
+	(5575, 277),
+	(6984, 555),
+	(4784, 277),
+	(19918, 277),
+	(9206, 3453),
+	(19404, 3453),
+	(7719, 3453),
+	(14765, 38),
+	(21554, 10437),
+	(5377, 829),
+	(8931, 2973),
+	(8931, 2549),
+	(8931, 4723),
+	(8932, 2973),
+	(8932, 489),
+	(8934, 2443),
+	(8933, 1189),
+	(8935, 2973),
+	(9427, 5084),
+	(9504, 5084),
+	(9505, 5084),
+	(5583, 2481),
+	(5585, 2481),
+	(11001, 2187),
+	(11002, 2481),
+	(5584, 448),
+	(11579, 2601),
+	(4829, 1220),
+	(4829, 836),
+	(17867, 9083),
+	(23499, 10848),
+	(2899, 1393),
+	(2899, 762),
+	(7202, 3024),
+	(11229, 317),
+	(3480, 88),
+	(3480, 91),
+	(3481, 88),
+	(3481, 1812),
+	(3479, 1250),
+	(3482, 1169),
+	(19769, 88),
+	(19769, 5340),
+	(2016, 945),
+	(2007, 941),
+	(17480, 8776),
+	(574, 448),
+	(19682, 811),
+	(6665, 1666),
+	(6665, 2359),
+	(5378, 2359),
+	(9188, 811),
+	(5379, 2359),
+	(17578, 2992),
+	(19448, 10821),
+	(9514, 1012),
+	(10903, 1012),
+	(9515, 1012),
+	(17514, 8804),
+	(16713, 131),
+	(22212, 10527),
+	(18240, 400),
+	(6396, 901),
+	(7693, 32),
+	(3483, 1813),
+	(2816, 189),
+	(2816, 60),
+	(2817, 1311),
+	(2817, 1313),
+	(2722, 1241),
+	(19139, 9932),
+	(14377, 7200),
+	(8392, 1108),
+	(8392, 9493),
+	(11159, 834),
+	(16533, 8043),
+	(6986, 2964),
+	(6701, 2248),
+	(6701, 2465),
+	(15736, 2248),
+	(15312, 1005),
+	(677, 513),
+	(3903, 706),
+	(22765, 10669),
+	(1361, 2028),
+	(17161, 8539),
+	(19830, 1033),
+	(1360, 250),
+	(3904, 129),
+	(18726, 9536),
+	(11181, 6151),
+	(11573, 6089),
+	(9828, 5286),
+	(6987, 2966),
+	(7995, 1303),
+	(7995, 1923),
+	(16729, 8248),
+	(17350, 8652),
+	(8070, 4016),
+	(2747, 161),
+	(2748, 129),
+	(18127, 9299),
+	(18127, 9301),
+	(15836, 7896),
+	(3151, 1495),
+	(17402, 8691),
+	(18340, 2527),
+	(16680, 7448),
+	(8715, 4635),
+	(9137, 828),
+	(8612, 4592),
+	(16666, 8208),
+	(4599, 817),
+	(11729, 817),
+	(11567, 1056),
+	(12062, 7237),
+	(11510, 6069),
+	(18754, 9528),
+	(9109, 1728),
+	(15442, 208),
+	(2955, 208),
+	(14968, 1305),
+	(8596, 4540),
+	(17210, 8563),
+	(14395, 7837),
+	(14395, 7838),
+	(14395, 7839),
+	(14395, 7840),
+	(14395, 7843),
+	(19133, 3097),
+	(10274, 964),
+	(16121, 157),
+	(14737, 1696),
+	(16072, 508),
+	(2979, 1462),
+	(4830, 1990),
+	(4830, 433),
+	(4831, 2166),
+	(89, 178),
+	(89, 113),
+	(7512, 575),
+	(7512, 635),
+	(302, 240),
+	(1608, 2846),
+	(1607, 2846),
+	(1606, 2846),
+	(1609, 2846),
+	(18470, 9447),
+	(13207, 7016),
+	(441, 23),
+	(441, 111),
+	(18379, 9420),
+	(678, 240),
+	(19249, 9934),
+	(6988, 1012),
+	(1947, 368),
+	(1345, 2506),
+	(1345, 280),
+	(18772, 6361),
+	(1903, 315),
+	(9278, 5145),
+	(4832, 803),
+	(4833, 803),
+	(9634, 5145),
+	(11550, 5145),
+	(16280, 8022),
+	(18669, 66),
+	(6666, 112),
+	(679, 515),
+	(679, 631),
+	(5647, 1212),
+	(17157, 8535),
+	(680, 187),
+	(680, 657),
+	(680, 221),
+	(680, 73),
+	(13549, 7053),
+	(17741, 4726),
+	(17741, 7140),
+	(9699, 5186),
+	(17138, 8290),
+	(17137, 8290),
+	(4834, 248),
+	(16842, 8329),
+	(17606, 8869),
+	(2538, 795),
+	(13201, 5324),
+	(13201, 7014),
+	(13202, 5324),
+	(13202, 7014),
+	(13216, 5324),
+	(11182, 8595),
+	(1003, 88),
+	(22820, 9521),
+	(3138, 201),
+	(3138, 1486),
+	(3086, 1458),
+	(7380, 3069),
+	(18076, 9217),
+	(17802, 9032),
+	(19867, 10288),
+	(11425, 6541),
+	(16867, 8354),
+	(19615, 10127),
+	(22346, 10530),
+	(1509, 868),
+	(1510, 868),
+	(6765, 2907),
+	(23496, 528),
+	(16576, 8161),
+	(11657, 6142),
+	(16939, 8422),
+	(17391, 8684),
+	(6667, 2875),
+	(8340, 547),
+	(5821, 1326),
+	(5821, 1046),
+	(12426, 560),
+	(7499, 860),
+	(4835, 1053),
+	(63, 10),
+	(63, 378),
+	(16158, 7495),
+	(16159, 7495),
+	(15557, 2803),
+	(18761, 9465),
+	(15536, 7795),
+	(18567, 5908),
+	(8252, 4180),
+	(9830, 5287),
+	(6668, 2876),
+	(8206, 4145),
+	(8207, 4145),
+	(8208, 4145),
+	(6669, 2878),
+	(23894, 9426),
+	(6989, 2958),
+	(5380, 1046),
+	(5380, 2376),
+	(5823, 1992),
+	(5824, 694),
+	(6397, 1822),
+	(3905, 129),
+	(8906, 694),
+	(3906, 129),
+	(5381, 2351),
+	(5381, 1046),
+	(8834, 694),
+	(5825, 129),
+	(8833, 694),
+	(7881, 694),
+	(8847, 694),
+	(5826, 1992),
+	(8841, 694),
+	(5382, 2377),
+	(6398, 129),
+	(6793, 112),
+	(6670, 112),
+	(17102, 8501),
+	(4477, 112),
+	(5383, 112),
+	(3907, 1951),
+	(6766, 2908),
+	(15424, 7717),
+	(10905, 1012),
+	(6990, 1913),
+	(14388, 1184),
+	(17880, 9092),
+	(18544, 720),
+	(15954, 7922),
+	(5639, 2513),
+	(8923, 5067),
+	(11407, 100),
+	(8607, 1217),
+	(14716, 818),
+	(14709, 818),
+	(14717, 818),
+	(14718, 818),
+	(6767, 818),
+	(6768, 818),
+	(18224, 818),
+	(13141, 6960),
+	(15395, 3159),
+	(18426, 9429),
+	(11655, 6141),
+	(18945, 578),
+	(17666, 7701),
+	(6653, 1443),
+	(3070, 1443),
+	(681, 516),
+	(2022, 118),
+	(682, 517),
+	(683, 517),
+	(743, 517),
+	(684, 517),
+	(1904, 7466),
+	(10282, 7466),
+	(19298, 7466),
+	(19299, 7466),
+	(10283, 7466),
+	(19294, 7466),
+	(10284, 7466),
+	(10285, 7466),
+	(16967, 8438),
+	(685, 152),
+	(2584, 853),
+	(1320, 853),
+	(9267, 853),
+	(16477, 8170),
+	(16477, 8171),
+	(18397, 9427),
+	(20362, 10448),
+	(19596, 739),
+	(18037, 1135),
+	(6399, 1241),
+	(10904, 1012),
+	(8968, 4751),
+	(282, 241),
+	(282, 242),
+	(282, 243),
+	(18293, 8021),
+	(4208, 243),
+	(18341, 6997),
+	(13184, 6997),
+	(686, 243),
+	(14402, 7211),
+	(14172, 7100),
+	(23166, 10694),
+	(21835, 786),
+	(7300, 2292),
+	(7300, 3051),
+	(7301, 3051),
+	(7405, 1364),
+	(16005, 7932),
+	(3690, 1876),
+	(5827, 1250),
+	(5828, 2010),
+	(3081, 1455),
+	(19123, 6424),
+	(13156, 6424),
+	(17387, 8681),
+	(4129, 2027),
+	(3237, 1657),
+	(15071, 7530),
+	(2029, 1097),
+	(11798, 1097),
+	(3908, 129),
+	(3909, 129),
+	(3910, 1952),
+	(10911, 2713),
+	(3770, 55),
+	(21626, 2000),
+	(20757, 55),
+	(17313, 8621),
+	(14174, 7102),
+	(15514, 10558),
+	(15514, 10559),
+	(9291, 7085),
+	(10967, 7085),
+	(9290, 7087),
+	(2635, 610),
+	(4600, 1809),
+	(4600, 803),
+	(4600, 864),
+	(3337, 1748),
+	(4836, 610),
+	(4836, 2167),
+	(19332, 9983),
+	(11585, 6098),
+	(6671, 37),
+	(23580, 5024),
+	(6104, 303),
+	(6104, 321),
+	(6104, 4457),
+	(12068, 1292),
+	(7781, 3074),
+	(19578, 3074),
+	(7765, 3074),
+	(11540, 1983),
+	(18542, 9479),
+	(17643, 8896),
+	(14858, 146),
+	(17336, 8641),
+	(11164, 5105),
+	(22781, 10675),
+	(23898, 6405),
+	(16523, 5676),
+	(10501, 5676),
+	(17873, 6169),
+	(11449, 6060),
+	(6769, 2909),
+	(10914, 5831),
+	(8161, 79),
+	(8162, 4073),
+	(8539, 4516),
+	(8540, 4517),
+	(8542, 2000),
+	(9980, 188),
+	(16962, 8136),
+	(3485, 532),
+	(3486, 532),
+	(4580, 1834),
+	(8160, 79),
+	(5384, 2378),
+	(2524, 528),
+	(5559, 2463),
+	(7303, 1033),
+	(7303, 384),
+	(2215, 1033),
+	(2215, 384),
+	(19253, 843),
+	(18724, 10280),
+	(11689, 762),
+	(11689, 1809),
+	(3487, 1489),
+	(3487, 1278),
+	(3488, 1278),
+	(3488, 1489),
+	(17950, 7432),
+	(17950, 3162),
+	(12261, 152),
+	(12084, 152),
+	(16011, 92),
+	(693, 513),
+	(19494, 10066),
+	(16012, 92),
+	(10759, 92),
+	(3490, 421),
+	(6400, 1814),
+	(3492, 1096),
+	(3489, 421),
+	(3493, 1814),
+	(3491, 1100),
+	(3491, 1809),
+	(517, 407),
+	(517, 402),
+	(520, 407),
+	(514, 402),
+	(518, 408),
+	(5640, 402),
+	(5640, 408),
+	(7831, 3727),
+	(519, 408),
+	(12081, 6380),
+	(688, 519),
+	(4837, 439),
+	(1375, 2340),
+	(1374, 439),
+	(1374, 2340),
+	(1373, 2340),
+	(1373, 23),
+	(5586, 2340),
+	(5586, 23),
+	(7866, 2340),
+	(9272, 2340),
+	(19405, 2340),
+	(5830, 661),
+	(5830, 662),
+	(689, 661),
+	(689, 662),
+	(690, 661),
+	(3494, 1744),
+	(5311, 2340),
+	(3495, 899),
+	(3495, 398),
+	(691, 104),
+	(10348, 830),
+	(10348, 321),
+	(10348, 287),
+	(2960, 1378),
+	(521, 410),
+	(7658, 6),
+	(19388, 10006),
+	(522, 6),
+	(504, 6),
+	(5624, 6),
+	(1592, 6),
+	(694, 6),
+	(694, 23),
+	(22722, 10615),
+	(17792, 9016),
+	(2625, 1469),
+	(19701, 10167),
+	(4852, 2174),
+	(11305, 5991),
+	(10272, 1703),
+	(16778, 8289),
+	(12523, 6552),
+	(9703, 5192),
+	(10295, 405),
+	(1928, 261),
+	(6612, 9723),
+	(17803, 9033),
+	(10296, 4362),
+	(22784, 4362),
+	(9893, 2252),
+	(11502, 5322),
+	(6991, 384),
+	(695, 524),
+	(12483, 1044),
+	(22098, 10523),
+	(15036, 7521),
+	(15150, 7558),
+	(19617, 10135),
+	(19617, 10134),
+	(17890, 9101),
+	(13, 12),
+	(14, 12),
+	(15, 126),
+	(10299, 126),
+	(10300, 126),
+	(10301, 126),
+	(10302, 126),
+	(10303, 126),
+	(9630, 126),
+	(19532, 28),
+	(18031, 126),
+	(19534, 126),
+	(21584, 903),
+	(21584, 12),
+	(12508, 247),
+	(11119, 126),
+	(17, 246),
+	(7412, 1882),
+	(12509, 5),
+	(16, 47),
+	(10304, 47),
+	(10305, 47),
+	(10307, 47),
+	(10306, 47),
+	(9170, 4892),
+	(6672, 421),
+	(6674, 1809),
+	(6673, 70),
+	(6675, 765),
+	(6677, 2844),
+	(6678, 2844),
+	(6679, 2844),
+	(2846, 392),
+	(1834, 895),
+	(5312, 1313),
+	(3913, 263),
+	(6681, 1218),
+	(17535, 8821),
+	(4785, 843),
+	(18403, 8104),
+	(18403, 7712),
+	(3914, 1244),
+	(4853, 1244),
+	(4853, 694),
+	(12507, 6540),
+	(18558, 9465),
+	(6770, 837),
+	(6770, 797),
+	(6770, 2910),
+	(7332, 3056),
+	(12090, 115),
+	(18292, 4009),
+	(6684, 112),
+	(6687, 112),
+	(10392, 400),
+	(306, 122),
+	(361, 38),
+	(529, 406),
+	(529, 398),
+	(529, 38),
+	(2001, 38),
+	(2001, 398),
+	(6801, 398),
+	(6801, 38),
+	(6801, 2921),
+	(6801, 717),
+	(6801, 847),
+	(5831, 38),
+	(4854, 38),
+	(13182, 38),
+	(19520, 10353),
+	(16090, 7495),
+	(16091, 7495),
+	(16093, 7495),
+	(16094, 7495),
+	(17317, 2992),
+	(16092, 7495),
+	(9499, 1527),
+	(19409, 1527),
+	(3180, 1527),
+	(3181, 1527),
+	(3168, 1527),
+	(3169, 1527),
+	(3176, 1527),
+	(3178, 1527),
+	(3170, 1527),
+	(9765, 5229),
+	(19575, 10107),
+	(17164, 8542),
+	(10793, 938),
+	(2032, 357),
+	(8927, 2372),
+	(8927, 2389),
+	(18779, 9465),
+	(18287, 5907),
+	(8912, 1235),
+	(14890, 2807),
+	(14886, 2807),
+	(9125, 5361),
+	(17891, 9102),
+	(19820, 7963),
+	(19820, 10220),
+	(11199, 4357),
+	(11199, 7963),
+	(5106, 2020),
+	(5105, 2020),
+	(5107, 2020),
+	(11224, 6065),
+	(11224, 2935),
+	(9672, 858),
+	(9672, 2935),
+	(4435, 1474),
+	(4435, 863),
+	(6690, 3694),
+	(6690, 5340),
+	(6690, 1069),
+	(6690, 1474),
+	(5385, 2380),
+	(5385, 864),
+	(5385, 863),
+	(5385, 787),
+	(5385, 458),
+	(5386, 10095),
+	(5386, 863),
+	(5386, 1474),
+	(10605, 2582),
+	(6992, 2967),
+	(4496, 1666),
+	(4496, 4981),
+	(12323, 387),
+	(15989, 5055),
+	(10998, 4710),
+	(15079, 7532),
+	(19799, 6071),
+	(12382, 6429),
+	(12382, 2092),
+	(12504, 2092),
+	(12504, 6429),
+	(12329, 6429),
+	(12328, 6429),
+	(12331, 329),
+	(12331, 6429),
+	(12332, 329),
+	(12381, 6429),
+	(12381, 329),
+	(12381, 2821),
+	(8867, 4710),
+	(19247, 9926),
+	(2521, 32),
+	(13892, 2522),
+	(10528, 5679),
+	(10529, 5678),
+	(1974, 864),
+	(19525, 2219),
+	(8600, 343),
+	(8601, 343),
+	(16619, 8195),
+	(6406, 1322),
+	(9233, 5039),
+	(18404, 9428),
+	(3759, 1893),
+	(8321, 4279),
+	(18331, 395),
+	(16608, 8172),
+	(8449, 864),
+	(17295, 8043),
+	(4855, 1001),
+	(4855, 357),
+	(7726, 3495),
+	(5343, 251),
+	(1991, 1013),
+	(7782, 3697),
+	(19604, 10119),
+	(4613, 321),
+	(9839, 5290),
+	(9840, 5290),
+	(2975, 1390),
+	(700, 277),
+	(700, 348),
+	(22342, 277),
+	(696, 277),
+	(696, 348),
+	(3135, 277),
+	(3134, 277),
+	(3134, 439),
+	(3134, 348),
+	(3133, 277),
+	(3133, 696),
+	(3133, 439),
+	(3133, 348),
+	(503, 277),
+	(2946, 277),
+	(2153, 277),
+	(2920, 454),
+	(7574, 277),
+	(11071, 277),
+	(19459, 277),
+	(697, 454),
+	(698, 454),
+	(10682, 277),
+	(699, 454),
+	(701, 277),
+	(702, 277),
+	(702, 348),
+	(3136, 277),
+	(3136, 348),
+	(703, 277),
+	(4345, 676),
+	(6691, 439),
+	(704, 676),
+	(704, 532),
+	(5832, 277),
+	(5833, 277),
+	(5833, 348),
+	(7304, 277),
+	(7304, 348),
+	(7433, 277),
+	(705, 676),
+	(705, 277),
+	(705, 677),
+	(705, 285),
+	(5834, 1987),
+	(5834, 2557),
+	(12324, 1731),
+	(5835, 454),
+	(6356, 277),
+	(3915, 454),
+	(3915, 277),
+	(5836, 2558),
+	(6993, 277),
+	(16659, 2937),
+	(12589, 6558),
+	(4636, 1821),
+	(4787, 2146),
+	(8564, 2678),
+	(3496, 1804),
+	(1550, 830),
+	(2660, 1255),
+	(12096, 6381),
+	(20571, 8291),
+	(21772, 8421),
+	(2542, 1031),
+	(11615, 1031),
+	(20329, 6916),
+	(19590, 10113),
+	(8191, 184),
+	(8191, 665),
+	(7306, 3052),
+	(385, 250),
+	(407, 250),
+	(7400, 26),
+	(8549, 4524),
+	(397, 26),
+	(9585, 26),
+	(401, 26),
+	(7413, 1922),
+	(18069, 26),
+	(408, 26),
+	(387, 250),
+	(387, 320),
+	(387, 321),
+	(395, 26),
+	(393, 250),
+	(400, 322),
+	(399, 250),
+	(399, 322),
+	(406, 250),
+	(388, 322),
+	(21779, 26),
+	(421, 324),
+	(403, 250),
+	(403, 26),
+	(403, 1922),
+	(410, 250),
+	(410, 26),
+	(428, 250),
+	(2408, 337),
+	(414, 337),
+	(394, 26),
+	(394, 321),
+	(383, 93),
+	(419, 250),
+	(419, 26),
+	(426, 324),
+	(426, 321),
+	(426, 26),
+	(20655, 26),
+	(427, 250),
+	(11169, 26),
+	(2406, 1150),
+	(7398, 2438),
+	(404, 93),
+	(425, 26),
+	(418, 250),
+	(413, 250),
+	(14144, 26),
+	(14144, 794),
+	(411, 335),
+	(411, 336),
+	(409, 26),
+	(416, 26),
+	(10319, 26),
+	(405, 26),
+	(402, 26),
+	(398, 337),
+	(392, 345),
+	(389, 26),
+	(384, 26),
+	(384, 1983),
+	(14729, 26),
+	(386, 335),
+	(14723, 335),
+	(359, 93),
+	(359, 2670),
+	(359, 1863),
+	(423, 250),
+	(19334, 10130),
+	(19334, 9986),
+	(420, 250),
+	(420, 321),
+	(412, 346),
+	(415, 324),
+	(417, 250),
+	(17463, 26),
+	(1655, 37),
+	(1656, 37),
+	(1657, 37),
+	(1664, 37),
+	(1663, 37),
+	(1659, 3393),
+	(1660, 2559),
+	(1660, 2207),
+	(3776, 1902),
+	(3776, 1903),
+	(8868, 4711),
+	(3781, 292),
+	(3781, 72),
+	(3781, 258),
+	(18259, 872),
+	(16775, 8287),
+	(16775, 1460),
+	(11742, 4672),
+	(10321, 2248),
+	(3916, 1125),
+	(1439, 765),
+	(10229, 765),
+	(10229, 2935),
+	(18038, 765),
+	(1434, 765),
+	(1433, 765),
+	(1433, 761),
+	(1443, 765),
+	(1438, 1809),
+	(1438, 765),
+	(1435, 765),
+	(1441, 765),
+	(1442, 866),
+	(1442, 765),
+	(1436, 765),
+	(1444, 765),
+	(1444, 866),
+	(1445, 765),
+	(1440, 765),
+	(1437, 765),
+	(11734, 6206),
+	(18479, 2522),
+	(23855, 10883),
+	(6407, 1053),
+	(6408, 1053),
+	(18565, 9485),
+	(16343, 146),
+	(3013, 1413),
+	(17208, 8229),
+	(7970, 82),
+	(19778, 485),
+	(19778, 10206),
+	(22740, 10629),
+	(9730, 5212),
+	(17856, 9074),
+	(2892, 1356),
+	(12101, 1067),
+	(18105, 66),
+	(22356, 10541),
+	(17501, 8793),
+	(10322, 9438),
+	(6995, 1394),
+	(5313, 630),
+	(8584, 10370),
+	(16078, 508),
+	(12891, 6931),
+	(8499, 8653),
+	(9195, 8653),
+	(9196, 8653),
+	(11583, 8653),
+	(19320, 8653),
+	(17024, 82),
+	(6721, 2829),
+	(708, 529),
+	(709, 530),
+	(23162, 10693),
+	(23731, 10874),
+	(22735, 9465),
+	(710, 622),
+	(19833, 1781),
+	(4275, 501),
+	(4275, 285),
+	(17357, 8660),
+	(18795, 9562),
+	(5609, 2479),
+	(2667, 427),
+	(2668, 427),
+	(3778, 1904),
+	(22774, 427),
+	(3777, 427),
+	(14803, 146),
+	(17951, 7432),
+	(17951, 3162),
+	(15064, 1299),
+	(8789, 4728),
+	(8789, 4182),
+	(9842, 1448),
+	(12102, 1044),
+	(12102, 1731),
+	(12102, 559),
+	(714, 3),
+	(715, 3),
+	(4856, 2175),
+	(5387, 764),
+	(19957, 10306),
+	(20330, 2688),
+	(4857, 2176),
+	(2622, 1239),
+	(10323, 7797),
+	(21410, 611),
+	(13219, 1663),
+	(14929, 37),
+	(10324, 614),
+	(12104, 14),
+	(16047, 26),
+	(1353, 857),
+	(1353, 814),
+	(1354, 857),
+	(1354, 1030),
+	(9843, 4755),
+	(9843, 5291),
+	(17586, 4755),
+	(20754, 10165),
+	(3917, 1315),
+	(3917, 872),
+	(3917, 1313),
+	(22386, 9964),
+	(10326, 6338),
+	(20400, 6958),
+	(12054, 6373),
+	(12054, 6374),
+	(17390, 2852),
+	(3497, 1816),
+	(12072, 2462),
+	(15409, 7709),
+	(7307, 1214),
+	(12325, 6364),
+	(4858, 391),
+	(17113, 8513),
+	(5673, 2521),
+	(5673, 2406),
+	(11547, 3151),
+	(944, 486),
+	(8971, 486),
+	(945, 486),
+	(946, 486),
+	(8972, 486),
+	(716, 486),
+	(717, 486),
+	(8973, 486),
+	(8974, 486),
+	(8975, 486),
+	(8976, 486),
+	(16413, 8086),
+	(16413, 8085),
+	(11162, 38),
+	(2036, 517),
+	(20331, 10354),
+	(14411, 7219),
+	(1859, 717),
+	(15573, 7848),
+	(5626, 2509),
+	(14578, 2509),
+	(4867, 2184),
+	(4867, 2185),
+	(4867, 2186),
+	(4867, 631),
+	(4869, 515),
+	(4870, 515),
+	(4870, 1411),
+	(4868, 515),
+	(4871, 515),
+	(5838, 1001),
+	(7521, 3112),
+	(19741, 1201),
+	(17677, 3820),
+	(16314, 8037),
+	(10907, 1012),
+	(5839, 1046),
+	(5839, 2534),
+	(6794, 37),
+	(8294, 1208),
+	(8295, 1208),
+	(8296, 662),
+	(8302, 3053),
+	(8303, 3053),
+	(7308, 3053),
+	(8298, 785),
+	(8299, 785),
+	(8299, 3053),
+	(8300, 3053),
+	(8301, 3053),
+	(8297, 785),
+	(8304, 292),
+	(5388, 2382),
+	(718, 532),
+	(718, 4285),
+	(13385, 7040),
+	(11231, 917),
+	(13850, 9466),
+	(11246, 5956),
+	(18009, 9196),
+	(12643, 4607),
+	(15023, 7511),
+	(15024, 7511),
+	(1905, 168),
+	(6409, 699),
+	(23343, 9539),
+	(10331, 4415),
+	(19930, 26),
+	(12526, 6556),
+	(19244, 9924),
+	(3047, 1022),
+	(3047, 1432),
+	(7326, 1432),
+	(19539, 1022),
+	(3073, 1022),
+	(3072, 1022),
+	(3069, 1022),
+	(3068, 1022),
+	(2131, 1022),
+	(8558, 1022),
+	(18231, 10364),
+	(8609, 2233),
+	(8609, 1217),
+	(6410, 1321),
+	(8004, 1319),
+	(16692, 7829),
+	(5895, 2581),
+	(19568, 10101),
+	(20104, 10307),
+	(15144, 7552),
+	(21961, 10479),
+	(3498, 1817),
+	(15854, 7904),
+	(15062, 6131),
+	(6996, 402),
+	(8261, 4224),
+	(9815, 5275),
+	(2619, 578),
+	(2619, 1236),
+	(4872, 263),
+	(4872, 1913),
+	(12518, 6546),
+	(10908, 1012),
+	(11730, 6200),
+	(11821, 6339),
+	(8913, 571),
+	(88, 254),
+	(22763, 6361),
+	(17506, 8419),
+	(16364, 8064),
+	(17649, 8901),
+	(10334, 9459),
+	(17493, 2297),
+	(3918, 327),
+	(6771, 2911),
+	(3744, 603),
+	(3745, 603),
+	(3745, 1890),
+	(3746, 603),
+	(3747, 603),
+	(3748, 603),
+	(3748, 1890),
+	(17296, 603),
+	(17296, 3162),
+	(3743, 603),
+	(3743, 1889),
+	(3749, 1892),
+	(3749, 1128),
+	(110, 32),
+	(9845, 4741),
+	(9846, 4741),
+	(4873, 318),
+	(18428, 9430),
+	(16829, 8321),
+	(719, 290),
+	(720, 21),
+	(721, 21),
+	(7116, 4534),
+	(6060, 400),
+	(6060, 396),
+	(6060, 2216),
+	(3919, 1268),
+	(3919, 379),
+	(3919, 683),
+	(2124, 1140),
+	(722, 507),
+	(3920, 1954),
+	(3921, 1775),
+	(18045, 66),
+	(16100, 7947),
+	(13717, 1107),
+	(9111, 843),
+	(11607, 1759),
+	(19283, 9941),
+	(8530, 1766),
+	(14389, 4466),
+	(4874, 2189),
+	(17050, 538),
+	(18553, 2520),
+	(18723, 9534),
+	(11465, 9966),
+	(6795, 129),
+	(6772, 2912),
+	(6412, 159),
+	(3922, 129),
+	(11484, 2831),
+	(6411, 2798),
+	(3923, 1955),
+	(3924, 864),
+	(5674, 2521),
+	(3160, 702),
+	(9632, 5144),
+	(22771, 1440),
+	(1498, 250),
+	(1500, 250),
+	(1507, 867),
+	(1502, 4452),
+	(1503, 26),
+	(1506, 26),
+	(1501, 250),
+	(1508, 160),
+	(1499, 1622),
+	(18177, 9325),
+	(2953, 208),
+	(17610, 8299),
+	(15322, 10859),
+	(15322, 8975),
+	(17526, 8299),
+	(6997, 2968),
+	(6997, 2969),
+	(18695, 66),
+	(23248, 4133),
+	(15933, 7915),
+	(15933, 7916),
+	(16521, 1050),
+	(18131, 814),
+	(8914, 4715),
+	(16935, 8418),
+	(2248, 1050),
+	(18435, 9432),
+	(10338, 748),
+	(19917, 10300),
+	(1684, 891),
+	(22709, 10609),
+	(22742, 5217),
+	(3075, 1447),
+	(13206, 7015),
+	(567, 442),
+	(6998, 1930),
+	(7309, 2234),
+	(7309, 1930),
+	(10339, 6182),
+	(17472, 385),
+	(16447, 8096),
+	(5840, 63),
+	(5840, 1695),
+	(5841, 1695),
+	(5841, 63),
+	(180, 10),
+	(23335, 10828),
+	(19072, 1922),
+	(19071, 1922),
+	(19073, 716),
+	(22073, 10520),
+	(18360, 3151),
+	(14700, 1208),
+	(18343, 9396),
+	(18343, 9397),
+	(17026, 8460),
+	(20475, 1006),
+	(4875, 817),
+	(4875, 445),
+	(8212, 1779),
+	(21787, 451),
+	(1828, 834),
+	(10207, 14),
+	(19571, 10103),
+	(5822, 1991),
+	(11235, 1),
+	(4150, 2036),
+	(3925, 1754),
+	(2478, 501),
+	(11568, 6087),
+	(8500, 4483),
+	(5842, 1286),
+	(6999, 864),
+	(11673, 260),
+	(9788, 176),
+	(8011, 3690),
+	(15518, 7792),
+	(9238, 5044),
+	(4876, 425),
+	(4876, 2154),
+	(4464, 830),
+	(8305, 764),
+	(8306, 764),
+	(3500, 129),
+	(8165, 1135),
+	(22697, 1740),
+	(8166, 1135),
+	(4877, 160),
+	(4877, 1267),
+	(4878, 630),
+	(13618, 7060),
+	(1252, 32),
+	(7859, 2459),
+	(1250, 32),
+	(4866, 2183),
+	(4088, 864),
+	(3129, 112),
+	(3926, 1956),
+	(12882, 5024),
+	(11564, 2344),
+	(7000, 2344),
+	(8915, 4717),
+	(9375, 790),
+	(22560, 10594),
+	(14922, 7461),
+	(10344, 533),
+	(724, 533),
+	(725, 533),
+	(723, 533),
+	(10345, 533),
+	(16990, 533),
+	(17156, 7938),
+	(1031, 738),
+	(18619, 195),
+	(5473, 2430),
+	(17833, 1460),
+	(17833, 9054),
+	(20381, 765),
+	(2751, 263),
+	(2751, 566),
+	(2751, 6364),
+	(15535, 263),
+	(10762, 3958),
+	(11203, 4769),
+	(4614, 263),
+	(6799, 112),
+	(19436, 10021),
+	(9038, 8068),
+	(17291, 7566),
+	(8917, 4720),
+	(8918, 4720),
+	(5843, 2564),
+	(4411, 1151),
+	(1687, 765),
+	(1687, 1809),
+	(1689, 864),
+	(1690, 864),
+	(1688, 864),
+	(19815, 10218),
+	(2599, 1226),
+	(5489, 404),
+	(7610, 294),
+	(8685, 4625),
+	(4880, 1254),
+	(4881, 2190),
+	(2659, 1254),
+	(16964, 3820),
+	(13176, 6994),
+	(18260, 2126),
+	(1366, 4361),
+	(11177, 5957),
+	(6796, 2300),
+	(18555, 5905),
+	(18883, 61),
+	(15929, 3692),
+	(21678, 263),
+	(11361, 1440),
+	(11361, 1439),
+	(6357, 1439),
+	(6357, 1922),
+	(17398, 3118),
+	(5891, 2579),
+	(6417, 2800),
+	(4882, 2192),
+	(23734, 442),
+	(23734, 1108),
+	(19736, 2359),
+	(19736, 10187),
+	(19736, 1295),
+	(6416, 2799),
+	(16141, 37),
+	(4530, 426),
+	(3278, 1715),
+	(16247, 1718),
+	(3279, 1717),
+	(3279, 1718),
+	(8472, 4445),
+	(6035, 366),
+	(23311, 10818),
+	(23311, 366),
+	(13662, 7069),
+	(15134, 7548),
+	(19702, 576),
+	(9837, 10449),
+	(3502, 1746),
+	(7293, 953),
+	(3927, 1957),
+	(3503, 1746),
+	(3501, 1746),
+	(5844, 327),
+	(10355, 6185),
+	(19595, 716),
+	(15311, 7628),
+	(8924, 7059),
+	(547, 168),
+	(547, 167),
+	(548, 168),
+	(492, 168),
+	(11186, 5961),
+	(1319, 168),
+	(1319, 167),
+	(16605, 168),
+	(2752, 263),
+	(2752, 1297),
+	(3928, 70),
+	(3928, 319),
+	(11365, 862),
+	(4128, 2026),
+	(4128, 578),
+	(6418, 2026),
+	(3285, 716),
+	(3929, 1177),
+	(6419, 2801),
+	(17321, 8630),
+	(16080, 508),
+	(6325, 2763),
+	(9531, 5107),
+	(17795, 9019),
+	(8362, 3074),
+	(8363, 3074),
+	(8365, 3074),
+	(8369, 3074),
+	(8370, 3074),
+	(10149, 5461),
+	(3930, 1956),
+	(14683, 7014),
+	(14682, 7014),
+	(14684, 7014),
+	(19784, 10211),
+	(14455, 14),
+	(5389, 630),
+	(9925, 2259),
+	(22718, 10613),
+	(22718, 10612),
+	(7315, 1214),
+	(1453, 129),
+	(1455, 159),
+	(1457, 159),
+	(1451, 865),
+	(11642, 6133),
+	(4885, 1208),
+	(17573, 316),
+	(17573, 66),
+	(17573, 8847),
+	(4884, 1208),
+	(4884, 1125),
+	(15756, 66),
+	(4887, 1208),
+	(4888, 1208),
+	(4886, 1208),
+	(4889, 1244),
+	(4889, 1314),
+	(19152, 9859),
+	(2339, 1101),
+	(7350, 893),
+	(11624, 6119),
+	(16796, 8145),
+	(15829, 129),
+	(3504, 864),
+	(4309, 552),
+	(4309, 804),
+	(3505, 552),
+	(3505, 1169),
+	(3505, 1468),
+	(3506, 552),
+	(3506, 1312),
+	(3506, 1169),
+	(8336, 4298),
+	(15423, 7716),
+	(23207, 6395),
+	(726, 534),
+	(726, 669),
+	(6420, 60),
+	(18849, 9577),
+	(4890, 830),
+	(4890, 1919),
+	(17244, 8410),
+	(18522, 1081),
+	(1348, 37),
+	(18815, 10302),
+	(6054, 66),
+	(14552, 317),
+	(14849, 7433),
+	(566, 453),
+	(566, 451),
+	(566, 452),
+	(566, 391),
+	(566, 2134),
+	(17106, 8506),
+	(11337, 6012),
+	(6807, 37),
+	(6807, 1339),
+	(17114, 8331),
+	(6817, 37),
+	(3098, 1463),
+	(18429, 805),
+	(12648, 6567),
+	(34, 136),
+	(34, 173),
+	(34, 174),
+	(3931, 1934),
+	(22752, 1617),
+	(11134, 5962),
+	(10363, 6184),
+	(12431, 10661),
+	(16677, 8216),
+	(7810, 3711),
+	(22690, 10596),
+	(11815, 6333),
+	(11819, 6333),
+	(6106, 2753),
+	(10364, 4094),
+	(16841, 8220),
+	(8384, 7034),
+	(11338, 630),
+	(11338, 1728),
+	(16902, 3820),
+	(16902, 8386),
+	(5846, 2565),
+	(3932, 10),
+	(6263, 427),
+	(6070, 2682),
+	(16945, 8224),
+	(5582, 2484),
+	(6828, 1238),
+	(8744, 542),
+	(10365, 7836),
+	(16853, 8340),
+	(3030, 1423),
+	(3484, 1755),
+	(18444, 4238),
+	(298, 175),
+	(3348, 1758),
+	(10366, 3118),
+	(15492, 7784),
+	(9627, 5143),
+	(16137, 787),
+	(16396, 7540),
+	(21632, 10457),
+	(6421, 2802),
+	(3933, 1958),
+	(16675, 5188),
+	(18939, 9603),
+	(5335, 999),
+	(5335, 748),
+	(23190, 3030),
+	(23192, 3030),
+	(1930, 938),
+	(1933, 1209),
+	(1931, 938),
+	(3934, 303),
+	(20379, 10360),
+	(20379, 8615),
+	(1932, 938),
+	(21971, 51),
+	(14677, 7277),
+	(11844, 2216),
+	(11858, 2216),
+	(11858, 8134),
+	(11853, 2216),
+	(11857, 2216),
+	(11857, 8134),
+	(11852, 2216),
+	(12514, 6544),
+	(8803, 2055),
+	(8949, 4733),
+	(2526, 1202),
+	(549, 4357),
+	(19560, 4357),
+	(551, 4357),
+	(499, 4357),
+	(1291, 4357),
+	(21233, 10529),
+	(552, 4357),
+	(552, 431),
+	(550, 4357),
+	(550, 431),
+	(19864, 2252),
+	(12118, 1714),
+	(7543, 3122),
+	(7543, 2345),
+	(3115, 1531),
+	(7744, 3664),
+	(8164, 901),
+	(3935, 680),
+	(5847, 680),
+	(8731, 716),
+	(4891, 680),
+	(3507, 129),
+	(3508, 1818),
+	(18454, 9442),
+	(3274, 1713),
+	(12121, 316),
+	(4893, 2194),
+	(5565, 112),
+	(16214, 4981),
+	(7001, 2207),
+	(3374, 113),
+	(1172, 784),
+	(1174, 784),
+	(1173, 784),
+	(17263, 8599),
+	(18525, 1081),
+	(1638, 771),
+	(1651, 425),
+	(1632, 140),
+	(1632, 555),
+	(1632, 319),
+	(19122, 7614),
+	(12601, 1085),
+	(12602, 1085),
+	(20382, 1851),
+	(18008, 2406),
+	(3399, 70),
+	(19837, 10230),
+	(20794, 1006),
+	(7552, 6198),
+	(6785, 2344),
+	(1906, 918),
+	(19002, 9735),
+	(18721, 4702),
+	(5064, 2248),
+	(15425, 7718),
+	(8163, 37),
+	(19667, 850),
+	(22764, 10669),
+	(12307, 8588),
+	(22411, 9465),
+	(7833, 2972),
+	(7833, 361),
+	(7833, 5892),
+	(7427, 2406),
+	(3936, 37),
+	(5848, 818),
+	(19829, 402),
+	(1012, 407),
+	(2261, 1056),
+	(2263, 1056),
+	(8330, 4295),
+	(8330, 4296),
+	(2262, 1056),
+	(2481, 1056),
+	(22461, 1568),
+	(6108, 112),
+	(18613, 2802),
+	(5849, 771),
+	(1476, 129),
+	(1487, 2533),
+	(18192, 129),
+	(1484, 609),
+	(1478, 129),
+	(1481, 129),
+	(1486, 129),
+	(1489, 781),
+	(1488, 861),
+	(11358, 1440),
+	(12604, 885),
+	(7429, 82),
+	(1594, 871),
+	(1594, 45),
+	(1594, 884),
+	(1597, 884),
+	(1600, 884),
+	(1601, 884),
+	(1604, 884),
+	(1602, 884),
+	(1599, 884),
+	(7316, 884),
+	(8905, 884),
+	(1603, 884),
+	(1598, 884),
+	(14363, 884),
+	(16129, 264),
+	(16129, 7208),
+	(13623, 6181),
+	(22788, 6181),
+	(22788, 852),
+	(8395, 175),
+	(7496, 3097),
+	(19163, 9864),
+	(12123, 7255),
+	(18103, 66),
+	(727, 152),
+	(728, 152),
+	(729, 670),
+	(4894, 277),
+	(7002, 277),
+	(980, 266),
+	(980, 662),
+	(980, 536),
+	(819, 536),
+	(819, 266),
+	(3266, 888),
+	(730, 307),
+	(730, 536),
+	(731, 365),
+	(731, 306),
+	(3174, 365),
+	(3174, 306),
+	(3265, 365),
+	(3265, 306),
+	(1020, 365),
+	(3270, 365),
+	(3270, 308),
+	(7003, 365),
+	(7003, 306),
+	(3263, 308),
+	(3263, 365),
+	(13233, 536),
+	(8235, 536),
+	(732, 365),
+	(5850, 365),
+	(733, 307),
+	(733, 365),
+	(3262, 308),
+	(3262, 365),
+	(4127, 1151),
+	(9580, 1151),
+	(18071, 1151),
+	(12878, 6922),
+	(6256, 2448),
+	(16334, 2448),
+	(18290, 8378),
+	(7411, 3075),
+	(17246, 2406),
+	(18173, 942),
+	(17038, 942),
+	(15963, 7925),
+	(12125, 1917),
+	(7962, 3921),
+	(13173, 6991),
+	(5851, 327),
+	(16669, 6277),
+	(11701, 400),
+	(12528, 400),
+	(12529, 400),
+	(12529, 1030),
+	(3117, 1168),
+	(3117, 405),
+	(4895, 2149),
+	(4895, 2196),
+	(16399, 8080),
+	(17762, 8996),
+	(16170, 7973),
+	(6811, 129),
+	(2694, 843),
+	(2694, 13),
+	(6354, 2775),
+	(4896, 160),
+	(4896, 62),
+	(4896, 805),
+	(23247, 7492),
+	(5854, 1386),
+	(5855, 1386),
+	(18394, 9422),
+	(18394, 9423),
+	(18394, 9424),
+	(8232, 67),
+	(4897, 399),
+	(2138, 412),
+	(2138, 23),
+	(6415, 412),
+	(16885, 8371),
+	(18663, 7473),
+	(14947, 7473),
+	(1907, 915),
+	(19895, 10299),
+	(181, 10),
+	(8682, 85),
+	(17095, 8290),
+	(17142, 8290),
+	(2116, 1405),
+	(2116, 1060),
+	(8950, 4734),
+	(16678, 8217),
+	(9904, 5320),
+	(21638, 10465),
+	(18452, 9441),
+	(21687, 263),
+	(3937, 1959),
+	(4898, 2197),
+	(16149, 3010),
+	(16148, 3010),
+	(19750, 10193),
+	(734, 537),
+	(735, 537),
+	(8786, 537),
+	(8786, 392),
+	(5390, 1181),
+	(5856, 37),
+	(8774, 433),
+	(19552, 433),
+	(17203, 7616),
+	(6813, 817),
+	(19269, 10558),
+	(13225, 407),
+	(6425, 1960),
+	(6426, 1960),
+	(6424, 1960),
+	(3938, 1960),
+	(736, 539),
+	(4899, 1960),
+	(14804, 108),
+	(737, 673),
+	(10381, 539),
+	(738, 539),
+	(4838, 2168),
+	(19121, 2168),
+	(8862, 2168),
+	(6741, 2899),
+	(16225, 587),
+	(19315, 3114),
+	(7892, 407),
+	(23903, 10896),
+	(11447, 6057),
+	(234, 255),
+	(1183, 255),
+	(13183, 255),
+	(8969, 255),
+	(8947, 255),
+	(739, 255),
+	(7839, 10143),
+	(9140, 625),
+	(7004, 1218),
+	(5857, 1218),
+	(9148, 1218),
+	(9141, 1218),
+	(9142, 1218),
+	(9143, 1218),
+	(5644, 1218),
+	(13620, 1218),
+	(5642, 1218),
+	(4900, 209),
+	(4901, 1290),
+	(7669, 2534),
+	(1285, 843),
+	(2671, 90),
+	(2671, 684),
+	(2671, 72),
+	(2672, 90),
+	(2672, 72),
+	(2672, 684),
+	(2676, 843),
+	(2670, 843),
+	(9741, 1259),
+	(2677, 432),
+	(2669, 90),
+	(2669, 684),
+	(2669, 72),
+	(2673, 90),
+	(2673, 684),
+	(2673, 72),
+	(2674, 90),
+	(7090, 72),
+	(7088, 72),
+	(7089, 72),
+	(2675, 657),
+	(2675, 90),
+	(2629, 90),
+	(2629, 72),
+	(3939, 318),
+	(3939, 90),
+	(3939, 432),
+	(5858, 543),
+	(16541, 5111),
+	(1288, 37),
+	(12127, 547),
+	(10382, 6147),
+	(16233, 7996),
+	(10450, 1287),
+	(14102, 3772),
+	(23720, 9022),
+	(18363, 853),
+	(17099, 8499),
+	(22016, 10499),
+	(9124, 5361),
+	(8319, 4243),
+	(8605, 4543),
+	(22713, 4016),
+	(3242, 1663),
+	(3242, 2345),
+	(16854, 8341),
+	(3076, 1448),
+	(13187, 7000),
+	(17010, 8454),
+	(12128, 885),
+	(12128, 152),
+	(12129, 152),
+	(19317, 9957),
+	(6405, 861),
+	(6405, 781),
+	(22745, 781),
+	(22745, 861),
+	(6422, 861),
+	(10234, 874),
+	(22723, 10616),
+	(16558, 8151),
+	(19115, 9844),
+	(19125, 9845),
+	(19126, 9847),
+	(9614, 2751),
+	(21162, 2958),
+	(12130, 5058),
+	(19474, 4291),
+	(1431, 37),
+	(18465, 9445),
+	(10385, 1893),
+	(10385, 26),
+	(8578, 1809),
+	(12308, 2843),
+	(19661, 10139),
+	(19661, 2387),
+	(17229, 8576),
+	(11680, 6164),
+	(6188, 243),
+	(10387, 6572),
+	(8438, 85),
+	(16323, 8044),
+	(8951, 4735),
+	(1023, 737),
+	(1024, 737),
+	(11707, 6186),
+	(18654, 9515),
+	(8785, 5357),
+	(17299, 6169),
+	(7005, 209),
+	(17921, 9126),
+	(22468, 10212),
+	(3653, 762),
+	(18858, 9581),
+	(16387, 8077),
+	(231, 148),
+	(231, 56),
+	(233, 56),
+	(9471, 56),
+	(338, 56),
+	(247, 56),
+	(10395, 56),
+	(19348, 56),
+	(2549, 148),
+	(6738, 148),
+	(6738, 56),
+	(232, 148),
+	(6744, 56),
+	(8800, 4747),
+	(19509, 1440),
+	(12432, 639),
+	(2493, 1185),
+	(986, 362),
+	(986, 620),
+	(986, 53),
+	(18286, 9379),
+	(3122, 620),
+	(987, 620),
+	(989, 620),
+	(991, 722),
+	(6803, 722),
+	(988, 68),
+	(11570, 111),
+	(11570, 722),
+	(740, 148),
+	(740, 620),
+	(740, 378),
+	(2640, 722),
+	(990, 620),
+	(4839, 722),
+	(4839, 2169),
+	(7849, 722),
+	(7849, 2169),
+	(7348, 722),
+	(19703, 10168),
+	(7891, 3840),
+	(7891, 3841),
+	(7891, 3839),
+	(4902, 1014),
+	(9248, 1960),
+	(6429, 1760),
+	(6428, 70),
+	(6427, 1760),
+	(11638, 3253),
+	(9101, 4824),
+	(18645, 4824),
+	(18391, 3151),
+	(6110, 830),
+	(6110, 1094),
+	(17697, 8951),
+	(17259, 2406),
+	(7006, 319),
+	(22487, 10212),
+	(3940, 1336),
+	(23685, 66),
+	(5942, 628),
+	(8410, 4266),
+	(12134, 880),
+	(12135, 880),
+	(7619, 3164),
+	(532, 420),
+	(17994, 420),
+	(20779, 1363),
+	(20779, 10538),
+	(17171, 2992),
+	(17170, 2992),
+	(7675, 3225),
+	(4467, 4815),
+	(4467, 9605),
+	(9549, 648),
+	(19566, 3012),
+	(15697, 1033),
+	(15695, 7854),
+	(22482, 10212),
+	(6430, 379),
+	(20337, 694),
+	(18156, 1617),
+	(7865, 3797),
+	(3941, 260),
+	(3941, 62),
+	(3941, 73),
+	(3941, 425),
+	(4904, 2142),
+	(4905, 2142),
+	(3942, 276),
+	(4906, 2142),
+	(3011, 1411),
+	(3011, 276),
+	(3943, 258),
+	(3943, 276),
+	(3943, 62),
+	(341, 258),
+	(341, 259),
+	(341, 62),
+	(341, 260),
+	(3944, 143),
+	(3944, 454),
+	(3944, 79),
+	(20518, 1769),
+	(3376, 1766),
+	(3379, 716),
+	(3379, 1767),
+	(3381, 716),
+	(3381, 1767),
+	(3378, 1767),
+	(3378, 1768),
+	(3385, 1769),
+	(3391, 1769),
+	(3387, 1769),
+	(3389, 1769),
+	(3377, 1767),
+	(3393, 1772),
+	(3384, 1767),
+	(3390, 1769),
+	(3380, 1767),
+	(3380, 1769),
+	(3383, 1769),
+	(3386, 1769),
+	(15910, 716),
+	(3382, 1767),
+	(19393, 716),
+	(7419, 716),
+	(7419, 5975),
+	(3392, 1769),
+	(3388, 1769),
+	(15936, 1401),
+	(2900, 3163),
+	(4907, 392),
+	(4908, 2142),
+	(4908, 794),
+	(12326, 6365),
+	(16542, 8143),
+	(6431, 864),
+	(7857, 3817),
+	(6805, 112),
+	(11754, 112),
+	(11754, 6219),
+	(11755, 112),
+	(11755, 6219),
+	(11771, 112),
+	(11767, 112),
+	(11767, 6219),
+	(11768, 112),
+	(9626, 112),
+	(9626, 2922),
+	(12078, 112),
+	(10091, 112),
+	(16942, 8425),
+	(1117, 129),
+	(11517, 3151),
+	(4909, 82),
+	(17673, 82),
+	(16552, 8146),
+	(14605, 660),
+	(8100, 1),
+	(20399, 10363),
+	(19090, 292),
+	(1405, 7557),
+	(1405, 2736),
+	(7434, 2483),
+	(22736, 10622),
+	(7317, 1008),
+	(16153, 146),
+	(182, 9),
+	(6432, 2712),
+	(16971, 112),
+	(19758, 1027),
+	(19758, 227),
+	(4350, 2568),
+	(5860, 2568),
+	(15857, 85),
+	(6433, 2804),
+	(5391, 5),
+	(17911, 9118),
+	(1279, 51),
+	(23211, 10797),
+	(2037, 517),
+	(10398, 7466),
+	(10397, 7466),
+	(17023, 7466),
+	(741, 517),
+	(10400, 7466),
+	(10399, 7466),
+	(10401, 7466),
+	(15894, 7466),
+	(18578, 9488),
+	(10160, 1663),
+	(4910, 115),
+	(4910, 2199),
+	(4910, 891),
+	(17992, 9191),
+	(4911, 2200),
+	(7318, 795),
+	(982, 709),
+	(742, 66),
+	(8290, 149),
+	(5392, 2365),
+	(493, 261),
+	(1007, 730),
+	(16285, 6073),
+	(11524, 6073),
+	(17441, 4755),
+	(17507, 4755),
+	(5393, 2384),
+	(2509, 2384),
+	(17233, 8581),
+	(18591, 9490),
+	(18634, 9502),
+	(18635, 9503),
+	(17612, 8299),
+	(5618, 5089),
+	(4297, 139),
+	(4297, 5060),
+	(7603, 795),
+	(7007, 385),
+	(7007, 2431),
+	(14523, 953),
+	(7262, 580),
+	(19213, 9907),
+	(19503, 2073),
+	(8175, 3838),
+	(325, 262),
+	(14160, 818),
+	(7463, 3091),
+	(3685, 238),
+	(3685, 1867),
+	(3687, 690),
+	(3687, 1873),
+	(3688, 1875),
+	(3686, 1867),
+	(3689, 1219),
+	(7437, 3084),
+	(3691, 1863),
+	(18167, 9317),
+	(3250, 108),
+	(9601, 555),
+	(11346, 6026),
+	(6434, 426),
+	(3511, 1777),
+	(6362, 71),
+	(20752, 120),
+	(20752, 361),
+	(20752, 106),
+	(20752, 71),
+	(8419, 71),
+	(15293, 131),
+	(17301, 8611),
+	(17339, 8644),
+	(9638, 7068),
+	(13661, 7068),
+	(11708, 3145),
+	(7435, 3083),
+	(17531, 4422),
+	(19210, 9928),
+	(8435, 97),
+	(7867, 97),
+	(8434, 97),
+	(8139, 97),
+	(13364, 97),
+	(8140, 97),
+	(13363, 97),
+	(7845, 97),
+	(11330, 7259),
+	(17663, 8916),
+	(14824, 144),
+	(17512, 8801),
+	(17078, 4706),
+	(13624, 2345),
+	(13624, 7064),
+	(2611, 97),
+	(7742, 201),
+	(363, 97),
+	(365, 97),
+	(364, 106),
+	(364, 97),
+	(366, 97),
+	(367, 97),
+	(367, 265),
+	(368, 97),
+	(369, 97),
+	(370, 100),
+	(371, 100),
+	(372, 100),
+	(362, 97),
+	(13459, 97),
+	(763, 688),
+	(6806, 319),
+	(17770, 9001),
+	(5861, 2094),
+	(7313, 51),
+	(3226, 1656),
+	(7008, 2094),
+	(17605, 6950),
+	(17490, 6950),
+	(17375, 6950),
+	(12142, 885),
+	(2257, 489),
+	(9603, 5887),
+	(11061, 5887),
+	(11060, 5887),
+	(745, 71),
+	(3512, 71),
+	(3512, 1201),
+	(3512, 1435),
+	(3512, 4410),
+	(8851, 71),
+	(2732, 1227),
+	(8310, 1846),
+	(2513, 764),
+	(6565, 197),
+	(2642, 1245),
+	(2819, 872),
+	(2818, 1319),
+	(12434, 14),
+	(18201, 2406),
+	(294, 203),
+	(294, 266),
+	(107, 203),
+	(108, 203),
+	(16176, 2245),
+	(16177, 2245),
+	(16178, 2245),
+	(15832, 7055),
+	(746, 541),
+	(6435, 487),
+	(6435, 1733),
+	(4912, 1268),
+	(6436, 1241),
+	(4808, 1241),
+	(10150, 2678),
+	(6264, 1009),
+	(10093, 5450),
+	(10093, 5451),
+	(15297, 7615),
+	(9356, 5076),
+	(22213, 10527),
+	(22214, 10527),
+	(11723, 6193),
+	(8037, 3957),
+	(9700, 5187),
+	(17735, 1460),
+	(12379, 2909),
+	(747, 467),
+	(14913, 7453),
+	(17394, 146),
+	(2527, 1203),
+	(7010, 1487),
+	(21982, 10484),
+	(21982, 10483),
+	(11157, 290),
+	(748, 290),
+	(6073, 2683),
+	(530, 26),
+	(1048, 290),
+	(1050, 290),
+	(1049, 290),
+	(5567, 290),
+	(16232, 7996),
+	(5604, 2496),
+	(20874, 10390),
+	(11631, 6125),
+	(7402, 3070),
+	(14763, 859),
+	(11534, 3151),
+	(8476, 4456),
+	(4601, 765),
+	(8877, 5353),
+	(7203, 3024),
+	(10088, 4357),
+	(10088, 5447),
+	(7766, 951),
+	(14593, 7263),
+	(7607, 118),
+	(12144, 368),
+	(8936, 4721),
+	(19110, 5896),
+	(12880, 6924),
+	(10142, 4606),
+	(4523, 28),
+	(4523, 229),
+	(4523, 1731),
+	(11541, 1731),
+	(16301, 8026),
+	(6113, 112),
+	(18414, 2406),
+	(3947, 1177),
+	(3947, 1962),
+	(10415, 9449),
+	(10415, 9450),
+	(1885, 2968),
+	(1885, 17),
+	(1886, 3594),
+	(3948, 1093),
+	(11634, 6129),
+	(6808, 2923),
+	(749, 196),
+	(750, 196),
+	(751, 542),
+	(15444, 3869),
+	(22486, 10212),
+	(9616, 5141),
+	(8704, 1271),
+	(8704, 4633),
+	(10225, 5527),
+	(4914, 1069),
+	(14735, 7390),
+	(13881, 804),
+	(16513, 2776),
+	(10734, 6067),
+	(17896, 3820),
+	(11156, 1843),
+	(752, 543),
+	(15789, 1305),
+	(19147, 7193),
+	(20149, 1005),
+	(6437, 2805),
+	(4915, 1318),
+	(4917, 357),
+	(3371, 1046),
+	(2653, 1251),
+	(4916, 1001),
+	(4916, 1381),
+	(5862, 2569),
+	(16171, 508),
+	(9249, 2091),
+	(292, 269),
+	(15004, 4694),
+	(8535, 1037),
+	(1384, 1003),
+	(1384, 2345),
+	(2126, 1003),
+	(2126, 2345),
+	(7011, 1362),
+	(5675, 2521),
+	(18903, 9582),
+	(11733, 128),
+	(5605, 2498),
+	(18994, 184),
+	(7420, 3077),
+	(13210, 3077),
+	(13211, 3077),
+	(7012, 1909),
+	(7012, 62),
+	(19592, 10114),
+	(17197, 6972),
+	(18927, 9595),
+	(11760, 6221),
+	(8882, 5311),
+	(8883, 5311),
+	(8881, 5311),
+	(6438, 2806),
+	(3949, 444),
+	(17025, 2406),
+	(1938, 1211),
+	(14545, 2766),
+	(16992, 10474),
+	(8952, 4736),
+	(16809, 8301),
+	(5864, 1001),
+	(19847, 5157),
+	(9655, 5157),
+	(7291, 122),
+	(505, 393),
+	(12149, 66),
+	(3950, 392),
+	(5865, 392),
+	(17749, 146),
+	(14863, 1305),
+	(14865, 1305),
+	(20248, 10344),
+	(15443, 7719),
+	(3513, 1818),
+	(12150, 6384),
+	(9071, 1851),
+	(3370, 1763),
+	(3704, 1883),
+	(7691, 5827),
+	(7690, 5827),
+	(10423, 1904),
+	(22094, 10522),
+	(9806, 4998),
+	(3654, 762),
+	(18770, 9539),
+	(9871, 5295),
+	(7319, 2252),
+	(7319, 3055),
+	(7319, 1956),
+	(7320, 2252),
+	(7320, 1956),
+	(9867, 2252),
+	(8902, 2252),
+	(8902, 3055),
+	(9868, 2252),
+	(9869, 2252),
+	(9870, 862),
+	(9620, 2252),
+	(9620, 1956),
+	(9866, 2252),
+	(15902, 7011),
+	(18126, 9298),
+	(22785, 10679),
+	(22043, 10518),
+	(5314, 858),
+	(5314, 70),
+	(11193, 1394),
+	(11193, 769),
+	(4920, 2204),
+	(507, 397),
+	(507, 398),
+	(7868, 1389),
+	(18861, 7066),
+	(17426, 6972),
+	(7578, 1185),
+	(6457, 263),
+	(8380, 999),
+	(17234, 8582),
+	(17862, 9077),
+	(23884, 10893),
+	(22345, 10500),
+	(22475, 10212),
+	(3951, 260),
+	(8559, 1610),
+	(23283, 10866),
+	(9139, 5312),
+	(4921, 1381),
+	(4921, 1286),
+	(4922, 2205),
+	(6446, 1336),
+	(3952, 80),
+	(3952, 425),
+	(3952, 1326),
+	(4923, 425),
+	(3666, 864),
+	(3666, 1809),
+	(18532, 773),
+	(18532, 1774),
+	(6447, 690),
+	(18590, 2522),
+	(22355, 10540),
+	(753, 12),
+	(876, 12),
+	(5621, 12),
+	(8829, 12),
+	(8953, 4737),
+	(7170, 44),
+	(18095, 9285),
+	(18096, 9285),
+	(7905, 716),
+	(11538, 6062),
+	(16645, 4741),
+	(17906, 9113),
+	(18515, 7972),
+	(3394, 810),
+	(16144, 7511),
+	(7139, 1991),
+	(7652, 370),
+	(21986, 10487),
+	(17793, 538),
+	(9778, 5255),
+	(15466, 3923),
+	(3953, 861),
+	(3953, 1963),
+	(23873, 10888),
+	(754, 157),
+	(754, 674),
+	(5563, 2562),
+	(7016, 1018),
+	(7016, 2970),
+	(7016, 2971),
+	(755, 157),
+	(755, 674),
+	(756, 157),
+	(756, 674),
+	(11662, 6143),
+	(3016, 1415),
+	(7086, 933),
+	(4924, 1093),
+	(4926, 104),
+	(17111, 8511),
+	(4927, 2112),
+	(4927, 1780)
+) AS val (game_id, developer_id)
+INNER JOIN power_up.games ON val.game_id = power_up.games.id
+INNER JOIN power_up.companies ON val.developer_id = power_up.companies.id
+ON CONFLICT DO NOTHING;
+
 COMMIT;
