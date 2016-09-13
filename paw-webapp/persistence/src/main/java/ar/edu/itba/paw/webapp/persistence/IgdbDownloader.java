@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.omg.CORBA.Object;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -25,15 +26,15 @@ public class IgdbDownloader {
 
     private IgdbDownloader() {
         try {
-            gamesFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/games.sql"));
-            genresFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/genres.sql"));
-            consolesFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/consoles.sql"));
-            companiesFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/companies.sql"));
-            gameGenresFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/gameGenres.sql"));
-            gameConsolesFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/gameConsoles.sql"));
-            gameKeywordsFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/gameKeywords.sql"));
-            gameDevelopersFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/gameDevelopers.sql"));
-            gamePublishersFile = new FileWriter(new File("/Users/juanlipuma/PAW/dataBase/gamePublishers.sql"));
+            gamesFile = new FileWriter(new File("..//dataBase/games.sql"));
+            genresFile = new FileWriter(new File("..//dataBase/genres.sql"));
+            consolesFile = new FileWriter(new File("..//dataBase/consoles.sql"));
+            companiesFile = new FileWriter(new File("..//dataBase/companies.sql"));
+            gameGenresFile = new FileWriter(new File("..//dataBase/gameGenres.sql"));
+            gameConsolesFile = new FileWriter(new File("..//dataBase/gameConsoles.sql"));
+            gameKeywordsFile = new FileWriter(new File("..//dataBase/gameKeywords.sql"));
+            gameDevelopersFile = new FileWriter(new File("..//dataBase/gameDevelopers.sql"));
+            gamePublishersFile = new FileWriter(new File("..//dataBase/gamePublishers.sql"));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -48,11 +49,12 @@ public class IgdbDownloader {
 
     public static void main(String[] args) {
         IgdbDownloader me = getInstance();
-        me.downloadAllGenres();
-        System.out.println("------------------------------------------------------");
-        me.downloadAllCompanies();
-        System.out.println("------------------------------------------------------");
-        me.downloadAllConsoles();
+//        me.downloadAllGenres();
+//        System.out.println("------------------------------------------------------");
+//        me.downloadAllCompanies();
+//        System.out.println("------------------------------------------------------");
+//        me.downloadAllConsoles();
+        me.downloadAllGames();
     }
 
     public void downloadAllGenres() {
@@ -123,17 +125,80 @@ public class IgdbDownloader {
 
     public void downloadAllGames() {
         try {
+            gamesFile.write("BEGIN;\n");
+            gamesFile.write("SET DATESTYLE TO ISO, YMD;\n");
+            gamesFile.write("\\encoding utf8;\n");
             paginate("games/?fields=*&order=name%3Aasc", new Consumer<JSONObject>() {
                 @Override
                 public void accept(JSONObject game) {
+                    //Game
                     String name = "'" + escapeQuotes(game.getString("name")) + "'",
-                            summary = "'" + escapeQuotes(game.getString("summary")) + "'",
-                            dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
-                    String query = "INSERT INTO power_up.games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");";
-
+                            summary = "null",
+                            dateStr = "null";
+                    if(game.has("summary")) {
+                        summary = "'" + escapeQuotes(game.getString("summary")) + "'";
+                    }
+                    if(game.has("first_release_date")) {
+                        dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
+                    }
+                    String gameQuery = "INSERT INTO power_up.games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");\n";
+                    StringBuilder genreQueries = new StringBuilder(),
+                                    developerQueries = new StringBuilder(),
+                                    publisherQueries = new StringBuilder(),
+                                    keywordQueries = new StringBuilder();
+                    //Genres
+                    if(game.has("genres")) {
+                        JSONArray genres = game.getJSONArray("genres");
+                        for (int i = 0; i < genres.length(); i++) {
+                            genreQueries.append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Developers
+                    if(game.has("developers")) {
+                        JSONArray developers = game.getJSONArray("developers");
+                        for (int i = 0; i < developers.length(); i++) {
+                            developerQueries.append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (").append(game.getInt("id")).append(", ").append(developers.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Publishers
+                    if(game.has("publishers")) {
+                        JSONArray publishers = game.getJSONArray("publishers");
+                        for (int i = 0; i < publishers.length(); i++) {
+                            publisherQueries.append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (").append(game.getInt("id")).append(", ").append(publishers.getInt(i)).append(");\n");
+                        }
+                    }
+                    //Keywords
+                    //TODO schema declares keyword names should go here rather than keyword IDs.
+//                    if(game.has("keywords")) {
+//                        JSONArray keywords = game.getJSONArray("keywords");
+//                        for (int i = 0; i < keywords.length(); i++) {
+//                            keywordQueries.append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (").append(game.getInt("id")).append(", ").append(keywords.getInt(i)).append(");\n");
+//                        }
+//                    }
+                    //TODO game_consoles, basically loop through release dates
+                    try {
+                        IgdbDownloader.this.gamesFile.write(gameQuery);
+                        System.out.println(gameQuery);
+                        IgdbDownloader.this.gameGenresFile.write(genreQueries.toString());
+                        System.out.println(genreQueries.toString());
+                        IgdbDownloader.this.gameDevelopersFile.write(developerQueries.toString());
+                        System.out.println(developerQueries.toString());
+                        IgdbDownloader.this.gamePublishersFile.write(publisherQueries.toString());
+                        System.out.println(publisherQueries.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
-        } catch (UnirestException e) {
+            gamesFile.write("COMMIT;\n");
+            gameGenresFile.write("COMMIT;\n");
+            gameDevelopersFile.write("COMMIT;\n");
+            gamePublishersFile.write("COMMIT;\n");
+            gamesFile.close();
+            gameGenresFile.close();
+            gameDevelopersFile.close();
+            gamePublishersFile.close();
+        } catch (UnirestException|IOException e) {
             e.printStackTrace();
         }
     }
