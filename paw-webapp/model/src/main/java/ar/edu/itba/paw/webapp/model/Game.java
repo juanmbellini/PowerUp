@@ -78,4 +78,7 @@ public class Game {
     }
 
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 }
