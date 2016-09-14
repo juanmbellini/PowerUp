@@ -34,13 +34,9 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[filters.size() + 1];
         parameters[0] = name;
         int i = 1;
-//        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name FROM power_up.games, power_up.game_platforms, power_up.platforms");
-//        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? AND power_up.game_platforms.game_id = power_up.games.id AND " +
-//                "power_up.game_platforms.platform_id = power_up.platforms.id");
-
-        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.consoles.name FROM power_up.games, power_up.game_consoles, power_up.consoles");
-        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? AND power_up.game_consoles.game_id = power_up.games.id AND " +
-                "power_up.game_consoles.platform_id = power_up.consoles.id");
+        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder whereSentence = new StringBuilder(" WHERE power_up.games.name LIKE ? AND power_up.game_platforms.game_id = power_up.games.id AND " +
+                "power_up.game_platforms.platform_id = power_up.platforms.id");
 
         //Joins with specific table if a filter of that table is needed
         for (Filter filter : filters) {

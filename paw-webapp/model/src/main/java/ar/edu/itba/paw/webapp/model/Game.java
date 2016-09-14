@@ -15,6 +15,7 @@ public class Game {
     private ArrayList<String> genres;
     private ArrayList<String> keywords;
     private ArrayList<String> platforms;
+    private String summary;
     private String name;
 
     public String getName() {
@@ -74,4 +75,7 @@ public class Game {
     }
 
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 }
