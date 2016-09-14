@@ -764,8 +764,8 @@ INSERT INTO power_up.games VALUES (13281, 'Academy: Tau Ceti II', null, 0, '1987
 INSERT INTO power_up.games VALUES (13934, 'Accelerator', null, 0, null);
 INSERT INTO power_up.games VALUES (3283, 'Acclaim''s Star Voyager', null, 0, '1986-12-22');
 INSERT INTO power_up.games VALUES (14204, 'Accordion', null, 0, '1990-12-30');
-INSERT INTO power_up.games VALUES (13282, 'ACE', null, 0, null);
 INSERT INTO power_up.games VALUES (18110, 'Ace', 'A two-player side shooter featuring two planes in an air combat.', 0, '1976-12-30');
+INSERT INTO power_up.games VALUES (13282, 'ACE', null, 0, null);
 INSERT INTO power_up.games VALUES (17155, 'ACE - Arena: Cyber Evolution', 'Arena: Cyber Evolution (ACE) is a futuristic physics-based sports game in which players confront each other in 3 vs 3 matches of wits and twitch reflexes.
 By featuring a MOBA-like champion logic, ACE brings an unprecedented twist to the sports genre by allowing players to choose from a variety of super-powered heroes and what style of gameplay they prefer to build their own team strategies.', 0, '2014-06-30');
 INSERT INTO power_up.games VALUES (13283, 'ACE 2', null, 0, null);
@@ -1171,7 +1171,7 @@ INSERT INTO power_up.games VALUES (5571, 'Age of Empires Online', null, 0, '2011
 INSERT INTO power_up.games VALUES (8575, 'Age of Empires: Castle Siege', 'Age of Empires®: Castle Siege invites you to guide your empire through the Medieval Era on your Windows PC or touch screen device. Choose from one of several civilizations, including the Britons, Teutons, and Kievan Rus. Upgrade your keep, fortify your walls, and garrison defensive troops to protect yourself from marauders. Then, train an army to raid other cities, and command them in battle to dismantle your opponents’ defenses.', 0, '2014-09-16');
 INSERT INTO power_up.games VALUES (21221, 'Age of Empires: Mythologies', null, 0, '2008-11-23');
 INSERT INTO power_up.games VALUES (291, 'Age of Empires: The Rise of Rome', null, 0, '1998-10-30');
-INSERT INTO power_up.games VALUES (22103, 'Age of Enigma: The Secret of the Sixth Ghost', 'Help the ghostly inhabitants of a haunted house as you venture into the beyond and discover the secret of the 6th ghost! Mysteriously summoned to a house you have seen only in your nightmares, you will encounter the dark and inscrutable Nathan and help the ghosts held captive there in Age of Enigma: The Secret of the Sixth Ghost. Explore this spooky Adventure game and escape from hell!', 0, null);
+INSERT INTO power_up.games VALUES (22103, 'Age of Enigma: The Secret of the Sixth Ghost', 'Help the ghostly inhabitants of a haunted house as you venture into the beyond and discover the secret of the 6th ghost! Mysteriously summoned to a house you have seen only in your nightmares, you will encounter the dark and inscrutable Nathan and help the ghosts held captive there in Age of Enigma: The Secret of the Sixth Ghost. Explore this spooky Adventure game and escape from hell!', 0, '2011-08-23');
 INSERT INTO power_up.games VALUES (9952, 'Age of Fear: The Undead King', 'Age of Fear: The Undead King is a fantasy turn-based strategy. The game features a novel battle system, two campaigns with solid fantasy stories and very flexible multi-player and skirmish modes.
 
 The story takes place in an untamed fantasy land, where three forces: the Human Kingdom, the Greenskins'' Horde and the Undead Legion - are fighting for domination and survival.
@@ -1239,13 +1239,13 @@ INSERT INTO power_up.games VALUES (9953, 'AGON: The Lost Sword of Toledo', 'The 
 Once ruled by Romans and Visigoths, Toledo has a rich history, making it the ideal setting for the story of Professor Samuel Hunt and his intriguing adventure to discover the legendary "Sword of Toledo".
 
 The Professor arrives in the picturesque Spanish city, where time seems to pass by more slowly. Becoming aware of strange goings-on about him, Professor Hunt is involved in the search to find the mysterious "Sword of Toledo", which has been considered lost for many years. Thus, a new adventure starts for the British Professor...', 0, null);
-INSERT INTO power_up.games VALUES (11890, 'Agony', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (19453, 'Agony', 'Agony is a first-person survival horror game currently in development.
 Players will begin their journey as tormented soul within the depths of hell without any memories about his past.
 
 The special ability to control people on their path, and even possess simple minded demons, gives the player the necessary measures to survive in the extreme conditions they are in.
 
 By exploring hostile environment and interacting with the other weary souls of the hellscape, the hero will soon understand that there is only one way to escape from Hell, and it will require a meeting of the mystical Red Goddess.', 0, '2017-12-30');
+INSERT INTO power_up.games VALUES (11890, 'Agony', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (9537, 'Agricultural Simulator 2011', 'In a charming mountain area, you take the role of a classic farmer with all the necessary tasks like cattle breeding, growing grain and other resources, and dealing with products from your farm. Your fields can be cultivated with machines from CLAAS and even your animals have to be taken care of. 
 The complete Agricultural Simulator allows you to ride many genuine CLAAS tractors. Choose between many different models of tractors, combines, extensions and hangers. Sell your products and invest in better equipment. More powerful machines will help you farm bigger areas. 
 As striving farmer, you have to invest carefully to maximize the crop. Don’t kick over the traces or you won’t be able to upgrade your farm and buy more land. Choose the right seed from different types of grains like barley, rye, or wheat or decide to grow canola or corn. The harvest can be used as animal food, new seed as well as product to be sold on the market. Always have an eye on the market prices so you don’t come out with losses after all the work. 
@@ -1419,8 +1419,8 @@ INSERT INTO power_up.games VALUES (11356, 'Airscape: The Fall of Gravity', null,
 INSERT INTO power_up.games VALUES (17561, 'Airship Dragoon', 'Conquer the super-continent of Pangea with an invasion of Airships. Battle Dastardly Pirate Insurgents and keep the locals happy or they will be revolting.', 0, '2014-07-01');
 INSERT INTO power_up.games VALUES (8630, 'Airship Q', null, 0, '2016-12-30');
 INSERT INTO power_up.games VALUES (593, 'Airstrike II: Gulf Thunder', null, 0, '2005-02-10');
-INSERT INTO power_up.games VALUES (13296, 'Airwolf', null, 0, null);
 INSERT INTO power_up.games VALUES (8848, 'Airwolf', 'Airwolf was originally designed as an Arcade game, based loosely on the television series of the same name. It was later released for the Nintendo Entertainment System.', 0, '1987-08-31');
+INSERT INTO power_up.games VALUES (13296, 'Airwolf', null, 0, null);
 INSERT INTO power_up.games VALUES (13297, 'Airwolf 2', null, 0, null);
 INSERT INTO power_up.games VALUES (15827, 'Airxonix', 'AirXonix is a 3-dimensional remake of the famous Xonix game. In the older Xonix you controlled a device, which moved over a field with several monster-balls wandering inside. The objective was to cut the balls away from as much spare field as possible. The rules of AirXonix are almost the same, except the device you control is flying in the air and everything is in full 3D. (http://axysoft.com)', 0, '2007-12-30');
 INSERT INTO power_up.games VALUES (8631, 'Aiyoku no Eustia: Angel''s Blessing', null, 0, '2014-06-25');
@@ -1440,8 +1440,8 @@ INSERT INTO power_up.games VALUES (19465, 'Akiba''s Beat', 'Akiba''s Beat is an 
 INSERT INTO power_up.games VALUES (7268, 'Akiba''s Trip: Undead & Undressed', 'Akiba''s Trip: Undead &amp; Undressed is an open-world action RPG in which players undertake numerous missions in a virtual recreation of Akihabara, Tokyo’s popular ”Electric Town” district.', 0, '2013-11-06');
 INSERT INTO power_up.games VALUES (1995, 'Akimbo: Kung-Fu Hero', null, 0, '2001-07-30');
 INSERT INTO power_up.games VALUES (18124, 'Akinator', 'Akinator, the Web Genie (formerly Akinator, the web Genius) is an internet game and mobile app based on Twenty Questions that attempts to determine which character the player is thinking of by asking them a series of questions. It is an artificial intelligence program that can find and learn the best questions to ask the player. Created by three French programmers in 2007, it became popular worldwide in November 2008, according to Google Trends. In Europe popularity peak was reached in 2009 and Japan in 2010 with the launch of mobile apps by French mobile company SCIMOB, reaching highest ranks on app store . While playing "Akinator", questions are asked by a cartoon genie.', 0, '2007-12-30');
-INSERT INTO power_up.games VALUES (2340, 'Akira', null, 0, '1988-12-23');
 INSERT INTO power_up.games VALUES (14234, 'Akira', null, 0, '1994-12-30');
+INSERT INTO power_up.games VALUES (2340, 'Akira', null, 0, '1988-12-23');
 INSERT INTO power_up.games VALUES (19584, 'Akte Europa', null, 0, '1997-12-30');
 INSERT INTO power_up.games VALUES (4145, 'Akuji the Heartless', 'Akuji the Heartless is an action-adventure video game, released in 1998 on the PlayStation. It uses a modified Gex: Enter the Gecko engine, and both games were developed by Crystal Dynamics. The gameplay involves hack and slash combat combined with platform elements.', 0, '1998-12-30');
 INSERT INTO power_up.games VALUES (1120, 'Akumajō Special: Boku Dracula-kun', null, 0, '1990-10-18');
@@ -1523,17 +1523,17 @@ INSERT INTO power_up.games VALUES (21555, 'Aliard''s Tome', null, 0, '1983-12-30
 INSERT INTO power_up.games VALUES (5719, 'Alias', null, 0, '2004-02-03');
 INSERT INTO power_up.games VALUES (8776, 'Alias Runner', null, 0, '2004-12-30');
 INSERT INTO power_up.games VALUES (13802, 'Alice in Videoland', null, 0, null);
-INSERT INTO power_up.games VALUES (12250, 'Alice in Wonderland', null, 0, '1985-12-30');
 INSERT INTO power_up.games VALUES (4666, 'Alice in Wonderland', null, 0, '2010-03-01');
+INSERT INTO power_up.games VALUES (12250, 'Alice in Wonderland', null, 0, '1985-12-30');
 INSERT INTO power_up.games VALUES (23187, 'Alice VR', 'Alice VR is an adventure sci-fi game exploring the power of virtual reality.
 
 An unexpected malfunction forces your ship’s AI to wake you from the cryo sleep. You have to make an emergency landing on an alien planet and your goal there is simple: find or purchase fuel and escape. This straightforward task gets complicated when you realize that all of the planet’s citizens had disappeared in mysterious circumstances. The player has to deal with a series of puzzles, designed specifically for VR, and make decisions that will ultimately lead to the truth about the planet and its secrets. The future is in the player’s hands.', 0, null);
 INSERT INTO power_up.games VALUES (1040, 'Alice: Madness Returns', null, 0, '2011-06-13');
 INSERT INTO power_up.games VALUES (7665, 'Alida', null, 0, '2004-04-30');
-INSERT INTO power_up.games VALUES (13301, 'Alien', null, 0, null);
 INSERT INTO power_up.games VALUES (12240, 'Alien', 'Fox Video Games made the first leap into licensing the Alien property for video games with what was essentially a Pac-Man clone skinned with elements from the 1979 film. Players controlled a human collecting Alien eggs (dots) and small planet and spaceship symbols (fruits) in a maze abroad the USCSS Nostromo while avoiding Alien drones (ghosts).
 
 Drones could be killed by shooting them with a flamethrower or collecting symbols that would stun them (flashing dots).', 0, '1982-12-30');
+INSERT INTO power_up.games VALUES (13301, 'Alien', null, 0, null);
 INSERT INTO power_up.games VALUES (13302, 'Alien 8', null, 0, null);
 INSERT INTO power_up.games VALUES (21635, 'Alien Addition', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (21636, 'Alien Ambush', null, 0, '1982-12-30');
@@ -1636,11 +1636,11 @@ When dealing with a few aliens, flying heads will appear, which can be shot to c
 In a similar format as other early Sega arcade games, each character has unlimited usage of various short-range attacks, i.e. punches, kicks. Along with these standard attacks, each character has their own individual weapon (Garth''s weapon that shoots lightning is replaced with a flame weapon in the Master System version). Special attacks are also included, and vary depending on the character chosen at the start of the game. For instance, Garth summons an U.S. Air Force starship that drops bombs across the street (in the Master System version he has Karen''s special, a ballistic missile strike). Scooter will teleport out of his present location and leave a series of bombs that will blow up on the appearance of aliens, after which he will re-appear (in the Mega Drive version he just explodes, leaving his head, which his new body returns to retrieve). Karen calls down a nuclear missile, which incinerates every foe on the screen. However, a large amount of energy is depleted by using each character''s special attack, and cannot be used if the energy of the player''s character is too low.
 
 There are few bosses in the game. The arcade original only features a single boss that has three distinct forms. The Mega Drive port has two of these forms as two separate bosses. At the end of each mission, the side-scrolling gameplay shifts to either a shooting gallery perspective where the player must take out the aliens that pop out of various locations, similar to the bonus stages of Shinobi and Shadow Dancer, both also by Sega, or a running section that is similar to the side scrolling mode but plays like a horizontal shooter instead with projectile weapons.', 0, '1990-12-30');
+INSERT INTO power_up.games VALUES (7598, 'Alien Swarm', null, 0, '2010-07-09');
 INSERT INTO power_up.games VALUES (13950, 'Alien Swarm', 'Alien Swarm is a free game from a group of designers at Valve who were hired from the Mod community.
 
 Available free of charge, the game thrusts players into an epic bug hunt featuring a unique blend of co-op play and squad-level tactics. With your friends, form a squad of four distinct IAF Marine classes. Plan your attack using an unlockable arsenal of weapons with countless loadout configurations against a wide variety of aliens. Blaze your way through an overrun, off-world colony, eradicating the alien infestation in environments ranging from the icy planet''s surface, to a subterranean lava-flooded mining facility.
 Along with the game get the complete code base for Alien Swarm that features updates to the Source engine as well as the SDK. Alien Swarm adds 3rd person camera, depth of field, improved dynamic shadows and a wide variety of gameplay additions to the Source engine.', 0, '2010-07-18');
-INSERT INTO power_up.games VALUES (7598, 'Alien Swarm', null, 0, '2010-07-09');
 INSERT INTO power_up.games VALUES (15594, 'Alien Swirl', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (4667, 'Alien Syndrome', null, 0, '2007-07-23');
 INSERT INTO power_up.games VALUES (4478, 'Alien Syndrome', 'The time bomb is set.
@@ -1939,10 +1939,10 @@ INSERT INTO power_up.games VALUES (8636, 'Amagami Ebikore+', null, 0, '2014-01-2
 INSERT INTO power_up.games VALUES (8916, 'Amagon', 'Amagon is a Nintendo Entertainment System platform side-scroller developed by Aicom in 1988. It was subject to a high level of criticism, and never reached a high level of recognition among game critics.', 0, '1988-12-01');
 INSERT INTO power_up.games VALUES (22074, 'Amaranthine Voyage: The Living Mountain Collector''s Edition', 'A brilliant but misunderstood professor, you''ve been to the Tree of Life, and lived to tell about it. Only no one will believe you. Your students have even begun to make fun of you… Until an elderly gentleman shows up at your door, and your whole life changes once again. 
 
-Are the Three Stones really a portal to another world? Find that out and more as you follow your colleague''s trail to track down the truth of his strange disappearance. Explore beautiful, strange worlds, and watch out for surprising twists that will leave you wondering. If the tiara fits…', 0, null);
+Are the Three Stones really a portal to another world? Find that out and more as you follow your colleague''s trail to track down the truth of his strange disappearance. Explore beautiful, strange worlds, and watch out for surprising twists that will leave you wondering. If the tiara fits…', 0, '2014-01-15');
 INSERT INTO power_up.games VALUES (22075, 'Amaranthine Voyage: The Orb of Purity Collector''s Edition', 'From Eipix Entertainment, the studio that created Danse Macabre and Phantasmat, invites you to explore a new world in the next Amaranthine Voyage!
 
-Professor Samantha Bennett has made a huge breakthrough in her harmonium research, but is shocked when a man from another world falls through her new portal. The man calls himself Kraixx and appears to be ill, pleading with Prof. Bennett to save his world. Since you''re the leading expert on harmonium, Prof. Bennett calls you in, hoping you can save this strange man''s life and uncover the mysteries of the dark harmonium threatening to swallow Kraixx''s world. Search this new world for clues, but beware the Watchers, a cold-hearted group whose goal is to arrest anyone with magical abilities, including Kraixx. You''ll have to decide who to trust in this new world where anything is possible.', 0, null);
+Professor Samantha Bennett has made a huge breakthrough in her harmonium research, but is shocked when a man from another world falls through her new portal. The man calls himself Kraixx and appears to be ill, pleading with Prof. Bennett to save his world. Since you''re the leading expert on harmonium, Prof. Bennett calls you in, hoping you can save this strange man''s life and uncover the mysteries of the dark harmonium threatening to swallow Kraixx''s world. Search this new world for clues, but beware the Watchers, a cold-hearted group whose goal is to arrest anyone with magical abilities, including Kraixx. You''ll have to decide who to trust in this new world where anything is possible.', 0, '2015-09-30');
 INSERT INTO power_up.games VALUES (13311, 'Amaurote', null, 0, null);
 INSERT INTO power_up.games VALUES (14251, 'Amazed', null, 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (15711, 'Amazing Adventures Around the World', 'Pieces of an ancient stone tablet have started turning up around the globe and the Museum needs your help to locate the pieces and find the most expensive gem ever known...the World Diamond.  Under the direction of the Museum, you must immediately begin your global seek &amp; find adventure.  Complete over 100 levels by finding hidden objects and circumventing unique puzzle traps.', 0, '2009-03-02');
@@ -2055,7 +2055,6 @@ INSERT INTO power_up.games VALUES (8061, 'Amorphous+', 'Amorphous+ is a top-down
 INSERT INTO power_up.games VALUES (5725, 'Amped 2', null, 0, '2003-10-27');
 INSERT INTO power_up.games VALUES (5483, 'Amped 3', null, 0, '2005-11-15');
 INSERT INTO power_up.games VALUES (5484, 'Amped: Freestyle Snowboarding', null, 0, '2001-11-18');
-INSERT INTO power_up.games VALUES (2141, 'Amplitude', 'Amplitude is a music/rhythm game and is the sequel to 2001''s Frequency. Like it''s predecessor, players play songs by hitting notes on multiple tracks representing each instrument found in the song.&#13;', 0, '2001-11-19');
 INSERT INTO power_up.games VALUES (11081, 'Amplitude', 'Amplitude is a reboot of the critically-acclaimed controller-based rhythm action game developed by Harmonix and originally released in 2003
 
 Amplitude features over 20 songs composed for an optimal beatmatching experience by Harmonix with contributions from Freezepop, Danny B, Jim Guthrie, and more. Many of the developers from the original game are actively working on the reboot.
@@ -2067,6 +2066,7 @@ Players will speed down long, winding paths made up of the different musical ele
 Gameplay remains easy to pick up and difficult to master. Achieving a top score will be a challenge and therefore worth bragging about via online leaderboards.
 
 Amplitude supports up to four players locally. Challenge your friends and use devastating power-ups during frenetic multiplayer matches to secure your place at the top.', 0, '2016-01-04');
+INSERT INTO power_up.games VALUES (2141, 'Amplitude', 'Amplitude is a music/rhythm game and is the sequel to 2001''s Frequency. Like it''s predecessor, players play songs by hitting notes on multiple tracks representing each instrument found in the song.&#13;', 0, '2001-11-19');
 INSERT INTO power_up.games VALUES (8378, 'Ampu-Tea', null, 0, '2013-11-02');
 INSERT INTO power_up.games VALUES (13315, 'Amsgolf', null, 0, null);
 INSERT INTO power_up.games VALUES (13316, 'Amsilvania Castle', null, 0, null);
@@ -2081,12 +2081,12 @@ INSERT INTO power_up.games VALUES (54, 'An Elder Scrolls Legend: Battlespire', '
 INSERT INTO power_up.games VALUES (5622, 'Anachronox', 'The game takes place on Anachronox, a small planet floating inside a huge artificial sphere known as Sender One.', 0, '2001-06-26');
 INSERT INTO power_up.games VALUES (11506, 'Analogic', 'Analogic is one of the 12 original games that were shipped with the Magnavox Odyssey system. It runs on Cartridge No.3 and uses play-chips with an overlay.', 0, '1972-12-30');
 INSERT INTO power_up.games VALUES (10037, 'Analogue: A Hate Story', 'A dark visual mystery novel featuring transhumanism, traditional marriage, loneliness, and cosplay. Two pursuable characters. Five endings. Welcome to the future.', 0, '2012-01-31');
-INSERT INTO power_up.games VALUES (13318, 'Anarchy', null, 0, null);
 INSERT INTO power_up.games VALUES (14163, 'Anarchy', '"Whether you liked or loathed Defender, you''ll love Anarchy. The speed at which the screen scrolls is frightening, the number of aliens, bullets and other miscellaneous objects that are animated simultaneously is absolutely remarkable. Anarchy is the best version of Defender ever."
 
 Full screen horizontal, 4 level parallax scrolling. Arcade running speed (50 frames per second) on Amiga and Atari ST. 48 Colors on screen at once. Up to 80 aliens attacking simultaneously. Full screen animation sequences totalling over 450 screens. 4 Channel sampled soundtrack. Saveable top 50, Hi-Score table.
 
 Fast, frantic, furious gameplay.', 0, '1990-12-30');
+INSERT INTO power_up.games VALUES (13318, 'Anarchy', null, 0, null);
 INSERT INTO power_up.games VALUES (1996, 'Anarchy Online', 'Anarchy Online (AO) is a science fiction themed massive multiplayer online roleplaying game (MMORPG) set almost 30,000 years into the future, in an age where common surgical implants and microscopic nano-bots can relieve most forms of human suffering or transform any normal being into a weapon of destructive force.', 0, '2001-06-26');
 INSERT INTO power_up.games VALUES (21390, 'Anarchy Online: Lost Eden', null, 0, null);
 INSERT INTO power_up.games VALUES (598, 'Anarchy Online: Shadowlands', null, 0, '2003-09-07');
@@ -2102,7 +2102,7 @@ While playing the game, players will have to fight against monsters (harpies, me
 INSERT INTO power_up.games VALUES (15463, 'Ancient Domains Of Mystery', 'Ancient Domains Of Mystery (or ADOM) is an epic fantasy Roguelike. The story takes you to the Drakalor Chain, a mountainous area in the fictional land of Ancardia. You are a lone wanderer whose purpose is to find the source of the Chaos spreading throughout the land. Pursuing your quest you traverse through dark dungeons and untamed wilds where death lurks around every corner.', 0, '2015-11-15');
 INSERT INTO power_up.games VALUES (14164, 'Ancient Games', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (15892, 'Ancient Magic: Bazoe! Mahou Sekai', null, 0, '1993-07-22');
-INSERT INTO power_up.games VALUES (22118, 'Ancient Quest of Saqqarah', null, 0, null);
+INSERT INTO power_up.games VALUES (22118, 'Ancient Quest of Saqqarah', null, 0, '2008-06-15');
 INSERT INTO power_up.games VALUES (23567, 'Ancient Ruins 1: The Crypt of the King', null, 0, null);
 INSERT INTO power_up.games VALUES (7676, 'Ancient Space', 'Ancient Space is a story driven single player real time strategy game where you take command of a fleet embarking on a scientific mission to chart undiscovered reaches of space called ‘The Black Zone,’ Overcome overwhelming odds and fight for your life, your faith and the survival of your ship and its crew.', 0, '2014-09-22');
 INSERT INTO power_up.games VALUES (22956, 'Ancient Trader', null, 0, null);
@@ -2198,9 +2198,9 @@ INSERT INTO power_up.games VALUES (3786, 'Animaniacs: The Great Edgar Hunt', nul
 INSERT INTO power_up.games VALUES (6712, 'Animastar', null, 0, '2000-06-14');
 INSERT INTO power_up.games VALUES (22396, 'Animated Puzzles', null, 0, null);
 INSERT INTO power_up.games VALUES (13324, 'Animated Strip Poker', 'Animated Strip Poker is a game developed by KnightSoft in 1985 for the C64 and other platforms.', 0, '1985-12-30');
-INSERT INTO power_up.games VALUES (22122, 'Anka', null, 0, null);
-INSERT INTO power_up.games VALUES (13803, 'Ankh', null, 0, null);
+INSERT INTO power_up.games VALUES (22122, 'Anka', null, 0, '2009-12-09');
 INSERT INTO power_up.games VALUES (4849, 'Ankh', null, 0, '2005-12-30');
+INSERT INTO power_up.games VALUES (13803, 'Ankh', null, 0, null);
 INSERT INTO power_up.games VALUES (15785, 'Ankh 2: Heart of Osiris', 'This time he will not fail. This time Osiris will show the world of humans what he''s made of. But the ankh alone is not enough - not as long as he hasn''t found the most important part of his body: his heart.', 0, '2009-05-01');
 INSERT INTO power_up.games VALUES (21271, 'Ankh: Curse of the Scarab King', null, 0, null);
 INSERT INTO power_up.games VALUES (21403, 'Ankh: Heart of Osiris', null, 0, null);
@@ -2365,9 +2365,9 @@ INSERT INTO power_up.games VALUES (5728, 'APEX', null, 0, '2003-02-17');
 INSERT INTO power_up.games VALUES (11906, 'Apidya', 'Revenge is sweet when it''s the life of your lover at stake... After the vile sorcerer, Hexaa, had tortured your beloved partner to near death, you awake the magic of your grandfather''s talisman to summon the forces of light to help you defeat the sorcerer and find a life-saving antidote. You are Ikuro and you are the only one who can commit the necessary deeds- live off your wits, live off your instincts but, most of all, live off your sacred love for Yuri. 
 
 As the ancient talisman transforms you into a beautiful bee, such beauty is darkened by the burning passion to hurt, maim and destroy Hexaa and his evil army of insects and wildlife. Your insect bite is deadly...but are you? Apidya features superb horizontally scrolling shoot''em-up action. Gameplay over 5 fantastic worlds. Incredibly large end of level guardians. Power-up with missiles, bombs, automated clones... the list is almost endless. Simultaneous two player action! Apidya- a genuinely mind-blowing experience!', 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (14260, 'Apocalypse', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (15598, 'Apocalypse', null, 0, null);
 INSERT INTO power_up.games VALUES (15547, 'Apocalypse', 'Apocalypse is notable for featuring actor Bruce Willis, who provides the main character''s likeness and voice, as well as being the first original game by Neversoft, prior to launching their blockbuster Tony Hawk franchise.', 0, '1998-10-30');
-INSERT INTO power_up.games VALUES (14260, 'Apocalypse', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (14357, 'Apocalypse Neighbors', 'Apocalypse Neighbors is a 2D strategy game with turn-based artillery combat and construction.
 
 The Devil Man has sent forth his demons across ‘Murica and they’ve corrupted your neighbours, the only solution? Take turns in building up your house and destroying your neighbour’s house! To do this you can fling a variety of wacky ammo with catapults and cannons mounted on your house or you could send a tornado their way!
@@ -2558,10 +2558,10 @@ Each of the animals has their own episode to play through, both of which consist
 
 Features National Geographic information and presentation style which is not only educational, but will help you to work through the game. Throughout the game, situations events, warnings and educational information will be presented by the game''s narrator. Uses the intuitive Nintendo Wii control schemes to immerse you in the game experience.', 0, '2007-10-24');
 INSERT INTO power_up.games VALUES (3703, 'Arctic Thunder', 'From the makers of Hydro Thunder comes the next mad racer by Midway--now digging into frozen race fields and fully throttled with the PlayStation 2! 12 outlandish winter tracks--From the Swiss Alps to the Blizzard in DC to the lost city of Atlantis, each track will challenge your skill and assault your senses. Amazing air, cool tricks--Perform up to 62 tricks to get points. Each character has unique moves. Weapons--Atomic snowballs, proximity missiles, snow bombs, and more are there to use as you battle your way to the finish line. Hand-to-Hand Fighting--Punch and kick your opponents off their sled.', 0, '2001-09-16');
+INSERT INTO power_up.games VALUES (14517, 'Arcticfox', null, 0, null);
 INSERT INTO power_up.games VALUES (11913, 'Arcticfox', 'It''s up to you. Alien invaders have landed in Antarctica and are plotting the extinction of the human race. You alone must infiltrate the frigid enemy territory and rid the world of this awesome nemesis. Your machine? The most advanced terrain vehicle of its kind, specially designed for polar combat. A tank so powerful that even heavily armored aliens look like dead meat in her gunsights.
 
 The reality check. You get it all. A realistic 3-D model of the frozen Antarctic wasteland, including mountains, ridges, crevices, even mind-numbing blizzards. An accurate simulation of tank movement and combat strategy. Intelligent alien forces complete with scout patrols, fighters and well-defended fortresses. They''ll stop at nothing in their attempt to put you in the deep freeze... unless you frost them first.', 0, '1986-12-30');
-INSERT INTO power_up.games VALUES (14517, 'Arcticfox', null, 0, null);
 INSERT INTO power_up.games VALUES (13958, 'Arcturus', null, 0, null);
 INSERT INTO power_up.games VALUES (16138, 'Arcus Odyssey', null, 0, '1993-10-21');
 INSERT INTO power_up.games VALUES (18377, 'Arcy 2', 'Arcy 2 is a VGA puzzle game that might remind you a little of Kroz. You play a smiley face who must collect all of the keys in a level before you can leave. Each enemy moves in a specific way, so the puzzle is figuring out how to move through the level without getting killed. Some enemies will only move if you cross their path, some will kill you instantly, some move in straight lines and only turn left or right, and some will try to trap you. Rocks can be used to interpose something between yourself and your enemies, and sometimes must be used to destroy walls or barriers. The soundtrack gets old quickly (one stanza of "The Entertainer" plays in a loop forever), but the game is very challenging and should entertain anyone who is up to the challenge. There are 3 volumes in this game, with only the first volume playable in the shareware version.', 0, null);
@@ -2771,8 +2771,8 @@ INSERT INTO power_up.games VALUES (997, 'Army of Two: The 40th Day', null, 0, '2
 INSERT INTO power_up.games VALUES (22972, 'Army of Two: The 40th Day - Chapters of Deceit', null, 0, null);
 INSERT INTO power_up.games VALUES (1832, 'Army of Two: The Devil''s Cartel', null, 0, '2013-03-25');
 INSERT INTO power_up.games VALUES (13333, 'Arnhem: The ''Market Garden'' Operation', null, 0, '1991-12-30');
-INSERT INTO power_up.games VALUES (13797, 'Arnie', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (14268, 'Arnie', null, 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (13797, 'Arnie', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (11917, 'Arnie 2', 'Arnie returns for four punishing missions requiring the deadly skills of a professional soldier. A full assault on the enemy''s base, gathers the latest high technology weapons, including Machine Pistols, M1 Rifles, Colt Commandos and the Uzi Light Machine Gun, for use in the destruction of an awesome weapon of mass destruction. High levels of armed resistance are expected...', 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (12869, 'Arnold Palmer Tournament Golf', 'Select your level of play, and then head for the pro shop to choose between Black Carbon, Glass Fiber, and Ceramic Clubs.
 
@@ -3048,7 +3048,7 @@ INSERT INTO power_up.games VALUES (5657, 'Astrosmash', null, 0, '1981-12-30');
 INSERT INTO power_up.games VALUES (11127, 'Astrowar', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (9036, 'Astyanax', 'The Astyanax, referred to as simply Astyanax in the NES version, is a side-scrolling action-adventure game designed by Aicom for arcades and the Nintendo Entertainment System. Although the plots differ in the two versions, gameplay remains relatively similar. The player has a life gauge, a strength gauge that fills automatically, and a magic gauge for spells. The arcade version incorporated co-operative play, which the NES version did not.', 0, '1989-12-20');
 INSERT INTO power_up.games VALUES (5495, 'Asura''s Wrath', null, 0, '2012-02-20');
-INSERT INTO power_up.games VALUES (13807, 'Asylum', null, 0, null);
+INSERT INTO power_up.games VALUES (13807, 'Asylum', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (20038, 'At the Mountains of Madness', 'At the Mountains of Madness is an indie first-person horror adventure game with survival elements in which you assume the role of the Professor Dyer, geologist of the Miskatonic University, who in 1930 traveled to Antarctica as a leader of a research expedition. But in Antarctica disaster always lurks adventurers like a shadow. And in the most cold and desolate place on earth it is easy to find death or worse, you can find the Mountains of Madness
 
 “I am forced into speech because men of science have refused to follow my advice without knowing why.” H.P. Lovecraft
@@ -3088,8 +3088,8 @@ INSERT INTO power_up.games VALUES (13693, 'Atic Atac', 'The game takes place wit
 
 It was re released for Xbox One as part of the Rare Replay Collection.', 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (9522, 'Atlantica Online', 'Atlantica Online is a turn-based tactical MMORPG in which the player primarily assumes the role of a descendant of the Atlantean people. The primary goal of the game is to search for your ancestral home to save the world from the effects of Oriharukon, a substance created by the ancient Atlanteans. To accomplish this goal, the player must embark upon a journey spanning the globe and transcending time in search of clues that will lead to the lost civilization, battling men, monsters, and machines along the way that have been corrupted by the Oriharukon’s Influence.', 0, '2008-10-29');
-INSERT INTO power_up.games VALUES (13345, 'Atlantis', null, 0, null);
 INSERT INTO power_up.games VALUES (5658, 'Atlantis', null, 0, '1982-12-30');
+INSERT INTO power_up.games VALUES (13345, 'Atlantis', null, 0, null);
 INSERT INTO power_up.games VALUES (11094, 'Atlantis 2: Beyond Atlantis', 'The appearance of the Super Nova of the Crab in the skies has awakened the light half of the force. Ten, descendant of the original Hero of Atlantis, holds within him the key to the mystery. He is bound on an adventure to Tibet, where he will gradually discover his destiny from a wizened old shaman. From quest to celestial journey, his path will be strewn with traps and enigmas that he must solve to re-establish the order and balance of the Universe set-up hundreds of years ago. If he fails then the dark half of the force will be triumphant and will bring back the times of chaos once again. Atlantis II plunges you into an adventure unlike any other. Discover beautiful settings, mysterious puzzles, unusual characters, and strange creatures.', 0, '1999-12-30');
 INSERT INTO power_up.games VALUES (11095, 'Atlantis 3: The New World', 'Step back into the land of dreams and legends. Embark on an incredible adventure and become immersed in an extraordinary tale of intrigue and mystery. Assume the role of an archaeologist as you search for the existence of a metropolis built, according to myth and legend, by the ancient Egyptians. Your quest for the mysterious secrets that have eluded many will take you on a journey through worlds of unequalled beauty. Let wisdom be your guide as you encounter challenging puzzles along your path and travel through time and spirit.Discover and explore the stunning surroundings of the vast Sahara Desert, the wondrous icy plains of Siberia, and the fascinating lands of ancient Egypt. The greatest treasure of all time lies waiting to be discovered.', 0, '2001-12-30');
 INSERT INTO power_up.games VALUES (19446, 'Atlantis Evolution', 'Atlantis Evolution  is the fourth title in the Atlantis series started by Cryo, and the first one made by Atlantis Interactive Entertainment, founded by former Cryo developers. Unlike the second and the third game in the series, the game revolves entirely around Atlantis. It was followed by The Secrets of Atlantis: The Sacred Legacy in 2006.', 0, '2004-12-30');
@@ -3167,8 +3167,8 @@ INSERT INTO power_up.games VALUES (8273, 'ATV Offroad Fury 4', null, 0, '2006-10
 INSERT INTO power_up.games VALUES (8274, 'ATV Offroad Fury Pro', null, 0, '2006-10-25');
 INSERT INTO power_up.games VALUES (8272, 'ATV Offroad Fury: Blazin'' Trails', null, 0, '2005-04-18');
 INSERT INTO power_up.games VALUES (4142, 'ATV Quad Power Racing', 'ATV Quad Power Racing is an all-terrain vehicle racing video game released in 2000 for the PlayStation and in 2002 for the Game Boy Advance. There are two sequels released: ATV Quad Power Racing 2 and ATV: Quad Frenzy.', 0, '2000-08-22');
-INSERT INTO power_up.games VALUES (3790, 'ATV Quad Power Racing 2', null, 0, '2007-01-22');
 INSERT INTO power_up.games VALUES (4173, 'ATV Quad Power Racing 2', null, 0, null);
+INSERT INTO power_up.games VALUES (3790, 'ATV Quad Power Racing 2', null, 0, '2007-01-22');
 INSERT INTO power_up.games VALUES (13349, 'ATV Simulator', null, 0, null);
 INSERT INTO power_up.games VALUES (23522, 'ATV Wild Ride 3D', null, 0, null);
 INSERT INTO power_up.games VALUES (18981, 'Audioshield', 'Block the beats! Audioshield puts you at the point of impact for every hit in your songs. Block incoming orbs with your shields and feel the music. Works with any song file, plus online music streaming and Song of the Day.', 0, '2016-04-04');
@@ -3231,7 +3231,7 @@ More than levels, puzzles or in-game progressions, Autumn’s focus is on the gr
 
 There are no time limits, no enemies to defeat, no goals to reach… except the ones you set for yourself. Relax, learn, grow… and enjoy Autumn.', 0, '2016-04-30');
 INSERT INTO power_up.games VALUES (23424, 'Autumn Dynasty Warlords', null, 0, null);
-INSERT INTO power_up.games VALUES (22119, 'Autumn''s Treasures: The Jade Coin', null, 0, null);
+INSERT INTO power_up.games VALUES (22119, 'Autumn''s Treasures: The Jade Coin', null, 0, '2010-01-05');
 INSERT INTO power_up.games VALUES (11926, 'AV8B Harrier Assault', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (10036, 'Avadon 2: The Corruption', 'Avadon 2: The Corruption is an epic fantasy role-playing adventure in an enormous and unique world. You can choose from five different character classes, each with dozens of unique spells and abilities. Explore cunning dungeons, hunt for hundreds of magical artifacts, and travel through an enormous world, full of secrets. Avadon 2 features many different endings. Save your people, or betray them. The choice is yours!', 0, '2013-10-29');
 INSERT INTO power_up.games VALUES (23241, 'Avadon 3: The Warborn', 'Avadon 3: The Warborn is a huge, old-school, indie fantasy role-playing adventure, the conclusion of the epic Avadon trilogy. You are a Hand of Avadon, warrior and spy, judge and executioner, with nearly unlimited power to fight the enemies of your homeland. Your word is Law. However, your lands have been invaded. Barbarians and monsters are rampaging through your home, and you are the only one who has a way to stop them. 
@@ -3463,10 +3463,10 @@ INSERT INTO power_up.games VALUES (13367, 'Back to the Golden Age', null, 0, nul
 INSERT INTO power_up.games VALUES (6314, 'Back Track', null, 0, '1998-12-30');
 INSERT INTO power_up.games VALUES (5496, 'Backbreaker', null, 0, '2009-09-28');
 INSERT INTO power_up.games VALUES (22942, 'Backbreaker Vengeance', null, 0, null);
+INSERT INTO power_up.games VALUES (14280, 'Backgammon', null, 0, '1991-12-30');
+INSERT INTO power_up.games VALUES (17254, 'Backgammon', 'This is the game backgammon and its variant, acey deucey.', 0, '1979-12-30');
 INSERT INTO power_up.games VALUES (15656, 'Backgammon', null, 0, null);
 INSERT INTO power_up.games VALUES (15204, 'Backgammon', null, 0, '1988-12-30');
-INSERT INTO power_up.games VALUES (17254, 'Backgammon', 'This is the game backgammon and its variant, acey deucey.', 0, '1979-12-30');
-INSERT INTO power_up.games VALUES (14280, 'Backgammon', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (8660, 'Backgammon Blitz', 'Backgammon''s back... with a bang! Beloved by millions, played for centuries, backgammon is a two-player strategy game quite unlike any other. The goal is simple: race to get your checkers off the board first, but the deceptively deep rules and rhythm of backgammon has secured it as a favorite among casual and veteran players alike.', 0, '2013-12-17');
 INSERT INTO power_up.games VALUES (12397, 'Backgammon Royale', null, 0, '1990-12-30');
 INSERT INTO power_up.games VALUES (11931, 'Backlash', null, 0, '1988-12-30');
@@ -3758,12 +3758,12 @@ INSERT INTO power_up.games VALUES (20931, 'Barry Woods', null, 0, null);
 INSERT INTO power_up.games VALUES (2829, 'Bart Simpson''s Escape from Camp Deadly', null, 0, '1991-10-31');
 INSERT INTO power_up.games VALUES (10024, 'Barter Empire', 'The king is dead, the queen is missing. The only known heir to the throne is believed dead, and the fate of an entire kingdom rests in your hands. Enter the land of war-torn Ditherra. A land of pirates, thieves, traders, smugglers, kings, queens, deities and mortals. Wealth and power control Ditherra, and the power struggle has divided the land between the East and West.', 0, null);
 INSERT INTO power_up.games VALUES (12349, 'Base Jumpers', null, 0, '1994-12-30');
-INSERT INTO power_up.games VALUES (11412, 'Baseball', 'Baseball is a baseball sports game that was created on a PDP-10 mainframe computer at Pomona College in 1971 by student Don Daglow. The game (actually spelled BASBAL due to the 6-character file name length restrictions) continued to be enhanced periodically through 1976. The program is documented at the Baseball Hall of Fame in Cooperstown, New York. It was the first interactive Baseball simulation game, allowing players to manage the game as it unfolded.
-
-At the start of each inning the batter''s and pitcher''s names were listed, and the player in the field could enter a number to choose whether to pitch to the batter, walk him intentionally, warm up a reliever or change the pitcher. In a later version the options for a pitchout and for a visit to the mound were added. The player controlling the batter could choose to put in a pinch hitter. If runners were on base the player could direct them to try to steal. Once the players had entered the desired orders, the game would print out the result of the at-bat, update the number of outs, the score and the location of the runners, and print the name of the next batter. If a game was still a tie after nine innings, extra innings would be played in accordance with baseball rules.', 0, '1971-12-30');
 INSERT INTO power_up.games VALUES (7582, 'Baseball', 'Baseball is a combined board-video game for the Magnavox Odyssey system that runs with its Cartridge No.3.', 0, '1972-12-30');
 INSERT INTO power_up.games VALUES (7581, 'Baseball', null, 0, '1977-12-30');
 INSERT INTO power_up.games VALUES (7580, 'Baseball', 'The simply titled game "Baseball" was developed by Nintendo in 1983 for the Nintendo Family Computer, and was one of the very first games released for the Famicon. It was also included as one of the 18 games released for the Nintendo Entertainment System''s original launch in the United States.', 0, '1983-12-06');
+INSERT INTO power_up.games VALUES (11412, 'Baseball', 'Baseball is a baseball sports game that was created on a PDP-10 mainframe computer at Pomona College in 1971 by student Don Daglow. The game (actually spelled BASBAL due to the 6-character file name length restrictions) continued to be enhanced periodically through 1976. The program is documented at the Baseball Hall of Fame in Cooperstown, New York. It was the first interactive Baseball simulation game, allowing players to manage the game as it unfolded.
+
+At the start of each inning the batter''s and pitcher''s names were listed, and the player in the field could enter a number to choose whether to pitch to the batter, walk him intentionally, warm up a reliever or change the pitcher. In a later version the options for a pitchout and for a visit to the mound were added. The player controlling the batter could choose to put in a pinch hitter. If runners were on base the player could direct them to try to steal. Once the players had entered the desired orders, the game would print out the result of the at-bat, update the number of outs, the score and the location of the runners, and print the name of the next batter. If a game was still a tie after nine innings, extra innings would be played in accordance with baseball rules.', 0, '1971-12-30');
 INSERT INTO power_up.games VALUES (22827, 'Baseball 2000', null, 0, null);
 INSERT INTO power_up.games VALUES (21150, 'Baseball 3DS', null, 0, null);
 INSERT INTO power_up.games VALUES (6319, 'Baseball Advance', null, 0, '2002-03-19');
@@ -3784,8 +3784,8 @@ INSERT INTO power_up.games VALUES (17258, 'Basic Math', 'Basic Math (aka Fun Wit
 INSERT INTO power_up.games VALUES (13379, 'Basil the Great Mouse Detective', null, 0, null);
 INSERT INTO power_up.games VALUES (13380, 'Basket Master', null, 0, null);
 INSERT INTO power_up.games VALUES (18407, 'Basketball', 'Basketball is an Atari 2600 game loosely based on the sport of the same name. The game features a simple game of one-on-one basketball playable by one or two players, one of the few early Atari 2600 to have a true single player feature with an AI-controlled opponent.', 0, '1978-12-30');
-INSERT INTO power_up.games VALUES (16979, 'Basketball', 'Released in the arcades in early 1974, Basketball was a landmark title, notable for several firsts in video gaming. It was the first basketball video game, the first video game to use sprites, and the first to represent human characters.', 0, '1974-03-30');
 INSERT INTO power_up.games VALUES (5689, 'Basketball', null, 0, '1980-12-30');
+INSERT INTO power_up.games VALUES (16979, 'Basketball', 'Released in the arcades in early 1974, Basketball was a landmark title, notable for several firsts in video gaming. It was the first basketball video game, the first video game to use sprites, and the first to represent human characters.', 0, '1974-03-30');
 INSERT INTO power_up.games VALUES (18344, 'Basketball (1973)', 'Extra game released for the Odyssey in 1973. Came in a pack of six with Interplanetary Voyage , Brain Wave, Win, Wipeout, and Volleyball. Worked with Cartridge #8', 0, '1973-12-30');
 INSERT INTO power_up.games VALUES (14498, 'Basketball Challenge', 'Basketball challenge game. Pick up and manage your basketball team and lead them to victory. You can play with human, computer or just watch the match.', 0, null);
 INSERT INTO power_up.games VALUES (10025, 'Basketball Pro Management 2013', 'Basketball Pro Management 2013 is the perfect mix between management and basketball. Become the coach of your favorite team and bring it to the top!
@@ -3984,8 +3984,8 @@ A Whirling Barra ship darts out from the recesses of a dark spiral cave and atta
 
 The year is 2400 AD. You have led the squadron to the home planet of the Barrax Empire, prepared to avenge their devastating attack on Earth. Armed with weapons specifically designed for this alien environment, you hope your combat skills are up to the task.', 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (20136, 'Battle Stations', null, 0, null);
-INSERT INTO power_up.games VALUES (15664, 'Battle Tank', null, 0, null);
 INSERT INTO power_up.games VALUES (10623, 'Battle Tank', 'Battle Tank was developed by Imagineering in 1990 for the Nintendo Entertainment System and eventually ported to the Sega Game Gear console. It was originally set to become a space flight game for the Commodore 64, and thus was underdeveloped for what it became.', 0, '1990-08-31');
+INSERT INTO power_up.games VALUES (15664, 'Battle Tank', null, 0, null);
 INSERT INTO power_up.games VALUES (21244, 'Battle Tanks', null, 0, null);
 INSERT INTO power_up.games VALUES (3421, 'Battle Tanx', null, 0, '1998-12-30');
 INSERT INTO power_up.games VALUES (3422, 'Battle Tanx: Global Assault', null, 0, '1999-08-30');
@@ -4073,6 +4073,7 @@ INSERT INTO power_up.games VALUES (347, 'Battlefield 2: Special Forces', 'Specia
 Battlefield 2 Special Forces takes the intensity and quality of Battlefield 2 behind the scenes of news headlines, showcasing the most elite and deadly forces in the modern military world. Using accurate Special Forces weapons, gadgets, and vehicles, these covert armies battle to control key military and strategic locations.', 0, '2005-11-21');
 INSERT INTO power_up.games VALUES (343, 'Battlefield 3', 'In Battlefield 3, players step into the role of the elite U.S. Marines. As the first boots on the ground, players will experience heart-pounding missions across diverse locations including Paris, Tehran and New York. As a U.S. Marine in the field, periods of tension and anticipation are punctuated by moments of complete chaos. As bullets whiz by, as walls crumble, as explosions force players to the ground, the battlefield feels more alive and interactive than ever before.', 0, '2011-10-24');
 INSERT INTO power_up.games VALUES (3038, 'Battlefield 3: Aftermath', 'Set amongst the shattered districts, streets and surrounding villages of a post-earthquake Tehran, Battlefield 3: Aftermath depicts a continuing struggle for supremacy and survival amongst the devastation.', 0, '2012-12-10');
+INSERT INTO power_up.games VALUES (23916, 'Battlefield 3: Aftershock', 'Battlefield 3: Aftershock is an installment in the Battlefield series for iOS platforms.', 0, '2012-02-07');
 INSERT INTO power_up.games VALUES (3037, 'Battlefield 3: Armored Kill', null, 0, '2012-09-17');
 INSERT INTO power_up.games VALUES (3033, 'Battlefield 3: Back to Karkand', null, 0, '2011-12-05');
 INSERT INTO power_up.games VALUES (3036, 'Battlefield 3: Close Quarters', null, 0, '2012-06-18');
@@ -4136,12 +4137,12 @@ INSERT INTO power_up.games VALUES (10042, 'Battlesheep', 'The sheep’s civiliza
 You are right in the center of violent sheep fighting so just grab the nearest bomb and throw it in your enemies while they grow in number with each new level. Sure you can choose the best level of complexity for yourself but don’t count on it to save you cause this game is for life-and-death.
 
 Don’t let the colorful graphics and nice background music fool you, this is serious, you have just one life and many enemies with a single goal to destroy you. To make this unequal fight easier on you, use bonuses like first aid box, vest and accelerator, and your victory on each level will increase your score so that you can show it off to your friends in OpenFeint.', 0, null);
+INSERT INTO power_up.games VALUES (4710, 'Battleship', 'Battleship is a game based off of the film, based off of the board game/toy.', 0, '2012-04-17');
 INSERT INTO power_up.games VALUES (22445, 'Battleship', 'With a modern, dynamic and interactive 3D board, BATTLESHIP® brings the classic franchise to a new level for a memorable experience on PS4 and Xbox One.
 
 Deploy your fleet and shoot at your opponent’s grid to find and destroy enemy ships before yours are sunk. Enjoy the game you know and love with the Classic mode or get more tactical in a brand new way to play: the Clash at Sea! mode. 
 
 Play with a friend locally or online, or stand against the Artificial Intelligence of the game.', 0, '2016-08-01');
-INSERT INTO power_up.games VALUES (4710, 'Battleship', 'Battleship is a game based off of the film, based off of the board game/toy.', 0, '2012-04-17');
 INSERT INTO power_up.games VALUES (9735, 'Battleship: Surface Thunder', null, 0, '2000-10-14');
 INSERT INTO power_up.games VALUES (22699, 'Battlesloths', 'Battlesloths is the fast-paced local multiplayer competitive twin-stick shooter of your slothy dreams. Compete with up to 4 human players or play against AI sloths should you be short of friends. Use a myriad of weaponry, each with their own strategies, to destroy your enemies in a quest to collect the most pizza.
 
@@ -4197,9 +4198,9 @@ INSERT INTO power_up.games VALUES (18577, 'Battletoads In Battlemaniacs', 'Battl
 The game follows two Battletoads, Rash and Pimple, on a quest to stop Silas Volkmire and the evil Dark Queen from ruling over the world. Many of its levels are enhanced or remixed versions of levels from the original Battletoads, featuring similar mechanics and gameplay styles. Battletoads in Battlemaniacs received mostly positive response from critics, receiving an aggregate score of 78% from GameRankings. The game was praised for its varied gameplay and music, but criticized for its lack of originality and high difficulty.', 0, '1993-06-05');
 INSERT INTO power_up.games VALUES (18627, 'Battletoads In Ragnarock''s World', null, 0, '1991-05-31');
 INSERT INTO power_up.games VALUES (23845, 'Battlewang', 'A virtual cockfighting simulation and betting game.  Compete to have the biggest rooster, longest winning streak, etc.  Virtual corn.  Re-released after a 12 year hiatus.', 0, '2016-09-06');
-INSERT INTO power_up.games VALUES (613, 'Battlezone', null, 0, '1998-02-27');
 INSERT INTO power_up.games VALUES (14368, 'Battlezone', null, 0, '2016-12-30');
 INSERT INTO power_up.games VALUES (12916, 'Battlezone', 'Battlezone is an arcade game from Atari released in November 1980. It displays a wireframe view (using vector graphics rather than raster graphics) on a horizontal black and white (with green and red sectioned color overlay) vector monitor. Due to its novel gameplay and look, this game was very popular for many years. Throughout the 1980s, Battlezone was ported to several home computer systems (usually on the Atarisoft label), including the Apple II, the Commodore 64, the Sinclair ZX Spectrum, and the Atari XEGS. The Atari ST port contains large parts of the original 6502 code which is emulated in real time. An Atari 2600 port was also released, but has colored raster graphics due to limitations and the view is behind the tank rather than inside it.', 0, '1980-10-31');
+INSERT INTO power_up.games VALUES (613, 'Battlezone', null, 0, '1998-02-27');
 INSERT INTO power_up.games VALUES (13695, 'Battlezone 2000', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (20076, 'Battlezone 98 Redux', null, 0, null);
 INSERT INTO power_up.games VALUES (3423, 'Battlezone: Rise of the Black Dogs', null, 0, '2000-02-29');
@@ -4313,10 +4314,10 @@ Save, print and e-mail screen distortions
 Screw around whenever you''re ready. No loading, no waiting', 0, '1997-12-30');
 INSERT INTO power_up.games VALUES (8460, 'Beavis and Butt-head: Wiener Take All', null, 0, '1996-12-30');
 INSERT INTO power_up.games VALUES (15665, 'Bed Bugs!', null, 0, '1984-12-30');
-INSERT INTO power_up.games VALUES (2390, 'Bedlam', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (13391, 'Bedlam', 'Bedlam is a first-person shooter based on a novel of the same name by award winning British author Christopher Brookmyre.
 
 In Bedlam, players take on the role of Heather Quinn (aka Athena), a programmer at medical scanning developer Neurosphere, who finds herself transported into the world of Starfire: a nineties FPS she remembers from her teen years. Searching for an explanation and a way home, she ventures beyond Starfire, to discover a vast realm of interconnected game worlds documenting the evolution of the FPS genre and of video games in general.', 0, '2015-10-12');
+INSERT INTO power_up.games VALUES (2390, 'Bedlam', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (23473, 'Bedlam: The Game', null, 0, null);
 INSERT INTO power_up.games VALUES (4711, 'Bee Movie Game', null, 0, '2007-10-29');
 INSERT INTO power_up.games VALUES (15666, 'Beebmunch', null, 0, '1982-12-30');
@@ -4337,6 +4338,7 @@ INSERT INTO power_up.games VALUES (7778, 'Beetlejuice', null, 0, '1990-12-30');
 INSERT INTO power_up.games VALUES (23569, 'Beezer', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (8653, 'Before', 'Guide your tribe through the challenges of a harsh and unforgiving pre-historic world, shaping their culture and defining their history.', 0, '2016-12-30');
 INSERT INTO power_up.games VALUES (9780, 'Before the Echo', null, 0, '2011-10-19');
+INSERT INTO power_up.games VALUES (23938, 'Bega''s Battle', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (14294, 'Behind the Iron Gate', null, 0, '1995-12-30');
 INSERT INTO power_up.games VALUES (6910, 'Beijing 2008', null, 0, '2008-06-25');
 INSERT INTO power_up.games VALUES (8318, 'Bejeweled', null, 0, '2001-05-29');
@@ -4469,7 +4471,7 @@ Beyond Flesh and Blood imagines an incredibly gory, dystopian future and the ult
 Ethan is one of Earth’s last few good men in the United Global Remnant (UGR); your mind is the key to controlling the Combat Frames – your mech soldiers.', 0, null);
 INSERT INTO power_up.games VALUES (1341, 'Beyond Good & Evil', 'Beyond Good &amp; Evil is an action-adventure game with elements of puzzle-solving and stealth-based games. The player controls the protagonist, Jade, from a third-person perspective. Jade can run, move stealthily, jump over obstacles and pits, climb ladders, push or bash doors and objects, and flatten herself against walls. As Jade, the player investigates a number of installations in search of the truth about a war with an alien threat.', 0, '2003-11-10');
 INSERT INTO power_up.games VALUES (1936, 'Beyond Good & Evil 2', null, 0, null);
-INSERT INTO power_up.games VALUES (20437, 'Beyond Good & Evil HD', null, 0, null);
+INSERT INTO power_up.games VALUES (20437, 'Beyond Good & Evil HD', null, 0, '2011-03-01');
 INSERT INTO power_up.games VALUES (17728, 'Beyond Gravity', 'Beyond Gravity is procedurally generated "platformer" where you jump in-between planets and try to collect as many pickups as you can. This gets progressively harder the further you jump. No need to worry tho as you can upgrade your character with loads of upgrades and power-ups! Take control of brave space explorer and hold out as long as you can while collecting missing parts of your spaceship. Never miss to build up crazy score multipliers.', 0, '2014-08-01');
 INSERT INTO power_up.games VALUES (15299, 'Beyond Oasis', null, 0, '1994-11-30');
 INSERT INTO power_up.games VALUES (8698, 'Beyond Shadowgate', null, 0, null);
@@ -4617,13 +4619,13 @@ INSERT INTO power_up.games VALUES (2213, 'Bioforge', null, 0, '1995-03-28');
 INSERT INTO power_up.games VALUES (10046, 'Biology Battle', 'In this classic space-shooter, you take the role of a medical nanobot and embark on an exciting journey into the depths of a biological cell. Evade the defense tactics of the other cells and try to survive for as long as possible.', 0, null);
 INSERT INTO power_up.games VALUES (10685, 'BioMetal', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (14526, 'Bionic Chainsaw Pogo Gorilla', null, 0, '2014-12-30');
-INSERT INTO power_up.games VALUES (6914, 'Bionic Commando', null, 0, '2009-05-18');
+INSERT INTO power_up.games VALUES (7786, 'Bionic Commando', null, 0, '1992-07-23');
 INSERT INTO power_up.games VALUES (9242, 'Bionic Commando', 'For two years, your people have struggled against the relentless onslaught of invading forces. With your army reduced to a handful and your artillery depleted, further resistance seems impossible.
 
 But in a hidden underground laboratory, a team of scientists has at least perfected a new kind of fighting machinery: a bionic arm that extends and contracts, providing unheard-of strength and maneuverability. Combined with an arsenal of rapid-fire, armor-piercing, and heat-seeking weaponry, this will put the power of an entire army in the hands of one man... one carefully chosen soldier, who has what it takes to become a new breed of unstoppable commando... a Bionic Commando. And you are that soldier!
 
 Your mission will take you through the heavily-patrolled wilderness surrounding the enemy headquarters, and into the very heart of the fortress itself. Even to the most courageous soldier, it would seem an impossible challenge. But there has never been a soldier like the Bionic Commando!', 0, '1987-12-30');
-INSERT INTO power_up.games VALUES (7786, 'Bionic Commando', null, 0, '1992-07-23');
+INSERT INTO power_up.games VALUES (6914, 'Bionic Commando', null, 0, '2009-05-18');
 INSERT INTO power_up.games VALUES (15856, 'Bionic Commando Rearmed', 'Classic side-scrolling gameplay is reporting back for duty with Bionic Commando Rearmed, a remake of the classic NES game, out now on PC. 20 years after the 8-bit classic was released, Bionic Commando Rearmed recreates the world of the original with a complete "2.5D" visual revamp.', 0, '2008-08-12');
 INSERT INTO power_up.games VALUES (15858, 'Bionic Commando Rearmed 2', 'Capcom presents the next evolution in retro side-scrolling action with Bionic Commando Rearmed 2. Equipped with his famous bionic arm, Nathan ''Radd'' Spencer swings back into action in order to stop General Sabio from launching a deadly missile strike. Swing, leap, and shoot your way through lush new environments as you encounter countless enemies and huge bosses throughout the island of Papagaya.
 
@@ -4832,8 +4834,8 @@ INSERT INTO power_up.games VALUES (10458, 'Blade Master', null, 0, null);
 INSERT INTO power_up.games VALUES (13405, 'Blade Runner', null, 0, '1985-12-30');
 INSERT INTO power_up.games VALUES (322, 'Blade Runner', 'Blade Runner is an adventure game with an emphasis on detective work rather than on puzzles. There are very few "real" puzzles in the game, and the gameplay mainly consists of questioning suspects, gathering evidence, etc. There are also some action sequences, and throughout the game the protagonist has the ability to use his gun. The player''s decisions can (and will) influence the outcome of the story, bringing the game to one of the six possible endings.', 0, '1997-10-30');
 INSERT INTO power_up.games VALUES (8408, 'Blade Symphony', null, 0, '2014-05-06');
-INSERT INTO power_up.games VALUES (13406, 'Blade Warrior', null, 0, null);
 INSERT INTO power_up.games VALUES (14313, 'Blade Warrior', null, 0, '1991-12-30');
+INSERT INTO power_up.games VALUES (13406, 'Blade Warrior', null, 0, null);
 INSERT INTO power_up.games VALUES (19579, 'Blades of Exile', null, 0, '1997-12-30');
 INSERT INTO power_up.games VALUES (23260, 'Blades of Fury', null, 0, null);
 INSERT INTO power_up.games VALUES (7788, 'Blades of Steel', 'From the opening Face-Off it''s six on six pro-style hockey at its best. Their are eight teams for you to captain: Los Angeles, New York, Vancouver, Montreal, Edmonton, Minnesota, Toronto and Chicago. You can challenge a friend, or take on a multi-talented computer squad. You can also choose from three difficulty levels - Junior, College and Pro.
@@ -4923,8 +4925,8 @@ INSERT INTO power_up.games VALUES (14611, 'Blitz Tennis', null, 0, '1997-12-30')
 INSERT INTO power_up.games VALUES (23201, 'Blitz!', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (5753, 'Blitz: The League', null, 0, '2005-10-16');
 INSERT INTO power_up.games VALUES (6921, 'Blitz: The League II', null, 0, '2008-10-12');
-INSERT INTO power_up.games VALUES (15676, 'Blitzkrieg', null, 0, '1984-12-30');
 INSERT INTO power_up.games VALUES (10242, 'Blitzkrieg', 'Blitzkrieg is a real-time tactics computer game based on the events of World War II and is the first title in the Blitzkrieg (video game series). The game allows players to assume the role of commanding officer during the battles of World War II that occurred in Europe and North Africa. Each country has its respective historically correct military units. Similar to the Sudden Strike games Blitzkrieg focuses on battles rather than real-time strategy aspects like base building.', 0, '2003-06-03');
+INSERT INTO power_up.games VALUES (15676, 'Blitzkrieg', null, 0, '1984-12-30');
 INSERT INTO power_up.games VALUES (7288, 'Blitzkrieg 2', 'As its predecessor and the similar Sudden Strike games, Blitzkrieg 2 focuses on the battles of World War II rather than real-time strategy aspects like base building and resource extraction. The game features many new features and units over its predecessor; the graphics engine is upgraded, allowing for full 3D and the game features over 250 units compared to Blitzkrieg''s 200.', 0, '2005-12-30');
 INSERT INTO power_up.games VALUES (11106, 'Blitzkrieg 2: Fall Of The Reich', 'The first expansion pack for Blitzkrieg 2.', 0, '2007-02-19');
 INSERT INTO power_up.games VALUES (11107, 'Blitzkrieg 2: Liberation', 'The second expansion pack for Blitzkrieg 2.', 0, '2007-10-11');
@@ -4980,10 +4982,10 @@ INSERT INTO power_up.games VALUES (20920, 'Blockstorm', null, 0, null);
 INSERT INTO power_up.games VALUES (23413, 'Blocky Roads', null, 0, null);
 INSERT INTO power_up.games VALUES (7644, 'Blood', 'You carved your soul to shreds in servitude to a dark god, but false promises and betrayal were your only reward. Now you have a score to settle and it will be measured in blood! Experience the madness in one carnage-soaked package! All the gore, all the unholy war! Zombies, gargoyles, hellhounds and blood-crazed hordes of horrors await! Crush loathsome evil of the mighty Tchernobog! Or condemn yourself to eternal damnation in this leviathan of unhallowed gaming action!', 0, '1997-05-30');
 INSERT INTO power_up.games VALUES (17454, 'Blood Alloy: Reborn', 'Become an ultra-agile cybernetic machine of robot death in the hyper-acrobatic, tactical shooter/slasher Blood Alloy: Reborn! As the cyborg soldier Nia Rhys, blast along the floor, up walls, and across ceilings at breakneck speeds to gain positional advantage on your foes. Survive as long as you can and boost, slice, and shoot your way to the top of the score rankings!', 0, '2016-03-01');
-INSERT INTO power_up.games VALUES (5649, 'Blood Bowl', null, 0, '2009-10-31');
 INSERT INTO power_up.games VALUES (6058, 'Blood Bowl', 'The year is 2488 and all the races of the Known World come together in a celebration of pride, honor, skill and mindless violence. NAF Blood Bowl. Welcome to MicroLeague’s PC version of the award winning game from Games Workshop, Ltd.
 
 Blood Bowl is an epic conflict between two teams of armed insane warriors. Most have no idea why they are waging such ferocious battles, but they like it. Players pass, throw or run an inflated pig’s bladder into their opponents’ End Zone, while the other team, naturally - or unnaturally - tries to stop them.', 0, '1995-12-30');
+INSERT INTO power_up.games VALUES (5649, 'Blood Bowl', null, 0, '2009-10-31');
 INSERT INTO power_up.games VALUES (6059, 'Blood Bowl 2', 'Blood Bowl 2 smashes Warhammer and American football together, in an explosive cocktail of turn-based strategy, humour and brutality, adapted from Games Workshop’s famous boardgame.
 
 Blood Bowl 2’s new graphics engine and high-flying realization makes for a faithful portrayal of the fury and intensity of classic Blood Bowl matches. The solo game mode will have you lead the famous Reikland Reavers. Former star team of Blood Bowl you are tasked with bringing them back to glory, following a full story campaign supported by the hilarious commentators Jim &amp; Bob from Cabalvision. Each match of the campaign is unique, with unexpected and surprising events constantly renewing the experience!
@@ -5123,6 +5125,32 @@ INSERT INTO power_up.games VALUES (7439, 'Blue Estate', 'Blue Estate is a darkly
 While experiencing the smoothness of motion control in a rail shooter, using the unique motion sensors capabilities of the PlayStation4 and Xbox One, the player will enter a fight for his life against the most absurd and dangerous enemies, ranging from scar covered fight-to-the-death champions to Tony''s own hair and Chihuahuas that are too happy to see you. You''re given a series of primary and secondary weapons to help make your way through the load of hilariously perilous missions. These will come in handy defeating the bosses who''ll try to end your game and your life. But sometimes firepower isn''t enough, so think before shooting and use cover to prepare your strategy, reload often, and try not to get turned into grated cheese.
 
 A killing spree is always better when shared, and that''s why Blue Estate offers the opportunity for a second player to join the fun, through a cooperative mode where every headshot counts to show who''s the best trigger in da house!', 0, '2014-06-23');
+INSERT INTO power_up.games VALUES (23930, 'Blue Horizon', 'A brand new open world first person game set in a tropical archipelago filled with islands, sailing ships and pirates!
+A brand new game, from a new Indie Studio, bringing you an action packed adventure on the high seas!
+
+The year is 1686, and you must make your way through the Caribbean world on the Blue Horizon so find your fortune and seek revenge on the evil Pirate Captain Bloodbeard! A first person desktop game filled with adventure, discovery and combat.
+
+Blue Horizon has been created so the player is in a large open world environment. With each part of the game although separate can be explored without the player noticing.
+
+Caribbean World
+There is only one level. Always viewable on the horizon. Initially consisting of 8 Islands, the player must discover each location in order to explore it. Locations can be discovered by talking to NPCs (Non-Playable characters), or following maps found. Once a location has been found it can be traveled to and from using a ship.
+
+Tropical Islands with towns, villages, forts, dunes, mountains, cave systems, giant caverns, ship wrecks, and forests all lay in wait for the player to find and explore.
+
+Inventory and Items
+Weapons, equipment, books, valuable loot are found laying around, in containers or purchased from shops and peddlers, looted from enemies, or given as rewards for completing tasks previously given. Keys are required for some doors too.
+Weapons are currently melee, pistols and cannon emplacements.
+
+Equipment or a pistol can also be equipped in the left hand such as the Lantern for seeing in dark caves. Provisions are needed to restore health, enhancement items can also be found or purchased.
+
+Tasks
+To progress, one must complete tasks given from NPCs or from instructions found. The NPCs will be grateful, whether they are for the main quest or side missions. Tasks may involve collecting, farming, building, hunting, slaying or completing another task. Hidden stashes, and Bounty hunting are available from NPCs.
+
+Enemies
+There are dangerous islands, and relatively safe islands. Unique foes await, be they Pirates, animals or strange creatures, undead and non-human. Some enemies are weak, some are strong and have various short and long range attacks. Some individuals you encounter will be docile until provoked, in which case they may attack as a group.
+
+Enemy ships can plague the player too. Captain Bloodbeard''s ship is the main aggressor. Bosses await to complete the main story line. The seas contain Marauding Pirate ships which you may encounter when sailing from Island to Island.
+The game is still in development and is being expanded to give the player the most enjoyment and fun as possible, while making it not too easy or too hard.', 0, null);
 INSERT INTO power_up.games VALUES (8381, 'Blue Lacuna', null, 0, '2008-12-30');
 INSERT INTO power_up.games VALUES (12364, 'Blue Lightning', null, 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (13817, 'Blue Max', null, 0, '1983-12-30');
@@ -5487,10 +5515,9 @@ INSERT INTO power_up.games VALUES (20278, 'Brain Exercises With Dr. Kawashima', 
 INSERT INTO power_up.games VALUES (16288, 'Brain Lord', null, 0, '1994-01-27');
 INSERT INTO power_up.games VALUES (21483, 'Brain Voyage', null, 0, null);
 INSERT INTO power_up.games VALUES (13432, 'Brainache', null, 0, null);
-INSERT INTO power_up.games VALUES (13433, 'Brainstorm', null, 0, null);
 INSERT INTO power_up.games VALUES (14338, 'Brainstorm', null, 0, '1987-12-30');
+INSERT INTO power_up.games VALUES (13433, 'Brainstorm', null, 0, null);
 INSERT INTO power_up.games VALUES (21919, 'Brainteaser Boulevard!', null, 0, '1982-12-30');
-INSERT INTO power_up.games VALUES (5366, 'Bram Stoker''s Dracula', null, 0, '1993-08-31');
 INSERT INTO power_up.games VALUES (14342, 'Bram Stoker''s Dracula', 'As Jonathan Marker stood and stared. The Northern wind tugged his hair and froze his uncovered fingers but still he made no movement to shelter. Even though it was now dusk and time for travellers to leave the dangers of the road behind a firmly closed door, he looked on. His eyes stared at the silhouetted Castle that loomed ahead against the backdrop of heavy clouds. They rose to look at the towers that seemed to almost bend over him as they pierced the skies. He looked away as a feeling of nausea overcame his tired body and he closed his eyes for a moment until the feeling disappeared. Yet when his head cleared, his eyes began searching the castle again and he began to pace slowly along the track, which would ultimately be swallowed by the span of a great gate...
 
 How Marker found himself in that cold and foreboding place was now lost in his shattered memory. Love, hate, hurt. The answer was in there somewhere but all were now congealed in Marker''s mind into an unimpeachable loathing for one man. Nay, man was not the word. Though it oflcn took the form of what you or I will term ''man'' this was nothing human. It was a creature, a wild beast, untamed, unliving, undead. The word did not do it justice in Marker''s mind. His loathing was as strong as his will to succeed in his quest. He would know what he must do once confronted by the monster. It would be exterminated. Either the monster would die or he would. Only time and fate would tell...
@@ -5499,6 +5526,7 @@ Your goal in this game is to destroy all graves using Your holy water and kill e
 INSERT INTO power_up.games VALUES (14341, 'Bram Stoker''s Dracula', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (14340, 'Bram Stoker''s Dracula', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (14339, 'Bram Stoker''s Dracula', null, 0, '1994-12-30');
+INSERT INTO power_up.games VALUES (5366, 'Bram Stoker''s Dracula', null, 0, '1993-08-31');
 INSERT INTO power_up.games VALUES (16289, 'Brandish', null, 0, '1994-06-24');
 INSERT INTO power_up.games VALUES (16292, 'Brandish 2', null, 0, '1995-08-10');
 INSERT INTO power_up.games VALUES (23806, 'Brandish: The Dark Revenant', null, 0, null);
@@ -5642,8 +5670,8 @@ INSERT INTO power_up.games VALUES (3128, 'Brigandine: Grand Edition', null, 0, '
 INSERT INTO power_up.games VALUES (19484, 'Brilliant Bob', 'Revel in a brilliant story, fast-paced puzzles and thrillingly designed levels in reportedly the first adventure of the action adventure platformer saga about Bob, a truly brilliant fellow from Sekotwana!', 0, '2015-05-20');
 INSERT INTO power_up.games VALUES (502, 'Brink', 'Brink is an immersive first-person shooter that blends single-player, co-op, and multiplayer gameplay into one seamless experience, allowing you to develop your character whether playing alone, with your friends, or against others online. You decide the combat role you want to assume in the world of Brink as you fight to save yourself and mankind''s last refuge. Brink offers a compelling mix of dynamic battlefields, extensive customization options, and an innovative control system that will keep you coming back for more.', 0, '2011-05-09');
 INSERT INTO power_up.games VALUES (17918, 'Brink of Consciousness: The Lonely Hearts Murders', 'Help Owen Wright rescue his daughter from the clutches of the Lonely Hearts Killer, the mysterious figure who kidnaps and murders people who have suffered a love gone wrong.The killer must be stopped so justice can be done!', 0, '2014-09-30');
-INSERT INTO power_up.games VALUES (23863, 'Bristles', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (13982, 'Bristles', null, 0, null);
+INSERT INTO power_up.games VALUES (23863, 'Bristles', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (13444, 'British Super League', null, 0, null);
 INSERT INTO power_up.games VALUES (6338, 'Britney''s Dance Beat', null, 0, '2002-03-24');
 INSERT INTO power_up.games VALUES (14458, 'Brix', 'In this logic game You can move different cubes. Place two or more cubes together to make them disappear. The goal is to make all the cubes disappear before the time runs out.', 0, '1992-12-30');
@@ -5863,8 +5891,8 @@ INSERT INTO power_up.games VALUES (11143, 'Burning Desire', 'In Burning Desire, 
 INSERT INTO power_up.games VALUES (19666, 'Burning Rangers', null, 0, null);
 INSERT INTO power_up.games VALUES (14354, 'Burning Rubber', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (11861, 'Burning Soldier', null, 0, '1994-12-30');
-INSERT INTO power_up.games VALUES (3838, 'Burnout', null, 0, '2001-10-31');
 INSERT INTO power_up.games VALUES (14355, 'Burnout', null, 0, '1996-12-30');
+INSERT INTO power_up.games VALUES (3838, 'Burnout', null, 0, '2001-10-31');
 INSERT INTO power_up.games VALUES (3840, 'Burnout 2: Point of Impact', null, 0, '2002-09-29');
 INSERT INTO power_up.games VALUES (5761, 'Burnout 3: Takedown', 'Take anarchic driving destruction on a world tour and experience the pure arcade adrenaline-rush of Burnout 3: Takedown. Combine aggressive high-speed racing with the ultimate in slamming crash action to boost your way to the top. Takedown the competition across the USA, Europe and the Far East in over 60 Race events, or crush all comers with Burnout 3: Takedown''s junction-jamming Crash event pileups. Push it to the next level with five competitive multiplayer models, then move the mayhem online to compete against up to seven players. Reap the rewards of dangerous driving, earning Crash $ and Burnout Points to unlock over 60 hot vehicles, coveted skill trophies, front-page headlines and much more.
 (Source PS2 Game Manual)', 0, '2004-09-06');
@@ -6262,8 +6290,8 @@ You better build a pretty tough ship, because you''re gonna need it. Your little
 INSERT INTO power_up.games VALUES (13994, 'Captain Kelly', null, 0, null);
 INSERT INTO power_up.games VALUES (6654, 'Captain Morgane and the Golden Turtle', null, 0, '2012-03-15');
 INSERT INTO power_up.games VALUES (18986, 'Captain Novolin', 'This is a 16-bit platformer designed to help kids with diabetes remember to monitor their blood sugar.', 0, null);
-INSERT INTO power_up.games VALUES (11991, 'Captain Planet and the Planeteers', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (4384, 'Captain Planet and the Planeteers', null, 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (11991, 'Captain Planet and the Planeteers', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (4746, 'Captain Rainbow', null, 0, '2008-08-27');
 INSERT INTO power_up.games VALUES (21200, 'Captain Successor', null, 0, null);
 INSERT INTO power_up.games VALUES (7337, 'Captain Toad: Treasure Tracker', 'The intrepid Captain Toad sets off on his own adventure for the very first time through a wide variety of tricky, enemy-infested, maze-like stages to find hidden gems and nab elusive gold stars.', 0, '2014-11-12');
@@ -6428,8 +6456,8 @@ INSERT INTO power_up.games VALUES (7779, 'Castle of Deceit', null, 0, '1990-12-3
 INSERT INTO power_up.games VALUES (7722, 'Castle of Dr. Brain', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (18832, 'Castle of Dragon', null, 0, null);
 INSERT INTO power_up.games VALUES (13996, 'Castle of Dreams', null, 0, null);
-INSERT INTO power_up.games VALUES (11495, 'Castle of Illusion Starring Mickey Mouse', 'Castle of Illusion Starring Mickey Mouse is a 2.5D platform game developed by Sega Studios Australia and published by Sega. The game is a remake of the original 1990 Sega Genesis video game of the same name, which was the first title in the Illusion series of Mickey Mouse video games. The game was released on PlayStation Network on September 3, 2013, and on Xbox Live Arcade and Microsoft Windows the following day. It was released for Mac OS X by Feral Interactive on July 24, 2014.', 0, '2013-09-02');
 INSERT INTO power_up.games VALUES (8122, 'Castle of Illusion Starring Mickey Mouse', null, 0, '1990-11-19');
+INSERT INTO power_up.games VALUES (11495, 'Castle of Illusion Starring Mickey Mouse', 'Castle of Illusion Starring Mickey Mouse is a 2.5D platform game developed by Sega Studios Australia and published by Sega. The game is a remake of the original 1990 Sega Genesis video game of the same name, which was the first title in the Illusion series of Mickey Mouse video games. The game was released on PlayStation Network on September 3, 2013, and on Xbox Live Arcade and Microsoft Windows the following day. It was released for Mac OS X by Feral Interactive on July 24, 2014.', 0, '2013-09-02');
 INSERT INTO power_up.games VALUES (21855, 'Castle of Magic', null, 0, null);
 INSERT INTO power_up.games VALUES (13701, 'Castle of Riddles', null, 0, null);
 INSERT INTO power_up.games VALUES (4751, 'Castle of Shikigami III', null, 0, '2006-01-31');
@@ -6728,6 +6756,7 @@ INSERT INTO power_up.games VALUES (6722, 'Championship Surfer', null, 0, '2000-1
 INSERT INTO power_up.games VALUES (13479, 'Championship Water-Skiing', null, 0, null);
 INSERT INTO power_up.games VALUES (13827, 'Championship Wrestling', null, 0, '1986-12-30');
 INSERT INTO power_up.games VALUES (20117, 'Champs: Battlegrounds', null, 0, null);
+INSERT INTO power_up.games VALUES (23934, 'Changes', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (12525, 'Chantelise - A Tale of Two Sisters', null, 0, '2006-12-30');
 INSERT INTO power_up.games VALUES (10077, 'Chaos Domain', 'Chaos Domain is a game about shooting bad people in the face. Apart from that, it is also a run ‘n’ gun platformer, powered by the Unreal Engine. The game is highly influenced by games from 8-bit and 16-bit era, including Contra/Probotector series, as well as titles like Abuse and Doom Troopers.
 
@@ -6814,7 +6843,7 @@ INSERT INTO power_up.games VALUES (9796, 'Chernobyl Commando', '26 years after a
 
 Ukrainian and Russian forces hit them with all they could, but the enemy was well prepared and the small war raged on. Two of the best Spec Ops agents move in on their own, hitting the enemy hard before they can escape with the loot. This is a no-frills, old style, gun-blazing and explosion-roaring attack against multitude of enemies. While sometimes helped by the Army, you are mostly on your own. Hit them hard where it hurts and become a legend for generations to come!', 0, '2013-03-07');
 INSERT INTO power_up.games VALUES (10079, 'Chernobyl Underground', 'The player is one of the mercenaries sent into the Zone. Officially he is to test the radiation levels around and inside the Plant. Unofficially he is to test the latest in the illegally modified combat technology. Since he is the first who may make it alive through the Plant interiors, his mission has been handsomely paid for by the Death TV - and they hope for a good show, paying extra for every kill - the more gruesome, the higher the bid. The game contains a very helpful and workable HUD with several cool features - energy shield, enemy detection, night vision and time slow-down. It also features 2 different gameplay models. Not different by mechanics (this is similar), but much different in how the player perceives it. Fighting outside, the combat is dense and fast - against many opponents. Inside the Dome it is dark, creepy, with horror sounds and stenchy atmosphere.', 0, null);
-INSERT INTO power_up.games VALUES (20092, 'Chernobyl VR Project', null, 0, null);
+INSERT INTO power_up.games VALUES (20092, 'Chernobyl VR Project', 'The Chernobyl VR Project combines video games with educational and movie narrative software. It is the very first virtual tour around the Chernobyl and Pripyat area, compatible with multiple VR headsets, starting with Oculus Rift and followed by PlayStation VR and HTC Vive. Visit Chernobyl without leaving home.', 0, null);
 INSERT INTO power_up.games VALUES (10080, 'Cherry Tree High Comedy Club', 'Comedy fanatic and high school student Miley Verisse has decided to set up a comedy club in her school, but her nemesis and the head of the student council, Octavia Richmond, isn’t about to make things easy… The school rules require a minimum of 5 students to set up a new club and Miley is 3 people short! Spring break has just started and Miley has until the end of April to recruit the 3 new members she needs to start the club or Octavia will have the last laugh!
 
 Guide Miley through idyllic Cherry Tree Town as she makes new friends and endeavors to persuade them to join her high school comedy club in this anime-style comic adventure game.
@@ -6870,7 +6899,7 @@ INSERT INTO power_up.games VALUES (13485, 'Chicago 30''s', null, 0, null);
 INSERT INTO power_up.games VALUES (12000, 'Chicago 90', 'Chicago 90 is an Action/racing game developed by Microids in 1989 which provides two game modes : one can play both gangsters and policemen with two different goals and strategies. In the "gangsters mode", you simply have to escape the city while avoiding the cops. In the "police mode", you have to control 5 police cars in order to prevent the gangsters from escaping the city and arrest them. Those two modes give some diversity to the game although its expectancy is a little short.', 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (5775, 'Chicago Enforcer', null, 0, '2004-07-12');
 INSERT INTO power_up.games VALUES (13486, 'Chichén Itzá', null, 0, '1992-12-30');
-INSERT INTO power_up.games VALUES (22105, 'Chick Tac Toe', null, 0, null);
+INSERT INTO power_up.games VALUES (22105, 'Chick Tac Toe', null, 0, '2012-03-30');
 INSERT INTO power_up.games VALUES (13487, 'Chicken Chase', null, 0, null);
 INSERT INTO power_up.games VALUES (11713, 'Chicken Invaders', null, 0, '1999-12-30');
 INSERT INTO power_up.games VALUES (11714, 'Chicken Invaders 2: The Next Wave', null, 0, '2002-12-30');
@@ -6895,8 +6924,8 @@ Join Joseph, Ally, Doug, and Sarah as they use their wits and their toy chest to
 INSERT INTO power_up.games VALUES (14988, 'Children of Mana', null, 0, '2006-03-01');
 INSERT INTO power_up.games VALUES (11273, 'Children of the Nile: Alexandria', null, 0, null);
 INSERT INTO power_up.games VALUES (23111, 'Chili Con Carnage', null, 0, null);
-INSERT INTO power_up.games VALUES (13488, 'Chiller', null, 0, null);
 INSERT INTO power_up.games VALUES (11727, 'Chiller', null, 0, '1986-12-30');
+INSERT INTO power_up.games VALUES (13488, 'Chiller', null, 0, null);
 INSERT INTO power_up.games VALUES (16196, 'Chime', 'A Zoë Mode production for the video game charity initiative OneBigGame, Chime pits gamers against the melody in an all-new puzzle experience. Place blocks against the clock, complete solid quads and try to cover the whole playing surface, all the while remixing and embellishing pieces by musicians from across the planet. And you get to feel good about yourself, too: The console version of Chime was originally developed for OneBigGame with all the developer’s royalties going to Charity for sales up to June 2010, and Zoe Mode will continue to donate a proportion of its royalties (equivalent to 5% of purchase price) for sales of the Steam version. OneBigGame always aims to donate a minimum of 80% of all donations to its charity partners Save the Children and the Starlight Children''s foundation.', 0, '2010-07-31');
 INSERT INTO power_up.games VALUES (17907, 'Chime Sharp', 'Place pieces, paint the board, make music. Chime Sharp is an sequel to 2009''s Chime, a music puzzle game with an addictive, ambient heartbeat. You tessellate shapes to cover a grid, while a beatline reads those shapes as notes. As you cover the board the music builds to a beautiful crescendo of your own design. The only way to discover Chime is to play it, but if you want a glimpse, consider what it might feel like to cross Tetris, a music sequencer and a hypnotic dream about your favourite pop song.', 0, '2015-10-03');
 INSERT INTO power_up.games VALUES (13489, 'Chimera', null, 0, null);
@@ -7042,7 +7071,6 @@ INSERT INTO power_up.games VALUES (1802, 'Chrono Trigger', 'When a newly develop
 INSERT INTO power_up.games VALUES (20398, 'Chrono Trigger DS', null, 0, null);
 INSERT INTO power_up.games VALUES (10087, 'Chronology', 'Chronology is a mind-bending mix of puzzle, adventure and platform game where you defy time by manipulating the past and the future, in order to fix the present. Play as the Old Inventor and his sidekick The Snail, and take advantage of their special abilities - travel back and forth in time, stop time, manipulate objects and solve puzzles.', 0, null);
 INSERT INTO power_up.games VALUES (9594, 'Chronomaster', null, 0, '1995-12-19');
-INSERT INTO power_up.games VALUES (13492, 'Chronos', null, 0, null);
 INSERT INTO power_up.games VALUES (18974, 'Chronos', 'Chronos is an atmospheric RPG that chronicles a hero’s lifelong quest to save their homeland from a great evil.  Grow wiser, stronger and more powerful as you explore the depths of the mysterious labyrinth. But beware, the labyrinth takes a heavy toll – each time your hero dies, they lose a year of their life!
 
 Adventure RPG: Refreshing combination of Adventure Game elements and RPG mechanics.
@@ -7052,6 +7080,7 @@ Deep Combat: A variety of weapons, abilities and powers allow the player to cust
 Unique Aging Mechanic: Every time the player dies, they must wait a year until they can resume their quest.  Player’s must adapt to their advancing age as they progress their character; starting the game young, nimble and quick, and ending wise and more attuned to magic.
 
 VR: Explore an atmospheric fantasy world in full Virtual Reality.  An unparalleled level of immersion, scale and detail!', 0, '2016-03-27');
+INSERT INTO power_up.games VALUES (13492, 'Chronos', null, 0, null);
 INSERT INTO power_up.games VALUES (23362, 'Chronos Twins DX', null, 0, null);
 INSERT INTO power_up.games VALUES (12002, 'Chubby Gristle', null, 0, '1988-12-30');
 INSERT INTO power_up.games VALUES (6347, 'ChuChu Rocket!', null, 0, '1999-11-10');
@@ -7775,7 +7804,7 @@ The barrier to entry into the world of modding is not particularly high – all 
 INSERT INTO power_up.games VALUES (2614, 'Constructor', null, 0, '1997-12-30');
 INSERT INTO power_up.games VALUES (20581, 'Contact', null, 0, null);
 INSERT INTO power_up.games VALUES (6404, 'Contagion', 'Contagion takes place in a fictional world where the original Roanoke Colony thrived up until now. A contagion of unknown origins has infected the locals turning them into a mindless horde of flesh eating zombies. It is up to the remaining survivors to escape, extract, or hunt one another if they are to survive the horrors they now face. Contagion isn''t your average Zombie Shooter but instead takes a more realistic and different approach to the popular genre with unique characters, environments, weapons, items, and a built in system that makes every round completely unpredictable with resources, objectives, and paths ever changing.', 0, '2013-10-24');
-INSERT INTO power_up.games VALUES (22124, 'Containment Protocol', 'A top-secret military research facility has gone dark. Their last communication only had two words in it: “Containment Protocol” Your task is to infiltrate the facility using a prototype remote control drone and work out what has happened to the facility and more importantly - what has happened to the weapon.', 0, null);
+INSERT INTO power_up.games VALUES (22124, 'Containment Protocol', 'A top-secret military research facility has gone dark. Their last communication only had two words in it: “Containment Protocol” Your task is to infiltrate the facility using a prototype remote control drone and work out what has happened to the facility and more importantly - what has happened to the weapon.', 0, '2015-08-30');
 INSERT INTO power_up.games VALUES (15163, 'Containment: The Zombie Puzzler', 'Containment: The Zombie Puzzler is an action puzzle game like you’ve never seen before. The goal of Containment is to surround zombies with survivors of the same color. But watch out for the zombies—they''ll fight back by infecting the survivors in the street. Through the game''s pulse-pounding campaign and multiple survival modes, you''ll use your wits, items you find you along the way, and even the town around you to contain the zombie outbreak.', 0, '2012-01-12');
 INSERT INTO power_up.games VALUES (12986, 'Contamination', null, 0, null);
 INSERT INTO power_up.games VALUES (15305, 'Continent of the Ninth Seal', 'The Continent of the Ninth Seal (C9) is an action MORPG. Players take part in the game as heroes of Glenheim to stand against Nefer, an evil villain trying to open a gate to the Netherworld and swarm the land with his infernal legion. C9 showcases quality visuals, strategic combat, and a gripping story. Choose a character that best represents how you want to experience the game. The four base classes -- Fighter, Hunter, Shaman, and Witchblade -- can each upgrade into multiple advanced classes, all of which are unique in their skills, visuals, and play styles.', 0, '2012-08-03');
@@ -7844,6 +7873,7 @@ Playable vehicles include ships, windsurfers, and more
 Dozens of quirky characters to interact and engage with 
 Sweeping score includes live musicians and sound effects 
 Fluid and realistic physics bring the action to life', 0, '2016-04-25');
+INSERT INTO power_up.games VALUES (23939, 'Cornflower Corbin', 'One-day Cornflower Corbin was having a relaxing swim through the ocean when he got word that there would be an attack from the neighboring village. Corbin decided to prepare for the purple brigade so he could defend all he loved. He grabbed the biggest laser turret he could find and strapped it to his back so he could have a fighting chance. Corbin needs your help to fend off the enemy attacks! Be careful though because with each shot Corbin gets bigger and its harder for him to move, so use your shots wisely!', 0, '2016-09-08');
 INSERT INTO power_up.games VALUES (16810, 'Corporate Lifestyle Simulator', 'An isometric orgy of bloody violence and huge chiptunes. Battle your way through 27 levels of corporate architecture full of brain dead, corporate, buzzword-spewing, project managers using office furniture as your primary weapons.', 0, '2014-02-02');
 INSERT INTO power_up.games VALUES (12011, 'Corporation', 'Are you tough enough to take on the Corporation?
 
@@ -8218,11 +8248,11 @@ Evergreen Heights, 1935. The city is in the grip of its biggest crime wave since
 
 As bungling detective Max Stone, explore a criminal underworld teeming with mobsters, criminals, crooks, thugs, thieves, bankers and lawyers, and more puns than you ever thought possible. Meet crazy characters and enjoy a captivating story mode with slapstick dialogue.
 
-Do you have the grit to hunt down and take down Jimmy Menendez and his boys, in Crime Solitaire 2: The Smoking Gun?', 0, null);
+Do you have the grit to hunt down and take down Jimmy Menendez and his boys, in Crime Solitaire 2: The Smoking Gun?', 0, '2014-11-06');
 INSERT INTO power_up.games VALUES (21931, 'Crime Stopper: Murder at Midnight!', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (12017, 'Crime Time', null, 0, '1990-12-30');
-INSERT INTO power_up.games VALUES (23837, 'Crime Wave', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (12018, 'Crime Wave', null, 0, '1990-12-30');
+INSERT INTO power_up.games VALUES (23837, 'Crime Wave', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (15040, 'CrimeCraft', null, 0, null);
 INSERT INTO power_up.games VALUES (15005, 'CrimeCraft: GangWars', 'About the GameGangWars is a massive expansion for the Free-to-Play Online Shooter CrimeCraft. GangWars revamps the experience for new users while also adding exciting end game content for veteran players.
 
@@ -8287,11 +8317,11 @@ INSERT INTO power_up.games VALUES (6948, 'Cross Edge', null, 0, '2008-09-24');
 INSERT INTO power_up.games VALUES (18556, 'Cross Force', 'You are in control of two space ships on opposite sides of the screen. Whenever you fire a shot, the lasers of the two ships will connect across the whole screen and destroy anything that gets caught in the crossfire - except the hostile mothership deploying new enemy fighters. Since your lasers can overheat you should only use controlled bursts of fire and since you can ran out of fuel it is imperative to shoot down the fuel pods as they appear on screen.', 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (7285, 'Cross of the Dutchman', null, 0, '2015-09-08');
 INSERT INTO power_up.games VALUES (13376, 'Cross Out the Intruder', null, 0, '1989-12-30');
-INSERT INTO power_up.games VALUES (11868, 'Crossbow', null, 0, '1988-12-30');
+INSERT INTO power_up.games VALUES (11868, 'Crossbow', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (14631, 'Crossbow: The Legend of William Tell', 'You play William Tell, a hero in his homeland; a symbol of freedom looking for justice. To the Emperor though he is a dangerous spark that must be extinguished. To the resistance he is a figurehead, a powerful ally, if only they can persuade him to join with them. Aim well, the hopes of many are on your shoulders.', 0, '1990-12-30');
 INSERT INTO power_up.games VALUES (15920, 'CrossCheck', null, 0, null);
-INSERT INTO power_up.games VALUES (13535, 'Crossfire', 'The game required two players, each with a gun, at opposite sides of the playfield. Each player had a vertical position knob (a potentiometer like Pong) and a fire button. Each gun could have one shot in the air at a time. There was a big ball, which started at the center, and there were small bumpers in the playfield that made the ball bounce. You tried to “push” the ball into your opponent’s goal line by shooting it. Each hit added a little energy and it took multiple hits to get the speed of the ball up, but then you had to watch out for rebounds off the bumpers. An interesting aspect of the game was the one-shot-at-a-time rule. If the ball was on your side of the field, then you could shoot more often than your opponent (unless, of course, you missed and had to wait for the shell to cross the entire screen). This made it possible to achieve remarkable come-backs from near-certain defeat.', 0, '1975-12-30');
 INSERT INTO power_up.games VALUES (18760, 'Crossfire', null, 0, '1981-12-30');
+INSERT INTO power_up.games VALUES (13535, 'Crossfire', 'The game required two players, each with a gun, at opposite sides of the playfield. Each player had a vertical position knob (a potentiometer like Pong) and a fire button. Each gun could have one shot in the air at a time. There was a big ball, which started at the center, and there were small bumpers in the playfield that made the ball bounce. You tried to “push” the ball into your opponent’s goal line by shooting it. Each hit added a little energy and it took multiple hits to get the speed of the ball up, but then you had to watch out for rebounds off the bumpers. An interesting aspect of the game was the one-shot-at-a-time rule. If the ball was on your side of the field, then you could shoot more often than your opponent (unless, of course, you missed and had to wait for the shell to cross the entire screen). This made it possible to achieve remarkable come-backs from near-certain defeat.', 0, '1975-12-30');
 INSERT INTO power_up.games VALUES (9739, 'Crossfire', 'CrossFire is a first-person shooter that features two mercenary corporations named the "Black List" and "Global Risk," fighting each other in an epic global conflict. Players assume the role of either a Black List or Global Risk mercenary, joining an online team that must work together to complete objective-based scenarios. With the exception of the Zombie mode and Wave mode, each mode can support a maximum of 16 players (except Wave mode), each divided into an 8-man team (5 for Wave mode).
 
 There are more than ten online modes: Team Death Match, Search and Destroy, Elimination Match, Ghost Mode, Free-For-All, Mutation Mode, Escape Mode, Hero Mode, Hero Mode X, Zombie mode, Elite mode, Wave Mode, Shadow Mode, Biochemical Knight Mode, Ghosts vs Mutants, RPG/Melee Mode, Soccer Mode, Light Mode, and Super Soldiers TD.
@@ -8617,6 +8647,7 @@ INSERT INTO power_up.games VALUES (12029, 'Dalek Attack', null, 0, '1992-12-30')
 INSERT INTO power_up.games VALUES (13564, 'Daley Thompson''s Decathlon', null, 0, null);
 INSERT INTO power_up.games VALUES (12030, 'Daley Thompson''s Olympic Challenge', null, 0, '1988-12-30');
 INSERT INTO power_up.games VALUES (13565, 'Daley Thompson''s Super-Test', null, 0, null);
+INSERT INTO power_up.games VALUES (23931, 'Dallas Quest', null, 0, '1984-12-30');
 INSERT INTO power_up.games VALUES (16392, 'Damage Inc. Pacific Squadron WWII', 'Take to the skies in one of over 30 accurately represented aircraft and defend the Pacific Theatre from invading enemy forces. Fight your way through intense air-to-air, air-to-ship, and air-to-ground combat while piloting dive bombers, fighters, and torpedo bombers over visually striking, historically accurate locations. From the surprise attack on Pearl Harbor to the fierce Battle of Iwo Jima, outmaneuver your foes through more than 20 multi-objective single-player and co-op missions, or engage in head-to-head dogfights against online rivals. Whether flying alone, alongside, or against your teammates, use your aerial arsenal to devastate the enemy and dominate the air.', 0, '2012-07-01');
 INSERT INTO power_up.games VALUES (21706, 'Damascus Gear: Operation Tokyo', null, 0, null);
 INSERT INTO power_up.games VALUES (6952, 'Damnation', null, 0, '2009-05-21');
@@ -8718,7 +8749,7 @@ INSERT INTO power_up.games VALUES (6366, 'Danny Phantom: Urban Jungle', null, 0,
 INSERT INTO power_up.games VALUES (12734, 'Danny Sullivan''s Indy Heat', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (22076, 'Danse Macabre: Thin Ice Collector''s Edition', 'From Eipix Entertainment, the studio that brought you Dead Reckoning and Final Cut, invites you to step into the spotlight of the latest Danse Macabre! 
 
-Ruth Fisher is the up-and-coming star of a popular figure skating show, but her final dress rehearsal is cancelled after her biggest fan drops dead. He was trying to warn Ruth, but about what? Who would want to kill a fan? Is Ruth really in danger? You’ll need to use all of your deductive skills to investigate the scenes and uncover the true threat, before Ruth Fisher’s opening night becomes her final performance in this chilling Hidden-Object Puzzle Adventure game', 0, null);
+Ruth Fisher is the up-and-coming star of a popular figure skating show, but her final dress rehearsal is cancelled after her biggest fan drops dead. He was trying to warn Ruth, but about what? Who would want to kill a fan? Is Ruth really in danger? You’ll need to use all of your deductive skills to investigate the scenes and uncover the true threat, before Ruth Fisher’s opening night becomes her final performance in this chilling Hidden-Object Puzzle Adventure game', 0, '2015-06-11');
 INSERT INTO power_up.games VALUES (6958, 'Dante''s Inferno', null, 0, '2010-02-03');
 INSERT INTO power_up.games VALUES (21747, 'Dante''s Inferno: The Trials of St. Lucia', null, 0, null);
 INSERT INTO power_up.games VALUES (18254, 'Daredevil', null, 0, '2003-02-03');
@@ -8964,9 +8995,9 @@ Are you ready to start another risky journey to the labyrinths of The Other Worl
 INSERT INTO power_up.games VALUES (14989, 'Dawn of Mana', null, 0, null);
 INSERT INTO power_up.games VALUES (23847, 'Dawn of the Devs', null, 0, null);
 INSERT INTO power_up.games VALUES (23629, 'Dawn of the Dragons', null, 0, null);
+INSERT INTO power_up.games VALUES (12038, 'Dawn Patrol', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (13236, 'Dawn Patrol', null, 0, '1978-12-30');
 INSERT INTO power_up.games VALUES (13235, 'Dawn Patrol', null, 0, '1988-12-30');
-INSERT INTO power_up.games VALUES (12038, 'Dawn Patrol', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (11327, 'Dawngate', 'Dawngate was meant to be EA''s foray into the MOBA eSports scene.
 However after 18 months of beta it was announced that due to lack of sufficient returns and disappointing results, the servers would close down and support to the game would stop.
 
@@ -9104,8 +9135,8 @@ Players are awarded score multipliers and money when zombies are killed. Money i
 INSERT INTO power_up.games VALUES (20063, 'Dead Nation: Apocalypse Edition', null, 0, null);
 INSERT INTO power_up.games VALUES (20336, 'Dead Nation: Road to Devastation', 'In Road of Devastation, a frantic laboratory escape is followed by a choice of three different roads – each with its own rewards, dangers, environments, items and enemies for you to discover. Choose your path and confront devastation!', 0, '2011-09-26');
 INSERT INTO power_up.games VALUES (13574, 'Dead on Time', null, 0, null);
-INSERT INTO power_up.games VALUES (1387, 'Dead or Alive', 'Dead or Alive is a fighting game and the first entry in Team Ninja''s long-running Dead or Alive series. Its most defining features were its speed and countering system. Dead or Alive put an emphasis on speed, and relied more on simplistic commands and reaction time. Furthermore, its countering system was the first in the fighting genre to utilize different commands that corresponded to each type of attack. There are two kinds of holds, an Offensive Hold (OH) and a Defensive Hold (DH). The latter are executed by holding back or forward on the directional pad along with the guard input to either force away or counter-damage an opponent. The Playstation port of the game was later backported for arcade and titled Dead or Alive++.', 0, '1996-10-31');
 INSERT INTO power_up.games VALUES (13575, 'Dead or Alive', null, 0, null);
+INSERT INTO power_up.games VALUES (1387, 'Dead or Alive', 'Dead or Alive is a fighting game and the first entry in Team Ninja''s long-running Dead or Alive series. Its most defining features were its speed and countering system. Dead or Alive put an emphasis on speed, and relied more on simplistic commands and reaction time. Furthermore, its countering system was the first in the fighting genre to utilize different commands that corresponded to each type of attack. There are two kinds of holds, an Offensive Hold (OH) and a Defensive Hold (DH). The latter are executed by holding back or forward on the directional pad along with the guard input to either force away or counter-damage an opponent. The Playstation port of the game was later backported for arcade and titled Dead or Alive++.', 0, '1996-10-31');
 INSERT INTO power_up.games VALUES (1388, 'Dead or Alive 2', 'Dead or Alive 2 is a fighting game in the Dead or Alive series. The gameplay of DOA2, and all subsequent Dead or Alive games, borrows heavily from the Virtua Fighter series, but makes some key changes that drastically changes the way Dead or Alive is played in comparison to Virtua Fighter. In DOA2, the basis of the entire fighting system is the circular relationship between three types of moves: holds, throws, and blows.The other defining feature of DOA2, aside from holds/throws/blows, is its stun system. In DOA2 many attacks upon hitting will inflict a stun on the opponent. While stunned, the opponent cannot attack, and cannot guard, but they can hold.', 0, '1999-10-15');
 INSERT INTO power_up.games VALUES (1389, 'Dead or Alive 3', 'Dead or Alive 3 is a fighting game in the Dead or Alive series. It was released exclusively on the Xbox as a launch title. The basic gameplay controls and commands remain essentially unchanged from Dead or Alive 2; however, some minor tweaks have been added to the game system in the form of increased counter periods, unrestricted 3D-axis movement, and less emphasis on juggling combos. All these gameplay enhancements make the game more suited for beginners, and makes the artificial intelligence much more forgiving. Finally, the game incorporated less damage percentiles in counter maneuvers, added four new characters to the roster, and game''s tag controls were changed to insert Attack Change, a new tag system feature where the fighting character can switch places with his or her tag partner, which can then unleash an attack while a character is jumping in.', 0, '2001-11-14');
 INSERT INTO power_up.games VALUES (1392, 'Dead or Alive 4', 'Dead or Alive 4 is a fighting game and the fourth major title in the Dead or Alive video game series, its plot following the events of the 2001 title Dead or Alive 3. Dead or Alive 4 features 22 playable characters and many multi-tiered and interactive fighting arenas. DOA4 has a number of updates in reference to previous titles. Characters'' move lists have been vastly updated and four new characters have been added to the fighting roster, with returns from a couple of past characters as well. The counter system has been tightened, making the window for counters shorter and more difficult to execute, and the amount of damage that counters inflict has been changed.', 0, '2005-12-28');
@@ -9131,10 +9162,10 @@ Dead Pixels II is a side scrolling, randomly generated shooter, with RPG element
 INSERT INTO power_up.games VALUES (11596, 'Dead Realm', 'It''s been almost 100 years since a reclusive electricity tycoon named William Huxley murdered his family and staff in the most grisly fashion. Among the dead were Huxley’s son, Baby William, and his henchman, the “Wolfman.” Now you and your friends must enter Huxley’s shadowy world to find special artifacts and uncover his secrets before you are killed.
 
 Dead Realm is a creepy, multiplayer action game with beautiful, immersive environments. You can play as either a Ghost or a Human character and work with your friends to run, hide, survive… or die.', 0, null);
-INSERT INTO power_up.games VALUES (22126, 'Dead Reckoning: Brassfield Manor', null, 0, null);
+INSERT INTO power_up.games VALUES (22126, 'Dead Reckoning: Brassfield Manor', null, 0, '2015-03-12');
 INSERT INTO power_up.games VALUES (22077, 'Dead Reckoning: The Brassfield Manor Collector''s Edition', 'From Eipix Entertainment, makers of Dead Reckoning: Silvermoon Isle and the Final Cut series!
 
-On the eve of his annual murder mystery party, wealthy businessman Reginald Greer is found dead at his home. You’ve been called to Brassfield Manor to solve the case… but it won’t be easy. There are plenty of clues and suspects to keep you guessing who killed Reginald Greer. Was it his spoiled daughter? His jealous son? His disgruntled business partner? It could be any one of the guests who arrived for a game… and stayed for a murder. Use a unique deduction fea', 0, null);
+On the eve of his annual murder mystery party, wealthy businessman Reginald Greer is found dead at his home. You’ve been called to Brassfield Manor to solve the case… but it won’t be easy. There are plenty of clues and suspects to keep you guessing who killed Reginald Greer. Was it his spoiled daughter? His jealous son? His disgruntled business partner? It could be any one of the guests who arrived for a game… and stayed for a murder. Use a unique deduction fea', 0, '2016-05-17');
 INSERT INTO power_up.games VALUES (4797, 'Dead Rising', 'Frank West, a freelance photojournalist on the hunt for the scoop of a lifetime, pursues a juicy lead to a small suburban town only to find that it is being overrun by zombies! He escapes to the local shopping mall thinking it will be a bastion of safety, but it turns out to be anything but. It''s a true struggle to survive the endless stream of enemies, but with full reign over an entire shopping center, Frank can utilize anything to fight off the flesh-hungry mob and search for the truth behind the horrendous epidemic.', 0, '2006-08-07');
 INSERT INTO power_up.games VALUES (496, 'Dead Rising 2', 'As Chuck Greene, you have 72 hours to save your infected daughter, clear your name and survive the hordes of hungry zombies before the military comes in and nukes the city. To ensure your survival, you can combine everyday objects to create numerous deadly combo weapons and slaughter the ravenous zombies. Dead Rising 2, it’s where Creativity Kills.', 0, '2010-09-23');
 INSERT INTO power_up.games VALUES (21764, 'Dead Rising 2: Case West', null, 0, null);
@@ -9153,6 +9184,7 @@ INSERT INTO power_up.games VALUES (20942, 'Dead Rising 3: The Last Agent', 'Dead
 
 It is part of the season pass, which includes all four DLC packs and the bonus Nick Ramos Tribute Pack.[1][2]', 0, null);
 INSERT INTO power_up.games VALUES (19521, 'Dead Rising 4', 'It’s the holiday season in Willamette, Colorado and a mysterious outbreak has overrun the Willamette Memorial Megaplex Mall and surrounding town with dangerous and deadly predators. Join Frank West as you explore a vast, open world sandbox filled with dangerous new zombies and a million ways to kill them as you seek to uncover the truth behind the outbreak – or die trying.', 0, '2016-12-05');
+INSERT INTO power_up.games VALUES (23907, 'Dead Rising Remastered', '"This action horror game brings new meaning to the phrase "retail hell." Dead Rising uses a dynamic real-time system in which time continues to pass whether Frank is actively engaged or remains stationary. For example, though they move slowly during the day, zombies become stronger and faster when the sun sets and make it even more difficult to survive at night. The unprecedented swarms come in never-ending waves and consist of a diverse population. These former humans retain some memory of their previous lives and it is reflected in their behavior and appearance. The variety of different stores in the mall offers an endless supply of resources including vehicles, makeshift weapons and more. Other survivors are encountered along the way and helping them can provide valuable clues as to what has happened."', 0, '2016-09-12');
 INSERT INTO power_up.games VALUES (4798, 'Dead Rising: Chop Till You Drop', 'This is the Port of the ever excited Xbox 360 video game Dead Rising.', 0, '2009-02-18');
 INSERT INTO power_up.games VALUES (14403, 'Dead Secret', 'Dead Secret is a first-person horror mystery set in rural Kansas in 1965. A reclusive professor is dead and it’s up to you to crack the case before you become the next victim. Investigate the murder and explore the story Time Magazine called “captivating” and “deeply creepy” .', 0, '2016-03-27');
 INSERT INTO power_up.games VALUES (16777, 'Dead Sky', 'Dead Sky takes place admist the chaos of a mysterious outbreak where you will fight tooth-and-nail through hordes of undead creatures in order to escape the epidemic and survive. At its core, Dead Sky is an action-packed survival shooter that ties in several strategic tower defense elements. The gameplay consists of a satisfying mix between defending objectives and staying alive within contaminated territory by using the variety of powerful weapons, structures, upgrades, and power-ups at your disposal. In online cooperative play, you and up to 3 friends will team up to fight your way through several environments and the unique challenges they present. Using teamwork, strategy, and quick reflexes, you will work together to defeat the powerful and mutated enemies that cross your path.', 0, '2013-10-04');
@@ -9299,8 +9331,8 @@ During missions he will have to complete various tasks in the heart of enemy ter
 INSERT INTO power_up.games VALUES (9377, 'Death to Spies: Moment of Truth', 'Moment of Truth is a sequel to the popular stealth action title Death to Spies. The game''s main character is Semion Strogov, a captain in the 4th department of the Soviet counterintelligence service called SMERSH. SMERSH literally means in Russian, Death to Spies, which was the name for a set of counterintelligence departments in the Soviet Army formed during World War II. Strogov is back from his previous missions and must now participate in a series of even more complicated and exciting military operations under the code name "Death to Spies: Moment of Truth". The hero possesses all the skills required to accomplish especially dangerous missions including, getting information about the disposition of hostile military and civil units, assassination of enemy agents and representatives of Wehrmacht’s high-ranking officers and espionage. By the order of his supreme commander Strogov, who passed through a serious retraining, will have to accomplish various top secret missions. His task is to capture spies, saboteurs and gather information about their actions using unique technologies and devices.', 0, '2008-03-27');
 INSERT INTO power_up.games VALUES (11027, 'Death Track', null, 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (11026, 'Death Track: Resurrection', null, 0, '2009-02-28');
-INSERT INTO power_up.games VALUES (23205, 'Death Trap', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (12566, 'Death Trap', null, 0, '1990-12-30');
+INSERT INTO power_up.games VALUES (23205, 'Death Trap', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (22779, 'Death Trash', '"A modern post-apocalyptic role-playing game with action elements and a focus on the narrative and dialogue. A world of cyberpunk, science fiction, horror, the grotesque and trash-talk humor."
 
 "Use realtime combat, dialogue, item crafting and psi powers to explore and survive this post-apocalyptic mystic world with larger-than-life beings.
@@ -9467,8 +9499,8 @@ INSERT INTO power_up.games VALUES (12043, 'Deja Vu: A Nightmare Comes True!!', n
 INSERT INTO power_up.games VALUES (21778, 'Delicious Vinyl DJ', null, 0, null);
 INSERT INTO power_up.games VALUES (6619, 'Delightful Wallpaper', null, 0, null);
 INSERT INTO power_up.games VALUES (20326, 'Deliver Us The Moon', 'Deliver Us The Moon is set in the near future where the earth''s resources are nearly depleted. The nations of the world have come together to create the Worldwide Space Agency (WSA). Under the banner of the WSA, astronauts were sent to the moon to conduct research aimed at securing the future of mankind. Sadly, due to bickering between countries, no solution has been agreed upon. Now, with man''s absolute last resources, you, a brave astronaut gone rogue, take the great step to the moon in a do-or-die secret mission to save humanity.', 0, null);
-INSERT INTO power_up.games VALUES (12079, 'Deliverance', null, 0, '2015-08-30');
 INSERT INTO power_up.games VALUES (14639, 'Deliverance', null, 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (12079, 'Deliverance', null, 0, '2015-08-30');
 INSERT INTO power_up.games VALUES (13839, 'Delta', null, 0, null);
 INSERT INTO power_up.games VALUES (666, 'Delta Force', null, 0, '1998-09-29');
 INSERT INTO power_up.games VALUES (9349, 'Delta Force 2', null, 0, '1999-10-30');
@@ -9940,11 +9972,13 @@ INSERT INTO power_up.games VALUES (4132, 'Dino Crisis 2', 'Dino Crisis 2 is an a
 INSERT INTO power_up.games VALUES (5813, 'Dino Crisis 3', null, 0, '2003-06-25');
 INSERT INTO power_up.games VALUES (8701, 'Dino D-Day', null, 0, '2011-04-07');
 INSERT INTO power_up.games VALUES (19591, 'Dino Dini''s Kick Off Revival', 'Kick Off Revival brings back the classic, fast-paced soccer game series by legendary game designer Dino Dini.', 0, '2016-06-16');
+INSERT INTO power_up.games VALUES (23928, 'Dino Eggs', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (4430, 'Dino Land', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (8309, 'Dino Run', null, 0, '2008-04-29');
 INSERT INTO power_up.games VALUES (16636, 'Dino Run DX', 'DINO RUN DX is an ongoing evolution of the classic prehistoric multiplayer racing game. Control your iconic raptor through an endless assortment of procedurally generated landscapes and outrun the ever-approaching WALL OF DOOM.  Will you end up one of the millions of doomsday casualties, or will you ESCAPE EXTINCTION?', 0, '2015-08-01');
 INSERT INTO power_up.games VALUES (22065, 'Dino Stalker', null, 0, null);
 INSERT INTO power_up.games VALUES (14648, 'Dino Wars', null, 0, '1991-12-30');
+INSERT INTO power_up.games VALUES (23918, 'Dino Wars', null, 0, '1980-12-30');
 INSERT INTO power_up.games VALUES (14299, 'Dinocide', 'Dinocide is a classic NES inspired old-school single-player platformer in a prehistoric fantasy world.
 
 The protagonist has to save his love interest who was kidnapped by an evil and mysterious Dinosaur God. You are accompanied by your own tame Dinosaurs, who acts as a mounts, brother in arms and a true friends. With their help, you can jump higher, run faster, swim, fly and do a lot more things that an ordinary primitive man would never be able to do by himself. To reach your goal, you will travel together through the lands inhabited by ancient creatures and unknown dangers.', 0, '2016-01-20');
@@ -9999,7 +10033,7 @@ Each locale hosts three scenes of play with hundreds of objects to find in each 
 Enjoy the sights, sounds and hidden-object adventures around the globe and across the U.S. when you make it to the U.S. Roadtrip Jackpot Round. You’ll race against the clock and search through six U.S. cities on your way to hitting the jackpot! Compete against 20 eagle-eyed contestants and rack up achievement stamps in five different game modes in this seek-and-find adventure. Join us for this week’s episode of Discovery!', 0, null);
 INSERT INTO power_up.games VALUES (14651, 'Discovery: In the Steps of Columbus', null, 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (14036, 'Discs of Death', null, 0, null);
-INSERT INTO power_up.games VALUES (21817, 'Discs of Tron', null, 0, null);
+INSERT INTO power_up.games VALUES (21817, 'Discs of Tron', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (11420, 'DiscStorm', 'Fast-paced and furious, DiscStorm is an arena combat game where split-second reactions are essential to dodge flying discs as they ricochet around at breakneck speed. Brave formidable single player adventures or meet up with your friends online and challenge them to intense multiplayer.', 0, null);
 INSERT INTO power_up.games VALUES (8291, 'Discworld', 'Discworld is a game released for PC (subsequently Mac, and Playstation) by Teeny Weeny / Perfect 10 studios in 1995. The game was released both on floppy disk and CD-Rom. The latter featured a commentary team created of many veterans of famous Brit-Coms. This included Monty Python''s Eric Idle, Radio 4''s (later to be more famous) Rob Brydon, ex- Doctor Who John Pertwee, 70s pop singer Kate Robbins, and Blackadder star Tony Robinson.  The game is a riff on the Discworld title ''Guards, Guards'', however many elements of the text have been shifted, not least the inclusion of Rincewind as protagonist.  
 
@@ -10306,10 +10340,10 @@ INSERT INTO power_up.games VALUES (18603, 'Doodle', 'Doodle is one of the launch
 INSERT INTO power_up.games VALUES (18528, 'Doodle God', 'Doodle God is a puzzle video game initially released for the iPhone/iPod Touch and subsequently released as a flash browser game, an Android game and a Windows Phone app. The Adobe Flash online browser game can be found on Armor Games. Version 1.1 was released on June 27, 2010. Doodle God''s gameplay is inspired by Russian online javascript game ''Alchemygame'' based on an old DOS game named ''Alchemy''.', 0, '2010-06-22');
 INSERT INTO power_up.games VALUES (21475, 'Doodle Hex', null, 0, null);
 INSERT INTO power_up.games VALUES (14656, 'Doodlebug', null, 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (7351, 'DOOM', 'Developed by id software, the studio that pioneered the first-person shooter genre and created multiplayer Deathmatch, DOOM returns as a brutally fun and challenging modern-day shooter experience. Relentless demons, impossibly destructive guns, and fast, fluid movement provide the foundation for intense, first-person combat – whether you’re obliterating demon hordes through the depths of Hell in the single-player campaign, or competing against your friends in numerous multiplayer modes. Expand your gameplay experience using DOOM SnapMap game editor to easily create, play, and share your content with the world.', 0, '2016-05-12');
 INSERT INTO power_up.games VALUES (673, 'Doom', 'A sci-fi FPS in which a space mercenary searches for his lost friend from the box art.
 
 Things aren''t looking too good. You''ll never navigate off the planet on your own. Plus, all the heavy weapons have been taken by the assault team leaving you with only a pistol. If you only could get your hands around a plasma rifle or even a shotgun you could take a few down on your way out. Whatever killed your buddies deserves a couple of pellets in the forehead. Securing your helmet, you exit the landing pod. Hopefully you can find more substantial firepower somewhere within the station. As you walk through the main entrance of the base, you hear animal-like growls echoing through the distant corridors. They know you''re here. There''s no turning back now.', 0, '1993-12-09');
-INSERT INTO power_up.games VALUES (7351, 'DOOM', 'Developed by id software, the studio that pioneered the first-person shooter genre and created multiplayer Deathmatch, DOOM returns as a brutally fun and challenging modern-day shooter experience. Relentless demons, impossibly destructive guns, and fast, fluid movement provide the foundation for intense, first-person combat – whether you’re obliterating demon hordes through the depths of Hell in the single-player campaign, or competing against your friends in numerous multiplayer modes. Expand your gameplay experience using DOOM SnapMap game editor to easily create, play, and share your content with the world.', 0, '2016-05-12');
 INSERT INTO power_up.games VALUES (13168, 'Doom & Destiny', 'Four nerds, drawn into a fantasy world and mistaken for heroes, have to battle their way through a massive, crazy adventure and defeat a preposterous villain!
 
 Doom &amp; Destiny is a turn based hilarious jrpg where you take control of a party of four everyday friends. Journey through an unpredictable story filled with parodies and cameos. Start your adventure in a classic dungeon with dragons, save princess with the help of green-dressed elf and then fly to manga-themed city with the help of a famous italian plumber. This is Doom &amp; Destiny, the flying-spaghetti fantasy adventure!', 0, '2011-08-24');
@@ -10596,6 +10630,7 @@ INSERT INTO power_up.games VALUES (2968, 'Dragon Force', null, 0, '1996-03-28');
 INSERT INTO power_up.games VALUES (4342, 'Dragon Lore: The Legend Begins', 'An epic role-playing adventure game classic!
 Award-winning game play as you travel doing battle with powerful enemies and tackle thrilling quests.
 Travel across these lands and meet fantastically surreal characters who help you in your quest for truth.', 0, '1994-12-30');
+INSERT INTO power_up.games VALUES (23921, 'Dragon Nest', 'Leap into the heart of adventure as you join millions of others in the world''s fastest online action MMORPG. Choose from eleven distinct classes and 52 specializations to create the ultimate hero. Work alone or with friends to explore mysterious dungeons, besiege the fortresses of loathsome orcs, and raid the lairs of fearsome dragons.', 0, '2011-08-31');
 INSERT INTO power_up.games VALUES (16764, 'Dragon Nest Europe', 'Dive into blazingly fast combat action with visually stunning skills in a world caught in the wake of ancient dragons and waiting for the ancient Prophet to discover her powers. Immerse in an epic story with classic MMORPG and role-playing elements paired with a unique, console-like third-person perspective.', 0, null);
 INSERT INTO power_up.games VALUES (23591, 'Dragon Pals', null, 0, null);
 INSERT INTO power_up.games VALUES (9214, 'Dragon Quest Heroes', 'In Dragon Quest Heroes, the protagonists must rise up against insurmountable odds, challenging swarms of enemies and conquering gigantic monsters in an exhilarating action game. Filled with characters and monsters designed by world-renowned artist Akira Toriyama.', 0, '2015-02-25');
@@ -10610,6 +10645,7 @@ INSERT INTO power_up.games VALUES (1822, 'Dragon Quest Swords: The Masked Queen 
 INSERT INTO power_up.games VALUES (16585, 'Dragon Quest V', null, 0, '1992-09-26');
 INSERT INTO power_up.games VALUES (1816, 'Dragon Quest V: Hand of the Heavenly Bride', null, 0, '2004-03-24');
 INSERT INTO power_up.games VALUES (1817, 'Dragon Quest VI: Realms of Revelation', null, 0, '1995-12-08');
+INSERT INTO power_up.games VALUES (23913, 'Dragon Quest VII: Fragments of the Forgotten Past', null, 0, null);
 INSERT INTO power_up.games VALUES (1819, 'Dragon Quest VIII: Journey of the Cursed King', 'A single player turn based RPG, continuing the line of games that were released in the USA as Dragon Warrior.', 0, '2004-11-26');
 INSERT INTO power_up.games VALUES (1825, 'Dragon Quest Wars', null, 0, null);
 INSERT INTO power_up.games VALUES (1821, 'Dragon Quest X', null, 0, '2012-08-01');
@@ -11453,8 +11489,8 @@ In the game, the player assumes the role of a spy who infiltrates a building fil
 The game was available as a standard upright cabinet The controls consist of a 4-way joystick and two buttons, one for "shoot" and the other for jumping and kicking. The maximum number of players is two, alternating turns. The graphics are extremely simple, 2D color graphics and in-game music was composed by musician Yoshio Imamura. The game was followed by a sequel, Elevator Action II (also known as Elevator Action Returns).', 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (11729, 'Elevator Action Returns', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (11567, 'Elex', 'An action, role-playing open world game for PC and Consoles, Elex was developed by Piranha Bytes, creators of the award winning Gothic series and is set in a brand new, post-apocalyptic, Science-Fantasy universe where magic meets mechs.', 0, '2017-03-30');
-INSERT INTO power_up.games VALUES (12061, 'Elf', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (12580, 'Elf', null, 0, '1988-12-30');
+INSERT INTO power_up.games VALUES (12061, 'Elf', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (12062, 'Elfmania', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (13633, 'Elidon', null, 0, null);
 INSERT INTO power_up.games VALUES (11510, 'Elimination', 'Elimination is a four-player version of Pong by Atari Inc. subsidiary Kee Games, and designed by Steve Bristow. It was later released as Quadrapong under the Atari label.
@@ -11462,9 +11498,9 @@ INSERT INTO power_up.games VALUES (11510, 'Elimination', 'Elimination is a four-
 Elimination and its Quadrapong counterpart were the first cocktail cabinet arcade video games. The cabinet consists of a woodgrain 35" x 37" cocktail cabinet. Two control paddles are mounted on each side of the cabinet, with a horizontally mounted Zenith television diagonally set in the cabinet.
 
 Two, three, or four players move their paddles to defend their goal area, consisting of openings in the players'' walls. Each player starts with four points, and loses one point each time the ball penetrates their goal. If all four points are lost the player''s paddle is removed and the goal "closes", creating a solid wall and removing the player from the game. The game continues until only one player is left.', 0, '1974-12-30');
-INSERT INTO power_up.games VALUES (22848, 'Eliminator', null, 0, '1999-02-27');
 INSERT INTO power_up.games VALUES (18754, 'Eliminator', null, 0, '1981-11-30');
 INSERT INTO power_up.games VALUES (12063, 'Eliminator', null, 0, '1988-12-30');
+INSERT INTO power_up.games VALUES (22848, 'Eliminator', null, 0, '1999-02-27');
 INSERT INTO power_up.games VALUES (9158, 'Eliminator Boat Duel', null, 0, null);
 INSERT INTO power_up.games VALUES (2951, 'Elite', null, 0, '1984-09-19');
 INSERT INTO power_up.games VALUES (9109, 'Elite Beat Agents', 'The public knows of government agencies like the FBI and CIA, but little is known of this super-secret agency. Code-named "Elite Beat Agents", these men in black are heroes'' heroes and the coolest group of guys this world has ever known. Of course, according to official records, they do not exist. Their leader, an ex-CIA agent named Commander Kahn, scans the world for cries of help. When he finds one, he dispatches the agents, who assist their targets by performing a song and dance. The hypnotic nature of their rocking revives the targets with "Groovy" energy that boosts their willpower and helps them overcome their obstacles. In each stage, the agents arrive in a special "Beat Transport" and must tap and trace patterns that appear on-screen to the beat of the music to save the day.', 0, '2006-11-05');
@@ -11506,6 +11542,7 @@ INSERT INTO power_up.games VALUES (13634, 'Elven Warrior', null, 0, null);
 INSERT INTO power_up.games VALUES (12064, 'Elvira II: The Jaws of Cerberus', null, 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (10585, 'Elvira: Mistress of the Dark', null, 0, '1990-12-30');
 INSERT INTO power_up.games VALUES (12935, 'Embassy Assault', null, 0, null);
+INSERT INTO power_up.games VALUES (23941, 'Ember', 'A passion project 10 years in the making, Ember is a homage to classic role-playing games (RPG). Enter the world of Ember as a resurrected “Lightbringer” summoned to protect the dying Embers as the world is on the brink of collapse. Beginning in the Deep Barrows, traverse vast environments divided between aboveground and underground realms – ranging from lush forests to dry deserts and dark abysses – to reach the City of Light. See how the story unfolds through encounters with strangers by making pivotal decisions about your own destiny.', 0, '2016-09-08');
 INSERT INTO power_up.games VALUES (14737, 'Embergarde', 'Embergarde is a MMORPG that''s currently being developed by Runewaker Entertainment.  The game is available for download but it still far from being completed. but it appears to be using the same engine (and assets) as their previous game, Dragon''s Prophet.', 0, '2015-03-11');
 INSERT INTO power_up.games VALUES (12581, 'Embryo', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (16072, 'Emerald City Confidential', 'Work with the world''s most cunning detective in the shadowy underbelly of the Emerald City of Oz! As Petra, you''ll be lured deep into mysteries involving new foes and familiar faces; Scarecrow, Lion, and Toto included. This is Oz as you''ve never seen it before! Solve your detective''s quest and unravel a conspiracy of magic and intrigue! Follow a case through five chapters full of puzzles, witnesses, suspects, and allies.', 0, '2009-07-02');
@@ -11792,6 +11829,7 @@ The game is over when the player''s HP reaches zero - or when the player has suc
 Up to three save slots are available. They allow players the opportunity to save their progress and return to their adventure at a later date.', 0, '2007-10-01');
 INSERT INTO power_up.games VALUES (23894, 'Esper: The Collection', 'sper: The Collection brings together Esper and Esper 2 in one extraordinary package. As one of a small number of citizens who have been endowed with the power to move objects with their minds, you have been enrolled by the government to undertake a series of tests to show that you are in control of your powers. Use your psychic abilities to solve increasingly challenging tests and demonstrate that, despite the concerns, you are not a threat to the fragile fabric of society. In Esper 2, reprise your role from the first game and take up your new job as an agent of ESPR, an organization set up to deal with the outbreak of telekinetic powers. Travel to exotic locations; solve puzzles, discover secrets, stop villainous plots, and fall unconscious multiple times. Interact with a dynamic array of new characters, voiced by notable actors, Nick Frost, Lara Pulver, and Sean Pertwee, who join Eric Meyers, the esteemed vocal talent from the original game.', 0, '2016-08-31');
 INSERT INTO power_up.games VALUES (6989, 'Espgaluda II', null, 0, '2005-11-24');
+INSERT INTO power_up.games VALUES (23932, 'Espial', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (13646, 'Espionage', null, 0, '1988-12-30');
 INSERT INTO power_up.games VALUES (13645, 'Espionage Island', null, 0, null);
 INSERT INTO power_up.games VALUES (5380, 'ESPN Baseball Tonight', null, 0, '1993-12-30');
@@ -11819,6 +11857,8 @@ INSERT INTO power_up.games VALUES (6793, 'ESWAT', 'The game is a sidescrolling p
 INSERT INTO power_up.games VALUES (6670, 'ESWAT: City under Siege', 'The city is besieged by wanted criminals, and as a police officer it is your duty to stop them. The first criminals in the wanted list can be stopped with your service weapon an some fast reactions, but once you''re facing the toughest criminals in town you''ll need to use the cyber suit, which provides additional protection and higher firepower.
 
 Unlike other versions of this game, this Genesis cartridge doesn''t follow the layout of the arcade game. The levels, rather than being linear, feature some platform elements, and the enemies in the first levels are no longer bank robbers or hit-men, but soldiers and robots instead. And the setting is no longer your typical American city, but a futuristic megalopolis.', 0, '2007-08-27');
+INSERT INTO power_up.games VALUES (23909, 'eTabu', 'The game is as easy as pie - explain the keyword to your team without using the forbidden words or gestures. There is more than 20000 unique keywords in 10 different languages waiting for you: English, German, Polish, Turkish, Spanish, French, Italian, Portuguese, Greek, Russian.
+eTABU is a great way to learn foreign languages in a group. Absorbing gameplay and the spirit of competition helps break language barriers. It will develop your reflexes and language creativity, it will teach you to think in a foreign language. But most of all it will enrich your vocabulary!', 0, '2015-08-07');
 INSERT INTO power_up.games VALUES (17102, 'Eterium', 'Eterium is a space flight sim in the spirit of 90''s games like Wing Commander and X-Wing. Developed by a two-man team, Eterium aims to bring the classic style of space combat games into the modern era. You play as a pilot serving aboard United Earth Alliance carrier Canopus during a war against an vicious alien race known as the Revi. Experience story-driven gameplay, advanced artificial intelligence, procedural missions and intense 3D space combat as you battle your way through over 50 missions of action-packed gameplay.', 0, '2014-03-01');
 INSERT INTO power_up.games VALUES (4477, 'Eternal Champions', 'Sega released Eternal Champions for their Mega Drive/Genesis in 1993, hoping to capitalize on the fighting game mania that the game industry was in the midst of following the massive success of Street Fighter II (1991) and Mortal Kombat (1992). The game tried to set itself apart with unique features like a heavier emphasis on its story, characters pulled from different time periods, reflectable projectiles, force fields, fighters that carried weapons, a training mode where players had to defend themselves against robotic traps, a novel method of executing moves, and elaborate stage-specific finishing moves called "Overkills".', 0, '1993-07-05');
 INSERT INTO power_up.games VALUES (5383, 'Eternal Champions: Challenge from the Dark Side', null, 0, '1995-01-31');
@@ -11924,7 +11964,9 @@ INSERT INTO power_up.games VALUES (9670, 'Europe 1300', 'Realistic, historical m
 INSERT INTO power_up.games VALUES (16967, 'Europe Racer', null, 0, '2001-08-31');
 INSERT INTO power_up.games VALUES (685, 'European Air War', null, 0, '1998-10-30');
 INSERT INTO power_up.games VALUES (10287, 'European Fishing', 'Do you want to relax by the water in beautiful nature? European Fishing allow you to go on a virtual fishing tour. Select appropriate equipment and jump on a motorboat to go to one of the five huge lakes in search of the perfect fishery. Remember that each fish has a favorite time and place of feeding, and proper selection of lures also increase your chances of successful catch.', 0, null);
-INSERT INTO power_up.games VALUES (22127, 'European Mystery: Scent of Desire Collector''s Edition', null, 0, null);
+INSERT INTO power_up.games VALUES (22127, 'European Mystery: Scent of Desire Collector''s Edition', 'Stop a maniac’s murderous trail of fragrance and deception in European Mystery: Scent of Desire! You’ve barely settled into your retirement in the peaceful French countryside, when you receive an urgent request from Paris. Young women are disappearing in broad daylight, the authorities are baffled, and the person responsible is still on the loose! How could any able-bodied detective refuse such a case? Stay on scent of the murderer in this intriguing Hidden-Object Puzzle Adventure game.
+
+This is a special Collector''s Edition release full of exclusive extras you won’t find in the standard version.', 0, '2014-02-12');
 INSERT INTO power_up.games VALUES (10288, 'European Ship Simulator', 'This brand new ship simming must-have brings six of Europe’s busiest ports together as you captain a wide variety of vessels between Calais, Dover, Rostock, Rotterdam, Hamburg and Gibraltar. Sail a passenger ferry, tugboat, bulk carrier, fishing boat, large ocean cruiser, LNG tanker, cargo container or speed boat on a multitude of varying missions. With a realistic ocean and highly detailed ports, it’s difficult to tell where reality ends and European Ship Simulator begins.
 
 European Ship Simulator breathes new life into the ship sailing genre with its exciting plans for expansions and downloadable content such as new ports, ships and missions.', 0, null);
@@ -12012,6 +12054,9 @@ INSERT INTO power_up.games VALUES (13184, 'EverQuest: The Broken Mirror', 'The B
 INSERT INTO power_up.games VALUES (686, 'EverQuest: The Ruins of Kunark', null, 0, '2000-04-23');
 INSERT INTO power_up.games VALUES (14402, 'eversion', null, 0, '2010-06-06');
 INSERT INTO power_up.games VALUES (14172, 'Everspace', 'EVERSPACE is an action-focused single-player space shooter with rock solid 6DOF controls combining roguelike elements with top-notch visuals and a captivating non-linear story as well as VR support in the final version.', 0, '2017-12-30');
+INSERT INTO power_up.games VALUES (23927, 'Evertales', 'Once upon time, there was a tale of mighty heroes, protectors of the realm, and the saviors of many damsels in distress. This…is not that tale. 
+
+This is a tale of unlikely Heroes. Embark on journeys of not-so-epic proportions with Sir Jorgin, the noble knight past his prime; Arwick, the ladies man and elf rogue; and Taragon, wise, old, and somewhat senile wizard. Welcome….to Evertales.', 0, '2013-07-03');
 INSERT INTO power_up.games VALUES (23166, 'Every Day the Same Dream', 'Every Day the Same Dream is a short, 2D art game that puts the player in the role of a man whose life is about to change.', 0, '2009-12-20');
 INSERT INTO power_up.games VALUES (23106, 'Every Extend Extra', null, 0, null);
 INSERT INTO power_up.games VALUES (21835, 'Every Extend Extra Extreme', null, 0, '2007-10-16');
@@ -12062,6 +12107,7 @@ INSERT INTO power_up.games VALUES (2029, 'Evoland', 'Evoland is a game and a sto
 Inspired by a wide variety of the most popular action RPGs and JRPGs, Evoland will take you from monochrome to full 3D graphics and from active time battles to real time boss fights, all with plenty of humor, and many references to legendary titles scattered along the game.', 0, '2013-04-03');
 INSERT INTO power_up.games VALUES (11798, 'Evoland 2: A Slight Case of Spacetime Continuum Disorder', 'Evoland 2 is the spiritual successor to the original Evoland with its graphics style changing as you travel through time and its gameplay evolving as you move along the storyline. It is also a much bigger game and a classic RPG at heart, with a complex scenario based on time travel, dozens of characters with their own backgrounds and ambitions and vastly different gameplay styles that are linked to the story and the player’s actions.', 0, '2015-08-24');
 INSERT INTO power_up.games VALUES (23132, 'Evolution', null, 0, null);
+INSERT INTO power_up.games VALUES (23915, 'Evolution', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (23147, 'Evolution GT', null, 0, null);
 INSERT INTO power_up.games VALUES (3908, 'Evolution Skateboarding', null, 0, '2002-10-08');
 INSERT INTO power_up.games VALUES (3909, 'Evolution Snowboarding', null, 0, '2002-02-24');
@@ -12377,7 +12423,7 @@ INSERT INTO power_up.games VALUES (15036, 'Fall of the Titanic', null, 0, '2015-
 INSERT INTO power_up.games VALUES (15150, 'Fallen Earth', 'It’s 2156, and the world has been destroyed by both nuclear and bio-chemical means. Your story takes place in one of the few habitable places left in the world, the Grand Canyon. As a clone with an uncertain past, your job is survival in a world now built on destruction, betrayal and fragile factional alliances.', 0, '2012-01-02');
 INSERT INTO power_up.games VALUES (10297, 'Fallen Enchantress', 'A World to Build… or Destroy. “A war is coming… a war between East and West - between Kingdoms and Empires, between man and Fallen. A future of blood and death, of chaos and destruction.” – the Oracle Ceresa.', 0, null);
 INSERT INTO power_up.games VALUES (10298, 'Fallen Enchantress: Legendary Heroes', 'Fallen Enchantress: Legendary Heroes is the new standalone expansion to Stardock’s turn-based, fantasy strategy game. Players will forge a new empire in a world sundered by powerful magic, fight against terrible creatures, complete quests and rediscover lost secrets in their bid to rule the world of Elemental.', 0, null);
-INSERT INTO power_up.games VALUES (22129, 'Fallen Heroes: Uro''s Tale', null, 0, null);
+INSERT INTO power_up.games VALUES (22129, 'Fallen Heroes: Uro''s Tale', null, 0, '2013-03-27');
 INSERT INTO power_up.games VALUES (19617, 'Fallen Legion', null, 0, '2017-03-30');
 INSERT INTO power_up.games VALUES (11285, 'Fallen London', 'Fallen London, originally titled Echo Bazaar and developed by Failbetter Games, is a browser-based choose-your-own-adventure game set in "Fallen London", an alternative Victorian London with gothic overtones. The franchise subsequently expanded to other games, including a PC game of "survival, discovery and loneliness", Sunless Sea.
 The game won The Escapist "Best Browser-Based Game" award for the year 2009.', 0, '2009-12-30');
@@ -12602,10 +12648,10 @@ INSERT INTO power_up.games VALUES (2032, 'Fast & Furious: Showdown', null, 0, '2
 INSERT INTO power_up.games VALUES (12091, 'Fast Break', null, 0, '1989-12-30');
 INSERT INTO power_up.games VALUES (8927, 'Fast Draw Showdown', null, 0, '1994-12-30');
 INSERT INTO power_up.games VALUES (18779, 'Fast Eddie', null, 0, '1982-12-30');
+INSERT INTO power_up.games VALUES (14454, 'Fast Food', 'Dizzy''s back! In Fast Food, Dizzy must run around mazes scoffing loadsa food - chickens, burgers, pizzas, milkshakes but there''s a complication...look out for the monsters.', 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (18287, 'Fast Food', 'The objective of the game is to eat as much fast food as you can by devouring the junk food that is approaching your huge mouth from the left of the screen. While doing that you should be careful to avoid the purple pickles - after having eaten six of those it is game over.
 
 Fast Food was written by Don Ruffcorn.', 0, '1982-12-30');
-INSERT INTO power_up.games VALUES (14454, 'Fast Food', 'Dizzy''s back! In Fast Food, Dizzy must run around mazes scoffing loadsa food - chickens, burgers, pizzas, milkshakes but there''s a complication...look out for the monsters.', 0, '1991-12-30');
 INSERT INTO power_up.games VALUES (8912, 'Fast Food Tycoon', 'Fast Food Tycoon was developed by Software 2000 as a economic simulation game. The player controls a pizza chain syndicate, and is able to manage many of the different aspects of running a pizza chain. The game spawned a sequel, and is generally regarded as an average-quality eco-sim.', 0, '2000-11-19');
 INSERT INTO power_up.games VALUES (23782, 'Fast Lane Bowling', null, 0, null);
 INSERT INTO power_up.games VALUES (14890, 'FAST Racing League', null, 0, '2011-12-30');
@@ -12661,18 +12707,18 @@ INSERT INTO power_up.games VALUES (12332, 'Fate/tiger colosseum Upper', 'Fate/ti
 INSERT INTO power_up.games VALUES (12381, 'Fate/unlimited codes', 'Fate/unlimited codes is a fighting video game based on the visual novel Fate/stay night.', 0, '2008-06-10');
 INSERT INTO power_up.games VALUES (15472, 'Fate: The Cursed King', 'FATE: The Cursed King introduces a new realm and new hero to the popular dungeon-crawling series. Begin a brand new adventure in the popular FATE series! As a bold but inexperienced young hero you must overcom great challenges in order to lift the curse that plagues the city of Ekbatan. Journey through a realm filled with new dungeons spells monsters and more.
 
-When a terrible curse is unleashed upon your desert home you must overe three great challenges to save the people of Ekbatan. With your honor and the fate of an entire city at stake will you triumph over evil?', 0, null);
+When a terrible curse is unleashed upon your desert home you must overe three great challenges to save the people of Ekbatan. With your honor and the fate of an entire city at stake will you triumph over evil?', 0, '2011-03-29');
 INSERT INTO power_up.games VALUES (15471, 'Fate: The Traitor Soul', 'When the Traveler speaks of a test within the Temple of Fate, presented to only the most dedicated of champions, you stand confident that the spoils beyond the portal will be yours. The challenge of FATE - The Traitor Soul is your destiny...will you accept it?
 
-Seek fortune and glory within the Chamber of Trials by battling the evil that lurks within. Fight your way through innumerable dungeons, caverns, and tunnels, with one of five loyal pets by your side. Play as yourself, or in the guise of a new hero: an Orc, Cogger, or Elven warrior. Choose from 50 new pieces of armor and 13 new spells. Evil trembles before you, and the ultimate challenge awaits you in FATE - The Traitor Soul!', 0, null);
+Seek fortune and glory within the Chamber of Trials by battling the evil that lurks within. Fight your way through innumerable dungeons, caverns, and tunnels, with one of five loyal pets by your side. Play as yourself, or in the guise of a new hero: an Orc, Cogger, or Elven warrior. Choose from 50 new pieces of armor and 13 new spells. Evil trembles before you, and the ultimate challenge awaits you in FATE - The Traitor Soul!', 0, '2009-09-08');
 INSERT INTO power_up.games VALUES (8867, 'FATE: Undiscovered Realms', 'An all new adventure temps your Fate Product Information Your valor has won freedom for the people of Grove and the manxome scourge has retreated into the shadows. In the midst of celebration a stranger appears warning of new evil that will ensnare your peaceful town.  He speaks of ancient secrets locked within a temple and of gateways to mysterious yet Undiscovered Realms. Typhon an outpost built around cold snowy dungeons and Druantia a land of lush forests and endless beauty.  Of the temple''s secrets he divulges only the greatest: hidden within is an ancient tome - the Book of Fate which maintains the balance between all realms. The townsfolk look to you their new champion to take up this perilous quest and guide the stranger through the dungeon in search of the ancient temple. You will encounter new dungeons pet transformations weapons monsters and five completely new quests to test your mettle. New features include Hardcore mode (cheats disabled more difficult monsters) and a level cap of 199 - import characters from the original FATE and continue your quest. It is time once again to determine Explore two new realms with all new art and music. Transform your pets into new ally creatures! Fight an onslaught of monsters while protecting sacred places.Imprison evil foes and bring them to justice. Use your powers to lead allies to safety. Import your original Fate hero into the Undiscovered Realms.', 0, '2008-08-07');
 INSERT INTO power_up.games VALUES (19013, 'Fated: The Silent Oath', 'FATED is a first-person movie-length narrative-adventure game in virtual reality. This immersive game with stunning visuals showcases the best that VR has to offer, proposing a strong story-driven, narrative experience that focuses on emotion over gameplay.', 0, null);
 INSERT INTO power_up.games VALUES (19247, 'Fates Forever', 'The first Multiplayer Online Battle Arena hand crafted exclusively for iPad.', 0, '2014-07-02');
 INSERT INTO power_up.games VALUES (2521, 'Fates of Twinion', null, 0, '1993-12-30');
-INSERT INTO power_up.games VALUES (13892, 'Fathom', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (10966, 'Fathom', 'FATHOM is a fast paced action-strategy submarine combat game for the PC, where you’ll need quick reflexes, clever piloting skills, and tactical leadership to survive. Bringing a unique mixture of First-Person-Shooter (FPS) and Real-Time-Strategy (RTS) genres, FATHOM is a multi-player focused game that offers a variety of modes that support competitive (1v1 and team) play, as well as cooperative play.
 
 Take control of a Deep Submergence Vehicle (DSV) and prepare for battle. Use beacons to call down structures from the sea surface and layout your base of operations to begin your campaign. Construct warships and command your fleet into the heart of your enemy’s base! Set up blockades of deployable turrets and mines to defend strategic locations from your enemies. Call to the sea surface for depth charge bombardments from above or bring huge capital ships to bear in an all-out epic war beneath the waves!', 0, '2016-12-30');
+INSERT INTO power_up.games VALUES (13892, 'Fathom', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (4335, 'Fatty Bear''s Birthday Surprise', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (4311, 'Fatty Bear''s FunPack', null, 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (10528, 'fault milestone one', 'fault is a Science Fantasy Kinetic Novel about Selphine, a bubbly, happy-go-lucky Princess and her sharp-witted but slightly misanthropic Royal Guard Ritona. Follow them on their journey of a lifetime as they try to make it back home to the Kingdom of Rughzenhaide.', 0, '2013-08-11');
@@ -12689,7 +12735,7 @@ As the Engineer, you''ll need to rescue survivors, analyse their dreams and buil
 Every game is unique and you can customise your Engineer to dramatically change how the game is played.', 0, '2016-01-14');
 INSERT INTO power_up.games VALUES (6406, 'Fear Factor: Unleashed', null, 0, '2004-11-16');
 INSERT INTO power_up.games VALUES (22108, 'Fearful Tales: Hansel and Gretel', null, 0, null);
-INSERT INTO power_up.games VALUES (22078, 'Fearful Tales: Hansel and Gretel Collector''s Edition', 'You awake from a strange dream to find gingerbread men trashing your home. Where are your children? They left for the village store hours ago and have not returned. A mysterious woman appears, taunting you. Is she responsible for your children’s disappearance? One gingerbread man has promised to help you, but can you really trust him?', 0, null);
+INSERT INTO power_up.games VALUES (22078, 'Fearful Tales: Hansel and Gretel Collector''s Edition', 'You awake from a strange dream to find gingerbread men trashing your home. Where are your children? They left for the village store hours ago and have not returned. A mysterious woman appears, taunting you. Is she responsible for your children’s disappearance? One gingerbread man has promised to help you, but can you really trust him?', 0, '2013-08-23');
 INSERT INTO power_up.games VALUES (9233, 'Fearless Fantasy', null, 0, '2014-05-14');
 INSERT INTO power_up.games VALUES (15541, 'Fears', null, 0, null);
 INSERT INTO power_up.games VALUES (18404, 'Featherpunk Prime', 'Featherpunk Prime is a twin stick action-platformer mega mission with a mighty weapons arsenal, tricky procedural levels and colossal boss fights! It''s one super-agile Robo-Flamingo and its armoured sidekick against a horde of avian warbots; relentless, powerful and berserk! You''ll need skill, strategy and a slick trigger finger. Ascend the tower, execute the Guardians and take down the Cybirdroid Corporation...
@@ -12731,7 +12777,7 @@ INSERT INTO power_up.games VALUES (4613, 'Field Combat', 'Field Combat (フィ�
 INSERT INTO power_up.games VALUES (9839, 'Fieldrunners', null, 0, '2012-05-23');
 INSERT INTO power_up.games VALUES (9840, 'Fieldrunners 2', null, 0, '2013-01-09');
 INSERT INTO power_up.games VALUES (12095, 'Fiendish Freddy''s Big Top O'' Fun', null, 0, '1989-12-30');
-INSERT INTO power_up.games VALUES (22135, 'Fierce Tales: The Dog''s Heart Collector''s Edition', null, 0, null);
+INSERT INTO power_up.games VALUES (22135, 'Fierce Tales: The Dog''s Heart Collector''s Edition', null, 0, '2013-11-20');
 INSERT INTO power_up.games VALUES (2975, 'Fiesta Online', null, 0, '2007-10-31');
 INSERT INTO power_up.games VALUES (700, 'FIFA 06', null, 0, '2005-09-10');
 INSERT INTO power_up.games VALUES (22342, 'FIFA 06: Road to FIFA World Cup', null, 0, '2005-11-15');
@@ -12831,7 +12877,7 @@ Final Approach gives you complete control of the skies around the airports and i
 INSERT INTO power_up.games VALUES (12098, 'Final Blow', null, 0, '1988-12-30');
 INSERT INTO power_up.games VALUES (22079, 'Final Cut: Fade to Black Collector''s Edition', 'Eipix Entertainment proudly invites you to go behind the scenes for another installment in the Final Cut brand.
 
-Your friend, Bernard, contacted you with an urgent cry for help... He''s been investigating dirty dealings between two rival movie studios and suspects the film feud may soon turn deadly. But when you arrive to help him, you find that tragedy has already struck – your friend is dead. Follow the clues he left behind to continue his investigation and avenge his death. But stay on your guard – not everyone is who they seem in this Hidden Object Puzzle Adventure game... including you!', 0, null);
+Your friend, Bernard, contacted you with an urgent cry for help... He''s been investigating dirty dealings between two rival movie studios and suspects the film feud may soon turn deadly. But when you arrive to help him, you find that tragedy has already struck – your friend is dead. Follow the clues he left behind to continue his investigation and avenge his death. But stay on your guard – not everyone is who they seem in this Hidden Object Puzzle Adventure game... including you!', 0, '2015-12-04');
 INSERT INTO power_up.games VALUES (8191, 'Final Doom', 'Far from earth, the UAC recommenced their experiments on on of the moons of Jupiter. A spaceship, mistaken for a supply vexxel on radar, hovered above the base. Hideous demons poured out, blanketing the base with death. All your comrades were quickly slaughtered or zombified. This time, it''s not about survival. It''s about revenge.', 0, '1996-05-30');
 INSERT INTO power_up.games VALUES (7306, 'Final Exam', null, 0, '2013-11-04');
 INSERT INTO power_up.games VALUES (385, 'Final Fantasy', null, 0, '1987-12-17');
@@ -12855,8 +12901,8 @@ INSERT INTO power_up.games VALUES (7413, 'Final Fantasy Explorers', 'Final Fanta
 Players will have the ability to call upon the powers of eidolons like Ifrit and Bahamut, as well as transform into other legendary characters from the Final Fantasy series, such as Cloud, Squall and Lightning, via the Trance feature.', 0, '2014-12-17');
 INSERT INTO power_up.games VALUES (18069, 'Final Fantasy Fables: Chocobo''s Dungeon', null, 0, '2007-12-12');
 INSERT INTO power_up.games VALUES (408, 'Final Fantasy I & II: Dawn of Souls', null, 0, '2004-07-28');
-INSERT INTO power_up.games VALUES (387, 'Final Fantasy II', null, 0, '2002-10-30');
 INSERT INTO power_up.games VALUES (16474, 'Final Fantasy II', null, 0, '1988-12-16');
+INSERT INTO power_up.games VALUES (387, 'Final Fantasy II', null, 0, '2002-10-30');
 INSERT INTO power_up.games VALUES (395, 'Final Fantasy II Anniversary Edition', null, 0, '2006-12-31');
 INSERT INTO power_up.games VALUES (393, 'Final Fantasy III', 'The gameplay of Final Fantasy III combines elements of the first two Final Fantasy games with new features. The turn-based combat system remains in place from the first two games, but hit points are now shown above the target following attacks or healing actions, rather than captioned as in the previous two games. Auto-targeting for physical attacks after a friendly or enemy unit is killed is also featured for the first time. Unlike subsequent games in the series, magical attacks are not auto-targeted in the same fashion.
 
@@ -12864,8 +12910,8 @@ The experience point system featured in Final Fantasy makes a return following i
 
 Final Fantasy III is the first game in the series to feature special battle commands such as "Steal" or "Jump", each of which is associated with a particular job ("Steal" is the Thief''s specialty, whilst "Jump" is the Dragoon''s forte). Certain jobs also feature innate, non-battle abilities, such as the Thief''s ability to open passages that would otherwise require a special key item. Final Fantasy III is also the first game in the series to feature summoned creatures, which are called forth with the "Summon" skill.', 0, '1990-04-26');
 INSERT INTO power_up.games VALUES (400, 'Final Fantasy III DS', null, 0, '2006-08-23');
-INSERT INTO power_up.games VALUES (399, 'Final Fantasy IV', null, 0, '2007-12-19');
 INSERT INTO power_up.games VALUES (16587, 'Final Fantasy IV', null, 0, '1991-07-18');
+INSERT INTO power_up.games VALUES (399, 'Final Fantasy IV', null, 0, '2007-12-19');
 INSERT INTO power_up.games VALUES (406, 'Final Fantasy IV Advance', null, 0, '2005-12-14');
 INSERT INTO power_up.games VALUES (388, 'Final Fantasy IV: The After Years', null, 0, '2009-05-31');
 INSERT INTO power_up.games VALUES (21779, 'Final Fantasy IV: The Complete Collection', null, 0, null);
@@ -12888,8 +12934,8 @@ INSERT INTO power_up.games VALUES (426, 'Final Fantasy VI', 'Final Fantasy VI fi
 
 With plenty of abilities available and the magicite system for controlling spells/summoning, players can develop their characters any way they want. This was also the first Final Fantasy game to include the Ultima Weapon, the most powerful sword of all and a recurring item in subsequent titles within the series.', 0, '1994-04-01');
 INSERT INTO power_up.games VALUES (20655, 'Final Fantasy VI Advance', null, 0, '2005-02-04');
-INSERT INTO power_up.games VALUES (427, 'Final Fantasy VII', 'Set in a dystopian world, Final Fantasy VII''s story centers on mercenary Cloud Strife who joins with several others to stop the megacorporation Shinra, which is draining the life of the planet to use as an energy source. As the story progresses, the situation escalates and Cloud and his allies face Sephiroth, the game''s main antagonist.', 0, '1997-01-30');
 INSERT INTO power_up.games VALUES (11169, 'Final Fantasy VII', null, 0, '2017-12-30');
+INSERT INTO power_up.games VALUES (427, 'Final Fantasy VII', 'Set in a dystopian world, Final Fantasy VII''s story centers on mercenary Cloud Strife who joins with several others to stop the megacorporation Shinra, which is draining the life of the planet to use as an energy source. As the story progresses, the situation escalates and Cloud and his allies face Sephiroth, the game''s main antagonist.', 0, '1997-01-30');
 INSERT INTO power_up.games VALUES (2406, 'Final Fantasy VII (Famicom)', 'Chinese unofficial and unlicensed remake', 0, '2005-12-30');
 INSERT INTO power_up.games VALUES (7398, 'Final Fantasy VII G-Bike', 'A motorcycle chase based action game, set in the world of Final Fantasy VII - Full 3D stages where players must evade obstacles and fight enemies at high speeds
 
@@ -13189,12 +13235,12 @@ https://play.google.com/store/apps/details?id=sk.memex.flappymeatbag1', 0, '2016
 INSERT INTO power_up.games VALUES (21912, 'Flash Focus: Vision Training in Minutes a Day', null, 0, null);
 INSERT INTO power_up.games VALUES (22735, 'Flash Gordon', null, 0, '1983-12-30');
 INSERT INTO power_up.games VALUES (710, 'Flash Point Korea: AH-64D Longbow', null, 0, '1996-11-29');
-INSERT INTO power_up.games VALUES (19833, 'Flashback', 'Flashback is a science fiction platform video game remake of the original 1992 Flashback. The game was developed by the original game designer, Paul Cuisset, with his studio, VectorCell, and published by Ubisoft. The game was released on August 21, 2013 on Xbox Live Arcade.', 0, '2013-08-20');
 INSERT INTO power_up.games VALUES (4275, 'Flashback', 'Throughout the 20th century, an unprecedented political and economic crisis afflicted Earth, leading to the systematic disabling of it''s programme to conquer outer space through lack of funding. The highest priority now was to carryout research into new energy sources, preservation of the enviro- ment and maintenance of the cultural heritage. However, at the dawn of the 21st century, provision of considerable funds from an unknown source released by the politicians of the new, unified government, permitted a return to the space research programme.
 
 The conquest began gradually with the construction of huge, manned artificial satellites. Several lunar bases were created with the view to becoming future Earth colonies within the solar system. The considerable advancements made together with the supply of increasingly greater sums of money allowed man to explore, even as far as the planet Titan.
 
 You play the part of Conrad Hart, controlling his every move through the 6 levels of the game. During your quest, you will come across many different friends and foes whom you may wish to help or vanquish using your gun. you will have to complete many challenges in order to restore your lost memory. Each level features its own unique graphics and hazards, linked by cinematic animation sequences.', 0, '1992-12-30');
+INSERT INTO power_up.games VALUES (19833, 'Flashback', 'Flashback is a science fiction platform video game remake of the original 1992 Flashback. The game was developed by the original game designer, Paul Cuisset, with his studio, VectorCell, and published by Ubisoft. The game was released on August 21, 2013 on Xbox Live Arcade.', 0, '2013-08-20');
 INSERT INTO power_up.games VALUES (17357, 'Flashout 2', 'Flashout 2 offers a fresh and addicting racing experience featuring a redesigned and enhanced Career Mode with story elements, massive improvements in matter of steering, physics, opponent’s AI, and other gameplay elements, an Online Multiplayer Mode and introduces completely new and exciting game modes, such as Destruction, Elimination and Versus!', 0, '2014-05-04');
 INSERT INTO power_up.games VALUES (18795, 'Flat Kingdom', 'Flat Kingdom is filled with fun platforming action, puzzles and some Metroidvania elements. It also features a unique combat system! Instead of directly attacking your foes, you’ll have to touch them while transformed in the correct shape to beat them! Kinda like a rock-paper-scissor game. Every shape in Flat Kingdom beats the opposite, so sharp triangles can defeat the soft circles, heavy squares beat the fragile triangles and squishy circles can triumph over the slow squares. Both enemies and puzzles can be beaten using the correct shape and strategy, so you''ll have to observe them and come up with the best solution. You can also learn new abilities along the way that will help you solve even more puzzles, beat enemies faster and reach new areas that were inaccessible to you before!', 0, '2016-04-06');
 INSERT INTO power_up.games VALUES (5609, 'Flatland: Fallen Angle', 'Inspired by a 19th Century novella, Flatland: Fallen Angle is the noir-esque tale of an isosceles triangle on the run from the law and hungry for revenge! Over ten astonishingly two-dimensional levels, the player must negotiate the various neighbourhoods of Polygonometropolis, and use their angles to slice, splinch and shatter anyone who gets in their way! The gameplay feels a little bit like Pacman, and the narrative approach is reminiscent of Bastion.but it all adds up to an absolutely unique short-form game experience!', 0, '2012-01-31');
@@ -13982,9 +14028,9 @@ INSERT INTO power_up.games VALUES (18619, 'Galactic Empire', 'Galactic Empire is
 INSERT INTO power_up.games VALUES (13065, 'Galactic Empire', null, 0, '1990-12-30');
 INSERT INTO power_up.games VALUES (14084, 'Galactic Gambler', null, 0, null);
 INSERT INTO power_up.games VALUES (14085, 'Galactic Games', null, 0, null);
-INSERT INTO power_up.games VALUES (22488, 'Galactic Gladiators', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (5473, 'Galactic Gladiators', 'Galactic gladiators is a competitive first person shooter set in a brutal future.
 Will you be the one to dominate the arena?', 0, '2015-12-30');
+INSERT INTO power_up.games VALUES (22488, 'Galactic Gladiators', null, 0, '1982-12-30');
 INSERT INTO power_up.games VALUES (17833, 'Galactic Inheritors', 'You have reached to stars to find that the dreams of a new utopia was dead before it began. Ancient technologies spread over the galaxy leave a sword of Damocles hanging over you. Now you must go out into the stars to conquer or perish. GALACTIC INHERITORS is a new space 4X game from Crispon Games and published by Argonauts Interactive. The game focuses on science fiction, strategy and empire building.', 0, '2015-05-01');
 INSERT INTO power_up.games VALUES (22003, 'Galactic Overlord', 'Unite the stars under one galactic empire!
 
@@ -14325,8 +14371,8 @@ It is set to be a single player first-person horror game developed for Virtual R
 In Ghost Theory you are a paranormal investigator and must investigate haunted places based on real locations and discover the truth behind them. The locations include castles, churches, asylums, and graveyards. The locations will be open-ended so you get to choose your path through each area. But there are risks to exploring to much.
 
 The game will focus on stealth and exploration. Instead of getting directly attacked, ghosts will stalk and harass you as you investigate locations. You will have to find ways to avoid or trap them while managing your stress as they attempt to scare you to death. You will have upgradable tools and abilities to use as you progress in the game to help you search and survive.', 0, '2018-12-30');
-INSERT INTO power_up.games VALUES (14092, 'Ghost Town', null, 0, null);
 INSERT INTO power_up.games VALUES (18522, 'Ghost Town', 'In this text adventure you are searching for thirteen treasures in an old abandoned wild west town and its nearby mine.', 0, '1980-12-30');
+INSERT INTO power_up.games VALUES (14092, 'Ghost Town', null, 0, null);
 INSERT INTO power_up.games VALUES (1348, 'Ghost Trick: Phantom Detective', 'Ghost Trick: Phantom Detective is a puzzle/adventure game for the Nintendo DS and iOS. It was developed mainly by Shu Takumi, the man behind the Ace Attorney Series. Game''s story centers on the protagonist Sissel, and his ghost''s struggle to discover who he was when he was alive and who killed him. The player assumes the role of this ghost, who has the ability to perform various Ghost Tricks to solve puzzles and navigate the world around him.', 0, '2010-06-18');
 INSERT INTO power_up.games VALUES (10361, 'Ghost Whisperer', 'Ghost Whisperer consists of 2 different stories centered around the characters and themes raised in the hit television series. In Ghost Whisperer, players will take on the role of Melinda Gordon (played by Jennifer Love Hewitt on the television series) as she responds to the pleas for help from several different spirits who have unresolved issues that must be addressed before the ghosts are able to cross over to the other side. Other characters from the series (Melinda’s husband Jim, business partner and friend Delia, Delia’s son Ned, and ghost listener Eli) also play prominent roles in the game.', 0, null);
 INSERT INTO power_up.games VALUES (18815, 'Ghostbusters', 'Ghostbusters, is a third-person action role-playing game positively charged for thrilling couch co-op with up to four players locally. As rookie Ghostbusters, players can level up their characters’ gear and abilities by tackling objectives, defeating ghastly creatures and discovering hidden collectibles in Manhattan’s most haunted haunts. There are four heroes to choose from, and each has his or her own unique personality and play style, bringing special strengths to support the team.', 0, '2016-07-11');
@@ -14554,8 +14600,8 @@ INSERT INTO power_up.games VALUES (8803, 'God Hand', null, 0, '2006-09-13');
 INSERT INTO power_up.games VALUES (8949, 'God Mode', null, 0, '2013-03-31');
 INSERT INTO power_up.games VALUES (23415, 'God of Light', null, 0, null);
 INSERT INTO power_up.games VALUES (2526, 'God of Thunder', null, 0, '1993-12-30');
-INSERT INTO power_up.games VALUES (549, 'God of War', 'Similar to franchises like Devil May Cry, Rygar, and Castlevania, the game draws its inspiration from ancient Greek mythology and boasts a heavy emphasis on exploration and battle strategy. Broken into three to four acts, the game also has a strong focus on story-telling and boast tons of magic spells and abilities. Described as "Clash of the Titans meets Heavy Metal", God of War equips its hero with a pair of sword-like chain weapons that can grab enemies, perform multi-hit combos, and pull off a variety of different aerial attacks. Slight platforming elements and an energy collection system similar to that of Onimusha have been incorporated as well, and players are even able to use certain elements of their fallen enemies as a weapon (re: Medusa''s head, for instance, can be used to turn enemies to stone after you''ve defeated her).', 0, '2005-03-21');
 INSERT INTO power_up.games VALUES (19560, 'God of War', '"It is a new beginning for Kratos.  Living as a man, outside the shadow of the gods, he seeks solitude in the unfamiliar lands of Norse mythology.  With new purpose and his son at his side, Kratos must fight for survival as powerful forces threaten to disrupt the new life he has created..."', 0, null);
+INSERT INTO power_up.games VALUES (549, 'God of War', 'Similar to franchises like Devil May Cry, Rygar, and Castlevania, the game draws its inspiration from ancient Greek mythology and boasts a heavy emphasis on exploration and battle strategy. Broken into three to four acts, the game also has a strong focus on story-telling and boast tons of magic spells and abilities. Described as "Clash of the Titans meets Heavy Metal", God of War equips its hero with a pair of sword-like chain weapons that can grab enemies, perform multi-hit combos, and pull off a variety of different aerial attacks. Slight platforming elements and an energy collection system similar to that of Onimusha have been incorporated as well, and players are even able to use certain elements of their fallen enemies as a weapon (re: Medusa''s head, for instance, can be used to turn enemies to stone after you''ve defeated her).', 0, '2005-03-21');
 INSERT INTO power_up.games VALUES (20068, 'God of War Collection', null, 0, null);
 INSERT INTO power_up.games VALUES (551, 'God of War II', null, 0, '2007-03-12');
 INSERT INTO power_up.games VALUES (499, 'God of War III', null, 0, '2010-03-15');
@@ -14628,9 +14674,9 @@ Despite its name and being part of the James Bond universe, the game has no rela
 INSERT INTO power_up.games VALUES (19122, 'GoldenLand 2', null, 0, null);
 INSERT INTO power_up.games VALUES (12601, 'Goldrunner', null, 0, '1987-12-30');
 INSERT INTO power_up.games VALUES (12602, 'Goldrunner II', null, 0, '1989-12-30');
-INSERT INTO power_up.games VALUES (20382, 'Golf', null, 0, '1995-10-31');
 INSERT INTO power_up.games VALUES (18008, 'Golf', 'This game features a simplified type of golf. The area of the hole is rendered in light green, all areas outside the hole are rendered in a medium blue. On the larger holes the green is rendered as a dark green hole circle with the hole near the center. There are several obstacles that can appear, including trees, sand traps, and water features. On difficulty A, balls that go out of bounds stay there and must be hit back in; on difficulty B, the balls stick to the edge of the area. Balls hit near the water can soar over it, or if they land into the water, the ball is placed back where the shot was taken. Balls hit into sand traps will stick to the sides of the traps, and it takes a more powerful swing to free the ball. The player only uses one club - the amount of time the fire button is held down determines how much power the ball will be hit with, and how far it will go. The player''s golfer can be moved anywhere on the field, with his golf club always facing the ball. On the larger hole the goal is to hit the ball on to the green. Once the player reaches the green, the game will zoom in on the green. The green is rendered as a light green circle, with a black dot as the actual hole. Once the ball reaches a hole, the player moves on to the next hole.', 0, '1980-12-30');
 INSERT INTO power_up.games VALUES (3399, 'Golf', null, 0, '1985-10-17');
+INSERT INTO power_up.games VALUES (20382, 'Golf', null, 0, '1995-10-31');
 INSERT INTO power_up.games VALUES (23133, 'Golf 1999', null, 0, null);
 INSERT INTO power_up.games VALUES (23465, 'Golf Resort Tycoon II', null, 0, null);
 INSERT INTO power_up.games VALUES (19837, 'Golf with Friends', 'Golf With Your Friends is a challenging, multiplayer mini golf game for up to 12 players.', 0, null);
@@ -14972,7 +15018,7 @@ INSERT INTO power_up.games VALUES (21687, 'Grodba', null, 0, '1984-10-31');
 INSERT INTO power_up.games VALUES (3937, 'Grooverider: Slot Car Thunder', null, 0, '2003-09-25');
 INSERT INTO power_up.games VALUES (4898, 'Groovin'' Blocks', null, 0, '2008-09-07');
 INSERT INTO power_up.games VALUES (16149, 'Grotesque Tactics 2: Dungeons and Donuts', 'Grotesque Tactics 2: Dungeons &amp; Donuts is the successor to the celebrated RPG-parody Grotesque Tactics. Experience an ironic story-driven RPG with humorous dialogue-puzzles in the style of Monkey Island as well as a strategic combat system, where your party members are controlled simultaneously.', 0, '2011-09-30');
-INSERT INTO power_up.games VALUES (18914, 'Grotesque Tactics: Evil Heroes', null, 0, null);
+INSERT INTO power_up.games VALUES (18914, 'Grotesque Tactics: Evil Heroes', 'Grotesque Tactics is a highly addictive tactical RPG combining elements of popular Western and Asian console RPGs.', 0, '2010-10-14');
 INSERT INTO power_up.games VALUES (16148, 'Grotesque Tactics: Evil Heroes', 'Grotesque Tactics is a story driven, satirical RPG with a strategic combat system. A party of 10 anti-heroes are fighting in a grotesque world that combines the features and clichés of Western and Asian Strategy RPGs like Final Fantasy Tactics, Heroes of Might &amp; Magic and Fire Emblem.', 0, '2010-09-04');
 INSERT INTO power_up.games VALUES (19750, 'Ground Breakers', null, 0, '2016-06-14');
 INSERT INTO power_up.games VALUES (734, 'Ground Control', null, 0, '2000-05-31');
@@ -14981,7 +15027,7 @@ INSERT INTO power_up.games VALUES (8786, 'Ground Control: Dark Conspiracy', null
 INSERT INTO power_up.games VALUES (10379, 'Ground Pounders: Tarka', 'Ground Pounders: Tarkan Campaign lets players control a third faction, the Tarka Imperial Army. Seen as an AI opponent in the base game, the Tark army is now comprised of dozens of different unit types. You will lead your ground pounders across a variety of worlds, increase their experience levels and abilities over the course of two campaigns, and use them to unlock special action cards that can add special effects to single-player games, or to up the stakes in your cross-platform multi-player battles.', 0, null);
 INSERT INTO power_up.games VALUES (5390, 'Ground Zero: Texas', null, 0, '1993-10-31');
 INSERT INTO power_up.games VALUES (22101, 'GroundsKeeper 2', 'Survive the invasion of the supernatural, the robots, the monsters.. the world needs you!
-★Paranerds 9/10 – “It’s fast-paced, easy to play and addicting, all the while being charming, funny and filled with fantastic music and art”★TouchArcade 4/5 – “Groundskeeper2 is an entertaining action game that will keep you busy blasting bots for bits and bobs for a while”', 0, null);
+★Paranerds 9/10 – “It’s fast-paced, easy to play and addicting, all the while being charming, funny and filled with fantastic music and art”★TouchArcade 4/5 – “Groundskeeper2 is an entertaining action game that will keep you busy blasting bots for bits and bobs for a while”', 0, '2014-04-08');
 INSERT INTO power_up.games VALUES (5856, 'Group S Challenge', null, 0, '2003-11-10');
 INSERT INTO power_up.games VALUES (8774, 'Grow Home', 'In Grow Home you play as BUD (Botanical Utility Droid), a robot on a mission to save his home planet by harvesting the seeds of a giant alien plant. On his quest BUD will discover a beautiful world of floating islands that are home to some rather strange plants and animals. 
 Grow the giant plant and use your unique climbing abilities to reach ever higher ground, but be careful…one wrong move and it’s a long way down!', 0, '2015-02-03');
@@ -15196,8 +15242,8 @@ INSERT INTO power_up.games VALUES (13187, 'Guns, Gore & Cannoli', 'Welcome to Th
 Prepare yourself for a non-stop, action-packed, completely over-the-top, fast-paced, platform game. Set against the gangster heyday of the roaring twenties. Lose yourself in an exciting, elaborate tale of the underground and underworld. Experience friendship, betrayal, vengeance, and witness first hand the rise and fall of a criminal mastermind.
 This is survival horror, wiseguy style... Capiche?', 0, '2015-04-29');
 INSERT INTO power_up.games VALUES (17010, 'Gunscape', 'Gunscape provides a toolbox full of inconic weapons, monsters and level elements as the foundation for players to build co-op, and single-player, FPS levels or MP Arenas in the most intuitive way possible. It does so by offering a series of simple tools based on a block-placement interface that many gamers will be familiar with. Unlike similar tools Gunscape aims to empower its authors to enjoy the process of abstract level design by imposing refreshing restraints that map communities enjoy. Rather than building a game players will build a level within a game that features robust action and a vast array of weapons, enemies and components.', 0, '2016-03-01');
-INSERT INTO power_up.games VALUES (20295, 'Gunship', null, 0, '1996-12-30');
 INSERT INTO power_up.games VALUES (12128, 'Gunship', null, 0, '1989-12-30');
+INSERT INTO power_up.games VALUES (20295, 'Gunship', null, 0, '1996-12-30');
 INSERT INTO power_up.games VALUES (12129, 'Gunship 2000', 'Gunship 2000 is a helicopter simulation game. The game consists of a set of missions mostly search and destroy or survival style. The simulation engine is quite real and complex to understand but simulates almost all aspects of the war environment. Your main purpose is to destroy the primary and secondary targets. You are not rewarded for missing those objects, even if you manage to destroy everything else. The really successful pilots are rewarded for hitting the targets and getting back in less than thirty minutes.', 0, '1993-12-30');
 INSERT INTO power_up.games VALUES (10383, 'Gunship!', 'Fly low and strike deep in the re-invention of the Gunship flight combat franchise. In Gunship!, you''re the point man for WWIII -- Russian forces have amassed on one side, NATO on the other in a flashpoint conflict in Eastern Europe. You are about to deploy the most devastating weapon in the inventory of war: the helicopter Gunship! Finesse, raw power, stealth and speed blend in a high-wire balancing act of exacting proportions. In the 21st century, the fate of war can turn on one micro-engagement in the epicenter of action.', 0, null);
 INSERT INTO power_up.games VALUES (19317, 'Gunslinger Stratos', 'First instalment in the arcade series "Gunslinger Stratos": it is a third-person shooter developed by Byking (subsidiary of Taito) and published by Square Enix. The players fight in 4 VS 4 online matches.
@@ -15522,8 +15568,8 @@ INSERT INTO power_up.games VALUES (16799, 'Haunted', null, 0, '2014-06-30');
 INSERT INTO power_up.games VALUES (13725, 'Haunted Abbey', null, 0, null);
 INSERT INTO power_up.games VALUES (1117, 'Haunted Castle', null, 0, '1988-01-31');
 INSERT INTO power_up.games VALUES (14107, 'Haunted Hedges', null, 0, null);
-INSERT INTO power_up.games VALUES (11517, 'Haunted House', 'Haunted House is one of the 12 original games that were shipped with the Magnavox Odyssey system. It runs on Cartridge No.4 and uses clue cards with an overlay.', 0, '1972-12-30');
 INSERT INTO power_up.games VALUES (4909, 'Haunted House', null, 0, '1982-12-30');
+INSERT INTO power_up.games VALUES (11517, 'Haunted House', 'Haunted House is one of the 12 original games that were shipped with the Magnavox Odyssey system. It runs on Cartridge No.4 and uses clue cards with an overlay.', 0, '1972-12-30');
 INSERT INTO power_up.games VALUES (17673, 'Haunted House: Cryptic Graves', 'Inspired by the classic Atari hit of the same name, the new Haunted House: Cryptic Graves™ is a terrifying, first-person, adventure-horror game filled with cryptic puzzles, supernatural entities and paranormal activity.', 0, '2014-10-01');
 INSERT INTO power_up.games VALUES (16552, 'Haunted Memories', 'Every time we wake up on the other side we have a small chance of falling in to never ending dream. Honestly – which side is the true one? We wake up in our beds, but is it possible to remember second awakening? You remember well what you have done in your dream, what happend, who was there and what was your goal or desire. Yes, but WHEN you have woke up? When you have crossed the barrier? How you have entered that world and why it often ends in some sort of tragedy, that pushes you out? The only thing that left are memories of dream. Shattered memories, Haunted Memories.', 0, '2013-09-04');
 INSERT INTO power_up.games VALUES (14605, 'Haunting Ground', 'The story follows Fiona Belli, a young girl who the player must guide through Belli Castle and its immediate environments in an effort to escape. Along the way, players must solve puzzles, unlock doors and evade, hide or attempt to fight against the castle''s inhabitants. Fiona is accompanied by Hewie, a White Shepherd and the two must work as a team to solve certain puzzles and outwit their pursuers.', 0, '2005-04-20');
@@ -15976,7 +16022,7 @@ INSERT INTO power_up.games VALUES (108, 'Hidden & Dangerous: Devil''s Bridge', n
 INSERT INTO power_up.games VALUES (16176, 'Hidden Expedition: Amazon', 'Big Fish Games Studios takes you on an Adventure into the stunning world of the Amazon with the Hidden Expedition team in search of a missing professor. A tattered map referencing the legendary Beetle Temple is your only clue as you begin your adventure deep into the Amazon Rain forest. Explore cities, temples, and ruins while unlocking the secrets of an ancient yet advanced civilization. This adventure is the largest yet for the Hidden Expedition team, and the discovery of the Beetle Temple is just the beginning.', 0, '2010-03-02');
 INSERT INTO power_up.games VALUES (22080, 'Hidden Expedition: Crown of Solomon Collector''s Edition', 'The expedition continues... Track down the fragments of King Solomon''s crown and foil a madman''s plot in this exciting follow-up to the bestselling series!
 
-You''ve stopped the Robideaux family from stealing the Hope Diamond and using its shards for their own twisted ends. But before Robideaux''s cargo can make it safely back to the museum where it belongs, a criminal has stolen a valuable artifact. It''s a piece of King Solomon''s crown, long broken apart, its fragments scattered across the globe. Can you pick up the pieces in time?', 0, null);
+You''ve stopped the Robideaux family from stealing the Hope Diamond and using its shards for their own twisted ends. But before Robideaux''s cargo can make it safely back to the museum where it belongs, a criminal has stolen a valuable artifact. It''s a piece of King Solomon''s crown, long broken apart, its fragments scattered across the globe. Can you pick up the pieces in time?', 0, '2014-07-03');
 INSERT INTO power_up.games VALUES (16177, 'Hidden Expedition: Everest', 'Fresh from a successful exploration of the wreck of the Titanic, the Hidden Expedition Club will pit one of its stellar members against a formidable group of opponents in a race to the summit of Everest. Other groups will battle you to be the first to summit Mount Everest. Expert Everest climber Ed Viesturs will assist you along the way. Explore mysteries of the world as you find hidden clues. Race to the Roof of the World!', 0, '2010-03-02');
 INSERT INTO power_up.games VALUES (16178, 'Hidden Expedition: Titanic', 'On April 14, 1912, the great steamship RMS Titanic struck an iceberg and within hours it sank to the bottom of the Atlantic Ocean. As part of the Hidden Expedition Adventure League, it`s your job to explore the wreckage of this once-majestic ship and collect antique artifacts for the Titanic Museum. Through 14 diving missions you will scour 17 locations on the ship for cleverly-hidden clues that will lead you to the ultimate artifact: The Crown Jewels. Get ready to lose yourself in a historic adventure of epic proportions!', 0, '2010-03-02');
 INSERT INTO power_up.games VALUES (16328, 'Hidden in Plain Sight', 'Hidden in Plain Sight is a local-multiplayer stealth party game. Blend into the crowd of AI characters and eliminate the other players before they eliminate you!', 0, '2015-07-15');
@@ -16060,8 +16106,8 @@ INSERT INTO power_up.games VALUES (1049, 'Hitman: Contracts', 'Hitman: Contracts
 INSERT INTO power_up.games VALUES (19488, 'Hitman: Sniper', null, 0, '2014-12-30');
 INSERT INTO power_up.games VALUES (5567, 'Hitman: Sniper Challenge', 'Get ready to pull the trigger on a completely new chapter in the award-winning Hitman series. Be the ultimate assassin in the Hitman Sniper Challenge by testing your reactions, focus and skill in a stand-alone hit available only for Hitman Absolution pre-purchases. Unlock weapons and upgrades that can be carried over into HITMAN: ABSOLUTION and compare your scores with other players around the globe using online leaderboards.', 0, '2012-05-14');
 INSERT INTO power_up.games VALUES (16232, 'Hitogata Happa', 'Shoot ''em up with the 3rd  game in the Gundemonium Collection series. Hitogata Happa is considered one of the hardest doujin style shooters ever! – Unlike the first two games, Hiitogata Happa is a vertical scrolling upward shooter, the action in this game is a visual mish-mash of weaponry that will give your senses a total overload. Threatened by an invading army who is terrorizing the land, Rosa enlisted the magic of a witch, Kreutzer – who has charmed her own army of magic dolls, each with extreme power and crazy weapons.  Use these dolls to take revenge on the invaders as you blast through six, intense stages. Choose from twelve playable characters (four unlockable), each with their own special abilities, and unlock secret game features.', 0, '2011-08-01');
-INSERT INTO power_up.games VALUES (14113, 'Hive', null, 0, null);
 INSERT INTO power_up.games VALUES (5604, 'Hive', 'Hive is a board game with a difference. There is no board! The pieces are added to the playing area thus creating the board. As more and more pieces are added the game becomes a fight to see who can be the first to capture (surround) the opposing Queen Bee.', 0, '2013-11-14');
+INSERT INTO power_up.games VALUES (14113, 'Hive', null, 0, null);
 INSERT INTO power_up.games VALUES (20874, 'Hive Jump', '"Hive Jump is one part Spelunky, one part XCOM, and all parts alien ass-kicking. You and your friends assume the role of JUMPERS, and blast your way through subterranean alien hives in run-and-gun 2D platforming action. Kill aliens, avoid traps, collect resources, and defeat the hive queen lurking at the bottom of the hive to complete the JUMP."', 0, '2016-12-30');
 INSERT INTO power_up.games VALUES (11631, 'Hiveswap', 'Based on the hit webcomic Homestuck, Hiveswap is an episodic 3D point-and-click adventure game about a young human girl named Joey who gets sucked through a portal to the alien planet of Alternia.', 0, null);
 INSERT INTO power_up.games VALUES (20995, 'HMS Marulken', null, 0, null);
@@ -16197,8 +16243,8 @@ INSERT INTO power_up.games VALUES (9616, 'Hong Kong 97', 'Hong Kong 97 is a 1995
 The game also achieved Number One "Wacky Japanese Game of All Time" in the XLEAGUE.TV video game TV show Wez and Larry''s Top Tens and was featured in an episode of the Angry Video Game Nerd.', 0, '1995-12-30');
 INSERT INTO power_up.games VALUES (13879, 'Hoodoo Voodoo', null, 0, null);
 INSERT INTO power_up.games VALUES (20820, 'Hoodwink', null, 0, null);
-INSERT INTO power_up.games VALUES (8704, 'Hook', 'Hook is an average game based on the movie of the same name, which is a modernized version of the classic tale. Peter Pan, who is now living a normal adult life, is compelled to relive his roguish past when his old nemesis Captain Hook kidnaps his children. Vibrant graphics, charming Tinkerbell as your sidekick, and decent puzzles can''t hide the below-average writing, awkward interface, and the fact that the adventure is over all too soon.', 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (10225, 'HOOK', 'HOOK is a minimal, relaxing, puzzle game.', 0, '2015-02-14');
+INSERT INTO power_up.games VALUES (8704, 'Hook', 'Hook is an average game based on the movie of the same name, which is a modernized version of the classic tale. Peter Pan, who is now living a normal adult life, is compelled to relive his roguish past when his old nemesis Captain Hook kidnaps his children. Vibrant graphics, charming Tinkerbell as your sidekick, and decent puzzles can''t hide the below-average writing, awkward interface, and the fact that the adventure is over all too soon.', 0, '1992-12-30');
 INSERT INTO power_up.games VALUES (4914, 'Hooked! Real Motion Fishing', null, 0, '2007-09-26');
 INSERT INTO power_up.games VALUES (14735, 'Hoopla Gems', 'Hoopla Gems is a unique puzzle game, featuring 20 LEVELS and 60 MISSIONS where the objective is to match the right colour with their shapes. Remove as many shapes as possible with a single move. The shapes keep moving down on every turn and all you have to do is stop them from filling up the whole screen. 
 
@@ -16510,7 +16556,7 @@ INSERT INTO power_up.games VALUES (19844, 'I Spy Spooky Mansion', 'Discover a th
 INSERT INTO power_up.games VALUES (14143, 'I Wanna Be the Guy', 'I Wanna Be the Guy: The Movie: The Game is a 2D platform indie freeware video game created by independent developer Michael "Kayin" O''Reilly for Microsoft Windows using Multimedia Fusion 2. First released in October 2007, the game is not in active development despite being listed as a beta, though the source code for the game was released by Kayin in November 2011.
 IWBTG is most famous for its difficulty. Most of the landscape is engineered specifically to kill the player character. Alongside a traditional range of recognizable dangers, such as spikes and pits, there are many less obvious threats as well, most of which are all but impossible to avoid without either previous knowledge or trial and error', 0, '2007-09-30');
 INSERT INTO power_up.games VALUES (17862, 'I Will Escape', 'You are Brian Lowfield, you awaken on the cold floor of a prison cell with no recollection of what happened in the past 24 hours. You''ve lost your memory and you''re completely stripped from your gear. On the floor, you find a picture of a young girl. You don''t know who she is, yet she looks familiar to you. You have no idea what''s going on, but one thought strongly resounds in your mind: I Will Escape!', 0, '2014-10-31');
-INSERT INTO power_up.games VALUES (23884, 'I Wish You Rain', 'Dark 3D (static camera) platformer - beat-em-up with profound fighting system and unusual graphics.', 0, '2017-02-28');
+INSERT INTO power_up.games VALUES (23884, 'I Wish You Rain', 'Dark 3D (1-axis camera) platformer - beat-em-up with profound fighting system and unusual graphics.', 0, '2017-02-28');
 INSERT INTO power_up.games VALUES (22345, 'I''m Joshua', '- “The United States of America from the 19th Century”, is portrayed in evocative graphics which is displayed in pixel art.
 - An original story with an engaging and addictive narrated adventure, which is composed of 3 chapters. Experience the opportunity to fight for your freedom and that of your people!
 - There are dozens of characters to communicate with; will you manage to figure out who really wants help? Remember that trusting the wrong person may be fatal!
@@ -16654,28 +16700,4 @@ INSERT INTO power_up.games VALUES (3953, 'Ikaruga', 'In this vertical scrolling 
 
 Ikaruga is a balls-hard shmup with lots of difficulty even at the easiest level, and lots of replay value for those willing to face the challenge.', 0, '2001-12-19');
 INSERT INTO power_up.games VALUES (23873, 'Ikenfell', 'A pixel RPG based on a magic school.', 0, '2018-05-31');
-INSERT INTO power_up.games VALUES (754, 'IL-2 Sturmovik', 'Soaring through deadly realistic 3D landscapes, pilots can engage in numerous action-packed single-play missions involving air-to-air, air-to-ground, search &amp; destroy and escort missions.', 0, '2001-11-17');
-INSERT INTO power_up.games VALUES (23004, 'IL-2 Sturmovik Complete Edition', null, 0, null);
-INSERT INTO power_up.games VALUES (5563, 'IL-2 Sturmovik: 1946', 'Oleg Maddox’s world famous IL-2 Sturmovik™ series of flight simulators continues to expand. The latest offering, IL-2 1946, adds 36 new planes, four new gigantic maps, over a hundred new ground objects, and nearly 200 new campaign missions. This new opus also includes all of the previous Il-2 series content. What years ago began as a one-aircraft study sim is now an astonishing anthology, with a whopping 229 flyable aircraft and over 300 aircraft total! Not to mention that players will have the opportunity to get a first glance at the future of the series arriving next year: Storm of War™ Battle of Britain via exclusive bonus videos.', 0, '2006-12-31');
-INSERT INTO power_up.games VALUES (17995, 'IL-2 Sturmovik: Battle of Stalingrad', 'IL-2 Sturmovik: Battle of Stalingrad is the continuation of the legendary IL-2 Sturmovik series that has set the standard for combat flight games for more than 10 years. This new entry into the series will offer virtual pilots an even more accurate simulation of the legendary air battles of World War II. A new higher level of physics modeling, damage modeling and aerodynamics has been achieved which allows for far greater realism than in any other title.', 0, null);
-INSERT INTO power_up.games VALUES (7016, 'IL-2 Sturmovik: Birds of Prey', 'Wings of Prey is based around the large-scale aerial combat and ground military operations of World War II. Players can participate in some of the war’s most famous battles piloting fighters, battle planes and bombers across a range of thrilling missions. There are six theatres of war to engage in – The Battle of Britain, Stalingrad, Ardennes, Berlin, Sicily and Korsun'' representing the main airborne battles of World War II in Europe.
-
-Wings of Prey also boasts an all new damage effects engine as well as advanced environmental visuals enriching the game play. Wings of Prey features hundreds of airplanes taking part in air battles. The unique environmental engine also produces highly detailed, realistic landscapes that allow players to see breathtaking ground support actions.', 0, '2009-09-03');
-INSERT INTO power_up.games VALUES (755, 'IL-2 Sturmovik: Forgotten Battles', 'IL-2 Sturmovik: Forgotten Battles is a combat flight simulator video game, and sequel to the 2001 combat flight simulation of the year IL-2 Sturmovik. Unlike the first instalment, Forgotten Battles focuses on the Soviet-Finnish Continuation War of 1941-1944.', 0, '2003-03-01');
-INSERT INTO power_up.games VALUES (756, 'IL-2 Sturmovik: Forgotten Battles - Ace', 'Touted as the most realistic WWII flight simulation game to date, IL-2: Forgotten Battles soars to new heights with this exhilarating expansion pack.', 0, '2004-03-01');
-INSERT INTO power_up.games VALUES (11662, 'Illuminascii', 'Illuminascii - a first person shooter with an ascii text based visual style, featuring randomly generated content and roguelike / rpg elements. Monsters, weapons, armor, levels and cutscenes are all created with random characteristics.', 0, '2015-08-10');
-INSERT INTO power_up.games VALUES (3016, 'Illusion of Gaia', 'Journey into the dark side of an ancient civilization.
-
-Radiating an ominous light in its path, the Chaos Comet threatens the existence of the planet. Battles erupt and a tentative peace is returned to the lands. Danger lurks as the Chaos Comet orbits and dreadful beasts lie awaiting.
-
-In the Age of Exploration a boy named Will is born. Tragedy strikes during an expedition to the Tower of Babel separating Will from his father. Telekinetic forces awaken as Will returns to South Cape. Armed with his transformation abilities of two great warriors, Will must save the planet.
-
-Gaia, Will''s guiding spirit bestows magical powers and advice along his journey. With the help of his friends Will must battle relentless enemies and solve the puzzles of the ancient ruins. Patience and knowledge are essential to reunite this father and son.', 0, '1993-11-26');
-INSERT INTO power_up.games VALUES (7086, 'ilomilo', 'ilomilo is a puzzle game developed by Southend Interactive and Microsoft Game Studios. It was released on Windows Phone 7 on November 8, 2010 for AT&amp;T customers.[2] On November 26, 2010, a "secret" website was made available where players could get a code to download a trial and purchase the game early, while the game was officially released on Xbox Live Arcade on January 5, 2011.', 0, '2012-12-03');
-INSERT INTO power_up.games VALUES (4924, 'Imabikisō', null, 0, '2007-10-22');
-INSERT INTO power_up.games VALUES (10452, 'Image Fight', null, 0, null);
-INSERT INTO power_up.games VALUES (13007, 'Imagination', null, 0, null);
-INSERT INTO power_up.games VALUES (4926, 'Imagine Babyz', null, 0, '2007-10-22');
-INSERT INTO power_up.games VALUES (17111, 'Imagine Earth', 'Imagine Earth is a real-time simulation game. Whole planets become your playground and keep the excitement going with strategy and puzzle element.  Build up huge civilizations and deal with the self-inflicted climate change. It all depends on your individual development plans and growth management abilities.', 0, '2014-04-01');
-INSERT INTO power_up.games VALUES (4927, 'Imagine Fashion Party', null, 0, '2009-01-19');
 COMMIT;

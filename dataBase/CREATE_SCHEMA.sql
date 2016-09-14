@@ -4,23 +4,24 @@ BEGIN;
 CREATE SCHEMA IF NOT EXISTS power_up;
 
 -- Drop of relationship tables
-DROP TABLE IF EXISTS power_up.game_genres;
-DROP TABLE IF EXISTS power_up.game_consoles;
-DROP TABLE IF EXISTS power_up.game_keywords;
-DROP TABLE IF EXISTS power_up.game_developers;
-DROP TABLE IF EXISTS power_up.game_publishers;
+DROP TABLE IF EXISTS power_up.game_genres CASCADE;
+DROP TABLE IF EXISTS power_up.game_platforms CASCADE;
+DROP TABLE IF EXISTS power_up.game_keywords CASCADE;
+DROP TABLE IF EXISTS power_up.game_developers CASCADE;
+DROP TABLE IF EXISTS power_up.game_publishers CASCADE;
 
--- Drop of entities tables
-DROP TABLE IF EXISTS power_up.games;
-DROP TABLE IF EXISTS power_up.genres;
-DROP TABLE IF EXISTS power_up.consoles;
-DROP TABLE IF EXISTS power_up.companies;
+-- Drop of entity tables
+DROP TABLE IF EXISTS power_up.games CASCADE;
+DROP TABLE IF EXISTS power_up.genres CASCADE;
+DROP TABLE IF EXISTS power_up.platforms CASCADE;
+DROP TABLE IF EXISTS power_up.companies CASCADE;
+DROP TABLE IF EXISTS power_up.keywords CASCADE;
 
--- DROP TABLE IF EXISTS power_up.ratings CASCADE;
+--DROP TABLE IF EXISTS power_up.ratings;
 
 
 
--- Creation of entities tables
+-- Creation of entity tables
 CREATE TABLE IF NOT EXISTS power_up.games(
 	id 		  	serial not null primary key,
 	name 		varchar,
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS power_up.genres(
 	id 	 	serial not null primary key,
 	name	varchar
 );
-CREATE TABLE IF NOT EXISTS power_up.consoles(
+CREATE TABLE IF NOT EXISTS power_up.platforms(
 	id 		serial not null primary key,
 	name	varchar
 );
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS power_up.companies (
 	name 	varchar
 );
 
--- Creation of relationships tables
+-- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS power_up.game_genres (
 	id 		serial not null primary key,
 	game_id	integer not null,
@@ -51,22 +52,27 @@ CREATE TABLE IF NOT EXISTS power_up.game_genres (
 	FOREIGN KEY (genre_id) REFERENCES power_up.genres (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(game_id,genre_id)
 );
-CREATE TABLE IF NOT EXISTS power_up.game_consoles (
+CREATE TABLE IF NOT EXISTS power_up.game_platforms (
 	id 	 		serial not null primary key,
 	game_id		integer not null,
-	console_id	integer not null,
+	platform_id	integer not null,
 	release_date date not null,
 
 	FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (console_id) REFERENCES power_up.consoles (id) ON DELETE CASCADE ON UPDATE CASCADE,
-	UNIQUE(game_id,console_id, release_date)	--The same game can be released for the same console multiple times (i.e. remaster)
+	FOREIGN KEY (platform_id) REFERENCES power_up.platforms (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	UNIQUE(game_id,platform_id, release_date)	--The same game can be released for the same platform multiple times (i.e. remaster)
+);
+CREATE TABLE IF NOT EXISTS power_up.keywords (
+	id 		serial not null primary key,
+	name 	varchar not null
 );
 CREATE TABLE IF NOT EXISTS power_up.game_keywords (
 	id 		serial not null primary key,
 	game_id	integer not null,
-	name 	varchar,
+	keyword_id 	integer not null,
 
-	FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (keyword_id) REFERENCES power_up.keywords (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS power_up.game_developers (
 	id 			serial not null primary key,
