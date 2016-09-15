@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.model.Filter;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -46,9 +49,16 @@ public class MainController {
 
 
     @RequestMapping("/gameSearch")
-    public ModelAndView searchGameByName(@RequestParam("name") String name) {
+    public ModelAndView searchGameByName(@RequestParam("name") String name,
+                                         @RequestParam(value="genre", required = false) String filterGenre,
+                                         @RequestParam(value = "publisher", required = false) String filterPublisher
+
+                                        ){
         final ModelAndView mav = new ModelAndView("gameSearch");
-       Collection<Game> searchedGame = gameService.findByName(name);
+        HashSet<Filter> filters = new HashSet<Filter>();
+        if(filterGenre!=null) filters.add(new Filter(Filter.FilterCategory.GENRES,filterGenre));
+        if(filterPublisher!=null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS,filterPublisher));
+       Collection<Game> searchedGame = gameService.searchGame(name, filters);
        mav.addObject("gameList", searchedGame);
         return mav;
     }

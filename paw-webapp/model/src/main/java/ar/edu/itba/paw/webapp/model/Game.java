@@ -17,10 +17,8 @@ public class Game {
     private ArrayList<String> platforms;
     private String summary;
     private String name;
+    public String getSummary() {return summary;}
 
-    public String getName() {
-        return name;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -28,6 +26,10 @@ public class Game {
 
     public ArrayList<Review> getReviews() {
         return reviews;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setReviews(ArrayList<Review> reviews) {

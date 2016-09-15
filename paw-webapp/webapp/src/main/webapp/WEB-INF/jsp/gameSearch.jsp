@@ -15,6 +15,8 @@
         <c:forEach var="game" items="${gameList}">
             <c:out value="${game.name}" />
             <br />
+            <c:out value="${game.summary}" />
+            <br />
         </c:forEach>
 
     </c:otherwise>

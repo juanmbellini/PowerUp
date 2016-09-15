@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -28,17 +27,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("");
+        dataSource.setPassword("jorge");
 
         return dataSource;
     }
+
     //MAGIA! http://stackoverflow.com/questions/14299149/how-to-use-spring-mvcs-mvcresources-tag-in-a-java-application-context/17013442#17013442
 
     @Override
