@@ -20,12 +20,12 @@
                 <h5 class="header col s12 light">Something cool and inspiring about this site</h5>
             </div>
             <div class="row">
-                <%--<a href="<c:url value="/results" /> " class="btn-large waves-effect waves-light orange">Turn this into a search bar</a>--%>
+                <%--<a href="<c:url value="/results" /> " class="btn-large waves-effect waves-light orange">Turn this into a search2 bar</a>--%>
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <form id="search-form">
                         <div class="input-field">
                             <input name="search" type="search" required>
-                            <%--<label for="search"><i class="material-icons">search</i></label>--%>
+                            <%--<label for="search2"><i class="material-icons">search2</i></label>--%>
                             <i class="material-icons" style="color:black;">search</i>
                         </div>
                     </form>
