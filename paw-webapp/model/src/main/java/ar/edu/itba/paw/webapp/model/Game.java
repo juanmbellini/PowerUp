@@ -3,8 +3,8 @@ package ar.edu.itba.paw.webapp.model;
 import java.util.ArrayList;
 
 /**
- * Stores basic information about the games as well as reviews and ratings.
- * This class communicates with the data base adding, removing and modifying information.
+ * Stores basic information about a game as well as its reviews and ratings.
+ * This class communicates with the database adding, removing and modifying information.
  */
 public class Game {
 

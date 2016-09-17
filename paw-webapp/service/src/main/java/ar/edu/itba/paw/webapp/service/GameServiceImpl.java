@@ -8,23 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class GameServiceImpl implements GameService {
 
-    public GameServiceImpl() {
-
-    }
-
     @Autowired
     GameDao gameDao;
 
+    public GameServiceImpl() {}
 
-    public Collection<Game> searchGame(String name, Collection<Filter> filters) {
-        return gameDao.searchGame(name, filters);
+    @Override
+    public List<Game> searchGames(String name, Collection<Filter> filters) {
+        return gameDao.searchGames(name, filters);
     }
-
-
-
-
 }
