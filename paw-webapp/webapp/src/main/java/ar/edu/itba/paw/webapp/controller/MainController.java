@@ -30,13 +30,6 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping("/results")
-    public ModelAndView results() {
-        final ModelAndView mav = new ModelAndView("results");
-        mav.addObject("greeting", "PAW");
-        return mav;
-    }
-
     @RequestMapping("/search")
     public ModelAndView searchGameByName(@RequestParam("name") String name,
                                          @RequestParam(value="genre", required = false) String filterGenre,
