@@ -7,20 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
-//import org.springframework.jdbc.core.JdbcTemplate;
-
 
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
-import java.sql.PreparedStatement;
-import javax.swing.tree.TreePath;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Data Access Object for games. Allows to search for games with specified criteria defined in {@link Filter}.
+ */
 @Repository
 public class GameJdbcDao implements GameDao {
 
@@ -31,11 +28,11 @@ public class GameJdbcDao implements GameDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Collection<Game> searchGame(String name, Collection<Filter> filters) {
-        StringBuilder nameLike = new StringBuilder('%');
+    public List<Game> searchGames(String name, Collection<Filter> filters) {
+        StringBuilder nameLike = new StringBuilder("%");
         name.replace(' ', '%');
         nameLike.append(name).append('%');
-        ArrayList<Game> gameList = new ArrayList();
+        ArrayList<Game> gameList = new ArrayList<>();
         System.out.println(filters.size());
         Object[] parameters = new Object[filters.size() + 1];
         parameters[0] = nameLike.toString();
@@ -44,7 +41,7 @@ public class GameJdbcDao implements GameDao {
         StringBuilder whereSentence = new StringBuilder(" WHERE LOWER(power_up.games.name) LIKE LOWER(?) AND power_up.game_platforms.game_id = power_up.games.id AND " +
                 "power_up.game_platforms.platform_id = power_up.platforms.id");
 
-        //Joins with specific table if a filter of that table is needed
+        //Join with specific table if a filter of that table is needed
         for (Filter filter : filters) {
             //Join on relationship table
             searchString.append(", power_up.game_").append(filter.getType().name()).append(" AS  game_").append(filter.getType().name()).append("_").append(filter.getName());
@@ -69,7 +66,6 @@ public class GameJdbcDao implements GameDao {
         searchString.append(whereSentence);
         System.out.println(searchString.toString().toLowerCase());
         jdbcTemplate.query(searchString.toString().toLowerCase(), parameters, new RowCallbackHandler() {
-
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
                         Game newGame = new Game();
@@ -78,10 +74,7 @@ public class GameJdbcDao implements GameDao {
                         gameList.add(newGame);
                     }
                 }
-
-
         );
         return gameList;
     }
 }
-
