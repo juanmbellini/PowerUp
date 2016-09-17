@@ -43,6 +43,14 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/advanced-search")
+    public ModelAndView advancedSearch() {
+        final ModelAndView mav = new ModelAndView("advanced-search");
+        //TODO add possible filters here
+        mav.addObject("greeting", "PAW");
+        return mav;
+    }
+
     @RequestMapping("/game")
     public ModelAndView game() {
         final ModelAndView mav = new ModelAndView("game");
