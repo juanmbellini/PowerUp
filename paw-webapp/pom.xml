@@ -15,6 +15,7 @@
         <jstl.version>1.2</jstl.version>
         <org.joda-time.version>2.9.4</org.joda-time.version>
         <org.postgresql.jdbc.version>9.1-901-1.jdbc4</org.postgresql.jdbc.version>
+        <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
     </properties>
 
     <modules>
@@ -69,6 +70,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${org.springframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
             </dependency>
 
 
