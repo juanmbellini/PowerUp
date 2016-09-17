@@ -32,14 +32,16 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView searchGameByName(@RequestParam("name") String name,
-                                         @RequestParam(value="genre", required = false) String filterGenre,
+                                         @RequestParam(value = "genre", required = false) String filterGenre,
                                          @RequestParam(value = "publisher", required = false) String filterPublisher) {
         final ModelAndView mav = new ModelAndView("search");
         HashSet<Filter> filters = new HashSet<Filter>();
-        if(filterGenre!=null) filters.add(new Filter(Filter.FilterCategory.GENRES,filterGenre));
-        if(filterPublisher!=null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS,filterPublisher));
-        List<Game> searchedGame = gameService.searchGames(name, filters);
-        mav.addObject("results", searchedGame);
+        if (filterGenre != null) filters.add(new Filter(Filter.FilterCategory.GENRES, filterGenre));
+        if (filterPublisher != null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS, filterPublisher));
+        List<Game> results = gameService.searchGames(name, filters);
+        mav.addObject("searchedName", name);
+        mav.addObject("hasFilters", filterGenre != null || filterPublisher != null);
+        mav.addObject("results", results);
         return mav;
     }
 
