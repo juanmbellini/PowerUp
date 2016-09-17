@@ -38,26 +38,23 @@ public class MainController {
     }
 
     @RequestMapping("/search")
-    public ModelAndView search() {
-        final ModelAndView mav = new ModelAndView("search");
-        mav.addObject("greeting", "PAW");
-        return mav;
-    }
-
-
-
-    @RequestMapping("/gameSearch")
     public ModelAndView searchGameByName(@RequestParam("name") String name,
                                          @RequestParam(value="genre", required = false) String filterGenre,
-                                         @RequestParam(value = "publisher", required = false) String filterPublisher
-
-                                        ){
-        final ModelAndView mav = new ModelAndView("gameSearch");
+                                         @RequestParam(value = "publisher", required = false) String filterPublisher) {
+        final ModelAndView mav = new ModelAndView("search");
         HashSet<Filter> filters = new HashSet<Filter>();
         if(filterGenre!=null) filters.add(new Filter(Filter.FilterCategory.GENRES,filterGenre));
         if(filterPublisher!=null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS,filterPublisher));
-       List<Game> searchedGame = gameService.searchGames(name, filters);
-       mav.addObject("gameList", searchedGame);
+        List<Game> searchedGame = gameService.searchGames(name, filters);
+        mav.addObject("results", searchedGame);
+        return mav;
+    }
+
+    @RequestMapping("/advanced-search")
+    public ModelAndView advancedSearch() {
+        final ModelAndView mav = new ModelAndView("advanced-search");
+        //TODO add possible filters here
+        mav.addObject("greeting", "PAW");
         return mav;
     }
 
