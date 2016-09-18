@@ -28,12 +28,14 @@ public class GameJdbcDao implements GameDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    protected JdbcTemplate getJdbcTemplate(){
+        return this.jdbcTemplate;
+    }
 
 
     public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
 
-        int filtersAmount = countFilters(filters);
-        String[] parameters = new String[filtersAmount + 1];
+        String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
         String tablesString = "SELECT power_up.games.name, avg_score, summary, power_up.platforms.name" +
