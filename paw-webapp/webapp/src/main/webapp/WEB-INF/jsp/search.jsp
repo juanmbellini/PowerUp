@@ -30,13 +30,13 @@
                                     <img class="col s2" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg"
                                          alt="">
                                     <div class="primary-content col s8">
-                                        <p class="title"><a href="#!">${game.name}</a></p>
+                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
-                                                ${platform}<c:if test="!${status.last}"> | </c:if>
+                                                ${platform} <c:if test="${!status.last}"> | </c:if>
                                             </c:forEach>
                                         </p>
-                                        <p>${game.release}</p>
+                                        <p>${game.release.year}</p>
                                     </div>
                                     <div class="secondary-content">
                                         <p class="rating-stars hide-on-small-and-down">

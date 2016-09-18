@@ -101,6 +101,7 @@ public class GameJdbcDao implements GameDao {
         parameters[0] = id;
         String query;
         query = "SELECT power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        final boolean[] found = {false};
         jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
@@ -108,10 +109,13 @@ public class GameJdbcDao implements GameDao {
                         result.setSummary(rs.getString("summary"));
                         result.setAvg_score(rs.getDouble("avg_score"));
                         result.setRelease(new LocalDate(rs.getString("release")));
-
+                        found[0] = true;
                     }
                 }
         );
+        if(!found[0]) {
+            return null;
+        }
 
         query = "SELECT power_up.platforms.name FROM power_up.games, power_up.platforms, power_up.game_platforms " +
                 "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
