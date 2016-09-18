@@ -157,7 +157,7 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
-    Collection<String> getFiltersByType(FilterCategory filterType){
+    public Collection<String> getFiltersByType(FilterCategory filterType){
         HashSet<String> result = new HashSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up." );
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");

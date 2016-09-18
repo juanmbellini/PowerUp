@@ -27,4 +27,8 @@ public class GameServiceImpl implements GameService {
     public Game findById(int id) {
         return gameDao.findById(id);
     }
+
+    public Collection<String> getFiltersByType (Filter.FilterCategory filterType){
+        return gameDao.getFiltersByType(filterType);
+    }
 }

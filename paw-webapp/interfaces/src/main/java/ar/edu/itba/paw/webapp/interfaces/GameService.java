@@ -24,4 +24,12 @@ public interface GameService {
      * @return The matching game, or {@code null} if not found.
      */
     Game findById(int id);
+
+    /**
+     * Finds all available filter values given the filterType.
+     *
+     * @param filterType the type of the filter (ENUM).
+     * @return filter values availables, or empty collection if there is no value available.
+     */
+    Collection<String> getFiltersByType(Filter.FilterCategory filterType);
 }
