@@ -16,6 +16,7 @@
         <org.joda-time.version>2.9.4</org.joda-time.version>
         <org.postgresql.jdbc.version>9.1-901-1.jdbc4</org.postgresql.jdbc.version>
         <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
+        <org.atteo.evo-inflector.version>1.2</org.atteo.evo-inflector.version>
     </properties>
 
     <modules>
@@ -83,6 +84,13 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${com.fasterxml.jackson.version}</version>
+            </dependency>
+            <!-- Evo-Inflector: A library that implements English pluralization algorithm-->
+                <!--based on Damian Conway's paper: "An Algorithmic Approach to English Pluralization -->
+            <dependency>
+                <groupId>org.atteo</groupId>
+                <artifactId>evo-inflector</artifactId>
+                <version>${org.atteo.evo-inflector.version}</version>
             </dependency>
 
         </dependencies>
