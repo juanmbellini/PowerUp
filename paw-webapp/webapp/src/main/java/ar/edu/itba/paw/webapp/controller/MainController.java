@@ -64,7 +64,10 @@ public class MainController {
                     filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {});
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            filters = new HashMap<>();
         }
+
         Collection<?> searchedGame = gameService.searchGame(name, filters);
 
         final ModelAndView mav = new ModelAndView("gameSearch");
