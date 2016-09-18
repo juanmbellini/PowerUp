@@ -85,16 +85,16 @@ public class GameJdbcDao implements GameDao {
         String query = tablesString + " " + nameString + filtersString + " " + groupByString + ";";
         List<Game> gameList = new ArrayList();
         System.out.println(query);
-//        jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
-//
-//            @Override
-//            public void processRow(ResultSet rs) throws SQLException {
-//                Game newGame = new Game();
-//                newGame.setName(rs.getString("name"));
-//                newGame.setSummary(rs.getString("summary"));
-//                gameList.add(newGame);
-//            }
-//        });
+        jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
+
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                Game newGame = new Game();
+                newGame.setName(rs.getString("name"));
+                newGame.setSummary(rs.getString("summary"));
+                gameList.add(newGame);
+            }
+        });
         return gameList;
     }
 
