@@ -38,7 +38,7 @@ public class GameJdbcDao implements GameDao {
     public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
 
         int filtersAmount = countFilters(filters);
-        String[] parameters = new String[(filtersAmount * 2) + 1];
+        String[] parameters = new String[filtersAmount + 1];
         parameters[0] = name;
 
         String tablesString = "SELECT power_up.games.name, avg_score, summary, power_up.platforms.name" +
@@ -47,33 +47,44 @@ public class GameJdbcDao implements GameDao {
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id";
         String nameString = "WHERE LOWER(power_up.games.name) like %LOWER(?)%";
         String filtersString = "";
+        String groupByString = "GROUP BY power_up.games.id HAVING ";
 
 
-        //Joins with specific table if a filter of that table is needed
-        int parameterCount = 1;
+
+        int parameterCount = 1;         // Used for indexing parameters array
+        boolean firstFilter = true;     // Used to check if an 'AND' must be added to the group by string
         for (FilterCategory filter : filters.keySet()) {
-            // table "platforms" is already joined
-            if (!filter.equals(FilterCategory.platform)) {
+
+            // Tables join string (Joins with specific table if a filter of that table is needed)
+            if (!filter.equals(FilterCategory.platform)) { // table "platforms" is already joined
                 tablesString += " " + createJoinSentence(filter);
             }
+
+            // Filters string
             filtersString += " AND ( ";
             List<String> values = filters.get(filter);
-            int valuesCount = 0;
+            boolean firstValue = true;      // Used to check if an 'OR' must be added to the filters string
             for (String value : values) {
-                if (valuesCount > 0) {
+                if (!firstValue) {
                     filtersString += " OR ";
                 }
                 filtersString += createFilterSentence(filter);
                 parameters[parameterCount] = value;
-                parameters[parameterCount + filtersAmount] = Integer.toString(values.size());
                 parameterCount++;
-                valuesCount++;
+                firstValue = false;
             }
             filtersString += " )";
 
+            // Group by string
+            if (!firstFilter) {
+                groupByString += " AND ";
+            }
+            groupByString += createHavingSentence(filter, values.size());
+            firstFilter = false;
         }
-        String query = tablesString + " " + nameString + filtersString;
+        String query = tablesString + " " + nameString + filtersString + " " + groupByString;
         List<Game> gameList = new ArrayList();
+        System.out.println(query);
         jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
             @Override
@@ -88,12 +99,15 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-
+    /**
+     * Creates a join sentence to be added into the FROM clause.
+     * @param filter The filter whose table (and the corresponding relation table) must be joined.
+     * @return The created sentence.
+     */
     private String createJoinSentence (FilterCategory filter) {
 
-        boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.platform);
         String filterName = filter.name();
-        String entityTable = "power_up." + (useCompany ? "companies": English.plural(filterName));
+        String entityTable = getEntityTable(filter);
         String relationTable = "power_up.game_" + English.plural(filterName);
 
         String sentence = "INNER JOIN " + relationTable + " ON power_up.games.id = " + relationTable + ".game_id";
@@ -102,22 +116,52 @@ public class GameJdbcDao implements GameDao {
         return sentence;
     }
 
+    /**
+     * Creates a sentence to be added to the WHERE clause.
+     * <p>
+     *     This sentence compares a given field (specified by the filter param)
+     *     and a '?' param, that must be filled afterward in a parameters array.
+     * </p>
+     * @param filter The filter whose value must be checked
+     * @return The created sentence.
+     */
     private String createFilterSentence(FilterCategory filter) {
-        boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.platform);
-        String entityTable = "power_up." + (useCompany ? "companies": English.plural(filter.name()));
+        return "LOWER(" + getEntityTable(filter) + ".name) = LOWER(?)";
+    }
 
-        return "LOWER(" + entityTable + ".name) = LOWER(?)";
+    /**
+     * Creates a HAVING clause sentence to be added to the query.
+     * <p>This sentence compares how many tuples there are that verify a given filter with a passed value</p>
+     * @param filter The filter whose sum must be compared.
+     * @param valuesCount The value to which the sum must be compared.
+     * @return The created sentence.
+     */
+    private String createHavingSentence(FilterCategory filter, int valuesCount) {
+        return "COUNT(" + getEntityTable(filter) + ".name) = " + valuesCount;
     }
 
 
-
-
+    /**
+     * Counts how many filters will be applied (i.e. for each filter type, how many values there are).
+     * @param filters The map with the filters.
+     * @return How many filters will be applied.
+     */
     private int countFilters(Map<FilterCategory, List<String>> filters) {
         int count = 0;
         for (List<String> list : filters.values()) {
             count += list.size();
         }
         return count;
+    }
+
+    /**
+     * Creates a string with the filter's entity table name.
+     * @param filter The filter whose table name must be created.
+     * @return A string containing the filter's entity table name.
+     */
+    private String getEntityTable(FilterCategory filter) {
+        boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
+        return "power_up." + (useCompany ? "companies": English.plural(filter.name()));
     }
 
 
