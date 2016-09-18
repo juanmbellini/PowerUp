@@ -1,7 +1,6 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.model.Filter;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.atteo.evo.inflector.English;
@@ -9,19 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
-//import org.springframework.jdbc.core.JdbcTemplate;
-
 
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
-import java.sql.PreparedStatement;
-import javax.swing.tree.TreePath;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 
 @Repository
 public class GameJdbcDao implements GameDao {
