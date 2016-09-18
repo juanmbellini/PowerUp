@@ -19,8 +19,17 @@
             <div class="row center">
                 <h5 class="header col s12 light">Something cool and inspiring about this site</h5>
             </div>
-            <div class="row center">
-                <a href="<c:url value="/results" /> " class="btn-large waves-effect waves-light orange">Turn this into a search bar</a>
+            <div class="row">
+                <%--<a href="<c:url value="/results" /> " class="btn-large waves-effect waves-light orange">Turn this into a search2 bar</a>--%>
+                <div class="col s12 m8 offset-m2 l6 offset-l3">
+                    <form id="search-form">
+                        <div class="input-field">
+                            <input name="search" type="search" required>
+                            <%--<label for="search2"><i class="material-icons">search2</i></label>--%>
+                            <i class="material-icons" style="color:black;">search</i>
+                        </div>
+                    </form>
+                </div>
             </div>
             <br><br>
 
@@ -74,5 +83,6 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam("name") String name,
-                               @RequestParam(value = "filters", required = false) String filtersJson){
+                               @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView("gameSearch");
         if (filtersJson == null || filtersJson.equals("")) {
@@ -47,12 +47,22 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = new ObjectMapper().readValue(
-                    filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {});
+                    filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
+                    });
             mav.addObject("gameList", gameService.searchGame(name, filters));
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             //TODO: Send something into the ModelAndView indicating the error
         }
+        return mav;
+    }
+
+
+    @RequestMapping("/advanced-search")
+    public ModelAndView advancedSearch() {
+        final ModelAndView mav = new ModelAndView("advanced-search");
+        //TODO add possible filters here
+        mav.addObject("greeting", "PAW");
         return mav;
     }
 

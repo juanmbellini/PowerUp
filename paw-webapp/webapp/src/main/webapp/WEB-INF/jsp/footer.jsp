@@ -32,11 +32,10 @@
 </div>
 <div class="footer-copyright">
     <div class="container">
-        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        Game data freely provided by <a href="http://www.igdb.com" target="_blank">IGDB.com</a>. Made using <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>.
     </div>
 </div>
 
 <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="<c:url value="/js/materialize.js" />"></script>
 <script src="<c:url value="/js/init.js" />"></script>
