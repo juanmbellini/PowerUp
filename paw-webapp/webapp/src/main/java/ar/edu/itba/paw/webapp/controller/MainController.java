@@ -53,10 +53,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam("name") String name,
-                                         @RequestParam(value = "genre", required = false) String filterGenre,
-                                         @RequestParam(value = "publisher", required = false) String filterPublisher,
-                                         @RequestParam(value = "filters", required = false) String filtersJson
-                                        ){
+                               @RequestParam(value = "filters", required = false) String filtersJson){
 
         final ModelAndView mav = new ModelAndView("gameSearch");
         Map<FilterCategory, List<String>> filters = null;
