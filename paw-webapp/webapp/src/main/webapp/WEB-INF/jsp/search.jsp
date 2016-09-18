@@ -36,7 +36,7 @@
                                                 ${platform}<c:if test="!${status.last}"> | </c:if>
                                             </c:forEach>
                                         </p>
-                                        <p>{Release year}</p>
+                                        <p>${game.release}</p>
                                     </div>
                                     <div class="secondary-content">
                                         <p class="rating-stars hide-on-small-and-down">
