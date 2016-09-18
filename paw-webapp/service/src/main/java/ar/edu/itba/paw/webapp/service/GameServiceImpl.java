@@ -22,4 +22,11 @@ public class GameServiceImpl implements GameService {
     public List<Game> searchGames(String name, Collection<Filter> filters) {
         return gameDao.searchGames(name, filters);
     }
+
+    @Override
+    public Game findById(int id) {
+        return gameDao.findById(id);
+    }
+
+
 }

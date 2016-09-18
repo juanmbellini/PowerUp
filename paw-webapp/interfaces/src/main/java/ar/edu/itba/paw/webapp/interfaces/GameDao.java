@@ -9,4 +9,5 @@ import java.util.List;
 public interface GameDao {
 
     List<Game> searchGames(String name, Collection<Filter> filters);
+    Game findById(int id);
 }

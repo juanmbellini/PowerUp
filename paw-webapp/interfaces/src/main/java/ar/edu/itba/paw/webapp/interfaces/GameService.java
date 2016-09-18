@@ -9,4 +9,5 @@ import java.util.List;
 public interface GameService {
 
     List<Game> searchGames(String name, Collection<Filter> filters);
+    Game findById(int id);
 }

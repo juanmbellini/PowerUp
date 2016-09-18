@@ -13,19 +13,36 @@ public class Game {
 
     private ArrayList<Review> reviews = new ArrayList<>();
     private int[] ratings = new int[10];
-    private ArrayList<String> publishers;
-    private ArrayList<String> developers;
-    private ArrayList<String> genres;
+    private ArrayList<String> publishers = new ArrayList<>();
+    private ArrayList<String> developers = new ArrayList<>();
+    private ArrayList<String> genres = new ArrayList<>();
     private ArrayList<String> keywords;
     private ArrayList<String> platforms = new ArrayList<>();
     private LocalDate release = new LocalDate();
     private String summary;
+    private double avg_score;
+    private int id;
     private String name;
 
     public String getSummary() {
         return summary;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getAvg_score() {
+        return avg_score;
+    }
+
+    public void setAvg_score(double avg_score) {
+        this.avg_score = avg_score;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -108,6 +125,24 @@ public class Game {
     public void addPlatform(String platformName) {
         if (!platforms.contains(platformName)) {
             this.platforms.add(platformName);
+        }
+    }
+
+    public void addGenre(String genreName) {
+        if (!genres.contains(genreName)) {
+            this.genres.add(genreName);
+        }
+    }
+
+    public void addDeveloper(String developerName) {
+        if (!developers.contains(developerName)) {
+            this.developers.add(developerName);
+        }
+    }
+
+    public void addPublisher(String publisherName) {
+        if (!publishers.contains(publisherName)) {
+            this.publishers.add(publisherName);
         }
     }
 
