@@ -1,5 +1,8 @@
 package ar.edu.itba.paw.webapp.model;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +18,7 @@ public class Game {
     private ArrayList<String> genres;
     private ArrayList<String> keywords;
     private ArrayList<String> platforms = new ArrayList<>();
+    private LocalDate release = new LocalDate();
     private String summary;
     private String name;
 
@@ -105,5 +109,13 @@ public class Game {
         if (!platforms.contains(platformName)) {
             this.platforms.add(platformName);
         }
+    }
+
+    public LocalDate getRelease() {
+        return release;
+    }
+
+    public void setRelease(LocalDate release) {
+        this.release = release;
     }
 }

@@ -3,6 +3,8 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.Filter;
 import ar.edu.itba.paw.webapp.model.Game;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -40,7 +42,7 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[filters.size() + 1];
         parameters[0] = nameLike.toString();
         int i = 1;
-        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name AS platformName FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name AS platformName, release FROM power_up.games, power_up.game_platforms, power_up.platforms");
         StringBuilder whereSentence = new StringBuilder(" WHERE LOWER(power_up.games.name) LIKE LOWER(?) AND power_up.game_platforms.game_id = power_up.games.id AND " +
                 "power_up.game_platforms.platform_id = power_up.platforms.id");
 
@@ -66,7 +68,7 @@ public class GameJdbcDao implements GameDao {
 
 
         }
-        searchString.append(whereSentence);
+        searchString.append(whereSentence).append(" ORDER BY power_up.games.name").append(" LIMIT 50");
         System.out.println(searchString.toString().toLowerCase());
         jdbcTemplate.query(searchString.toString().toLowerCase(), parameters, new RowCallbackHandler() {
                     @Override
@@ -74,6 +76,8 @@ public class GameJdbcDao implements GameDao {
                         Game newGame = new Game();
                         newGame.setName(rs.getString("name"));
                         newGame.setSummary(rs.getString("summary"));
+                        newGame.setRelease(new LocalDate(rs.getString("release")));
+
                         if (!gameList.contains(newGame)) {
                             gameList.add(newGame);
                         }
