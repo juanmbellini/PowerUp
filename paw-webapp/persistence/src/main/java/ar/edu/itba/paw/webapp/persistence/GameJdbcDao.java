@@ -77,7 +77,11 @@ public class GameJdbcDao implements GameDao {
             groupByString += createHavingSentence(filter, values.size());
             firstFilter = false;
         }
-        String query = tablesString + " " + nameString + filtersString + " " + groupByString + ";";
+        String query = tablesString + " " + nameString + filtersString;
+        if (filters.size() > 0) {
+            query += " " + groupByString;
+        }
+        query += ";";
         List<Game> gameList = new ArrayList();
         System.out.println(query);
         jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
