@@ -13,15 +13,6 @@ public class Filter {
         this.name = name;
     }
 
-    public enum FilterCategory {
-        PUBLISHERS,
-        DEVELOPERS,
-        GENRES,
-        KEYWORDS,
-//        PLATFORMS
-        CONSOLES
-    }
-
     public FilterCategory getType() {
         return type;
     }
