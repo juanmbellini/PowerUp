@@ -48,8 +48,10 @@ public class MainController {
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
-        //TODO add possible filters here
-        mav.addObject("greeting", "PAW");
+        //Add all possible filter types
+        for(Filter.FilterCategory filterCategory : Filter.FilterCategory.values()) {
+            mav.addObject(filterCategory.name(), gameService.getFiltersByType(filterCategory));
+        }
         return mav;
     }
 
