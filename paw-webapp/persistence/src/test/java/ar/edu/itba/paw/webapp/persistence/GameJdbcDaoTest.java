@@ -109,126 +109,126 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
     }
+//
+//    @Test
+//    public void testSimpleSearchFound() {
+//
+//        //SetUp db with three games. "Mario", "Super Mario Party" and "Sonic"
+//
+//
+//        //
+//        final Collection<Game> games = gameDao.searchGame("Mario",new HashSet()); //testear null y collection vacia
+//
+//        assertNotNull(games);
+//        assert(games.size()==2);
+//
+//        Iterator<Game> iterator = games.iterator();
+//        Game firstGame = iterator.next();
+//        Game secondGame = iterator.next();
+//
+//        assert((firstGame.getName().equals("Mario") || secondGame.getName().equals("Mario")) && !(firstGame.getName().equals("Mario") && secondGame.getName().equals("Mario")));
+//
+//        //TODO testear que se cargue bien el summary y eso????
+//    }
 
-    @Test
-    public void testSimpleSearchFound() {
-
-        //SetUp db with three games. "Mario", "Super Mario Party" and "Sonic"
-
-
-        //
-        final Collection<Game> games = gameDao.searchGame("Mario",new HashSet()); //testear null y collection vacia
-
-        assertNotNull(games);
-        assert(games.size()==2);
-
-        Iterator<Game> iterator = games.iterator();
-        Game firstGame = iterator.next();
-        Game secondGame = iterator.next();
-
-        assert((firstGame.getName().equals("Mario") || secondGame.getName().equals("Mario")) && !(firstGame.getName().equals("Mario") && secondGame.getName().equals("Mario")));
-
-        //TODO testear que se cargue bien el summary y eso????
-    }
-
-    @Test
-    public void testSimpleFilter(){
-        //SetUp db with three games. "Mario" with genre "Platformer, Action", "Super Mario Party" with genre "Party Game" and "Sonic with genre "Platformer""
-
-        //
-        HashSet filters = new HashSet();
-        Filter genreFilter = new Filter(Filter.FilterCategory.GENRES, "Platformer");
-        filters.add(genreFilter);
-        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
-
-        assertNotNull(games);
-        assert(games.size()==1);
-
-        Iterator<Game> iterator = games.iterator();
-        Game game = iterator.next();
-
-        assert(game.getName().equals("Mario"));
-
-    }
-
-    @Test
-    public void testMultipleSameKindFilters(){
-        //SetUp db with three games. "Mario" keyword "Fun, Action", "Super Mario Party" keyword "Fun", "Sonic" keyword "Platformer, Fun" and "Mario Golf" keyword "Golf, MegaFun"
-
-        //
-        HashSet filters = new HashSet();
-        Filter firstKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Fun");
-        Filter secondeKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
-        filters.add(firstKeywordFilter);
-        filters.add(secondeKeywordFilter);
-        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
-
-        assertNotNull(games);
-        assert(games.size()==1);
-
-        Iterator<Game> iterator = games.iterator();
-        Game game = iterator.next();
-
-        assert(game.getName().equals("Mario"));
-
-    }
-
-    @Test
-    public void testMultipleDifferentKindFilters(){
-        //SetUp db with three games. "Mario" keyword "Fun, Action" genre "Platformer, Action" platform "Nintendo 64, Nintendo GameCube"
-        // , "Super Mario Action Party" keyword "Fun, Action"  genre "Party" platform "Nintendo 64"
-        // , "Sonic" keyword "Platformer, Fun", genre "Platformer", platform "SEGA"
-
-        //
-        HashSet filters = new HashSet();
-        Filter firstKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
-        Filter firstGenreFilter = new Filter(Filter.FilterCategory.GENRES, "Platformer");
-        Filter firstPlatformFilter = new Filter(Filter.FilterCategory.PLATFORMS, "Nintendo 64");
-        filters.add(firstKeywordFilter);
-        filters.add(firstGenreFilter);
-        filters.add(firstPlatformFilter);
-
-        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
-
-        assertNotNull(games);
-        assert(games.size()==1);
-
-
-        Iterator<Game> iterator = games.iterator();
-        Game game = iterator.next();
-
-        assert(game.getName().equals("Mario"));
-    }
-
-    @Test
-    public void testCompaniesFilters(){
-
-            //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
-        // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
-        // and "Sonic with genre "Platformer" developper Nintendo publisher Sega"
-
-            //
-            HashSet filters = new HashSet();
-            Filter developerFilter = new Filter(Filter.FilterCategory.DEVELOPERS, "Nintendo");
-            Filter publisherFilter = new Filter(Filter.FilterCategory.PUBLISHERS, "Nintendo");
-
-            filters.add(developerFilter);
-            filters.add(publisherFilter);
-            final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
-
-            assertNotNull(games);
-            assert(games.size()==1);
-
-            Iterator<Game> iterator = games.iterator();
-            Game game = iterator.next();
-
-            assert(game.getName().equals("Mario"));
-
-
-
-
-
-    }
+//    @Test
+//    public void testSimpleFilter(){
+//        //SetUp db with three games. "Mario" with genre "Platformer, Action", "Super Mario Party" with genre "Party Game" and "Sonic with genre "Platformer""
+//
+//        //
+//        HashSet filters = new HashSet();
+//        Filter genreFilter = new Filter(Filter.FilterCategory.GENRES, "Platformer");
+//        filters.add(genreFilter);
+//        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
+//
+//        assertNotNull(games);
+//        assert(games.size()==1);
+//
+//        Iterator<Game> iterator = games.iterator();
+//        Game game = iterator.next();
+//
+//        assert(game.getName().equals("Mario"));
+//
+//    }
+//
+//    @Test
+//    public void testMultipleSameKindFilters(){
+//        //SetUp db with three games. "Mario" keyword "Fun, Action", "Super Mario Party" keyword "Fun", "Sonic" keyword "Platformer, Fun" and "Mario Golf" keyword "Golf, MegaFun"
+//
+//        //
+//        HashSet filters = new HashSet();
+//        Filter firstKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Fun");
+//        Filter secondeKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
+//        filters.add(firstKeywordFilter);
+//        filters.add(secondeKeywordFilter);
+//        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
+//
+//        assertNotNull(games);
+//        assert(games.size()==1);
+//
+//        Iterator<Game> iterator = games.iterator();
+//        Game game = iterator.next();
+//
+//        assert(game.getName().equals("Mario"));
+//
+//    }
+//
+//    @Test
+//    public void testMultipleDifferentKindFilters(){
+//        //SetUp db with three games. "Mario" keyword "Fun, Action" genre "Platformer, Action" platform "Nintendo 64, Nintendo GameCube"
+//        // , "Super Mario Action Party" keyword "Fun, Action"  genre "Party" platform "Nintendo 64"
+//        // , "Sonic" keyword "Platformer, Fun", genre "Platformer", platform "SEGA"
+//
+//        //
+//        HashSet filters = new HashSet();
+//        Filter firstKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
+//        Filter firstGenreFilter = new Filter(Filter.FilterCategory.GENRES, "Platformer");
+//        Filter firstPlatformFilter = new Filter(Filter.FilterCategory.PLATFORMS, "Nintendo 64");
+//        filters.add(firstKeywordFilter);
+//        filters.add(firstGenreFilter);
+//        filters.add(firstPlatformFilter);
+//
+//        final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
+//
+//        assertNotNull(games);
+//        assert(games.size()==1);
+//
+//
+//        Iterator<Game> iterator = games.iterator();
+//        Game game = iterator.next();
+//
+//        assert(game.getName().equals("Mario"));
+//    }
+//
+//    @Test
+//    public void testCompaniesFilters(){
+//
+//            //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
+//        // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
+//        // and "Sonic with genre "Platformer" developper Nintendo publisher Sega"
+//
+//            //
+//            HashSet filters = new HashSet();
+//            Filter developerFilter = new Filter(Filter.FilterCategory.DEVELOPERS, "Nintendo");
+//            Filter publisherFilter = new Filter(Filter.FilterCategory.PUBLISHERS, "Nintendo");
+//
+//            filters.add(developerFilter);
+//            filters.add(publisherFilter);
+//            final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
+//
+//            assertNotNull(games);
+//            assert(games.size()==1);
+//
+//            Iterator<Game> iterator = games.iterator();
+//            Game game = iterator.next();
+//
+//            assert(game.getName().equals("Mario"));
+//
+//
+//
+//
+//
+//    }
 
 
 }

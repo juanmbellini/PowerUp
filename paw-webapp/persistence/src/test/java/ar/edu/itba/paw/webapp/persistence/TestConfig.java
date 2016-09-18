@@ -21,6 +21,7 @@ public class TestConfig {
         ds.setUrl("jdbc:hsqldb:mem:paw");
         ds.setUsername("ha");
         ds.setPassword("");
+
         return ds;
     }
 }

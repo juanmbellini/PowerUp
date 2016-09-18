@@ -35,6 +35,7 @@ public class GameJdbcDao implements GameDao {
 
     public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
 
+//        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
@@ -42,7 +43,7 @@ public class GameJdbcDao implements GameDao {
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id";
-        String nameString = "WHERE LOWER(power_up.games.name) like %LOWER(?)%";
+        String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
         String groupByString = "GROUP BY power_up.games.id HAVING ";
 
