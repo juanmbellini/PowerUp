@@ -113,7 +113,7 @@ public class GameJdbcDao implements GameDao {
                     }
                 }
         );
-        if(!found[0]) {
+        if (!found[0]) {
             return null;
         }
 
@@ -157,23 +157,23 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
-    public Collection<String> getFiltersByType(FilterCategory filterType){
+    public Collection<String> getFiltersByType(FilterCategory filterType) {
         HashSet<String> result = new HashSet<>();
-        StringBuilder query = new StringBuilder().append("SELECT power_up." );
+        StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
-        if(filterType!= FilterCategory.DEVELOPERS && filterType!=FilterCategory.PUBLISHERS){
+        if (filterType != FilterCategory.DEVELOPERS && filterType != FilterCategory.PUBLISHERS) {
             query.append(filterType.name());
             fromSentence.append(filterType.name());
-        }else{
+        } else {
             query.append("companies");
             fromSentence.append("companies");
         }
-        query.append(".name").append(fromSentence).append(" LIMIT 50");
+        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
 
         jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
-                        result.add(rs.getString(rs.getString("name")));
+                        result.add(rs.getString("name"));
                     }
                 }
         );

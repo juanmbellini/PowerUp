@@ -19,7 +19,7 @@
                 <form id="advanced-search-form" class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="title" name="title" type="text" class="validate" required>
+                            <input id="title" name="title" type="text" class="validate">
                             <label for="title">Title</label>
                         </div>
                     </div>
@@ -27,18 +27,18 @@
                         <div class="input-field col s6">
                             <select name="platform">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <c:forEach var="platform" items="${PLATFORMS}">
+                                    <option value="${platform}">${platform}</option>
+                                </c:forEach>
                             </select>
                             <label>Platform</label>
                         </div>
                         <div class="input-field col s6">
                             <select name="genre">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <c:forEach var="genre" items="${GENRES}">
+                                    <option value="${genre}">${genre}</option>
+                                </c:forEach>
                             </select>
                             <label>Genre</label>
                         </div>
@@ -47,18 +47,18 @@
                         <div class="input-field col s6">
                             <select name="developer">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <c:forEach var="developer" items="${DEVELOPERS}">
+                                    <option value="${developer}">${developer}</option>
+                                </c:forEach>
                             </select>
                             <label>Developer</label>
                         </div>
                         <div class="input-field col s6">
                             <select name="publisher">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
+                                <c:forEach var="publisher" items="${PUBLISHERS}">
+                                    <option value="${publisher}">${publisher}</option>
+                                </c:forEach>
                             </select>
                             <label>Publisher</label>
                         </div>
