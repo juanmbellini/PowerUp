@@ -58,25 +58,18 @@ public class MainController {
                                          @RequestParam(value = "filters", required = false) String filtersJson
                                         ){
 
+        final ModelAndView mav = new ModelAndView("gameSearch");
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = new ObjectMapper().readValue(
                     filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {});
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace();  // Wrong JSON!!
         } catch (NullPointerException e) {
             filters = new HashMap<>();
         }
 
-        Collection<?> searchedGame = gameService.searchGame(name, filters);
-
-        final ModelAndView mav = new ModelAndView("gameSearch");
-        Game game = null;
-//        HashSet<Filter> filters = new HashSet<Filter>();
-//        if (filterGenre != null) filters.add(new Filter(Filter.FilterCategory.GENRES,filterGenre));
-//        if(filterPublisher!=null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS,filterPublisher));
-//        Collection<Game> searchedGame = gameService.searchGame(name, filters);
-//        mav.addObject("gameList", searchedGame);
+        mav.addObject("gameList", gameService.searchGame(name, filters));
         return mav;
     }
 
