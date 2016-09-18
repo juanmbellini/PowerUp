@@ -27,6 +27,4 @@ public class GameServiceImpl implements GameService {
     public Game findById(int id) {
         return gameDao.findById(id);
     }
-
-
 }

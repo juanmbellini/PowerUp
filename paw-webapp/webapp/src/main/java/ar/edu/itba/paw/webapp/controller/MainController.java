@@ -54,9 +54,10 @@ public class MainController {
     }
 
     @RequestMapping("/game")
-    public ModelAndView game() {
+    public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
-        mav.addObject("greeting", "PAW");
+        Game game = gameService.findById(id);
+        mav.addObject("game", game);
         return mav;
     }
 }
