@@ -152,4 +152,28 @@ public class GameJdbcDao implements GameDao {
         );
         return result;
     }
+
+    Collection<String> getFiltersByType(FilterCategory filterType){
+        HashSet<String> result = new HashSet<>();
+        StringBuilder query = new StringBuilder().append("SELECT power_up." );
+        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+        if(filterType!= FilterCategory.DEVELOPERS && filterType!=FilterCategory.PUBLISHERS){
+            query.append(filterType.name());
+            fromSentence.append(filterType.name());
+        }else{
+            query.append("companies");
+            fromSentence.append("companies");
+        }
+        query.append(".name").append(fromSentence).append(" LIMIT 50");
+
+        jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.add(rs.getString(rs.getString("name")));
+                    }
+                }
+        );
+
+        return result;
+    }
 }
