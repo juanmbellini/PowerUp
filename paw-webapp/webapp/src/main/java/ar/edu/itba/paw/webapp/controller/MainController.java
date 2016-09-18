@@ -40,17 +40,19 @@ public class MainController {
                                @RequestParam(value = "filters", required = false) String filtersJson){
 
         final ModelAndView mav = new ModelAndView("gameSearch");
+        if (filtersJson == null || filtersJson.equals("")) {
+            filtersJson = "{}";
+        }
+
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = new ObjectMapper().readValue(
                     filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {});
+            mav.addObject("gameList", gameService.searchGame(name, filters));
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
-        } catch (NullPointerException e) {
-            filters = new HashMap<>();
+            //TODO: Send something into the ModelAndView indicating the error
         }
-
-        mav.addObject("gameList", gameService.searchGame(name, filters));
         return mav;
     }
 
