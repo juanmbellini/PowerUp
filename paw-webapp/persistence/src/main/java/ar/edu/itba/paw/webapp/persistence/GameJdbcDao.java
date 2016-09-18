@@ -31,6 +31,10 @@ public class GameJdbcDao implements GameDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    protected JdbcTemplate getJdbcTemplate(){
+        return this.jdbcTemplate;
+    }
+
     public Collection<Game> searchGame(String name, Collection<Filter> filters) {
         ArrayList<Game> gameList = new ArrayList();
         Object[] parameters = new Object[filters.size()+1];

@@ -38,17 +38,83 @@ public class GameJdbcDaoTest {
 
     private JdbcTemplate jdbcTemplate;
 
+    private void inicializeDataBase() {
+
+        String insert = "BEGIN;\n" +
+                "SET DATESTYLE TO ISO, YMD;\n" +
+                "\\encoding utf8;\n" +
+                "\n" +
+                "--Genres\n" +
+                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (1, 'Platformer');\n" +
+                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (2, 'Action');\n" +
+                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (3, 'Party Game');\n" +
+                "\n" +
+                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (2, 'SEGA');\n" +
+                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (1, 'Nintendo 64');\n" +
+                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (3, 'Nintendo GameCube');\n" +
+                "\n" +
+                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (1, 'Fun');\n" +
+                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (2, 'Action');\n" +
+                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (3, 'Party');\n" +
+                "\n" +
+                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (1, 'Nintendo');\n" +
+                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (2, 'SEGA');\n" +
+                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (2, 'Nintendo Party');\n" +
+                "\n" +
+                "INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n" +
+                "INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n" +
+                "INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n" +
+                "\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2) ON CONFLICT DO NOTHING;\n" +
+
+                "\n" +
+                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (1, 1, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (1, 3, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (2, 1, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (3, 2, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
+
+                "\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2) ON CONFLICT DO NOTHING;\n" +
+                "\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
+                "\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
+                "\n" +
+                "\n" +
+                "COMMIT;";
+        jdbcTemplate.execute(insert);
+    }
+
+    //TODO afterClass to clean DB
+
+
     @Before
     public void setUp() {
-        jdbcTemplate = new JdbcTemplate(ds);
+        jdbcTemplate = gameDao.getJdbcTemplate();
 
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
+                "power_up.game_developers",  " power_up.game_genres ",  "power_up.game_publishers", "power_up.game_keywords",
+                "power_up.companies", "power_up.keywords", "power_up.genres");
+
     }
 
     @Test
     public void testSimpleSearchFound() {
 
         //SetUp db with three games. "Mario", "Super Mario Party" and "Sonic"
+
 
         //
         final Collection<Game> games = gameDao.searchGame("Mario",new HashSet()); //testear null y collection vacia
@@ -82,8 +148,6 @@ public class GameJdbcDaoTest {
         Game game = iterator.next();
 
         assert(game.getName().equals("Mario"));
-        assert(game.getGenres().size()==2);
-        assert(game.getGenres().get(0).equals("Platformer") || game.getGenres().get(1).equals("Platformer"));
 
     }
 
@@ -106,8 +170,6 @@ public class GameJdbcDaoTest {
         Game game = iterator.next();
 
         assert(game.getName().equals("Mario"));
-        assert(game.getKeywords().size()==2);
-        assert(game.getKeywords().get(0).equals("Fun") || game.getKeywords().get(1).equals("Fun"));
 
     }
 
@@ -141,7 +203,9 @@ public class GameJdbcDaoTest {
     @Test
     public void testCompaniesFilters(){
 
-            //SetUp db with three games. "Mario" with genre "Platformer, Action", "Super Mario Party" with genre "Party Game" and "Sonic with genre "Platformer""
+            //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
+        // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
+        // and "Sonic with genre "Platformer" developper Nintendo publisher Sega"
 
             //
             HashSet filters = new HashSet();
@@ -159,8 +223,7 @@ public class GameJdbcDaoTest {
             Game game = iterator.next();
 
             assert(game.getName().equals("Mario"));
-            assert(game.getGenres().size()==2);
-            assert(game.getGenres().get(0).equals("Platformer") || game.getGenres().get(1).equals("Platformer"));
+
 
 
 
