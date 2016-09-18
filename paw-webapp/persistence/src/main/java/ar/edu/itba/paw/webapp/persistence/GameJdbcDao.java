@@ -42,7 +42,7 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[filters.size() + 1];
         parameters[0] = nameLike.toString();
         int i = 1;
-        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name AS platformName, release FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, power_up.games.id, avg_score, summary, power_up.platforms.name AS platformName, release FROM power_up.games, power_up.game_platforms, power_up.platforms");
         StringBuilder whereSentence = new StringBuilder(" WHERE LOWER(power_up.games.name) LIKE LOWER(?) AND power_up.game_platforms.game_id = power_up.games.id AND " +
                 "power_up.game_platforms.platform_id = power_up.platforms.id");
 
@@ -76,6 +76,7 @@ public class GameJdbcDao implements GameDao {
                         Game newGame = new Game();
                         newGame.setName(rs.getString("name"));
                         newGame.setSummary(rs.getString("summary"));
+                        newGame.setId(rs.getInt("id"));
                         newGame.setRelease(new LocalDate(rs.getString("release")));
 
                         if (!gameList.contains(newGame)) {
@@ -92,5 +93,63 @@ public class GameJdbcDao implements GameDao {
         );
 
         return gameList;
+    }
+
+    public Game findById(int id) {
+        Game result = new Game();
+        Object[] parameters = new Object[1];
+        parameters[0] = id;
+        String query;
+        query = "SELECT power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.setName(rs.getString("name"));
+                        result.setSummary(rs.getString("summary"));
+                        result.setAvg_score(rs.getDouble("avg_score"));
+                        result.setRelease(new LocalDate(rs.getString("release")));
+
+                    }
+                }
+        );
+
+        query = "SELECT power_up.platforms.name FROM power_up.games, power_up.platforms, power_up.game_platforms " +
+                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addPlatform(rs.getString("name"));
+
+                    }
+                }
+        );
+        query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
+                "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addGenre(rs.getString("name"));
+                    }
+                }
+        );
+        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
+                "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addPublisher(rs.getString("name"));
+                    }
+                }
+        );
+        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
+                "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addDeveloper(rs.getString("name"));
+                    }
+                }
+        );
+        return result;
     }
 }
