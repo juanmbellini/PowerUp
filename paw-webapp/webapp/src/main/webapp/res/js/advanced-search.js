@@ -6,19 +6,19 @@ $(function () {
         var title = $("#title").val();
         var platform = $(this).find("select[name='platform']").val();
         if (platform) {
-            params.platforms = [platform];
+            params.platform = [platform];
         }
         var genre = $(this).find("select[name='genre']").val();
         if (genre) {
-            params.genres = [genre];
+            params.genre = [genre];
         }
         var developer = $(this).find("select[name='developer']").val();
         if (developer) {
-            params.developers = [developer];
+            params.developer = [developer];
         }
         var publisher = $(this).find("select[name='publisher']").val();
         if (publisher) {
-            params.publishers = [publisher];
+            params.publisher = [publisher];
         }
 
         if(!title && !params) {
