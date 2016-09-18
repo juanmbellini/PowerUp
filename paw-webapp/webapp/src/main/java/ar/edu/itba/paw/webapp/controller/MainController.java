@@ -32,7 +32,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView searchGameByName(@RequestParam("name") String name,
-                                         @RequestParam(value="genre", required = false) String filterGenre,
+                                         @RequestParam(value = "genre", required = false) String filterGenre,
                                          @RequestParam(value = "publisher", required = false) String filterPublisher) {
         final ModelAndView mav = new ModelAndView("search");
         HashSet<Filter> filters = new HashSet<Filter>();
