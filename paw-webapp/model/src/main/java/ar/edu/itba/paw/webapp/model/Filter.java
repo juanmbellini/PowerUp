@@ -18,8 +18,7 @@ public class Filter {
         DEVELOPERS,
         GENRES,
         KEYWORDS,
-//        PLATFORMS
-        CONSOLES
+        PLATFORMS
     }
 
     public FilterCategory getType() {

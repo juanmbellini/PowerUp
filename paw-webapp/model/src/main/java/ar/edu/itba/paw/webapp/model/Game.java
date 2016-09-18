@@ -14,10 +14,13 @@ public class Game {
     private ArrayList<String> developers;
     private ArrayList<String> genres;
     private ArrayList<String> keywords;
-    private ArrayList<String> platforms;
+    private ArrayList<String> platforms = new ArrayList<>();
     private String summary;
     private String name;
-    public String getSummary() {return summary;}
+
+    public String getSummary() {
+        return summary;
+    }
 
 
     public void setName(String name) {
@@ -44,13 +47,21 @@ public class Game {
         this.ratings = ratings;
     }
 
-    public ArrayList<String> getPublishers() { return publishers; }
+    public ArrayList<String> getPublishers() {
+        return publishers;
+    }
 
-    public void setPublishers(ArrayList<String> publishers) { this.publishers = publishers; }
+    public void setPublishers(ArrayList<String> publishers) {
+        this.publishers = publishers;
+    }
 
-    public ArrayList<String> getDevelopers() { return developers; }
+    public ArrayList<String> getDevelopers() {
+        return developers;
+    }
 
-    public void setDevelopers(ArrayList<String> developers) { this.developers = developers; }
+    public void setDevelopers(ArrayList<String> developers) {
+        this.developers = developers;
+    }
 
     public ArrayList<String> getGenres() {
         return genres;
@@ -76,8 +87,23 @@ public class Game {
         this.platforms = platforms;
     }
 
+    public boolean equals(Object obj) {
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        if (((Game) obj).getName().compareTo(this.getName()) != 0) {
+            return false;
+        }
+        return true;
+    }
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public void addPlatform(String platformName) {
+        if (!platforms.contains(platformName)) {
+            this.platforms.add(platformName);
+        }
     }
 }
