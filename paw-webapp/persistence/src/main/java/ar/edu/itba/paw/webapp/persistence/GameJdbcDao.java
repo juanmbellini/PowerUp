@@ -13,7 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+
+import static ar.edu.itba.paw.webapp.model.Filter.*;
 
 /**
  * Data Access Object for games. Allows to search for games with specified criteria defined in {@link Filter}.
@@ -37,7 +40,7 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[filters.size() + 1];
         parameters[0] = nameLike.toString();
         int i = 1;
-        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name FROM power_up.games, power_up.game_platforms, power_up.platforms");
+        StringBuilder searchString = new StringBuilder("SELECT power_up.games.name, avg_score, summary, power_up.platforms.name AS platformName FROM power_up.games, power_up.game_platforms, power_up.platforms");
         StringBuilder whereSentence = new StringBuilder(" WHERE LOWER(power_up.games.name) LIKE LOWER(?) AND power_up.game_platforms.game_id = power_up.games.id AND " +
                 "power_up.game_platforms.platform_id = power_up.platforms.id");
 
@@ -47,7 +50,7 @@ public class GameJdbcDao implements GameDao {
             searchString.append(", power_up.game_").append(filter.getType().name()).append(" AS  game_").append(filter.getType().name()).append("_").append(filter.getName());
             whereSentence.append(" AND power_up.games.id = game_").append(filter.getType().name()).append("_").append(filter.getName()).append(".game_id");
             //Join on entity table;
-            if ((filter.getType() != Filter.FilterCategory.DEVELOPERS) && (filter.getType() != Filter.FilterCategory.PUBLISHERS)) {
+            if ((filter.getType() != FilterCategory.DEVELOPERS) && (filter.getType() != FilterCategory.PUBLISHERS)) {
                 searchString.append(", power_up.").append(filter.getType().name()).append(" AS ").append(filter.getType().name()).append("_").append(filter.getName());
                 whereSentence.append(" AND game_").append(filter.getType().name()).append("_").append(filter.getName()).append(".").append(filter.getType().name().substring(0, filter.getType().name().length() - 1)).append("_id = ").append(filter.getType().name()).append("_").append(filter.getName()).append(".id");
                 whereSentence.append(" AND LOWER(").append(filter.getType().name()).append("_").append(filter.getName()).append(".name) = LOWER(?)");
@@ -71,10 +74,19 @@ public class GameJdbcDao implements GameDao {
                         Game newGame = new Game();
                         newGame.setName(rs.getString("name"));
                         newGame.setSummary(rs.getString("summary"));
-                        gameList.add(newGame);
+                        if (!gameList.contains(newGame)) {
+                            gameList.add(newGame);
+                        }
+                        for (Game listedGame : gameList) {
+                            if (listedGame.getName().compareTo(newGame.getName()) == 0) {
+                                listedGame.addPlatform(rs.getString("platformname"));
+                            }
+                        }
+
                     }
                 }
         );
+
         return gameList;
     }
 }
