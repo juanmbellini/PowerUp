@@ -115,11 +115,12 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[1];
         parameters[0] = id;
         String query;
-        query = "SELECT power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
         final boolean[] found = {false};
         jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
+                        result.setId(rs.getLong("id"));
                         result.setName(rs.getString("name"));
                         result.setSummary(rs.getString("summary"));
                         result.setAvgScore(rs.getDouble("avg_score"));
