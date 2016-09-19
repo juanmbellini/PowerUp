@@ -14,7 +14,11 @@
         <servlet-api.version>2.5</servlet-api.version>
         <jstl.version>1.2</jstl.version>
         <org.joda-time.version>2.9.4</org.joda-time.version>
-        <org.postgresql.jdbc.version>9.1-901-1.jdbc4</org.postgresql.jdbc.version>
+        <org.postgresql.version>9.3-1102-jdbc41</org.postgresql.version>
+        <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
+        <org.atteo.evo-inflector.version>1.2</org.atteo.evo-inflector.version>
+        <org.hsqldb.version>2.3.1</org.hsqldb.version>
+        <com.mashape.unirest-java.version>1.4.9</com.mashape.unirest-java.version>
     </properties>
 
     <modules>
@@ -27,6 +31,8 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- Spring stuff -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
@@ -38,6 +44,24 @@
                 <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${org.springframework.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Servlets stuff -->
+            <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
@@ -48,36 +72,56 @@
                 <artifactId>jstl</artifactId>
                 <version>${jstl.version}</version>
             </dependency>
+
+            <!-- JUnit stuff -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Database stuff -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${org.postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>${org.hsqldb.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+
+            <!-- Others -->
+            <!-- Joda-Time: a quality replacement for the Java date and time classes -->
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${org.joda-time.version}</version>
             </dependency>
+            <!-- Jackson: The standard JSON library for Java (or best JSON parser for Java) -->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>3.2.2.RELEASE</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
             </dependency>
+            <!-- Evo-Inflector: A library that implements English pluralization algorithm-->
+                <!--based on Damian Conway's paper: "An Algorithmic Approach to English Pluralization -->
             <dependency>
-                <groupId>postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${org.postgresql.jdbc.version}</version>
+                <groupId>org.atteo</groupId>
+                <artifactId>evo-inflector</artifactId>
+                <version>${org.atteo.evo-inflector.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
+            <!-- Unirest: Lightweight HTTP Request Client libraries -->
             <dependency>
                 <groupId>com.mashape.unirest</groupId>
                 <artifactId>unirest-java</artifactId>
-                <version>1.4.9</version>
+                <version>${com.mashape.unirest-java.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -4,6 +4,9 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Stores basic information about a game as well as its reviews and ratings.
@@ -11,146 +14,119 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private ArrayList<Review> reviews = new ArrayList<>();
-    private int[] ratings = new int[10];
-    private ArrayList<String> publishers = new ArrayList<>();
-    private ArrayList<String> developers = new ArrayList<>();
-    private ArrayList<String> genres = new ArrayList<>();
-    private ArrayList<String> keywords;
-    private ArrayList<String> platforms = new ArrayList<>();
-    private LocalDate release = new LocalDate();
-    private String summary;
-    private double avg_score;
-    private int id;
+    final static int INITIAL_RATING = 7;
+    final static double INITIAL_AVG_SCORE = 1.0;
+
+    private long id;
     private String name;
+    private String summary;
+    private Collection<String> genres;
+    private Collection<String> platforms;
+    private Collection<String> publishers;
+    private Collection<String> developers;
+    private Collection<String> keywords;
+    private Collection<Review> reviews;
+    private int rating;
+    private double avgScore;
+    private LocalDate releaseDate;
 
-    public String getSummary() {
-        return summary;
+
+
+
+    public Game() {
+        this(0, "", "");
     }
 
-    public int getId() {
-        return id;
+    public Game(long id, String name, String summary) {
+        this(id, name, summary, INITIAL_RATING, INITIAL_AVG_SCORE);
     }
 
-    public void setId(int id) {
+    public Game(long id, String name, String summary, int rating, double avgScore) {
+
+        if (!validRating(rating)) {
+            throw new IllegalArgumentException("Rating must be a value between 0 and 10");
+        }
         this.id = id;
+        this.name = name;
+        this.summary = summary;
+        genres = new HashSet<>();
+        platforms = new HashSet<>();
+        publishers = new HashSet<>();
+        developers = new HashSet<>();
+        keywords = new HashSet<>();
+        reviews = new HashSet<>();
+        this.rating = rating;
+        this.avgScore = avgScore;
+        releaseDate = new LocalDate();
+
     }
 
-    public double getAvg_score() {
-        return avg_score;
-    }
 
-    public void setAvg_score(double avg_score) {
-        this.avg_score = avg_score;
-    }
+    // Getters
+    public long getId() { return id; }
+    public String getName() { return name; }
+    public String getSummary() { return summary; }
+    public Collection<String> getGenres() { return cloneCollection(genres); }
+    public Collection<String> getPlatforms() { return cloneCollection(platforms); }
+    public Collection<String> getPublishers() { return cloneCollection(publishers); }
+    public Collection<String> getDevelopers() { return cloneCollection(developers); }
+    public Collection<String> getKeywords() { return cloneCollection(keywords); }
+    public Collection<Review> getReviews() { return cloneCollection(reviews); }
+    public int getRating() { return rating; }
+    public double getAvgScore() { return avgScore; }
+    public LocalDate getReleaseDate() { return releaseDate; }
 
+    // Setters
+    public void setId(long id) { this.id = id; }
     public void setName(String name) {
         this.name = name;
     }
-
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public int[] getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(int[] ratings) {
-        this.ratings = ratings;
-    }
-
-    public ArrayList<String> getPublishers() {
-        return publishers;
-    }
-
-    public void setPublishers(ArrayList<String> publishers) {
-        this.publishers = publishers;
-    }
-
-    public ArrayList<String> getDevelopers() {
-        return developers;
-    }
-
-    public void setDevelopers(ArrayList<String> developers) {
-        this.developers = developers;
-    }
-
-    public ArrayList<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(ArrayList<String> genres) {
-        this.genres = genres;
-    }
-
-    public ArrayList<String> getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(ArrayList<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    public ArrayList<String> getPlatforms() {
-        return platforms;
-    }
-
-    public void setPlatforms(ArrayList<String> platforms) {
-        this.platforms = platforms;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj.getClass() != this.getClass()) {
-            return false;
+    public void setSummary(String summary) { this.summary = summary; }
+    public void setRating(int rating) {
+        if (!validRating(rating)) {
+            throw new IllegalArgumentException("Rating must be a value between 0 and 10");
         }
-        if (((Game) obj).getName().compareTo(this.getName()) != 0) {
-            return false;
-        }
-        return true;
+        this.rating = rating;
+    }
+    public void setAvgScore(double avg_score) { this.avgScore = avg_score; }
+    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
+
+    // Adders
+    public void addGenre(String genre) { genres.add(genre); }
+    public void addPlatform(String platform) { platforms.add(platform); }
+    public void addPublisher(String publisher) { publishers.add(publisher); }
+    public void addDeveloper(String developer) { developers.add(developer); }
+    public void addKeyword(String keyword) { keywords.add(keyword); }
+    public void addReview(Review review) { reviews.add(review); }
+
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+
+        return id == game.id;
+
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 
-    public void addPlatform(String platformName) {
-        if (!platforms.contains(platformName)) {
-            this.platforms.add(platformName);
-        }
+
+    
+    private <T> List<T> cloneCollection(Collection<T> original) {
+        List<T> list = new ArrayList<>();
+        list.addAll(original);
+        return list;
+    }
+    private boolean validRating(int rating) {
+        return rating >= 0 && rating <= 10;
+
     }
 
-    public void addGenre(String genreName) {
-        if (!genres.contains(genreName)) {
-            this.genres.add(genreName);
-        }
-    }
-
-    public void addDeveloper(String developerName) {
-        if (!developers.contains(developerName)) {
-            this.developers.add(developerName);
-        }
-    }
-
-    public void addPublisher(String publisherName) {
-        if (!publishers.contains(publisherName)) {
-            this.publishers.add(publisherName);
-        }
-    }
-
-    public LocalDate getRelease() {
-        return release;
-    }
-
-    public void setRelease(LocalDate release) {
-        this.release = release;
-    }
 }
