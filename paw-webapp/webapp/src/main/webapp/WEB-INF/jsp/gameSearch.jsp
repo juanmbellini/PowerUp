@@ -1,6 +1,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%--TODO verify taglib prefix--%>
+<%--TODO delete this page when search page is merged in--%>
 
 <html><%-- fn:length( gameList)--%>
 <body>

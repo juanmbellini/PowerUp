@@ -15,15 +15,27 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
+
+        <!-- Project modules -->
         <dependency>
             <groupId>ar.edu.itba</groupId>
             <artifactId>interfaces</artifactId>
             <version>${parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>ar.edu.itba</groupId>
+            <artifactId>persistence</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <!-- External libraries -->
+        <!-- Spring stuff -->
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+
     </dependencies>
 </project>

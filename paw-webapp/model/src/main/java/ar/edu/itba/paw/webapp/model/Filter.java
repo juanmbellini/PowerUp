@@ -1,8 +1,9 @@
 package ar.edu.itba.paw.webapp.model;
 
 /**
- * Created by julian on 11/09/16.
+ * Models different types of criteria that games can be filtered by, such as genre, developers, publishers, etc.
  */
+@Deprecated
 public class Filter {
 
     FilterCategory type;
@@ -11,14 +12,6 @@ public class Filter {
     public Filter(FilterCategory type, String name) {
         this.type = type;
         this.name = name;
-    }
-
-    public enum FilterCategory {
-        PUBLISHERS,
-        DEVELOPERS,
-        GENRES,
-        KEYWORDS,
-        PLATFORMS
     }
 
     public FilterCategory getType() {

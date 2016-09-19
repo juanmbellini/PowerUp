@@ -1,21 +1,31 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.model.Filter;
+import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MainController {
 
     private final GameService gameService;
+
+
+    private final static ObjectMapper objectMapper = new ObjectMapper();
+    private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
+            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {};
 
     @Autowired
     public MainController(GameService gameService) {
@@ -30,31 +40,43 @@ public class MainController {
         return mav;
     }
 
+
     @RequestMapping("/search")
-    public ModelAndView searchGameByName(@RequestParam("name") String name,
-                                         @RequestParam(value="genre", required = false) String filterGenre,
-                                         @RequestParam(value = "publisher", required = false) String filterPublisher){
-        final ModelAndView mav = new ModelAndView("search");
-        HashSet<Filter> filters = new HashSet<Filter>();
-        if(filterGenre!=null) filters.add(new Filter(Filter.FilterCategory.GENRES,filterGenre));
-        if(filterPublisher!=null) filters.add(new Filter(Filter.FilterCategory.PUBLISHERS,filterPublisher));
-        Collection<Game> searchedGame = gameService.searchGame(name, filters);
-        mav.addObject("gameList", searchedGame);
+    public ModelAndView search(@RequestParam("name") String name,
+                               @RequestParam(value = "filters", required = false) String filtersJson) {
+
+        final ModelAndView mav = new ModelAndView("gameSearch");
+        if (filtersJson == null || filtersJson.equals("")) {
+            filtersJson = "{}";
+        }
+
+        Map<FilterCategory, List<String>> filters = null;
+        try {
+            filters = objectMapper.readValue(filtersJson, typeReference);
+            mav.addObject("gameList", gameService.searchGame(name, filters));
+        } catch (IOException e) {
+            e.printStackTrace();  // Wrong JSON!!
+            //TODO: Send something into the ModelAndView indicating the error
+        }
         return mav;
     }
+
 
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
-        //TODO add possible filters here
-        mav.addObject("greeting", "PAW");
+        //Add all possible filter types
+        for(FilterCategory filterCategory : FilterCategory.values()) {
+            mav.addObject(filterCategory.name(), gameService.getFiltersByType(filterCategory));
+        }
         return mav;
     }
 
     @RequestMapping("/game")
-    public ModelAndView game() {
+    public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
-        mav.addObject("greeting", "PAW");
+        Game game = gameService.findById(id);
+        mav.addObject("game", game);
         return mav;
     }
 }

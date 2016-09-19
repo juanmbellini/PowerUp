@@ -3,9 +3,11 @@ package ar.edu.itba.paw.webapp.model;
 import org.joda.time.DateTime;
 
 /**
- * Stores the review made by a user.
+ * Models a review made by a specific user for a specific game.
  */
 public class Review {
+
+    private long id;
     private int rating;
     private User user;
     private String review;
@@ -48,5 +50,22 @@ public class Review {
 
     public void setDate(DateTime date) {
         this.date = date;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Review review = (Review) o;
+
+        return id == review.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }
