@@ -17,6 +17,8 @@ import javax.sql.DataSource;
 
 import java.util.*;
 
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 
@@ -68,7 +70,7 @@ public class GameJdbcDaoTest {
                 "\n" +
                 "INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n" +
                 "INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n" +
-                "INSERT INTO power_up.companies (id, name) VALUES (2, 'Nintendo Party');\n" +
+                "INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n" +
                 "\n" +
                 "INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n" +
                 "INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n" +
@@ -131,7 +133,8 @@ public class GameJdbcDaoTest {
         final Collection<Game> games = gameDao.searchGame("Mario",new HashMap()); //testear null y collection vacia
 
         assertNotNull(games);
-        assert(games.size()==2);
+        assertEquals("Search without filters didn't return as expected.",2,games.size());
+
 
         Iterator<Game> iterator = games.iterator();
         Game firstGame = iterator.next();
@@ -149,14 +152,15 @@ public class GameJdbcDaoTest {
         //
         HashMap filters = new HashMap();
         List filterListGenre = new ArrayList<>();
-        filterListGenre.add("Platformer");
+        filterListGenre.add("Action");
         filters.put(FilterCategory.genre,filterListGenre);
 //        Filter genreFilter = new Filter(FilterCategory.GENRES, "Platformer");
 //        filters.add(genreFilter);
         final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
 
         assertNotNull(games);
-        assert(games.size()==1);
+
+        assertEquals("Search with one filter didn't return as expected.",1,games.size());
 
         Iterator<Game> iterator = games.iterator();
         Game game = iterator.next();
@@ -184,7 +188,8 @@ public class GameJdbcDaoTest {
         final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
 
         assertNotNull(games);
-        assert(games.size()==1);
+        assertEquals("Search with multiple filters of the same kind didn't return as expected.",1,games.size());
+
 
         Iterator<Game> iterator = games.iterator();
         Game game = iterator.next();
@@ -227,7 +232,8 @@ public class GameJdbcDaoTest {
         final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
 
         assertNotNull(games);
-        assert(games.size()==1);
+        assertEquals("Search with multiple filters of different kind didn't return as expected.",1,games.size());
+
 
 
         Iterator<Game> iterator = games.iterator();
@@ -263,9 +269,10 @@ public class GameJdbcDaoTest {
             final Collection<Game> games = gameDao.searchGame("Mario",filters); //testear null y collection vacia
 
             assertNotNull(games);
-            assert(games.size()==1);
+        assertEquals("Search using Publisher and Developer filter didn't return as expected.",1,games.size());
 
-            Iterator<Game> iterator = games.iterator();
+
+        Iterator<Game> iterator = games.iterator();
             Game game = iterator.next();
 
             assert(game.getName().equals("Mario"));
