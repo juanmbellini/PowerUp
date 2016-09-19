@@ -120,7 +120,7 @@ public class GameJdbcDaoTest {
                 "power_up.game_developers",  " power_up.game_genres ",  "power_up.game_publishers", "power_up.game_keywords",
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
-//        inicializeDataBase();
+        inicializeDataBase();
     }
 
     @Test
@@ -148,7 +148,7 @@ public class GameJdbcDaoTest {
     @Test
     public void testSimpleFilter(){
         //SetUp db with three games. "Mario" with genre "Platformer, Action", "Super Mario Party" with genre "Party Game" and "Sonic with genre "Platformer""
-
+        System.out.println("Performing simple filter test...");
         //
         HashMap filters = new HashMap();
         List filterListGenre = new ArrayList<>();
@@ -172,7 +172,7 @@ public class GameJdbcDaoTest {
     @Test
     public void testMultipleSameKindFilters(){
         //SetUp db with three games. "Mario" keyword "Fun, Action", "Super Mario Party" keyword "Fun", "Sonic" keyword "Platformer, Fun" and "Mario Golf" keyword "Golf, MegaFun"
-
+        System.out.println("Performing multiple same kind filters test...");
         //
         HashMap filters = new HashMap();
         List filterListKeyword = new ArrayList<>();
@@ -213,7 +213,7 @@ public class GameJdbcDaoTest {
 //        filters.add(firstKeywordFilter);
 //        filters.add(firstGenreFilter);
 //        filters.add(firstPlatformFilter);
-
+        System.out.println("Performing multiple different filters test...");
         HashMap filters = new HashMap();
         List filterListKeyword = new ArrayList<>();
         filterListKeyword.add("Action");
@@ -224,7 +224,7 @@ public class GameJdbcDaoTest {
         filters.put(FilterCategory.genre, filterListGenre);
 
         List filterListPlatform = new ArrayList();
-        filterListGenre.add("Nintendo 64");
+        filterListPlatform.add("Nintendo 64");
         filters.put(FilterCategory.platform, filterListPlatform);
 
 
@@ -256,6 +256,8 @@ public class GameJdbcDaoTest {
 //
 //            filters.add(developerFilter);
 //            filters.add(publisherFilter);
+
+        System.out.println("Performing companies filter test...");
 
         HashMap filters = new HashMap();
         List filterListPublisher = new ArrayList<>();
