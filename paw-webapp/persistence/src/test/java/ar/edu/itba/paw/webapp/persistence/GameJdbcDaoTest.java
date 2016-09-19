@@ -118,7 +118,7 @@ public class GameJdbcDaoTest {
                 "power_up.game_developers",  " power_up.game_genres ",  "power_up.game_publishers", "power_up.game_keywords",
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
-        inicializeDataBase();
+//        inicializeDataBase();
     }
 
     @Test

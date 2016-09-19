@@ -53,32 +53,42 @@ public class GameJdbcDao implements GameDao {
         boolean firstFilter = true;     // Used to check if an 'AND' must be added to the group by string
         for (FilterCategory filter : filters.keySet()) {
 
-            // Tables join string (Joins with specific table if a filter of that table is needed)
-            if (!filter.equals(FilterCategory.platform)) { // table "platforms" is already joined
-                tablesString += " " + createJoinSentence(filter);
-            }
-
-            // Filters string
-            filtersString += " AND ( ";
             List<String> values = filters.get(filter);
-            boolean firstValue = true;      // Used to check if an 'OR' must be added to the filters string
-            for (String value : values) {
-                if (!firstValue) {
-                    filtersString += " OR ";
-                }
-                filtersString += createFilterSentence(filter);
-                parameters[parameterCount] = value;
-                parameterCount++;
-                firstValue = false;
+            if (values == null) {
+                throw new IllegalArgumentException("A list must be specified for the filter" + filter.name());
             }
-            filtersString += " )";
 
-            // Group by string
-            if (!firstFilter) {
-                groupByString += " AND ";
+            int valuesSize = values.size();
+
+            if (valuesSize > 0) {
+
+                // Tables join string (Joins with specific table if a filter of that table is needed)
+                if (!filter.equals(FilterCategory.platform)) { // table "platforms" is already joined
+                    tablesString += " " + createJoinSentence(filter);
+                }
+
+                // Filters string
+                filtersString += " AND ( ";
+
+                boolean firstValue = true;      // Used to check if an 'OR' must be added to the filters string
+                for (String value : values) {
+                    if (!firstValue) {
+                        filtersString += " OR ";
+                    }
+                    filtersString += createFilterSentence(filter);
+                    parameters[parameterCount] = value;
+                    parameterCount++;
+                    firstValue = false;
+                }
+                filtersString += " )";
+
+                // Group by string
+                if (!firstFilter) {
+                    groupByString += " AND ";
+                }
+                groupByString += createHavingSentence(filter, valuesSize);
+                firstFilter = false;
             }
-            groupByString += createHavingSentence(filter, values.size());
-            firstFilter = false;
         }
         String query = tablesString + " " + nameString + filtersString;
         if (filters.size() > 0) {
