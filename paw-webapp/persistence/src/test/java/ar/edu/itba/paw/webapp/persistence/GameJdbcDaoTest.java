@@ -1,25 +1,21 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.model.Filter;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
+import ar.edu.itba.paw.webapp.model.Game;
 import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.assertNotEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.junit.runner.RunWith;
 import org.springframework.test.jdbc.JdbcTestUtils;
-import org.junit.Test;
-import ar.edu.itba.paw.webapp.model.Game;
-
-import javax.sql.DataSource;
 
 import java.util.*;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.*;
 
 
 /**
@@ -243,7 +239,7 @@ public class GameJdbcDaoTest {
     }
 
     @Test
-    public void testCompaniesFilters(){
+    public void testCompaniesFilters() {
 
             //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
         // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
@@ -280,8 +276,33 @@ public class GameJdbcDaoTest {
             assert(game.getName().equals("Mario"));
 
 
+    }
+
+    @Test
+    public void testFindGameById() {
+        System.out.println("Performing find game by id test...");
+
+        Game marioParty = gameDao.findById(2);
+        Game chronoTrigger = gameDao.findById(3);
+        Game unknownGame = gameDao.findById(4000);
 
 
+        assertNotNull("Find by id didn't return as expected. Returned null, expected Game with id 2", marioParty);
+        assertNotNull("Find by id didn't return as expected. Returned null, expected Game with id 3", chronoTrigger);
+        assertNull("Find by id didn't return as expected. Returned Game with id 4000, expected null", unknownGame);
+
+        assertEquals("Find by id didn't return as expected. " +
+                "Returned Game with id " +  marioParty.getId() + ", expected Game with id 2", 2, marioParty.getId());
+        assertEquals("Find by id didn't return as expected. " +
+                "Returned Game with id " +  chronoTrigger.getId() + ", expected Game with id 3",
+                3, chronoTrigger.getId());
+
+        assertEquals("Find by id didn't return as expected. " +
+                "Returned Game with name " + marioParty.getName() + ", expected Game with name 'Super Mario Party'",
+                "Super Mario Party", marioParty.getName());
+        assertNotEquals( "Find by id did't return as expected. " +
+                        "Returned Game with name 'Chrono Trigger', expected Game with different name" ,
+                "Chrono Trigger", chronoTrigger.getName());
 
     }
 
