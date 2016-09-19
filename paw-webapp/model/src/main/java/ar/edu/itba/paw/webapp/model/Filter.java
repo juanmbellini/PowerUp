@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.model;
 /**
  * Models different types of criteria that games can be filtered by, such as genre, developers, publishers, etc.
  */
+@Deprecated
 public class Filter {
 
     FilterCategory type;
