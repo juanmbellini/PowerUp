@@ -12,10 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Repository
@@ -39,7 +36,7 @@ public class GameJdbcDao implements GameDao {
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
-        String tablesString = "SELECT power_up.games.name, avg_score, summary" +
+        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary" +
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id";
@@ -95,13 +92,16 @@ public class GameJdbcDao implements GameDao {
             query += " " + groupByString;
         }
         query += ";";
-        List<Game> gameList = new ArrayList();
+
+        Set<Game> gameList = new HashSet<>();
         System.out.println(query);
         jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
             @Override
             public void processRow(ResultSet rs) throws SQLException {
                 Game newGame = new Game();
+
+                newGame.setId(rs.getLong("id"));
                 newGame.setName(rs.getString("name"));
                 newGame.setSummary(rs.getString("summary"));
                 gameList.add(newGame);
