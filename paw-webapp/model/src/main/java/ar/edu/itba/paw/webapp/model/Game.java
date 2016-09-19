@@ -71,24 +71,6 @@ public class Game {
     public Collection<Review> getReviews() { return cloneCollection(reviews); }
     public int getRating() { return rating; }
 
-    private <T> List<T> cloneCollection(Collection<T> original) {
-        List<T> list = new ArrayList<>();
-        list.addAll(original);
-        return list;
-    }
-    private boolean validRating(int rating) {
-        return rating >= 0 && rating <= 10;
-    }
-
-
-    // Adders
-    public void addGenre(String genre) { genres.add(genre); }
-    public void addPlatform(String platform) { platforms.add(platform); }
-    public void addPublisher(String publisher) { publishers.add(publisher); }
-    public void addDeveloper(String developer) { developers.add(developer); }
-    public void addKeyword(String keyword) { keywords.add(keyword); }
-    public void addReview(Review review) { reviews.add(review); }
-
     // Setters
     public void setId(long id) { this.id = id; }
     public void setName(String name) {
@@ -102,8 +84,16 @@ public class Game {
         this.rating = rating;
     }
 
+    // Adders
+    public void addGenre(String genre) { genres.add(genre); }
+    public void addPlatform(String platform) { platforms.add(platform); }
+    public void addPublisher(String publisher) { publishers.add(publisher); }
+    public void addDeveloper(String developer) { developers.add(developer); }
+    public void addKeyword(String keyword) { keywords.add(keyword); }
+    public void addReview(Review review) { reviews.add(review); }
 
-    
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -119,5 +109,16 @@ public class Game {
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
+    }
+
+
+    
+    private <T> List<T> cloneCollection(Collection<T> original) {
+        List<T> list = new ArrayList<>();
+        list.addAll(original);
+        return list;
+    }
+    private boolean validRating(int rating) {
+        return rating >= 0 && rating <= 10;
     }
 }
