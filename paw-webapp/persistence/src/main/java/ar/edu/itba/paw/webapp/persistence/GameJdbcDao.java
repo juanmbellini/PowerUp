@@ -33,7 +33,7 @@ public class GameJdbcDao implements GameDao {
         return this.jdbcTemplate;
     }
 
-
+    //TODO: Apply filters in service layer
     public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
 
 //        name.replace(' ', '%');
@@ -173,20 +173,22 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
+
+    //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
-    public Collection<String> getFiltersByType(FilterCategory filterType) {
+    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         HashSet<String> result = new HashSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
-        if (filterType != FilterCategory.developer && filterType != FilterCategory.publisher) {
-            query.append(filterType.name());
-            fromSentence.append(filterType.name());
+        if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
+            query.append(English.plural(filterCategory.name()));
+            fromSentence.append(English.plural(filterCategory.name()));
         } else {
             query.append("companies");
             fromSentence.append("companies");
         }
         query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
-
+        System.out.println(query.toString());
         jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
