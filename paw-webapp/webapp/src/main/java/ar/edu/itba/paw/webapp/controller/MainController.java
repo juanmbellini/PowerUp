@@ -21,6 +21,11 @@ public class MainController {
 
     private final GameService gameService;
 
+
+    private final static ObjectMapper objectMapper = new ObjectMapper();
+    private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
+            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {};
+
     @Autowired
     public MainController(GameService gameService) {
         //Spring is in charge of providing the gameService parameter.
@@ -46,9 +51,7 @@ public class MainController {
 
         Map<FilterCategory, List<String>> filters = null;
         try {
-            filters = new ObjectMapper().readValue(
-                    filtersJson, new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
-                    });
+            filters = objectMapper.readValue(filtersJson, typeReference);
             mav.addObject("gameList", gameService.searchGame(name, filters));
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
