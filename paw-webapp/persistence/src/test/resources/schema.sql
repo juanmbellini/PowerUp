@@ -1,24 +1,24 @@
-CREATE SCHEMA IF NOT EXISTS power_up;
+CREATE SCHEMA power_up;
 
 -- Creation of entity tables
 CREATE TABLE IF NOT EXISTS power_up.games(
 	id 		  	INTEGER IDENTITY NOT NULL PRIMARY KEY,
-	name 		  VARCHAR,
-	summary		TEXT,
+	name 		  VARCHAR(1024),
+	summary		VARCHAR(1024),
 	avg_score REAL,
 	release 	DATE
 );
 CREATE TABLE IF NOT EXISTS power_up.genres(
 	id 	 	INTEGER IDENTITY NOT NULL PRIMARY KEY,
-	name	VARCHAR
+	name	VARCHAR(1024)
 );
 CREATE TABLE IF NOT EXISTS power_up.platforms(
 	id 		INTEGER IDENTITY NOT NULL PRIMARY KEY,
-	name	VARCHAR
+	name	VARCHAR(1024)
 );
 CREATE TABLE IF NOT EXISTS power_up.companies (
 	id 		INTEGER IDENTITY NOT NULL PRIMARY KEY,
-	name 	VARCHAR
+	name 	VARCHAR(1024)
 );
 
 -- Creation of relationship tables
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS power_up.game_platforms (
 );
 CREATE TABLE IF NOT EXISTS power_up.keywords (
 	id 		INTEGER IDENTITY NOT NULL PRIMARY KEY,
-	name 	VARCHAR NOT NULL
+	name 	VARCHAR(1024) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS power_up.game_keywords (
 	id 		      INTEGER IDENTITY NOT NULL PRIMARY KEY,

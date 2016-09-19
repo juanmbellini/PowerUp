@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 /**
  * Created by dgrimau on 14/09/16.
  */
-@ComponentScan({ "ar.edu.itba.paw.persistence", })
+@ComponentScan({ "ar.edu.itba.paw.webapp.persistence", })
 @Configuration
 public class TestConfig {
     @Bean
