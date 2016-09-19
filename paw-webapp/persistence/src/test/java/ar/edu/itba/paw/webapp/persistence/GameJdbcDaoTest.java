@@ -5,7 +5,6 @@ import ar.edu.itba.paw.webapp.model.Game;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.assertNotEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,6 +15,8 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 import java.util.*;
 
 import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 /**
@@ -294,15 +295,73 @@ public class GameJdbcDaoTest {
         assertEquals("Find by id didn't return as expected. " +
                 "Returned Game with id " +  marioParty.getId() + ", expected Game with id 2", 2, marioParty.getId());
         assertEquals("Find by id didn't return as expected. " +
-                "Returned Game with id " +  chronoTrigger.getId() + ", expected Game with id 3",
+                        "Returned Game with id " +  chronoTrigger.getId() + ", expected Game with id 3",
                 3, chronoTrigger.getId());
 
         assertEquals("Find by id didn't return as expected. " +
-                "Returned Game with name " + marioParty.getName() + ", expected Game with name 'Super Mario Party'",
+                        "Returned Game with name " + marioParty.getName() + ", expected Game with name 'Super Mario Party'",
                 "Super Mario Party", marioParty.getName());
         assertNotEquals( "Find by id did't return as expected. " +
                         "Returned Game with name 'Chrono Trigger', expected Game with different name" ,
                 "Chrono Trigger", chronoTrigger.getName());
+
+    }
+
+    @Test
+    public void testGetFiltersByType() {
+        System.out.println("Performing get filters by type test...");
+
+        // Tests keywords filter (simple filter)
+        Collection<String> keywordFilters = gameDao.getFiltersByType(FilterCategory.keyword);
+        assertNotNull("Get filters by Type didn't returned as expected. " +
+                "Returned null, expected a Collection", keywordFilters);
+        assertEquals("Get filters by Type didn't returned as expected. " +
+                        "Returned a Collection with " +  keywordFilters.size() + " elements, expected 3",
+                3, keywordFilters.size());
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                "Resultant collection didn't contained 'Fun' as a keyword", keywordFilters.contains("Fun"));
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                "Resultant collection didn't contained 'Action' as a keyword", keywordFilters.contains("Action"));
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                "Resultant collection didn't contained 'Party' as a keyword", keywordFilters.contains("Party"));
+        assertFalse("Get filters by Type didn't returned as expected. " +
+                "Resultant collection contained 'Shooter' as a keyword", keywordFilters.contains("Shooter"));
+
+
+        // Tests publishers filters (mapped to companies table)
+        Collection<String> publishersFilters = gameDao.getFiltersByType(FilterCategory.publisher);
+        assertNotNull("Get filters by Type didn't returned as expected. " +
+                "Returned null, expected a Collection", publishersFilters);
+        assertEquals("Get filters by Type didn't returned as expected. " +
+                        "Returned a Collection with " +  publishersFilters.size() + " elements, expected 2",
+                2, publishersFilters.size());
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection didn't contained 'Nintendo' as a publisher",
+                publishersFilters.contains("Nintendo"));
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection didn't contained 'SEGA' as a publisher",
+                publishersFilters.contains("SEGA"));
+        assertFalse("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection contained 'Nintendo Party' as a publisher",
+                publishersFilters.contains("Nintendo Party"));
+
+
+        // Tests developers filters (mapped to companies table)
+        Collection<String> developersFilters = gameDao.getFiltersByType(FilterCategory.developer);
+        assertNotNull("Get filters by Type didn't returned as expected. " +
+                "Returned null, expected a Collection", developersFilters);
+        assertEquals("Get filters by Type didn't returned as expected. " +
+                        "Returned a Collection with " +  developersFilters.size() + " elements, expected 2",
+                2, developersFilters.size());
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection didn't contained 'Nintendo' as a publisher",
+                developersFilters.contains("Nintendo"));
+        assertTrue("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection didn't contained 'Nintendo Party' as a publisher",
+                developersFilters.contains("Nintendo Party"));
+        assertFalse("Get filters by Type didn't returned as expected. " +
+                        "Resultant collection contained 'SEGA' as a publisher",
+                developersFilters.contains("SEGA"));
 
     }
 
