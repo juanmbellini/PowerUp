@@ -69,7 +69,7 @@ public class MainController {
         final ModelAndView mav = new ModelAndView("advanced-search");
         //Add all possible filter types
         for(FilterCategory filterCategory : FilterCategory.values()) {
-            mav.addObject(filterCategory.name(), gameService.getFiltersByType(filterCategory));
+            mav.addObject((filterCategory.name()+"s").toUpperCase(), gameService.getFiltersByType(filterCategory));
         }
         return mav;
     }

@@ -6,6 +6,5 @@ public enum FilterCategory {
     developer,
     genre,
     keyword,
-    platform,
-    console
+    platform
 }

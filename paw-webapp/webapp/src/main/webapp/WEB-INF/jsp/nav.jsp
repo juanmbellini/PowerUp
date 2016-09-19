@@ -6,7 +6,7 @@
         <a id="logo-container" href="<c:url value="/" />" class="brand-logo">Logo</a>
 
         <ul class="right hide-on-med-and-down">
-            <li><a href="<c:url value="/results" /> "><i class="material-icons">search</i></a></li>
+            <li><a href="<c:url value="/advanced-search" /> "><i class="material-icons">search</i></a></li>
             <li><a href="#!"><i class="material-icons">person_outline</i></a></li>
             <li><a href="#!"><i class="material-icons">person</i></a></li>
             <%--TODO change to full person icon when logged in (or use an icon)--%>

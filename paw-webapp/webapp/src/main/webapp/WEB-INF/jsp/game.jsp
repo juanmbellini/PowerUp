@@ -15,7 +15,7 @@
     <div class="container">
         <div class="section">
             <h1 class="header center orange-text">${game.name}</h1>
-            <h5 class="center orange-text">10</h5>
+            <h5 class="center orange-text">${game.releaseDate.year}</h5>
         </div>
         <div class="section">
             <div class="row">
