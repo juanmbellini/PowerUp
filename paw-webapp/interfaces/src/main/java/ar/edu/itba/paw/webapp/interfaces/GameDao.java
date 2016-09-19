@@ -24,10 +24,25 @@ public interface GameDao {
      *
      * @throws IllegalArgumentException if a list in the <code>filters</code> <code>Map</code> is null.
      */
-    Collection<Game> searchGame(String name, Map<FilterCategory,List<String>> filters) throws IllegalArgumentException;
+    Collection<Game> searchGame(String name, Map<FilterCategory,List<String>> filters)
+            throws IllegalArgumentException;
 
+    /**
+     * Returns a Game whose id is the specified <code>id</code>, or <code>null</code> if not present.
+     * @param id The Game's id
+     * @return The Game whose id is the specified <code>id</code>, or <code>null</code> if not present.
+     */
     Game findById(long id);
 
-    Collection<String> getFiltersByType(FilterCategory filterType);
+    //TODO: Move this to a FilterDao or to service layer, based on a search result
+
+    /**
+     * Returns a <code>Collection</code> with all ther filters that can be applied
+     * with a given <code>filterCategory</code>
+     * @param filterCategory The <code>FilterCategory</code>
+     * @return A <code>Collection</code> with all the filters that can be applied
+     * with a given <code>filterCategory</code>
+     */
+    Collection<String> getFiltersByType(FilterCategory filterCategory);
 
 }
