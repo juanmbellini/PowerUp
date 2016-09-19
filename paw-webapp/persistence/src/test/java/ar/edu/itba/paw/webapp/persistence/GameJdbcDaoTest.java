@@ -54,52 +54,52 @@ public class GameJdbcDaoTest {
 //                        "SET IDENTITY_INSERT power_up.game_developer ON"+
 //                        "SET IDENTITY_INSERT power_up.game_platforms ON"+
 
-                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (1, 'Platformer');\n" +
-                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (2, 'Action');\n" +
-                "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (3, 'Party Game');\n" +
+                "INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n" +
+                "INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n" +
+                "INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n" +
                 "\n" +
-                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (2, 'SEGA');\n" +
-                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (1, 'Nintendo 64');\n" +
-                "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (3, 'Nintendo GameCube');\n" +
+                "INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n" +
+                "INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n" +
+                "INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n" +
                 "\n" +
-                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (1, 'Fun');\n" +
-                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (2, 'Action');\n" +
-                "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (3, 'Party');\n" +
+                "INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n" +
+                "INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n" +
+                "INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n" +
                 "\n" +
-                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (1, 'Nintendo');\n" +
-                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (2, 'SEGA');\n" +
-                "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (2, 'Nintendo Party');\n" +
+                "INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n" +
+                "INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n" +
+                "INSERT INTO power_up.companies (id, name) VALUES (2, 'Nintendo Party');\n" +
                 "\n" +
                 "INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n" +
                 "INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n" +
                 "INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n" +
                 "\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n" +
+                "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n" +
 
                 "\n" +
-                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (1, 1, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (1, 3, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (2, 1, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_platforms (game_id, console_id, release_date) VALUES (3, 2, '2018-12-30') ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '2018-12-30');\n" +
+                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n" +
+                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n" +
+                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n" +
 
                 "\n" +
-                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n" +
+                "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n" +
                 "\n" +
-                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n" +
+                "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n" +
                 "\n" +
-                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3) ON CONFLICT DO NOTHING;\n" +
-                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1) ON CONFLICT DO NOTHING;\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n" +
+                "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n" +
                 "\n" +
                 "\n"
 //                "COMMIT;"
