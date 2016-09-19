@@ -45,7 +45,7 @@ public class MainController {
     public ModelAndView search(@RequestParam("name") String name,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
-        final ModelAndView mav = new ModelAndView("gameSearch");
+        final ModelAndView mav = new ModelAndView("search");
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
@@ -53,7 +53,9 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
-            mav.addObject("gameList", gameService.searchGame(name, filters));
+            mav.addObject("results", gameService.searchGame(name, filters));
+            mav.addObject("hasFilters", !filtersJson.equals("{}"));
+            mav.addObject("searchedName", name);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             //TODO: Send something into the ModelAndView indicating the error
