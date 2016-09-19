@@ -1,4 +1,4 @@
-CREATE SCHEMA power_up;
+CREATE SCHEMA if NOT EXISTS power_up;
 
 -- Creation of entity tables
 CREATE TABLE IF NOT EXISTS power_up.games(
