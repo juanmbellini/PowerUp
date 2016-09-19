@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS power_up CASCADE;
 CREATE SCHEMA power_up;
 
 -- Creation of entity tables
