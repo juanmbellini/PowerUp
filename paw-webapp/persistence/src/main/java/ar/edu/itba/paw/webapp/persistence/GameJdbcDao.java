@@ -99,12 +99,7 @@ public class GameJdbcDao implements GameDao {
 
             @Override
             public void processRow(ResultSet rs) throws SQLException {
-                Game newGame = new Game();
-
-                newGame.setId(rs.getLong("id"));
-                newGame.setName(rs.getString("name"));
-                newGame.setSummary(rs.getString("summary"));
-                gameList.add(newGame);
+                gameList.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
             }
         });
         return gameList;
