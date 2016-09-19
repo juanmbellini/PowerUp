@@ -172,6 +172,31 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
+    @Override
+    public Collection<String> getFiltersByType(FilterCategory filterType) {
+        HashSet<String> result = new HashSet<>();
+        StringBuilder query = new StringBuilder().append("SELECT power_up.");
+        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+        if (filterType != FilterCategory.developer && filterType != FilterCategory.publisher) {
+            query.append(filterType.name());
+            fromSentence.append(filterType.name());
+        } else {
+            query.append("companies");
+            fromSentence.append("companies");
+        }
+        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
+
+        jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.add(rs.getString("name"));
+                    }
+                }
+        );
+
+        return result;
+    }
+
 
 
     /**
@@ -243,27 +268,5 @@ public class GameJdbcDao implements GameDao {
 
 
 
-    public Collection<String> getFiltersByType(FilterCategory filterType) {
-        HashSet<String> result = new HashSet<>();
-        StringBuilder query = new StringBuilder().append("SELECT power_up.");
-        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
-        if (filterType != FilterCategory.developer && filterType != FilterCategory.publisher) {
-            query.append(filterType.name());
-            fromSentence.append(filterType.name());
-        } else {
-            query.append("companies");
-            fromSentence.append("companies");
-        }
-        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
 
-        jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.add(rs.getString("name"));
-                    }
-                }
-        );
-
-        return result;
-    }
 }
