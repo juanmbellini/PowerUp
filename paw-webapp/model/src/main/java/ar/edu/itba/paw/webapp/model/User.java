@@ -1,7 +1,7 @@
 package ar.edu.itba.paw.webapp.model;
 
 /**
- * TO-DO after frist iteration.
+ * TODO after first iteration.
  */
 public class User {
 }

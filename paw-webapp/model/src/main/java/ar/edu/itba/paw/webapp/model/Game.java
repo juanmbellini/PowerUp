@@ -1,18 +1,21 @@
 package ar.edu.itba.paw.webapp.model;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 /**
- * Stores basic information about the games as well as reviews and ratings.
- * This class communicates with the data base adding, removing and modifying information.
+ * Stores basic information about a game as well as its reviews and ratings.
+ * This class communicates with the database adding, removing and modifying information.
  */
 public class Game {
 
-
     final static int INITIAL_RATING = 7;
+    final static double INITIAL_AVG_SCORE = 1.0;
 
     private long id;
     private String name;
@@ -24,8 +27,8 @@ public class Game {
     private Collection<String> keywords;
     private Collection<Review> reviews;
     private int rating;
-
-
+    private double avgScore;
+    private LocalDate releaseDate;
 
 
 
@@ -35,10 +38,10 @@ public class Game {
     }
 
     public Game(long id, String name, String summary) {
-        this(id, name, summary, INITIAL_RATING);
+        this(id, name, summary, INITIAL_RATING, INITIAL_AVG_SCORE);
     }
 
-    public Game(long id, String name, String summary, int rating) {
+    public Game(long id, String name, String summary, int rating, double avgScore) {
 
         if (!validRating(rating)) {
             throw new IllegalArgumentException("Rating must be a value between 0 and 10");
@@ -53,15 +56,15 @@ public class Game {
         keywords = new HashSet<>();
         reviews = new HashSet<>();
         this.rating = rating;
+        this.avgScore = avgScore;
+        releaseDate = new LocalDate();
 
     }
 
 
     // Getters
     public long getId() { return id; }
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
     public String getSummary() { return summary; }
     public Collection<String> getGenres() { return cloneCollection(genres); }
     public Collection<String> getPlatforms() { return cloneCollection(platforms); }
@@ -70,6 +73,8 @@ public class Game {
     public Collection<String> getKeywords() { return cloneCollection(keywords); }
     public Collection<Review> getReviews() { return cloneCollection(reviews); }
     public int getRating() { return rating; }
+    public double getAvgScore() { return avgScore; }
+    public LocalDate getReleaseDate() { return releaseDate; }
 
     // Setters
     public void setId(long id) { this.id = id; }
@@ -83,6 +88,8 @@ public class Game {
         }
         this.rating = rating;
     }
+    public void setAvgScore(double avg_score) { this.avgScore = avg_score; }
+    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
 
     // Adders
     public void addGenre(String genre) { genres.add(genre); }
@@ -99,7 +106,6 @@ public class Game {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Game game = (Game) o;
 
         return id == game.id;
@@ -120,5 +126,7 @@ public class Game {
     }
     private boolean validRating(int rating) {
         return rating >= 0 && rating <= 10;
+
     }
+
 }

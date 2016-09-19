@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.atteo.evo.inflector.English;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -15,6 +16,9 @@ import java.sql.SQLException;
 import java.util.*;
 
 
+/**
+ * Data Access Object for games. Allows to search for games with specified criteria defined in {@link FilterCategory}.
+ */
 @Repository
 public class GameJdbcDao implements GameDao {
 
@@ -56,7 +60,6 @@ public class GameJdbcDao implements GameDao {
             }
 
             int valuesSize = values.size();
-
             if (valuesSize > 0) {
 
                 // Tables join string (Joins with specific table if a filter of that table is needed)
@@ -93,17 +96,82 @@ public class GameJdbcDao implements GameDao {
         }
         query += ";";
 
-        Set<Game> gameList = new HashSet<>();
+        Set<Game> gamesSet = new HashSet<>();
         System.out.println(query);
         jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
             @Override
             public void processRow(ResultSet rs) throws SQLException {
-                gameList.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
+                gamesSet.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
             }
         });
-        return gameList;
+        return gamesSet;
     }
+
+
+    @Override
+    public Game findById(long id) {
+        Game result = new Game();
+        Object[] parameters = new Object[1];
+        parameters[0] = id;
+        String query;
+        query = "SELECT power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        final boolean[] found = {false};
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.setName(rs.getString("name"));
+                        result.setSummary(rs.getString("summary"));
+                        result.setAvgScore(rs.getDouble("avg_score"));
+                        result.setReleaseDate(new LocalDate(rs.getString("release")));
+                        found[0] = true;
+                    }
+                }
+        );
+        if (!found[0]) {
+            return null;
+        }
+
+        query = "SELECT power_up.platforms.name FROM power_up.games, power_up.platforms, power_up.game_platforms " +
+                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addPlatform(rs.getString("name"));
+
+                    }
+                }
+        );
+        query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
+                "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addGenre(rs.getString("name"));
+                    }
+                }
+        );
+        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
+                "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addPublisher(rs.getString("name"));
+                    }
+                }
+        );
+        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
+                "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
+        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.addDeveloper(rs.getString("name"));
+                    }
+                }
+        );
+        return result;
+    }
+
 
 
     /**
@@ -174,5 +242,28 @@ public class GameJdbcDao implements GameDao {
 
 
 
-}
 
+    public Collection<String> getFiltersByType(FilterCategory filterType) {
+        HashSet<String> result = new HashSet<>();
+        StringBuilder query = new StringBuilder().append("SELECT power_up.");
+        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+        if (filterType != FilterCategory.developer && filterType != FilterCategory.publisher) {
+            query.append(filterType.name());
+            fromSentence.append(filterType.name());
+        } else {
+            query.append("companies");
+            fromSentence.append("companies");
+        }
+        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
+
+        jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        result.add(rs.getString("name"));
+                    }
+                }
+        );
+
+        return result;
+    }
+}

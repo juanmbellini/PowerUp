@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
+import ar.edu.itba.paw.webapp.model.Game;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,15 +65,18 @@ public class MainController {
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
-        //TODO add possible filters here
-        mav.addObject("greeting", "PAW");
+        //Add all possible filter types
+        for(FilterCategory filterCategory : FilterCategory.values()) {
+            mav.addObject(filterCategory.name(), gameService.getFiltersByType(filterCategory));
+        }
         return mav;
     }
 
     @RequestMapping("/game")
-    public ModelAndView game() {
+    public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
-        mav.addObject("greeting", "PAW");
+        Game game = gameService.findById(id);
+        mav.addObject("game", game);
         return mav;
     }
 }

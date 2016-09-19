@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.model;
 import org.joda.time.DateTime;
 
 /**
- * Stores the review made by a user.
+ * Models a review made by a specific user for a specific game.
  */
 public class Review {
 
