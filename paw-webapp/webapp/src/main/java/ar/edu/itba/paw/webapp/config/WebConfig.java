@@ -59,9 +59,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return dsi;
     }
 
-
-    //MAGIA! http://stackoverflow.com/questions/14299149/how-to-use-spring-mvcs-mvcresources-tag-in-a-java-application-context/17013442#17013442
-
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
