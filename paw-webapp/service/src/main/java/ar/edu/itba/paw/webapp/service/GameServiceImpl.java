@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-
 import java.util.Map;
+import java.util.Set;
 
 
 @Service
@@ -19,12 +19,17 @@ public class GameServiceImpl implements GameService {
     @Autowired
     GameDao gameDao;
 
-    public GameServiceImpl() {}
+    public GameServiceImpl() {
+    }
 
     @Override
-    public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
-        return gameDao.searchGame(name, filters);
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+        return gameDao.searchGames(name, filters);
+    }
 
+    @Override
+    public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
+        throw new UnsupportedOperationException("Not implemented, yet");
     }
 
     @Override
@@ -32,7 +37,7 @@ public class GameServiceImpl implements GameService {
         return gameDao.findById(id);
     }
 
-    public Collection<String> getFiltersByType (FilterCategory filterType){
-        return gameDao.getFiltersByType(filterType);
+    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
+        return gameDao.getFiltersByType(filterCategory);
     }
 }

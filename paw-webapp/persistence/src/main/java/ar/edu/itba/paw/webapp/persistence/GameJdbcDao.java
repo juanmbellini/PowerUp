@@ -17,7 +17,7 @@ import java.util.*;
 
 
 /**
- * Data Access Object for games. Allows to search for games with specified criteria defined in {@link FilterCategory}.
+ * Implementation of {@link GameDao} oriented towards JDBC.
  */
 @Repository
 public class GameJdbcDao implements GameDao {
@@ -29,12 +29,12 @@ public class GameJdbcDao implements GameDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    protected JdbcTemplate getJdbcTemplate(){
+    protected JdbcTemplate getJdbcTemplate() {
         return this.jdbcTemplate;
     }
 
     //TODO: Apply filters in service layer
-    public Collection<Game> searchGame(String name, Map<FilterCategory, List<String>> filters) {
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
 
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
@@ -47,7 +47,6 @@ public class GameJdbcDao implements GameDao {
         String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
         String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, summary HAVING ";
-
 
 
         int parameterCount = 1;         // Used for indexing parameters array
@@ -108,6 +107,10 @@ public class GameJdbcDao implements GameDao {
         return gamesSet;
     }
 
+    @Override
+    public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
+        throw new UnsupportedOperationException("Not implemented, yet");
+    }
 
     @Override
     public Game findById(long id) {
@@ -200,14 +203,13 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
-
-
     /**
      * Creates a join sentence to be added into the FROM clause.
+     *
      * @param filter The filter whose table (and the corresponding relation table) must be joined.
      * @return The created sentence.
      */
-    private String createJoinSentence (FilterCategory filter) {
+    private String createJoinSentence(FilterCategory filter) {
 
         String filterName = filter.name();
         String entityTable = getEntityTable(filter);
@@ -222,8 +224,8 @@ public class GameJdbcDao implements GameDao {
     /**
      * Creates a sentence to be added to the WHERE clause.
      * <p>
-     *     This sentence compares a given field (specified by the filter param)
-     *     and a '?' param, that must be filled afterward in a parameters array.
+     * This sentence compares a given field (specified by the filter param)
+     * and a '?' param, that must be filled afterward in a parameters array.
      * </p>
      * @param filter The filter whose value must be checked
      * @return The created sentence.
@@ -235,7 +237,8 @@ public class GameJdbcDao implements GameDao {
     /**
      * Creates a HAVING clause sentence to be added to the query.
      * <p>This sentence compares how many tuples there are that verify a given filter with a passed value</p>
-     * @param filter The filter whose sum must be compared.
+     *
+     * @param filter      The filter whose sum must be compared.
      * @param valuesCount The value to which the sum must be compared.
      * @return The created sentence.
      */
@@ -246,6 +249,7 @@ public class GameJdbcDao implements GameDao {
 
     /**
      * Counts how many filters will be applied (i.e. for each filter type, how many values there are).
+     *
      * @param filters The map with the filters.
      * @return How many filters will be applied.
      */
@@ -259,17 +263,12 @@ public class GameJdbcDao implements GameDao {
 
     /**
      * Creates a string with the filter's entity table name.
+     *
      * @param filter The filter whose table name must be created.
      * @return A string containing the filter's entity table name.
      */
     private String getEntityTable(FilterCategory filter) {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
-        return "power_up." + (useCompany ? "companies": English.plural(filter.name()));
+        return "power_up." + (useCompany ? "companies" : English.plural(filter.name()));
     }
-
-
-
-
-
-
 }

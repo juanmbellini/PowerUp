@@ -53,7 +53,7 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
-            mav.addObject("results", gameService.searchGame(name, filters));
+            mav.addObject("results", gameService.searchGames(name, filters));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("searchedName", name);
         } catch (IOException e) {
