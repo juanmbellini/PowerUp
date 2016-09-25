@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-
+<link href="<c:url value="/css/game.css" />" type="text/css" rel="stylesheet" media="screen,projection"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,20 +39,36 @@
                             <p><b>Genres</b></p>
                             <p>
                                 <c:forEach var="genre" items="${game.genres}" varStatus="status">
-                                    ${genre}<c:if test="${!status.last}"><br /></c:if>
+
+                                    <button type="button" onclick="filteredSearch('genre','${genre}' )">
+                                            ${genre}
+                                    </button>
+                                    <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
-                                ${platform} - {Release year}<c:if test="${!status.last}"><br /></c:if>
+
+                                <button type="button" onclick="filteredSearch('platform','${platform}' )">
+                                    ${platform} - {Release year}
+                                </button>
+                                    <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                             <p><b>Developers</b></p>
                             <c:forEach var="developer" items="${game.developers}" varStatus="status">
-                                ${developer}<c:if test="${!status.last}"><br /></c:if>
+
+                                <button type="button" onclick="filteredSearch('developer','${developer}' )">
+                                        ${developer}
+                                </button>
+                                <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                             <p><b>Publishers</b></p>
                             <c:forEach var="publisher" items="${game.publishers}" varStatus="status">
-                                ${publisher}<c:if test="${!status.last}"><br /></c:if>
+                                <button type="button" onclick="filteredSearch('publisher','${publisher}' )">
+                                        ${publisher}
+                                </button>
+
+                                <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                         </div>
                     </c:otherwise>
@@ -65,6 +81,6 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-
+<script type="text/javascript" src="<c:url value='/js/game.js' />"></script>
 </body>
 </html>
