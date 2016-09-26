@@ -1,3 +1,4 @@
+
 function filteredSearch(filter, value) { //
     var params = {};
     var URL = "/search?name=&";
@@ -5,6 +6,7 @@ function filteredSearch(filter, value) { //
     params[filter] = [value];
 
 
-    URL += "filters=" + encodeURIComponent(JSON.stringify(params));
-    window.location = URL;
+    URL += "filters=" +  (JSON.stringify(params));
+   // window.location = URL;
+    return URL;
 };

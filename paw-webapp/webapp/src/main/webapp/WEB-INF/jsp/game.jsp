@@ -38,35 +38,55 @@
                             <p style="margin-top:0;">10/10 m8</p>
                             <p><b>Genres</b></p>
                             <p>
-                                <c:forEach var="genre" items="${game.genres}" varStatus="status">
 
-                                    <button type="button" onclick="filteredSearch('genre','${genre}' )">
-                                            ${genre}
-                                    </button>
+                                <c:forEach var="genre" items="${game.genres}" varStatus="status">
+                                    <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"genre":["${genre}"]}'/>
+                                       </c:url>
+                                    ">
+                                        ${genre}
+                                    </a>
                                     <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
-                            <c:forEach var="platform" items="${game.platforms}" varStatus="status">
 
-                                <button type="button" onclick="filteredSearch('platform','${platform}' )">
-                                    ${platform} - {Release year}
-                                </button>
+
+                                <c:forEach var="platform" items="${game.platforms}" varStatus="status">
+                                    <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"platform":["${platform}"]}'/>
+                                       </c:url>
+                                    ">
+                                            ${platform} - {Release year}
+                                    </a>
                                     <c:if test="${!status.last}"><br /></c:if>
-                            </c:forEach>
+                                </c:forEach>
+
+
                             <p><b>Developers</b></p>
                             <c:forEach var="developer" items="${game.developers}" varStatus="status">
 
-                                <button type="button" onclick="filteredSearch('developer','${developer}' )">
+                                <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"developer":["${developer}"]}'/>
+                                       </c:url>
+                                    ">
                                         ${developer}
-                                </button>
+                                </a>
+
                                 <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                             <p><b>Publishers</b></p>
                             <c:forEach var="publisher" items="${game.publishers}" varStatus="status">
-                                <button type="button" onclick="filteredSearch('publisher','${publisher}' )">
+                                <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"publisher":["${publisher}"]}'/>
+                                       </c:url>
+                                    ">
                                         ${publisher}
-                                </button>
+                                </a>
 
                                 <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
