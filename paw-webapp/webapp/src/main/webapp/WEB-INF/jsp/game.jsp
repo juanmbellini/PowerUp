@@ -54,11 +54,11 @@
                                 <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                     <a href="<c:url value="/search">
                                         <c:param name="name" value=""/>
-                                        <c:param name="filters" value='{"platform":["${platform}"]}'/>
+                                        <c:param name="filters" value='{"platform":["${platformEntry.key}"]}'/>
                                        </c:url>
                                     ">
-                                            ${platform} - {Release year}
-                                    </a>
+                                            ${platformEntry.key}
+                                    </a>  ${platformEntry.value}
                                     <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             <p><b>Developers</b></p>

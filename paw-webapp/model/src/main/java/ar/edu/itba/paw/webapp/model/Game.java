@@ -3,10 +3,7 @@ package ar.edu.itba.paw.webapp.model;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Stores basic information about a game as well as its reviews and ratings.
@@ -21,7 +18,7 @@ public class Game {
     private String name;
     private String summary;
     private Collection<String> genres;
-    private Collection<String> platforms;
+    private Map<String,DateTime>  platforms;
     private Collection<String> publishers;
     private Collection<String> developers;
     private Collection<String> keywords;
@@ -50,7 +47,7 @@ public class Game {
         this.name = name;
         this.summary = summary;
         genres = new HashSet<>();
-        platforms = new HashSet<>();
+        platforms = new HashMap<String,DateTime> ();
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
@@ -67,7 +64,13 @@ public class Game {
     public String getName() { return name; }
     public String getSummary() { return summary; }
     public Collection<String> getGenres() { return cloneCollection(genres); }
-    public Collection<String> getPlatforms() { return cloneCollection(platforms); }
+    public Map<String,DateTime> getPlatforms() {
+        HashMap<String, DateTime> newPlatformMap = new HashMap<String, DateTime>();
+
+        for (String key: platforms.keySet()){
+            newPlatformMap.put(key, platforms.get(key)); //TODO check clone for DateTime.
+        }
+        return newPlatformMap; }
     public Collection<String> getPublishers() { return cloneCollection(publishers); }
     public Collection<String> getDevelopers() { return cloneCollection(developers); }
     public Collection<String> getKeywords() { return cloneCollection(keywords); }
@@ -93,7 +96,7 @@ public class Game {
 
     // Adders
     public void addGenre(String genre) { genres.add(genre); }
-    public void addPlatform(String platform) { platforms.add(platform); }
+    public void addPlatform(String platform, DateTime date) { platforms.put(platform,date); }
     public void addPublisher(String publisher) { publishers.add(publisher); }
     public void addDeveloper(String developer) { developers.add(developer); }
     public void addKeyword(String keyword) { keywords.add(keyword); }

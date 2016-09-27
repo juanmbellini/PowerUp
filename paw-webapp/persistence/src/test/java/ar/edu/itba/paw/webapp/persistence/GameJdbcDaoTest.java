@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,7 +82,7 @@ public class GameJdbcDaoTest {
                 "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n" +
 
                 "\n" +
-                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '2018-12-30');\n" +
+                "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n" +
                 "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n" +
                 "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n" +
                 "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n" +
@@ -314,6 +315,19 @@ public class GameJdbcDaoTest {
 
     }
 
+    @Test
+    public void testGetPlatformReleaseDate() {
+        System.out.println("Performing get platform release date...");
+        Game game = gameDao.findById(1);
+
+        assertNotNull(game.getPlatforms());
+        assertTrue("Platform Nintendo 64 should exist for game "+ game.getName(), game.getPlatforms().containsKey("Nintendo 64"));
+        assertEquals(game.getPlatforms().get("Nintendo 64").getYear(),1998);
+        assertEquals(game.getPlatforms().get("Nintendo 64").getMonthOfYear(),12);
+        assertEquals(game.getPlatforms().get("Nintendo 64").getDayOfMonth(),30);
+
+    }
+
 
     @Test
     public void testGetFiltersByType() {
@@ -382,6 +396,8 @@ public class GameJdbcDaoTest {
 
 
     }
+
+
 
 
 }
