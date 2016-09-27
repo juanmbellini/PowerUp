@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<link href="<c:url value="/css/game.css" />" type="text/css" rel="stylesheet" media="screen,projection"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,6 +100,5 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-<script type="text/javascript" src="<c:url value='/js/game.js' />"></script>
 </body>
 </html>
