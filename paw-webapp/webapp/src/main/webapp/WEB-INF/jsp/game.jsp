@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,21 +37,57 @@
                             <p style="margin-top:0;">10/10 m8</p>
                             <p><b>Genres</b></p>
                             <p>
+
                                 <c:forEach var="genre" items="${game.genres}" varStatus="status">
-                                    ${genre}<c:if test="${!status.last}"><br /></c:if>
+                                    <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"genre":["${genre}"]}'/>
+                                       </c:url>
+                                    ">
+                                        ${genre}
+                                    </a>
+                                    <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
-                            <c:forEach var="platform" items="${game.platforms}" varStatus="status">
-                                ${platform} - {Release year}<c:if test="${!status.last}"><br /></c:if>
-                            </c:forEach>
+
+
+                                <c:forEach var="platform" items="${game.platforms}" varStatus="status">
+                                    <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"platform":["${platform}"]}'/>
+                                       </c:url>
+                                    ">
+                                            ${platform} - {Release year}
+                                    </a>
+                                    <c:if test="${!status.last}"><br /></c:if>
+                                </c:forEach>
+
+
                             <p><b>Developers</b></p>
                             <c:forEach var="developer" items="${game.developers}" varStatus="status">
-                                ${developer}<c:if test="${!status.last}"><br /></c:if>
+
+                                <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"developer":["${developer}"]}'/>
+                                       </c:url>
+                                    ">
+                                        ${developer}
+                                </a>
+
+                                <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                             <p><b>Publishers</b></p>
                             <c:forEach var="publisher" items="${game.publishers}" varStatus="status">
-                                ${publisher}<c:if test="${!status.last}"><br /></c:if>
+                                <a href="<c:url value="/search">
+                                        <c:param name="name" value=""/>
+                                        <c:param name="filters" value='{"publisher":["${publisher}"]}'/>
+                                       </c:url>
+                                    ">
+                                        ${publisher}
+                                </a>
+
+                                <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                         </div>
                     </c:otherwise>
@@ -65,6 +100,5 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-
 </body>
 </html>
