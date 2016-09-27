@@ -71,8 +71,8 @@ public class IgdbDownloader {
         try {
             paginate("keywords/?fields=*", new SqlConsumer(keywordsFile) {
                 @Override
-                public void accept(JSONObject genre) {
-                    String query = "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
+                public void accept(JSONObject keyword) {
+                    String query = "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (" + keyword.getInt("id") + ", '" + escapeQuotesToPostgres(keyword.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
@@ -109,8 +109,8 @@ public class IgdbDownloader {
         try {
             paginate("platforms/?fields=*", new SqlConsumer(platformsFile) {
                 @Override
-                public void accept(JSONObject genre) {
-                    String query = "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
+                public void accept(JSONObject platform) {
+                    String query = "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (" + platform.getInt("id") + ", '" + escapeQuotesToPostgres(platform.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
