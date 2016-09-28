@@ -94,8 +94,6 @@ public class GameJdbcDao implements GameDao {
             query += " " + groupByString;
         }
 
-        query += " LIMIT 10";
-
         Set<Game> gamesSet = new HashSet<>();
         System.out.println(query);
         jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
