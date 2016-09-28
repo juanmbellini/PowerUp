@@ -173,6 +173,16 @@ public class GameJdbcDao implements GameDao {
                     }
                 }
         );
+
+        //Get single Cloudinary ID for cover picture (always get the same one)
+        query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? AND NOT EXISTS(SELECT * FROM power_up.game_pictures AS t2 WHERE t2.game_id = t1.game_id AND t2.id < t1.id)";
+        jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                result.addPictuerURL(rs.getString("cloudinary_id"));
+            }
+        });
+
         return result;
     }
 

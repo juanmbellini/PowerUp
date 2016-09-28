@@ -12,6 +12,8 @@ public class Game {
 
     final static int INITIAL_RATING = 7;
     final static double INITIAL_AVG_SCORE = 1.0;
+    private static final String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
+    private static final String DEFAULT_PICTURE_URL = "http://placehold.it/500x500";
 
     private long id;
     private String name;
@@ -25,8 +27,7 @@ public class Game {
     private int rating;
     private double avgScore;
     private LocalDate releaseDate;
-
-
+    private Set<String> pictureUrls = new HashSet<>();
 
 
     public Game() {
@@ -77,6 +78,23 @@ public class Game {
     public int getRating() { return rating; }
     public double getAvgScore() { return avgScore; }
     public LocalDate getReleaseDate() { return releaseDate; }
+    public Set<String> getPictureUrls() { return pictureUrls; }
+
+    /**
+     * Returns the URL of the a picture associated with this game, or a generic picture if none is found.
+     *
+     * @return The picture URL.
+     */
+    public String getSinglePictureUrl() {
+        if(pictureUrls.isEmpty()) {
+            return DEFAULT_PICTURE_URL;
+        } else {
+            for (String url : pictureUrls) {
+                return url;
+            }
+        }
+        return null;
+    }
 
     // Setters
     public void setId(long id) { this.id = id; }
@@ -100,7 +118,14 @@ public class Game {
     public void addDeveloper(String developer) { developers.add(developer); }
     public void addKeyword(String keyword) { keywords.add(keyword); }
     public void addReview(Review review) { reviews.add(review); }
-
+    public void addPictuerURL(String cloudinary_id) {
+        pictureUrls.add(getPictureURL(cloudinary_id));
+    }
+    public void addPictureURLs(String... cloudinary_ids) {
+        for(String id : cloudinary_ids) {
+            addPictuerURL(id);
+        }
+    }
 
 
 
@@ -131,4 +156,13 @@ public class Game {
 
     }
 
+    /**
+     * Gets a full cloudinary picture URL given a cloudinary ID.
+     *
+     * @param cloudinaryId The cloudinary ID.
+     * @return The picture URL.
+     */
+    private String getPictureURL(String cloudinaryId) {
+        return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
+    }
 }
