@@ -99,6 +99,6 @@ CREATE TABLE IF NOT EXISTS power_up.game_pictures(
   width         INTEGER,
   height        INTEGER,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games(id)
+  FOREIGN KEY (game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 COMMIT;
