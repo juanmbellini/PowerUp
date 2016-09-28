@@ -190,7 +190,7 @@ public class GameJdbcDao implements GameDao {
     //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        HashSet<String> result = new HashSet<>();
+        TreeSet<String> result = new TreeSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
