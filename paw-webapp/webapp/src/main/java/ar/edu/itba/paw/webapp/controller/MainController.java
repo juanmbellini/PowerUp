@@ -42,7 +42,7 @@ public class MainController {
 
 
     @RequestMapping("/search")
-    public ModelAndView search(@RequestParam("name") String name,
+    public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView("search");
