@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS power_up.genres CASCADE;
 DROP TABLE IF EXISTS power_up.platforms CASCADE;
 DROP TABLE IF EXISTS power_up.companies CASCADE;
 DROP TABLE IF EXISTS power_up.keywords CASCADE;
+DROP TABLE IF EXISTS power_up.game_pictures CASCADE;
 
 --DROP TABLE IF EXISTS power_up.ratings;
 
@@ -91,5 +92,13 @@ CREATE TABLE IF NOT EXISTS power_up.game_publishers (
   FOREIGN KEY (publisher_id)  REFERENCES power_up.companies (id)  ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE(game_id,publisher_id)
 );
+CREATE TABLE IF NOT EXISTS power_up.game_pictures(
+  id            SERIAL NOT NULL PRIMARY KEY,
+  cloudinary_id VARCHAR NOT NULL,
+  game_id       INTEGER NOT NULL,
+  width         INTEGER,
+  height        INTEGER,
 
+  FOREIGN KEY (game_id) REFERENCES power_up.games(id)
+);
 COMMIT;
