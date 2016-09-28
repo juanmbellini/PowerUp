@@ -26,7 +26,8 @@
                 </c:when>
                 <c:otherwise>
                     <div class="row">
-                        <img class="col s3" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg" alt="">
+                        <%--<img class="col s3" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg" alt="">--%>
+                        <img class="col s3" src="${game.singlePictureUrl}" alt="${game.name}">
                         <div class="col s5">
                             <p style="margin-top: 0;">
                                 <c:choose>
