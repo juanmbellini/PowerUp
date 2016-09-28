@@ -27,7 +27,7 @@
                 <c:otherwise>
                     <div class="row">
                         <img class="col s3" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg" alt="">
-                        <div class="col s6">
+                        <div class="col s5">
                             <p style="margin-top: 0;">
                                 <c:choose>
                                     <c:when test="${empty game.summary}">No summary =(</c:when>
@@ -35,7 +35,7 @@
                                 </c:choose>
                             </p>
                         </div>
-                        <div class="col s3">
+                        <div class="col s4">
                             <p style="margin-top:0;">10/10 m8</p>
                             <p><b>Genres</b></p>
                             <p>
@@ -45,21 +45,19 @@
                                         <c:param name="filters" value='{"genre":["${genre}"]}'/>
                                        </c:url>
                                     ">
-                                        ${genre}
+                                    ${genre}
                                     </a>
                                     <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
-                                <c:forEach var="platform" items="${game.platforms}" varStatus="status">
+                                <c:forEach var="platformEntry" items="${game.platforms}" varStatus="status">
                                     <a href="<c:url value="/search">
                                         <c:param name="name" value=""/>
-                                        <c:param name="filters" value='{"platform":["${platform}"]}'/>
+                                        <c:param name="filters" value='{"platform":["${platformEntry.key}"]}'/>
                                        </c:url>
-                                    ">
-                                            ${platform} - {Release year}
-                                    </a>
-                                    <c:if test="${!status.last}"><br /></c:if>
+                                    ">${platformEntry.key}</a><span style="font-size: small; float: right;">${platformEntry.value}</span>
+                                    <c:if test="${!status.last}"><div class="col s12 divider"></div><br /></c:if>
                                 </c:forEach>
                             <p><b>Developers</b></p>
                             <c:forEach var="developer" items="${game.developers}" varStatus="status">

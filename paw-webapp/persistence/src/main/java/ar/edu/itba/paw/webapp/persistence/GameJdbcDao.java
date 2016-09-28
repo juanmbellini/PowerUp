@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -135,12 +136,12 @@ public class GameJdbcDao implements GameDao {
             return null;
         }
 
-        query = "SELECT power_up.platforms.name FROM power_up.games, power_up.platforms, power_up.game_platforms " +
+        query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
                 "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
         jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
-                        result.addPlatform(rs.getString("name"));
+                        result.addPlatform(rs.getString("name"),new LocalDate(rs.getDate("release_date")));
 
                     }
                 }
