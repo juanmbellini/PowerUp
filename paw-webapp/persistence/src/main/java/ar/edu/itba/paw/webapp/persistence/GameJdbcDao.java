@@ -190,17 +190,28 @@ public class GameJdbcDao implements GameDao {
     //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        TreeSet<String> result = new TreeSet<>();
+    	String tableName = English.plural(filterCategory.name());
+
+	    Set<String> result = new TreeSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
-            query.append(English.plural(filterCategory.name()));
-            fromSentence.append(English.plural(filterCategory.name()));
+            query.append(tableName);
+            fromSentence.append(tableName);
         } else {
             query.append("companies");
             fromSentence.append("companies");
+            fromSentence.append(" INNER JOIN power_up.game_")
+		            .append(tableName)
+                    .append(" ON power_up.companies.id = power_up.game_")
+                    .append(tableName)
+                    .append(".")
+                    .append(filterCategory.name())
+                    .append("_id");
         }
-        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
+        query.append(".name")
+		        .append(fromSentence)
+		        .append(" ORDER BY name ASC LIMIT 500;");
         System.out.println(query.toString());
         jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
                     @Override
