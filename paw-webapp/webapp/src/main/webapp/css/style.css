@@ -33,6 +33,10 @@
     margin-bottom: 10px;
 }
 
+/*#logo-container {*/
+    /*height: 60px;*/
+/*}*/
+
 /* Sticky footer rules */
 body {
     display: flex;
