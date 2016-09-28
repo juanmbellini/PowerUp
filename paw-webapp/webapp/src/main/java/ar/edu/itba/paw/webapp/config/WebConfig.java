@@ -30,9 +30,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:initial-data.sql")
     private Resource initialDataSql;
 
-    @Value("classpath:delete-extra-data.sql")
-    private Resource cleanUpSql;
-
     @Bean
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -82,7 +79,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
         dbp.addScript(initialDataSql);
-        dbp.addScript(cleanUpSql);
         return dbp;
     }
 }
