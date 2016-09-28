@@ -24,6 +24,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+        name = escapeUnsafeCharacters(name);
         return gameDao.searchGames(name, filters);
     }
 
@@ -39,5 +40,17 @@ public class GameServiceImpl implements GameService {
 
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         return gameDao.getFiltersByType(filterCategory);
+    }
+
+    public String escapeUnsafeCharacters(String name){
+        char[] escape = new char[1];
+        StringBuilder nameEscaped = new StringBuilder();
+        for(int i = 0; i < name.length(); i++){
+            if(name.charAt(i) == '%' || name.charAt(i) == '_'){
+                nameEscaped.append('\\');
+            }
+            nameEscaped.append(name.charAt(i));
+        }
+        return nameEscaped.toString();
     }
 }
