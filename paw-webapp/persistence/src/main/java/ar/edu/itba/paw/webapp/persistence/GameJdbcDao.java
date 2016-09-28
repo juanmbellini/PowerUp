@@ -93,7 +93,6 @@ public class GameJdbcDao implements GameDao {
         if (filters.size() > 0) {
             query += " " + groupByString;
         }
-        query += ";";
 
         Set<Game> gamesSet = new HashSet<>();
         System.out.println(query);
