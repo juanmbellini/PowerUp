@@ -234,10 +234,10 @@ public class GameJdbcDao implements GameDao {
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
-
         Set<String> result = new TreeSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
             query.append(tableName);
             fromSentence.append(tableName);
