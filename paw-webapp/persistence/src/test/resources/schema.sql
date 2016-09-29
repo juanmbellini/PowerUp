@@ -72,3 +72,17 @@ CREATE TABLE power_up.game_publishers (
 	FOREIGN KEY (publisher_id) REFERENCES power_up.companies (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(game_id,publisher_id)
 );
+
+
+CREATE TABLE IF NOT EXISTS power_up.game_pictures(
+  id            INTEGER IDENTITY NOT NULL PRIMARY KEY,
+  cloudinary_id VARCHAR(1024) NOT NULL,
+  game_id       INTEGER NOT NULL,
+  width         INTEGER,
+  height        INTEGER,
+
+  FOREIGN KEY (game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
+
+
+
+);

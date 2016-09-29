@@ -12,13 +12,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
+import org.junit.Assert;
 
 import java.util.*;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.*;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-
 
 /**
  * Created by dgrimau on 14/09/16.
@@ -29,6 +29,7 @@ import static org.junit.Assert.assertNotNull;
 @Sql("classpath:schema.sql")
 public class GameJdbcDaoTest {
 
+    private static final String DEFAULT_PICTURE_URL = "http://placehold.it/500x500";
 
     @Autowired
     private GameJdbcDao gameDao;
@@ -43,16 +44,7 @@ public class GameJdbcDaoTest {
 //                "\\encoding utf8;\n" +
 //                "\n" +
                 "--Genres\n" +
-//                        "SET IDENTITY_INSERT power_up.genres ON"+
-//                        "SET IDENTITY_INSERT power_up.platforms ON"+
-//                        "SET IDENTITY_INSERT power_up.keywords ON"+
-//                        "SET IDENTITY_INSERT power_up.companies ON"+
-//                        "SET IDENTITY_INSERT power_up.games ON"+
-//                        "SET IDENTITY_INSERT power_up.game_genres ON"+
-//                        "SET IDENTITY_INSERT power_up.game_keywords ON"+
-//                        "SET IDENTITY_INSERT power_up.game_publisher ON"+
-//                        "SET IDENTITY_INSERT power_up.game_developer ON"+
-//                        "SET IDENTITY_INSERT power_up.game_platforms ON"+
+
 
                         "INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n" +
                         "INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n" +
@@ -101,6 +93,14 @@ public class GameJdbcDaoTest {
                         "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n" +
                         "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n" +
                         "\n" +
+                        "\n" +
+                        "\n" +
+                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
+                        "VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n" +
+                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
+                        "VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n" +
+                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
+                        "VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);" +
                         "\n"
 //                "COMMIT;"
                 ;
@@ -394,6 +394,54 @@ public class GameJdbcDaoTest {
 
     }
 
+    @Test
+    public void testGetSinglePicture(){
+
+
+        Game gameSinglePicture = gameDao.findById(2);
+
+
+        assertEquals( buildUrl("fouukgohwdwhusnx05dx"),gameSinglePicture.getSinglePictureUrl());
+
+        assertNotNull(gameSinglePicture.getPictureUrls());
+        assertEquals(1,gameSinglePicture.getPictureUrls().size());
+        assertTrue(gameSinglePicture.getPictureUrls().contains(buildUrl("fouukgohwdwhusnx05dx")));
+
+
+
+    }
+
+    private String buildUrl(String s) {
+        return "https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/"+s+".jpg";
+    }
+
+
+    @Test
+    public void testGetMultiplePicture(){
+
+
+        Game gameMultiplePicture = gameDao.findById(1);
+
+
+        assertNotNull(gameMultiplePicture.getPictureUrls());
+        assertEquals(2,gameMultiplePicture.getPictureUrls().size());
+        assertTrue(gameMultiplePicture.getPictureUrls().contains(buildUrl("whgrfj9muktnnpags6qg")));
+
+        assertTrue(gameMultiplePicture.getPictureUrls().contains(gameMultiplePicture.getSinglePictureUrl()));
+
+
+
+    }
+
+    @Test
+    public void TestGetNullPicture(){
+        Game game = gameDao.findById(3);
+
+        assertNotNull(game.getPictureUrls());
+
+        assertEquals(DEFAULT_PICTURE_URL, game.getSinglePictureUrl());
+
+    }
 
 }
 
