@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.failedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -97,13 +99,20 @@ public class GameJdbcDao implements GameDao {
 
         Set<Game> gamesSet = new HashSet<>();
         System.out.println(query);
-        jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
+        try {
+            jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                gamesSet.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
-            }
-        });
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    gamesSet.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
+                }
+            });
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+
+        ;
         return gamesSet;
     }
 
@@ -120,68 +129,106 @@ public class GameJdbcDao implements GameDao {
         String query;
         query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
         final boolean[] found = {false};
-        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.setId(rs.getLong("id"));
-                        result.setName(rs.getString("name"));
-                        result.setSummary(rs.getString("summary"));
-                        result.setAvgScore(rs.getDouble("avg_score"));
-                        result.setReleaseDate(new LocalDate(rs.getString("release")));
-                        found[0] = true;
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.setId(rs.getLong("id"));
+                            result.setName(rs.getString("name"));
+                            result.setSummary(rs.getString("summary"));
+                            result.setAvgScore(rs.getDouble("avg_score"));
+                            result.setReleaseDate(new LocalDate(rs.getString("release")));
+                            found[0] = true;
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
         if (!found[0]) {
             return null;
         }
 
         query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
-                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
-        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.addPlatform(rs.getString("name"),new LocalDate(rs.getDate("release_date")));
 
+                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
+
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addPlatform(rs.getString("name"), new LocalDate(rs.getDate("release_date")));
+
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
         query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
                 "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
-        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.addGenre(rs.getString("name"));
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addGenre(rs.getString("name"));
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
                 "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
-        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.addPublisher(rs.getString("name"));
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addPublisher(rs.getString("name"));
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
                 "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
-        jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.addDeveloper(rs.getString("name"));
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addDeveloper(rs.getString("name"));
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
 
         //Get single Cloudinary ID for cover picture (always get the same one)
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? AND NOT EXISTS(SELECT * FROM power_up.game_pictures AS t2 WHERE t2.game_id = t1.game_id AND t2.id < t1.id)";
-        jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                result.addPictuerURL(rs.getString("cloudinary_id"));
-            }
-        });
+        try {
+            jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    result.addPictuerURL(rs.getString("cloudinary_id"));
+                }
+            });
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
 
         return result;
     }
@@ -202,16 +249,23 @@ public class GameJdbcDao implements GameDao {
         }
         query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
         System.out.println(query.toString());
-        jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
-                    @Override
-                    public void processRow(ResultSet rs) throws SQLException {
-                        result.add(rs.getString("name"));
+        try {
+            jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.add(rs.getString("name"));
+                        }
                     }
-                }
-        );
+            );
+        } catch (Exception e) {
+            throw new failedToProcessQueryException();
+
+        }
+        ;
 
         return result;
     }
+
 
     /**
      * Creates a join sentence to be added into the FROM clause.
@@ -237,6 +291,7 @@ public class GameJdbcDao implements GameDao {
      * This sentence compares a given field (specified by the filter param)
      * and a '?' param, that must be filled afterward in a parameters array.
      * </p>
+     *
      * @param filter The filter whose value must be checked
      * @return The created sentence.
      */

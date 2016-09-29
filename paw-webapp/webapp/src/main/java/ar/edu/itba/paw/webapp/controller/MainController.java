@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.failedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -25,7 +26,8 @@ public class MainController {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
-            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {};
+            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
+    };
 
     @Autowired
     public MainController(GameService gameService) {
@@ -58,7 +60,7 @@ public class MainController {
             mav.addObject("searchedName", name);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
-            //TODO: Send something into the ModelAndView indicating the error
+            return error();
         }
         return mav;
     }
@@ -68,8 +70,12 @@ public class MainController {
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
         //Add all possible filter types
-        for(FilterCategory filterCategory : FilterCategory.values()) {
-            mav.addObject((filterCategory.name()+"s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+        for (FilterCategory filterCategory : FilterCategory.values()) {
+            try {
+                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+            } catch (Exception e) {
+                return error();
+            }
         }
         return mav;
     }
@@ -77,8 +83,20 @@ public class MainController {
     @RequestMapping("/game")
     public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
-        Game game = gameService.findById(id);
+        Game game;
+        try {
+            game = gameService.findById(id);
+        } catch (Exception e) {
+            return error();
+        }
         mav.addObject("game", game);
         return mav;
     }
+
+    @RequestMapping("/error")
+    public ModelAndView error() {
+        final ModelAndView mav = new ModelAndView("error");
+        return mav;
+    }
+
 }
