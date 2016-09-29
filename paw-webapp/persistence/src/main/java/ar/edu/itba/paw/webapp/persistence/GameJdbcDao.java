@@ -23,20 +23,20 @@ import java.util.*;
 @Repository
 public class GameJdbcDao implements GameDao {
 
-    private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    public GameJdbcDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+	@Autowired
+	public GameJdbcDao(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 
-    protected JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
+	protected JdbcTemplate getJdbcTemplate() {
+		return this.jdbcTemplate;
+	}
 
-    //TODO: Apply filters in service layer
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
-
+	//TODO: Apply filters in service layer
+	public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+	    
         name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
