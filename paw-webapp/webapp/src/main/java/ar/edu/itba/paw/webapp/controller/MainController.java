@@ -52,7 +52,6 @@ public class MainController {
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
-
         if(name == null){
             name = "";
         }
