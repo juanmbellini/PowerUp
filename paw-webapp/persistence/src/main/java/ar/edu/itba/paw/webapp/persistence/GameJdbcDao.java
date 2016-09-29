@@ -37,7 +37,7 @@ public class GameJdbcDao implements GameDao {
     //TODO: Apply filters in service layer
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
 
-//        name.replace(' ', '%');
+        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
@@ -150,9 +150,7 @@ public class GameJdbcDao implements GameDao {
         }
 
         query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
-
                 "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
-
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -235,9 +233,9 @@ public class GameJdbcDao implements GameDao {
     //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-    	String tableName = English.plural(filterCategory.name());
+        String tableName = English.plural(filterCategory.name());
 
-	    Set<String> result = new TreeSet<>();
+        Set<String> result = new TreeSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
@@ -247,7 +245,7 @@ public class GameJdbcDao implements GameDao {
             query.append("companies");
             fromSentence.append("companies");
             fromSentence.append(" INNER JOIN power_up.game_")
-		            .append(tableName)
+                    .append(tableName)
                     .append(" ON power_up.companies.id = power_up.game_")
                     .append(tableName)
                     .append(".")
@@ -255,8 +253,8 @@ public class GameJdbcDao implements GameDao {
                     .append("_id");
         }
         query.append(".name")
-		        .append(fromSentence)
-		        .append(" ORDER BY name ASC LIMIT 500;");
+                .append(fromSentence)
+                .append(" ORDER BY name ASC LIMIT 500;");
         System.out.println(query.toString());
         try {
             jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
@@ -345,4 +343,5 @@ public class GameJdbcDao implements GameDao {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
         return "power_up." + (useCompany ? "companies" : English.plural(filter.name()));
     }
+
 }

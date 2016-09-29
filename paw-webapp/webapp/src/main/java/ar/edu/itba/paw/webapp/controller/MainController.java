@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,7 @@ public class MainController {
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
-        if(name == null){
+        if (name == null) {
             name = "";
         }
         Map<FilterCategory, List<String>> filters = null;
@@ -76,7 +77,9 @@ public class MainController {
         //Add all possible filter types
         for (FilterCategory filterCategory : FilterCategory.values()) {
             try {
-                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+                mav.addObject(English.plural(filterCategory.name()).toUpperCase(),
+                        gameService.getFiltersByType(filterCategory));
+//                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
             } catch (Exception e) {
                 return error();
             }
