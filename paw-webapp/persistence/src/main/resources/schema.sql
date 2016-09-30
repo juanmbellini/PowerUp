@@ -100,4 +100,5 @@ CREATE TABLE IF NOT EXISTS power_up.game_pictures(
 
   FOREIGN KEY (game_id) REFERENCES power_up.games(id)
 );
+
 COMMIT;
