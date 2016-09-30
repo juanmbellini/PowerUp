@@ -64,7 +64,7 @@ public class MainController {
             mav.setViewName("search");
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
-            mav.setViewName("redirect:error");
+            mav.setViewName("redirect:error500");
         }
         return mav;
     }
@@ -78,7 +78,7 @@ public class MainController {
             try {
                 mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
             } catch (Exception e) {
-                return error();
+                return error500();
             }
         }
         return mav;
@@ -91,15 +91,24 @@ public class MainController {
         try {
             game = gameService.findById(id);
         } catch (Exception e) {
-            return error();
+            return error500();
+        }
+        if(game == null){
+            return error404();
         }
         mav.addObject("game", game);
         return mav;
     }
 
-    @RequestMapping("/error")
-    public ModelAndView error() {
-        final ModelAndView mav = new ModelAndView("error");
+    @RequestMapping("/error500")
+    public ModelAndView error500() {
+        final ModelAndView mav = new ModelAndView("error500");
+        return mav;
+    }
+
+    @RequestMapping("/error404")
+    public ModelAndView error404() {
+        final ModelAndView mav = new ModelAndView("error404");
         return mav;
     }
 
