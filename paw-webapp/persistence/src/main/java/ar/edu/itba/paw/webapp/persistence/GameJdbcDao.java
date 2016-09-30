@@ -1,11 +1,10 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.failedToProcessQueryException;
+import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.atteo.evo.inflector.English;
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +15,6 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -108,7 +106,7 @@ public class GameJdbcDao implements GameDao {
                 }
             });
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
 
@@ -143,7 +141,7 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -165,7 +163,7 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -180,7 +178,7 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -195,7 +193,7 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -210,7 +208,7 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -225,7 +223,7 @@ public class GameJdbcDao implements GameDao {
                 }
             });
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
         ;
@@ -258,10 +256,10 @@ public class GameJdbcDao implements GameDao {
                     }
             );
         } catch (Exception e) {
-            throw new failedToProcessQueryException();
+            throw new FailedToProcessQueryException();
 
         }
-        ;
+
 
         return result;
     }
