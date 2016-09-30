@@ -46,7 +46,7 @@ public class GameServiceImpl implements GameService {
         char[] escape = new char[1];
         StringBuilder nameEscaped = new StringBuilder();
         for(int i = 0; i < name.length(); i++){
-            if(name.charAt(i) == '%' || name.charAt(i) == '_'){
+            if(name.charAt(i) == '%' || name.charAt(i) == '_' || name.charAt(i) == '\\'){
                 nameEscaped.append('\\');
             }
             nameEscaped.append(name.charAt(i));
