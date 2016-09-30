@@ -100,8 +100,18 @@ public class GameJdbcDao implements GameDao {
             query += " " + groupByString;
         }
 
-        Set<Game> gamesSet = new HashSet<>();
+        Set<Game> gamesSet = new LinkedHashSet<>();
         System.out.println(query);
+
+
+        query += " ORDER BY power_up.games." + orderCategory.name();
+
+        if(ascending){
+            query += " ASC";
+        }else{
+            query += " DESC";
+        }
+
         try {
             jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
@@ -117,7 +127,6 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        ;
         return gamesSet;
     }
 
@@ -232,7 +241,7 @@ public class GameJdbcDao implements GameDao {
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
-        Set<String> result = new TreeSet<>();
+        Set<String> result = new LinkedHashSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
 
