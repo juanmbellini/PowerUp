@@ -25,7 +25,8 @@ public class MainController {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
-            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {};
+            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
+    };
 
     @Autowired
     public MainController(GameService gameService) {
@@ -68,8 +69,8 @@ public class MainController {
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
         //Add all possible filter types
-        for(FilterCategory filterCategory : FilterCategory.values()) {
-            mav.addObject((filterCategory.name()+"s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+        for (FilterCategory filterCategory : FilterCategory.values()) {
+            mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
         }
         return mav;
     }
