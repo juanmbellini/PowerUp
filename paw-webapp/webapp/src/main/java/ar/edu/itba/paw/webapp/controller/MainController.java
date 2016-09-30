@@ -46,7 +46,7 @@ public class MainController {
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
-        ModelAndView mav = new ModelAndView();
+        final ModelAndView mav = new ModelAndView();
 
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
@@ -54,34 +54,16 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
-            mav.setViewName("search");
             mav.addObject("results", gameService.searchGames(name, filters));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);
+            mav.setViewName("search");
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             mav.setViewName("redirect:error");
         }
         return mav;
-
-//
-//
-//
-////        final ModelAndView mav = new ModelAndView("search");
-//
-//
-//
-//        try {
-//            filters = objectMapper.readValue(filtersJson, typeReference);
-//            mav.addObject("results", gameService.searchGames(name, filters));
-//            mav.addObject("hasFilters", !filtersJson.equals("{}"));
-//            mav.addObject("searchedName", name);
-//        } catch (IOException e) {
-//            e.printStackTrace();  // Wrong JSON!!
-//            //TODO: Send something into the ModelAndView indicating the error
-//        }
-//        return mav;
     }
 
 
