@@ -51,6 +51,9 @@ public class MainController {
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
+        if(name == null){
+            name = "";
+        }
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
