@@ -25,7 +25,8 @@ public class MainController {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
-            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {};
+            = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
+    };
 
     @Autowired
     public MainController(GameService gameService) {
@@ -45,20 +46,22 @@ public class MainController {
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
-        final ModelAndView mav = new ModelAndView("search");
+        final ModelAndView mav = new ModelAndView();
+
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
-
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
             mav.addObject("results", gameService.searchGames(name, filters));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
+            mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);
+            mav.setViewName("search");
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
-            //TODO: Send something into the ModelAndView indicating the error
+            mav.setViewName("redirect:error");
         }
         return mav;
     }
@@ -68,8 +71,12 @@ public class MainController {
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
         //Add all possible filter types
-        for(FilterCategory filterCategory : FilterCategory.values()) {
-            mav.addObject((filterCategory.name()+"s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+        for (FilterCategory filterCategory : FilterCategory.values()) {
+            try {
+                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
+            } catch (Exception e) {
+                return error();
+            }
         }
         return mav;
     }
@@ -77,8 +84,20 @@ public class MainController {
     @RequestMapping("/game")
     public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
-        Game game = gameService.findById(id);
+        Game game;
+        try {
+            game = gameService.findById(id);
+        } catch (Exception e) {
+            return error();
+        }
         mav.addObject("game", game);
         return mav;
     }
+
+    @RequestMapping("/error")
+    public ModelAndView error() {
+        final ModelAndView mav = new ModelAndView("error");
+        return mav;
+    }
+
 }
