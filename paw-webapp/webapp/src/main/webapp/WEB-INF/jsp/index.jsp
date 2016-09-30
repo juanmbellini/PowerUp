@@ -23,15 +23,15 @@
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <form id="search-form">
                         <div class="input-field">
-                            <input name="search" type="search">
+                            <input name="search" type="search" required="required">
                             <%--<label for="search2"><i class="material-icons">search2</i></label>--%>
-                            <i class="material-icons" style="color:black;">search</i>
+                            <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
                     </form>
                 </div>
             </div>
-            <br><br>
-
+            <br />
+            <br />
         </div>
     </div>
 
