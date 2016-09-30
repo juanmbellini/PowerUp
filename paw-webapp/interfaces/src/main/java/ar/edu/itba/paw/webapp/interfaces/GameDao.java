@@ -14,10 +14,10 @@ import java.util.Set;
 public interface GameDao {
 
     /**
-     * @see GameService#searchGames(String, Map)
+     * @see GameService#searchGames(String, Map, List, OrderCategory, boolean)
      * @throws IllegalArgumentException if a list in the {@code filters} map is null.
      */
-    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) throws IllegalArgumentException;
+    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean order) throws IllegalArgumentException;
 
     /**
      * @see GameService#findRelatedGames(Game, Set)
