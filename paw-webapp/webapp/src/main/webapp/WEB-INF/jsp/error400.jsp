@@ -16,8 +16,8 @@
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br><br>
-                <h1 class="header center">404. That's an error.</h1>
-                <h3 class="header center">The URL was not found on this server</h3>
+                <h1 class="header center">400. That's an error.</h1>
+                <h3 class="header center">Bad Request</h3>
                 <h5 class="header center">Git Gud</h5>
                 <br><br>
             </div>
