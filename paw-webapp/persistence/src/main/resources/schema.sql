@@ -40,6 +40,10 @@ CREATE TABLE IF NOT EXISTS power_up.companies (
   id   SERIAL NOT NULL PRIMARY KEY,
   name VARCHAR
 );
+CREATE TABLE IF NOT EXISTS power_up.keywords (
+  id   SERIAL  NOT NULL PRIMARY KEY,
+  name VARCHAR NOT NULL
+);
 
 -- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS power_up.game_genres (
@@ -61,10 +65,7 @@ CREATE TABLE IF NOT EXISTS power_up.game_platforms (
   FOREIGN KEY (platform_id) REFERENCES power_up.platforms (id) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (game_id, platform_id, release_DATE)  --A game can be released for the same platform several times (i.e. remake)
 );
-CREATE TABLE IF NOT EXISTS power_up.keywords (
-  id   SERIAL  NOT NULL PRIMARY KEY,
-  name VARCHAR NOT NULL
-);
+
 CREATE TABLE IF NOT EXISTS power_up.game_keywords (
   id         SERIAL  NOT NULL PRIMARY KEY,
   game_id    INTEGER NOT NULL,
