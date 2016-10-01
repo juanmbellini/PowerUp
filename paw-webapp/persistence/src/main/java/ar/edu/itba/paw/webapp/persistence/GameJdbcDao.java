@@ -34,9 +34,10 @@ public class GameJdbcDao implements GameDao {
         return this.jdbcTemplate;
     }
 
-    //TODO: Apply filters in service layer
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
 
+	//TODO: Apply filters in service layer
+	public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+	    
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
@@ -142,17 +143,13 @@ public class GameJdbcDao implements GameDao {
             );
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
-
         }
-        ;
         if (!found[0]) {
             return null;
         }
 
         query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
-
                 "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
-
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -166,7 +163,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
                 "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
         try {
@@ -181,7 +177,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
                 "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
         try {
@@ -196,7 +191,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
                 "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
         try {
@@ -211,7 +205,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
 
         //Get single Cloudinary ID for cover picture (always get the same one)
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? AND NOT EXISTS(SELECT * FROM power_up.game_pictures AS t2 WHERE t2.game_id = t1.game_id AND t2.id < t1.id)";
@@ -226,26 +219,35 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
 
         return result;
     }
 
 
-    //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        TreeSet<String> result = new TreeSet<>();
+        String tableName = English.plural(filterCategory.name());
+        Set<String> result = new TreeSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
-            query.append(English.plural(filterCategory.name()));
-            fromSentence.append(English.plural(filterCategory.name()));
+            query.append(tableName);
+            fromSentence.append(tableName);
         } else {
             query.append("companies");
             fromSentence.append("companies");
+            fromSentence.append(" INNER JOIN power_up.game_")
+                    .append(tableName)
+                    .append(" ON power_up.companies.id = power_up.game_")
+                    .append(tableName)
+                    .append(".")
+                    .append(filterCategory.name())
+                    .append("_id");
         }
-        query.append(".name").append(fromSentence).append(" ORDER BY name ASC LIMIT 500");
+        query.append(".name")
+                .append(fromSentence)
+                .append(" ORDER BY name ASC LIMIT 500;");
         System.out.println(query.toString());
         try {
             jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
@@ -334,4 +336,5 @@ public class GameJdbcDao implements GameDao {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
         return "power_up." + (useCompany ? "companies" : English.plural(filter.name()));
     }
+
 }
