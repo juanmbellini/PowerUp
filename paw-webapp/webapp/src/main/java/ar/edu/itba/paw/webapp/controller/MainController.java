@@ -60,6 +60,7 @@ public class MainController {
             mav.addObject("results", gameService.searchGames(name, filters));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("searchedName", name);
+            mav.addObject("filters",filters);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             return error();
