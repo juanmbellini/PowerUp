@@ -422,13 +422,13 @@ public class GameJdbcDaoTest {
 
     @Test
     public void testFindRelatedGamesWithOneSimpleFilter() {
-        System.out.println("Performing find related games test using one simple filter (i.e. genres)...");
+        System.out.println("Performing find related games test using one simple filter (i.e. keywords)...");
 
         final Game mario = gameDao.findById(1);
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
         final Set<FilterCategory> filters = new HashSet<>();
-        filters.add(FilterCategory.genre);
+        filters.add(FilterCategory.keyword);
         final Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
 
         Assert.assertNotNull("Find related gamed didn't returned as expected. " +
@@ -515,7 +515,7 @@ public class GameJdbcDaoTest {
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
         final Set<FilterCategory> filters = new HashSet<>();
-        filters.add(FilterCategory.genre);
+        filters.add(FilterCategory.keyword);
         filters.add(FilterCategory.developer);
         Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
 
