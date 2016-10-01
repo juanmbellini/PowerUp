@@ -143,9 +143,7 @@ public class GameJdbcDao implements GameDao {
             );
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
-
         }
-        ;
         if (!found[0]) {
             return null;
         }
@@ -165,7 +163,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
                 "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
         try {
@@ -180,7 +177,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
                 "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
         try {
@@ -195,7 +191,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
                 "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
         try {
@@ -210,7 +205,6 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
 
         //Get single Cloudinary ID for cover picture (always get the same one)
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? AND NOT EXISTS(SELECT * FROM power_up.game_pictures AS t2 WHERE t2.game_id = t1.game_id AND t2.id < t1.id)";
@@ -225,13 +219,11 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
-        ;
 
         return result;
     }
 
 
-    //TODO: Fix companies issue: when asking for publishers, it returns companies that are only developers
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
