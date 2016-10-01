@@ -38,7 +38,6 @@ public class GameJdbcDao implements GameDao {
 
     //TODO: Apply filters in service layer
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
-
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
@@ -133,7 +132,39 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
-        throw new UnsupportedOperationException("Not implemented, yet");
+
+        Map<FilterCategory, List<String>> filtersMap = new HashMap<>();
+        if (filters.contains(FilterCategory.publisher)) {
+            List<String> list = new ArrayList<>();
+            list.addAll(baseGame.getPublishers());
+            filtersMap.put(FilterCategory.publisher, list);
+        }
+        if (filters.contains(FilterCategory.developer)) {
+            List<String> list = new ArrayList<>();
+            list.addAll(baseGame.getDevelopers());
+            filtersMap.put(FilterCategory.developer, list);
+        }
+        if (filters.contains(FilterCategory.genre)) {
+            List<String> list = new ArrayList<>();
+            list.addAll(baseGame.getGenres());
+            filtersMap.put(FilterCategory.genre, list);
+        }
+        if (filters.contains(FilterCategory.keyword)) {
+            List<String> list = new ArrayList<>();
+            list.addAll(baseGame.getKeywords());
+            filtersMap.put(FilterCategory.keyword, list);
+        }
+        if (filters.contains(FilterCategory.platform)) {
+            List<String> list = new ArrayList<>();
+            list.addAll(baseGame.getPlatforms().keySet());
+            filtersMap.put(FilterCategory.platform, list);
+        }
+        Set<Game> result = new HashSet<>(searchGames("", filtersMap, OrderCategory.name, true));
+        result.remove(baseGame);
+        return result;
+
+
+//        throw new UnsupportedOperationException("Not implemented, yet");
     }
 
     @Override
@@ -218,6 +249,22 @@ public class GameJdbcDao implements GameDao {
                         @Override
                         public void processRow(ResultSet rs) throws SQLException {
                             result.addDeveloper(rs.getString("name"));
+                        }
+                    }
+            );
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+
+        }
+
+
+        query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
+                "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addKeyword(rs.getString("name"));
                         }
                     }
             );

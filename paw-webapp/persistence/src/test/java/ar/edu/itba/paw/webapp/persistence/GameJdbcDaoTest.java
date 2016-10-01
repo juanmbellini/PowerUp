@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
-import org.joda.time.DateTime;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,10 +17,9 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 import java.util.*;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Created by dgrimau on 14/09/16.
