@@ -38,7 +38,7 @@ public class GameJdbcDao implements GameDao {
 	//TODO: Apply filters in service layer
 	public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
 	    
-        name.replace(' ', '%');
+//        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
