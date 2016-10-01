@@ -39,73 +39,60 @@ public class GameJdbcDaoTest {
 
     private void inicializeDataBase() {
 
-        String insert =
-//                "BEGIN;\n" +
-//                "SET DATESTYLE TO ISO, YMD;\n" +
-//                "\\encoding utf8;\n" +
-//                "\n" +
-                "--Genres\n" +
-
-
-                        "INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n" +
-                        "INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n" +
-                        "INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n" +
-                        "INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n" +
-                        "INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n" +
-
-                        "\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n" +
-
-                        "\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);" +
-                        "\n"
-//                "COMMIT;"
-                ;
-        jdbcTemplate.execute(insert);
+        StringBuilder insert = new StringBuilder().append("")
+                // Inserts genres
+                .append("INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n")
+                .append("INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n")
+                // Inserts platforms
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n")
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n")
+                //* Inserts keywords
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n")
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n")
+                // Inserts companies
+                .append("INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n")
+                .append("INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n")
+                // Inserts games
+                .append("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n")
+                // Inserts game-keywords relationship
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n")
+                // Inserts game-platforms relationship
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n")
+                // Inserts game-publishers relationship
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n")
+                // Inserts game-genres relationship
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n")
+                // Inserts game-developers relationship
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n")
+                // Inserts game-images relationship
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n")
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n")
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);");
+        jdbcTemplate.execute(insert.toString());
     }
 
     //TODO afterClass to clean DB
@@ -356,7 +343,6 @@ public class GameJdbcDaoTest {
     public void testGetFiltersByTypeForCompaniesFilters() {
         System.out.println("Performing get filters by type test on companies filters...");
 
-
         // Tests publishers filters (mapped to companies table)
         Collection<String> publishersFilters = gameDao.getFiltersByType(FilterCategory.publisher);
         assertNotNull("Get filters by Type didn't returned as expected for publishers. " +
@@ -373,7 +359,6 @@ public class GameJdbcDaoTest {
         assertFalse("Get filters by Type didn't returned as expected for publishers. " +
                         "Resultant collection contained 'Nintendo Party' as a publisher",
                 publishersFilters.contains("Nintendo Party"));
-
 
         // Tests developers filters (mapped to companies table)
         Collection<String> developersFilters = gameDao.getFiltersByType(FilterCategory.developer);
@@ -423,43 +408,43 @@ public class GameJdbcDaoTest {
 
     @Test
     public void TestGetNullPicture() {
+        System.out.println("Performing get null picture test...");
         Game game = gameDao.findById(3);
 
         assertNotNull(game.getPictureUrls());
-
         assertEquals(DEFAULT_PICTURE_URL, game.getCoverPictureUrl());
 
     }
 
 
     @Test
-    public void TestOrderByName(){
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, true );
+    public void TestOrderByName() {
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.name, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getName().compareTo(game.getName())<=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getName().compareTo(game.getName()) <= 0));
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.name, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getName().compareTo(game.getName())>=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getName().compareTo(game.getName()) >= 0));
             }
         }
-
     }
 
 
+
     @Test
-    public void TestOrderByAvgScore(){
+    public void TestOrderByAvgScore() {
         final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, true );
         Game oldGame = null;
         assertEquals(3,gameCollection.size());
@@ -485,7 +470,7 @@ public class GameJdbcDaoTest {
 
 
     @Test
-    public void TestOrderByRelease(){
+    public void TestOrderByRelease() {
         final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, true );
         Game oldGame = null;
         assertEquals(3,gameCollection.size());
@@ -506,6 +491,13 @@ public class GameJdbcDaoTest {
                 assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())>=0));
             }
         }
+
+    }
+
+
+    @Test
+    public void testFindRelatedGames() {
+        System.out.println("Performing find related games test using simple filter(i.e. genres)...");
 
     }
 
