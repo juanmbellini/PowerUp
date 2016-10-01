@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,9 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
         name = escapeUnsafeCharacters(name);
-        return gameDao.searchGames(name, filters);
+        return gameDao.searchGames(name, filters, orderCategory, ascending);
     }
 
     @Override
