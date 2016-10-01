@@ -504,7 +504,7 @@ public class GameJdbcDaoTest {
         final Game mario = gameDao.findById(1);
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
-        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+        final Set<FilterCategory> filters = new HashSet<>();
         filters.add(FilterCategory.genre);
         final Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
 
@@ -536,7 +536,7 @@ public class GameJdbcDaoTest {
         final Game mario = gameDao.findById(1);
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
-        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+        final Set<FilterCategory> filters = new HashSet<>();
 
         // Tests method using publishers as filter
         filters.add(FilterCategory.publisher);
@@ -591,7 +591,7 @@ public class GameJdbcDaoTest {
         final Game mario = gameDao.findById(1);
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
-        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+        final Set<FilterCategory> filters = new HashSet<>();
         filters.add(FilterCategory.genre);
         filters.add(FilterCategory.developer);
         Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
