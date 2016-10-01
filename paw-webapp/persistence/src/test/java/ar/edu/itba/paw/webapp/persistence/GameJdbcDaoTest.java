@@ -18,7 +18,9 @@ import java.util.*;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by dgrimau on 14/09/16.
@@ -419,9 +421,119 @@ public class GameJdbcDaoTest {
 
 
     @Test
-    public void testFindRelatedGames() {
-        System.out.println("Performing find related games test using simple filter(i.e. genres)...");
+    public void testFindRelatedGamesWithOneSimpleFilter() {
+        System.out.println("Performing find related games test using one simple filter (i.e. genres)...");
 
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+        filters.add(FilterCategory.genre);
+        final Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
+
+    }
+
+
+    @Test
+    public void testFindRelatedGamesWithOneComplexFilter() {
+        System.out.println("Performing find related games test twice using one complex filters each time " +
+                "(i.e. publishers and developers)...");
+        System.out.println("Starting with publishers...");
+
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+
+        // Tests method using publishers as filter
+        filters.add(FilterCategory.publisher);
+        Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(marioParty));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(sonic));
+
+
+        System.out.println("Continuing with developers...");
+        filters.clear();
+
+        // Tests method using developers as filter
+        filters.add(FilterCategory.developer);
+        relatedToMario = gameDao.findRelatedGames(mario, filters);
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
+    }
+
+
+    @Test
+    public void testFindRelatedGamesWithMoreThanOneFilters() {
+        System.out.println("Performing find related games test using more than one filter " +
+                "(i.e. genres and developers)...");
+
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<FilterCategory>();
+        filters.add(FilterCategory.genre);
+        filters.add(FilterCategory.developer);
+        Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
     }
 
 }
