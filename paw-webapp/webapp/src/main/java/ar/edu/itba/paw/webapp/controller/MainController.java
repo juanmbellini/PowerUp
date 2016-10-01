@@ -64,6 +64,7 @@ public class MainController {
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);
             mav.setViewName("search");
+            mav.addObject("filters",filters);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             mav.setViewName("redirect:error500");

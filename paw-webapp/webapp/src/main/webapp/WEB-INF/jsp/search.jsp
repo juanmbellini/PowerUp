@@ -15,9 +15,32 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text">Results for ${searchedName}<c:if test="${hasFilters}"> with filters</c:if></h1>
+            <h1 class="header center orange-text">Results for ${searchedName}<c:if test="${hasFilters}"> with
+                filters</c:if></h1>
         </div>
-        <div class="section">
+        <div class="row">
+
+            <select class="col s2" id="orderSelectId" onchange="reload()">
+                <option value="name">name</option>
+                <option value="release date">release date</option>
+                <option value="avg-rating">avg-rating</option>
+            </select>
+        </div>
+        <div class="row">
+
+
+            <div class="col s4 center">
+
+                <h6>name</h6>
+            </div>
+            <div class="col s6 center">
+                <h6>release date</h6>
+            </div>
+            <div class="col 2 center">
+                <h6>avg-rating</h6>
+            </div>
+        </div>
+        <div class="section ">
             <div class="row">
                 <c:choose>
                     <c:when test="${ fn:length(results) == 0 }">
@@ -35,17 +58,19 @@
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
                                             </c:forEach>
                                         </p>
-                                        <p>${game.releaseDate.year}</p>
                                     </div>
-                                    <div class="secondary-content">
-                                        <p class="rating-stars hide-on-small-and-down">
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                            <i class="material-icons">star</i>
-                                        </p>
-                                        <p class="rating-number center"><b>10</b></p>
+                                    <div class="primary-content col s2">
+                                        <p>${game.releaseDate.year}</p>
+                                        <div class="secondary-content">
+                                            <p class="rating-stars hide-on-small-and-down">
+                                                <i class="material-icons">star</i>
+                                                <i class="material-icons">star</i>
+                                                <i class="material-icons">star</i>
+                                                <i class="material-icons">star</i>
+                                                <i class="material-icons">star</i>
+                                            </p>
+                                            <p class="rating-number center"><b>10</b></p>
+                                        </div>
                                     </div>
                                 </li>
                             </c:forEach>
@@ -61,5 +86,29 @@
     <%@include file="footer.jsp" %>
 </footer>
 
+<script type="text/javascript" src="<c:url value='/js/advanced-search.js' />"></script>
+
 </body>
 </html>
+
+
+<script>
+    function reload(){
+
+
+
+        var e = document.getElementById("orderSelect");
+
+
+        //var strUser = e.options[e.selectedIndex].value;
+
+
+        window.location = URL;
+        var URL = "/search?"+encodeURIComponent(${searchedName})+"&";
+
+        URL += "filters=" + encodeURIComponent(${filters});
+
+
+    }
+
+</script>
