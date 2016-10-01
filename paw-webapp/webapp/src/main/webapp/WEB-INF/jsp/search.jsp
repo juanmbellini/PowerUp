@@ -53,6 +53,7 @@
                                     <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
                                     <div class="primary-content col s8">
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
