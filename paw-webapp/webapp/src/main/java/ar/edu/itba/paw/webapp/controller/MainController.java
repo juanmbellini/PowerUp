@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
-            mav.addObject("results", gameService.searchGames(name, filters));
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.name, true));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);

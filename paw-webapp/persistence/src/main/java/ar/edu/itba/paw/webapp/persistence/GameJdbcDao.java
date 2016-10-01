@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class GameJdbcDao implements GameDao {
     }
 
     //TODO: Apply filters in service layer
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
 
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];

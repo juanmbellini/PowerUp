@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,10 +15,10 @@ import java.util.Set;
 public interface GameDao {
 
     /**
-     * @see GameService#searchGames(String, Map, List, OrderCategory, boolean)
+     * @see GameService#searchGames(String, Map, OrderCategory, boolean)
      * @throws IllegalArgumentException if a list in the {@code filters} map is null.
      */
-    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean order) throws IllegalArgumentException;
+    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) throws IllegalArgumentException;
 
     /**
      * @see GameService#findRelatedGames(Game, Set)
