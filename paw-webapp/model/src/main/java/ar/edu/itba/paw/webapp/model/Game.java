@@ -13,7 +13,7 @@ public class Game {
     final static int INITIAL_RATING = 7;
     final static double INITIAL_AVG_SCORE = 1.0;
     private static final String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
-    private static final String DEFAULT_PICTURE_URL = "http://placehold.it/500x500";
+    private static final String DEFAULT_COVER_PICTURE_URL = "http://placehold.it/500x500";
 
     private long id;
     private String name;
@@ -81,14 +81,16 @@ public class Game {
     public Set<String> getPictureUrls() { return pictureUrls; }
 
     /**
-     * Returns the URL of the a picture associated with this game, or a generic picture if none is found.
+     * Returns the first URL returned by {@link #getPictureUrls()}, or a default picture if no pictures are associated
+     * with this game.
      *
      * @return The picture URL.
      */
-    public String getSinglePictureUrl() {
+    public String getCoverPictureUrl() {
         if(pictureUrls.isEmpty()) {
-            return DEFAULT_PICTURE_URL;
+            return DEFAULT_COVER_PICTURE_URL;
         } else {
+            //noinspection LoopStatementThatDoesntLoop
             for (String url : pictureUrls) {
                 return url;
             }
