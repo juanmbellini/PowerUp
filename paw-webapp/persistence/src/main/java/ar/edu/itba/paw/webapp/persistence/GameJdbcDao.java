@@ -206,8 +206,8 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        //Get single Cloudinary ID for cover picture (always get the same one)
-        query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? AND NOT EXISTS(SELECT * FROM power_up.game_pictures AS t2 WHERE t2.game_id = t1.game_id AND t2.id < t1.id)";
+        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
+        query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
                 @Override
@@ -217,7 +217,6 @@ public class GameJdbcDao implements GameDao {
             });
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
-
         }
 
         return result;

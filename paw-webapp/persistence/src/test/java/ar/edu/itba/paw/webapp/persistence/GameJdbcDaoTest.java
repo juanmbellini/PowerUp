@@ -2,7 +2,6 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
-import org.junit.Assert;
 
 import java.util.*;
 
@@ -395,51 +393,38 @@ public class GameJdbcDaoTest {
     }
 
     @Test
-    public void testGetSinglePicture(){
-
-
+    public void testGetCoverPicture() {
         Game gameSinglePicture = gameDao.findById(2);
 
-
-        assertEquals( buildUrl("fouukgohwdwhusnx05dx"),gameSinglePicture.getSinglePictureUrl());
+        assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPictureUrl());
 
         assertNotNull(gameSinglePicture.getPictureUrls());
-        assertEquals(1,gameSinglePicture.getPictureUrls().size());
+        assertEquals(1, gameSinglePicture.getPictureUrls().size());
         assertTrue(gameSinglePicture.getPictureUrls().contains(buildUrl("fouukgohwdwhusnx05dx")));
-
-
-
     }
 
     private String buildUrl(String s) {
-        return "https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/"+s+".jpg";
+        return "https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/" + s + ".jpg";
     }
 
 
     @Test
-    public void testGetMultiplePicture(){
+    public void testGetMultiplePictures() {
+        Game gameMultiplePictures = gameDao.findById(1);
 
-
-        Game gameMultiplePicture = gameDao.findById(1);
-
-
-        assertNotNull(gameMultiplePicture.getPictureUrls());
-        assertEquals(2,gameMultiplePicture.getPictureUrls().size());
-        assertTrue(gameMultiplePicture.getPictureUrls().contains(buildUrl("whgrfj9muktnnpags6qg")));
-
-        assertTrue(gameMultiplePicture.getPictureUrls().contains(gameMultiplePicture.getSinglePictureUrl()));
-
-
-
+        assertNotNull(gameMultiplePictures.getPictureUrls());
+        assertEquals(2, gameMultiplePictures.getPictureUrls().size());
+        assertTrue(gameMultiplePictures.getPictureUrls().contains(buildUrl("whgrfj9muktnnpags6qg")));
+        assertTrue(gameMultiplePictures.getPictureUrls().contains(gameMultiplePictures.getCoverPictureUrl()));
     }
 
     @Test
-    public void TestGetNullPicture(){
+    public void TestGetNullPicture() {
         Game game = gameDao.findById(3);
 
         assertNotNull(game.getPictureUrls());
 
-        assertEquals(DEFAULT_PICTURE_URL, game.getSinglePictureUrl());
+        assertEquals(DEFAULT_PICTURE_URL, game.getCoverPictureUrl());
 
     }
 
