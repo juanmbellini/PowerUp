@@ -135,29 +135,24 @@ public class GameJdbcDao implements GameDao {
 
         Map<FilterCategory, List<String>> filtersMap = new HashMap<>();
         if (filters.contains(FilterCategory.publisher)) {
-            List<String> list = new ArrayList<>();
-            list.addAll(baseGame.getPublishers());
-            filtersMap.put(FilterCategory.publisher, list);
+            filtersMap.put(FilterCategory.publisher,
+                    new ArrayList<>(baseGame.getPublishers()));
         }
         if (filters.contains(FilterCategory.developer)) {
-            List<String> list = new ArrayList<>();
-            list.addAll(baseGame.getDevelopers());
-            filtersMap.put(FilterCategory.developer, list);
+            filtersMap.put(FilterCategory.developer,
+                    new ArrayList<>(baseGame.getDevelopers()));
         }
         if (filters.contains(FilterCategory.genre)) {
-            List<String> list = new ArrayList<>();
-            list.addAll(baseGame.getGenres());
-            filtersMap.put(FilterCategory.genre, list);
+            filtersMap.put(FilterCategory.genre,
+                    new ArrayList<>(baseGame.getGenres()));
         }
         if (filters.contains(FilterCategory.keyword)) {
-            List<String> list = new ArrayList<>();
-            list.addAll(baseGame.getKeywords());
-            filtersMap.put(FilterCategory.keyword, list);
+            filtersMap.put(FilterCategory.keyword,
+                    new ArrayList<>(baseGame.getKeywords()));
         }
         if (filters.contains(FilterCategory.platform)) {
-            List<String> list = new ArrayList<>();
-            list.addAll(baseGame.getPlatforms().keySet());
-            filtersMap.put(FilterCategory.platform, list);
+            filtersMap.put(FilterCategory.platform,
+                    new ArrayList<>(baseGame.getPlatforms().keySet()));
         }
         Set<Game> result = new HashSet<>(searchGames("", filtersMap, OrderCategory.name, true));
         result.remove(baseGame);
