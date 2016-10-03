@@ -27,7 +27,8 @@ import static org.junit.Assert.assertNotEquals;
 @Sql("classpath:schema.sql")
 public class GameJdbcDaoTest {
 
-    private static final String DEFAULT_PICTURE_URL = "http://placehold.it/500x500";
+    //TODO avoid copy-pasting
+    private static final String DEFAULT_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
 
     @Autowired
     private GameJdbcDao gameDao;

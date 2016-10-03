@@ -13,7 +13,8 @@ public class Game {
     final static int INITIAL_RATING = 7;
     final static double INITIAL_AVG_SCORE = 1.0;
     private static final String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
-    private static final String DEFAULT_COVER_PICTURE_URL = "http://placehold.it/500x500";
+    //TODO store this locally or get a more reliable URL
+    private static final String DEFAULT_COVER_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
 
     private long id;
     private String name;
