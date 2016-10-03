@@ -52,7 +52,6 @@
                                     <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
                                     <div class="primary-content col s8">
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
-
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
@@ -60,7 +59,7 @@
                                         </p>
                                     </div>
                                     <div class="primary-content col s2">
-                                        <p>${game.releaseDate.year}</p>
+                                        <p>${game.releaseDate}</p>
                                         <div class="secondary-content">
                                             <p class="rating-stars hide-on-small-and-down">
                                                 <i class="material-icons">star</i>
@@ -103,9 +102,9 @@
         var strUser = e.options[e.selectedIndex].value;
 
 
-        var URL = "/search?"+encodeURIComponent("${searchedName}") + "&";
+        var URL = "/search?name="+encodeURIComponent("${searchedName}") + "&";
         URL += "filters=" + encodeURIComponent(JSON.stringify(${filters}));
-        URL += "
+        URL += "&orderCategory=" + encodeURIComponent(strUser);
         window.location = URL;
     }
 

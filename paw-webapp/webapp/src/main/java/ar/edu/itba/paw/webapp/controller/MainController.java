@@ -46,7 +46,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
-                               @RequestParam(value = "orderParameter", required = false) String parameter,
+                               @RequestParam(value = "orderCategory", required = false) String orderParameter,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView();
@@ -60,7 +60,18 @@ public class MainController {
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.name, true));
+            //TODO make a new function for this
+            if(orderParameter == null) {
+                orderParameter = "name";
+            }if(orderParameter.equals("release date")){
+                orderParameter = "release";
+            }else if(orderParameter.equals("avg-rating")){
+                orderParameter = "avg_score";
+            }else{
+                return error404();
+            }
+
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), true));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);

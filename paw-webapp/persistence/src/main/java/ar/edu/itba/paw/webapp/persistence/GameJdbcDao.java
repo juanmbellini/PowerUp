@@ -43,7 +43,7 @@ public class GameJdbcDao implements GameDao {
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
-        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id" +
+        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id, power_up.games.release" +
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id" +
@@ -102,7 +102,6 @@ public class GameJdbcDao implements GameDao {
         }
 
         Set<Game> gamesSet = new LinkedHashSet<>();
-        System.out.println(query);
 
 
         query += " ORDER BY power_up.games." + orderCategory.name();
@@ -112,6 +111,7 @@ public class GameJdbcDao implements GameDao {
         }else{
             query += " DESC";
         }
+        System.out.println(query);
 
         try {
             jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
@@ -120,6 +120,7 @@ public class GameJdbcDao implements GameDao {
                 public void processRow(ResultSet rs) throws SQLException {
                     Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
                     game.addPictuerURL(rs.getString("cloudinary_id"));
+                    game.setReleaseDate(new LocalDate(rs.getString("release")));
                     gamesSet.add(game);
                 }
             });
