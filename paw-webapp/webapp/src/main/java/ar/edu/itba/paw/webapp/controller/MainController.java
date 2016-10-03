@@ -45,6 +45,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
+                               @RequestParam(value = "orderParameter", required = false) String parameter,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView();
@@ -63,7 +64,7 @@ public class MainController {
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);
             mav.setViewName("search");
-            mav.addObject("filters",filters);
+            mav.addObject("filters", filtersJson);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             mav.setViewName("redirect:error500");
