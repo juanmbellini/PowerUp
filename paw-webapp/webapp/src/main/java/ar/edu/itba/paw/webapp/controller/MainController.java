@@ -45,6 +45,7 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
+                               @RequestParam(value = "orderParameter", required = false) String parameter,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView("search");
@@ -60,7 +61,7 @@ public class MainController {
             mav.addObject("results", gameService.searchGames(name, filters));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("searchedName", name);
-            mav.addObject("filters",filters);
+            mav.addObject("filters", filtersJson);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             return error();

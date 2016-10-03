@@ -19,7 +19,6 @@
                 filters</c:if></h1>
         </div>
         <div class="row">
-
             <select class="col s2" id="orderSelectId" onchange="reload()">
                 <option value="name">name</option>
                 <option value="release date">release date</option>
@@ -99,18 +98,16 @@
 
 
 
-        var e = document.getElementById("orderSelect");
+        var e = document.getElementById("orderSelectId");
 
 
-        //var strUser = e.options[e.selectedIndex].value;
+        var strUser = e.options[e.selectedIndex].value;
 
 
+        var URL = "/search?"+encodeURIComponent("${searchedName}") + "&";
+        URL += "filters=" + encodeURIComponent(JSON.stringify(${filters}));
+        URL += "
         window.location = URL;
-        var URL = "/search?"+encodeURIComponent(${searchedName})+"&";
-
-        URL += "filters=" + encodeURIComponent(${filters});
-
-
     }
 
 </script>
