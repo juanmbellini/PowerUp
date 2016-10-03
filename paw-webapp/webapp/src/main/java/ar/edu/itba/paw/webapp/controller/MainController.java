@@ -116,4 +116,9 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/error400")
+    public ModelAndView error400() {
+        final ModelAndView mav = new ModelAndView("error400");
+        return mav;
+    }
 }
