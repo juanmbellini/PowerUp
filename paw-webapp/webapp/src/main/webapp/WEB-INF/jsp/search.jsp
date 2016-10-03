@@ -49,9 +49,17 @@
                         <ul class="collection" id="results">
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
+<<<<<<< HEAD
                                     <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
                                     <div class="primary-content col s8">
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+=======
+                                    <img class="col s2" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg"
+                                         alt="">
+                                    <div class="primary-content col s6">
+                                        <p class="title"><a
+                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+>>>>>>> e2f2bc41cb2e86293103dd7c0b93abdf3c953405
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
@@ -59,7 +67,11 @@
                                         </p>
                                     </div>
                                     <div class="primary-content col s2">
+<<<<<<< HEAD
                                         <p>${game.releaseDate}</p>
+=======
+                                        <p>${game.releaseDate.year}</p>
+>>>>>>> e2f2bc41cb2e86293103dd7c0b93abdf3c953405
                                         <div class="secondary-content">
                                             <p class="rating-stars hide-on-small-and-down">
                                                 <i class="material-icons">star</i>
