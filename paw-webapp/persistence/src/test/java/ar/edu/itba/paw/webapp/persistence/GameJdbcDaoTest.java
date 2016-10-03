@@ -431,7 +431,7 @@ public class GameJdbcDaoTest {
 
     }
 
-   
+
     @Test
     public void TestOrderByName(){
         final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, true );
