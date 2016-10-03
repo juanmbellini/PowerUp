@@ -106,9 +106,9 @@ public class GameJdbcDao implements GameDao {
 
         query += " ORDER BY power_up.games." + orderCategory.name();
 
-        if(ascending){
+        if (ascending) {
             query += " ASC";
-        }else{
+        } else {
             query += " DESC";
         }
         System.out.println(query);

@@ -51,7 +51,8 @@
                                 <li class="collection-item avatar col s12">
                                     <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
                                     <div class="primary-content col s8">
-                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+                                        <p class="title"><a
+                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
@@ -92,8 +93,7 @@
 
 
 <script>
-    function reload(){
-
+    function reload() {
 
 
         var e = document.getElementById("orderSelectId");
@@ -102,7 +102,7 @@
         var strUser = e.options[e.selectedIndex].value;
 
 
-        var URL = "/search?name="+encodeURIComponent("${searchedName}") + "&";
+        var URL = "/search?name=" + encodeURIComponent("${searchedName}") + "&";
         URL += "filters=" + encodeURIComponent(JSON.stringify(${filters}));
         URL += "&orderCategory=" + encodeURIComponent(strUser);
         window.location = URL;

@@ -54,20 +54,21 @@ public class MainController {
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
         }
-        if(name == null){
+        if (name == null) {
             name = "";
         }
         Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
             //TODO make a new function for this
-            if(orderParameter == null) {
+            if (orderParameter == null) {
                 orderParameter = "name";
-            }if(orderParameter.equals("release date")){
+            }
+            if (orderParameter.equals("release date")) {
                 orderParameter = "release";
-            }else if(orderParameter.equals("avg-rating")){
+            } else if (orderParameter.equals("avg-rating")) {
                 orderParameter = "avg_score";
-            }else{
+            } else {
                 return error404();
             }
 
@@ -110,7 +111,7 @@ public class MainController {
         } catch (Exception e) {
             return error500();
         }
-        if(game == null){
+        if (game == null) {
             return error404();
         }
         mav.addObject("game", game);
