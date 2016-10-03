@@ -35,20 +35,24 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-	//TODO: Apply filters in service layer
-	public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
-	    
+    //TODO: Apply filters in service layer
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
 
-        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary" +
+        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id" +
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
-                " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id";
+                " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id" +
+                " INNER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id" +
+                " AND pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
+                " WHERE pictures.game_id = game_id)";
         String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
-        String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, summary HAVING ";
+        String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, " +
+                "pictures.cloudinary_id, summary HAVING ";
 
 
         int parameterCount = 1;         // Used for indexing parameters array
@@ -103,7 +107,9 @@ public class GameJdbcDao implements GameDao {
 
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
-                    gamesSet.add(new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary")));
+                    Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
+                    game.addPictuerURL(rs.getString("cloudinary_id"));
+                    gamesSet.add(game);
                 }
             });
         } catch (Exception e) {
