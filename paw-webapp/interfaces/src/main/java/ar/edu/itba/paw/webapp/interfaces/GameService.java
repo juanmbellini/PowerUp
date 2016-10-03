@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,13 +17,14 @@ public interface GameService {
 
     /**
      * Finds all games with matching names that meet the criteria specified in {@code filters}. Filters are applied as
-     * (filter category, value) entries in {@code filters}.
+     * (filter category, value) entries in {@code filters}. Results are ordered with field specified in {@code orderCategory}
+     * and ascending if {@code ascending == true}.
      *
      * @param name    Partial or complete name of the game. An empty name will match all games.
      * @param filters Criteria for the games to match. May be empty, but not {@code null}.
      * @return Games matching the specified criteria. TODO is there a maximum list size? If so, specify. If not, specify.
      */
-    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters);
+    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending);
 
     /**
      * Finds games related to {@code baseGame} that match criteria specified in {@code filters}.

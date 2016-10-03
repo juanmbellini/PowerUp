@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class GameJdbcDao implements GameDao {
 
 
     //TODO: Apply filters in service layer
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters) {
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
 
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
@@ -100,8 +101,18 @@ public class GameJdbcDao implements GameDao {
             query += " " + groupByString;
         }
 
-        Set<Game> gamesSet = new HashSet<>();
+        Set<Game> gamesSet = new LinkedHashSet<>();
         System.out.println(query);
+
+
+        query += " ORDER BY power_up.games." + orderCategory.name();
+
+        if(ascending){
+            query += " ASC";
+        }else{
+            query += " DESC";
+        }
+
         try {
             jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
 
@@ -117,7 +128,6 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        ;
         return gamesSet;
     }
 
@@ -150,6 +160,7 @@ public class GameJdbcDao implements GameDao {
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
         }
+
         if (!found[0]) {
             return null;
         }
@@ -169,6 +180,7 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
+
         query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
                 "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
         try {
@@ -183,6 +195,7 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
+
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
                 "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
         try {
@@ -197,6 +210,7 @@ public class GameJdbcDao implements GameDao {
             throw new FailedToProcessQueryException();
 
         }
+
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
                 "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
         try {
@@ -232,7 +246,7 @@ public class GameJdbcDao implements GameDao {
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
-        Set<String> result = new TreeSet<>();
+        Set<String> result = new LinkedHashSet<>();
         StringBuilder query = new StringBuilder().append("SELECT power_up.");
         StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
 

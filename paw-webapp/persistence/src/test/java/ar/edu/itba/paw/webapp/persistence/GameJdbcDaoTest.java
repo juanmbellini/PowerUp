@@ -2,6 +2,8 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -127,7 +129,7 @@ public class GameJdbcDaoTest {
 
 
         //
-        final Collection<Game> games = gameDao.searchGames("Mario", new HashMap()); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("Mario", new HashMap(), OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
         assertEquals("Search without filters didn't return as expected.", 2, games.size());
@@ -153,7 +155,7 @@ public class GameJdbcDaoTest {
         filters.put(FilterCategory.genre, filterListGenre);
 //        Filter genreFilter = new Filter(FilterCategory.GENRES, "Platformer");
 //        filters.add(genreFilter);
-        final Collection<Game> games = gameDao.searchGames("Mario", filters); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
 
@@ -182,7 +184,7 @@ public class GameJdbcDaoTest {
 //        Filter secondeKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
 //        filters.add(firstKeywordFilter);
 //        filters.add(secondeKeywordFilter);
-        final Collection<Game> games = gameDao.searchGames("Mario", filters); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
         assertEquals("Search with multiple filters of the same kind didn't return as expected.", 1, games.size());
@@ -225,7 +227,7 @@ public class GameJdbcDaoTest {
         filters.put(FilterCategory.platform, filterListPlatform);
 
 
-        final Collection<Game> games = gameDao.searchGames("Mario", filters); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
         assertEquals("Search with multiple filters of different kind didn't return as expected.", 1, games.size());
@@ -263,7 +265,7 @@ public class GameJdbcDaoTest {
         filterListDeveloper.add("Nintendo");
         filters.put(FilterCategory.developer, filterListDeveloper);
 
-        final Collection<Game> games = gameDao.searchGames("Mario", filters); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
         assertEquals("Search using Publisher and Developer filter didn't return as expected.", 1, games.size());
@@ -426,6 +428,84 @@ public class GameJdbcDaoTest {
         assertNotNull(game.getPictureUrls());
 
         assertEquals(DEFAULT_PICTURE_URL, game.getCoverPictureUrl());
+
+    }
+
+
+    @Test
+    public void TestOrderByName(){
+        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, true );
+        Game oldGame = null;
+        assertEquals(3,gameCollection.size());
+        for(Game game: gameCollection){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue((oldGame.getName().compareTo(game.getName())<=0));
+            }
+        }
+
+        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, false );
+        oldGame = null;
+        for(Game game: gameCollectionDesc){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue((oldGame.getName().compareTo(game.getName())>=0));
+            }
+        }
+
+    }
+
+
+    @Test
+    public void TestOrderByAvgScore(){
+        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, true );
+        Game oldGame = null;
+        assertEquals(3,gameCollection.size());
+        for(Game game: gameCollection){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue(oldGame.getAvgScore() <= game.getAvgScore());
+            }
+        }
+
+        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, false );
+        oldGame = null;
+        for(Game game: gameCollectionDesc){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue(oldGame.getAvgScore() >= game.getAvgScore());
+            }
+        }
+
+    }
+
+
+    @Test
+    public void TestOrderByRelease(){
+        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, true );
+        Game oldGame = null;
+        assertEquals(3,gameCollection.size());
+        for(Game game: gameCollection){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())<=0));
+            }
+        }
+
+        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, false );
+        oldGame = null;
+        for(Game game: gameCollectionDesc){
+            assertNotNull(game);
+            if(oldGame==null) oldGame=game;
+            else{
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())>=0));
+            }
+        }
 
     }
 
