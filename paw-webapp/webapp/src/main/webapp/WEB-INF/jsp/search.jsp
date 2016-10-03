@@ -27,8 +27,7 @@
                         <ul class="collection" id="results">
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
-                                    <img class="col s2" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg"
-                                         alt="">
+                                    <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
                                     <div class="primary-content col s8">
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                         <p>
