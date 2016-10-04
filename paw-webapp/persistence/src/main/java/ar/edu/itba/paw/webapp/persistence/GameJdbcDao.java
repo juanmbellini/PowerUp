@@ -46,9 +46,10 @@ public class GameJdbcDao implements GameDao {
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id" +
-                " INNER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id" +
-                " AND pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
-                " WHERE pictures.game_id = game_id)";
+                " LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id" +
+                " AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
+                " WHERE pictures.game_id = game_id)" +
+                " OR pictures.id IS NULL)";
         String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
         String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, " +
@@ -106,9 +107,9 @@ public class GameJdbcDao implements GameDao {
 
         query += " ORDER BY power_up.games." + orderCategory.name();
 
-        if(ascending){
+        if (ascending) {
             query += " ASC";
-        }else{
+        } else {
             query += " DESC";
         }
 

@@ -108,6 +108,7 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
         inicializeDataBase();
+        final Collection<Game> games = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true);
     }
 
     @Test
@@ -443,26 +444,25 @@ public class GameJdbcDaoTest {
     }
 
 
-
     @Test
     public void TestOrderByAvgScore() {
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, true );
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
+            if (oldGame == null) oldGame = game;
+            else {
                 assertTrue(oldGame.getAvgScore() <= game.getAvgScore());
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
+            if (oldGame == null) oldGame = game;
+            else {
                 assertTrue(oldGame.getAvgScore() >= game.getAvgScore());
             }
         }
@@ -472,24 +472,24 @@ public class GameJdbcDaoTest {
 
     @Test
     public void TestOrderByRelease() {
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, true );
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.release, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())<=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate()) <= 0));
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.release, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())>=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate()) >= 0));
             }
         }
 
