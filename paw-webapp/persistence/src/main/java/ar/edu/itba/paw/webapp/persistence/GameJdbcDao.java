@@ -253,7 +253,6 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-
         query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
                 "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
         try {

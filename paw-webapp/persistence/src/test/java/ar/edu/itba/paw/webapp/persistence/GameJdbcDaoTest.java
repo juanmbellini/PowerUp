@@ -21,6 +21,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.*;
 
+
 /**
  * Created by dgrimau on 14/09/16.
  */
@@ -384,6 +385,7 @@ public class GameJdbcDaoTest {
 
     @Test
     public void testGetCoverPicture() {
+        System.out.println("Performing get cover picture test...");
         Game gameSinglePicture = gameDao.findById(2);
 
         assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPictureUrl());
@@ -495,7 +497,6 @@ public class GameJdbcDaoTest {
 
     }
 
-
     @Test
     public void testFindRelatedGamesWithOneSimpleFilter() {
         System.out.println("Performing find related games test using one simple filter (i.e. keywords)...");
@@ -524,7 +525,6 @@ public class GameJdbcDaoTest {
                 relatedToMario.contains(marioParty));
 
     }
-
 
     @Test
     public void testFindRelatedGamesWithOneComplexFilter() {
