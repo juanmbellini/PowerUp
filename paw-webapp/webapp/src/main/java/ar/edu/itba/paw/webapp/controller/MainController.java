@@ -68,8 +68,6 @@ public class MainController {
                 orderParameter = "release";
             } else if (orderParameter.equals("avg-rating")) {
                 orderParameter = "avg_score";
-            } else {
-                return error404();
             }
 
             mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), true));
