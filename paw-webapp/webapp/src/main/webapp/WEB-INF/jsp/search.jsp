@@ -24,6 +24,10 @@
                 <option value="release date">release date</option>
                 <option value="avg-rating">avg-rating</option>
             </select>
+            <select class="col s2" id="orderBooleanId" onchange="reload()">
+                <option value="ascending">ascending</option>
+                <option value="descending">descending</option>
+            </select>
         </div>
         <div class="row">
 
@@ -96,15 +100,16 @@
     function reload() {
 
 
-        var e = document.getElementById("orderSelectId");
+        var selectOrderCategory = document.getElementById("orderSelectId");
+        var strOrderCategory = selectOrderCategory.options[selectOrderCategory.selectedIndex].value;
 
-
-        var strUser = e.options[e.selectedIndex].value;
-
+        var selectOrderBoolean = document.getElementById("orderBooleanId");
+        var strOrderBoolean = selectOrderBoolean.options[selectOrderBoolean.selectedIndex].value;
 
         var URL = "/search?name=" + encodeURIComponent("${searchedName}") + "&";
         URL += "filters=" + encodeURIComponent(JSON.stringify(${filters}));
-        URL += "&orderCategory=" + encodeURIComponent(strUser);
+        URL += "&orderCategory=" + encodeURIComponent(strOrderCategory);
+        URL += "&orderBoolean=" + encodeURIComponent(strOrderBoolean);
         window.location = URL;
     }
 

@@ -44,9 +44,17 @@ public class MainController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
+                               @RequestParam(value = "orderCategory", required = false) String orderBoleanStr,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView();
+
+        boolean orderBoolean;
+        if(orderBoleanStr==null || orderBoleanStr.equals("ascending")){
+            orderBoolean = true;
+        }else{
+            orderBoolean = false;
+        }
 
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
@@ -67,10 +75,12 @@ public class MainController {
                 orderParameter = "avg_score";
             }
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), true));
+
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), orderBoolean));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", name);
+            mav.addObject("orderBoolean", orderBoleanStr);
             mav.setViewName("search");
             mav.addObject("filters", filtersJson);
         } catch (IOException e) {
