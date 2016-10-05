@@ -38,7 +38,8 @@
                             </p>
                         </div>
                         <div class="col s4">
-                            <p style="margin-top:0;">10/10 m8</p>
+                            <p><b>Rating</b></p>
+                            <p style="margin-top:0;">${game.avgScore}</p>
                             <p><b>Genres</b></p>
                             <p>
                                 <c:forEach var="genre" items="${game.genres}" varStatus="status">
