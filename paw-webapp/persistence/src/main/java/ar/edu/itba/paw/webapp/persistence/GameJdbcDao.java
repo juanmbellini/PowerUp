@@ -124,12 +124,12 @@ public class GameJdbcDao implements GameDao {
                         game.addPictureURL(cloudinary_id);
                     }
                     game.setReleaseDate(new LocalDate(rs.getString("release")));
+                    game.setAvgScore(rs.getDouble("avg_score"));
                     gamesSet.add(game);
                 }
             });
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
-
         }
 
         return gamesSet;
