@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <select name="platform">
+                            <select name="platform" multiple>
                                 <option value="" selected>Any</option>
                                 <c:forEach var="platform" items="${PLATFORMS}">
                                     <option value="${platform}">${platform}</option>
@@ -34,7 +34,7 @@
                             <label>Platform</label>
                         </div>
                         <div class="input-field col s6">
-                            <select name="genre">
+                            <select name="genre" multiple>
                                 <option value="" selected>Any</option>
                                 <c:forEach var="genre" items="${GENRES}">
                                     <option value="${genre}">${genre}</option>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <select name="developer">
+                            <select name="developer" multiple>
                                 <option value="" selected>Any</option>
                                 <c:forEach var="developer" items="${DEVELOPERS}">
                                     <option value="${developer}">${developer}</option>
@@ -54,7 +54,7 @@
                             <label>Developer</label>
                         </div>
                         <div class="input-field col s6">
-                            <select name="publisher">
+                            <select name="publisher" multiple>
                                 <option value="" selected>Any</option>
                                 <c:forEach var="publisher" items="${PUBLISHERS}">
                                     <option value="${publisher}">${publisher}</option>
