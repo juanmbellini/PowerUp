@@ -53,7 +53,7 @@ public class GameJdbcDao implements GameDao {
         String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
         String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, " +
-                "pictures.cloudinary_id, summary HAVING ";
+                "pictures.cloudinary_id, summary"; //HAVING ";
 
 
         int parameterCount = 1;         // Used for indexing parameters array
@@ -92,7 +92,7 @@ public class GameJdbcDao implements GameDao {
                 if (!firstFilter) {
                     groupByString += " AND ";
                 }
-                groupByString += createHavingSentence(filter, valuesSize);
+//                groupByString += createHavingSentence(filter, valuesSize);
                 firstFilter = false;
             }
         }
