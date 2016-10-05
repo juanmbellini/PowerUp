@@ -49,18 +49,21 @@
                         <ul class="collection" id="results">
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
-                                    <img class="col s2" src="${game.coverPictureUrl}" alt="${game.name}">
-                                    <div class="primary-content col s8">
-                                        <p class="title"><a
-                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+                                    <div class="col s2" style="padding: 0;">
+                                        <img src="${game.coverPictureUrl}" alt="${game.name}" style="max-width: 100%; height: auto;">
+                                    </div>
+                                    <div class="col primary-content s7">
+                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                         <p>
                                             <c:forEach var="platform" items="${game.platforms}" varStatus="status">
                                                 ${platform} <c:if test="${!status.last}"> | </c:if>
                                             </c:forEach>
                                         </p>
                                     </div>
-                                    <div class="primary-content col s2">
-                                        <p>${game.releaseDate}</p>
+                                    <div class="col s1 center">
+                                        <p style="margin-top: 33px;">${game.releaseDate.year}</p>
+                                    </div>
+                                    <div class="col s2">
                                         <div class="secondary-content">
                                             <p class="rating-stars hide-on-small-and-down">
                                                 <i class="material-icons">star</i>
