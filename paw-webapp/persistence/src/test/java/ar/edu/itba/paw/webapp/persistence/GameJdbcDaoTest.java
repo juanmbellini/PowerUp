@@ -62,6 +62,7 @@ public class GameJdbcDaoTest {
                 .append("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n")
                 .append("INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n")
                 .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n")
+
                 // Inserts game-keywords relationship
                 .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
                 .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n")
@@ -74,6 +75,7 @@ public class GameJdbcDaoTest {
                 .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n")
                 .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n")
                 .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n")
+
                 // Inserts game-publishers relationship
                 .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n")
                 .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n")
@@ -97,6 +99,49 @@ public class GameJdbcDaoTest {
         jdbcTemplate.execute(insert.toString());
     }
 
+    private void inicializeExtraGames() {
+        StringBuilder insert = new StringBuilder().append("")
+                // Inserts genres
+
+                // Inserts platforms
+
+                //* Inserts keywords
+
+                // Inserts companies
+
+                // Inserts games
+
+                .append("INSERT INTO power_up.games VALUES (4, 'Megaman I', 'Megaman .', 0, '2000-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (5, 'Megaman II', '', 0, '2012-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (6, 'Megaman III', 'Megaman!!', 0, '2014-12-30');\n")
+                // Inserts game-keywords relationship
+
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (4, 2);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (5, 2);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (6, 2);\n")
+                // Inserts game-platforms relationship
+
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (4, 2, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (5, 2, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (6, 2, '2018-12-30');\n")
+
+                // Inserts game-publishers relationship
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (4, 2);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (5, 2);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (6, 2);\n")
+                // Inserts game-genres relationship
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4, 2);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5, 2);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6, 2);\n")
+                // Inserts game-developers relationship
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 1);\n");
+                // Inserts game-images relationship
+
+        jdbcTemplate.execute(insert.toString());
+    }
+
     //TODO afterClass to clean DB
 
 
@@ -109,7 +154,17 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
         inicializeDataBase();
+        inicializeExtraGames();
         final Collection<Game> games = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true);
+    }
+
+    @Test
+    public void testEmptySearch(){
+
+        final Collection<Game> games = gameDao.searchGames("", new HashMap(), OrderCategory.name, true); //testear null y collection vacia
+        assertNotNull(games);
+        assertEquals("Search without filters didn't return as expected.", 6, games.size());
+
     }
 
     @Test
@@ -230,19 +285,11 @@ public class GameJdbcDaoTest {
     }
 
     @Test
-    public void testCompaniesFilters() {
+    public void testCompaniesFiltersSameCompanie() {
 
         //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
         // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
         // and "Sonic with genre "Platformer" developper Nintendo publisher Sega"
-
-        //
-//            HashSet filters = new HashSet();
-//            Filter developerFilter = new Filter(Filter.FilterCategory.DEVELOPERS, "Nintendo");
-//            Filter publisherFilter = new Filter(Filter.FilterCategory.PUBLISHERS, "Nintendo");
-//
-//            filters.add(developerFilter);
-//            filters.add(publisherFilter);
 
         System.out.println("Performing companies filter test...");
 
@@ -265,6 +312,34 @@ public class GameJdbcDaoTest {
         Game game = iterator.next();
 
         assert (game.getName().equals("Mario"));
+
+
+    }
+
+    @Test
+    public void testCompaniesFiltersDiferentCompanies() {
+
+        //SetUp db with three games. "Mario" with genre "Platformer, Action", publisher Nintendo, developper Nintendo
+        // "Super Mario Party" with genre "Party Game" publsher Nintendo publisher GolfStation
+        // and "Sonic with genre "Platformer" developper Nintendo publisher Sega"
+
+        System.out.println("Performing companies filter test...");
+
+        HashMap filters = new HashMap();
+        List filterListPublisher = new ArrayList<>();
+        filterListPublisher.add("SEGA");
+        filters.put(FilterCategory.publisher, filterListPublisher);
+
+        List filterListDeveloper = new ArrayList();
+        filterListDeveloper.add("Nintendo");
+        filters.put(FilterCategory.developer, filterListDeveloper);
+
+        final Collection<Game> games = gameDao.searchGames("Megaman", filters, OrderCategory.name, true); //testear null y collection vacia
+
+        assertNotNull(games);
+        assertEquals("Search using Publisher and Developer filter didn't return as expected.", 3, games.size());
+
+
 
 
     }
@@ -371,13 +446,13 @@ public class GameJdbcDaoTest {
                         "Returned a Collection with " + developersFilters.size() + " elements, expected 2",
                 2, developersFilters.size());
         assertTrue("Get filters by Type didn't returned as expected for developers. " +
-                        "Resultant collection didn't contained 'Nintendo' as a publisher",
+                        "Resultant collection didn't contained 'Nintendo' as a developer",
                 developersFilters.contains("Nintendo"));
         assertTrue("Get filters by Type didn't returned as expected for developers. " +
-                        "Resultant collection didn't contained 'Nintendo Party' as a publisher",
+                        "Resultant collection didn't contained 'Nintendo Party' as a developer",
                 developersFilters.contains("Nintendo Party"));
         assertFalse("Get filters by Type didn't returned as expected for developers. " +
-                        "Resultant collection contained 'SEGA' as a publisher",
+                        "Resultant collection contained 'SEGA' as a developer",
                 developersFilters.contains("SEGA"));
 
 
@@ -425,7 +500,7 @@ public class GameJdbcDaoTest {
     public void TestOrderByName() {
         final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.name, true);
         Game oldGame = null;
-        assertEquals(3, gameCollection.size());
+        assertEquals(6, gameCollection.size());
         for (Game game : gameCollection) {
             assertNotNull(game);
             if (oldGame == null) oldGame = game;
@@ -450,7 +525,7 @@ public class GameJdbcDaoTest {
     public void TestOrderByAvgScore() {
         final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, true);
         Game oldGame = null;
-        assertEquals(3, gameCollection.size());
+        assertEquals(6, gameCollection.size());
         for (Game game : gameCollection) {
             assertNotNull(game);
             if (oldGame == null) oldGame = game;
@@ -476,7 +551,7 @@ public class GameJdbcDaoTest {
     public void TestOrderByRelease() {
         final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.release, true);
         Game oldGame = null;
-        assertEquals(3, gameCollection.size());
+        assertEquals(6, gameCollection.size());
         for (Game game : gameCollection) {
             assertNotNull(game);
             if (oldGame == null) oldGame = game;
