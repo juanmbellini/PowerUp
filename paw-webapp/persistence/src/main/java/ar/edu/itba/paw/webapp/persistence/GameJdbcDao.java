@@ -160,8 +160,6 @@ public class GameJdbcDao implements GameDao {
         result.remove(baseGame);
         return result;
 
-
-//        throw new UnsupportedOperationException("Not implemented, yet");
     }
 
     @Override
