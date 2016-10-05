@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -104,15 +101,21 @@ public class MainController {
     public ModelAndView game(@RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
+        Set<Game> relatedGames;
         try {
             game = gameService.findById(id);
+            if (game == null) {
+                return error404();
+            }
+            Set<FilterCategory> filters = new HashSet<>();
+            filters.add(FilterCategory.platform);
+            filters.add(FilterCategory.genre);
+            relatedGames = gameService.findRelatedGames(game, filters);
         } catch (Exception e) {
             return error500();
         }
-        if (game == null) {
-            return error404();
-        }
         mav.addObject("game", game);
+        mav.addObject("relatedGames", relatedGames);
         return mav;
     }
 
