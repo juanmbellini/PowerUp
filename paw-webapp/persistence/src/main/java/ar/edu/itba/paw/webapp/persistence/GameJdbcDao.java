@@ -344,7 +344,7 @@ public class GameJdbcDao implements GameDao {
 
         String sentence = "INNER JOIN " + relationTable + " ON power_up.games.id = " + relationTable + ".game_id";
         sentence += " INNER JOIN " + entityTable
-                + " ON " + relationTable + "." + filterName + "_id = " + entityTable + ".id";
+                + " ON " + relationTable + "." + filterName + "_id = " + English.plural(filter.name()) + ".id";
         return sentence;
     }
 
@@ -359,7 +359,8 @@ public class GameJdbcDao implements GameDao {
      * @return The created sentence.
      */
     private String createFilterSentence(FilterCategory filter) {
-        return "LOWER(" + getEntityTable(filter) + ".name) = LOWER(?)";
+//        return "LOWER(" + getEntityTable(filter) + ".name) = LOWER(?)";
+        return "LOWER(" + English.plural(filter.name()) + ".name) = LOWER(?)";
     }
 
     /**
@@ -371,7 +372,8 @@ public class GameJdbcDao implements GameDao {
      * @return The created sentence.
      */
     private String createHavingSentence(FilterCategory filter, int valuesCount) {
-        return "COUNT(DISTINCT " + getEntityTable(filter) + ".name) = " + valuesCount;
+//        return "COUNT(DISTINCT " + getEntityTable(filter) + ".name) = " + valuesCount;
+        return "COUNT(DISTINCT " + English.plural(filter.name()) + ".name) = " + valuesCount;
     }
 
 
@@ -397,7 +399,8 @@ public class GameJdbcDao implements GameDao {
      */
     private String getEntityTable(FilterCategory filter) {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
-        return "power_up." + (useCompany ? "companies" : English.plural(filter.name()));
+        String pluralFilter = English.plural(filter.name());
+        return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
 
 }
