@@ -60,11 +60,12 @@ public class MainController {
             //TODO make a new function for this
             if (orderParameter == null) {
                 orderParameter = "name";
-            }
-            if (orderParameter.equals("release date")) {
+            }else if (orderParameter.equals("release date")) {
                 orderParameter = "release";
             } else if (orderParameter.equals("avg-rating")) {
                 orderParameter = "avg_score";
+            }else{
+                return error400();
             }
 
             mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), true));
