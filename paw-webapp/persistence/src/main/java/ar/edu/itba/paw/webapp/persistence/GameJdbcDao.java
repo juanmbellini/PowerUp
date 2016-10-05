@@ -38,7 +38,6 @@ public class GameJdbcDao implements GameDao {
 
     //TODO: Apply filters in service layer
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
-
 //        name.replace(' ', '%');
         String[] parameters = new String[countFilters(filters) + 1];
         parameters[0] = name;
@@ -47,9 +46,10 @@ public class GameJdbcDao implements GameDao {
                 " FROM power_up.games" +
                 " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
                 " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id" +
-                " INNER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id" +
-                " AND pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
-                " WHERE pictures.game_id = game_id)";
+                " LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id" +
+                " AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
+                " WHERE pictures.game_id = game_id)" +
+                " OR pictures.id IS NULL)";
         String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
         String filtersString = "";
         String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, " +
@@ -134,7 +134,34 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
-        throw new UnsupportedOperationException("Not implemented, yet");
+
+        Map<FilterCategory, List<String>> filtersMap = new HashMap<>();
+        if (filters.contains(FilterCategory.publisher)) {
+            filtersMap.put(FilterCategory.publisher,
+                    new ArrayList<>(baseGame.getPublishers()));
+        }
+        if (filters.contains(FilterCategory.developer)) {
+            filtersMap.put(FilterCategory.developer,
+                    new ArrayList<>(baseGame.getDevelopers()));
+        }
+        if (filters.contains(FilterCategory.genre)) {
+            filtersMap.put(FilterCategory.genre,
+                    new ArrayList<>(baseGame.getGenres()));
+        }
+        if (filters.contains(FilterCategory.keyword)) {
+            filtersMap.put(FilterCategory.keyword,
+                    new ArrayList<>(baseGame.getKeywords()));
+        }
+        if (filters.contains(FilterCategory.platform)) {
+            filtersMap.put(FilterCategory.platform,
+                    new ArrayList<>(baseGame.getPlatforms().keySet()));
+        }
+        Set<Game> result = new HashSet<>(searchGames("", filtersMap, OrderCategory.name, true));
+        result.remove(baseGame);
+        return result;
+
+
+//        throw new UnsupportedOperationException("Not implemented, yet");
     }
 
     @Override
@@ -219,6 +246,21 @@ public class GameJdbcDao implements GameDao {
                         @Override
                         public void processRow(ResultSet rs) throws SQLException {
                             result.addDeveloper(rs.getString("name"));
+                        }
+                    }
+            );
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+
+        }
+
+        query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
+                "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
+        try {
+            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            result.addKeyword(rs.getString("name"));
                         }
                     }
             );

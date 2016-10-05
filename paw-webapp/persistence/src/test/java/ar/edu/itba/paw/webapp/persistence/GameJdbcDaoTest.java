@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
-import org.joda.time.DateTime;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +17,10 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 import java.util.*;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.*;
-import static org.junit.Assert.assertNotEquals;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.*;
+
 
 /**
  * Created by dgrimau on 14/09/16.
@@ -39,73 +41,60 @@ public class GameJdbcDaoTest {
 
     private void inicializeDataBase() {
 
-        String insert =
-//                "BEGIN;\n" +
-//                "SET DATESTYLE TO ISO, YMD;\n" +
-//                "\\encoding utf8;\n" +
-//                "\n" +
-                "--Genres\n" +
-
-
-                        "INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n" +
-                        "INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n" +
-                        "INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n" +
-                        "INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n" +
-                        "INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n" +
-                        "INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n" +
-                        "INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n" +
-                        "INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n" +
-                        "INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n" +
-
-                        "\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n" +
-                        "INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n" +
-
-                        "\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n" +
-                        "INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n" +
-                        "INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n" +
-                        "INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)" +
-                        "VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);" +
-                        "\n"
-//                "COMMIT;"
-                ;
-        jdbcTemplate.execute(insert);
+        StringBuilder insert = new StringBuilder().append("")
+                // Inserts genres
+                .append("INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n")
+                .append("INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n")
+                // Inserts platforms
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n")
+                .append("INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n")
+                //* Inserts keywords
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n")
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n")
+                // Inserts companies
+                .append("INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n")
+                .append("INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n")
+                // Inserts games
+                .append("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n")
+                .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n")
+                // Inserts game-keywords relationship
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n")
+                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n")
+                // Inserts game-platforms relationship
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n")
+                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n")
+                // Inserts game-publishers relationship
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n")
+                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n")
+                // Inserts game-genres relationship
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n")
+                // Inserts game-developers relationship
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n")
+                // Inserts game-images relationship
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n")
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n")
+                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);");
+        jdbcTemplate.execute(insert.toString());
     }
 
     //TODO afterClass to clean DB
@@ -120,6 +109,7 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
 
         inicializeDataBase();
+        final Collection<Game> games = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true);
     }
 
     @Test
@@ -356,7 +346,6 @@ public class GameJdbcDaoTest {
     public void testGetFiltersByTypeForCompaniesFilters() {
         System.out.println("Performing get filters by type test on companies filters...");
 
-
         // Tests publishers filters (mapped to companies table)
         Collection<String> publishersFilters = gameDao.getFiltersByType(FilterCategory.publisher);
         assertNotNull("Get filters by Type didn't returned as expected for publishers. " +
@@ -373,7 +362,6 @@ public class GameJdbcDaoTest {
         assertFalse("Get filters by Type didn't returned as expected for publishers. " +
                         "Resultant collection contained 'Nintendo Party' as a publisher",
                 publishersFilters.contains("Nintendo Party"));
-
 
         // Tests developers filters (mapped to companies table)
         Collection<String> developersFilters = gameDao.getFiltersByType(FilterCategory.developer);
@@ -397,6 +385,7 @@ public class GameJdbcDaoTest {
 
     @Test
     public void testGetCoverPicture() {
+        System.out.println("Performing get cover picture test...");
         Game gameSinglePicture = gameDao.findById(2);
 
         assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPictureUrl());
@@ -423,60 +412,59 @@ public class GameJdbcDaoTest {
 
     @Test
     public void TestGetNullPicture() {
+        System.out.println("Performing get null picture test...");
         Game game = gameDao.findById(3);
 
         assertNotNull(game.getPictureUrls());
-
         assertEquals(DEFAULT_PICTURE_URL, game.getCoverPictureUrl());
 
     }
 
 
     @Test
-    public void TestOrderByName(){
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, true );
+    public void TestOrderByName() {
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.name, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getName().compareTo(game.getName())<=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getName().compareTo(game.getName()) <= 0));
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.name, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.name, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getName().compareTo(game.getName())>=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getName().compareTo(game.getName()) >= 0));
             }
         }
-
     }
 
 
     @Test
-    public void TestOrderByAvgScore(){
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, true );
+    public void TestOrderByAvgScore() {
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
+            if (oldGame == null) oldGame = game;
+            else {
                 assertTrue(oldGame.getAvgScore() <= game.getAvgScore());
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.avg_score, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
+            if (oldGame == null) oldGame = game;
+            else {
                 assertTrue(oldGame.getAvgScore() >= game.getAvgScore());
             }
         }
@@ -485,28 +473,143 @@ public class GameJdbcDaoTest {
 
 
     @Test
-    public void TestOrderByRelease(){
-        final LinkedHashSet<Game> gameCollection  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, true );
+    public void TestOrderByRelease() {
+        final LinkedHashSet<Game> gameCollection = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.release, true);
         Game oldGame = null;
-        assertEquals(3,gameCollection.size());
-        for(Game game: gameCollection){
+        assertEquals(3, gameCollection.size());
+        for (Game game : gameCollection) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())<=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate()) <= 0));
             }
         }
 
-        final LinkedHashSet<Game> gameCollectionDesc  = (LinkedHashSet) gameDao.searchGames("",new HashMap(),OrderCategory.release, false );
+        final LinkedHashSet<Game> gameCollectionDesc = (LinkedHashSet) gameDao.searchGames("", new HashMap(), OrderCategory.release, false);
         oldGame = null;
-        for(Game game: gameCollectionDesc){
+        for (Game game : gameCollectionDesc) {
             assertNotNull(game);
-            if(oldGame==null) oldGame=game;
-            else{
-                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate())>=0));
+            if (oldGame == null) oldGame = game;
+            else {
+                assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate()) >= 0));
             }
         }
 
+    }
+
+    @Test
+    public void testFindRelatedGamesWithOneSimpleFilter() {
+        System.out.println("Performing find related games test using one simple filter (i.e. keywords)...");
+
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<>();
+        filters.add(FilterCategory.keyword);
+        final Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
+
+    }
+
+    @Test
+    public void testFindRelatedGamesWithOneComplexFilter() {
+        System.out.println("Performing find related games test twice using one complex filters each time " +
+                "(i.e. publishers and developers)...");
+        System.out.println("Starting with publishers...");
+
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<>();
+
+        // Tests method using publishers as filter
+        filters.add(FilterCategory.publisher);
+        Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(marioParty));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(sonic));
+
+
+        System.out.println("Continuing with developers...");
+        filters.clear();
+
+        // Tests method using developers as filter
+        filters.add(FilterCategory.developer);
+        relatedToMario = gameDao.findRelatedGames(mario, filters);
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
+    }
+
+
+    @Test
+    public void testFindRelatedGamesWithMoreThanOneFilter() {
+        System.out.println("Performing find related games test using more than one filter " +
+                "(i.e. genres and developers)...");
+
+        final Game mario = gameDao.findById(1);
+        final Game marioParty = gameDao.findById(2);
+        final Game sonic = gameDao.findById(3);
+        final Set<FilterCategory> filters = new HashSet<>();
+        filters.add(FilterCategory.keyword);
+        filters.add(FilterCategory.developer);
+        Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
+
+        Assert.assertNotNull("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games, got null",
+                relatedToMario);
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Game Mario, " +
+                        "got a Set including it.",
+                relatedToMario.contains(mario));
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games containing Game Sonic, " +
+                        "got a Set that didn't include it.",
+                relatedToMario.contains(sonic));
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include Mario Party," +
+                        "got a Set that included it.",
+                relatedToMario.contains(marioParty));
     }
 
 }
