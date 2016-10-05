@@ -98,7 +98,7 @@
                                             <a href="<c:url value="/game?id=${game.id}"/>">
                                                 <img src="${game.coverPictureUrl}"/>
                                             </a>
-                                            <h5 style="display:inline;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
+                                            <h5 style="margin-top:0; overflow-wrap: break-word;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
                                         </div>
                                     </c:forEach>
                                 </div>
