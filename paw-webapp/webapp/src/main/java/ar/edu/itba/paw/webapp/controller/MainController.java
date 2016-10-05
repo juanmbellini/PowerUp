@@ -45,17 +45,20 @@ public class MainController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
-                               @RequestParam(value = "orderCategory", required = false) String orderBoleanStr,
+                               @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
                                @RequestParam(value = "filters", required = false) String filtersJson) {
 
         final ModelAndView mav = new ModelAndView();
 
         boolean orderBoolean;
-        if(orderBoleanStr==null || orderBoleanStr.equals("ascending")){
+        if(orderBooleanStr==null || orderBooleanStr.equals("ascending")){
             orderBoolean = true;
-        }else{
+        }else if(orderBooleanStr.equals("descending")){
             orderBoolean = false;
-        }
+        }else{
+            return error400();
+       }
+
 
         if (filtersJson == null || filtersJson.equals("")) {
             filtersJson = "{}";
@@ -67,7 +70,7 @@ public class MainController {
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
             //TODO make a new function for this
-            if (orderParameter == null) {
+            if (orderParameter == null || orderParameter.equals("name")) {
                 orderParameter = "name";
             }else if (orderParameter.equals("release date")) {
                 orderParameter = "release";
@@ -82,7 +85,7 @@ public class MainController {
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
-            mav.addObject("orderBoolean", orderBoleanStr);
+            mav.addObject("orderBoolean", orderBooleanStr);
             mav.setViewName("search");
             mav.addObject("filters", filtersJson);
         } catch (IOException e) {
