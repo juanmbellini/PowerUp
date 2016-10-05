@@ -189,11 +189,11 @@ public class Game {
     }
 
     public void addPictureURLs(String... cloudinary_ids) {
-        for(String id : cloudinary_ids) {
+        for (String id : cloudinary_ids) {
             addPictureURL(id);
         }
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
