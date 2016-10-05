@@ -65,14 +65,29 @@
                                     </div>
                                     <div class="col s2">
                                         <div class="secondary-content">
-                                            <p class="rating-stars hide-on-small-and-down">
-                                                <i class="material-icons">star</i>
-                                                <i class="material-icons">star</i>
-                                                <i class="material-icons">star</i>
-                                                <i class="material-icons">star</i>
-                                                <i class="material-icons">star</i>
-                                            </p>
-                                            <p class="rating-number center"><b>10</b></p>
+                                            <c:choose>
+                                                <c:when test="${game.avgScore <= 10 && game.avgScore>=0}">
+                                                    <p class="rating-number center"><b>${game.avgScore}</b></p>
+                                                    <p class="rating-stars hide-on-small-and-down">
+                                                        <c:forEach begin="0" end="4" var="i">
+                                                            <c:choose>
+                                                                <c:when test="${game.avgScore-(i*2)-1<0}">
+                                                                    <i class="material-icons">star_border</i>
+                                                                </c:when>
+                                                                <c:when test="${game.avgScore-(i*2)-1==0}">
+                                                                    <i class="material-icons">star_half</i>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <i class="material-icons">star</i>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+                                                    </p>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <p class="rating-number center"><b>unrated</b></p>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </li>
