@@ -185,7 +185,9 @@ public class Game {
     }
 
     public void addPictureURL(String cloudinary_id) {
-        pictureUrls.add(getPictureURL(cloudinary_id));
+        if (cloudinary_id != null) {
+            pictureUrls.add(getPictureURL(cloudinary_id));
+        }
     }
 
     public void addPictureURLs(String... cloudinary_ids) {
