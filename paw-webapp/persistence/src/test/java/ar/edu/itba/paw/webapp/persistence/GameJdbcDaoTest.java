@@ -583,7 +583,7 @@ public class GameJdbcDaoTest {
 
 
     @Test
-    public void testFindRelatedGamesWithMoreThanOneFilters() {
+    public void testFindRelatedGamesWithMoreThanOneFilter() {
         System.out.println("Performing find related games test using more than one filter " +
                 "(i.e. genres and developers)...");
 
