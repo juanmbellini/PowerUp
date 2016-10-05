@@ -20,7 +20,7 @@ public class Game {
     private String name;
     private String summary;
     private Collection<String> genres;
-    private Map<String,LocalDate>  platforms;
+    private Map<String, LocalDate> platforms;
     private Collection<String> publishers;
     private Collection<String> developers;
     private Collection<String> keywords;
@@ -48,7 +48,7 @@ public class Game {
         this.name = name;
         this.summary = summary;
         genres = new HashSet<>();
-        platforms = new HashMap<String,LocalDate> ();
+        platforms = new HashMap<String, LocalDate>();
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
@@ -61,25 +61,62 @@ public class Game {
 
 
     // Getters
-    public long getId() { return id; }
-    public String getName() { return name; }
-    public String getSummary() { return summary; }
-    public Collection<String> getGenres() { return cloneCollection(genres); }
-    public Map<String,LocalDate> getPlatforms() {
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public Collection<String> getGenres() {
+        return cloneCollection(genres);
+    }
+
+    public Map<String, LocalDate> getPlatforms() {
         HashMap<String, LocalDate> newPlatformMap = new HashMap<String, LocalDate>();
 
-        for (String key: platforms.keySet()){
+        for (String key : platforms.keySet()) {
             newPlatformMap.put(key, platforms.get(key)); //TODO check clone for LocalDate.
         }
-        return newPlatformMap; }
-    public Collection<String> getPublishers() { return cloneCollection(publishers); }
-    public Collection<String> getDevelopers() { return cloneCollection(developers); }
-    public Collection<String> getKeywords() { return cloneCollection(keywords); }
-    public Collection<Review> getReviews() { return cloneCollection(reviews); }
-    public int getRating() { return rating; }
-    public double getAvgScore() { return avgScore; }
-    public LocalDate getReleaseDate() { return releaseDate; }
-    public Set<String> getPictureUrls() { return pictureUrls; }
+        return newPlatformMap;
+    }
+
+    public Collection<String> getPublishers() {
+        return cloneCollection(publishers);
+    }
+
+    public Collection<String> getDevelopers() {
+        return cloneCollection(developers);
+    }
+
+    public Collection<String> getKeywords() {
+        return cloneCollection(keywords);
+    }
+
+    public Collection<Review> getReviews() {
+        return cloneCollection(reviews);
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public double getAvgScore() {
+        return avgScore;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public Set<String> getPictureUrls() {
+        return pictureUrls;
+    }
 
     /**
      * Returns the first URL returned by {@link #getPictureUrls()}, or a default picture if no pictures are associated
@@ -88,49 +125,76 @@ public class Game {
      * @return The picture URL.
      */
     public String getCoverPictureUrl() {
-        if(pictureUrls.isEmpty()) {
+        if (pictureUrls.isEmpty()) {
             return DEFAULT_COVER_PICTURE_URL;
-        } else {
-            //noinspection LoopStatementThatDoesntLoop
-            for (String url : pictureUrls) {
-                return url;
-            }
         }
-        return null;
+        return pictureUrls.iterator().next();   // Returns the first image
     }
 
     // Setters
-    public void setId(long id) { this.id = id; }
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
-    public void setSummary(String summary) { this.summary = summary; }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public void setRating(int rating) {
         if (!validRating(rating)) {
             throw new IllegalArgumentException("Rating must be a value between 0 and 10");
         }
         this.rating = rating;
     }
-    public void setAvgScore(double avg_score) { this.avgScore = avg_score; }
-    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
+
+    public void setAvgScore(double avg_score) {
+        this.avgScore = avg_score;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
     // Adders
-    public void addGenre(String genre) { genres.add(genre); }
-    public void addPlatform(String platform, LocalDate date) { platforms.put(platform,date); }
-    public void addPublisher(String publisher) { publishers.add(publisher); }
-    public void addDeveloper(String developer) { developers.add(developer); }
-    public void addKeyword(String keyword) { keywords.add(keyword); }
-    public void addReview(Review review) { reviews.add(review); }
-    public void addPictureURL(String cloudinary_id) {
-        pictureUrls.add(getPictureURL(cloudinary_id));
+    public void addGenre(String genre) {
+        genres.add(genre);
     }
-    public void addPictureURLs(String... cloudinary_ids) {
-        for(String id : cloudinary_ids) {
-            addPictureURL(id);
+
+    public void addPlatform(String platform, LocalDate date) {
+        platforms.put(platform, date);
+    }
+
+    public void addPublisher(String publisher) {
+        publishers.add(publisher);
+    }
+
+    public void addDeveloper(String developer) {
+        developers.add(developer);
+    }
+
+    public void addKeyword(String keyword) {
+        keywords.add(keyword);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public void addPictureURL(String cloudinary_id) {
+        if (cloudinary_id != null) {
+            pictureUrls.add(getPictureURL(cloudinary_id));
         }
     }
 
-
+    public void addPictureURLs(String... cloudinary_ids) {
+        for (String id : cloudinary_ids) {
+            addPictureURL(id);
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -148,12 +212,12 @@ public class Game {
     }
 
 
-    
     private <T> List<T> cloneCollection(Collection<T> original) {
         List<T> list = new ArrayList<>();
         list.addAll(original);
         return list;
     }
+
     private boolean validRating(int rating) {
         return rating >= 0 && rating <= 10;
 
