@@ -28,7 +28,7 @@ public class Game {
     private int rating;
     private double avgScore;
     private LocalDate releaseDate;
-    private Set<String> pictureUrls = new HashSet<>();
+    private Set<String> pictureUrls = new LinkedHashSet<>();
 
 
     public Game() {
