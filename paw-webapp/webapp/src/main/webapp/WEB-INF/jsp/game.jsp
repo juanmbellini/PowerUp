@@ -92,22 +92,18 @@
                     <c:if test="${ fn:length( relatedGames) > 0 }">
                         <div class="row">
                             <h5 class="center">Related Games</h5>
-                                <div class="carousel" style="height:300px; margin-top: -50px;">
+                                <div class="carousel" style="margin-top: -50px;">
                                     <c:forEach var="game" items="${relatedGames}">
-                                        <a class="carousel-item" href="<c:url value="/game?id=${game.id}"/>">
-                                            <img src="${game.coverPictureUrl}"/>
-                                        </a>
+                                        <div class="carousel-item center">
+                                            <a href="<c:url value="/game?id=${game.id}"/>">
+                                                <img src="${game.coverPictureUrl}"/>
+                                            </a>
+                                            <h5 style="display:inline;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
+                                        </div>
                                     </c:forEach>
                                 </div>
                         </div>
                     </c:if>
-                    <%--</c:choose>--%>
-                    <%--<div class="row">--%>  <!-- TODO: Don't know what is this, so I leave it here -->
-                        <%--<div class="col s5"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s5 offset-s1"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s6 offset-m1 hide-on-small-and-down"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s6 offset-m1 hide-on-med-and-down"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                    <%--</div>--%>
                 </c:otherwise>
             </c:choose>
         </div>
