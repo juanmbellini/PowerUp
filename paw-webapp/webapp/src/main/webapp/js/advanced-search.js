@@ -4,21 +4,46 @@ $(function () {
         var params = {};
 
         var title = $("#title").val();
-        var platform = $(this).find("select[name='platform']").val();
-        if (platform) {
-            params.platform = [platform];
+
+        var platforms = $(this).find("select[name='platform']").val();
+        if (platforms) {
+            var index = platforms.indexOf("");
+            if(index !== -1) {
+                platforms.splice(index, 1);
+            }
+            if(platforms.length) {
+                params.platform = platforms;
+            }
         }
-        var genre = $(this).find("select[name='genre']").val();
-        if (genre) {
-            params.genre = [genre];
+        var genres = $(this).find("select[name='genre']").val();
+        if (genres) {
+            var index = genres.indexOf("");
+            if(index !== -1) {
+                genres.splice(index, 1);
+            }
+            if(genres.length) {
+                params.genre = genres;
+            }
         }
-        var developer = $(this).find("select[name='developer']").val();
-        if (developer) {
-            params.developer = [developer];
+        var developers = $(this).find("select[name='developer']").val();
+        if (developers) {
+            var index = developers.indexOf("");
+            if(index !== -1) {
+                developers.splice(index, 1);
+            }
+            if(developers.length) {
+                params.developer = developers;
+            }
         }
-        var publisher = $(this).find("select[name='publisher']").val();
-        if (publisher) {
-            params.publisher = [publisher];
+        var publishers = $(this).find("select[name='publisher']").val();
+        if (publishers) {
+            var index = publishers.indexOf("");
+            if(index !== -1) {
+                publishers.splice(index, 1);
+            }
+            if(publishers.length) {
+                params.publisher = publishers;
+            }
         }
 
         if(!title && !params) {
