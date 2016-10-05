@@ -119,7 +119,10 @@ public class GameJdbcDao implements GameDao {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
                     Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
-                    game.addPictuerURL(rs.getString("cloudinary_id"));
+                    String cloudinary_id = rs.getString("cloudinary_id");
+                    if(cloudinary_id != null) {
+                        game.addPictureURL(cloudinary_id);
+                    }
                     game.setReleaseDate(new LocalDate(rs.getString("release")));
                     gamesSet.add(game);
                 }
@@ -273,7 +276,7 @@ public class GameJdbcDao implements GameDao {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
-                    result.addPictuerURL(rs.getString("cloudinary_id"));
+                    result.addPictureURL(rs.getString("cloudinary_id"));
                 }
             });
         } catch (Exception e) {
