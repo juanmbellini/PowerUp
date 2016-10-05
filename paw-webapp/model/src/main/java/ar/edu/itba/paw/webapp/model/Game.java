@@ -28,7 +28,7 @@ public class Game {
     private int rating;
     private double avgScore;
     private LocalDate releaseDate;
-    private Set<String> pictureUrls = new HashSet<>();
+    private Set<String> pictureUrls = new LinkedHashSet<>();
 
 
     public Game() {
@@ -121,12 +121,12 @@ public class Game {
     public void addDeveloper(String developer) { developers.add(developer); }
     public void addKeyword(String keyword) { keywords.add(keyword); }
     public void addReview(Review review) { reviews.add(review); }
-    public void addPictuerURL(String cloudinary_id) {
+    public void addPictureURL(String cloudinary_id) {
         pictureUrls.add(getPictureURL(cloudinary_id));
     }
     public void addPictureURLs(String... cloudinary_ids) {
         for(String id : cloudinary_ids) {
-            addPictuerURL(id);
+            addPictureURL(id);
         }
     }
 

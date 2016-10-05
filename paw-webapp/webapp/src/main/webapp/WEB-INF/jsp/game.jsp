@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,20 +89,21 @@
                     <div class="row">
                         <div class="col s12 divider"></div>
                     </div>
-                    <div class="row">
-                        <h5 class="center">Related Games</h5>
-                        <div class="carousel" style="height:300px; margin-top: -50px;">
-                            <a class="carousel-item" href="#one!"><img src="http://placehold.it/250x300"></a>
-                            <a class="carousel-item" href="#two!"><img src="http://placehold.it/250x300"></a>
-                            <a class="carousel-item" href="#three!"><img src="http://placehold.it/250x300"></a>
-                            <a class="carousel-item" href="#four!"><img src="http://placehold.it/250x300"></a>
-                            <a class="carousel-item" href="#five!"><img src="http://placehold.it/250x300"></a>
+                    <c:if test="${ fn:length( relatedGames) > 0 }">
+                        <div class="row">
+                            <h5 class="center">Related Games</h5>
+                                <div class="carousel" style="margin-top: -50px;">
+                                    <c:forEach var="game" items="${relatedGames}">
+                                        <div class="carousel-item center">
+                                            <a href="<c:url value="/game?id=${game.id}"/>">
+                                                <img src="${game.coverPictureUrl}"/>
+                                            </a>
+                                            <h5 style="margin-top:0; overflow-wrap: break-word;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                         </div>
-                        <%--<div class="col s5"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s5 offset-s1"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s6 offset-m1 hide-on-small-and-down"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                        <%--<div class="col s6 offset-m1 hide-on-med-and-down"><img style="max-width:100%;" src="http://placehold.it/220x260" /></div>--%>
-                    </div>
+                    </c:if>
                 </c:otherwise>
             </c:choose>
         </div>

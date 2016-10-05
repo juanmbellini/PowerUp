@@ -31,7 +31,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
-        throw new UnsupportedOperationException("Not implemented, yet");
+        return gameDao.findRelatedGames(baseGame, filters);
     }
 
     @Override
