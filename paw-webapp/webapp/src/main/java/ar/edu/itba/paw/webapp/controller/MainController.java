@@ -7,6 +7,7 @@ import ar.edu.itba.paw.webapp.model.OrderCategory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.atteo.evo.inflector.English;
+import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,7 +81,7 @@ public class MainController {
             mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), orderBoolean));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
-            mav.addObject("searchedName", name);
+            mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
             mav.addObject("orderBoolean", orderBoleanStr);
             mav.setViewName("search");
             mav.addObject("filters", filtersJson);
