@@ -86,6 +86,7 @@ public class MainController {
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
             mav.addObject("orderBoolean", orderBooleanStr);
+            mav.addObject("orderCategory", orderParameter);
             mav.setViewName("search");
             mav.addObject("filters", filtersJson);
         } catch (IOException e) {
