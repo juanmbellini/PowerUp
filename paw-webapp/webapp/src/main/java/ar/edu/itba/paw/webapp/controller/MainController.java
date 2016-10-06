@@ -89,7 +89,7 @@ public class MainController {
                 isCorrect = false;
                 mav.setViewName("redirect:error400");
             }
-
+            
             if (isCorrect) {
                 // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
                 pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
@@ -108,6 +108,7 @@ public class MainController {
                 mav.addObject("appliedFilters", filters);
                 mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
                 mav.addObject("orderBoolean", orderBooleanStr);
+                mav.addObject("orderCategory", orderParameter);
                 mav.addObject("filters", filtersStr);
                 mav.setViewName("search");
             }

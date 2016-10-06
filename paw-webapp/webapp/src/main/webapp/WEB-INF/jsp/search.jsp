@@ -110,9 +110,26 @@
 
 <script type="text/javascript" src="<c:url value='/js/advanced-search.js' />"></script>
 
+
 </body>
 </html>
 
+<script>
+    $( document ).ready(function() {
+        //$('#orderBooleanId option[value="1"]').attr("selected",true);
+        //debugger;
+        $('#orderBooleanId').val("${orderBoolean}");
+        $('#orderSelectId').val("${orderCategory}");
+
+        // re-initialize material-select
+        $('#orderBooleanId').material_select();
+        $('#orderSelectId').material_select();
+        //document.getElementById('orderBooleanId').value="descending";
+        // $('select option[value="descending"]').attr('selected',true);
+        // $(this).material_select();
+    });
+
+</script>
 
 <script>
     function reload() {
