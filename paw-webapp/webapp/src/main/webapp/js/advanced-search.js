@@ -5,11 +5,14 @@ $(function () {
 
         var title = $("#title").val();
 
+        //Remove the "any" value from every filter. That way, if values are selected for a filter, only those values
+        //will match. If no value is selected, that filter won't be taken into account.
+        var anyIndex;
         var platforms = $(this).find("select[name='platform']").val();
         if (platforms) {
-            var index = platforms.indexOf("");
-            if(index !== -1) {
-                platforms.splice(index, 1);
+            anyIndex = platforms.indexOf("");
+            if(anyIndex !== -1) {
+                platforms.splice(anyIndex, 1);
             }
             if(platforms.length) {
                 params.platform = platforms;
@@ -17,9 +20,9 @@ $(function () {
         }
         var genres = $(this).find("select[name='genre']").val();
         if (genres) {
-            var index = genres.indexOf("");
-            if(index !== -1) {
-                genres.splice(index, 1);
+            anyIndex = genres.indexOf("");
+            if(anyIndex !== -1) {
+                genres.splice(anyIndex, 1);
             }
             if(genres.length) {
                 params.genre = genres;
@@ -27,9 +30,9 @@ $(function () {
         }
         var developers = $(this).find("select[name='developer']").val();
         if (developers) {
-            var index = developers.indexOf("");
-            if(index !== -1) {
-                developers.splice(index, 1);
+            anyIndex = developers.indexOf("");
+            if(anyIndex !== -1) {
+                developers.splice(anyIndex, 1);
             }
             if(developers.length) {
                 params.developer = developers;
@@ -37,9 +40,9 @@ $(function () {
         }
         var publishers = $(this).find("select[name='publisher']").val();
         if (publishers) {
-            var index = publishers.indexOf("");
-            if(index !== -1) {
-                publishers.splice(index, 1);
+            anyIndex = publishers.indexOf("");
+            if(anyIndex !== -1) {
+                publishers.splice(anyIndex, 1);
             }
             if(publishers.length) {
                 params.publisher = publishers;
@@ -50,8 +53,8 @@ $(function () {
             return;
         }
 
-        //TODO do this through Java
-        var URL = "/search?";
+        //TODO do this through Java, this might not work on deployment
+        var URL = "search?";
         if(title) {
             URL += "name=" + encodeURIComponent(title);
             if(params) {
