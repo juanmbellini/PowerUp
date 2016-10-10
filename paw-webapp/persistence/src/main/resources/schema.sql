@@ -44,6 +44,12 @@ CREATE TABLE IF NOT EXISTS power_up.keywords (
   id   SERIAL  NOT NULL PRIMARY KEY,
   name VARCHAR NOT NULL
 );
+CREATE TABLE IF NOT EXISTS power_up.users (
+  id  SERIAL  NOT NULL PRIMARY KEY,
+  email VARCHAR NOT NULL UNIQUE,
+  username VARCHAR DEFAULT NULL,
+  password VARCHAR NOT NULL
+);
 
 -- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS power_up.game_genres (

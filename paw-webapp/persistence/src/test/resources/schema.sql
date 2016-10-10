@@ -21,6 +21,14 @@ CREATE TABLE power_up.companies (
 	id 		INTEGER IDENTITY NOT NULL PRIMARY KEY,
 	name 	VARCHAR(1024)
 );
+CREATE TABLE power_up.users (
+	id  INTEGER IDENTITY NOT NULL PRIMARY KEY,
+	email VARCHAR(1024) NOT NULL,
+	username VARCHAR(1024) DEFAULT NULL,
+  password VARCHAR(1024) NOT NULL,
+
+  UNIQUE(email)
+);
 
 -- Creation of relationship tables
 CREATE TABLE power_up.game_genres (
