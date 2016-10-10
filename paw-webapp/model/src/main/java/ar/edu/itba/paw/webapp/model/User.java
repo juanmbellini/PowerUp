@@ -17,15 +17,18 @@ public class User {
      * @param email The user's identifying email.
      * @param username The user's identifying username.
      */
+
     public User(long id, String email, String username) {
         this.id = id;
         this.email = email;
         this.username = username;
     }
 
+
     /**
      * @return This user's username.
      */
+
     public String getUsername() {
         return username;
     }
@@ -36,6 +39,7 @@ public class User {
     public String getEmail() {
         return email;
     }
+
 
     /**
      * @return This user's ID.
@@ -124,4 +128,5 @@ public class User {
     public void setPlayStatus(Map<Long, PlayStatus> playedGames) {
         this.playedGames.putAll(playedGames);
     }
+
 }
