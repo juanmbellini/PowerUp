@@ -7,4 +7,5 @@ public class FailedToProcessQueryException extends RuntimeException {
 
     public FailedToProcessQueryException() { super(); }
     public FailedToProcessQueryException(String msg) { super(msg); }
+    public FailedToProcessQueryException(Exception cause) {super(cause);}
 }
