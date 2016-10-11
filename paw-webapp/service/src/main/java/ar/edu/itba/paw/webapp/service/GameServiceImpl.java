@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
+    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
+                                  OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) {
         name = escapeUnsafeCharacters(name);
-        return gameDao.searchGames(name, filters, orderCategory, ascending);
+        return gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
     }
 
     @Override
@@ -43,6 +45,7 @@ public class GameServiceImpl implements GameService {
         return gameDao.getFiltersByType(filterCategory);
     }
 
+    // TODO: Move to controller as this is a controller's task
     public String escapeUnsafeCharacters(String name){
         char[] escape = new char[1];
         StringBuilder nameEscaped = new StringBuilder();
