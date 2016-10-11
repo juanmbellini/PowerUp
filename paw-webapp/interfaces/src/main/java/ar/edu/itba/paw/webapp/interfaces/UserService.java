@@ -48,19 +48,7 @@ public interface UserService {
      * Records a score for a specified game by a specified user.
      *
      * @param user The user who is scoring the game.
-     * @param gameId The ID of the scored game.
-     * @return {@code true} on success, {@code false} on error (e.g. user already scored this game).
-     */
-    boolean scoreGame(User user, long gameId);
-
-    /**
-     * Records a score for a specified game by a specified user.
-     *
-     * @param user The user who is scoring the game.
      * @param game The scored game.
-     * @return {@code true} on success, {@code false} on error (e.g. user already scored this game).
      */
-    default boolean scoreGame(User user, Game game) {
-        return scoreGame(user, game.getId());
-    }
+    void scoreGame(User user, Game game);
 }

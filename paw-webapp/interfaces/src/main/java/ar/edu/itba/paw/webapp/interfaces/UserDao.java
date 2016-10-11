@@ -30,14 +30,7 @@ public interface UserDao {
     User findById(long id);
 
     /**
-     * @see UserService#scoreGame(User, long)
-     */
-    boolean scoreGame(User user, long gameId);
-
-    /**
      * @see UserService#scoreGame(User, Game)
      */
-    default boolean scoreGame(User user, Game game) {
-        return scoreGame(user, game.getId());
-    }
+    void scoreGame(User user, Game game);
 }
