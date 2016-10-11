@@ -118,7 +118,6 @@ public class GameJdbcDaoTest {
 
                 .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (4, 2);\n")
                 .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (5, 2);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (6, 2);\n")
                 // Inserts game-platforms relationship
 
                 .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (4, 2, '2018-12-30');\n")
@@ -215,6 +214,7 @@ public class GameJdbcDaoTest {
 
     @Test
     public void testMultipleSameKindFilters() {
+
         //SetUp db with three games. "Mario" keyword "Fun, Action", "Super Mario Party" keyword "Fun", "Sonic" keyword "Platformer, Fun" and "Mario Golf" keyword "Golf, MegaFun"
         System.out.println("Performing multiple same kind filters test...");
         //
@@ -229,16 +229,16 @@ public class GameJdbcDaoTest {
 //        Filter secondeKeywordFilter = new Filter(Filter.FilterCategory.KEYWORDS, "Action");
 //        filters.add(firstKeywordFilter);
 //        filters.add(secondeKeywordFilter);
-        final Collection<Game> games = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
+        final Collection<Game> games = gameDao.searchGames("", filters, OrderCategory.name, true); //testear null y collection vacia
 
         assertNotNull(games);
-        assertEquals("Search with multiple filters of the same kind didn't return as expected.", 1, games.size());
+        assertEquals("Search with multiple filters of the same kind didn't return as expected.", 5, games.size());
 
 
-        Iterator<Game> iterator = games.iterator();
-        Game game = iterator.next();
+        final Collection<Game> gamesMario = gameDao.searchGames("Mario", filters, OrderCategory.name, true); //testear null y collection vacia
+        assertNotNull(gamesMario);
+        assertEquals("Search with multiple filters of the same kind didn't return as expected when using parameter 'name'.", 2, gamesMario.size());
 
-        assert (game.getName().equals("Mario"));
 
     }
 
@@ -579,6 +579,8 @@ public class GameJdbcDaoTest {
         final Game mario = gameDao.findById(1);
         final Game marioParty = gameDao.findById(2);
         final Game sonic = gameDao.findById(3);
+        final Game megaManIII = gameDao.findById(6);
+
         final Set<FilterCategory> filters = new HashSet<>();
         filters.add(FilterCategory.keyword);
         final Set<Game> relatedToMario = gameDao.findRelatedGames(mario, filters);
@@ -594,10 +596,15 @@ public class GameJdbcDaoTest {
                         "Expected a Set of Games containing Game Sonic, " +
                         "got a Set that didn't include it.",
                 relatedToMario.contains(sonic));
-        assertFalse("Find related gamed didn't returned as expected. " +
-                        "Expected a Set of Games that doesn't include Mario Party," +
+        assertTrue("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that include Mario Party," +
                         "got a Set that included it.",
                 relatedToMario.contains(marioParty));
+
+        assertFalse("Find related gamed didn't returned as expected. " +
+                        "Expected a Set of Games that doesn't include megaManIII," +
+                        "got a Set that included it.",
+                relatedToMario.contains(megaManIII));
 
     }
 
