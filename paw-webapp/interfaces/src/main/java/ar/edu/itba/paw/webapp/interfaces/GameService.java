@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.Page;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,8 +24,10 @@ public interface GameService {
      * @param name    Partial or complete name of the game. An empty name will match all games.
      * @param filters Criteria for the games to match. May be empty, but not {@code null}.
      * @return Games matching the specified criteria. TODO is there a maximum list size? If so, specify. If not, specify.
+     * @throws IllegalArgumentException if a list in the {@code filters} map is null.
      */
-    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending);
+    Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
+                           boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException;
 
     /**
      * Finds games related to {@code baseGame} that match criteria specified in {@code filters}.

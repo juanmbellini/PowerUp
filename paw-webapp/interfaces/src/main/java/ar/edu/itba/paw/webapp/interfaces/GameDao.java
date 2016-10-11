@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.Page;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,10 +16,17 @@ import java.util.Set;
 public interface GameDao {
 
     /**
-     * @see GameService#searchGames(String, Map, OrderCategory, boolean)
-     * @throws IllegalArgumentException if a list in the {@code filters} map is null.
+     * @see GameService#searchGames(String, Map, OrderCategory, boolean, int, int)
      */
-    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) throws IllegalArgumentException;
+    Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
+                           boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException;
+
+    /**
+     * Same as {@link GameService#searchGames(String, Map, OrderCategory, boolean, int, int)}
+     * but without pagination
+     */
+    Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
+                                 boolean ascending) throws IllegalArgumentException;
 
     /**
      * @see GameService#findRelatedGames(Game, Set)
