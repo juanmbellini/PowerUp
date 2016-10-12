@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -19,6 +20,9 @@ import java.util.*;
 
 @Controller
 public class MainController {
+
+    private static final int DEFAULT_PAGE_SIZE = 25;
+    public static final int DEFAULT_PAGE_NUMBER = 1;
 
     private final GameService gameService;
 
@@ -45,49 +49,57 @@ public class MainController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
-                               @RequestParam(value = "orderCategory", required = false) String orderBoleanStr,
-                               @RequestParam(value = "filters", required = false) String filtersJson) {
+                               @RequestParam(value = "orderCategory", required = false) String orderBooleanStr,
+                               @RequestParam(value = "filters", required = false) String filtersJson,
+                               @RequestParam(value = "pageSize", required = false) String pageSizeStr,
+                               @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
 
         final ModelAndView mav = new ModelAndView();
 
-        boolean orderBoolean;
-        if(orderBoleanStr==null || orderBoleanStr.equals("ascending")){
-            orderBoolean = true;
-        }else{
-            orderBoolean = false;
-        }
+        name = name == null ? "" : name;
+        filtersJson = (filtersJson == null || filtersJson.equals("")) ? "{}" : filtersJson;
+        boolean orderBoolean = orderBooleanStr == null || orderBooleanStr.equals("")
+                || orderBooleanStr.equals("ascending");
+        int pageSize;
+        int pageNumber;
 
-        if (filtersJson == null || filtersJson.equals("")) {
-            filtersJson = "{}";
-        }
-        if (name == null) {
-            name = "";
-        }
-        Map<FilterCategory, List<String>> filters = null;
+        Map<FilterCategory, List<String>> filters;
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
             //TODO make a new function for this
             if (orderParameter == null) {
                 orderParameter = "name";
-            }else if (orderParameter.equals("release date")) {
+            } else if (orderParameter.equals("release date")) {
                 orderParameter = "release";
             } else if (orderParameter.equals("avg-rating")) {
                 orderParameter = "avg_score";
-            }else{
+            } else {
                 return error400();
             }
 
+            // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
+            pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+            pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
+                    DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), orderBoolean));
+
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter),
+                    orderBoolean, pageSize, pageNumber).getData());
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
-            mav.addObject("orderBoolean", orderBoleanStr);
+            mav.addObject("orderBoolean", orderBooleanStr);
             mav.setViewName("search");
             mav.addObject("filters", filtersJson);
         } catch (IOException e) {
             e.printStackTrace();  // Wrong JSON!!
             mav.setViewName("redirect:error500");
+        } catch (NumberFormatException e) {
+            e.printStackTrace(); // Wrong pageSizeStr or pageNumberStr!!
+            mav.setViewName("redirect:error400");
+        } catch (IllegalPageException e) {
+            e.printStackTrace(); // Wrong pageNumber!!
+            mav.setViewName("redirect:error400");
         }
         return mav;
     }
