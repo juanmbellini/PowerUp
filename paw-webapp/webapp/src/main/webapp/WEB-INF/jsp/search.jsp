@@ -110,11 +110,20 @@
 
 <script type="text/javascript" src="<c:url value='/js/advanced-search.js' />"></script>
 
+
 </body>
 </html>
 
 
 <script>
+    $( document ).ready(function() {
+
+        $("#orderBooleanId").val("${orderBoolean}");
+        $("#orderBooleanId").material_select();
+        $("#orderSelectId").val("${orderCategory}");
+        $("#orderSelectId").material_select();
+    });
+
     function reload() {
 
 
