@@ -1,5 +1,7 @@
 package ar.edu.itba.paw.webapp.utilities;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+
 import java.util.Collection;
 
 /**
@@ -75,19 +77,23 @@ public class Page<T> {
      */
     public void setTotalPages(int totalPages) {
         if (totalPages < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalPageException();
         }
         this.totalPages = totalPages;
     }
 
     /**
      * Page number setter.
+     * <p>
+     *     If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
+     *     Note: {@code totalPages} is set to {@code 0} initially.
+     * </p>
      *
      * @param pageNumber This page's number.
      */
     public void setPageNumber(int pageNumber) {
-        if (pageNumber <= 0) {
-            throw new IllegalArgumentException();
+        if (pageNumber <= 0 || pageNumber > totalPages) {
+            throw new IllegalPageException("The page number is bigger than the total amount of pages.");
         }
         this.pageNumber = pageNumber;
     }
@@ -99,23 +105,28 @@ public class Page<T> {
      */
     public void setPageSize(int pageSize) {
         if (pageSize <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalPageException();
         }
         this.pageSize = pageSize;
     }
 
     /**
      * Data setter.
+     * <p>
+     *     Note: If the total amount of data in the collection is smaller than {@code pageSize},
+     *     then this field is overwritten.
+     * </p>
      *
      * @param data The data to be added into this page.
      */
     public void setData(Collection<T> data) {
         if (pageSize == 0 || pageNumber == 0 || totalPages == 0) {
-            throw new IllegalStateException();
+            throw new IllegalPageException("Illegal state.");
         }
         if (data.size() > pageSize) {
-            throw new IllegalArgumentException();
+            throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
         }
         this.data = data;
+        this.pageSize = data.size();
     }
 }

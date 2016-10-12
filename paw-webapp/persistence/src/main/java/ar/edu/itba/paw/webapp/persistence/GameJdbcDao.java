@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -270,12 +271,17 @@ public class GameJdbcDao implements GameDao {
      * @return The resultant collection after making the query with the given parameters
      * @throws IllegalArgumentException If {@code name} is null, {@code filters} is null,
      *                                  {@code orderCategory} is null, if a list in the {@code filters} map is null,
+     *                                  if {@code pageSize} is negative, if {@code pageNumber} is negative
      *                                  or if {@code pageSize} is {@code 0} and {@code pageNumber} not, or vice versa.
+     * @throws IllegalPageException If there were problems creating a page with results
+     *                                  (i.e. {@code pageSize} smaller than the amount of elements in the result set,
+     *                                  {@code pageNumber} bigger than the total amount of pages available,
+     *                                  or Illegal arguments when creating the page).
      */
     private Page<Game> doSearchGames(String name, Map<FilterCategory, List<String>> filters,
                                      OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
             throws IllegalArgumentException {
-        if (name == null || filters == null || orderCategory == null
+        if (name == null || filters == null || orderCategory == null || pageSize < 0 || pageNumber < 0
                 || (pageSize == 0 && pageNumber != 0) || (pageNumber == 0 && pageSize != 0)) {
             throw new IllegalArgumentException();
         }
@@ -321,11 +327,7 @@ public class GameJdbcDao implements GameDao {
         ;
         StringBuilder rowsCountQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
                 .append("SELECT count(DISTINCT power_up.games.id) AS rows")
-                .append(queryBuilderWithoutSelectGroupByAndOrderBy)
-                .append(" LIMIT ")
-                .append(pageSize)
-                .append(" OFFSET ")
-                .append(pageSize * pageNumber);
+                .append(queryBuilderWithoutSelectGroupByAndOrderBy);
 
         System.out.println(dataFetchQuery);
         Set<Game> gamesSet = new LinkedHashSet<>();
@@ -334,7 +336,7 @@ public class GameJdbcDao implements GameDao {
         final Page<Game> page = new Page<>();
         if (paginationOn) {
             page.setPageSize(pageSize);
-            page.setPageNumber(pageNumber);
+            dataFetchQuery.append(" LIMIT ").append(pageSize).append(" OFFSET ").append(pageSize * (pageNumber - 1));
         } else {
             page.setTotalPages(1);
             page.setPageNumber(1);
@@ -349,7 +351,10 @@ public class GameJdbcDao implements GameDao {
                 public void processRow(ResultSet rs) throws SQLException {
                     int rowsCount = rs.getInt("rows");
                     if (paginationOn) {
-                        page.setTotalPages((rowsCount / pageSize) + 1);
+                        int ratio = rowsCount / pageSize;
+                        int totalPages = (rowsCount % pageSize == 0) ? ratio : ratio + 1;
+                        page.setTotalPages(totalPages);
+                        page.setPageNumber(pageNumber);
                     } else {
                         page.setPageSize(rowsCount);
                     }
@@ -366,6 +371,8 @@ public class GameJdbcDao implements GameDao {
                     gamesSet.add(game);
                 }
             });
+        } catch (IllegalPageException e) {
+            throw e;
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
         }
