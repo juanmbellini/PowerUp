@@ -30,8 +30,6 @@ public class GameJdbcDao implements GameDao {
     public static final int STRING_BUILDER_SMALL_INITIAL_CAPACITY = 128;
     private JdbcTemplate jdbcTemplate;
 
-    private static final int DEFAULT_PAGE_SIZE = 25; // TODO: move it somewhere else
-
 
     @Autowired
     public GameJdbcDao(DataSource dataSource) {
@@ -353,8 +351,8 @@ public class GameJdbcDao implements GameDao {
                     if (paginationOn) {
                         int ratio = rowsCount / pageSize;
                         int totalPages = (rowsCount % pageSize == 0) ? ratio : ratio + 1;
-                        page.setTotalPages(totalPages);
-                        page.setPageNumber(pageNumber);
+                        page.setTotalPages(totalPages == 0 ? 1 : totalPages);   // With empty result set, one page is
+                        page.setPageNumber(pageNumber);                         // returned.
                     } else {
                         page.setPageSize(rowsCount);
                     }

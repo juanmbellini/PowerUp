@@ -718,6 +718,20 @@ public class GameJdbcDaoTest {
                 1, page.getTotalPages());
     }
 
+    @Test
+    public void testPaginationWithEmptyResultSet() {
+        String baseResultString = "Search Games with pagination didn't returned as expected.";
+
+        Page<Game> page = gameDao.searchGames("asdasdasdasd", new HashMap<>(), OrderCategory.name, true, 5, 1);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page);
+        assertEquals(baseResultString + " Expected a page with no elements, got " + page.getData().size(),
+                0, page.getData().size());
+        assertEquals(baseResultString + " Expected a page of size 0, got a page of size " + page.getPageSize(),
+                0, page.getPageSize());
+        assertEquals(baseResultString + " Expected one page, got " + page.getTotalPages(),
+                1, page.getTotalPages());
+    }
+
 }
 
 
