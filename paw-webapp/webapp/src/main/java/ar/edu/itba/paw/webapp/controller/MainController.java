@@ -58,8 +58,7 @@ public class MainController {
 
         name = name == null ? "" : name;
         filtersStr = (filtersStr == null || filtersStr.equals("")) ? "{}" : filtersStr;
-        boolean orderBoolean = orderBooleanStr == null || orderBooleanStr.equals("")
-                || orderBooleanStr.equals("ascending");
+        boolean orderBoolean = orderBooleanStr == null || !orderBooleanStr.equals("descending"); // default: ascending
         int pageSize;
         int pageNumber;
 
@@ -68,7 +67,9 @@ public class MainController {
             filters = objectMapper.readValue(filtersStr, typeReference);
             boolean isCorrect = true;
 
-            if (orderCategoryStr == null || orderCategoryStr.equals("")) {
+            // TODO: make a new function for this
+            // TODO: change string to use those in enum and avoid this
+            if (orderCategoryStr == null || orderCategoryStr.equals("") || orderCategoryStr.equals("name")) {
                 orderCategoryStr = "name";
             } else if (orderCategoryStr.equals("release date")) {
                 orderCategoryStr = "release";
@@ -79,19 +80,6 @@ public class MainController {
                 mav.setViewName("redirect:error400");
             }
 
-
-
-
-//            //TODO make a new function for this
-//            if (orderCategoryStr == null) {
-//                orderCategoryStr = "name";
-//            } else if (orderCategoryStr.equals("release date")) {
-//                orderCategoryStr = "release";
-//            } else if (orderCategoryStr.equals("avg-rating")) {
-//                orderCategoryStr = "avg_score";
-//            } else {
-//                return error400();
-//            }
             if (isCorrect) {
                 // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
                 pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
@@ -124,7 +112,6 @@ public class MainController {
             try {
                 mav.addObject(English.plural(filterCategory.name()).toUpperCase(),
                         gameService.getFiltersByType(filterCategory));
-//                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
             } catch (Exception e) {
                 return error500();
             }
