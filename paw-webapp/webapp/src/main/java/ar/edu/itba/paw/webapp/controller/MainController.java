@@ -59,71 +59,64 @@ public class MainController {
 
         name = name == null ? "" : name;
         filtersStr = (filtersStr == null || filtersStr.equals("")) ? "{}" : filtersStr;
-//        boolean orderBoolean = orderBooleanStr == null || !orderBooleanStr.equals("descending"); // default: ascending
+        String orderCategory;
+        boolean orderBoolean;
         int pageSize;
         int pageNumber;
 
-        boolean orderBoolean;
+
+        // TODO: make a new function for this
+        // TODO: change string to use those in enum and avoid this
+        if (orderParameter == null || orderParameter.equals("name")) {
+            orderCategory = "name";
+        } else if (orderParameter.equals("release date")) {
+            orderCategory = "release";
+        } else if (orderParameter.equals("avg-rating")) {
+            orderCategory = "avg_score";
+        } else {
+            mav.setViewName("redirect:error400");
+            return mav;
+        }
+
         if (orderBooleanStr == null || orderBooleanStr.equals("ascending")) {
             orderBoolean = true;
         } else if (orderBooleanStr.equals("descending")) {
             orderBoolean = false;
         } else {
-            return error400();
+            mav.setViewName("redirect:error400");
+            return mav;
         }
+
 
         Map<FilterCategory, List<String>> filters;
         try {
-
             filters = objectMapper.readValue(filtersStr, typeReference);
-            boolean isCorrect = true;
 
-            // TODO: make a new function for this
-            // TODO: change string to use those in enum and avoid this
-            String orderCategory = null;
-            if (orderParameter == null || orderParameter.equals("name")) {
-                orderCategory = "name";
-            } else if (orderParameter.equals("release date")) {
-                orderCategory = "release";
-            } else if (orderParameter.equals("avg-rating")) {
-                orderCategory = "avg_score";
+            // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
+            pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+            pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
+                    DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
-            } else {
-                isCorrect = false;
-                mav.setViewName("redirect:error400");
-            }
+            Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
+                    orderBoolean, pageSize, pageNumber);
+            // TODO: Change JSP in order to send just the page
+            mav.addObject("results", page.getData());
+            mav.addObject("pageNumber", page.getPageNumber());
+            mav.addObject("pageSize", page.getPageSize());
+            mav.addObject("totalPages", page.getTotalPages());
 
+            mav.addObject("hasFilters", !filtersStr.equals("{}"));
+            mav.addObject("appliedFilters", filters);
+            mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
+            mav.addObject("orderBoolean", orderBooleanStr);
+            mav.addObject("orderCategory", orderParameter);
+            mav.addObject("filters", filtersStr);
+            mav.setViewName("search");
 
-            if (isCorrect) {
-                // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
-                pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
-                pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
-                        DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
-
-                Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
-                        orderBoolean, pageSize, pageNumber);
-                // TODO: Change JSP in order to send just the page
-                mav.addObject("results", page.getData());
-                mav.addObject("pageNumber", page.getPageNumber());
-                mav.addObject("pageSize", page.getPageSize());
-                mav.addObject("totalPages", page.getTotalPages());
-
-                mav.addObject("hasFilters", !filtersStr.equals("{}"));
-                mav.addObject("appliedFilters", filters);
-                mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
-                mav.addObject("orderBoolean", orderBooleanStr);
-                mav.addObject("orderCategory", orderParameter);
-                mav.addObject("filters", filtersStr);
-                mav.setViewName("search");
-
-
-            }
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
             mav.setViewName("redirect:error400");
         }
-
-
         return mav;
     }
 
