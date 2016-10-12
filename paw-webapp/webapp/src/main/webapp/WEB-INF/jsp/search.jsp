@@ -132,6 +132,14 @@
 </script>
 
 <script>
+    $( document ).ready(function() {
+
+        $("#orderBooleanId").val("${orderBoolean}");
+        $("#orderBooleanId").material_select();
+        $("#orderSelectId").val("${orderCategory}");
+        $("#orderSelectId").material_select();
+    });
+
     function reload() {
 
 

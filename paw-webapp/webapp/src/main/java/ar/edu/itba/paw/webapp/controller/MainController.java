@@ -57,7 +57,7 @@ public class MainController {
             orderBoolean = false;
         }else{
             return error400();
-       }
+        }
 
 
         if (filtersJson == null || filtersJson.equals("")) {
@@ -70,21 +70,26 @@ public class MainController {
         try {
             filters = objectMapper.readValue(filtersJson, typeReference);
             //TODO make a new function for this
+
+            String orderCategory = null;
             if (orderParameter == null || orderParameter.equals("name")) {
-                orderParameter = "name";
+                orderCategory = "name";
             }else if (orderParameter.equals("release date")) {
-                orderParameter = "release";
+                orderCategory = "release";
             } else if (orderParameter.equals("avg-rating")) {
-                orderParameter = "avg_score";
+                orderCategory = "avg_score";
+
             }else{
                 return error400();
             }
 
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), orderBoolean));
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory), orderBoolean));
             mav.addObject("hasFilters", !filtersJson.equals("{}"));
             mav.addObject("appliedFilters", filters);
+
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
+
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.setViewName("search");
