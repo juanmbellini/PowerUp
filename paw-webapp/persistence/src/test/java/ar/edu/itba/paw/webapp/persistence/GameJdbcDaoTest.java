@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
@@ -490,7 +491,7 @@ public class GameJdbcDaoTest {
                 assertTrue((oldGame.getReleaseDate().compareTo(game.getReleaseDate()) <= 0));
             }
         }
-        
+
         final Collection<Game> gameCollectionDesc = gameDao.searchGames("", new HashMap<>(), OrderCategory.release, false);
         oldGame = null;
         for (Game game : gameCollectionDesc) {
@@ -625,8 +626,97 @@ public class GameJdbcDaoTest {
                 relatedToMario.contains(marioParty));
     }
 
+    @Test
+    public void testPaginationWithRowsCountBeingMultipleOfPageSize() {
+        String baseResultString = "Search Games with pagination didn't returned as expected.";
 
+        Page<Game> bigPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 6, 1);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null", bigPage);
+        assertEquals(baseResultString + " Expected a page with 6 elements, got " + bigPage.getData().size(),
+                6, bigPage.getData().size());
+        assertEquals(baseResultString + " Expected one page, got " + bigPage.getTotalPages(),
+                1, bigPage.getTotalPages());
 
+        Page<Game> mediumPage1 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 3, 1);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null", mediumPage1);
+        assertEquals(baseResultString + " Expected a page with 3 elements, got " + mediumPage1.getData().size(),
+                3, mediumPage1.getData().size());
+        assertEquals(baseResultString + " Expected 2 pages, got " + mediumPage1.getTotalPages(),
+                2, mediumPage1.getTotalPages());
+        Page<Game> mediumPage2 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 3, 2);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null", mediumPage2);
+        assertEquals(baseResultString + " Expected a page with 3 elements, got " + mediumPage1.getData().size(),
+                3, mediumPage1.getData().size());
+        assertEquals(baseResultString + " Expected 2 pages, got " + mediumPage2.getTotalPages(),
+                2, mediumPage2.getTotalPages());
+
+        for (Game gameFromPage1 : mediumPage1.getData()) {
+            Assert.assertNotNull(baseResultString + " There shouldn't be null objects in the page", gameFromPage1);
+            for (Game gameFromPage2 : mediumPage2.getData()) {
+                Assert.assertNotNull(baseResultString + " There shouldn't be null objects in the page", gameFromPage2);
+                assertNotEquals(baseResultString + " Expected different games in different pages",
+                        gameFromPage1, gameFromPage2);
+            }
+        }
+        Iterator<Game> it = mediumPage1.getData().iterator();
+        Game game = it.next();
+        assertEquals(baseResultString + " First game should be Mario, got " + game.getName(), 1, game.getId());
+        game = it.next();
+        assertEquals(baseResultString + " First game should be Megaman I, got " + game.getName(), 4, game.getId());
+        game = it.next();
+        assertEquals(baseResultString + " First game should be Megaman II, got " + game.getName(), 5, game.getId());
+    }
+
+    @Test(expected = IllegalPageException.class)
+    public void testWrongPaginationArguments() {
+        try {
+            gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 6, 2);
+            fail("Search Games with pagination didn't returned as expected. " +
+                    "Expected a IllegalPageException to be thrown");
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
+    }
+
+    @Test
+    public void testPaginationWithSmallerPageSizeThanRowsCountAndWithoutBeingRowsCountMultipleOfPageSize() {
+        String baseResultString = "Search Games with pagination didn't returned as expected.";
+
+        Page<Game> page1 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 5, 1);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page1);
+        assertEquals(baseResultString + " Expected a page with 5 elements, got " + page1.getData().size(),
+                5, page1.getData().size());
+        assertFalse(baseResultString + " Expected a page not containing 'Super Mario Party', got a page containing it",
+                page1.getData().contains(new Game(2, "", "")));
+        assertEquals(baseResultString + " Expected 2 pages, got " + page1.getTotalPages(),
+                2, page1.getTotalPages());
+
+        Page<Game> page2 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 5, 2);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page2);
+        assertEquals(baseResultString + " Expected a page with 5 elements, got " + page2.getData().size(),
+                1, page2.getData().size());
+        assertEquals(baseResultString + " Expected a page of size 1, got a page of size " + page2.getPageSize(),
+                1, page2.getPageSize());
+        assertTrue(baseResultString + " Expected a page containing 'Super Mario Party', got a page not containing it",
+                page2.getData().contains(new Game(2, "", "")));
+        assertEquals(baseResultString + " Expected 2 pages, got " + page2.getTotalPages(),
+                2, page2.getTotalPages());
+
+    }
+
+    @Test
+    public void testPaginationWithBiggerPageSizeThanRowsCount() {
+        String baseResultString = "Search Games with pagination didn't returned as expected.";
+
+        Page<Game> page = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 7, 1);
+        Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page);
+        assertEquals(baseResultString + " Expected a page with 6 elements, got " + page.getData().size(),
+                6, page.getData().size());
+        assertEquals(baseResultString + " Expected a page of size 6, got a page of size " + page.getPageSize(),
+                6, page.getPageSize());
+        assertEquals(baseResultString + " Expected one page, got " + page.getTotalPages(),
+                1, page.getTotalPages());
+    }
 
 }
 
