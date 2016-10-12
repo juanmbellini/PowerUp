@@ -49,7 +49,7 @@ public class MainController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "orderCategory", required = false) String orderCategoryStr,
-                               @RequestParam(value = "orderCategory", required = false) String orderBooleanStr,
+                               @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
                                @RequestParam(value = "filters", required = false) String filtersStr,
                                @RequestParam(value = "pageSize", required = false) String pageSizeStr,
                                @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
@@ -66,31 +66,48 @@ public class MainController {
         Map<FilterCategory, List<String>> filters;
         try {
             filters = objectMapper.readValue(filtersStr, typeReference);
-            //TODO make a new function for this
-            if (orderCategoryStr == null) {
+            boolean isCorrect = true;
+
+            if (orderCategoryStr == null || orderCategoryStr.equals("")) {
                 orderCategoryStr = "name";
             } else if (orderCategoryStr.equals("release date")) {
                 orderCategoryStr = "release";
             } else if (orderCategoryStr.equals("avg-rating")) {
                 orderCategoryStr = "avg_score";
             } else {
-                return error400();
+                isCorrect = false;
+                mav.setViewName("redirect:error400");
             }
 
-            // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
-            pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
-            pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
-                    DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategoryStr),
-                    orderBoolean, pageSize, pageNumber).getData());
-            mav.addObject("hasFilters", !filtersStr.equals("{}"));
-            mav.addObject("appliedFilters", filters);
-            mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
-            mav.addObject("orderBoolean", orderBooleanStr);
-            mav.setViewName("search");
-            mav.addObject("filters", filtersStr);
+
+//            //TODO make a new function for this
+//            if (orderCategoryStr == null) {
+//                orderCategoryStr = "name";
+//            } else if (orderCategoryStr.equals("release date")) {
+//                orderCategoryStr = "release";
+//            } else if (orderCategoryStr.equals("avg-rating")) {
+//                orderCategoryStr = "avg_score";
+//            } else {
+//                return error400();
+//            }
+            if (isCorrect) {
+                // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
+                pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+                pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
+                        DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
+
+
+                mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategoryStr),
+                        orderBoolean, pageSize, pageNumber).getData());
+                mav.addObject("hasFilters", !filtersStr.equals("{}"));
+                mav.addObject("appliedFilters", filters);
+                mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
+                mav.addObject("orderBoolean", orderBooleanStr);
+                mav.setViewName("search");
+                mav.addObject("filters", filtersStr);
+            }
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
             mav.setViewName("redirect:error400");
