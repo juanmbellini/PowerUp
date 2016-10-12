@@ -116,7 +116,7 @@ public class MainController {
                 mav.addObject("filters", filtersStr);
                 mav.setViewName("search");
 
-            
+
             }
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
