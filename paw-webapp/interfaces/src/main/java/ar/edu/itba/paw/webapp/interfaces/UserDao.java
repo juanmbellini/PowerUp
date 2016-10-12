@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
 /**
@@ -30,7 +31,26 @@ public interface UserDao {
     User findById(long id);
 
     /**
-     * @see UserService#scoreGame(User, Game)
+     * @see UserService#scoreGame(User, long, int)
      */
-    void scoreGame(User user, Game game);
+    void scoreGame(User user, long gameId, int score);
+
+    /**
+     * @see UserService#scoreGame(User, Game, int)
+     */
+    default void scoreGame(User user, Game game, int score) {
+        scoreGame(user, game.getId(), score);
+    }
+
+    /**
+     * @see UserService#setPlayStatus(User, long, PlayStatus)
+     */
+    void setPlayStatus(User user, long gameId, PlayStatus status);
+
+    /**
+     * @see UserService#setPlayStatus(User, Game, PlayStatus)
+     */
+    default void setPlayStatus(User user, Game game, PlayStatus status) {
+        setPlayStatus(user, game.getId(), status);
+    }
 }
