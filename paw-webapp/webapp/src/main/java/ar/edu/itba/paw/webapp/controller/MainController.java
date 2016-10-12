@@ -1,9 +1,11 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.atteo.evo.inflector.English;
@@ -19,6 +21,9 @@ import java.util.*;
 
 @Controller
 public class MainController {
+
+    private static final int DEFAULT_PAGE_SIZE = 25;
+    public static final int DEFAULT_PAGE_NUMBER = 1;
 
     private final GameService gameService;
 
@@ -44,50 +49,62 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
-                               @RequestParam(value = "orderCategory", required = false) String orderParameter,
-                               @RequestParam(value = "orderCategory", required = false) String orderBoleanStr,
-                               @RequestParam(value = "filters", required = false) String filtersJson) {
+                               @RequestParam(value = "orderCategory", required = false) String orderCategoryStr,
+                               @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
+                               @RequestParam(value = "filters", required = false) String filtersStr,
+                               @RequestParam(value = "pageSize", required = false) String pageSizeStr,
+                               @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
 
         final ModelAndView mav = new ModelAndView();
 
-        boolean orderBoolean;
-        if(orderBoleanStr==null || orderBoleanStr.equals("ascending")){
-            orderBoolean = true;
-        }else{
-            orderBoolean = false;
-        }
+        name = name == null ? "" : name;
+        filtersStr = (filtersStr == null || filtersStr.equals("")) ? "{}" : filtersStr;
+        boolean orderBoolean = orderBooleanStr == null || !orderBooleanStr.equals("descending"); // default: ascending
+        int pageSize;
+        int pageNumber;
 
-        if (filtersJson == null || filtersJson.equals("")) {
-            filtersJson = "{}";
-        }
-        if (name == null) {
-            name = "";
-        }
-        Map<FilterCategory, List<String>> filters = null;
+        Map<FilterCategory, List<String>> filters;
         try {
-            filters = objectMapper.readValue(filtersJson, typeReference);
-            //TODO make a new function for this
-            if (orderParameter == null) {
-                orderParameter = "name";
-            }else if (orderParameter.equals("release date")) {
-                orderParameter = "release";
-            } else if (orderParameter.equals("avg-rating")) {
-                orderParameter = "avg_score";
-            }else{
-                return error400();
+            filters = objectMapper.readValue(filtersStr, typeReference);
+            boolean isCorrect = true;
+
+            // TODO: make a new function for this
+            // TODO: change string to use those in enum and avoid this
+            if (orderCategoryStr == null || orderCategoryStr.equals("") || orderCategoryStr.equals("name")) {
+                orderCategoryStr = "name";
+            } else if (orderCategoryStr.equals("release date")) {
+                orderCategoryStr = "release";
+            } else if (orderCategoryStr.equals("avg-rating")) {
+                orderCategoryStr = "avg_score";
+            } else {
+                isCorrect = false;
+                mav.setViewName("redirect:error400");
             }
 
+            if (isCorrect) {
+                // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
+                pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+                pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
+                        DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter), orderBoolean));
-            mav.addObject("hasFilters", !filtersJson.equals("{}"));
-            mav.addObject("appliedFilters", filters);
-            mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
-            mav.addObject("orderBoolean", orderBoleanStr);
-            mav.setViewName("search");
-            mav.addObject("filters", filtersJson);
-        } catch (IOException e) {
-            e.printStackTrace();  // Wrong JSON!!
-            mav.setViewName("redirect:error500");
+                Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategoryStr),
+                        orderBoolean, pageSize, pageNumber);
+                // TODO: Change JSP in order to send just the page
+                mav.addObject("results", page.getData());
+                mav.addObject("pageNumber", page.getPageNumber());
+                mav.addObject("pageSize", page.getPageSize());
+                mav.addObject("totalPages", page.getTotalPages());
+
+                mav.addObject("hasFilters", !filtersStr.equals("{}"));
+                mav.addObject("appliedFilters", filters);
+                mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
+                mav.addObject("orderBoolean", orderBooleanStr);
+                mav.addObject("filters", filtersStr);
+                mav.setViewName("search");
+            }
+        } catch (IOException | NumberFormatException | IllegalPageException e) {
+            e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
+            mav.setViewName("redirect:error400");
         }
         return mav;
     }
@@ -101,7 +118,6 @@ public class MainController {
             try {
                 mav.addObject(English.plural(filterCategory.name()).toUpperCase(),
                         gameService.getFiltersByType(filterCategory));
-//                mav.addObject((filterCategory.name() + "s").toUpperCase(), gameService.getFiltersByType(filterCategory));
             } catch (Exception e) {
                 return error500();
             }

@@ -1,10 +1,12 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,10 @@ import java.util.*;
 @Repository
 public class GameJdbcDao implements GameDao {
 
+    public static final int STRING_BUILDER_INITIAL_CAPACITY = 2048;
+    public static final int STRING_BUILDER_SMALL_INITIAL_CAPACITY = 128;
     private JdbcTemplate jdbcTemplate;
+
 
     @Autowired
     public GameJdbcDao(DataSource dataSource) {
@@ -36,104 +41,24 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-    //TODO: Apply filters in service layer
-    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) {
-//        name.replace(' ', '%');
-        String[] parameters = new String[countFilters(filters) + 1];
-        parameters[0] = name;
-
-        String tablesString = "SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id, power_up.games.release" +
-                " FROM power_up.games" +
-                " INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id" +
-                " INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id" +
-                " LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id";
-                String pictures = " AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures" +
-                " WHERE pictures.game_id = game_id)" +
-                " OR pictures.id IS NULL)";
-        String nameString = "WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'";
-        String filtersString = "";
-        String groupByString = "GROUP BY power_up.games.id, power_up.games.name, avg_score, " +
-                "pictures.cloudinary_id, summary"; //HAVING ";
-
-
-        int parameterCount = 1;         // Used for indexing parameters array
-        boolean firstFilter = true;     // Used to check if an 'AND' must be added to the group by string
-        for (FilterCategory filter : filters.keySet()) {
-
-            List<String> values = filters.get(filter);
-            if (values == null) {
-                throw new IllegalArgumentException("A list must be specified for the filter" + filter.name());
-            }
-
-            int valuesSize = values.size();
-            if (valuesSize > 0) {
-
-                // Tables join string (Joins with specific table if a filter of that table is needed)
-                if (!filter.equals(FilterCategory.platform)) { // table "platforms" is already joined
-                    tablesString += " " + createJoinSentence(filter);
-                }
-
-                // Filters string
-                filtersString += " AND ( ";
-
-                boolean firstValue = true;      // Used to check if an 'OR' must be added to the filters string
-                for (String value : values) {
-                    if (!firstValue) {
-                        filtersString += " OR ";
-                    }
-                    filtersString += createFilterSentence(filter);
-                    parameters[parameterCount] = value;
-                    parameterCount++;
-                    firstValue = false;
-                }
-                filtersString += " )";
-
-                // Group by string
-//                if (!firstFilter) {
-//                    groupByString += " AND ";
-//                }
-//                groupByString += createHavingSentence(filter, valuesSize);
-                firstFilter = false;
-            }
-        }
-        String query = tablesString + " " + nameString + filtersString + pictures;
-        if (filters.size() > 0) {
-            query += " " + groupByString;
-        }
-
-        Set<Game> gamesSet = new LinkedHashSet<>();
-
-
-        query += " ORDER BY power_up.games." + orderCategory.name();
-
-        if (ascending) {
-            query += " ASC";
-        } else {
-            query += " DESC";
-        }
-        System.out.println(query);
-
-        try {
-            jdbcTemplate.query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
-
-                @Override
-                public void processRow(ResultSet rs) throws SQLException {
-                    Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
-                    String cloudinary_id = rs.getString("cloudinary_id");
-                    if(cloudinary_id != null) {
-                        game.addPictureURL(cloudinary_id);
-                    }
-                    game.setReleaseDate(new LocalDate(rs.getString("release")));
-                    game.setAvgScore(rs.getDouble("avg_score"));
-                    gamesSet.add(game);
-                }
-            });
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-        }
-
-        return gamesSet;
+    @Override
+    public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
+                                        OrderCategory orderCategory, boolean ascending)
+            throws IllegalArgumentException {
+        return doSearchGames(name, filters, orderCategory, ascending, 0, 0).getData();
     }
+
+
+    @Override
+    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
+                                  OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
+            throws IllegalArgumentException {
+        if (pageSize <= 0 || pageNumber <= 0) {
+            throw new IllegalArgumentException();
+        }
+        return doSearchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
+    }
+
 
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
@@ -331,6 +256,174 @@ public class GameJdbcDao implements GameDao {
 
 
     /**
+     * Makes the search games query to the database
+     *
+     * @param name          The game's name
+     * @param filters       A map containing filters (and respective values) for the query
+     * @param orderCategory Indicates how to order the resultant collection
+     * @param ascending     Indicates whether the resultant collection must be ordered in an ascending or descending way
+     * @param pageSize      Indicates how many elements should be in the resultant collection.
+     *                      If {@code 0}, and {@code pageNumber} is also {@code 0},
+     *                      then the entire collection is returned (i.e. pagination is turned off).
+     * @param pageNumber    Indicates which page should be returned in the resultant collection
+     * @return The resultant collection after making the query with the given parameters
+     * @throws IllegalArgumentException If {@code name} is null, {@code filters} is null,
+     *                                  {@code orderCategory} is null, if a list in the {@code filters} map is null,
+     *                                  if {@code pageSize} is negative, if {@code pageNumber} is negative
+     *                                  or if {@code pageSize} is {@code 0} and {@code pageNumber} not, or vice versa.
+     * @throws IllegalPageException If there were problems creating a page with results
+     *                                  (i.e. {@code pageSize} smaller than the amount of elements in the result set,
+     *                                  {@code pageNumber} bigger than the total amount of pages available,
+     *                                  or Illegal arguments when creating the page).
+     */
+    private Page<Game> doSearchGames(String name, Map<FilterCategory, List<String>> filters,
+                                     OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
+            throws IllegalArgumentException {
+        if (name == null || filters == null || orderCategory == null || pageSize < 0 || pageNumber < 0
+                || (pageSize == 0 && pageNumber != 0) || (pageNumber == 0 && pageSize != 0)) {
+            throw new IllegalArgumentException();
+        }
+        String[] parameters = new String[countFilters(filters) + 1];
+        parameters[0] = name;
+        boolean paginationOn = pageSize > 0;
+
+        StringBuilder selectString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append("SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id, " +
+                        "power_up.games.release");
+        StringBuilder fromString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append("FROM power_up.games")
+                .append(" INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id")
+                .append(" INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id")
+                .append(" LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id");
+        StringBuilder nameString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append("WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'");
+        StringBuilder filtersString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY);
+        StringBuilder picturesString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
+                .append(" AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures")
+                .append(" WHERE pictures.game_id = game_id)")
+                .append(" OR pictures.id IS NULL)");
+        StringBuilder groupByString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
+                .append("GROUP BY power_up.games.id, power_up.games.name, avg_score, pictures.cloudinary_id, summary");
+
+        addDoSearchGamesFilters(filters, parameters, fromString, filtersString, 1);
+
+        StringBuilder queryBuilderWithoutSelectGroupByAndOrderBy = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append(" ")
+                .append(fromString)
+                .append(" ")
+                .append(nameString)
+                .append(filtersString)
+                .append(picturesString);
+
+        StringBuilder dataFetchQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append(selectString)
+                .append(queryBuilderWithoutSelectGroupByAndOrderBy)
+                .append(" ")
+                .append(groupByString)
+                .append(" ORDER BY power_up.games.").append(orderCategory.name())
+                .append(ascending ? " ASC" : " DESC");
+        ;
+        StringBuilder rowsCountQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
+                .append("SELECT count(DISTINCT power_up.games.id) AS rows")
+                .append(queryBuilderWithoutSelectGroupByAndOrderBy);
+
+        System.out.println(dataFetchQuery);
+        Set<Game> gamesSet = new LinkedHashSet<>();
+//        List<Game> gamesSet = new ArrayList<>();
+
+        final Page<Game> page = new Page<>();
+        if (paginationOn) {
+            page.setPageSize(pageSize);
+            dataFetchQuery.append(" LIMIT ").append(pageSize).append(" OFFSET ").append(pageSize * (pageNumber - 1));
+        } else {
+            page.setTotalPages(1);
+            page.setPageNumber(1);
+        }
+
+
+        // TODO: Make this in a transaction?
+        try {
+            // Count rows
+            jdbcTemplate.query(rowsCountQuery.toString(), parameters, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    int rowsCount = rs.getInt("rows");
+                    if (paginationOn) {
+                        int ratio = rowsCount / pageSize;
+                        int totalPages = (rowsCount % pageSize == 0) ? ratio : ratio + 1;
+                        page.setTotalPages(totalPages == 0 ? 1 : totalPages);   // With empty result set, one page is
+                        page.setPageNumber(pageNumber);                         // returned.
+                    } else {
+                        page.setPageSize(rowsCount);
+                    }
+                }
+            });
+            // Fetch data
+            jdbcTemplate.query(dataFetchQuery.toString(), parameters, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
+                    game.addPictureURL(rs.getString("cloudinary_id"));
+                    game.setReleaseDate(new LocalDate(rs.getString("release")));
+                    game.setAvgScore(rs.getDouble("avg_score"));
+                    gamesSet.add(game);
+                }
+            });
+        } catch (IllegalPageException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+        }
+
+        page.setData(gamesSet);
+        return page;
+    }
+
+
+    /**
+     * Adds corresponding words to the given SQL sentences.
+     *
+     * @param filters        The map of filters
+     * @param parameters     The parameters array
+     * @param tablesString   The FROM sentence (joins are made on demand)
+     * @param filtersString  The WHERE sentence
+     * @param parameterCount Used for indexing the {@code parameters} array
+     * @throws IllegalArgumentException If the map contains a null value for a filterCategory
+     */
+    private void addDoSearchGamesFilters(Map<FilterCategory, List<String>> filters, String[] parameters,
+                                         StringBuilder tablesString, StringBuilder filtersString, int parameterCount)
+            throws IllegalArgumentException {
+        for (FilterCategory filter : filters.keySet()) {
+
+            List<String> values = filters.get(filter);
+            if (values == null) {
+                throw new IllegalArgumentException("A list must be specified for the filter" + filter.name());
+            }
+            int valuesSize = values.size();
+            if (valuesSize > 0) {
+
+                // Tables join string (Joins with specific table if a filter of that table is needed)
+                if (!filter.equals(FilterCategory.platform)) { // table "platforms" is already joined
+                    tablesString.append(" ").append(createJoinSentence(filter));
+                }
+                filtersString.append(" AND ( ");
+
+                boolean firstValue = true;      // Used to check if an 'OR' must be added to the filters string
+                for (String value : values) {
+                    if (!firstValue) {
+                        filtersString.append(" OR ");
+                    }
+                    filtersString.append(createFilterSentence(filter));
+                    parameters[parameterCount] = value;
+                    parameterCount++;
+                    firstValue = false;
+                }
+                filtersString.append(" )");
+            }
+        }
+    }
+
+    /**
      * Creates a join sentence to be added into the FROM clause.
      *
      * @param filter The filter whose table (and the corresponding relation table) must be joined.
@@ -339,13 +432,17 @@ public class GameJdbcDao implements GameDao {
     private String createJoinSentence(FilterCategory filter) {
 
         String filterName = filter.name();
+        String pluralFilterName = English.plural(filterName);
         String entityTable = getEntityTable(filter);
-        String relationTable = "power_up.game_" + English.plural(filterName);
+        String relationTable = "power_up.game_" + pluralFilterName;
 
-        String sentence = "INNER JOIN " + relationTable + " ON power_up.games.id = " + relationTable + ".game_id";
-        sentence += " INNER JOIN " + entityTable
-                + " ON " + relationTable + "." + filterName + "_id = " + English.plural(filter.name()) + ".id";
-        return sentence;
+        StringBuilder sentence = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
+                .append("INNER JOIN ").append(relationTable).append(" ON power_up.games.id = ")
+                .append(relationTable).append(".game_id").append(" INNER JOIN ").append(entityTable).append(" ON ")
+                .append(relationTable).append(".").append(filterName).append("_id = ").append(pluralFilterName)
+                .append(".id");
+
+        return sentence.toString();
     }
 
     /**
@@ -359,23 +456,8 @@ public class GameJdbcDao implements GameDao {
      * @return The created sentence.
      */
     private String createFilterSentence(FilterCategory filter) {
-//        return "LOWER(" + getEntityTable(filter) + ".name) = LOWER(?)";
         return "LOWER(" + English.plural(filter.name()) + ".name) = LOWER(?)";
     }
-
-    /**
-     * Creates a HAVING clause sentence to be added to the query.
-     * <p>This sentence compares how many tuples there are that verify a given filter with a passed value</p>
-     *
-     * @param filter      The filter whose sum must be compared.
-     * @param valuesCount The value to which the sum must be compared.
-     * @return The created sentence.
-     */
-    private String createHavingSentence(FilterCategory filter, int valuesCount) {
-//        return "COUNT(DISTINCT " + getEntityTable(filter) + ".name) = " + valuesCount;
-        return "COUNT(DISTINCT " + English.plural(filter.name()) + ".name) = " + valuesCount;
-    }
-
 
     /**
      * Counts how many filters will be applied (i.e. for each filter type, how many values there are).
