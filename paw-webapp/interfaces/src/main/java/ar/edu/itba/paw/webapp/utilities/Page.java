@@ -1,4 +1,4 @@
-package ar.edu.itba.paw.webapp.model;
+package ar.edu.itba.paw.webapp.utilities;
 
 import java.util.Collection;
 

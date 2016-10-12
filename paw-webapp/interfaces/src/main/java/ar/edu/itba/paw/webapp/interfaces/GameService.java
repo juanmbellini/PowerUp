@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
-import ar.edu.itba.paw.webapp.model.Page;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
 import java.util.List;
