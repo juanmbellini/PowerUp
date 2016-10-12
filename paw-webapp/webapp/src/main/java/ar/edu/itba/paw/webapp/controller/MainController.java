@@ -66,7 +66,7 @@ public class MainController {
         boolean orderBoolean;
         if (orderBooleanStr == null || orderBooleanStr.equals("ascending")) {
             orderBoolean = true;
-        } else if(orderBooleanStr.equals("descending")) {
+        } else if (orderBooleanStr.equals("descending")) {
             orderBoolean = false;
         } else {
             return error400();
@@ -74,29 +74,33 @@ public class MainController {
 
         Map<FilterCategory, List<String>> filters;
         try {
+
             filters = objectMapper.readValue(filtersStr, typeReference);
             boolean isCorrect = true;
 
             // TODO: make a new function for this
             // TODO: change string to use those in enum and avoid this
+            String orderCategory = null;
             if (orderParameter == null || orderParameter.equals("name")) {
-                orderParameter = "name";
+                orderCategory = "name";
             } else if (orderParameter.equals("release date")) {
-                orderParameter = "release";
+                orderCategory = "release";
             } else if (orderParameter.equals("avg-rating")) {
-                orderParameter = "avg_score";
-            } else{
+                orderCategory = "avg_score";
+
+            } else {
                 isCorrect = false;
                 mav.setViewName("redirect:error400");
             }
-            
+
+
             if (isCorrect) {
                 // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
                 pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
                 pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
                         DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
-                Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter),
+                Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                         orderBoolean, pageSize, pageNumber);
                 // TODO: Change JSP in order to send just the page
                 mav.addObject("results", page.getData());
@@ -111,10 +115,15 @@ public class MainController {
                 mav.addObject("orderCategory", orderParameter);
                 mav.addObject("filters", filtersStr);
                 mav.setViewName("search");
+
+            
             }
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
-            mav.setViewName("redirect:error400");}
+            mav.setViewName("redirect:error400");
+        }
+
+
         return mav;
     }
 
