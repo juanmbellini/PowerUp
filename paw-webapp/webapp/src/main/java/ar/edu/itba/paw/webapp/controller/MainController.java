@@ -48,16 +48,16 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
-                               @RequestParam(value = "orderCategory", required = false) String orderParameter,
+                               @RequestParam(value = "orderCategory", required = false) String orderCategoryStr,
                                @RequestParam(value = "orderCategory", required = false) String orderBooleanStr,
-                               @RequestParam(value = "filters", required = false) String filtersJson,
+                               @RequestParam(value = "filters", required = false) String filtersStr,
                                @RequestParam(value = "pageSize", required = false) String pageSizeStr,
                                @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
 
         final ModelAndView mav = new ModelAndView();
 
         name = name == null ? "" : name;
-        filtersJson = (filtersJson == null || filtersJson.equals("")) ? "{}" : filtersJson;
+        filtersStr = (filtersStr == null || filtersStr.equals("")) ? "{}" : filtersStr;
         boolean orderBoolean = orderBooleanStr == null || orderBooleanStr.equals("")
                 || orderBooleanStr.equals("ascending");
         int pageSize;
@@ -65,14 +65,14 @@ public class MainController {
 
         Map<FilterCategory, List<String>> filters;
         try {
-            filters = objectMapper.readValue(filtersJson, typeReference);
+            filters = objectMapper.readValue(filtersStr, typeReference);
             //TODO make a new function for this
-            if (orderParameter == null) {
-                orderParameter = "name";
-            } else if (orderParameter.equals("release date")) {
-                orderParameter = "release";
-            } else if (orderParameter.equals("avg-rating")) {
-                orderParameter = "avg_score";
+            if (orderCategoryStr == null) {
+                orderCategoryStr = "name";
+            } else if (orderCategoryStr.equals("release date")) {
+                orderCategoryStr = "release";
+            } else if (orderCategoryStr.equals("avg-rating")) {
+                orderCategoryStr = "avg_score";
             } else {
                 return error400();
             }
@@ -83,22 +83,16 @@ public class MainController {
                     DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
 
-            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderParameter),
+            mav.addObject("results", gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategoryStr),
                     orderBoolean, pageSize, pageNumber).getData());
-            mav.addObject("hasFilters", !filtersJson.equals("{}"));
+            mav.addObject("hasFilters", !filtersStr.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.setViewName("search");
-            mav.addObject("filters", filtersJson);
-        } catch (IOException e) {
-            e.printStackTrace();  // Wrong JSON!!
-            mav.setViewName("redirect:error500");
-        } catch (NumberFormatException e) {
-            e.printStackTrace(); // Wrong pageSizeStr or pageNumberStr!!
-            mav.setViewName("redirect:error400");
-        } catch (IllegalPageException e) {
-            e.printStackTrace(); // Wrong pageNumber!!
+            mav.addObject("filters", filtersStr);
+        } catch (IOException | NumberFormatException | IllegalPageException e) {
+            e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
             mav.setViewName("redirect:error400");
         }
         return mav;
