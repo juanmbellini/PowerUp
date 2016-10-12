@@ -84,4 +84,7 @@ public interface UserService {
     default void setPlayStatus(User user, Game game, PlayStatus status) {
         setPlayStatus(user, game.getId(), status);
     }
+
+
+
 }
