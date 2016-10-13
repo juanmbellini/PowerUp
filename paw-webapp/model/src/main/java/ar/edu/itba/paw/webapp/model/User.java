@@ -125,7 +125,7 @@ public class User {
      *
      * @param playedGames The games this user has registered a play status for, with their corresponding play status.
      */
-    public void setPlayStatus(Map<Long, PlayStatus> playedGames) {
+    public void setPlayStatuses(Map<Long, PlayStatus> playedGames) {
         this.playedGames.putAll(playedGames);
     }
 

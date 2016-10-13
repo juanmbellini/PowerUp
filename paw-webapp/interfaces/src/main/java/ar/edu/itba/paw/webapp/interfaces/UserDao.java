@@ -38,9 +38,7 @@ public interface UserDao {
     /**
      * @see UserService#scoreGame(User, Game, int)
      */
-    default void scoreGame(User user, Game game, int score) {
-        scoreGame(user, game.getId(), score);
-    }
+    void scoreGame(User user, Game game, int score);
 
     /**
      * @see UserService#setPlayStatus(User, long, PlayStatus)
@@ -50,7 +48,5 @@ public interface UserDao {
     /**
      * @see UserService#setPlayStatus(User, Game, PlayStatus)
      */
-    default void setPlayStatus(User user, Game game, PlayStatus status) {
-        setPlayStatus(user, game.getId(), status);
-    }
+    void setPlayStatus(User user, Game game, PlayStatus status);
 }
