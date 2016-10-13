@@ -44,6 +44,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean existsWithId(long id) {
+        return userDao.existsWithId(id);
+    }
+
+    @Override
+    public boolean existsWithUsername(String username) {
+        return userDao.existsWithUsername(username);
+    }
+
+    @Override
+    public boolean existsWithEmail(String email) {
+        return userDao.existsWithEmail(email);
+    }
+
+    @Override
     public void scoreGame(User user, long gameId, int score) { userDao.scoreGame(user,gameId,score); }
 
     @Override

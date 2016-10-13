@@ -38,6 +38,16 @@ public interface GameDao {
      */
     Game findById(long id);
 
+    /**
+     * @see GameService#existsWithId(long)
+     */
+    boolean existsWithId(long id);
+
+    /**
+     * @see GameService#existsWithTitle(String)
+     */
+    boolean existsWithTitle(String title);
+
     //TODO: Move this to a FilterDao or to service layer, based on a search result
     //TODO move what? ^ why? Y u no explain? - Juen
 

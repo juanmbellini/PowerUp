@@ -211,6 +211,17 @@ public class GameJdbcDao implements GameDao {
         return result;
     }
 
+    @Override
+    public boolean existsWithId(long id) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE id = ?", new Object[] {id}, Integer.class);
+        return count > 0;
+    }
+
+    @Override
+    public boolean existsWithTitle(String title) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE LOWER(name) = LOWER(?)", new Object[] {title}, Integer.class);
+        return count > 0;
+    }
 
     @Override
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
