@@ -19,6 +19,8 @@
         <org.atteo.evo-inflector.version>1.2</org.atteo.evo-inflector.version>
         <org.hsqldb.version>2.3.1</org.hsqldb.version>
         <com.mashape.unirest-java.version>1.4.9</com.mashape.unirest-java.version>
+        <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
+        <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
     </properties>
 
     <modules>
@@ -109,7 +111,7 @@
                 <version>${com.fasterxml.jackson.version}</version>
             </dependency>
             <!-- Evo-Inflector: A library that implements English pluralization algorithm-->
-                <!--based on Damian Conway's paper: "An Algorithmic Approach to English Pluralization -->
+            <!--based on Damian Conway's paper: "An Algorithmic Approach to English Pluralization -->
             <dependency>
                 <groupId>org.atteo</groupId>
                 <artifactId>evo-inflector</artifactId>
@@ -120,6 +122,17 @@
                 <groupId>com.mashape.unirest</groupId>
                 <artifactId>unirest-java</artifactId>
                 <version>${com.mashape.unirest-java.version}</version>
+            </dependency>
+            <!-- Form Stuff -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${org.hibernate.validator}</version>
             </dependency>
 
         </dependencies>

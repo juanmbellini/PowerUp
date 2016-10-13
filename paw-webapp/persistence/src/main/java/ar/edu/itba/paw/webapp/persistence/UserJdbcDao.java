@@ -165,7 +165,7 @@ public class UserJdbcDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
         }
-        if(status == null) {
+        if (status == null) {
             throw new IllegalArgumentException("Status can't be null");
         }
         //TODO make a function in GameDao that checks whether a game with a given ID exists
@@ -198,7 +198,7 @@ public class UserJdbcDao implements UserDao {
      * Checks whether there is a row matching a specific condition on a special table.
      * TODO put this method in a more generic DAO, this can be used accross multiple tables.
      *
-     * @param tableName The name of the table. Can include schema prefix.
+     * @param tableName   The name of the table. Can include schema prefix.
      * @param whereClause Condition to meet.
      * @return Whether there is such a row in the specified table.
      */
