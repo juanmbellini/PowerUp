@@ -61,9 +61,7 @@ public interface UserService {
      * @param game  The scored game.
      * @param score The score, where 1 <= {@code score} <= 10
      */
-    default void scoreGame(User user, Game game, int score) {
-        scoreGame(user, game.getId(), score);
-    }
+    void scoreGame(User user, Game game, int score);
 
     /**
      * Sets or updates a play status for a specified game for a specified user.
@@ -81,7 +79,5 @@ public interface UserService {
      * @param game   The game whose status is being registered.
      * @param status The status.
      */
-    default void setPlayStatus(User user, Game game, PlayStatus status) {
-        setPlayStatus(user, game.getId(), status);
-    }
+    void setPlayStatus(User user, Game game, PlayStatus status);
 }
