@@ -2,9 +2,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.model.FilterCategory;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +43,6 @@ public class MainController {
         mav.addObject("greeting", "PAW");
         return mav;
     }
-
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
@@ -156,6 +153,15 @@ public class MainController {
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
+    }
+
+    @RequestMapping("/list")
+    public ModelAndView list(@RequestParam(name = "user", required = false) String username) {
+        final ModelAndView mav = new ModelAndView("list");
+        //TODO check if user is logged in, retrieve actual games
+        //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
+        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();
+        for(long gameId : new User(42, "hack", "h4ck").getPlayStatus())
     }
 
     @RequestMapping("/error500")
