@@ -1,11 +1,8 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.User;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,12 +14,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
-import java.util.*;
-
-import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -67,22 +60,20 @@ public class UserJdbcDaoTest {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        jdbcTemplate.execute("INSERT INTO power_up.users (id, username, email, password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
+        jdbcTemplate.execute("INSERT INTO power_up.users (id, username, email, hashed_password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
 
         Assert.assertNotNull("Created user not found by email", userDao.findByEmail(email));
         Assert.assertNotNull("Created user not found by username", userDao.findByUsername(username));
 
         final User u = userDao.findById(id);
 
-        assertEquals(u.getUsername(),username);
-        assertEquals(u.getEmail(),email);
-        assertEquals(u.getId(),id);
+        assertEquals(u.getUsername(), username);
+        assertEquals(u.getEmail(), email);
+        assertEquals(u.getId(), id);
     }
 
 
-
     //TODO test password
-
 
 
     @Test
@@ -95,7 +86,7 @@ public class UserJdbcDaoTest {
         Assert.assertNotNull("Created user is null", u);
         assertEquals("Mismatching created user email", u.getEmail(), email);
         assertEquals("Mismatching created user username", u.getUsername(), username);
-        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "users"));
+        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "power_up.users"));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -124,7 +115,6 @@ public class UserJdbcDaoTest {
     }
 
 
-
     @Test(expected = UserExistsException.class)
     public void testDuplicateEmail() {
         String email = "email";
@@ -148,23 +138,23 @@ public class UserJdbcDaoTest {
 
 
     @Test(expected = IllegalArgumentException.class)
-    public void scoreNullGame(){
+    public void scoreNullGame() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
 
         Assert.assertNotNull(u);
-        userDao.scoreGame(u,null,5);
+        userDao.scoreGame(u, null, 5);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void scoreForNullUser(){
+    public void scoreForNullUser() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
         jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
 
-        userDao.scoreGame(null,1,4);
+        userDao.scoreGame(null, 1, 4);
     }
 
     /*
@@ -176,98 +166,99 @@ public class UserJdbcDaoTest {
     */
 
     @Test(expected = IllegalArgumentException.class)
-    public void scoreOutOfBoundsNegative(){
+    public void scoreOutOfBoundsNegative() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
         jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
-        userDao.scoreGame(u,1,-1);
+        userDao.scoreGame(u, 1, -1);
 
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void scoreOutOfBoundsPositive(){
+    public void scoreOutOfBoundsPositive() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
         jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
-        userDao.scoreGame(u,1,11);
+        userDao.scoreGame(u, 1, 11);
 
-    }
-    @Test
-    public void scoreBound(){
-        String email = "email", password = "password", username = "jorge";
-        int id = 1;
-        final User u = userDao.create(email,password,username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
-        userDao.scoreGame(u,1,0);
-        userDao.scoreGame(u,1,10);
     }
 
     @Test
-    public void scoreMultipleTime(){
+    public void scoreBound() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
         jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
-
-        userDao.scoreGame(u,1,2);
-
-        assertEquals(2,userDao.findById(id).getScore(1));
-
-        userDao.scoreGame(u,1,5);
-
-        userDao.scoreGame(u,1,9);
-
-        assertEquals(9,userDao.findById(id).getScore(1));
-
-        userDao.scoreGame(u,1,3);
-
-
-        userDao.scoreGame(u,1,4);
-
-        assertEquals(4,userDao.findById(id).getScore(1));
+        userDao.scoreGame(u, 1, 1);
+        userDao.scoreGame(u, 1, 10);
     }
 
     @Test
-    public void scoreWithGameParameter(){
+    public void scoreMultipleTime() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+        final User u = userDao.create(email, password, username);
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+
+        userDao.scoreGame(u, 1, 2);
+
+        assertEquals(2, userDao.findById(u.getId()).getGameScore(id));
+
+        userDao.scoreGame(u, id, 5);
+
+        userDao.scoreGame(u, id, 9);
+
+        assertEquals(9, userDao.findById(u.getId()).getGameScore(id));
+
+        userDao.scoreGame(u, id, 3);
+
+
+        userDao.scoreGame(u, id, 4);
+
+        assertEquals(4, userDao.findById(u.getId()).getGameScore(id));
+    }
+
+    @Test
+    public void scoreWithGameParameter() {
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
 
         Game g = new Game();
         g.setId(id);
 
 
-        userDao.scoreGame(u,g,2);
+        userDao.scoreGame(u, g, 2);
 
-        assertEquals(2,userDao.findById(id).getScore(1));
-
-
-        userDao.scoreGame(u,g,5);
-
-        userDao.scoreGame(u,g,9);
-
-        assertEquals(9,userDao.findById(id).getScore(1));
+        assertEquals(2, userDao.findById(u.getId()).getGameScore(g.getId()));
 
 
-        userDao.scoreGame(u,g,3);
+        userDao.scoreGame(u, g, 5);
+
+        userDao.scoreGame(u, g, 9);
+
+        assertEquals(9, userDao.findById(u.getId()).getGameScore(g.getId()));
 
 
-        userDao.scoreGame(u,g,4);
+        userDao.scoreGame(u, g, 3);
 
-        assertEquals(4,userDao.findById(id).getScore(1));
+
+        userDao.scoreGame(u, g, 4);
+
+        assertEquals(4, userDao.findById(u.getId()).getGameScore(g.getId()));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGetScoreForNonScoredGame(){
+    public void testGetScoreForNonScoredGame() {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        final User u = userDao.create(email,password,username);
+        final User u = userDao.create(email, password, username);
         jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
-        u.getScore(1);
+        u.getGameScore(1);
 
     }
 
