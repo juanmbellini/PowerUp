@@ -25,9 +25,10 @@ CREATE TABLE power_up.users (
 	id  INTEGER IDENTITY NOT NULL PRIMARY KEY,
 	email VARCHAR(1024) NOT NULL,
 	username VARCHAR(1024) DEFAULT NULL,
-  password VARCHAR(1024) NOT NULL,
+  hashed_password VARCHAR(1024) NOT NULL,
 
-  UNIQUE(email)
+  UNIQUE(email),
+  UNIQUE(username)
 );
 
 -- Creation of relationship tables
@@ -80,9 +81,7 @@ CREATE TABLE power_up.game_publishers (
 	FOREIGN KEY (publisher_id) REFERENCES power_up.companies (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(game_id,publisher_id)
 );
-
-
-CREATE TABLE IF NOT EXISTS power_up.game_pictures(
+CREATE TABLE power_up.game_pictures(
   id            INTEGER IDENTITY NOT NULL PRIMARY KEY,
   cloudinary_id VARCHAR(1024) NOT NULL,
   game_id       INTEGER NOT NULL,
@@ -90,7 +89,24 @@ CREATE TABLE IF NOT EXISTS power_up.game_pictures(
   height        INTEGER,
 
   FOREIGN KEY (game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
+);
+CREATE TABLE power_up.game_scores(
+	id        INTEGER IDENTITY NOT NULL PRIMARY KEY,
+	user_id   INTEGER NOT NULL,
+	game_id   INTEGER NOT NULL,
+	score     INTEGER NOT NULL,
 
+	FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	UNIQUE(user_id, game_id)
+);
+CREATE TABLE power_up.game_play_statuses(
+	id        INTEGER IDENTITY NOT NULL PRIMARY KEY,
+	user_id   INTEGER NOT NULL,
+	game_id   INTEGER NOT NULL,
+	status    VARCHAR(1024) NOT NULL,
 
-
+	FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	UNIQUE(user_id, game_id)
 );
