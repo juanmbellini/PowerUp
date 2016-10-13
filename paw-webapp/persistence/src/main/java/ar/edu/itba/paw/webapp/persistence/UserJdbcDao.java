@@ -165,6 +165,9 @@ public class UserJdbcDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
         }
+        if(status == null) {
+            throw new IllegalArgumentException("Status can't be null");
+        }
         //TODO make a function in GameDao that checks whether a game with a given ID exists
         if (!rowExists("power_up.games", "id = " + gameId)) {
             throw new IllegalArgumentException("No game with ID " + gameId);
