@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +14,14 @@
 
 <main>
     &nbsp;
+    <div class="section"></div>
+    <h2 class="orange-text" style="text-align: center" >Please, log in into your account</h2>
+    <div class="section"></div>
 
-        <div class="section"></div>
-
-        <h5 class="orange-text" style="text-align: center" >Please, login into your account</h5>
-        <div class="section"></div>
-
+    <c:url value="/create" var="postPath"/>
+    <form:form modelAttribute="loginForm" action="${postPath}" method="post" class="center-align">
         <div class="container" style="text-align: center">
-            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 
                 <form class="col s12" method="post">
                     <div class='row'>
@@ -30,15 +31,17 @@
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='text' name='username' id='username' />
-                            <label for='username'>Enter your username</label>
+                            <p>Username:</p>
+                            <form:input type="text" path="username"/>
+                            <form:errors path="username" cssClass="formError" element="p" Style="size: 1px"/>
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password' />
-                            <label for='password'>Enter your password</label>
+                            <p>Password:</p>
+                            <form:input type="password" path="password"/>
+                            <form:errors path="password" cssClass="formError" element="p"/>
                         </div>
                         <label style='float: right;'>
                             <a class='light-blue-text' href='#!'><b>Forgot Password?</b></a>
@@ -53,7 +56,7 @@
             </div>
         </div>
         <div style="text-align: center"><a href="/register">Create account</a></div>
-
+    </form:form>
     <div class="section"></div>
     <div class="section"></div>
 </main>

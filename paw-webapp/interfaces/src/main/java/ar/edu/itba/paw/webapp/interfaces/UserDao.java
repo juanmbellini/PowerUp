@@ -64,4 +64,9 @@ public interface UserDao {
      * @see UserService#setPlayStatus(User, Game, PlayStatus)
      */
     void setPlayStatus(User user, Game game, PlayStatus status);
+
+    /**
+     * @see UserService#logAttempt(String, String)
+     */
+    User logAttempt(String username, String password);
 }

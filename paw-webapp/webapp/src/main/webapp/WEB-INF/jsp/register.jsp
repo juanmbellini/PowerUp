@@ -20,7 +20,7 @@
     <form:form modelAttribute="registerForm" action="${postPath}" method="post" class="center-align">
     <div class="section"></div>
     <div class="container" style="text-align: center">
-        <div class="z-depth-1 grey lighten-4 row col" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;" >
+        <div class="z-depth-1 grey lighten-4 row col" style="padding: 0px 48px 0px 48px; border: 1px solid #EEE;" >
             <form class="col s12" method="post">
                 <div class='row'>
                     <div class='col s12'>
@@ -50,7 +50,7 @@
                     <div class='input-field col s6'>
                         <p>Repeat Password:</p>
                         <form:input type="password" path="repeatPassword"/>
-                            <form:errors path="repeatPassword" cssClass="formError" element="p"/>
+                        <form:errors path="repeatPassword" cssClass="formError" element="p"/>
                     </div>
                 </div>
                 <div class='row'>
