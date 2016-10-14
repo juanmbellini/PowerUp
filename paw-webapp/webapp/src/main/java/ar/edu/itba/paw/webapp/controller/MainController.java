@@ -9,6 +9,7 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import sun.plugin.javascript.navig.Array;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -198,6 +200,10 @@ public class MainController {
         } catch (Exception e) {
             return error500();
         }
+        ArrayList scoreValues = new ArrayList();
+        for(int i =1; i<=10; i++) scoreValues.add(i);
+        mav.addObject("scoreValues", scoreValues);
+        mav.addObject("statuses", PlayStatus.values());
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
