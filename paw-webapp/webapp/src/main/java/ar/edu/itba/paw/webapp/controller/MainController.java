@@ -170,7 +170,7 @@ public class MainController {
         //TODO check if user is logged in, retrieve actual games
         //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
         Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();
-        for(long gameId : new User(42, "hack", "h4ck").getPlayStatus())
+        return null; //TODO
     }
 
     @RequestMapping("/register") //TODO wat index()
