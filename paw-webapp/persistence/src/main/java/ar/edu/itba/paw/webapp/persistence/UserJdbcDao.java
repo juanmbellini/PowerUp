@@ -174,7 +174,7 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        if (rowExists("power_up.game_play_status", "user_id = " + user.getId() + " AND game_id = " + gameId)) {
+        if (rowExists("power_up.game_play_statuses", "user_id = " + user.getId() + " AND game_id = " + gameId)) {
             jdbcTemplate.update("UPDATE power_up.game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
