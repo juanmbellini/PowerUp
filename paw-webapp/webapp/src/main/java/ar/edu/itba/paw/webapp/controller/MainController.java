@@ -12,13 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import sun.plugin.javascript.navig.Array;
 
@@ -177,12 +174,29 @@ public class MainController {
     }
 
     @RequestMapping("/list")
-    public ModelAndView list(@RequestParam(name = "user", required = false) String username) {
+    public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
+        if(userName==null) return error400();
         final ModelAndView mav = new ModelAndView("list");
-        //TODO check if user is logged in, retrieve actual games
         //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
-        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();
-        return null; //TODO
+
+        //TODO check if user is logged in, retrieve actual games -Juan. (? Why make it private? - Diego
+
+        User u = userService.findByUsername(userName);
+        if(u==null) return error400();
+
+        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>(); //TODO change name of playedGames
+        for(PlayStatus playStatus : PlayStatus.values()){
+            playedGames.put(playStatus, new HashSet<Game>()); //TODO user other set and give it order?
+        }
+        Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
+        //Todo, do this in user?
+        for(long gameId: playStatuses.keySet()){
+            playedGames.get(playStatuses.get(gameId)).add(gameService.findById(gameId)); //TODO check if game exists? Or tryCatch.
+        }
+        mav.addObject("user",u);
+        mav.addObject("playStatuses", playedGames);
+
+        return mav;
     }
 
     @RequestMapping(value = "/rateAndUpdateStatus", method = { RequestMethod.POST })

@@ -16,14 +16,9 @@
     <div class="container">
         <h1>${user.username}'s Game List</h1>
         <c:forEach items="${playStatuses}" var="statusMap">
-            ${statusMap.key}
-            <br>
-            <c:if test="${statusMap.value.size()==0}">
-            -None-<br>
-            </c:if>
-            <c:forEach items="${statusMap.value}" var="game">
-                Game: ${game.name}
-                <br>
+            ${entry.key}
+            <c:forEach items="${entry.value}" var="game">
+                ${game}
             </c:forEach>
         </c:forEach>
     </div>
