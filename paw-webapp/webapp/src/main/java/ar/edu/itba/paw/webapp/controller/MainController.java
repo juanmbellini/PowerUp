@@ -1,12 +1,18 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.interfaces.UserService;
+
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.atteo.evo.inflector.English;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
@@ -24,6 +31,7 @@ public class MainController {
     public static final int DEFAULT_PAGE_NUMBER = 1;
 
     private final GameService gameService;
+    private final UserService userService;
 
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
@@ -32,8 +40,9 @@ public class MainController {
     };
 
     @Autowired
-    public MainController(GameService gameService) {
+    public MainController(GameService gameService, UserService userService) {
         //Spring is in charge of providing the gameService parameter.
+        this.userService = userService;
         this.gameService = gameService;
     }
 
@@ -163,6 +172,25 @@ public class MainController {
         Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();
         for(long gameId : new User(42, "hack", "h4ck").getPlayStatus())
     }
+
+    @RequestMapping("/register") //TODO wat index()
+    public ModelAndView index(@ModelAttribute("registerForm") final UserForm form) {
+            return new ModelAndView("registerView");
+    }
+
+    @RequestMapping(value = "/create", method = { RequestMethod.POST })
+    public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
+        if (errors.hasErrors()) {
+            return index(form);
+        }
+        final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
+        return new ModelAndView("redirect:/?userId="+ u.getId());
+    }
+
+
+
+
+
 
     @RequestMapping("/error500")
     public ModelAndView error500() {

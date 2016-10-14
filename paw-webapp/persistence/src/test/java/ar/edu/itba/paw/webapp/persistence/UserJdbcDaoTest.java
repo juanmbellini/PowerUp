@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.junit.Assert;
 import org.junit.Before;
@@ -263,7 +264,82 @@ public class UserJdbcDaoTest {
     }
 
 
-    //TODO test playStatus
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setPlayStatusNullGame() {
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        Assert.assertNotNull(u);
+        userDao.setPlayStatus(u, null, PlayStatus.PLAN_TO_PLAY);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setPlayStatusForNullUser() {
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+
+        userDao.setPlayStatus(null, 1, PlayStatus.PLAYED);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPlayStatusForNonGivenStatusGame() {
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+        u.getPlayStatus(1);
+
+    }
+
+    @Test
+    public void setPlayStatusMultipleTime() {
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+
+        userDao.setPlayStatus(u, 1, PlayStatus.PLAYED);
+
+        assertEquals(PlayStatus.PLAYED, userDao.findById(u.getId()).getPlayStatus(id));
+
+        userDao.setPlayStatus(u, 1, PlayStatus.PLAN_TO_PLAY);
+
+        userDao.setPlayStatus(u, 1, PlayStatus.PLAYING);
+
+        assertEquals(PlayStatus.PLAYING, userDao.findById(u.getId()).getPlayStatus(id));
+
+        userDao.setPlayStatus(u, 1, PlayStatus.PLAYING);
+
+        userDao.setPlayStatus(u, 1, PlayStatus.PLAN_TO_PLAY);
+
+        assertEquals(PlayStatus.PLAN_TO_PLAY, userDao.findById(u.getId()).getPlayStatus(id));
+    }
+
+    @Test
+    public void setPlayStatusWithGameParameter() {
+
+
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        Game g = new Game();
+        g.setId(id);
+
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+
+        userDao.setPlayStatus(u, g, PlayStatus.PLAYED);
+
+        assertEquals(PlayStatus.PLAYED, userDao.findById(u.getId()).getPlayStatus(id));
+
+    }
 
 
 }
