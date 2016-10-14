@@ -1,3 +1,7 @@
+
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
@@ -16,6 +20,46 @@
         <div class="section">
             <h1 class="header center orange-text">${game.name}</h1>
             <h5 class="center orange-text">${game.releaseDate.year}</h5>
+        </div>
+        <div class ="section">
+            <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
+            <form:form modelAttribute="rateAndStatusForm" action="${postPath}" method="post" class="center-align">
+
+                <div class="row" >
+                    <div class="col s3">
+                    </div>
+                    <div class="col s6 center-align">
+                        <div class="row">
+                            <div class="col s2">
+                            </div>
+                            <div class="col s2 center-align">
+                                <form:select path="score">
+                                    <form:options items="${scoreValues}"/>
+                                </form:select>
+                                <form:label path="score">Score: </form:label>
+                                    <%--<form:input type="text" path="score"/>--%>
+                                <form:errors path="score" cssClass="formError" element="p" Style="size: 1px"/>
+                            </div>
+
+                            <div class="col s4 center-align">
+                                <form:select path="playStatus">
+                                    <form:options items="${statuses}"/>
+                                </form:select>
+                                <form:label path="playStatus">PlayStatus: </form:label>
+                                    <%--<form:input type="playStatus" path="playStatus" />--%>
+                                <form:errors path="playStatus" cssClass="formError" element="p"/>
+                            </div>
+
+                            <div class="col s4 center">
+                                <input type="submit" value="Update list!"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </form:form>
         </div>
         <div class="section">
             <c:choose>

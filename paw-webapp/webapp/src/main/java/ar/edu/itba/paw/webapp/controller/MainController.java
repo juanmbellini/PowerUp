@@ -1,14 +1,15 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import sun.plugin.javascript.navig.Array;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -52,6 +54,7 @@ public class MainController {
         mav.addObject("greeting", "PAW");
         return mav;
     }
+
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
@@ -143,7 +146,8 @@ public class MainController {
     }
 
     @RequestMapping("/game")
-    public ModelAndView game(@RequestParam(name = "id") int id) {
+    public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
+                             @RequestParam(name = "id") int id) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
         Set<Game> relatedGames;
@@ -152,6 +156,10 @@ public class MainController {
             if (game == null) {
                 return error404();
             }
+            User currentUser = userService.findById(1);
+            if(currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
+            if(currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
+
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
@@ -159,6 +167,10 @@ public class MainController {
         } catch (Exception e) {
             return error500();
         }
+        ArrayList scoreValues = new ArrayList();
+        for(int i =1; i<=10; i++) scoreValues.add(i);
+        mav.addObject("scoreValues", scoreValues);
+        mav.addObject("statuses", PlayStatus.values());
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
@@ -173,15 +185,40 @@ public class MainController {
         return null; //TODO
     }
 
+    @RequestMapping(value = "/rateAndUpdateStatus", method = { RequestMethod.POST })
+    public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final  RateAndStatusForm rateAndStatusForm,
+                                            final BindingResult errors,
+                                            @RequestParam(name = "id") int id) {
+        if (errors.hasErrors()) {
+            return game(rateAndStatusForm, id);
+        }
+        //TODO change user to current user
+        final User u = userService.findById(1);
+
+        int score = rateAndStatusForm.getScore();
+        if(score!=0) userService.scoreGame(u,id,score);
+
+
+
+         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
+        if(playStatus!=null) userService.setPlayStatus(u,id,playStatus);
+
+
+        return new ModelAndView("redirect:/game?id="+id);
+    }
+
+
+
+
     @RequestMapping("/register") //TODO wat index()
-    public ModelAndView index(@ModelAttribute("registerForm") final UserForm form) {
+    public ModelAndView register(@ModelAttribute("registerForm") final UserForm form) {
             return new ModelAndView("registerView");
     }
 
     @RequestMapping(value = "/create", method = { RequestMethod.POST })
     public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
-            return index(form);
+            return register(form);
         }
         final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
         return new ModelAndView("redirect:/?userId="+ u.getId());
