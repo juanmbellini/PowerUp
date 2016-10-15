@@ -177,7 +177,8 @@ public class MainController {
     public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
         if(userName==null){
             User currentUser = userService.findById(1);
-            //TODO use currentUser
+            if(currentUser==null) return error400();
+            //TODO use true current user
             userName=currentUser.getUsername();
             return new ModelAndView("redirect:/list?userName="+userName);
         }
