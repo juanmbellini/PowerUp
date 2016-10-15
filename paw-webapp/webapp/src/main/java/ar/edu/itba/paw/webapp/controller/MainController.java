@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
@@ -167,24 +168,25 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping("/register") //TODO wat index()
+    @RequestMapping("/register")//TODO
     public ModelAndView index(@ModelAttribute("registerForm") final UserForm form) {
-            return new ModelAndView("registerView");
+            return new ModelAndView("register");
     }
 
-    @RequestMapping(value = "/create", method = { RequestMethod.POST })
+    @RequestMapping(value = "/register", method = { RequestMethod.POST })
     public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
             return index(form);
         }
         final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
+        //TODO redirect to user page
         return new ModelAndView("redirect:/?userId="+ u.getId());
     }
 
-
-
-
-
+    @RequestMapping("/login")
+    public ModelAndView login(@ModelAttribute("loginForm") final LoginForm form) {
+        return new ModelAndView("login");
+    }
 
     @RequestMapping("/error500")
     public ModelAndView error500() {
