@@ -31,6 +31,21 @@ public interface UserDao {
     User findById(long id);
 
     /**
+     * @see UserService#existsWithId(long)
+     */
+    boolean existsWithId(long id);
+
+    /**
+     * @see UserService#existsWithUsername(String)
+     */
+    boolean existsWithUsername(String username);
+
+    /**
+     * @see UserService#existsWithEmail(String)
+     */
+    boolean existsWithEmail(String email);
+
+    /**
      * @see UserService#scoreGame(User, long, int)
      */
     void scoreGame(User user, long gameId, int score);

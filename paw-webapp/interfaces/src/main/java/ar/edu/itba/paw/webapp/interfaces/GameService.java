@@ -47,6 +47,24 @@ public interface GameService {
     Game findById(long id);
 
     /**
+     * Checks whether a game with a given ID exists.
+     *
+     * @param id The ID of the game to check.
+     * @return Whether such a game exists.
+     */
+    boolean existsWithId(long id);
+
+    /**
+     * Checks whether a game with a given title exists.
+     *
+     * @param title The title of the game to check. Must be an exact (albeit <strong>in-</strong>sensitive) match
+     *             for this to return true. I.e. "Hello, World!" will match "hello, wOrld!" but not "hello world" (due
+     *             to the lack of comma and exclamation mark)
+     * @return Whether such a game exists.
+     */
+    boolean existsWithTitle(String title);
+
+    /**
      * Returns a collection with all the filters that can be applied to a specified {@link FilterCategory}.
      *
      * @param filterCategory The filter category.
