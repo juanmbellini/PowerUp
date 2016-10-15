@@ -10,7 +10,6 @@ public class RateAndStatusForm {
 
     @Min(1)
     @Max(10)
-    @Null
     private Integer score;
 
     private PlayStatus playStatus;
