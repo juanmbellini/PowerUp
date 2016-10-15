@@ -175,7 +175,12 @@ public class MainController {
 
     @RequestMapping("/list")
     public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
-        if(userName==null) return error400();
+        if(userName==null){
+            User currentUser = userService.findById(1);
+            //TODO use currentUser
+            userName=currentUser.getUsername();
+            return new ModelAndView("redirect:/list?userName="+userName);
+        }
         final ModelAndView mav = new ModelAndView("list");
         //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
 
