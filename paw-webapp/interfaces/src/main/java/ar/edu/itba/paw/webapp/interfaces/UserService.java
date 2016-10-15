@@ -104,13 +104,4 @@ public interface UserService {
      * @param status The status.
      */
     void setPlayStatus(User user, Game game, PlayStatus status);
-
-    /**
-     * Attempts to log a user in with a specified username and password.
-     *
-     * @param password The user's password.
-     * @param username The user's username. Must be unique.
-     * @return The logged user, null if login failed.
-     */
-    User logAttempt(String username, String password);
 }

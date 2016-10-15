@@ -69,9 +69,4 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void setPlayStatus(User user, Game game, PlayStatus status) { userDao.setPlayStatus(user,game,status); }
-
-    @Override
-    public User logAttempt(String username, String password) {
-        return userDao.logAttempt(username,password);
-    }
 }

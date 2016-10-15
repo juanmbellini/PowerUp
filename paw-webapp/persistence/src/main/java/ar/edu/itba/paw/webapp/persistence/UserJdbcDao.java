@@ -216,18 +216,6 @@ public class UserJdbcDao implements UserDao {
         setPlayStatus(user, game.getId(), status);
     }
 
-    @Override
-    public User logAttempt(String username, String password) {
-        if (password == null) {
-            throw new IllegalArgumentException("Password can't be null");
-        }
-        if (username == null) {
-            throw new IllegalArgumentException("Username can't be null");
-        }
-        //TODO finish method
-        return null;
-    }
-
     /**
      * Adds relationship information for a specific user that is not readily available from the users table (e.g. scored
      * games, played games)

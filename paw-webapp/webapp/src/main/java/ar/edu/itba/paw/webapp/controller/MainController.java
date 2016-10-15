@@ -188,17 +188,6 @@ public class MainController {
         return new ModelAndView("login");
     }
 
-    @RequestMapping(value = "/logAttempt", method = { RequestMethod.POST })
-    public ModelAndView logAttempt(@Valid @ModelAttribute("loginForm") final LoginForm form, final BindingResult errors) {
-        if (errors.hasErrors()) {
-            return login(form);
-        }
-        final User u = userService.logAttempt(form.getUsername(), form.getPassword());
-        //TODO redirect to user page
-        return new ModelAndView("redirect:/?userId="+ u.getId());
-    }
-
-
     @RequestMapping("/error500")
     public ModelAndView error500() {
         final ModelAndView mav = new ModelAndView("error500");
