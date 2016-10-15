@@ -16,13 +16,27 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import sun.plugin.dom.exception.InvalidStateException;
 import sun.plugin.javascript.navig.Array;
+import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -33,6 +47,7 @@ public class MainController {
 
     private final GameService gameService;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
@@ -40,16 +55,16 @@ public class MainController {
     };
 
     @Autowired
-    public MainController(GameService gameService, UserService userService) {
+    public MainController(GameService gameService, UserService userService, PasswordEncoder passwordEncoder) {
         //Spring is in charge of providing the gameService parameter.
         this.userService = userService;
         this.gameService = gameService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
     public ModelAndView home() {
         final ModelAndView mav = new ModelAndView("index");
-        mav.addObject("greeting", "PAW");
         return mav;
     }
 
@@ -171,6 +186,22 @@ public class MainController {
         return mav;
     }
 
+    /* *****************************************************************************************************************
+    *                                               USERS/SESSIONS
+    * *****************************************************************************************************************/
+
+    /**
+     * Gets the current user.
+     *
+     * @return The currently authenticated user, or {@code null} if none.
+     */
+    @ModelAttribute("currentUser")
+    public User getCurrentUser() {
+        String username = (SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName());
+        if (username == null || username.contains("anonymous")) return null;
+        return userService.findByUsername(username);
+    }
+
     @RequestMapping("/list")
     public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
         if(userName==null){
@@ -225,26 +256,37 @@ public class MainController {
         return new ModelAndView("redirect:/game?id=" + id);
     }
 
-    @RequestMapping("/register")//TODO
+    @RequestMapping("/register")
     public ModelAndView register(@ModelAttribute("registerForm") final UserForm form) {
             return new ModelAndView("register");
     }
 
-    @RequestMapping(value = "/register", method = { RequestMethod.POST })
+    @RequestMapping(value = "/register", method = {RequestMethod.POST})
     public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
             return register(form);
         }
-        final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
-        //TODO redirect to user page
-        return new ModelAndView("redirect:/?userId="+ u.getId());
+        //TODO handle duplicate emails/usernames here
+        final String email = form.getEmail(),
+                    hashedPassword = passwordEncoder.encode(form.getPassword()),
+                    username = form.getUsername();
+        final User user = userService.create(email, hashedPassword, username);
+        System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
+        //Log the new user in
+        Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
+        auth.setAuthenticated(true);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        return new ModelAndView("redirect:/");
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = {RequestMethod.GET})
     public ModelAndView login(@ModelAttribute("loginForm") final LoginForm form) {
         return new ModelAndView("login");
     }
 
+    /* *****************************************************************************************************************
+    *                                                   ERRORS
+    * *****************************************************************************************************************/
     @RequestMapping("/error500")
     public ModelAndView error500() {
         final ModelAndView mav = new ModelAndView("error500");
