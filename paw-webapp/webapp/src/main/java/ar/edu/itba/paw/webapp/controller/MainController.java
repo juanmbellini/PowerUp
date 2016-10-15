@@ -179,6 +179,7 @@ public class MainController {
             return index(form);
         }
         final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
+        //TODO redirect to user page
         return new ModelAndView("redirect:/?userId="+ u.getId());
     }
 
@@ -188,11 +189,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/logAttempt", method = { RequestMethod.POST })
-    public ModelAndView create(@Valid @ModelAttribute("loginForm") final LoginForm form, final BindingResult errors) {
+    public ModelAndView logAttempt(@Valid @ModelAttribute("loginForm") final LoginForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
             return login(form);
         }
         final User u = userService.logAttempt(form.getUsername(), form.getPassword());
+        //TODO redirect to user page
         return new ModelAndView("redirect:/?userId="+ u.getId());
     }
 
