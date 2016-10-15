@@ -9,10 +9,7 @@ import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -54,4 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void setPlayStatus(User user, Game game, PlayStatus status) { userDao.setPlayStatus(user,game,status); }
+
+    @Override
+    public Collection<Game> recommendGames(User user) { return userDao.recommendGames(user); }
 }

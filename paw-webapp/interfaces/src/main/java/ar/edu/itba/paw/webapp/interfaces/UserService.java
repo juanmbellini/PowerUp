@@ -5,6 +5,9 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+
 /**
  * User service class. Exposes all functionality available to users.
  */
@@ -80,4 +83,11 @@ public interface UserService {
      * @param status The status.
      */
     void setPlayStatus(User user, Game game, PlayStatus status);
+
+    /**
+     * Recommends games for user based on the scores of the games he has scored
+     *
+     * @param user The user who is getting the recommendations
+     */
+    Collection<Game> recommendGames(User user);
 }

@@ -129,4 +129,7 @@ public class User {
         this.playedGames.putAll(playedGames);
     }
 
+    public Map getScoredGames(){
+        return scoredGames;
+    }
 }

@@ -182,6 +182,15 @@ public class MainController {
     }
 
 
+    @RequestMapping("/recommend")
+    public ModelAndView recommend() {
+        final ModelAndView mav = new ModelAndView("recommend");
+        User u = userService.findById(1);//TODO user currentUser
+        if(u==null) return error400(); //TODO avisar que no esta logueado
+        Collection<Game> recommendedGames = userService.recommendGames(u);
+        mav.addObject("recommendedGames", recommendedGames);
+        return mav;
+    }
 
 
 
