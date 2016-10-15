@@ -35,7 +35,6 @@ public class MainController {
     private final GameService gameService;
     private final UserService userService;
 
-
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
             = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
@@ -55,7 +54,6 @@ public class MainController {
         return mav;
     }
 
-
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
@@ -72,7 +70,6 @@ public class MainController {
         boolean orderBoolean;
         int pageSize;
         int pageNumber;
-
 
         // TODO: make a new function for this
         // TODO: change string to use those in enum and avoid this
@@ -95,7 +92,6 @@ public class MainController {
             mav.setViewName("redirect:error400");
             return mav;
         }
-
 
         Map<FilterCategory, List<String>> filters;
         try {
@@ -129,7 +125,6 @@ public class MainController {
         return mav;
     }
 
-
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
@@ -145,39 +140,6 @@ public class MainController {
         return mav;
     }
 
-    /*
-     @RequestMapping(value="/person.do", method=RequestMethod.GET)
-  public ModelAndView setup() {
-    ModelAndView response = new ModelAndView("person");
-
-    //Create default bind object, can get values
-    //from database if you like. Here they're just
-    //hard coded.
-    Person person = new Person();
-    person.setName("Joe Bloggs");
-
-    response.addObject("person", person);
-    return response;
-  }
-
-    @RequestMapping(value="/game", method=RequestMethod.POST)
-    public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
-                             BindingResult result) {
-        Validator.validate(person, result);
-        if (result.hasErrors()) {
-            ModelAndView response = new ModelAndView("person");
-            response.addObject("person", person);
-            return response;
-        } else {
-            personDao.store(person);
-        }
-
-        return new ModelAndView("redirect:nextPage.do");
-    }
-
-
-     */
-//
     @RequestMapping("/game")
     public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                              @RequestParam(name = "id") int id) {
@@ -190,8 +152,9 @@ public class MainController {
                 return error404();
             }
             User currentUser = userService.findById(1);
-            if(currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
-            if(currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
+            //TODO change user to current user
+            if (currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
+            if (currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
 
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
@@ -201,7 +164,7 @@ public class MainController {
             return error500();
         }
         ArrayList scoreValues = new ArrayList();
-        for(int i =1; i<=10; i++) scoreValues.add(i);
+        for (int i = 1; i <= 10; i++) scoreValues.add(i);
         mav.addObject("scoreValues", scoreValues);
         mav.addObject("statuses", PlayStatus.values());
         mav.addObject("game", game);
@@ -209,8 +172,8 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping(value = "/rateAndUpdateStatus", method = { RequestMethod.POST })
-    public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final  RateAndStatusForm rateAndStatusForm,
+    @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
+    public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                                             final BindingResult errors,
                                             @RequestParam(name = "id") int id) {
         if (errors.hasErrors()) {
@@ -220,38 +183,27 @@ public class MainController {
         final User u = userService.findById(1);
 
         int score = rateAndStatusForm.getScore();
-        if(score!=0) userService.scoreGame(u,id,score);
+        if (score != 0) userService.scoreGame(u, id, score);
 
+        PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
+        if (playStatus != null) userService.setPlayStatus(u, id, playStatus);
 
-
-         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
-        if(playStatus!=null) userService.setPlayStatus(u,id,playStatus);
-
-
-        return new ModelAndView("redirect:/game?id="+id);
+        return new ModelAndView("redirect:/game?id=" + id);
     }
-
-
-
 
     @RequestMapping("/register") //TODO wat index()
     public ModelAndView register(@ModelAttribute("registerForm") final UserForm form) {
-            return new ModelAndView("registerView");
+        return new ModelAndView("registerView");
     }
 
-    @RequestMapping(value = "/create", method = { RequestMethod.POST })
+    @RequestMapping(value = "/create", method = {RequestMethod.POST})
     public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
             return register(form);
         }
         final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
-        return new ModelAndView("redirect:/?userId="+ u.getId());
+        return new ModelAndView("redirect:/?userId=" + u.getId());
     }
-
-
-
-
-
 
     @RequestMapping("/error500")
     public ModelAndView error500() {
