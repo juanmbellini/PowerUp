@@ -30,10 +30,10 @@
                     </div>
                     <div class="col s6 center-align">
                         <div class="row">
-                            <div class="col s2">
-                            </div>
-                            <div class="col s2 center-align">
+
+                            <div class="col s4 center-align">
                                 <form:select path="score">
+                                    <form:option value="" label="Select score"/>
                                     <form:options items="${scoreValues}"/>
                                 </form:select>
                                 <form:label path="score">Score: </form:label>
@@ -43,6 +43,7 @@
 
                             <div class="col s4 center-align">
                                 <form:select path="playStatus">
+                                    <form:option value="" label="Select status"/>
                                     <form:options items="${statuses}"/>
                                 </form:select>
                                 <form:label path="playStatus">PlayStatus: </form:label>

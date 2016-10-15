@@ -182,11 +182,14 @@ public class MainController {
         //TODO change user to current user
         final User u = userService.findById(1);
 
-        int score = rateAndStatusForm.getScore();
-        if (score != 0) userService.scoreGame(u, id, score);
+        Integer score = rateAndStatusForm.getScore();
 
+        if (score != null) userService.scoreGame(u, id, score);
+        else; //TODO delete score from userMap
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
+
         if (playStatus != null) userService.setPlayStatus(u, id, playStatus);
+        else;//TODO delete status from userMap
 
         return new ModelAndView("redirect:/game?id=" + id);
     }

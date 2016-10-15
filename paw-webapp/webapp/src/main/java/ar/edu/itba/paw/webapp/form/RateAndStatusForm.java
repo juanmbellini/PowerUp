@@ -2,21 +2,20 @@ package ar.edu.itba.paw.webapp.form;
 
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class RateAndStatusForm {
 
     @Min(1)
     @Max(10)
-    private int score;
+    @Null
+    private Integer score;
 
     private PlayStatus playStatus;
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -24,7 +23,7 @@ public class RateAndStatusForm {
         return playStatus;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
