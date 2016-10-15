@@ -16,8 +16,8 @@
     <div class="section"></div>
 
     <h2 class="orange-text" style="text-align: center" >Register</h2>
-    <c:url value="/create" var="postPath"/>
-    <form:form modelAttribute="registerForm" action="${postPath}" method="post" class="center-align">
+    <c:url value="/register" var="postUrl"/>
+    <form:form modelAttribute="registerForm" action="${postUrl}" method="post" class="center-align">
     <div class="section"></div>
     <div class="container" style="text-align: center">
         <div class="z-depth-1 grey lighten-4 row col" style="padding: 0px 48px 0px 48px; border: 1px solid #EEE;" >

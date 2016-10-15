@@ -18,8 +18,8 @@
     <h2 class="orange-text" style="text-align: center" >Please, log in into your account</h2>
     <div class="section"></div>
 
-    <c:url value="/create" var="postPath"/>
-    <form:form modelAttribute="loginForm" action="${postPath}" method="post" class="center-align">
+    <c:url value="/login" var="postUrl"/>
+    <form:form modelAttribute="loginForm" action="${postUrl}" method="post" class="center-align">
         <div class="container" style="text-align: center">
             <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 0px 48px 0px 48px; border: 1px solid #EEE;">
 
