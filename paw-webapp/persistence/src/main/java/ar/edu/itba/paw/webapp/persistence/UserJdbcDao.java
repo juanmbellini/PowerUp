@@ -198,7 +198,9 @@ public class UserJdbcDao implements UserDao {
 
     @Override
     public Collection<Game> recommendGames(User user) {
+
         //Get all scoredGames and give all filters a weight based on the score on each appearance
+
         Map<Long,Integer> scoredGamed = user.getScoredGames();
         //Map from a filter category, to a map from the filter value to an array with all the scores.
         Map<FilterCategory, Map<String,ArrayList<Integer>>> scoredGamesWithScoreArray = new HashMap<>();
@@ -266,6 +268,8 @@ public class UserJdbcDao implements UserDao {
         //Get all games with each of X filter with higher weight and give each a weight based on each appearance and avg_score(?
         Collection<Game> resultGames=null;
 
+        HashMap<Long,Integer> gamesWeightMap = new HashMap();
+
         int counter=0;
         for(int weight: scoredGamesWithFiltersWeight.keySet()){
             Map<FilterCategory,ArrayList<String>> mapFilters = scoredGamesWithFiltersWeight.get(weight);
@@ -279,6 +283,10 @@ public class UserJdbcDao implements UserDao {
 
                     System.out.println(filter);
                     resultGames=gameDao.searchGames("",filterParameterMap, OrderCategory.avg_score,false);
+
+                    for(Game game: resultGames){
+                        if(!gamesWeightMap.containsKey(game.getId())) gamesWeightMap.put(game.getId(),0);
+                    }
 
                     counter++;
                     if(counter>=MAX_FILTERS_CHECKS_RECOMMEND) break;
