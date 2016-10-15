@@ -95,7 +95,12 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, hashed_password, enabled FROM power_up.users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authority FROM power_up.user_authorities WHERE username = ?");
+                .authoritiesByUsernameQuery("SELECT username, authority FROM power_up.user_authorities WHERE username = ?")
+        //TODO delete this in production
+        .and().inMemoryAuthentication()
+            .withUser("paw")
+            .password("paw")
+            .roles("USER");
     }
 
     @Override

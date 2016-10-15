@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
@@ -199,6 +200,7 @@ public class MainController {
     public User getCurrentUser() {
         String username = (SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName());
         if (username == null || username.contains("anonymous")) return null;
+        System.out.println("Logged in as " + username);
         return userService.findByUsername(username);
     }
 
@@ -274,7 +276,6 @@ public class MainController {
         System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
-        auth.setAuthenticated(true);
         SecurityContextHolder.getContext().setAuthentication(auth);
         return new ModelAndView("redirect:/");
     }
