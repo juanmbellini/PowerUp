@@ -137,4 +137,8 @@ public class User {
     public  Map<Long, PlayStatus> getPlayStatuses(){
         return playedGames;
     }
+
+    public Map<Long, Integer> getScoredGames(){
+        return scoredGames;
+    }
 }

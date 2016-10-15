@@ -19,12 +19,17 @@
             ${statusMap.key}
             <br>
             <c:if test="${statusMap.value.size()==0}">
-            -None-<br>
+            <div class="div_none">
+                -None-
+            </div>
             </c:if>
-            <c:forEach items="${statusMap.value}" var="game">
-                Game: ${game.name}
-                <br>
-            </c:forEach>
+            <div class="div_game_list">
+                <ul class="ul_game_list">
+                    <c:forEach items="${statusMap.value}" var="game">
+                        <li>Game: ${game.name} , Score: ${user.scoredGames.get(game.id)}</li>
+                    </c:forEach>
+                </ul>
+            </div>
         </c:forEach>
     </div>
 </main>
