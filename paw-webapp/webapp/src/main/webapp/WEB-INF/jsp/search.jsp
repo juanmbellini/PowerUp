@@ -34,6 +34,7 @@
         <div class="section ">
             <div class="row filters-row">
                 <div class="col s6">
+
                 </div>
                 <div class="col s4">
                     <div class="row select-title">
