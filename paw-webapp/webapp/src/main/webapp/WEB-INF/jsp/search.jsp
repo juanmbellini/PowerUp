@@ -22,7 +22,7 @@
 <main>
     <div class="container">
         <div class="section">
-                <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search for ${searchedName}</h1>
+            <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search for ${searchedName}</h1>
         </div>
         <div class="row">
 
@@ -270,24 +270,6 @@
         var filters;
         var orderCategory;
         var orderBoolean;
-        <c:if test="${searchedName != null && !searchedName.equals('')}">
-            name = "${searchedName}";
-        </c:if>
-        <c:if test="${filtersJson != null && !filtersJson.equals('')}">
-            filters = JSON.stringify(${filtersJson});
-        </c:if>
-        <c:if test="${orderCategory != null && !orderCategory.equals('')}">
-            orderCategory = "${orderCategory}";
-        </c:if>
-        <c:if test="${orderBoolean != null && !orderBoolean.equals('')}">
-            orderBoolean = "${orderBoolean}";
-        </c:if>
-        var pageSize = selectedPageSize.options[selectedPageSize.selectedIndex].value;
-        reload(name, filters, orderCategory, orderBoolean, pageSize, null);
-    }
-
-    function changePage(pageNumber) {
-        var name, filters, orderCategory, orderBoolean, pageSize;
 
         <c:if test="${searchedName != null && !searchedName.equals('')}">
             name = "${searchedName}";
@@ -304,8 +286,10 @@
         <c:if test="${pageSizeUrl != null && !pageSizeUrl.equals('')}">
             pageSize = "${pageSizeUrl}";
         </c:if>
+        var pageSize = selectedPageSize.options[selectedPageSize.selectedIndex].value;
         reload(name, filters, orderCategory, orderBoolean, pageSize, pageNumber);
     }
+
 
     function reload(name, filters, orderCategory, orderBoolean, pageSize, pageNumber) {
         window.location = create_new_url(name, filters, orderCategory, orderBoolean, pageSize, pageNumber);
