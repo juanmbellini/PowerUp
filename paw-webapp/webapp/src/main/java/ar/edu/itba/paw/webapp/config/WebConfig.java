@@ -30,6 +30,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:initial-data.sql")
     private Resource initialDataSql;
 
+    @Value("classpath:add_cover_pic.sql")
+    private Resource coverPicturesSql;
+
     @Bean
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -78,6 +81,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
         dbp.addScript(initialDataSql);
+        dbp.addScript(coverPicturesSql);
         return dbp;
     }
 }
