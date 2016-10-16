@@ -104,6 +104,7 @@ public class MainController {
             mav.addObject("pageNumber", page.getPageNumber());
             mav.addObject("pageSize", page.getPageSize());
             mav.addObject("totalPages", page.getTotalPages());
+            mav.addObject("amountOfElements", page.getAmountOfElements());
 
             mav.addObject("hasFilters", !filtersStr.equals("{}"));
             mav.addObject("appliedFilters", filters);
