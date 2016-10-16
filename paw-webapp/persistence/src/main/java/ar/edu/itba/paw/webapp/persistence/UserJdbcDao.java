@@ -24,10 +24,8 @@ public class UserJdbcDao implements UserDao {
 
     private int MAX_FILTERS_CHECKS_RECOMMEND = 1;
 
-    @Autowired
-    private GameDao gameDao;
-
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final GameDao gameDao;
     private final SimpleJdbcInsert userCreator,
             gameScoreInserter,
             gamePlayStatusInserter;
@@ -38,10 +36,10 @@ public class UserJdbcDao implements UserDao {
         }
     };
 
-
     @Autowired
-    public UserJdbcDao(DataSource dataSource) {
+    public UserJdbcDao(DataSource dataSource, GameDao gameDao) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        this.gameDao = gameDao;
         userCreator = new SimpleJdbcInsert(jdbcTemplate)
                 .withSchemaName("power_up")
                 .withTableName("users")
@@ -73,10 +71,10 @@ public class UserJdbcDao implements UserDao {
             throw new IllegalArgumentException("Username can't be null");
         }
 
-        if (rowExists("power_up.users", "email = '" + email + "'")) {
+        if (existsWithEmail(email)) {
             throw new UserExistsException("Email " + email + " already taken");
         }
-        if (rowExists("power_up.users", "username = '" + username + "'")) {
+        if (existsWithUsername(username)) {
             throw new UserExistsException("Username " + username + " already taken");
         }
 
@@ -129,12 +127,30 @@ public class UserJdbcDao implements UserDao {
     }
 
     @Override
+    public boolean existsWithId(long id) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[] {id}, Integer.class);
+        return count > 0;
+    }
+
+    @Override
+    public boolean existsWithUsername(String username) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[] {username}, Integer.class);
+        return count > 0;
+    }
+
+    @Override
+    public boolean existsWithEmail(String email) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[] {email}, Integer.class);
+        return count > 0;
+    }
+
+    @Override
     public void scoreGame(User user, long gameId, int score) {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
         }
         //TODO make a function in GameDao that checks whether a game with a given ID exists
-        if (!rowExists("power_up.games", "id = " + gameId)) {
+        if (!gameDao.existsWithId(gameId)) {
             throw new IllegalArgumentException("No game with ID " + gameId);
         }
         if (score < 1 || score > 10) {
@@ -142,8 +158,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        if (rowExists("power_up.game_scores", "user_id = " + user.getId() + " AND game_id = " + gameId)) {
-            jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        if (count > 0) {
+           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -171,12 +188,13 @@ public class UserJdbcDao implements UserDao {
             throw new IllegalArgumentException("Status can't be null");
         }
         //TODO make a function in GameDao that checks whether a game with a given ID exists
-        if (!rowExists("power_up.games", "id = " + gameId)) {
+        if (!gameDao.existsWithId(gameId)) {
             throw new IllegalArgumentException("No game with ID " + gameId);
         }
 
         //Update if exists, otherwise insert
-        if (rowExists("power_up.game_play_statuses", "user_id = " + user.getId() + " AND game_id = " + gameId)) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        if(count > 0) {
             jdbcTemplate.update("UPDATE power_up.game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();

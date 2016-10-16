@@ -41,6 +41,16 @@ public class GameServiceImpl implements GameService {
         return gameDao.findById(id);
     }
 
+    @Override
+    public boolean existsWithId(long id) {
+        return gameDao.existsWithId(id);
+    }
+
+    @Override
+    public boolean existsWithTitle(String title) {
+        return gameDao.existsWithTitle(title);
+    }
+
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         return gameDao.getFiltersByType(filterCategory);
     }
