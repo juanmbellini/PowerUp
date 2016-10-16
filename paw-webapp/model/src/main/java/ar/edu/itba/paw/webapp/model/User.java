@@ -129,4 +129,16 @@ public class User {
         this.playedGames.putAll(playedGames);
     }
 
+
+    /**
+     * Get the map with all games status.
+     *
+     */
+    public  Map<Long, PlayStatus> getPlayStatuses(){
+        return playedGames;
+    }
+
+    public Map<Long, Integer> getScoredGames(){
+        return scoredGames;
+    }
 }
