@@ -14,9 +14,14 @@ public enum PlayStatus {
 
     private final Pattern p = Pattern.compile(" (\\w)(\\w*)");       //Non-static because it's not initialized otherwise
     private final String pretty = toTitleCase();
+    private static final String[] prettyValues = prettyValues();
 
     public String getPretty() {
         return pretty;
+    }
+
+    public static String[] getPrettyValues() {
+        return prettyValues;
     }
 
     private String toTitleCase() {
@@ -29,4 +34,12 @@ public enum PlayStatus {
         return buffer.toString().isEmpty() ? preProcessed : buffer.toString();
     }
 
+    private static String[] prettyValues() {
+        PlayStatus[] uglyValues = values();
+        String[] result = new String[uglyValues.length];
+        for (int i = 0; i < uglyValues.length; i++) {
+            result[i] = uglyValues[i].getPretty();
+        }
+        return result;
+    }
 }

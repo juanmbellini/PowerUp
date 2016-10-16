@@ -21,47 +21,46 @@
             <h1 class="header center orange-text">${game.name}</h1>
             <h5 class="center orange-text">${game.releaseDate.year}</h5>
         </div>
-        <div class ="section">
-            <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-            <form:form modelAttribute="rateAndStatusForm" action="${postPath}" method="post" class="center-align">
+        <%--Rate and status form if logged in--%>
+        <c:if test="${isLoggedIn}">
+            <div class ="section">
+                <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
+                <form:form modelAttribute="rateAndStatusForm" action="${postPath}" method="post" class="center-align">
+                    <div class="row" >
+                        <div class="col s3">
+                        </div>
+                        <div class="col s6 center-align">
+                            <div class="row">
 
-                <div class="row" >
-                    <div class="col s3">
-                    </div>
-                    <div class="col s6 center-align">
-                        <div class="row">
+                                <div class="col s4 center-align">
+                                    <form:select path="score">
+                                        <form:option value="" label="Select score"/>
+                                        <form:options items="${scoreValues}"/>
+                                    </form:select>
+                                    <form:label path="score">Score: </form:label>
+                                        <%--<form:input type="text" path="score"/>--%>
+                                    <form:errors path="score" cssClass="formError" element="p" Style="size: 1px"/>
+                                </div>
 
-                            <div class="col s4 center-align">
-                                <form:select path="score">
-                                    <form:option value="" label="Select score"/>
-                                    <form:options items="${scoreValues}"/>
-                                </form:select>
-                                <form:label path="score">Score: </form:label>
-                                    <%--<form:input type="text" path="score"/>--%>
-                                <form:errors path="score" cssClass="formError" element="p" Style="size: 1px"/>
-                            </div>
+                                <div class="col s4 center-align">
+                                    <form:select path="playStatus">
+                                        <form:option value="" label="Select status"/>
+                                        <form:options items="${statuses}"/>
+                                    </form:select>
+                                    <form:label path="playStatus">PlayStatus: </form:label>
+                                        <%--<form:input type="playStatus" path="playStatus" />--%>
+                                    <form:errors path="playStatus" cssClass="formError" element="p"/>
+                                </div>
 
-                            <div class="col s4 center-align">
-                                <form:select path="playStatus">
-                                    <form:option value="" label="Select status"/>
-                                    <form:options items="${statuses}"/>
-                                </form:select>
-                                <form:label path="playStatus">PlayStatus: </form:label>
-                                    <%--<form:input type="playStatus" path="playStatus" />--%>
-                                <form:errors path="playStatus" cssClass="formError" element="p"/>
-                            </div>
-
-                            <div class="col s4 center">
-                                <input type="submit" value="Update list!"/>
+                                <div class="col s4 center">
+                                    <input class="btn waves-effect waves-light" type="submit" value="Update list!"/>
+                                </div>
                             </div>
                         </div>
-
                     </div>
-
-
-                </div>
-            </form:form>
-        </div>
+                </form:form>
+            </div>
+        </c:if>
         <div class="section">
             <c:choose>
                 <c:when test="${game == null}">

@@ -186,7 +186,15 @@ public class MainController {
         List<Integer> scoreValues = new ArrayList<>();
         for (int i = 1; i <= 10; i++) scoreValues.add(i);
         mav.addObject("scoreValues", scoreValues);
-        mav.addObject("statuses", PlayStatus.values());
+        /*
+            Pass a map of statuses to the <select> dropdown. The map's keys will be the form's values and the map's
+            values will be what will get displayed to the user.
+         */
+        Map<PlayStatus, String> statuses = new LinkedHashMap<>();
+        for(PlayStatus status : PlayStatus.values()) {
+            statuses.put(status, status.getPretty());
+        }
+        mav.addObject("statuses", statuses);
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
