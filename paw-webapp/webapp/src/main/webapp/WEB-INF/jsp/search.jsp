@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-
 <%!
 
     private String createNewUrl(String name, String filters, String orderCategory,
@@ -97,6 +96,7 @@
                 </div>
 
             </div>
+
             <div class="row">
                 <c:choose>
                     <c:when test="${ fn:length(page.data) == 0 }">
@@ -110,7 +110,7 @@
                                 of ${page.overAllAmountOfElements}
                             </div>
                         </ul>
-                        <ul class="collection" id="results">
+                        <ul class="collection games-list" id="results">
                             <c:forEach var="game" items="${page.data}">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2" style="padding: 0;">
