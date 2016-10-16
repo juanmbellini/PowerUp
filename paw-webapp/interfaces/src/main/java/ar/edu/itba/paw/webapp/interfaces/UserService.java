@@ -46,6 +46,30 @@ public interface UserService {
     User findById(long id);
 
     /**
+     * Checks whether a user with a given ID exists.
+     *
+     * @param id The ID of the user to check.
+     * @return Whether such a user exists.
+     */
+    boolean existsWithId(long id);
+
+    /**
+     * Checks whether a user with a given username exists.
+     *
+     * @param username The username to check. Case sensitive.
+     * @return Whether such a user exists.
+     */
+    boolean existsWithUsername(String username);
+
+    /**
+     * Checks whether a user with a given email exists.
+     *
+     * @param email The username to check. Case <strong>in-</strong>sensitive.
+     * @return Whether such a user exists.
+     */
+    boolean existsWithEmail(String email);
+
+    /**
      * Sets or updates a score for a specified game by a specified user.
      *
      * @param user   The user who is scoring the game.
