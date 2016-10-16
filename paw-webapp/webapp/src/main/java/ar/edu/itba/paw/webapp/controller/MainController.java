@@ -172,7 +172,7 @@ public class MainController {
                 if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
             }
 
-            
+
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
