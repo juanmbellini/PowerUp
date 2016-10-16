@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS power_up.game_developers CASCADE;
 DROP TABLE IF EXISTS power_up.game_publishers CASCADE;
 DROP TABLE IF EXISTS power_up.game_scores CASCADE;
 DROP TABLE IF EXISTS power_up.game_play_statuses CASCADE;
+DROP TABLE IF EXISTS power_up.user_authorities CASCADE;
 
 -- Drop of entity tables
 DROP TABLE IF EXISTS power_up.games CASCADE;
@@ -18,6 +19,7 @@ DROP TABLE IF EXISTS power_up.platforms CASCADE;
 DROP TABLE IF EXISTS power_up.companies CASCADE;
 DROP TABLE IF EXISTS power_up.keywords CASCADE;
 DROP TABLE IF EXISTS power_up.game_pictures CASCADE;
+DROP TABLE IF EXISTS power_up.users CASCADE;
 
 --DROP TABLE IF EXISTS power_up.ratings;
 
@@ -51,6 +53,7 @@ CREATE TABLE IF NOT EXISTS power_up.users (
   email VARCHAR NOT NULL,
   username VARCHAR DEFAULT NULL,
   hashed_password VARCHAR NOT NULL,
+  enabled BOOLEAN NOT NULL DEFAULT TRUE,
 
   UNIQUE(email),
   UNIQUE(username)
@@ -131,5 +134,13 @@ CREATE TABLE IF NOT EXISTS power_up.game_play_statuses(
   FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE(user_id, game_id)
+);
+CREATE TABLE IF NOT EXISTS power_up.user_authorities(
+  id SERIAL NOT NULL PRIMARY KEY,
+  username VARCHAR NOT NULL,
+  authority VARCHAR NOT NULL,
+
+  FOREIGN KEY(username) REFERENCES power_up.users(username),
+  UNIQUE(username, authority)
 );
 COMMIT;

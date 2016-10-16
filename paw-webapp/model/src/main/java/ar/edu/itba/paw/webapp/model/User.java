@@ -7,6 +7,7 @@ public class User {
     private long id;
     private String username;
     private String email;
+    private String hashedPassword;
     private Map<Long, Integer> scoredGames = new HashMap<>();
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
 
@@ -16,12 +17,13 @@ public class User {
      * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
+     * @param hashedPassword The user's hashed password.
      */
-
-    public User(long id, String email, String username) {
+    public User(long id, String email, String username, String hashedPassword) {
         this.id = id;
         this.email = email;
         this.username = username;
+        this.hashedPassword = hashedPassword;
     }
 
 
@@ -129,6 +131,23 @@ public class User {
         this.playedGames.putAll(playedGames);
     }
 
+    /**
+     * @return This user's hashed password.
+     */
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    /**
+     * Updates this user's hashed password.
+     * @param hashedPassword The new hashed password. Can't be null.
+     */
+    public void setHashedPassword(String hashedPassword) {
+        if(hashedPassword == null) {
+            throw new IllegalArgumentException("Password can't be null");
+        }
+        this.hashedPassword = hashedPassword;
+    }
 
     /**
      * Get the map with all games status.

@@ -26,6 +26,7 @@ CREATE TABLE power_up.users (
 	email VARCHAR(1024) NOT NULL,
 	username VARCHAR(1024) DEFAULT NULL,
   hashed_password VARCHAR(1024) NOT NULL,
+	enabled BOOLEAN DEFAULT TRUE NOT NULL,
 
   UNIQUE(email),
   UNIQUE(username)
@@ -109,4 +110,12 @@ CREATE TABLE power_up.game_play_statuses(
 	FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	UNIQUE(user_id, game_id)
+);
+CREATE TABLE power_up.user_authorities(
+  id INTEGER IDENTITY NOT NULL PRIMARY KEY,
+  username VARCHAR(1024) NOT NULL,
+  authority VARCHAR(1024) NOT NULL,
+
+  FOREIGN KEY(username) REFERENCES power_up.users(username),
+  UNIQUE(username, authority)
 );
