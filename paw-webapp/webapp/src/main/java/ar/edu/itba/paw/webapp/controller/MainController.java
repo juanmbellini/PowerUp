@@ -5,22 +5,20 @@ import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import sun.plugin.dom.exception.InvalidStateException;
 import sun.plugin.javascript.navig.Array;
 
 import javax.validation.Valid;
@@ -173,6 +171,39 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/list")
+    public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
+        if(userName==null){
+            User currentUser = userService.findById(1);
+            if(currentUser==null) return error400();
+            //TODO use true current user
+            userName=currentUser.getUsername();
+            return new ModelAndView("redirect:/list?userName="+userName);
+        }
+        final ModelAndView mav = new ModelAndView("list");
+        //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
+
+
+        User u = userService.findByUsername(userName);
+        if(u==null) return error400();
+
+        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>(); //TODO change name of playedGames
+        for(PlayStatus playStatus : PlayStatus.values()){
+            playedGames.put(playStatus, new HashSet<Game>()); //TODO user other set and give it order?
+        }
+        Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
+        //Todo, do this in user?
+        for(long gameId: playStatuses.keySet()){
+            Game game = gameService.findById(gameId);
+            if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
+            playedGames.get(playStatuses.get(gameId)).add(game);
+        }
+        mav.addObject("user",u);
+        mav.addObject("playStatuses", playedGames);
+
+        return mav;
+    }
+
     @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
     public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                                             final BindingResult errors,
@@ -184,11 +215,10 @@ public class MainController {
         final User u = userService.findById(1);
 
         Integer score = rateAndStatusForm.getScore();
-
         if (score != null) userService.scoreGame(u, id, score);
         else; //TODO delete score from userMap
-        PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
 
+        PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) userService.setPlayStatus(u, id, playStatus);
         else;//TODO delete status from userMap
 

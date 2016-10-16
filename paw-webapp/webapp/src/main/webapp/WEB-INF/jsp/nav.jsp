@@ -9,6 +9,7 @@
         <ul class="right">
             <li><a href="<c:url value="/advanced-search" /> "><i class="material-icons">search</i></a></li>
             <li><a href="<c:url value="/register" /> ">Register</a></li>
+            <li><a href="<c:url value="/list" /> ">List</a></li>
             <%--<li><a href="#!"><i class="material-icons">person_outline</i></a></li>--%>
             <%--<li><a href="#!"><i class="material-icons">person</i></a></li>--%>
             <%--TODO change to full person icon when logged in (or use an icon)--%>
@@ -17,6 +18,7 @@
         <ul id="nav-mobile" class="side-nav black-text">
             <li><a href="<c:url value="/advanced-search" /> "><i class="material-icons">search</i>Search</a></li>
             <li> <a href="<c:url value="/register" /> ">Register</a></li>
+            <li><a href="<c:url value="/list" /> ">List</a></li>
             <%--<li><a href="#!"><i class="material-icons">person_outline</i>Log in</a></li>--%>
             <%--<li><a href="#!"><i class="material-icons">person</i>Profile</a></li>--%>
             <%--TODO change to full person icon when logged in (or use an icon)--%>
