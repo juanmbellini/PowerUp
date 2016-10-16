@@ -62,6 +62,15 @@ public class Page<T> {
     }
 
     /**
+     * Returns how many elements are there in this page.
+     *
+     * @return The amount of elements in this page.
+     */
+    public int getAmountOfElements() {
+        return data == null ? 0 : data.size();
+    }
+
+    /**
      * Data getter.
      *
      * @return The data in this page.
@@ -127,6 +136,6 @@ public class Page<T> {
             throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
         }
         this.data = data;
-        this.pageSize = data.size();
+//        this.pageSize = data.size();
     }
 }
