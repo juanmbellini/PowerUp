@@ -16,7 +16,7 @@
     <ul>
         <c:forEach var="game" items="${recommendedGames}">
             <li>
-            ${game}
+            ${game.name}
             </li>
         </c:forEach>
     </ul>
