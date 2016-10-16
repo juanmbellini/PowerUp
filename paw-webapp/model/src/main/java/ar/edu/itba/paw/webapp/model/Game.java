@@ -10,11 +10,11 @@ import java.util.*;
  */
 public class Game {
 
-
-    final static double INITIAL_AVG_SCORE = 0.0;
-    private static final String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
+    final static private int INITIAL_RATING = 7;
+    final static private double INITIAL_AVG_SCORE = 0.0;
+    final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
     //TODO store this locally or get a more reliable URL
-    private static final String DEFAULT_COVER_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
+    final private static String DEFAULT_COVER_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
 
     private long id;
     private String name;
@@ -27,9 +27,8 @@ public class Game {
     private Collection<Review> reviews;
     private double avgScore;
     private LocalDate releaseDate;
-    //TODO see if we need to add counter here after merging with avgRating
-    private Set<String> pictureUrls = new LinkedHashSet<>();
-
+    private String coverPicture;
+    private Set<String> pictureUrls;
 
     public Game() {
         this(0, "", "");
@@ -45,13 +44,16 @@ public class Game {
         this.name = name;
         this.summary = summary;
         genres = new HashSet<>();
-        platforms = new HashMap<String, LocalDate>();
+        platforms = new HashMap<>();
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
         reviews = new HashSet<>();
         this.avgScore = avgScore;
         releaseDate = new LocalDate();
+        coverPicture = DEFAULT_COVER_PICTURE_URL;
+        pictureUrls = new LinkedHashSet<>();
+
 
     }
 
@@ -107,7 +109,7 @@ public class Game {
     }
 
     public Set<String> getPictureUrls() {
-        return pictureUrls;
+        return new HashSet<>(pictureUrls);
     }
 
     /**
@@ -116,11 +118,8 @@ public class Game {
      *
      * @return The picture URL.
      */
-    public String getCoverPictureUrl() {
-        if (pictureUrls.isEmpty()) {
-            return DEFAULT_COVER_PICTURE_URL;
-        }
-        return pictureUrls.iterator().next();   // Returns the first image
+    public String getCoverPicture() {
+        return coverPicture;
     }
 
     // Setters
@@ -142,6 +141,12 @@ public class Game {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public void setCoverPicture(String cloudinaryId) {
+        if (cloudinaryId != null) {
+            coverPicture = getPictureURL(cloudinaryId);
+        }
     }
 
     // Adders
@@ -169,9 +174,9 @@ public class Game {
         reviews.add(review);
     }
 
-    public void addPictureURL(String cloudinary_id) {
-        if (cloudinary_id != null) {
-            pictureUrls.add(getPictureURL(cloudinary_id));
+    public void addPictureURL(String cloudinaryId) {
+        if (cloudinaryId != null) {
+            pictureUrls.add(getPictureURL(cloudinaryId));
         }
     }
 

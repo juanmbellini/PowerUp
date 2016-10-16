@@ -51,7 +51,7 @@
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2" style="padding: 0;">
-                                        <img src="${game.coverPictureUrl}" alt="${game.name}" style="max-width: 100%; height: auto;">
+                                        <img src="${game.coverPicture}" alt="${game.name}" style="max-width: 100%; height: auto;">
                                     </div>
                                     <div class="col primary-content s7">
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
