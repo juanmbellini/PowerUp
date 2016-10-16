@@ -18,6 +18,7 @@ import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+import sun.plugin.dom.exception.InvalidStateException;
 import sun.plugin.javascript.navig.Array;
 
 import javax.validation.Valid;
@@ -182,7 +183,6 @@ public class MainController {
         final ModelAndView mav = new ModelAndView("list");
         //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
 
-        //TODO check if user is logged in, retrieve actual games -Juan. (? Why make it private? - Diego
 
         User u = userService.findByUsername(userName);
         if(u==null) return error400();
@@ -194,7 +194,9 @@ public class MainController {
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //Todo, do this in user?
         for(long gameId: playStatuses.keySet()){
-            playedGames.get(playStatuses.get(gameId)).add(gameService.findById(gameId)); //TODO check if game exists? Or tryCatch.
+            Game game = gameService.findById(gameId);
+            if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
+            playedGames.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user",u);
         mav.addObject("playStatuses", playedGames);
