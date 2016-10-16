@@ -37,8 +37,36 @@
     margin-top: 5px;
 }
 
-.div_none{
+.div_none {
     margin-top: 5px;
+}
+.filters-row {
+    margin-bottom: 0;
+}
+
+.select-title {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.select-drop-down {
+    margin-bottom: 0;
+}
+
+.select-wrapper.select-drop-down {
+    padding-left: 0;
+}
+
+.games-count {
+    margin-top: 0;
+}
+
+.games-count > div {
+    font-weight: bold;
+}
+
+.games-count-text {
+    font-weight: bold;
 }
 
 /*#logo-container {*/
