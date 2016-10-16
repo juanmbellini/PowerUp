@@ -120,6 +120,7 @@ public class MainController {
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
             // TODO: Change JSP in order to send just the page
+            mav.setViewName("search");
             mav.addObject("results", page.getData());
             mav.addObject("pageNumber", page.getPageNumber());
             mav.addObject("pageSize", page.getPageSize());
@@ -131,7 +132,6 @@ public class MainController {
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.addObject("filters", filtersStr);
-            mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
@@ -243,7 +243,7 @@ public class MainController {
 
         Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();   //TODO change name of playedGames
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<Game>());       //TODO user other set and give it order?
+            playedGames.put(playStatus, new HashSet<>());           //TODO user other set and give it order?
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //TODO do this in user?
