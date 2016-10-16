@@ -26,7 +26,7 @@ CREATE TABLE power_up.users (
 	email VARCHAR(1024) NOT NULL,
 	username VARCHAR(1024) DEFAULT NULL,
   hashed_password VARCHAR(1024) NOT NULL,
-	enabled BOOLEAN NOT NULL DEFAULT TRUE,
+	enabled BOOLEAN DEFAULT TRUE NOT NULL,
 
   UNIQUE(email),
   UNIQUE(username)
