@@ -393,7 +393,7 @@ public class GameJdbcDaoTest {
         System.out.println("Performing get cover picture test...");
         Game gameSinglePicture = gameDao.findById(2);
 
-        assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPictureUrl());
+        assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPicture());
 
         assertNotNull(gameSinglePicture.getPictureUrls());
         assertEquals(1, gameSinglePicture.getPictureUrls().size());
@@ -412,7 +412,7 @@ public class GameJdbcDaoTest {
         assertNotNull(gameMultiplePictures.getPictureUrls());
         assertEquals(2, gameMultiplePictures.getPictureUrls().size());
         assertTrue(gameMultiplePictures.getPictureUrls().contains(buildUrl("whgrfj9muktnnpags6qg")));
-        assertTrue(gameMultiplePictures.getPictureUrls().contains(gameMultiplePictures.getCoverPictureUrl()));
+        assertTrue(gameMultiplePictures.getPictureUrls().contains(gameMultiplePictures.getCoverPicture()));
     }
 
     @Test
@@ -421,7 +421,7 @@ public class GameJdbcDaoTest {
         Game game = gameDao.findById(3);
 
         assertNotNull(game.getPictureUrls());
-        assertEquals(DEFAULT_PICTURE_URL, game.getCoverPictureUrl());
+        assertEquals(DEFAULT_PICTURE_URL, game.getCoverPicture());
 
     }
 

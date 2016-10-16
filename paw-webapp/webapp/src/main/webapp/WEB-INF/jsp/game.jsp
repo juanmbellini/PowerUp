@@ -80,7 +80,7 @@
                 <c:otherwise>
                     <div class="row">
                         <%--<img class="col s3" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg" alt="">--%>
-                        <img class="col s3" src="${game.coverPictureUrl}" alt="${game.name}">
+                        <img class="col s3" src="${game.coverPicture}" alt="${game.name}">
                         <div class="col s5">
                             <p style="margin-top: 0;">
                                 <c:choose>
@@ -157,7 +157,7 @@
                                     <c:forEach var="game" items="${relatedGames}">
                                         <div class="carousel-item center">
                                             <a href="<c:url value="/game?id=${game.id}"/>">
-                                                <img src="${game.coverPictureUrl}"/>
+                                                <img src="${game.coverPicture}"/>
                                             </a>
                                             <h5 style="margin-top:0; overflow-wrap: break-word;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
                                         </div>
