@@ -193,8 +193,9 @@ public class MainController {
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //Todo, do this in user?
+        Map<Long,Game> longGameMap = gameService.findBasicDataGamesFromArrayId( playStatuses.keySet());
         for(long gameId: playStatuses.keySet()){
-            Game game = gameService.findById(gameId);
+            Game game = longGameMap.get(gameId);
             if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
             playedGames.get(playStatuses.get(gameId)).add(game);
         }

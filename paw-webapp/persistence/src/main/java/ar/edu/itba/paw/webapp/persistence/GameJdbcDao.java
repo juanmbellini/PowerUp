@@ -97,6 +97,7 @@ public class GameJdbcDao implements GameDao {
         parameters[0] = id;
         String query;
         query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        System.out.println(query);
         final boolean[] found = {false};
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -121,6 +122,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
                 "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -137,6 +139,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
                 "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -152,6 +155,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
                 "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -167,6 +171,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
                 "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -182,6 +187,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
                 "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -197,6 +203,7 @@ public class GameJdbcDao implements GameDao {
 
         //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
                 @Override
@@ -213,13 +220,19 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE id = ?", new Object[] {id}, Integer.class);
+        String query = "SELECT COUNT(*) FROM power_up.games WHERE id = ?";
+        System.out.println(query);
+        int count = jdbcTemplate.queryForObject(query, new Object[] {id}, Integer.class);
+
         return count > 0;
     }
 
     @Override
     public boolean existsWithTitle(String title) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE LOWER(name) = LOWER(?)", new Object[] {title}, Integer.class);
+        String query = "SELECT COUNT(*) FROM power_up.games WHERE LOWER(name) = LOWER(?)";
+        System.out.println(query);
+        int count = jdbcTemplate.queryForObject(query, new Object[] {title}, Integer.class);
+
         return count > 0;
     }
 
@@ -494,6 +507,44 @@ public class GameJdbcDao implements GameDao {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
         String pluralFilter = English.plural(filter.name());
         return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
+    }
+
+    /**
+     * @param ids the collection of the ids
+     * @return a Map from gameId to a Game with the basic data of the game.
+     */
+    public Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids){
+        if(ids==null) throw new IllegalArgumentException();
+        Map<Long,Game> gameMap = new HashMap();
+        if(ids.isEmpty()) return gameMap;
+        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score FROM power_up.games WHERE");
+        Iterator<Long> iter = ids.iterator();
+        queryBuilder.append(" id = "+iter.next());
+        while(iter.hasNext()){
+            queryBuilder.append(" OR ");
+            queryBuilder.append(" id = "+iter.next());
+        }
+        String query = queryBuilder.toString();
+        System.out.println(query);
+
+        try {
+            jdbcTemplate.query(query.toLowerCase(),new RowCallbackHandler() { //TODO usar object[] o al pedo porque es seguro?
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            Game result = new Game();
+                            result.setId(rs.getLong("id"));
+                            result.setName(rs.getString("name"));
+                            result.setSummary(rs.getString("summary"));
+                            result.setAvgScore(rs.getDouble("avg_score"));
+                            result.setReleaseDate(new LocalDate(rs.getString("release")));
+                            gameMap.put(result.getId(),result);
+                        }
+                    }
+            );
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+        }
+        return gameMap;
     }
 
 }

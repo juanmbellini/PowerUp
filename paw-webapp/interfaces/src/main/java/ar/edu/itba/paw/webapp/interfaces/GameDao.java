@@ -56,4 +56,9 @@ public interface GameDao {
      */
     Collection<String> getFiltersByType(FilterCategory filterCategory);
 
+    /**
+     * @see GameService#findBasicDataGamesFromArrayId(Collection<Long>)
+     */
+    Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
+
 }

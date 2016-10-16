@@ -732,6 +732,28 @@ public class GameJdbcDaoTest {
                 1, page.getTotalPages());
     }
 
+    @Test
+    public void testFindBasicDataGamesFromArrayId() {
+
+        ArrayList<Long> array = new ArrayList();
+
+        array.add(1l);
+        array.add(3l);
+
+        Map<Long,Game> gameMap = gameDao.findBasicDataGamesFromArrayId(array);
+        Assert.assertNotNull(gameMap);
+        assertEquals(2,gameMap.size());
+        Game game1 = gameMap.get(1l);
+        Assert.assertNotNull(game1);
+        assertEquals("Mario",game1.getName());
+        Game game2 = gameMap.get(3l);
+        Assert.assertNotNull(game2);
+        assertEquals("Sonic",game2.getName());
+
+
+    }
+
+
 }
 
 

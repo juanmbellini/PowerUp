@@ -22,7 +22,7 @@ import java.util.*;
 @Repository
 public class UserJdbcDao implements UserDao {
 
-    private int MAX_FILTERS_CHECKS_RECOMMEND = 1;
+    private int MAX_FILTERS_CHECKS_RECOMMEND = 10;
 
     private final JdbcTemplate jdbcTemplate;
     private final GameDao gameDao;
@@ -220,6 +220,7 @@ public class UserJdbcDao implements UserDao {
         //Get all scoredGames and give all filters a weight based on the score on each appearance
 
         Map<Long,Integer> scoredGamed = user.getScoredGames();
+        if(scoredGamed==null) throw new IllegalStateException();
         //Map from a filter category, to a map from the filter value to an array with all the scores.
         Map<FilterCategory, Map<String,ArrayList<Integer>>> scoredGamesWithScoreArray = new HashMap<>();
         for (FilterCategory filterCategory: FilterCategory.values()){
@@ -261,6 +262,8 @@ public class UserJdbcDao implements UserDao {
             }
         });
 
+        //TODO put all same type filters together
+
         for(FilterCategory filterCategory: scoredGamesWithScoreArray.keySet()){
             Map<String,ArrayList<Integer>> filterCategoryMap = scoredGamesWithScoreArray.get(filterCategory);
             for(String filter: filterCategoryMap.keySet()){
@@ -284,11 +287,21 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Get all games with each of X filter with higher weight and give each a weight based on each appearance and avg_score(?
-        Collection<Game> resultGames=null;
 
         HashMap<Long,Integer> gamesWeightMap = new HashMap();
 
+        //Initialize all games in 0. eliminate this if it is taking too long. Only add something to the ones who have much
+        //more negatives than positive or have too few games.
+        Collection<Game> resultGames = gameDao.searchGames("",new HashMap(), OrderCategory.avg_score,false);
+        for(Game game: resultGames){
+            long gameId = game.getId();
+            if(!scoredGamed.containsKey(gameId)){
+                gamesWeightMap.put(gameId,0);
+            }
+        }
+
         int counter=0;
+        //TODO change this to pick filters in a smart way. (one of each and repeat?) Less importance to platform?
         for(int weight: scoredGamesWithFiltersWeight.keySet()){
             Map<FilterCategory,ArrayList<String>> mapFilters = scoredGamesWithFiltersWeight.get(weight);
             for(FilterCategory filterCategory: mapFilters.keySet()){
@@ -300,29 +313,61 @@ public class UserJdbcDao implements UserDao {
                     filterParameterMap.put(filterCategory,filterArrayParameter);
 
                     System.out.println(filter);
-                    resultGames=gameDao.searchGames("",filterParameterMap, OrderCategory.avg_score,false);
+                    resultGames = gameDao.searchGames("",filterParameterMap, OrderCategory.avg_score,false);
 
                     for(Game game: resultGames){
-                        if(!gamesWeightMap.containsKey(game.getId())) gamesWeightMap.put(game.getId(),0);
+                        long gameId = game.getId();
+                        if(!scoredGamed.containsKey(gameId)){
+                            if(!gamesWeightMap.containsKey(gameId)) gamesWeightMap.put(gameId,(int)game.getAvgScore());
+                            gamesWeightMap.put(gameId,gamesWeightMap.get(gameId)+weight);
+                        }
                     }
-
                     counter++;
                     if(counter>=MAX_FILTERS_CHECKS_RECOMMEND) break;
                 }
-
                 if(counter>=MAX_FILTERS_CHECKS_RECOMMEND) break;
             }
-
             if(counter>=MAX_FILTERS_CHECKS_RECOMMEND)break;
         }
 
         //Show all games ordered by weight. (And score if not used before)
-        //TODO make avgScore more important
+        Map<Integer,ArrayList<Long>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
 
-        if(resultGames==null){
-            resultGames=gameDao.searchGames("",new HashMap<>(), OrderCategory.avg_score,false);
+        Map<Long,Game> longGameMap = gameDao.findBasicDataGamesFromArrayId( gamesWeightMap.keySet());
+
+        for (Long gameId: gamesWeightMap.keySet()){
+            int gameWeight = gamesWeightMap.get(gameId);
+            if(!gameWeightMapInOrder.containsKey(gameWeight)){
+                gameWeightMapInOrder.put(gameWeight,new ArrayList<>());
+            }
+
+            gameWeightMapInOrder.get(gameWeight).add(gameId);
+
         }
-        return resultGames;
+
+        Collection<Game> finalResultList = null;
+        if(!gameWeightMapInOrder.isEmpty()){
+            finalResultList = new LinkedHashSet<>();
+
+            for(Integer gameWeight : gameWeightMapInOrder.keySet()){
+                for(Long id: gameWeightMapInOrder.get(gameWeight)){
+                    finalResultList.add(longGameMap.get(id));
+//                    System.out.println(longGameMap.get(id).getName()+" : "+ gameWeight );
+                }
+            }
+
+        }
+        //TODO make avgScore more important?
+
+        if(finalResultList==null){
+            finalResultList=gameDao.searchGames("",new HashMap<>(), OrderCategory.avg_score,false);
+        }
+        return finalResultList;
     }
 
     private void addScoreOfScoredGamedToCategory(Map<String, ArrayList<Integer>> filterCategoryMap, Collection<String> filters, Integer score) {
@@ -343,7 +388,7 @@ public class UserJdbcDao implements UserDao {
      * @param whereClause Condition to meet.
      * @return Whether there is such a row in the specified table.
      */
-    private boolean rowExists(String tableName, String whereClause) {
+    private boolean rowExists(String tableName, String whereClause) { //TODO esto se habia borrado no? se duplico tal vez?
         final boolean[] result = {false};
         //No prepared statement here since this is run from a trusted source.
         jdbcTemplate.query("SELECT COUNT(*) AS ct FROM " + tableName + " WHERE " + whereClause, new RowCallbackHandler() {
@@ -391,4 +436,9 @@ public class UserJdbcDao implements UserDao {
 
         return u;
     }
+
+
+
+
+
 }
