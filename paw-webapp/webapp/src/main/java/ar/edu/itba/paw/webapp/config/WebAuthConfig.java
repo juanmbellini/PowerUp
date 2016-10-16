@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
@@ -90,17 +87,13 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Override
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        //TODO delete default PAW user this in production from bottom of initial-data.sql
         auth.userDetailsService(userDetailsService)
             .and().jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, hashed_password, enabled FROM power_up.users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authority FROM power_up.user_authorities WHERE username = ?")
-        //TODO delete this in production
-        .and().inMemoryAuthentication()
-            .withUser("paw")
-            .password("paw")
-            .roles("USER");
+                .authoritiesByUsernameQuery("SELECT username, authority FROM power_up.user_authorities WHERE username = ?");
     }
 
     @Override
