@@ -21,12 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-         final User user = us.findByUsername(username);
+        final User user = us.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User " + username + " does not exist");
         }
-        final Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-        //TODO don't use hardcoded authorities, fetch from database
-        return new org.springframework.security.core.userdetails.User(username, user.getHashedPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(username, user.getHashedPassword(), user.getAuthorities());
     }
 }

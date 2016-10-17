@@ -5,23 +5,16 @@ import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -30,14 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import sun.plugin.dom.exception.InvalidStateException;
-import sun.plugin.javascript.navig.Array;
 import org.springframework.web.util.HtmlUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -246,19 +235,19 @@ public class MainController {
         User u = userService.findByUsername(username);      //If we got this far, we know username != null
         if(u == null) return error400();
 
-        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();   //TODO change name of playedGames
+        Map<PlayStatus, Set<Game>> gamesInListsMap = new HashMap<>();
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<>());           //TODO use other set and give it order?
+            gamesInListsMap.put(playStatus, new HashSet<>());           //TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //TODO do this in user?
         for(long gameId: playStatuses.keySet()){
             Game game = gameService.findById(gameId);
-            if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
-            playedGames.get(playStatuses.get(gameId)).add(game);
+            if(game==null) throw new IllegalStateException("Status list should have a game that do not exist");
+            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);
-        mav.addObject("playStatuses", playedGames);
+        mav.addObject("playStatuses", gamesInListsMap);
 
         return mav;
     }
@@ -271,8 +260,8 @@ public class MainController {
             return game(rateAndStatusForm, id);
         }
         final User u = getCurrentUser();
-        if(u == null) {
-            return new ModelAndView("redirect:/");  //TODO return HTTP 401; configure web auth to only give access to authenticated users
+        if(u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
+            return new ModelAndView("redirect:/login");
         }
 
         Integer score = rateAndStatusForm.getScore();
