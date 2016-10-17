@@ -5,21 +5,25 @@ import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import netscape.javascript.JSException;
 import org.atteo.evo.inflector.English;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.HtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import sun.plugin.dom.exception.InvalidStateException;
-import sun.plugin.javascript.navig.Array;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -33,6 +37,7 @@ public class MainController {
 
     private final GameService gameService;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static TypeReference<HashMap<FilterCategory, ArrayList<String>>> typeReference
@@ -40,16 +45,16 @@ public class MainController {
     };
 
     @Autowired
-    public MainController(GameService gameService, UserService userService) {
+    public MainController(GameService gameService, UserService userService, PasswordEncoder passwordEncoder) {
         //Spring is in charge of providing the gameService parameter.
         this.userService = userService;
         this.gameService = gameService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
     public ModelAndView home() {
         final ModelAndView mav = new ModelAndView("index");
-        mav.addObject("greeting", "PAW");
         return mav;
     }
 
@@ -76,7 +81,7 @@ public class MainController {
             orderCategory = "name";
         } else if (orderParameter.equals("release date")) {
             orderCategory = "release";
-        } else if (orderParameter.equals("avg-rating")) {
+        } else if (orderParameter.equals("avg-score")) {
             orderCategory = "avg_score";
         } else {
             mav.setViewName("redirect:error400");
@@ -104,6 +109,7 @@ public class MainController {
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
             // TODO: Change JSP in order to send just the page
+            mav.setViewName("search");
             mav.addObject("results", page.getData());
             mav.addObject("pageNumber", page.getPageNumber());
             mav.addObject("pageSize", page.getPageSize());
@@ -115,7 +121,6 @@ public class MainController {
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.addObject("filters", filtersStr);
-            mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
@@ -141,7 +146,7 @@ public class MainController {
 
     @RequestMapping("/game")
     public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
-                             @RequestParam(name = "id") int id) {
+                             @RequestParam(name = "id") long id) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
         Set<Game> relatedGames;
@@ -150,10 +155,12 @@ public class MainController {
             if (game == null) {
                 return error404();
             }
-            User currentUser = userService.findById(1);
-            //TODO change user to current user
-            if (currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
-            if (currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
+            User u = getCurrentUser();
+            if(u != null) {
+                if (u.hasScoredGame(id)) rateAndStatusForm.setScore(u.getGameScore(id));
+                if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
+            }
+
 
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
@@ -162,45 +169,86 @@ public class MainController {
         } catch (Exception e) {
             return error500();
         }
-        ArrayList scoreValues = new ArrayList();
+        List<Integer> scoreValues = new ArrayList<>();
         for (int i = 1; i <= 10; i++) scoreValues.add(i);
         mav.addObject("scoreValues", scoreValues);
-        mav.addObject("statuses", PlayStatus.values());
+        /*
+            Pass a map of statuses to the <select> dropdown. The map's keys will be the form's values and the map's
+            values will be what will get displayed to the user.
+         */
+        Map<PlayStatus, String> statuses = new LinkedHashMap<>();
+        for(PlayStatus status : PlayStatus.values()) {
+            statuses.put(status, status.getPretty());
+        }
+        mav.addObject("statuses", statuses);
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }
 
+    /* *****************************************************************************************************************
+    *                                               USERS/SESSIONS
+    * *****************************************************************************************************************/
+
+    //TODO move current-user functions to UserService?
+    /**
+     * Gets the current user. <b>NOTE: </b>To check whether a user is currently logged in, use the less costly (and more
+     * obvious) {@link #isLoggedIn()} method.
+     *
+     * @return The currently authenticated user, or {@code null} if none.
+     */
+    @ModelAttribute("currentUser")
+    public User getCurrentUser() {
+        String username = getCurrentUsername();
+        return (username == null || username.contains("anonymous")) ? null : userService.findByUsername(username);
+    }
+
+    /**
+     * Gets the currently authenticated user's username.
+     *
+     * @return The currently authenticated user's username.
+     */
+    @ModelAttribute("currentUsername")
+    public String getCurrentUsername() {
+        return SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    /**
+     * Checks whether there is a currently authenticated user.
+     * @return Whether a user is currently authenticated with Spring.
+     */
+    @ModelAttribute("isLoggedIn")
+    public boolean isLoggedIn() {
+        String username = getCurrentUsername();
+        return !(username == null || username.contains("anonymous"));
+    }
+
     @RequestMapping("/list")
-    public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
-        if(userName==null){
-            User currentUser = userService.findById(1);
-            if(currentUser==null) return error400();
-            //TODO use true current user
-            userName=currentUser.getUsername();
-            return new ModelAndView("redirect:/list?userName="+userName);
+    public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
+        if(username == null) {
+            if(!isLoggedIn()) {
+                return error400();
+            }
+            return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
         }
         final ModelAndView mav = new ModelAndView("list");
-        //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
+        User u = userService.findByUsername(username);      //If we got this far, we know username != null
+        if(u == null) return error400();
 
-
-        User u = userService.findByUsername(userName);
-        if(u==null) return error400();
-
-        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>(); //TODO change name of playedGames
+        Map<PlayStatus, Set<Game>> gamesInListsMap = new HashMap<>();
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<Game>()); //TODO user other set and give it order?
+            gamesInListsMap.put(playStatus, new HashSet<>());           //TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
-        //Todo, do this in user?
+        //TODO do this in user?
         Map<Long,Game> longGameMap = gameService.findBasicDataGamesFromArrayId( playStatuses.keySet());
         for(long gameId: playStatuses.keySet()){
             Game game = longGameMap.get(gameId);
-            if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
-            playedGames.get(playStatuses.get(gameId)).add(game);
+            if(game==null) throw new IllegalStateException("Status list should have a game that do not exist");
+            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
-        mav.addObject("user",u);
-        mav.addObject("playStatuses", playedGames);
+        mav.addObject("user", u);
+        mav.addObject("playStatuses", gamesInListsMap);
 
         return mav;
     }
@@ -208,12 +256,14 @@ public class MainController {
     @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
     public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                                             final BindingResult errors,
-                                            @RequestParam(name = "id") int id) {
+                                            @RequestParam(name = "id") long id) {
         if (errors.hasErrors()) {
             return game(rateAndStatusForm, id);
         }
-        //TODO change user to current user
-        final User u = userService.findById(1);
+        final User u = getCurrentUser();
+        if(u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
+            return new ModelAndView("redirect:/login");
+        }
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) userService.scoreGame(u, id, score);
@@ -226,22 +276,29 @@ public class MainController {
         return new ModelAndView("redirect:/game?id=" + id);
     }
 
-    @RequestMapping("/register")//TODO
+    @RequestMapping("/register")
     public ModelAndView register(@ModelAttribute("registerForm") final UserForm form) {
             return new ModelAndView("register");
     }
 
-    @RequestMapping(value = "/register", method = { RequestMethod.POST })
+    @RequestMapping(value = "/register", method = {RequestMethod.POST})
     public ModelAndView create(@Valid @ModelAttribute("registerForm") final UserForm form, final BindingResult errors) {
         if (errors.hasErrors()) {
             return register(form);
         }
-        final User u = userService.create(form.getEmail(), form.getUsername(), form.getPassword());
-        //TODO redirect to user page
-        return new ModelAndView("redirect:/?userId="+ u.getId());
+        //TODO handle duplicate emails/usernames here
+        final String email = form.getEmail(),
+                    hashedPassword = passwordEncoder.encode(form.getPassword()),
+                    username = form.getUsername();
+        final User user = userService.create(email, hashedPassword, username);
+        System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
+        //Log the new user in
+        Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        return new ModelAndView("redirect:/");
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = {RequestMethod.GET})
     public ModelAndView login(@ModelAttribute("loginForm") final LoginForm form) {
         return new ModelAndView("login");
     }
@@ -259,6 +316,9 @@ public class MainController {
 
 
 
+    /* *****************************************************************************************************************
+    *                                                   ERRORS
+    * *****************************************************************************************************************/
     @RequestMapping("/error500")
     public ModelAndView error500() {
         final ModelAndView mav = new ModelAndView("error500");

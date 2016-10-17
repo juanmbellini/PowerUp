@@ -61,4 +61,9 @@ public interface GameDao {
      */
     Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
 
+    /**
+     * Update the avgScore of the game with id gameId.
+     * @param gameId
+     */
+    void updateAvgScore(long gameId);
 }

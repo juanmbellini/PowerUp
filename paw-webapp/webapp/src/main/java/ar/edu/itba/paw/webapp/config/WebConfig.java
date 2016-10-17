@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service"})
+@ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Value("classpath:schema.sql")
@@ -29,6 +29,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Value("classpath:initial-data.sql")
     private Resource initialDataSql;
+
+    @Value("classpath:add_cover_pic.sql")
+    private Resource coverPicturesSql;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -65,6 +68,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
         registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+        registry.addResourceHandler("/slick/**").addResourceLocations("/slick/");
     }
 
     @Override
@@ -78,6 +82,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
         dbp.addScript(initialDataSql);
+        dbp.addScript(coverPicturesSql);
         return dbp;
     }
 }

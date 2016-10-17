@@ -96,7 +96,8 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[1];
         parameters[0] = id;
         String query;
-        query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
+        query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score, " +
+                "cover_picture_cloudinary_id FROM power_up.games WHERE power_up.games.id = ?";
         System.out.println(query);
         final boolean[] found = {false};
         try {
@@ -108,6 +109,7 @@ public class GameJdbcDao implements GameDao {
                             result.setSummary(rs.getString("summary"));
                             result.setAvgScore(rs.getDouble("avg_score"));
                             result.setReleaseDate(new LocalDate(rs.getString("release")));
+                            result.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                             found[0] = true;
                         }
                     }
@@ -201,7 +203,7 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
+        // Get cloudinary IDs in the same order always.
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
         System.out.println(query);
         try {
@@ -312,22 +314,17 @@ public class GameJdbcDao implements GameDao {
         boolean paginationOn = pageSize > 0;
 
         StringBuilder selectString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id, " +
-                        "power_up.games.release");
+                .append("SELECT power_up.games.id, power_up.games.name, avg_score, summary, " +
+                        "power_up.games.release, cover_picture_cloudinary_id");
         StringBuilder fromString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
                 .append("FROM power_up.games")
                 .append(" INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id")
-                .append(" INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id")
-                .append(" LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id");
+                .append(" INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id");
         StringBuilder nameString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
                 .append("WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'");
         StringBuilder filtersString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY);
-        StringBuilder picturesString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append(" AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures")
-                .append(" WHERE pictures.game_id = game_id)")
-                .append(" OR pictures.id IS NULL)");
         StringBuilder groupByString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append("GROUP BY power_up.games.id, power_up.games.name, avg_score, pictures.cloudinary_id, summary");
+                .append("GROUP BY power_up.games.id, power_up.games.name, avg_score, cover_picture_cloudinary_id, summary");
 
         addDoSearchGamesFilters(filters, parameters, fromString, filtersString, 1);
 
@@ -336,8 +333,7 @@ public class GameJdbcDao implements GameDao {
                 .append(fromString)
                 .append(" ")
                 .append(nameString)
-                .append(filtersString)
-                .append(picturesString);
+                .append(filtersString);
 
         StringBuilder dataFetchQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
                 .append(selectString)
@@ -387,9 +383,9 @@ public class GameJdbcDao implements GameDao {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
                     Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
-                    game.addPictureURL(rs.getString("cloudinary_id"));
                     game.setReleaseDate(new LocalDate(rs.getString("release")));
                     game.setAvgScore(rs.getDouble("avg_score"));
+                    game.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                     gamesSet.add(game);
                 }
             });
@@ -546,5 +542,16 @@ public class GameJdbcDao implements GameDao {
         }
         return gameMap;
     }
+
+
+    public void updateAvgScore(long gameId){
+        String query = " UPDATE power_up.games SET avg_score = (SELECT AVG(CAST(score AS FLOAT))" +
+                                                            " FROM power_up.game_scores" +
+                                                             " WHERE power_up.game_scores.game_id = ?)" +
+                " WHERE id = ?";
+
+        jdbcTemplate.update(query, gameId, gameId);
+    }
+
 
 }

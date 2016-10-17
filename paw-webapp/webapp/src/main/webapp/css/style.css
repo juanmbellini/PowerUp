@@ -13,23 +13,23 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-#results > li {
+.games-list li {
     height: 100px;
-    padding: 0;
+    padding: 0 !important;
 }
 
-#results > li > img {
+.games-list li img {
     max-height: 100px;
     width: auto;
     padding-left: 0;
 }
 
-#results > li > .primary-content {
+.games-list .primary-content {
     padding-top: 10px;
 }
 
-#results > li > .primary-content .title {
-    font-size: 25px;
+.games-list li .primary-content .title {
+    font-size: 25px !important;
     margin-bottom: 10px;
 }
 
@@ -39,6 +39,16 @@
 
 .div_none{
     margin-top: 5px;
+}
+
+.slick-carousel img {
+    max-height: 400px;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.slick-prev:before, .slick-next:before{
+    color:grey !important;
 }
 
 /*#logo-container {*/

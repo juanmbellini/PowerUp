@@ -5,11 +5,11 @@ import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runner.manipulation.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
@@ -62,12 +62,14 @@ public class GameJdbcDaoTest {
                 .append("INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n")
                 .append("INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n")
                 // Inserts games
-                .append("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');\n")
-                .append("INSERT INTO power_up.games VALUES (2, 'Super Mario Party', '', 0, '2018-12-30');\n")
-                .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30');\n")
-                .append("INSERT INTO power_up.games VALUES (4, 'Megaman I', 'Megaman .', 0, '2000-12-30');\n")
-                .append("INSERT INTO power_up.games VALUES (5, 'Megaman II', '', 0, '2012-12-30');\n")
-                .append("INSERT INTO power_up.games VALUES (6, 'Megaman III', 'Megaman!!', 0, '2014-12-30');\n")
+                .append("INSERT INTO power_up.games\n")
+                .append("VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30', 'whgrfj9muktnnpags6qg', 0);\n")
+                .append("INSERT INTO power_up.games\n")
+                .append("VALUES (2, 'Super Mario Party', '', 0, '2018-12-30', 'fouukgohwdwhusnx05dx', 0);\n")
+                .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30', null, 0);\n")
+                .append("INSERT INTO power_up.games VALUES (4, 'Megaman I', 'Megaman .', 0, '2000-12-30', null, 0);\n")
+                .append("INSERT INTO power_up.games VALUES (5, 'Megaman II', '', 0, '2012-12-30', null, 0);\n")
+                .append("INSERT INTO power_up.games VALUES (6, 'Megaman III', 'Megaman!!', 0, '2014-12-30', null, 0);\n")
 
                 // Inserts game-keywords relationship
                 .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
@@ -105,20 +107,18 @@ public class GameJdbcDaoTest {
                 .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n")
                 .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n")
                 .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 1);\n")
+                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 1);\n")
                 // Inserts game-images relationship
                 .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
                 .append("VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n")
                 .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
                 .append("VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n")
                 .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
-                .append("VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 1);\n");
+                .append("VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);");
         jdbcTemplate.execute(insert.toString());
     }
-
-    //TODO afterClass to clean DB
 
 
     @Before
@@ -129,6 +129,16 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
         initializeDataBase();
     }
+
+//    @AfterClass
+//    public static void cleanDb(){
+//        jdbcTemplate = gameDao.getJdbcTemplate();
+//        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
+//                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
+//                "power_up.companies", "power_up.keywords", "power_up.genres");
+//    }
+//
+//    //TODO afterClass to clean DB that works
 
 
     @Test
@@ -151,7 +161,6 @@ public class GameJdbcDaoTest {
 
         assert ((firstGame.getName().equals("Mario") || secondGame.getName().equals("Mario")) && !(firstGame.getName().equals("Mario") && secondGame.getName().equals("Mario")));
 
-        //TODO testear que se cargue bien el summary y eso????
     }
 
     @Test

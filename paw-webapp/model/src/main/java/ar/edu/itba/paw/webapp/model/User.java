@@ -1,14 +1,15 @@
 package ar.edu.itba.paw.webapp.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class User {
     private long id;
     private String username;
     private String email;
+    private String hashedPassword;
     private Map<Long, Integer> scoredGames = new HashMap<>();
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     /**
      * Creates a new user.
@@ -16,19 +17,33 @@ public class User {
      * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
+     * @param hashedPassword The user's hashed password.
+     * @param authorities The user's authorities.
      */
-
-    public User(long id, String email, String username) {
+    public User(long id, String email, String username, String hashedPassword, Authority... authorities) {
         this.id = id;
         this.email = email;
         this.username = username;
+        this.hashedPassword = hashedPassword;
+        Collections.addAll(this.authorities, authorities);
     }
 
+    /**
+     * Creates a new user.
+     *
+     * @param id The user's id.
+     * @param email The user's identifying email.
+     * @param username The user's identifying username.
+     * @param hashedPassword The user's hashed password.
+     * @param authorities The user's authorities.
+     */
+    public User(long id, String email, String username, String hashedPassword, Collection<Authority> authorities) {
+        this(id, email, username, hashedPassword, authorities.toArray(new Authority[0]));
+    }
 
     /**
      * @return This user's username.
      */
-
     public String getUsername() {
         return username;
     }
@@ -127,6 +142,56 @@ public class User {
      */
     public void setPlayStatuses(Map<Long, PlayStatus> playedGames) {
         this.playedGames.putAll(playedGames);
+    }
+
+    /**
+     * @return This user's hashed password.
+     */
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    /**
+     * Updates this user's hashed password.
+     * @param hashedPassword The new hashed password. Can't be null.
+     */
+    public void setHashedPassword(String hashedPassword) {
+        if(hashedPassword == null) {
+            throw new IllegalArgumentException("Password can't be null");
+        }
+        this.hashedPassword = hashedPassword;
+    }
+
+    /**
+     * @return This user's granted authorities.
+     */
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    /**
+     * Adds a new authority to this user, if not already present.
+     * @param authority The new authority.
+     */
+    public void addAuthority(Authority authority) {
+        authorities.add(authority);
+    }
+
+    /**
+     * Adds new authorities to this user, if not already present.
+     * @param authority The new authorities.
+     */
+    public void addAuthorities(Collection<Authority> authority) {
+        authorities.addAll(authority);
+    }
+
+    /**
+     * Sets this user's authorities, replacing any previously set authorities.
+     * @param authorities The new authorities.
+     */
+    public void setAuthorities(Collection<Authority> authorities) {
+        this.authorities.clear();
+        this.authorities.addAll(authorities);
     }
 
     /**

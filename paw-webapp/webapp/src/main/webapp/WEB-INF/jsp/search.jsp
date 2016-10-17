@@ -15,14 +15,13 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text">Results for ${searchedName}<c:if test="${hasFilters}"> with
-                filters</c:if></h1>
+            <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search for ${searchedName}</h1>
         </div>
         <div class="row">
             <select class="col s2" id="orderSelectId" onchange="reload()">
                 <option value="name">name</option>
                 <option value="release date">release date</option>
-                <option value="avg-rating">avg-rating</option>
+                <option value="avg-score">avg-score</option>
             </select>
             <select class="col s2" id="orderBooleanId" onchange="reload()">
                 <option value="ascending">ascending</option>
@@ -30,17 +29,14 @@
             </select>
         </div>
         <div class="row">
-
-
             <div class="col s4 center">
-
                 <h6>name</h6>
             </div>
             <div class="col s6 center">
                 <h6>release date</h6>
             </div>
             <div class="col 2 center">
-                <h6>avg-rating</h6>
+                <h6>avg-score</h6>
             </div>
         </div>
         <div class="section ">
@@ -50,7 +46,7 @@
                         <h3 class="center">No results</h3>
                     </c:when>
                     <c:otherwise>
-                        <ul class="collection" id="results">
+                        <ul class="collection games-list">
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2" style="padding: 0;">
@@ -70,7 +66,7 @@
                                     <div class="col s2">
                                         <div class="secondary-content">
                                             <c:choose>
-                                                <c:when test="${game.avgScore <= 10 && game.avgScore>=0}">
+                                                <c:when test="${game.avgScore <= 10 && game.avgScore>0}">
                                                     <p class="rating-number center"><b>${game.avgScore}</b></p>
                                                     <p class="rating-stars hide-on-small-and-down">
                                                         <c:forEach begin="0" end="4" var="i">
@@ -114,10 +110,8 @@
 </body>
 </html>
 
-
 <script>
     $( document ).ready(function() {
-
         $("#orderBooleanId").val("${orderBoolean}");
         $("#orderBooleanId").material_select();
         $("#orderSelectId").val("${orderCategory}");

@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
  */
 public class Review {
 
-    private long id;
+    private long id; //TODO set id
     private int rating;
     private User user;
     private String review;

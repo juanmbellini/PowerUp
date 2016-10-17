@@ -6,7 +6,9 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+
 
 
 /**
@@ -27,12 +30,18 @@ public class UserJdbcDao implements UserDao {
     private final JdbcTemplate jdbcTemplate;
     private final GameDao gameDao;
     private final SimpleJdbcInsert userCreator,
+            userAuthorityCreator,
             gameScoreInserter,
             gamePlayStatusInserter;
     private final RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"));
+            //Fetch this user's authorities
+            List<Authority> authorities = new ArrayList<>();
+            for(Map<String, Object> row : jdbcTemplate.queryForList("SELECT authority FROM power_up.user_authorities WHERE username = ?", rs.getString("username"))) {
+                authorities.add(Authority.valueOf((String)row.get("authority")));
+            }
+            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"), authorities);
         }
     };
 
@@ -45,6 +54,10 @@ public class UserJdbcDao implements UserDao {
                 .withTableName("users")
                 .usingColumns("email", "username", "hashed_password")
                 .usingGeneratedKeyColumns("id");
+        userAuthorityCreator = new SimpleJdbcInsert(jdbcTemplate)
+                .withSchemaName("power_up")
+                .withTableName("user_authorities")
+                .usingColumns("username", "authority");
         gamePlayStatusInserter = new SimpleJdbcInsert(jdbcTemplate)
                 .withSchemaName("power_up")
                 .withTableName("game_play_statuses")
@@ -60,12 +73,12 @@ public class UserJdbcDao implements UserDao {
     }
 
     @Override
-    public User create(String email, String password, String username) {
+    public User create(String email, String hashedPassword, String username) {
         if (email == null) {
             throw new IllegalArgumentException("Email can't be null");
         }
-        if (password == null) {
-            throw new IllegalArgumentException("Password can't be null");
+        if (hashedPassword == null) {
+            throw new IllegalArgumentException("Hashed password can't be null");
         }
         if (username == null) {
             throw new IllegalArgumentException("Username can't be null");
@@ -78,13 +91,17 @@ public class UserJdbcDao implements UserDao {
             throw new UserExistsException("Username " + username + " already taken");
         }
 
-        final Map<String, Object> args = new HashMap<>();
-        args.put("email", email);                  //TODO ensure it's a valid email
-        args.put("hashed_password", password);     //TODO hash or salt the passwords here, DON'T STORE THEM IN PLAIN TEXT!
-        args.put("username", username);
+        final Map<String, Object> userArgs = new HashMap<>();
+        userArgs.put("email", email);                         //TODO ensure it's a valid email
+        userArgs.put("hashed_password", hashedPassword);
+        userArgs.put("username", username);
+        final Map<String, Object> authorityArgs = new HashMap<>();
+        authorityArgs.put("username", username);
+        authorityArgs.put("authority", Authority.USER.name());
         try {
-            Number id = userCreator.executeAndReturnKey(args);
-            return new User(id.longValue(), email, username);
+            Number id = userCreator.executeAndReturnKey(userArgs);
+            userAuthorityCreator.execute(authorityArgs);
+            return new User(id.longValue(), email, username, hashedPassword, Authority.USER);
         } catch (Exception e) {
             throw new UserExistsException(e);
         }
@@ -128,19 +145,19 @@ public class UserJdbcDao implements UserDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[] {id}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[]{id}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithUsername(String username) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[] {username}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[]{username}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithEmail(String email) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[] {email}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
         return count > 0;
     }
 
@@ -158,9 +175,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
-           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
+            jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -168,7 +185,17 @@ public class UserJdbcDao implements UserDao {
             params.put("score", score);
             gameScoreInserter.execute(params);
         }
+
         user.scoreGame(gameId, score);
+        //TODO ver lo de merca y race condition
+        //TODO cambiar para que sea mejor que en todas las veces
+        String querySelect = "SELECT counter FROM power_up.games WHERE id = ?";
+        int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
+        String queryUpdate = "UPDATE power_up.games SET counter=? WHERE id = ?";
+        jdbcTemplate.update(queryUpdate, counter, gameId);
+        if (counter % 1 == 0) {
+            gameDao.updateAvgScore(gameId);
+        }
     }
 
     @Override
@@ -193,8 +220,8 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
-        if(count > 0) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        if (count > 0) {
             jdbcTemplate.update("UPDATE power_up.game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
@@ -436,9 +463,4 @@ public class UserJdbcDao implements UserDao {
 
         return u;
     }
-
-
-
-
-
 }

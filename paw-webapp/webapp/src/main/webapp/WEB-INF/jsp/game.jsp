@@ -1,13 +1,13 @@
-
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
+    <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
     <title>${game.name} - PowerUp</title>
 </head>
 <body>
@@ -21,10 +21,10 @@
             <h1 class="header center orange-text">${game.name}</h1>
             <h5 class="center orange-text">${game.releaseDate.year}</h5>
         </div>
+        <%--Rate and status form if logged in--%>
         <div class ="section">
             <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-            <form:form modelAttribute="rateAndStatusForm" action="${postPath}" method="post" class="center-align">
-
+            <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align">
                 <div class="row" >
                     <div class="col s3">
                     </div>
@@ -51,14 +51,21 @@
                                 <form:errors path="playStatus" cssClass="formError" element="p"/>
                             </div>
 
-                            <div class="col s4 center">
-                                <input type="submit" value="Update list!"/>
-                            </div>
+                            <c:choose>
+                                <c:when test="${isLoggedIn}">
+                                    <div class="col s4 center">
+                                        <input class="btn waves-effect waves-light" type="submit" value="Update list!"/>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="col s4 center">
+                                        <%--TODO redirect user back  here after login--%>
+                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-
                     </div>
-
-
                 </div>
             </form:form>
         </div>
@@ -84,7 +91,15 @@
                         </div>
                         <div class="col s4">
                             <p><b>Rating</b></p>
-                            <p style="margin-top:0;">${game.avgScore}</p>
+                            <c:choose>
+                                <c:when test="${game.avgScore>0}">
+                                    <p style="margin-top:0;">${game.avgScore}</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p style="margin-top:0;">unrated</p>
+                                </c:otherwise>
+                            </c:choose>
+
                             <p><b>Genres</b></p>
                             <p>
                                 <c:forEach var="genre" items="${game.genres}" varStatus="status">
@@ -138,16 +153,18 @@
                     <c:if test="${ fn:length( relatedGames) > 0 }">
                         <div class="row">
                             <h5 class="center">Related Games</h5>
-                                <div class="carousel" style="margin-top: -50px;">
-                                    <c:forEach var="game" items="${relatedGames}">
-                                        <div class="carousel-item center">
-                                            <a href="<c:url value="/game?id=${game.id}"/>">
-                                                <img src="${game.coverPictureUrl}"/>
-                                            </a>
-                                            <h5 style="margin-top:0; overflow-wrap: break-word;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
-                                        </div>
-                                    </c:forEach>
-                                </div>
+                            <div class="slick-carousel">
+                                <c:forEach var="game" items="${relatedGames}">
+                                    <div>
+                                        <a href="<c:url value="/game?id=${game.id}"/>">
+                                            <img data-lazy="${game.coverPictureUrl}" />
+                                        </a>
+                                        <h5 class="center" style="overflow-wrap: break-word;">
+                                            <a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
+                                        </h5>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
                     </c:if>
                 </c:otherwise>
@@ -159,6 +176,7 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-</body>
 <script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
+<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
+</body>
 </html>

@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS power_up.game_developers CASCADE;
 DROP TABLE IF EXISTS power_up.game_publishers CASCADE;
 DROP TABLE IF EXISTS power_up.game_scores CASCADE;
 DROP TABLE IF EXISTS power_up.game_play_statuses CASCADE;
+DROP TABLE IF EXISTS power_up.user_authorities CASCADE;
 
 -- Drop of entity tables
 DROP TABLE IF EXISTS power_up.games CASCADE;
@@ -18,17 +19,17 @@ DROP TABLE IF EXISTS power_up.platforms CASCADE;
 DROP TABLE IF EXISTS power_up.companies CASCADE;
 DROP TABLE IF EXISTS power_up.keywords CASCADE;
 DROP TABLE IF EXISTS power_up.game_pictures CASCADE;
-
---DROP TABLE IF EXISTS power_up.ratings;
-
+DROP TABLE IF EXISTS power_up.users CASCADE;
 
 -- Creation of entity tables
 CREATE TABLE IF NOT EXISTS power_up.games (
-  id        SERIAL NOT NULL PRIMARY KEY,
-  name      VARCHAR,
-  summary   TEXT,
-  avg_score REAL,
-  release   DATE
+  id                          SERIAL  NOT NULL PRIMARY KEY,
+  name                        VARCHAR,
+  summary                     TEXT,
+  avg_score                   REAL,
+  release                     DATE,
+  cover_picture_cloudinary_id VARCHAR,
+  counter                     INTEGER NOT NULL
 );
 CREATE TABLE IF NOT EXISTS power_up.genres (
   id   SERIAL NOT NULL PRIMARY KEY,
@@ -47,13 +48,14 @@ CREATE TABLE IF NOT EXISTS power_up.keywords (
   name VARCHAR NOT NULL
 );
 CREATE TABLE IF NOT EXISTS power_up.users (
-  id  SERIAL  NOT NULL PRIMARY KEY,
-  email VARCHAR NOT NULL,
-  username VARCHAR DEFAULT NULL,
+  id              SERIAL  NOT NULL PRIMARY KEY,
+  email           VARCHAR NOT NULL,
+  username        VARCHAR          DEFAULT NULL,
   hashed_password VARCHAR NOT NULL,
+  enabled         BOOLEAN NOT NULL DEFAULT TRUE,
 
-  UNIQUE(email),
-  UNIQUE(username)
+  UNIQUE (email),
+  UNIQUE (username)
 );
 
 -- Creation of relationship tables
@@ -112,24 +114,32 @@ CREATE TABLE IF NOT EXISTS power_up.game_pictures (
 
   FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE TABLE IF NOT EXISTS power_up.game_scores(
-  id        SERIAL NOT NULL PRIMARY KEY,
-  user_id   INTEGER NOT NULL,
-  game_id   INTEGER NOT NULL,
-  score     INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS power_up.game_scores (
+  id      SERIAL  NOT NULL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  game_id INTEGER NOT NULL,
+  score   INTEGER NOT NULL,
 
-  FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  UNIQUE(user_id, game_id)
+  FOREIGN KEY (user_id) REFERENCES power_up.users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (user_id, game_id)
 );
-CREATE TABLE IF NOT EXISTS power_up.game_play_statuses(
-  id        SERIAL NOT NULL PRIMARY KEY,
-  user_id   INTEGER NOT NULL,
-  game_id   INTEGER NOT NULL,
-  status    TEXT NOT NULL,
+CREATE TABLE IF NOT EXISTS power_up.game_play_statuses (
+  id      SERIAL  NOT NULL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  game_id INTEGER NOT NULL,
+  status  TEXT    NOT NULL,
 
-  FOREIGN KEY(user_id) REFERENCES power_up.users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY(game_id) REFERENCES power_up.games(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  UNIQUE(user_id, game_id)
+  FOREIGN KEY (user_id) REFERENCES power_up.users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (game_id) REFERENCES power_up.games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (user_id, game_id)
+);
+CREATE TABLE IF NOT EXISTS power_up.user_authorities (
+  id        SERIAL  NOT NULL PRIMARY KEY,
+  username  VARCHAR NOT NULL,
+  authority VARCHAR NOT NULL,
+
+  FOREIGN KEY (username) REFERENCES power_up.users (username),
+  UNIQUE (username, authority)
 );
 COMMIT;
