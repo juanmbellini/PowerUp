@@ -120,6 +120,7 @@ public class MainController {
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
             // TODO: Change JSP in order to send just the page
+            mav.setViewName("search");
             mav.addObject("results", page.getData());
             mav.addObject("pageNumber", page.getPageNumber());
             mav.addObject("pageSize", page.getPageSize());
@@ -131,7 +132,6 @@ public class MainController {
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.addObject("filters", filtersStr);
-            mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
@@ -166,10 +166,11 @@ public class MainController {
             if (game == null) {
                 return error404();
             }
-            User currentUser = userService.findById(1);
-            //TODO change user to current user
-            if (currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
-            if (currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
+            User u = getCurrentUser();
+            if(u != null) {
+                if (u.hasScoredGame(id)) rateAndStatusForm.setScore(u.getGameScore(id));
+                if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
+            }
 
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
@@ -178,10 +179,18 @@ public class MainController {
         } catch (Exception e) {
             return error500();
         }
-        ArrayList scoreValues = new ArrayList();
+        List<Integer> scoreValues = new ArrayList<>();
         for (int i = 1; i <= 10; i++) scoreValues.add(i);
         mav.addObject("scoreValues", scoreValues);
-        mav.addObject("statuses", PlayStatus.values());
+        /*
+            Pass a map of statuses to the <select> dropdown. The map's keys will be the form's values and the map's
+            values will be what will get displayed to the user.
+         */
+        Map<PlayStatus, String> statuses = new LinkedHashMap<>();
+        for(PlayStatus status : PlayStatus.values()) {
+            statuses.put(status, status.getPretty());
+        }
+        mav.addObject("statuses", statuses);
         mav.addObject("game", game);
         mav.addObject("relatedGames", relatedGames);
         return mav;
@@ -191,47 +200,63 @@ public class MainController {
     *                                               USERS/SESSIONS
     * *****************************************************************************************************************/
 
+    //TODO move current-user functions to UserService?
     /**
-     * Gets the current user.
+     * Gets the current user. <b>NOTE: </b>To check whether a user is currently logged in, use the less costly (and more
+     * obvious) {@link #isLoggedIn()} method.
      *
      * @return The currently authenticated user, or {@code null} if none.
      */
     @ModelAttribute("currentUser")
     public User getCurrentUser() {
-        String username = (SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName());
-        if (username == null || username.contains("anonymous")) return null;
-        System.out.println("Logged in as " + username);
-        return userService.findByUsername(username);
+        String username = getCurrentUsername();
+        return (username == null || username.contains("anonymous")) ? null : userService.findByUsername(username);
+    }
+
+    /**
+     * Gets the currently authenticated user's username.
+     *
+     * @return The currently authenticated user's username.
+     */
+    @ModelAttribute("currentUsername")
+    public String getCurrentUsername() {
+        return SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    /**
+     * Checks whether there is a currently authenticated user.
+     * @return Whether a user is currently authenticated with Spring.
+     */
+    @ModelAttribute("isLoggedIn")
+    public boolean isLoggedIn() {
+        String username = getCurrentUsername();
+        return !(username == null || username.contains("anonymous"));
     }
 
     @RequestMapping("/list")
-    public ModelAndView list(@RequestParam(value = "userName", required = false) String userName) {
-        if(userName==null){
-            User currentUser = userService.findById(1);
-            if(currentUser==null) return error400();
-            //TODO use true current user
-            userName=currentUser.getUsername();
-            return new ModelAndView("redirect:/list?userName="+userName);
+    public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
+        if(username == null) {
+            if(!isLoggedIn()) {
+                return error400();
+            }
+            return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
         }
         final ModelAndView mav = new ModelAndView("list");
-        //TODO if no username is provided: if logged in, redirect with logged-in username; else, 404 or something
+        User u = userService.findByUsername(username);      //If we got this far, we know username != null
+        if(u == null) return error400();
 
-
-        User u = userService.findByUsername(userName);
-        if(u==null) return error400();
-
-        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>(); //TODO change name of playedGames
+        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();   //TODO change name of playedGames
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<Game>()); //TODO user other set and give it order?
+            playedGames.put(playStatus, new HashSet<>());           //TODO use other set and give it order?
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
-        //Todo, do this in user?
+        //TODO do this in user?
         for(long gameId: playStatuses.keySet()){
             Game game = gameService.findById(gameId);
             if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
             playedGames.get(playStatuses.get(gameId)).add(game);
         }
-        mav.addObject("user",u);
+        mav.addObject("user", u);
         mav.addObject("playStatuses", playedGames);
 
         return mav;
@@ -244,8 +269,10 @@ public class MainController {
         if (errors.hasErrors()) {
             return game(rateAndStatusForm, id);
         }
-        //TODO change user to current user
-        final User u = userService.findById(1);
+        final User u = getCurrentUser();
+        if(u == null) {
+            return new ModelAndView("redirect:/");  //TODO return HTTP 401; configure web auth to only give access to authenticated users
+        }
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) userService.scoreGame(u, id, score);

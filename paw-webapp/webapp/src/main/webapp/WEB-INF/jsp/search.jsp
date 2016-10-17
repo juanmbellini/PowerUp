@@ -50,7 +50,7 @@
                         <h3 class="center">No results</h3>
                     </c:when>
                     <c:otherwise>
-                        <ul class="collection" id="results">
+                        <ul class="collection games-list">
                             <c:forEach var="game" items="${results}">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2" style="padding: 0;">

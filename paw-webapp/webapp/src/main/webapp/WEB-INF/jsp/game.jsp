@@ -21,10 +21,10 @@
             <h1 class="header center orange-text">${game.name}</h1>
             <h5 class="center orange-text">${game.releaseDate.year}</h5>
         </div>
+        <%--Rate and status form if logged in--%>
         <div class ="section">
             <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-            <form:form modelAttribute="rateAndStatusForm" action="${postPath}" method="post" class="center-align">
-
+            <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align">
                 <div class="row" >
                     <div class="col s3">
                     </div>
@@ -51,14 +51,21 @@
                                 <form:errors path="playStatus" cssClass="formError" element="p"/>
                             </div>
 
-                            <div class="col s4 center">
-                                <input type="submit" value="Update list!"/>
-                            </div>
+                            <c:choose>
+                                <c:when test="${isLoggedIn}">
+                                    <div class="col s4 center">
+                                        <input class="btn waves-effect waves-light" type="submit" value="Update list!"/>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="col s4 center">
+                                        <%--TODO redirect user back  here after login--%>
+                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-
                     </div>
-
-
                 </div>
             </form:form>
         </div>
