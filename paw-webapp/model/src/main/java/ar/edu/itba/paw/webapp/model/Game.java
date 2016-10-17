@@ -9,8 +9,7 @@ import java.util.*;
  * This class communicates with the database adding, removing and modifying information.
  */
 public class Game {
-
-    final static private int INITIAL_RATING = 7;
+    
     final static private double INITIAL_AVG_SCORE = 0.0;
     final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
     //TODO store this locally or get a more reliable URL
