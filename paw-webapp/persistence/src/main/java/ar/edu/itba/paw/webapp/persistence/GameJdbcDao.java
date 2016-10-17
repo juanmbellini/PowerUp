@@ -498,10 +498,10 @@ public class GameJdbcDao implements GameDao {
 
 
     public void updateAvgScore(long gameId){
-        String query = "UPDATE power_up.games SET avg_score = (SELECT AVG(score)" +
-                                                            "FROM power_up.game_score" +
-                                                             "WHERE power_up.game_score.game_id = ?)" +
-                "WHERE game_id = ?";
+        String query = " UPDATE power_up.games SET avg_score = (SELECT AVG(CAST(score AS FLOAT))" +
+                                                            " FROM power_up.game_scores" +
+                                                             " WHERE power_up.game_scores.game_id = ?)" +
+                " WHERE id = ?";
 
         jdbcTemplate.update(query, gameId, gameId);
     }

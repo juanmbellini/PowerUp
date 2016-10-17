@@ -7,7 +7,8 @@ CREATE TABLE power_up.games(
 	name 		  VARCHAR(1024),
 	summary		VARCHAR(1024),
 	avg_score REAL,
-	release 	DATE
+	release 	DATE,
+  counter   INTEGER NOT NULL
 );
 CREATE TABLE power_up.genres(
 	id 	 	INTEGER IDENTITY NOT NULL PRIMARY KEY,

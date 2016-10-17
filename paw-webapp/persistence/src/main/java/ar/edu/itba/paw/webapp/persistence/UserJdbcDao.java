@@ -160,9 +160,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        Integer counter = jdbcTemplate.queryForObject("SELECT counter FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
-        if (counter !=null) {
-           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ?, counter = ? WHERE user_id = ? AND game_id = ?", score, counter.intValue()+1, user.getId(), gameId);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        if (count > 0) {
+            jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -170,9 +170,38 @@ public class UserJdbcDao implements UserDao {
             params.put("score", score);
             gameScoreInserter.execute(params);
         }
+
+
+
+//        final Integer[] counter = new Integer[]{null};
+//        String query = "SELECT counter FROM power_up.game_scores WHERE user_id = ? AND game_id = ?";
+//        jdbcTemplate.query(query,new Object[] {user.getId(), gameId},new RowCallbackHandler() {
+//            @Override
+//            public void processRow(ResultSet rs) throws SQLException {
+//                counter[0]=new Integer(rs.getInt("counter"));
+//            }
+//        });
+//
+
+//        if (counter[0] !=null) {
+//           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ?, counter = ? WHERE user_id = ? AND game_id = ?", score, counter[0].intValue()+1, user.getId(), gameId);
+//        } else {
+//            Map<String, Object> params = new HashMap<>();
+//            params.put("user_id", user.getId());
+//            params.put("game_id", gameId);
+//            params.put("score", score);
+//            params.put("counter", 0);
+//            gameScoreInserter.execute(params);
+//            counter[0]=0;
+//        }
         user.scoreGame(gameId, score);
         //TODO ver lo de merca y race condition
-        if(counter%10==0){
+        //TODO cambiar para que sea mejor que en todas las veces
+        String querySelect = "SELECT counter FROM power_up.games WHERE id = ?";
+        int counter = 1+jdbcTemplate.queryForObject(querySelect, new Object[] {gameId}, Integer.class);
+        String queryUpdate = "UPDATE power_up.games SET counter=? WHERE id = ?";
+        jdbcTemplate.update(queryUpdate,counter,gameId);
+        if(counter%1==0){
             gameDao.updateAvgScore(gameId);
         }
     }

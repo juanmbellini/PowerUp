@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS power_up.games (
   name      VARCHAR,
   summary   TEXT,
   avg_score REAL,
-  release   DATE
+  release   DATE,
+  counter   INTEGER NOT NULL
 );
 CREATE TABLE IF NOT EXISTS power_up.genres (
   id   SERIAL NOT NULL PRIMARY KEY,
