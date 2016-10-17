@@ -496,4 +496,15 @@ public class GameJdbcDao implements GameDao {
         return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
 
+
+    public void updateAvgScore(long gameId){
+        String query = "UPDATE power_up.games SET avg_score = (SELECT AVG(score)" +
+                                                            "FROM power_up.game_score" +
+                                                             "WHERE power_up.game_score.game_id = ?)" +
+                "WHERE game_id = ?";
+
+        jdbcTemplate.update(query, gameId, gameId);
+    }
+
+
 }

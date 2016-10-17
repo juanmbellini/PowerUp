@@ -160,9 +160,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
-        if (count > 0) {
-           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
+        Integer counter = jdbcTemplate.queryForObject("SELECT counter FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        if (counter !=null) {
+           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ?, counter = ? WHERE user_id = ? AND game_id = ?", score, counter.intValue()+1, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -171,6 +171,10 @@ public class UserJdbcDao implements UserDao {
             gameScoreInserter.execute(params);
         }
         user.scoreGame(gameId, score);
+        //TODO ver lo de merca y race condition
+        if(counter%10==0){
+            gameDao.updateAvgScore(gameId);
+        }
     }
 
     @Override
