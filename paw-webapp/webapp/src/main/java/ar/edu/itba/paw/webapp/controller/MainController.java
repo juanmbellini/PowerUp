@@ -111,6 +111,7 @@ public class MainController {
             // TODO: Change JSP in order to send just the page
             mav.addObject("page", page);
 
+            
             mav.addObject("hasFilters", !filtersStr.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));

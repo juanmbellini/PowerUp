@@ -376,8 +376,7 @@
 
         window.location = url + create_new_url(0, params, values, true);
     }
-
-
+    
     function create_new_url(index, params, values, question_mark) {
         if (index == params.length) {
             return "";
