@@ -21,9 +21,6 @@ DROP TABLE IF EXISTS power_up.keywords CASCADE;
 DROP TABLE IF EXISTS power_up.game_pictures CASCADE;
 DROP TABLE IF EXISTS power_up.users CASCADE;
 
---DROP TABLE IF EXISTS power_up.ratings;
-
-
 -- Creation of entity tables
 CREATE TABLE IF NOT EXISTS power_up.games (
   id        SERIAL NOT NULL PRIMARY KEY,

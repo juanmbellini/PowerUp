@@ -92,7 +92,7 @@ public class MainController {
             orderCategory = "name";
         } else if (orderParameter.equals("release date")) {
             orderCategory = "release";
-        } else if (orderParameter.equals("avg-rating")) {
+        } else if (orderParameter.equals("avg-score")) {
             orderCategory = "avg_score";
         } else {
             mav.setViewName("redirect:error400");
