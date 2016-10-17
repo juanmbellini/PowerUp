@@ -29,12 +29,13 @@ public class UserJdbcDao implements UserDao {
     private final JdbcTemplate jdbcTemplate;
     private final GameDao gameDao;
     private final SimpleJdbcInsert userCreator,
+            userAuthorityCreator,
             gameScoreInserter,
             gamePlayStatusInserter;
     private final RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"));
+            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"));
         }
     };
 
@@ -47,6 +48,10 @@ public class UserJdbcDao implements UserDao {
                 .withTableName("users")
                 .usingColumns("email", "username", "hashed_password")
                 .usingGeneratedKeyColumns("id");
+        userAuthorityCreator = new SimpleJdbcInsert(jdbcTemplate)
+                .withSchemaName("power_up")
+                .withTableName("user_authorities")
+                .usingColumns("username", "authority");
         gamePlayStatusInserter = new SimpleJdbcInsert(jdbcTemplate)
                 .withSchemaName("power_up")
                 .withTableName("game_play_statuses")
@@ -62,12 +67,12 @@ public class UserJdbcDao implements UserDao {
     }
 
     @Override
-    public User create(String email, String password, String username) {
+    public User create(String email, String hashedPassword, String username) {
         if (email == null) {
             throw new IllegalArgumentException("Email can't be null");
         }
-        if (password == null) {
-            throw new IllegalArgumentException("Password can't be null");
+        if (hashedPassword == null) {
+            throw new IllegalArgumentException("Hashed password can't be null");
         }
         if (username == null) {
             throw new IllegalArgumentException("Username can't be null");
@@ -80,13 +85,17 @@ public class UserJdbcDao implements UserDao {
             throw new UserExistsException("Username " + username + " already taken");
         }
 
-        final Map<String, Object> args = new HashMap<>();
-        args.put("email", email);                  //TODO ensure it's a valid email
-        args.put("hashed_password", password);     //TODO hash or salt the passwords here, DON'T STORE THEM IN PLAIN TEXT!
-        args.put("username", username);
+        final Map<String, Object> userArgs = new HashMap<>();
+        userArgs.put("email", email);                         //TODO ensure it's a valid email
+        userArgs.put("hashed_password", hashedPassword);
+        userArgs.put("username", username);
+        final Map<String, Object> authorityArgs = new HashMap<>();
+        authorityArgs.put("username", username);
+        authorityArgs.put("authority", "USER");
         try {
-            Number id = userCreator.executeAndReturnKey(args);
-            return new User(id.longValue(), email, username);
+            Number id = userCreator.executeAndReturnKey(userArgs);
+            userAuthorityCreator.execute(authorityArgs);
+            return new User(id.longValue(), email, username, hashedPassword);
         } catch (Exception e) {
             throw new UserExistsException(e);
         }

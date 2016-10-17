@@ -6,22 +6,35 @@
         <%--<a id="logo-container" href="<c:url value="/" />" class="brand-logo"><img src="<c:url value="/img/logo-transparent.png" />" /></a>--%>
         <a id="logo-container" href="<c:url value="/" />" class="brand-logo">P<span class="material-icons">gamepad</span>werUp</a>
 
-        <ul class="right">
-            <li><a href="<c:url value="/advanced-search" /> "><i class="material-icons">search</i></a></li>
-            <li><a href="<c:url value="/register" /> ">Register</a></li>
-            <li><a href="<c:url value="/list" /> ">List</a></li>
-            <%--<li><a href="#!"><i class="material-icons">person_outline</i></a></li>--%>
-            <%--<li><a href="#!"><i class="material-icons">person</i></a></li>--%>
-            <%--TODO change to full person icon when logged in (or use an icon)--%>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="<c:url value="/advanced-search" /> ">Search <i class="material-icons right">search</i></a></li>
+            <c:choose>
+                <c:when test="${isLoggedIn}">
+                    <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List <i class="material-icons right">menu</i></a></li>
+                    <li><a href="#!">${currentUsername} <i class="material-icons right">person</i></a></li>
+                    <li><a href="<c:url value="/logout" /> ">Log Out <i class="material-icons right">exit_to_app</i></a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="<c:url value="/login" /> ">Log In <i class="material-icons right">person_outline</i></a></li>
+                    <li><a href="<c:url value="/register" /> ">Register <i class="material-icons right">assignment_ind</i></a></li>
+                </c:otherwise>
+            </c:choose>
         </ul>
 
         <ul id="nav-mobile" class="side-nav black-text">
-            <li><a href="<c:url value="/advanced-search" /> "><i class="material-icons">search</i>Search</a></li>
-            <li> <a href="<c:url value="/register" /> ">Register</a></li>
-            <li><a href="<c:url value="/list" /> ">List</a></li>
-            <%--<li><a href="#!"><i class="material-icons">person_outline</i>Log in</a></li>--%>
-            <%--<li><a href="#!"><i class="material-icons">person</i>Profile</a></li>--%>
-            <%--TODO change to full person icon when logged in (or use an icon)--%>
+            <%--No icons on mobile because they don't work nicely, and there's not as much room--%>
+            <li><a href="<c:url value="/advanced-search" /> ">Search</a></li>
+            <c:choose>
+                <c:when test="${isLoggedIn}">
+                    <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List</a></li>
+                    <li><a href="#!">Logged in as ${currentUsername}</a></li>
+                    <li><a href="<c:url value="/logout" /> ">Log Out</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="<c:url value="/login" /> ">Log In</a></li>
+                    <li><a href="<c:url value="/register" /> ">Register</a></li>
+                </c:otherwise>
+            </c:choose>
         </ul>
 
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
