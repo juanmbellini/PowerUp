@@ -29,6 +29,10 @@ public class Page<T> {
      */
     private int pageSize = 0;
     /**
+     * The total amount of elements in all the pages
+     */
+    private int overAllAmountOfElements = 0;
+    /**
      * The data included in this page
      */
     private Collection<T> data = null;
@@ -68,6 +72,15 @@ public class Page<T> {
      */
     public int getAmountOfElements() {
         return data == null ? 0 : data.size();
+    }
+
+    /**
+     * Overall Amount of Elements getter
+     *
+     * @return The overall amount of elements in all the pages
+     */
+    public int getOverAllAmountOfElements() {
+        return overAllAmountOfElements;
     }
 
     /**
@@ -117,6 +130,18 @@ public class Page<T> {
             throw new IllegalPageException();
         }
         this.pageSize = pageSize;
+    }
+
+    /**
+     * Overall amount of elements setter
+     *
+     * @param overAllAmountOfElements The number of elements in all the pages
+     */
+    public void setOverAllAmountOfElements(int overAllAmountOfElements) {
+        if (overAllAmountOfElements > pageSize * totalPages) {
+            throw new IllegalPageException();
+        }
+        this.overAllAmountOfElements = overAllAmountOfElements;
     }
 
     /**
