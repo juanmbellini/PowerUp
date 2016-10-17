@@ -144,59 +144,57 @@
                             </div>
                         </ul>
                         <div class="row">
-                            <div class="col s8">
-                                <ul class="pagination">
-                                    <c:choose>
-                                        <c:when test="${page.pageNumber == 1}">
-                                            <li class="disabled">
-                                                <a href="#!" class="disabled" onclick="return false">
-                                                    <i class="material-icons disabled">chevron_left</i>
-                                                </a>
-                                            </li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="waves-effect">
-                                                <a href="#!" onclick="changePage(${page.pageNumber - 1})">
-                                                    <i class="material-icons">chevron_left</i>
-                                                </a>
-                                            </li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:set var="just_one"
-                                           value="${(page.pageNumber - 4) <= 0 || page.totalPages <= 10}"/>
-                                    <c:set var="no_more_prev"
-                                           value="${(page.pageNumber + 5) > page.totalPages}"/>
-                                    <c:set var="the_first_ones"
-                                           value="${(page.pageNumber + 5) < 10}"/>
-                                    <c:set var="no_more_next"
-                                           value="${page.totalPages < 10 || (page.pageNumber + 5) >= page.totalPages}"/>
-                                    <c:forEach var="page_it"
-                                               begin="${just_one ? 1 : no_more_prev ? page.totalPages - 9 : page.pageNumber - 4}"
-                                               end="${no_more_next ? page.totalPages : the_first_ones ? 10 : page.pageNumber + 5}">
-                                        <li class=${page_it == page.pageNumber ? "active" : "waves-effect"}>
-                                            <a href="#!" onclick="changePage(${page_it})">
-                                                ${page_it}
+                            <ul class="pagination center">
+                                <c:choose>
+                                    <c:when test="${page.pageNumber == 1}">
+                                        <li class="disabled">
+                                            <a href="#!" class="disabled" onclick="return false">
+                                                <i class="material-icons disabled">chevron_left</i>
                                             </a>
                                         </li>
-                                    </c:forEach>
-                                    <c:choose>
-                                        <c:when test="${page.pageNumber == page.totalPages}">
-                                            <li class="disabled">
-                                                <a href="#!" class="disabled" onclick="return false">
-                                                    <i class="material-icons disabled">chevron_right</i>
-                                                </a>
-                                            </li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="waves-effect">
-                                                <a href="#!" onclick="changePage(${page.pageNumber + 1})">
-                                                    <i class="material-icons">chevron_right</i>
-                                                </a>
-                                            </li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </ul>
-                            </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="waves-effect">
+                                            <a href="#!" onclick="changePage(${page.pageNumber - 1})">
+                                                <i class="material-icons">chevron_left</i>
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:set var="just_one"
+                                       value="${(page.pageNumber - 4) <= 0 || page.totalPages <= 10}"/>
+                                <c:set var="no_more_prev"
+                                       value="${(page.pageNumber + 5) > page.totalPages}"/>
+                                <c:set var="the_first_ones"
+                                       value="${(page.pageNumber + 5) < 10}"/>
+                                <c:set var="no_more_next"
+                                       value="${page.totalPages < 10 || (page.pageNumber + 5) >= page.totalPages}"/>
+                                <c:forEach var="page_it"
+                                           begin="${just_one ? 1 : no_more_prev ? page.totalPages - 9 : page.pageNumber - 4}"
+                                           end="${no_more_next ? page.totalPages : the_first_ones ? 10 : page.pageNumber + 5}">
+                                    <li class=${page_it == page.pageNumber ? "active" : "waves-effect"}>
+                                        <a href="#!" onclick="changePage(${page_it})">
+                                            ${page_it}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${page.pageNumber == page.totalPages}">
+                                        <li class="disabled">
+                                            <a href="#!" class="disabled" onclick="return false">
+                                                <i class="material-icons disabled">chevron_right</i>
+                                            </a>
+                                        </li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="waves-effect">
+                                            <a href="#!" onclick="changePage(${page.pageNumber + 1})">
+                                                <i class="material-icons">chevron_right</i>
+                                            </a>
+                                        </li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </ul>
                         </div>
                     </c:otherwise>
                 </c:choose>
