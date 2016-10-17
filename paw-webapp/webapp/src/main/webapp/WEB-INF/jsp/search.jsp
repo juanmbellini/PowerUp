@@ -70,7 +70,7 @@
                                     <div class="col s2">
                                         <div class="secondary-content">
                                             <c:choose>
-                                                <c:when test="${game.avgScore <= 10 && game.avgScore>=0}">
+                                                <c:when test="${game.avgScore <= 10 && game.avgScore>0}">
                                                     <p class="rating-number center"><b>${game.avgScore}</b></p>
                                                     <p class="rating-stars hide-on-small-and-down">
                                                         <c:forEach begin="0" end="4" var="i">
