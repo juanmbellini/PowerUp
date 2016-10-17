@@ -120,7 +120,6 @@ public class Game {
      * @return The cover picture URL.
      */
     public String getCoverPictureUrl() {
-
         if (coverPictureUrl.equals(DEFAULT_COVER_PICTURE_URL) && !pictureUrls.isEmpty()) {
             return pictureUrls.iterator().next();
         }
