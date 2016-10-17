@@ -90,9 +90,9 @@ public class MainController {
         // TODO: change string to use those in enum and avoid this
         if (orderParameter == null || orderParameter.equals("name")) {
             orderCategory = "name";
-        } else if (orderParameter.equals("release date")) {
+        } else if (orderParameter.equals("release")) {
             orderCategory = "release";
-        } else if (orderParameter.equals("avg-rating")) {
+        } else if (orderParameter.equals("rating")) {
             orderCategory = "avg_score";
         } else {
             mav.setViewName("redirect:error400");
