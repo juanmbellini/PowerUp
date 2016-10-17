@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <%!
 
     private String createNewUrl(String name, String filters, String orderCategory,
@@ -54,7 +55,6 @@
             <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search
                 for ${searchedName}</h1>
         </div>
-
         <div class="section search-results">
             <div class="row filters-row">
                 <div class="col s6">
@@ -133,15 +133,15 @@
                                     <div class="col s2">
                                         <div class="secondary-content">
                                             <c:choose>
-                                                <c:when test="${game.avgScore <= 10 && game.avgScore>0}">
+                                                <c:when test="${game.avgScore <= 10 && game.avgScore > 0}">
                                                     <p class="rating-number center"><b>${game.avgScore}</b></p>
                                                     <p class="rating-stars hide-on-small-and-down">
                                                         <c:forEach begin="0" end="4" var="i">
                                                             <c:choose>
-                                                                <c:when test="${game.avgScore-(i*2)-1<0}">
+                                                                <c:when test="${game.avgScore - (i * 2) - 1 < 0}">
                                                                     <i class="material-icons">star_border</i>
                                                                 </c:when>
-                                                                <c:when test="${game.avgScore-(i*2)-1==0}">
+                                                                <c:when test="${game.avgScore - (i * 2) - 1 == 0}">
                                                                     <i class="material-icons">star_half</i>
                                                                 </c:when>
                                                                 <c:otherwise>
@@ -247,7 +247,7 @@
                                     <c:otherwise>
                                         <li class="waves-effect">
                                             <%
-                                                request.setAttribute("prevPageLink",
+                                                request.setAttribute("nextPageLink",
                                                         createNewUrl((String) request.getAttribute("searchedName"),
                                                                 (String) request.getAttribute("filtersJson"),
                                                                 (String) request.getAttribute("orderCategory"),
@@ -256,7 +256,7 @@
                                                                 Integer.toString(((Page) request.getAttribute("page"))
                                                                         .getPageNumber() + 1)));
                                             %>
-                                            <a href="<c:url value="${prevPageLink}"/> ">
+                                            <a href="<c:url value="${nextPageLink}"/> ">
                                                 <i class="material-icons">chevron_right</i>
                                             </a>
                                         </li>
@@ -369,7 +369,6 @@
     }
 
 
-
     function reload(name, filters, orderCategory, orderBoolean, pageSize, pageNumber) {
         var url = "<%= request.getContextPath() %>" + "/search";
         var params = ["name", "filters", "orderCategory", "orderBoolean", "pageSize", "pageNumber"];
@@ -377,7 +376,8 @@
 
         window.location = url + create_new_url(0, params, values, true);
     }
-    
+
+
     function create_new_url(index, params, values, question_mark) {
         if (index == params.length) {
             return "";
