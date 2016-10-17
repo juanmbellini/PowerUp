@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -243,7 +242,7 @@ public class MainController {
         //TODO do this in user?
         for(long gameId: playStatuses.keySet()){
             Game game = gameService.findById(gameId);
-            if(game==null) throw new InvalidStateException("Status list should have a game that do not exist");
+            if(game==null) throw new IllegalStateException("Status list should have a game that do not exist");
             playedGames.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);
