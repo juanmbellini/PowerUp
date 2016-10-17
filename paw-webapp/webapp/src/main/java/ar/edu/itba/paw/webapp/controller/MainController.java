@@ -109,12 +109,7 @@ public class MainController {
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
             // TODO: Change JSP in order to send just the page
-            mav.setViewName("search");
-            mav.addObject("results", page.getData());
-            mav.addObject("pageNumber", page.getPageNumber());
-            mav.addObject("pageSize", page.getPageSize());
-            mav.addObject("totalPages", page.getTotalPages());
-            mav.addObject("amountOfElements", page.getAmountOfElements());
+            mav.addObject("page", page);
 
             mav.addObject("hasFilters", !filtersStr.equals("{}"));
             mav.addObject("appliedFilters", filters);
@@ -122,6 +117,8 @@ public class MainController {
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.addObject("filters", filtersStr);
+
+            mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
