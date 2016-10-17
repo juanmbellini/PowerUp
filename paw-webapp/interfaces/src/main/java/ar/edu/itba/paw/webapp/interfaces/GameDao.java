@@ -56,4 +56,9 @@ public interface GameDao {
      */
     Collection<String> getFiltersByType(FilterCategory filterCategory);
 
+    /**
+     * Update the avgScore of the game with id gameId.
+     * @param gameId
+     */
+    void updateAvgScore(long gameId);
 }
