@@ -513,10 +513,10 @@ public class GameJdbcDao implements GameDao {
         if(ids==null) throw new IllegalArgumentException();
         Map<Long,Game> gameMap = new HashMap();
         if(ids.isEmpty()) return gameMap;
-        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score FROM power_up.games WHERE");
+        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM power_up.games WHERE");
         Iterator<Long> iter = ids.iterator();
         queryBuilder.append(" id = "+iter.next());
-        while(iter.hasNext()){
+        while(iter.hasNext()){ //TODO change to id IN (id1, id2,...)
             queryBuilder.append(" OR ");
             queryBuilder.append(" id = "+iter.next());
         }
@@ -533,6 +533,7 @@ public class GameJdbcDao implements GameDao {
                             result.setSummary(rs.getString("summary"));
                             result.setAvgScore(rs.getDouble("avg_score"));
                             result.setReleaseDate(new LocalDate(rs.getString("release")));
+                            result.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                             gameMap.put(result.getId(),result);
                         }
                     }
