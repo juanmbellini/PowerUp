@@ -139,19 +139,19 @@ public class UserJdbcDao implements UserDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[] {id}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[]{id}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithUsername(String username) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[] {username}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[]{username}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithEmail(String email) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[] {email}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
         return count > 0;
     }
 
@@ -169,7 +169,7 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
             jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
@@ -180,37 +180,14 @@ public class UserJdbcDao implements UserDao {
             gameScoreInserter.execute(params);
         }
 
-
-
-//        final Integer[] counter = new Integer[]{null};
-//        String query = "SELECT counter FROM power_up.game_scores WHERE user_id = ? AND game_id = ?";
-//        jdbcTemplate.query(query,new Object[] {user.getId(), gameId},new RowCallbackHandler() {
-//            @Override
-//            public void processRow(ResultSet rs) throws SQLException {
-//                counter[0]=new Integer(rs.getInt("counter"));
-//            }
-//        });
-//
-
-//        if (counter[0] !=null) {
-//           jdbcTemplate.update("UPDATE power_up.game_scores SET score = ?, counter = ? WHERE user_id = ? AND game_id = ?", score, counter[0].intValue()+1, user.getId(), gameId);
-//        } else {
-//            Map<String, Object> params = new HashMap<>();
-//            params.put("user_id", user.getId());
-//            params.put("game_id", gameId);
-//            params.put("score", score);
-//            params.put("counter", 0);
-//            gameScoreInserter.execute(params);
-//            counter[0]=0;
-//        }
         user.scoreGame(gameId, score);
         //TODO ver lo de merca y race condition
         //TODO cambiar para que sea mejor que en todas las veces
         String querySelect = "SELECT counter FROM power_up.games WHERE id = ?";
-        int counter = 1+jdbcTemplate.queryForObject(querySelect, new Object[] {gameId}, Integer.class);
+        int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
         String queryUpdate = "UPDATE power_up.games SET counter=? WHERE id = ?";
-        jdbcTemplate.update(queryUpdate,counter,gameId);
-        if(counter%1==0){
+        jdbcTemplate.update(queryUpdate, counter, gameId);
+        if (counter % 1 == 0) {
             gameDao.updateAvgScore(gameId);
         }
     }
@@ -237,8 +214,8 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[] {user.getId(), gameId}, Integer.class);
-        if(count > 0) {
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        if (count > 0) {
             jdbcTemplate.update("UPDATE power_up.game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
