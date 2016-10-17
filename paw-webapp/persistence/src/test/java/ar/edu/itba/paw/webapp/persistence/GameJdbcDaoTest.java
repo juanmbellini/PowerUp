@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -118,8 +119,6 @@ public class GameJdbcDaoTest {
         jdbcTemplate.execute(insert.toString());
     }
 
-    //TODO afterClass to clean DB
-
 
     @Before
     public void setUp() {
@@ -129,6 +128,16 @@ public class GameJdbcDaoTest {
                 "power_up.companies", "power_up.keywords", "power_up.genres");
         initializeDataBase();
     }
+
+//    @AfterClass
+//    public static void cleanDb(){
+//        jdbcTemplate = gameDao.getJdbcTemplate();
+//        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
+//                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
+//                "power_up.companies", "power_up.keywords", "power_up.genres");
+//    }
+//
+//    //TODO afterClass to clean DB that works
 
 
     @Test
@@ -151,7 +160,6 @@ public class GameJdbcDaoTest {
 
         assert ((firstGame.getName().equals("Mario") || secondGame.getName().equals("Mario")) && !(firstGame.getName().equals("Mario") && secondGame.getName().equals("Mario")));
 
-        //TODO testear que se cargue bien el summary y eso????
     }
 
     @Test

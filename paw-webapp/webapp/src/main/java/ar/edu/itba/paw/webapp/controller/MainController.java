@@ -234,19 +234,19 @@ public class MainController {
         User u = userService.findByUsername(username);      //If we got this far, we know username != null
         if(u == null) return error400();
 
-        Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();   //TODO change name of playedGames
+        Map<PlayStatus, Set<Game>> gamesInListsMap = new HashMap<>();
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<>());           //TODO use other set and give it order?
+            gamesInListsMap.put(playStatus, new HashSet<>());           //TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //TODO do this in user?
         for(long gameId: playStatuses.keySet()){
             Game game = gameService.findById(gameId);
             if(game==null) throw new IllegalStateException("Status list should have a game that do not exist");
-            playedGames.get(playStatuses.get(gameId)).add(game);
+            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);
-        mav.addObject("playStatuses", playedGames);
+        mav.addObject("playStatuses", gamesInListsMap);
 
         return mav;
     }
