@@ -41,6 +41,16 @@
     margin-top: 5px;
 }
 
+.slick-carousel img {
+    max-height: 400px;
+    width: 100%;
+    padding: 0 5px;
+}
+
+.slick-prev:before, .slick-next:before{
+    color:grey !important;
+}
+
 /*#logo-container {*/
     /*height: 60px;*/
 /*}*/

@@ -1,13 +1,13 @@
-
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
+    <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
     <title>${game.name} - PowerUp</title>
 </head>
 <body>
@@ -145,16 +145,18 @@
                     <c:if test="${ fn:length( relatedGames) > 0 }">
                         <div class="row">
                             <h5 class="center">Related Games</h5>
-                                <div class="carousel" style="margin-top: -50px;">
-                                    <c:forEach var="game" items="${relatedGames}">
-                                        <div class="carousel-item center">
-                                            <a href="<c:url value="/game?id=${game.id}"/>">
-                                                <img src="${game.coverPictureUrl}"/>
-                                            </a>
-                                            <h5 style="margin-top:0; overflow-wrap: break-word;"><a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a></h5>
-                                        </div>
-                                    </c:forEach>
-                                </div>
+                            <div class="slick-carousel">
+                                <c:forEach var="game" items="${relatedGames}">
+                                    <div>
+                                        <a href="<c:url value="/game?id=${game.id}"/>">
+                                            <img data-lazy="${game.coverPictureUrl}" />
+                                        </a>
+                                        <h5 class="center" style="overflow-wrap: break-word;">
+                                            <a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
+                                        </h5>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
                     </c:if>
                 </c:otherwise>
@@ -166,6 +168,7 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-</body>
 <script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
+<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
+</body>
 </html>
