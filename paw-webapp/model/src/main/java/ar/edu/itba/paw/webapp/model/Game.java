@@ -27,7 +27,7 @@ public class Game {
     private Collection<Review> reviews;
     private double avgScore;
     private LocalDate releaseDate;
-    private String coverPicture;
+    private String coverPictureUrl;
     private Set<String> pictureUrls;
 
     public Game() {
@@ -51,7 +51,7 @@ public class Game {
         reviews = new HashSet<>();
         this.avgScore = avgScore;
         releaseDate = new LocalDate();
-        coverPicture = DEFAULT_COVER_PICTURE_URL;
+        coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
         pictureUrls = new LinkedHashSet<>();
 
 
@@ -118,8 +118,8 @@ public class Game {
      *
      * @return The picture URL.
      */
-    public String getCoverPicture() {
-        return coverPicture;
+    public String getCoverPictureUrl() {
+        return coverPictureUrl;
     }
 
     // Setters
@@ -143,9 +143,9 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public void setCoverPicture(String cloudinaryId) {
+    public void setCoverPictureUrl(String cloudinaryId) {
         if (cloudinaryId != null) {
-            coverPicture = getPictureURL(cloudinaryId);
+            coverPictureUrl = getPictureURL(cloudinaryId);
         }
     }
 

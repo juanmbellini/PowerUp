@@ -108,7 +108,7 @@ public class GameJdbcDao implements GameDao {
                             result.setSummary(rs.getString("summary"));
                             result.setAvgScore(rs.getDouble("avg_score"));
                             result.setReleaseDate(new LocalDate(rs.getString("release")));
-                            result.setCoverPicture(rs.getString("cover_picture_cloudinary_id"));
+                            result.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                             found[0] = true;
                         }
                     }
@@ -197,7 +197,7 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPicture}, the cover picture is always the same.
+        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
@@ -372,7 +372,7 @@ public class GameJdbcDao implements GameDao {
                     Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
                     game.setReleaseDate(new LocalDate(rs.getString("release")));
                     game.setAvgScore(rs.getDouble("avg_score"));
-                    game.setCoverPicture(rs.getString("cover_picture_cloudinary_id"));
+                    game.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                     gamesSet.add(game);
                 }
             });
