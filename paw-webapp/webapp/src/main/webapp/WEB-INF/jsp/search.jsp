@@ -43,8 +43,8 @@
                     <div class="row">
                         <select class="col s5 select-drop-down" id="orderSelectId" onchange="changeOrderDropDown()">
                             <option value="name">Name</option>
-                            <option value="release date">Release date</option>
-                            <option value="avg-rating">Rating</option>
+                            <option value="release">Release date</option>
+                            <option value="rating">Rating</option>
                         </select>
                         <div class="col s1">
 
@@ -58,10 +58,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s1">
+                <%--<div class="col s1">--%>
 
-                </div>
-                <div class="col s1">
+                <%--</div>--%>
+                <div class="col s2">
                     <div class="row select-title">
                         Page size
                     </div>
@@ -69,6 +69,9 @@
                         <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
+                        <c:if test="${pageSizeUrl != null && pageSizeUrl != 25 && pageSizeUrl != 50 && pageSizeUrl != 100}">
+                            <option value="${pageSizeUrl}">Other: ${pageSizeUrl}</option>
+                        </c:if>
                     </select>
                 </div>
 
@@ -216,11 +219,39 @@
 <script>
     $(document).ready(function () {
 
-        $("#orderBooleanId").val("${orderBoolean}");
+
+        <c:choose>
+            <c:when test="${orderCategory == null}">
+                <c:set var="selectedOrderCategory" value="name"/>
+            </c:when>
+            <c:otherwise>
+                <c:set var="selectedOrderCategory" value="${orderCategory}"/>
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${orderBoolean == null}">
+                <c:set var="selectedOrderBoolean" value="ascending"/>
+            </c:when>
+            <c:otherwise>
+        <c:set var="selectedOrderBoolean" value="${orderBoolean}"/>
+            </c:otherwise>
+        </c:choose>
+
+        <c:choose>
+            <c:when test="${pageSizeUrl == null}">
+                <c:set var="selectedPageSizeUrl" value="25"/>
+            </c:when>
+            <c:otherwise>
+                <c:set var="selectedPageSizeUrl" value="${pageSizeUrl}"/>
+            </c:otherwise>
+        </c:choose>
+
+        $("#orderBooleanId").val("${selectedOrderBoolean}");
         $("#orderBooleanId").material_select();
-        $("#orderSelectId").val("${orderCategory}");
+        $("#orderSelectId").val("${selectedOrderCategory}");
         $("#orderSelectId").material_select();
-        $("#pageSizeSelectId").val("${pageSizeUrl}");
+        $("#pageSizeSelectId").val("${selectedPageSizeUrl}");
         $("#pageSizeSelectId").material_select();
     });
 

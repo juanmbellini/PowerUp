@@ -69,9 +69,9 @@ public class MainController {
         // TODO: change string to use those in enum and avoid this
         if (orderParameter == null || orderParameter.equals("name")) {
             orderCategory = "name";
-        } else if (orderParameter.equals("release date")) {
+        } else if (orderParameter.equals("release")) {
             orderCategory = "release";
-        } else if (orderParameter.equals("avg-rating")) {
+        } else if (orderParameter.equals("rating")) {
             orderCategory = "avg_score";
         } else {
             mav.setViewName("redirect:error400");
@@ -111,7 +111,7 @@ public class MainController {
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
-            mav.addObject("filters", filtersStr);
+                    mav.addObject("filters", filtersStr);
             mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
