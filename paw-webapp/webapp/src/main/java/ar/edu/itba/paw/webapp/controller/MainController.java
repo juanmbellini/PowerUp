@@ -154,7 +154,7 @@ public class MainController {
         }
         return mav;
     }
-
+    
     @RequestMapping("/game")
     public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                              @RequestParam(name = "id") long id) {
