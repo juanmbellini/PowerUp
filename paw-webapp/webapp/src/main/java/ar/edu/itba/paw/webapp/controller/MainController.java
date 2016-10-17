@@ -157,7 +157,7 @@ public class MainController {
 
     @RequestMapping("/game")
     public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
-                             @RequestParam(name = "id") int id) {
+                             @RequestParam(name = "id") long id) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
         Set<Game> relatedGames;
@@ -265,7 +265,7 @@ public class MainController {
     @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
     public ModelAndView rateAndUpdateStatus(@Valid @ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                                             final BindingResult errors,
-                                            @RequestParam(name = "id") int id) {
+                                            @RequestParam(name = "id") long id) {
         if (errors.hasErrors()) {
             return game(rateAndStatusForm, id);
         }
