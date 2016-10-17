@@ -168,16 +168,8 @@ public class MainController {
             }
             User currentUser = userService.findById(1);
             //TODO change user to current user
-//            if (currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
-//            if (currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
-            if (currentUser != null) {
-                if (currentUser.hasScoredGame(id)) {
-                    rateAndStatusForm.setScore(currentUser.getGameScore(id));
-                }
-                if (currentUser.hasPlayStatus(id)) {
-                    rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
-                }
-            }
+            if (currentUser.hasScoredGame(id)) rateAndStatusForm.setScore(currentUser.getGameScore(id));
+            if (currentUser.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(currentUser.getPlayStatus(id));
 
 
             Set<FilterCategory> filters = new HashSet<>();
