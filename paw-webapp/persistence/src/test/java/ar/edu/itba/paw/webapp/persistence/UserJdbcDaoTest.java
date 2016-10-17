@@ -29,6 +29,10 @@ public class UserJdbcDaoTest {
 
     private JdbcTemplate jdbcTemplate;
 
+    private void insertOneGame(int id) {
+        jdbcTemplate.execute("INSERT INTO power_up.games VALUES ("+id+", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',null,0);");
+    }
+
     @Before
     public void cleanUp() {
 
@@ -153,8 +157,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.scoreGame(null, 1, 4);
     }
 
@@ -171,7 +174,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         userDao.scoreGame(u, 1, -1);
 
     }
@@ -181,7 +184,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 11);
 
     }
@@ -191,7 +194,8 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 1);
         userDao.scoreGame(u, 1, 10);
     }
@@ -201,8 +205,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 2);
 
         assertEquals(2, userDao.findById(u.getId()).getGameScore(id));
@@ -226,8 +229,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         Game g = new Game();
         g.setId(id);
 
@@ -258,7 +260,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         u.getGameScore(1);
 
     }
@@ -281,8 +283,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.setPlayStatus(null, 1, PlayStatus.PLAYED);
     }
 
@@ -292,17 +293,18 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         u.getPlayStatus(1);
 
     }
+
 
     @Test
     public void setPlayStatusMultipleTime() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
 
         userDao.setPlayStatus(u, 1, PlayStatus.PLAYED);
 
@@ -333,7 +335,7 @@ public class UserJdbcDaoTest {
         Game g = new Game();
         g.setId(id);
 
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
 
         userDao.setPlayStatus(u, g, PlayStatus.PLAYED);
 
@@ -353,9 +355,7 @@ public class UserJdbcDaoTest {
         String email2 = "email2", password2 = "password2", username2 = "jorge2";
         final User u2 = userDao.create(email2, password2, username2);
 
-
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.scoreGame(u,id,10);
         userDao.scoreGame(u2,id,1);
 
