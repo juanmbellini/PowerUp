@@ -154,7 +154,7 @@ public class MainController {
         }
         return mav;
     }
-
+    
     @RequestMapping("/game")
     public ModelAndView game(@ModelAttribute("rateAndStatusForm") final RateAndStatusForm rateAndStatusForm,
                              @RequestParam(name = "id") long id) {
@@ -171,6 +171,7 @@ public class MainController {
                 if (u.hasScoredGame(id)) rateAndStatusForm.setScore(u.getGameScore(id));
                 if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
             }
+
 
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
