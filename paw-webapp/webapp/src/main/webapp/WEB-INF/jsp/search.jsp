@@ -263,6 +263,7 @@
                         </c:choose>
                     </ul>
                 </div>
+
             </div>
             </c:otherwise>
             </c:choose>
@@ -284,7 +285,6 @@
 
 <script>
     $(document).ready(function () {
-
 
         <c:choose>
         <c:when test="${orderCategory == null}">
