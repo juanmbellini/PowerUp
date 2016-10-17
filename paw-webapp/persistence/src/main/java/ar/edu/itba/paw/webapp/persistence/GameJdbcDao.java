@@ -197,7 +197,7 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
+        // Get cloudinary IDs in the same order always.
         query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
