@@ -369,6 +369,7 @@
     }
 
 
+
     function reload(name, filters, orderCategory, orderBoolean, pageSize, pageNumber) {
         var url = "<%= request.getContextPath() %>" + "/search";
         var params = ["name", "filters", "orderCategory", "orderBoolean", "pageSize", "pageNumber"];
