@@ -4,17 +4,21 @@ import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
+import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +39,12 @@ public class UserJdbcDao implements UserDao {
     private final RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"));
+            //Fetch this user's authorities
+            List<Authority> authorities = new ArrayList<>();
+            for(Map<String, Object> row : jdbcTemplate.queryForList("SELECT authority FROM power_up.user_authorities WHERE username = ?", rs.getString("username"))) {
+                authorities.add(Authority.valueOf((String)row.get("authority")));
+            }
+            return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"), authorities);
         }
     };
 
@@ -91,11 +100,11 @@ public class UserJdbcDao implements UserDao {
         userArgs.put("username", username);
         final Map<String, Object> authorityArgs = new HashMap<>();
         authorityArgs.put("username", username);
-        authorityArgs.put("authority", "USER");
+        authorityArgs.put("authority", Authority.USER.name());
         try {
             Number id = userCreator.executeAndReturnKey(userArgs);
             userAuthorityCreator.execute(authorityArgs);
-            return new User(id.longValue(), email, username, hashedPassword);
+            return new User(id.longValue(), email, username, hashedPassword, Authority.USER);
         } catch (Exception e) {
             throw new UserExistsException(e);
         }
