@@ -123,12 +123,18 @@ public class Game {
     }
 
     /**
-     * Returns the first URL returned by {@link #getPictureUrls()}, or a default picture if no pictures are associated
-     * with this game.
+     * Returns the url set in {@link #coverPictureUrl}.
+     * <p>
+     * In case that url is the {@link #DEFAULT_COVER_PICTURE_URL} and {@link #pictureUrls} set is not empty,
+     * the first url of this set is returned.
      *
-     * @return The picture URL.
+     * @return The cover picture URL.
      */
     public String getCoverPictureUrl() {
+
+        if (coverPictureUrl.equals(DEFAULT_COVER_PICTURE_URL) && !pictureUrls.isEmpty()) {
+            return pictureUrls.iterator().next();
+        }
         return coverPictureUrl;
     }
 
@@ -163,6 +169,7 @@ public class Game {
     public void setCoverPictureUrl(String cloudinaryId) {
         if (cloudinaryId != null) {
             coverPictureUrl = getPictureURL(cloudinaryId);
+            pictureUrls.remove(coverPictureUrl);
         }
     }
 
@@ -193,15 +200,13 @@ public class Game {
 
     public void addPictureURL(String cloudinaryId) {
         if (cloudinaryId != null) {
-            pictureUrls.add(getPictureURL(cloudinaryId));
+            String pictureUrl = getPictureURL(cloudinaryId);
+            if (coverPictureUrl != pictureUrl) {
+                pictureUrls.add(pictureUrl);
+            }
         }
     }
 
-    public void addPictureURLs(String... cloudinary_ids) {
-        for (String id : cloudinary_ids) {
-            addPictureURL(id);
-        }
-    }
 
     @Override
     public boolean equals(Object o) {
