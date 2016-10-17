@@ -170,10 +170,6 @@ public class MainController {
             if(u != null) {
                 if (u.hasScoredGame(id)) rateAndStatusForm.setScore(u.getGameScore(id));
                 if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
-            } else {
-                //TODO what values are appropriate here?
-                rateAndStatusForm.setScore(0);
-                rateAndStatusForm.setPlayStatus(null);
             }
 
             Set<FilterCategory> filters = new HashSet<>();
@@ -251,7 +247,7 @@ public class MainController {
 
         Map<PlayStatus, Set<Game>> playedGames = new HashMap<>();   //TODO change name of playedGames
         for(PlayStatus playStatus : PlayStatus.values()){
-            playedGames.put(playStatus, new HashSet<>());           //TODO user other set and give it order?
+            playedGames.put(playStatus, new HashSet<>());           //TODO use other set and give it order?
         }
         Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
         //TODO do this in user?
