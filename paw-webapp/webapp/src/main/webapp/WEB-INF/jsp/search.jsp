@@ -15,8 +15,7 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text">Results for ${searchedName}<c:if test="${hasFilters}"> with
-                filters</c:if></h1>
+            <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search for ${searchedName}</h1>
         </div>
         <div class="row">
             <select class="col s2" id="orderSelectId" onchange="reload()">
