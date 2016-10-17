@@ -14,7 +14,7 @@
 
 <main>
     <div class="section">
-        <h1 class="orange-text" style="text-align: center">Log In to Your Account</h1>
+        <h1 class="orange-text center">Log In to Your Account</h1>
     </div>
 
     <div class="section">
