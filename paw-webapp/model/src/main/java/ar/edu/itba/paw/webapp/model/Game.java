@@ -29,6 +29,9 @@ public class Game {
     private LocalDate releaseDate;
     private String coverPictureUrl;
     private Set<String> pictureUrls;
+
+
+
     public Game() {
         this(0, "", "");
     }
