@@ -32,15 +32,15 @@
             </div>
         </div>
         <%--<div class="row">--%>
-            <%--<div class="col s4 center">--%>
-                <%--<h6>name</h6>--%>
-            <%--</div>--%>
-            <%--<div class="col s6 center">--%>
-                <%--<h6>release date</h6>--%>
-            <%--</div>--%>
-            <%--<div class="col 2 center">--%>
-                <%--<h6>avg-rating</h6>--%>
-            <%--</div>--%>
+        <%--<div class="col s4 center">--%>
+        <%--<h6>name</h6>--%>
+        <%--</div>--%>
+        <%--<div class="col s6 center">--%>
+        <%--<h6>release date</h6>--%>
+        <%--</div>--%>
+        <%--<div class="col 2 center">--%>
+        <%--<h6>avg-rating</h6>--%>
+        <%--</div>--%>
         <%--</div>--%>
         <div class="section ">
             <div class="row filters-row">
@@ -156,13 +156,13 @@
                             </div>
                         </ul>
                         <div class="row">
-                            <%--<select class="col s2" id="pageSizeSelectId" onchange="changePageSize()">--%>
+                                <%--<select class="col s2" id="pageSizeSelectId" onchange="changePageSize()">--%>
                                 <%--<option value="25">25</option>--%>
                                 <%--<option value="50">50</option>--%>
                                 <%--<option value="100">100</option>--%>
-                            <%--</select>--%>
+                                <%--</select>--%>
                             <div class="col s8">
-                                <ul class="pagination">
+                                <ul class="pagination center">
                                     <c:choose>
                                         <c:when test="${page.pageNumber == 1}">
                                             <li class="disabled">
@@ -192,7 +192,7 @@
                                                end="${no_more_next ? page.totalPages : the_first_ones ? 10 : page.pageNumber + 5}">
                                         <li class=${page_it == page.pageNumber ? "active" : "waves-effect"}>
                                             <a href="#!" onclick="changePage(${page_it})">
-                                                ${page_it}
+                                                    ${page_it}
                                             </a>
                                         </li>
                                     </c:forEach>
@@ -238,30 +238,30 @@
 
 
         <c:choose>
-            <c:when test="${orderCategory == null}">
-                <c:set var="selectedOrderCategory" value="name"/>
-            </c:when>
-            <c:otherwise>
-                <c:set var="selectedOrderCategory" value="${orderCategory}"/>
-            </c:otherwise>
+        <c:when test="${orderCategory == null}">
+        <c:set var="selectedOrderCategory" value="name"/>
+        </c:when>
+        <c:otherwise>
+        <c:set var="selectedOrderCategory" value="${orderCategory}"/>
+        </c:otherwise>
         </c:choose>
 
         <c:choose>
-            <c:when test="${orderBoolean == null}">
-                <c:set var="selectedOrderBoolean" value="ascending"/>
-            </c:when>
-            <c:otherwise>
+        <c:when test="${orderBoolean == null}">
+        <c:set var="selectedOrderBoolean" value="ascending"/>
+        </c:when>
+        <c:otherwise>
         <c:set var="selectedOrderBoolean" value="${orderBoolean}"/>
-            </c:otherwise>
+        </c:otherwise>
         </c:choose>
 
         <c:choose>
-            <c:when test="${pageSizeUrl == null}">
-                <c:set var="selectedPageSizeUrl" value="25"/>
-            </c:when>
-            <c:otherwise>
-                <c:set var="selectedPageSizeUrl" value="${pageSizeUrl}"/>
-            </c:otherwise>
+        <c:when test="${pageSizeUrl == null}">
+        <c:set var="selectedPageSizeUrl" value="25"/>
+        </c:when>
+        <c:otherwise>
+        <c:set var="selectedPageSizeUrl" value="${pageSizeUrl}"/>
+        </c:otherwise>
         </c:choose>
 
         $("#orderBooleanId").val("${selectedOrderBoolean}");
@@ -282,15 +282,15 @@
         var pageSize;
 
         <c:if test="${searchedName != null && !searchedName.equals('')}">
-            name = "${searchedName}";
+        name = "${searchedName}";
         </c:if>
         <c:if test="${filtersJson != null && !filtersJson.equals('')}">
-            filters = JSON.stringify(${filtersJson});
+        filters = JSON.stringify(${filtersJson});
         </c:if>
         var strOrderCategory = selectedOrderCategory.options[selectedOrderCategory.selectedIndex].value;
         var strOrderBoolean = selectedOrderBoolean.options[selectedOrderBoolean.selectedIndex].value;
         <c:if test="${pageSizeUrl != null && !pageSizeUrl.equals('')}">
-            pageSize = "${pageSizeUrl}";
+        pageSize = "${pageSizeUrl}";
         </c:if>
         reload(name, filters, strOrderCategory, strOrderBoolean, pageSize, null);
     }
@@ -303,16 +303,16 @@
         var orderCategory;
         var orderBoolean;
         <c:if test="${searchedName != null && !searchedName.equals('')}">
-            name = "${searchedName}";
+        name = "${searchedName}";
         </c:if>
         <c:if test="${filtersJson != null && !filtersJson.equals('')}">
-            filters = JSON.stringify(${filtersJson});
+        filters = JSON.stringify(${filtersJson});
         </c:if>
         <c:if test="${orderCategory != null && !orderCategory.equals('')}">
-            orderCategory = "${orderCategory}";
+        orderCategory = "${orderCategory}";
         </c:if>
         <c:if test="${orderBoolean != null && !orderBoolean.equals('')}">
-            orderBoolean = "${orderBoolean}";
+        orderBoolean = "${orderBoolean}";
         </c:if>
         var pageSize = selectedPageSize.options[selectedPageSize.selectedIndex].value;
         reload(name, filters, orderCategory, orderBoolean, pageSize, null);
@@ -322,19 +322,19 @@
         var name, filters, orderCategory, orderBoolean, pageSize;
 
         <c:if test="${searchedName != null && !searchedName.equals('')}">
-            name = "${searchedName}";
+        name = "${searchedName}";
         </c:if>
         <c:if test="${filtersJson != null && !filtersJson.equals('')}">
-            filters = JSON.stringify(${filtersJson});
+        filters = JSON.stringify(${filtersJson});
         </c:if>
         <c:if test="${orderCategory != null && !orderCategory.equals('')}">
-            orderCategory = "${orderCategory}";
+        orderCategory = "${orderCategory}";
         </c:if>
         <c:if test="${orderBoolean != null && !orderBoolean.equals('')}">
-            orderBoolean = "${orderBoolean}";
+        orderBoolean = "${orderBoolean}";
         </c:if>
         <c:if test="${pageSizeUrl != null && !pageSizeUrl.equals('')}">
-            pageSize = "${pageSizeUrl}";
+        pageSize = "${pageSizeUrl}";
         </c:if>
         reload(name, filters, orderCategory, orderBoolean, pageSize, pageNumber);
     }
