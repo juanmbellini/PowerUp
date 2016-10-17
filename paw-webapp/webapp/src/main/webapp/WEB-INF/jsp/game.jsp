@@ -91,7 +91,15 @@
                         </div>
                         <div class="col s4">
                             <p><b>Rating</b></p>
-                            <p style="margin-top:0;">${game.avgScore}</p>
+                            <c:choose>
+                                <c:when test="${game.avgScore>0}">
+                                    <p style="margin-top:0;">${game.avgScore}</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p style="margin-top:0;">unrated</p>
+                                </c:otherwise>
+                            </c:choose>
+
                             <p><b>Genres</b></p>
                             <p>
                                 <c:forEach var="genre" items="${game.genres}" varStatus="status">
