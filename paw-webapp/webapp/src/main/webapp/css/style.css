@@ -1,8 +1,9 @@
 .icon-block {
-  padding: 0 15px;
+    padding: 0 15px;
 }
+
 .icon-block .material-icons {
-	font-size: inherit;
+    font-size: inherit;
 }
 
 .rating-stars {
@@ -33,12 +34,16 @@
     margin-bottom: 10px;
 }
 
-.ul_game_list{
+.ul_game_list {
     margin-top: 5px;
 }
 
 .div_none {
     margin-top: 5px;
+}
+
+.search-results {
+    margin-top: 80px;
 }
 
 .filters-row {
@@ -71,7 +76,7 @@
 }
 
 /*#logo-container {*/
-    /*height: 60px;*/
+/*height: 60px;*/
 /*}*/
 
 /* Sticky footer rules */
