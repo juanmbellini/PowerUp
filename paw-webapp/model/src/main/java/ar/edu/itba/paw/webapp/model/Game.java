@@ -31,7 +31,6 @@ public class Game {
     private Set<String> pictureUrls;
 
 
-
     public Game() {
         this(0, "", "");
     }
@@ -153,7 +152,6 @@ public class Game {
     public void setCoverPictureUrl(String cloudinaryId) {
         if (cloudinaryId != null) {
             coverPictureUrl = getPictureURL(cloudinaryId);
-            pictureUrls.remove(coverPictureUrl);
         }
     }
 
@@ -184,10 +182,8 @@ public class Game {
 
     public void addPictureURL(String cloudinaryId) {
         if (cloudinaryId != null) {
-            String pictureUrl = getPictureURL(cloudinaryId);
-            if (coverPictureUrl != pictureUrl) {
-                pictureUrls.add(pictureUrl);
-            }
+            pictureUrls.add(getPictureURL(cloudinaryId));
+
         }
     }
 
