@@ -41,7 +41,7 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-    @Override
+    @Override //TODO transaction
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                         OrderCategory orderCategory, boolean ascending)
             throws IllegalArgumentException {
@@ -49,7 +49,7 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-    @Override
+    @Override //TODO transaction
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
             throws IllegalArgumentException {
@@ -494,13 +494,14 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-    public void updateAvgScore(long gameId){
-        String query = " UPDATE power_up.games SET avg_score = (SELECT AVG(CAST(score AS FLOAT))" +
+    public void updateAvgScore(long gameId){ //TODO check non null AVG? //TODO transaction?
+        String query = " UPDATE power_up.games SET avg_score = COALESCE((SELECT AVG(CAST(score AS FLOAT))" +
                                                             " FROM power_up.game_scores" +
-                                                             " WHERE power_up.game_scores.game_id = ?)" +
+                                                             " WHERE power_up.game_scores.game_id = ?),0)" +
                 " WHERE id = ?";
 
         jdbcTemplate.update(query, gameId, gameId);
+
     }
 
 

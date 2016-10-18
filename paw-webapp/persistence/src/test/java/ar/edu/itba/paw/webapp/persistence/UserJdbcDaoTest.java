@@ -26,6 +26,7 @@ public class UserJdbcDaoTest {
     @Autowired
     private UserJdbcDao userDao;
 
+
     private JdbcTemplate jdbcTemplate;
 
     private void insertOneGame(int id) {
@@ -397,5 +398,23 @@ public class UserJdbcDaoTest {
         assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
         userDao.removeStatus(u,id);
         assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
+    }
+
+    @Test
+    public void avgWhenDeleteScore(){
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        double avgScore=0;
+        insertOneGame(id);
+        userDao.scoreGame(u,id,10);
+        assertEquals(10, u.getGameScore(id));
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        assertEquals(10.0,avgScore);
+        userDao.removeScore(u,id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        assertEquals(0.0,avgScore);
+
     }
 }
