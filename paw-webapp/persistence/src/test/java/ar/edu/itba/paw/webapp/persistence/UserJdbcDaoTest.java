@@ -15,8 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNull;
+import static junit.framework.TestCase.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -364,5 +363,37 @@ public class UserJdbcDaoTest {
 
         assertEquals(5.5, avgScore);
 
+    }
+
+    @Test
+    public void deleteScore(){
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        insertOneGame(id);
+        userDao.scoreGame(u,id,10);
+        assertTrue("Game didn't got scored correctly", u.hasScoredGame(id));
+        assertEquals(10, u.getGameScore(id));
+        userDao.removeScore(u,id);
+        userDao.removeScore(u,id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
+    }
+
+    @Test
+    public void deleteStatus(){
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        insertOneGame(id);
+        userDao.setPlayStatus(u,id,PlayStatus.PLAN_TO_PLAY);
+        assertTrue("Game didn't got given PlayStatus correctly", u.hasPlayStatus(id));
+        assertEquals(PlayStatus.PLAN_TO_PLAY, u.getPlayStatus(id));
+        userDao.removeStatus(u,id);
+        userDao.removeStatus(u,id);
+        assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
     }
 }

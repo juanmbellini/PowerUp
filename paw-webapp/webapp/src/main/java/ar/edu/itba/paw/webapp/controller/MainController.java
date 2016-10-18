@@ -266,11 +266,11 @@ public class MainController {
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) userService.scoreGame(u, id, score);
-        else; //TODO delete score from userMap
+        else userService.removeScore(u,id);
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) userService.setPlayStatus(u, id, playStatus);
-        else;//TODO delete status from userMap
+        else userService.removeStatus(u,id);
 
         return new ModelAndView("redirect:/game?id=" + id);
     }

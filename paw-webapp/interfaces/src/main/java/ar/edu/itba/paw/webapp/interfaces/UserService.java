@@ -104,4 +104,19 @@ public interface UserService {
      * @param status The status.
      */
     void setPlayStatus(User user, Game game, PlayStatus status);
+
+    /**
+     * removes score from user u to game id.
+     * @param u
+     * @param id
+     */
+    void removeScore(User u, long id);
+
+    /**
+     * removes status from user u to game id.
+     * @param u
+     * @param id
+     */
+    void removeStatus(User u, long id);
+
 }
