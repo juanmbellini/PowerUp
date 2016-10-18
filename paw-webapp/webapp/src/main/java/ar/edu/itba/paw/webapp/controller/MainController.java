@@ -338,8 +338,23 @@ public class MainController {
 
 
     // TODO: Move this when adding support for multiple controllers
+
+    /**
+     * Helper class that creates different types of complex URLs to be sent to the view
+     */
     private static class UrlCreator {
 
+        /**
+         * Creates an URL for the '/search' page.
+         *
+         * @param name The value for the 'name' query string param.
+         * @param filters The value for the 'filters' query string param.
+         * @param orderCategory The value for the 'orderCategory' query string param.
+         * @param orderBoolean The value for the 'orderBoolean' query string param.
+         * @param pageSize The value for the 'pageSize' query string param.
+         * @param pageNumber The value for the 'pageNumber' query string param.
+         * @return
+         */
         public String getSearchUrl(String name, String filters, String orderCategory, String orderBoolean, String pageSize, String pageNumber) {
             Map<String, String> params = new LinkedHashMap<>();
             params.put("name", name);
@@ -352,10 +367,26 @@ public class MainController {
         }
 
 
+        /**
+         * Method to create an URL given a {@code baseUrl} and a map of query string parameters - values.
+         *
+         * @param baseUrl The base URL.
+         * @param params A map containing as keys the name of the query string parameters,
+         *               and values the corresponding values for those parameters.
+         * @return The complex URL.
+         */
         private String createUrl(String baseUrl, Map<String, String> params) {
             return baseUrl + createUrl(params, params.keySet().iterator(), true);
         }
 
+        /**
+         * Recursive method to create a query string, given a map of parameters - values.
+         *
+         * @param params The map of parameters - values.
+         * @param keysIterator The {@code params#keySet} iterator.
+         * @param questionMark A flag that says if the question mark (or the ampersand) must be placed.
+         * @return
+         */
         private String createUrl(Map<String, String> params, Iterator<String> keysIterator, boolean questionMark) {
             if (!keysIterator.hasNext()) {
                 return "";
