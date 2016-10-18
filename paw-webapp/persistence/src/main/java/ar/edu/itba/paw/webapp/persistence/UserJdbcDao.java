@@ -95,7 +95,7 @@ public class UserJdbcDao implements UserDao {
         }
 
         final Map<String, Object> userArgs = new HashMap<>();
-        userArgs.put("email", email);                         //TODO ensure it's a valid email
+        userArgs.put("email", email);   //Email validated by WebForm
         userArgs.put("hashed_password", hashedPassword);
         userArgs.put("username", username);
         final Map<String, Object> authorityArgs = new HashMap<>();
@@ -169,7 +169,6 @@ public class UserJdbcDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
         }
-        //TODO make a function in GameDao that checks whether a game with a given ID exists
         if (!gameDao.existsWithId(gameId)) {
             throw new IllegalArgumentException("No game with ID " + gameId);
         }
@@ -217,7 +216,6 @@ public class UserJdbcDao implements UserDao {
         if (status == null) {
             throw new IllegalArgumentException("Status can't be null");
         }
-        //TODO make a function in GameDao that checks whether a game with a given ID exists
         if (!gameDao.existsWithId(gameId)) {
             throw new IllegalArgumentException("No game with ID " + gameId);
         }

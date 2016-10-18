@@ -1,6 +1,9 @@
 BEGIN;
 
+--TODO delete schema and references accross requests
 CREATE SCHEMA IF NOT EXISTS power_up;
+
+--TODO don't drop schema on creation
 
 -- Drop of relationship tables
 DROP TABLE IF EXISTS power_up.game_genres CASCADE;

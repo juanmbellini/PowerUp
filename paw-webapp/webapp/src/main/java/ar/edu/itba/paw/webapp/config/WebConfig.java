@@ -30,9 +30,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("classpath:initial-data.sql")
     private Resource initialDataSql;
 
-    @Value("classpath:add_cover_pic.sql")
-    private Resource coverPicturesSql;
-
     @Bean
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -46,9 +43,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost/paw");
-        dataSource.setUsername("paw");
-        dataSource.setPassword("paw");
+        dataSource.setUrl("jdbc:postgresql://localhost/paw-2016b-02");
+        dataSource.setUsername("paw-2016b-02");
+        dataSource.setPassword("Zae0lohT");
 
         return dataSource;
     }
@@ -82,7 +79,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
         dbp.addScript(initialDataSql);
-        dbp.addScript(coverPicturesSql);
         return dbp;
     }
 }

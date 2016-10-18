@@ -21,9 +21,9 @@
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
-                    <form id="search-form">
+                    <form id="search-form" action="<c:url value="/search" />" method="GET">
                         <div class="input-field">
-                            <input name="search" type="search" required="required">
+                            <input name="name" type="search" required="required">
                             <%--<label for="search2"><i class="material-icons">search2</i></label>--%>
                             <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
