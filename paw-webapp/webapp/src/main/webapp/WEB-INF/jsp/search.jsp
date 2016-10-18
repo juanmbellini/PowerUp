@@ -53,7 +53,7 @@
     <div class="container">
         <div class="section">
             <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search
-                for ${searchedName}</h1>
+                for "${searchedName}"</h1>
         </div>
         <div class="section search-results">
             <div class="row filters-row">
@@ -114,9 +114,10 @@
                         <ul class="collection games-list" id="results">
                             <c:forEach var="game" items="${page.data}">
                                 <li class="collection-item avatar col s12">
-                                    <div class="col s2" style="padding: 0;">
-                                        <img src="${game.coverPictureUrl}" alt="${game.name}"
-                                             style="max-width: 100%; height: auto;">
+                                    <div class="col s2 cover-pic-container">
+                                        <img class="cover-picture"
+                                             src="${game.coverPictureUrl}" alt="${game.name}">
+
                                     </div>
                                     <div class="col primary-content s7">
                                         <p class="title"><a

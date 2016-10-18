@@ -14,25 +14,31 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.games-list > li {
+
+.games-list li {
+    padding: 0 !important;
+}
+
+.games-list .cover-pic-container {
     height: 100px;
     padding: 0 !important;
 }
 
-.games-list > li > img {
-    max-height: 100px;
-    width: auto;
-    padding-left: 0;
+.games-list .cover-pic-container img {
+    height: auto;
+    max-width: 100%;
 }
 
 .games-list .primary-content {
     padding-top: 10px;
 }
 
-.games-list li .primary-content .title {
+.games-list .primary-content .title {
     font-size: 25px !important;
     margin-bottom: 10px;
 }
+
+
 
 .ul_game_list {
     margin-top: 5px;
