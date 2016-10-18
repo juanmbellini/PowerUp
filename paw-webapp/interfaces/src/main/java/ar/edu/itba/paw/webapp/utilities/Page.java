@@ -15,7 +15,6 @@ import java.util.Collection;
  */
 public class Page<T> {
 
-
     /**
      * The total amount of pages there are in the search done to obtain the data included in this page
      */
@@ -28,6 +27,10 @@ public class Page<T> {
      * The total amount of elements there are in this page
      */
     private int pageSize = 0;
+    /**
+     * The total amount of elements in all the pages
+     */
+    private int overAllAmountOfElements = 0;
     /**
      * The data included in this page
      */
@@ -62,6 +65,24 @@ public class Page<T> {
     }
 
     /**
+     * Returns how many elements are there in this page.
+     *
+     * @return The amount of elements in this page.
+     */
+    public int getAmountOfElements() {
+        return data == null ? 0 : data.size();
+    }
+
+    /**
+     * Overall Amount of Elements getter
+     *
+     * @return The overall amount of elements in all the pages
+     */
+    public int getOverAllAmountOfElements() {
+        return overAllAmountOfElements;
+    }
+
+    /**
      * Data getter.
      *
      * @return The data in this page.
@@ -85,8 +106,8 @@ public class Page<T> {
     /**
      * Page number setter.
      * <p>
-     *     If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
-     *     Note: {@code totalPages} is set to {@code 0} initially.
+     * If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
+     * Note: {@code totalPages} is set to {@code 0} initially.
      * </p>
      *
      * @param pageNumber This page's number.
@@ -111,10 +132,22 @@ public class Page<T> {
     }
 
     /**
+     * Overall amount of elements setter
+     *
+     * @param overAllAmountOfElements The number of elements in all the pages
+     */
+    public void setOverAllAmountOfElements(int overAllAmountOfElements) {
+        if (overAllAmountOfElements > pageSize * totalPages) {
+            throw new IllegalPageException();
+        }
+        this.overAllAmountOfElements = overAllAmountOfElements;
+    }
+
+    /**
      * Data setter.
      * <p>
-     *     Note: If the total amount of data in the collection is smaller than {@code pageSize},
-     *     then this field is overwritten.
+     * Note: If the total amount of data in the collection is smaller than {@code pageSize},
+     * then this field is overwritten.
      * </p>
      *
      * @param data The data to be added into this page.
@@ -127,6 +160,6 @@ public class Page<T> {
             throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
         }
         this.data = data;
-        this.pageSize = data.size();
+//        this.pageSize = data.size();
     }
 }

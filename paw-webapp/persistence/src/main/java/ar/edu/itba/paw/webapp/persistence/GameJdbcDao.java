@@ -363,6 +363,7 @@ public class GameJdbcDao implements GameDao {
                     } else {
                         page.setPageSize(rowsCount);
                     }
+                    page.setOverAllAmountOfElements(rowsCount);
                 }
             });
             // Fetch data

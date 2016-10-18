@@ -652,12 +652,19 @@ public class GameJdbcDaoTest {
                 3, mediumPage1.getData().size());
         assertEquals(baseResultString + " Expected 2 pages, got " + mediumPage1.getTotalPages(),
                 2, mediumPage1.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
+                        mediumPage1.getOverAllAmountOfElements(),
+                6, mediumPage1.getOverAllAmountOfElements());
+
         Page<Game> mediumPage2 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 3, 2);
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null", mediumPage2);
         assertEquals(baseResultString + " Expected a page with 3 elements, got " + mediumPage1.getData().size(),
                 3, mediumPage1.getData().size());
         assertEquals(baseResultString + " Expected 2 pages, got " + mediumPage2.getTotalPages(),
                 2, mediumPage2.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
+                        mediumPage2.getOverAllAmountOfElements(),
+                6, mediumPage2.getOverAllAmountOfElements());
 
         for (Game gameFromPage1 : mediumPage1.getData()) {
             Assert.assertNotNull(baseResultString + " There shouldn't be null objects in the page", gameFromPage1);
@@ -699,17 +706,23 @@ public class GameJdbcDaoTest {
                 page1.getData().contains(new Game(2, "", "")));
         assertEquals(baseResultString + " Expected 2 pages, got " + page1.getTotalPages(),
                 2, page1.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
+                        page1.getOverAllAmountOfElements(),
+                6, page1.getOverAllAmountOfElements());
 
         Page<Game> page2 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 5, 2);
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page2);
         assertEquals(baseResultString + " Expected a page with 5 elements, got " + page2.getData().size(),
                 1, page2.getData().size());
-        assertEquals(baseResultString + " Expected a page of size 1, got a page of size " + page2.getPageSize(),
-                1, page2.getPageSize());
+        assertEquals(baseResultString + " Expected a page of size 1, got a page of size " + page2.getAmountOfElements(),
+                1, page2.getAmountOfElements());
         assertTrue(baseResultString + " Expected a page containing 'Super Mario Party', got a page not containing it",
                 page2.getData().contains(new Game(2, "", "")));
         assertEquals(baseResultString + " Expected 2 pages, got " + page2.getTotalPages(),
                 2, page2.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
+                        page2.getOverAllAmountOfElements(),
+                6, page2.getOverAllAmountOfElements());
 
     }
 
@@ -721,10 +734,13 @@ public class GameJdbcDaoTest {
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page);
         assertEquals(baseResultString + " Expected a page with 6 elements, got " + page.getData().size(),
                 6, page.getData().size());
-        assertEquals(baseResultString + " Expected a page of size 6, got a page of size " + page.getPageSize(),
-                6, page.getPageSize());
+        assertEquals(baseResultString + " Expected a page of size 6, got a page of size " + page.getAmountOfElements(),
+                6, page.getAmountOfElements());
         assertEquals(baseResultString + " Expected one page, got " + page.getTotalPages(),
                 1, page.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
+                        page.getOverAllAmountOfElements(),
+                6, page.getOverAllAmountOfElements());
     }
 
     @Test
@@ -735,10 +751,13 @@ public class GameJdbcDaoTest {
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page);
         assertEquals(baseResultString + " Expected a page with no elements, got " + page.getData().size(),
                 0, page.getData().size());
-        assertEquals(baseResultString + " Expected a page of size 0, got a page of size " + page.getPageSize(),
-                0, page.getPageSize());
+        assertEquals(baseResultString + " Expected a page of size 0, got a page of size " + page.getAmountOfElements(),
+                0, page.getAmountOfElements());
         assertEquals(baseResultString + " Expected one page, got " + page.getTotalPages(),
                 1, page.getTotalPages());
+        assertEquals(baseResultString + " Expected overall amount of data to be 0, was " +
+                        page.getOverAllAmountOfElements(),
+                0, page.getOverAllAmountOfElements());
     }
 
 }
