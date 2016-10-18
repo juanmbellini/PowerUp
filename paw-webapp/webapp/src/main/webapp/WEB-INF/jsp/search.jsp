@@ -77,7 +77,7 @@
                                 of ${page.overAllAmountOfElements}
                             </div>
                         </ul>
-                        <ul class="collection games-list" id="results">
+                        <ul class="collection games-list">
                             <c:forEach var="game" items="${page.data}">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2 cover-pic-container">

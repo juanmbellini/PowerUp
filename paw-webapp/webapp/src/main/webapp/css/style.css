@@ -20,13 +20,15 @@
 }
 
 .games-list .cover-pic-container {
-    height: 100px;
+    height: 150px;
     padding: 0 !important;
 }
 
 .games-list .cover-pic-container img {
-    height: auto;
-    max-width: 100%;
+    /*height: auto;*/
+    /*max-width: 100%;*/
+    width: 100%;
+    height: 150px;
 }
 
 .games-list .primary-content {
