@@ -75,7 +75,7 @@ public class UserJdbcDao implements UserDao {
         return this.jdbcTemplate;
     }
 
-    @Override
+    @Override //TODO transaction
     public User create(String email, String hashedPassword, String username) {
         if (email == null) {
             throw new IllegalArgumentException("Email can't be null");
@@ -110,7 +110,7 @@ public class UserJdbcDao implements UserDao {
         }
     }
 
-    @Override
+    @Override //TODO transaction
     public User findByUsername(String username) {
         final String query = "SELECT * FROM power_up.users WHERE username = ? LIMIT 1";
         List<User> result;
@@ -122,7 +122,7 @@ public class UserJdbcDao implements UserDao {
         return result.isEmpty() ? null : completeUser(result.get(0));
     }
 
-    @Override
+    @Override //TODO transaction
     public User findByEmail(String email) {
         final String query = "SELECT * FROM power_up.users WHERE LOWER(email) = LOWER(?) LIMIT 1";
         List<User> result;
@@ -134,7 +134,7 @@ public class UserJdbcDao implements UserDao {
         return result.isEmpty() ? null : completeUser(result.get(0));
     }
 
-    @Override
+    @Override //TODO transaction
     public User findById(long id) {
         final String query = "SELECT * FROM power_up.users WHERE id = ? LIMIT 1";
         List<User> result;
@@ -164,7 +164,7 @@ public class UserJdbcDao implements UserDao {
         return count > 0;
     }
 
-    @Override
+    @Override //TODO transaction
     public void scoreGame(User user, long gameId, int score) {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
@@ -189,7 +189,6 @@ public class UserJdbcDao implements UserDao {
         }
 
         user.scoreGame(gameId, score);
-        //TODO ver lo de merca y race condition
         //TODO cambiar para que sea mejor que en todas las veces
         String querySelect = "SELECT counter FROM power_up.games WHERE id = ?";
         int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
@@ -200,7 +199,7 @@ public class UserJdbcDao implements UserDao {
         }
     }
 
-    @Override
+    @Override //TODO transaction
     public void scoreGame(User user, Game game, int score) {
         if (game == null) {
             throw new IllegalArgumentException("Game can't be null");
@@ -208,7 +207,7 @@ public class UserJdbcDao implements UserDao {
         scoreGame(user, game.getId(), score);
     }
 
-    @Override
+    @Override //TODO transaction
     public void setPlayStatus(User user, long gameId, PlayStatus status) {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
@@ -234,7 +233,7 @@ public class UserJdbcDao implements UserDao {
         user.setPlayStatus(gameId, status);
     }
 
-    @Override
+    @Override //TODO transaction
     public void setPlayStatus(User user, Game game, PlayStatus status) {
         if (game == null) {
             throw new IllegalArgumentException("Game cannot be null");
@@ -242,22 +241,24 @@ public class UserJdbcDao implements UserDao {
         setPlayStatus(user, game.getId(), status);
     }
 
-    @Override
+    @Override//TODO transaction
     public void removeScore(User u, long id) {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasScoredGame(id)){
             u.getScoredGames().remove(id);
             jdbcTemplate.update("DELETE FROM power_up.game_scores where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
         }
+        gameDao.updateAvgScore(id);
     }
 
-    @Override
+    @Override//TODO transaction
     public void removeStatus(User u, long id) {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasPlayStatus(id)){
             u.getPlayStatuses().remove(id);
             jdbcTemplate.update("DELETE FROM power_up.game_play_statuses where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
         }
+        gameDao.updateAvgScore(id);
     }
 
 
