@@ -242,6 +242,25 @@ public class UserJdbcDao implements UserDao {
         setPlayStatus(user, game.getId(), status);
     }
 
+    @Override
+    public void removeScore(User u, long id) {
+        if(u==null) throw new IllegalArgumentException();
+        if(u.hasScoredGame(id)){
+            u.getScoredGames().remove(id);
+            jdbcTemplate.update("DELETE FROM power_up.game_scores where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+        }
+    }
+
+    @Override
+    public void removeStatus(User u, long id) {
+        if(u==null) throw new IllegalArgumentException();
+        if(u.hasPlayStatus(id)){
+            u.getPlayStatuses().remove(id);
+            jdbcTemplate.update("DELETE FROM power_up.game_play_statuses where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+        }
+    }
+
+
     /**
      * Adds relationship information for a specific user that is not readily available from the users table (e.g. scored
      * games, played games)
