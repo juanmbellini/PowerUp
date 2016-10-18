@@ -100,18 +100,15 @@ public class MainController {
         Map<FilterCategory, List<String>> filters;
         try {
             filters = objectMapper.readValue(filtersStr, typeReference);
-
-            // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
+            
             pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
             pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
                     DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
-            // TODO: Change JSP in order to send just the page
-            mav.addObject("page", page);
 
-            
+            mav.addObject("page", page);
             mav.addObject("hasFilters", !filtersStr.equals("{}"));
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));

@@ -52,8 +52,9 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text"><c:if test="${hasFilters}">Avanced </c:if>Search
-                for "${searchedName}"</h1>
+            <h1 class="header center orange-text">
+                <c:if test="${hasFilters}">Avanced </c:if>Search for "${searchedName}"
+            </h1>
         </div>
         <div class="section search-results">
             <div class="row filters-row">
@@ -285,7 +286,6 @@
 <script>
 
     $(document).ready(function () {
-
 
         <c:choose>
         <c:when test="${orderCategory == null}">
