@@ -646,7 +646,6 @@ public class GameJdbcDaoTest {
         assertEquals(baseResultString + " Expected one page, got " + bigPage.getTotalPages(),
                 1, bigPage.getTotalPages());
 
-
         Page<Game> mediumPage1 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 3, 1);
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null", mediumPage1);
         assertEquals(baseResultString + " Expected a page with 3 elements, got " + mediumPage1.getData().size(),

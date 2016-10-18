@@ -15,7 +15,6 @@ import java.util.Collection;
  */
 public class Page<T> {
 
-
     /**
      * The total amount of pages there are in the search done to obtain the data included in this page
      */
@@ -107,8 +106,8 @@ public class Page<T> {
     /**
      * Page number setter.
      * <p>
-     *     If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
-     *     Note: {@code totalPages} is set to {@code 0} initially.
+     * If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
+     * Note: {@code totalPages} is set to {@code 0} initially.
      * </p>
      *
      * @param pageNumber This page's number.
@@ -147,8 +146,8 @@ public class Page<T> {
     /**
      * Data setter.
      * <p>
-     *     Note: If the total amount of data in the collection is smaller than {@code pageSize},
-     *     then this field is overwritten.
+     * Note: If the total amount of data in the collection is smaller than {@code pageSize},
+     * then this field is overwritten.
      * </p>
      *
      * @param data The data to be added into this page.
