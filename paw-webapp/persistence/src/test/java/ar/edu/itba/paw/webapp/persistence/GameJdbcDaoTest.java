@@ -35,7 +35,7 @@ import static org.junit.Assert.*;
 public class GameJdbcDaoTest {
 
     //TODO avoid copy-pasting
-    private static final String DEFAULT_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
+    private static final String DEFAULT_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
 
     @Autowired
     private GameJdbcDao gameDao;

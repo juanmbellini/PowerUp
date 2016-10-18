@@ -12,8 +12,7 @@ public class Game {
     
     final static private double INITIAL_AVG_SCORE = 0.0;
     final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
-    //TODO store this locally or get a more reliable URL
-    final private static String DEFAULT_COVER_PICTURE_URL = "https://4.bp.blogspot.com/-9wibpF5Phs0/VubnbJfiprI/AAAAAAAABYg/TVSE7O7-yGYr_gCoBlObBc6DRve90LoIw/s1600/image06.png";
+    final private static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
 
     private long id;
     private String name;

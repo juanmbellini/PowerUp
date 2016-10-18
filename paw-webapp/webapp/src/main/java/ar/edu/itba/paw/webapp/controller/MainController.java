@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
@@ -18,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -298,11 +300,26 @@ public class MainController {
         if (errors.hasErrors()) {
             return register(form);
         }
-        //TODO handle duplicate emails/usernames here
         final String email = form.getEmail(),
-                hashedPassword = passwordEncoder.encode(form.getPassword()),
-                username = form.getUsername();
-        final User user = userService.create(email, hashedPassword, username);
+                    hashedPassword = passwordEncoder.encode(form.getPassword()),
+                    username = form.getUsername();
+        User user;
+        try {
+            user = userService.create(email, hashedPassword, username);
+        } catch (UserExistsException e) {
+            String msgLow = e.getMessage().toLowerCase();
+            //The calls to rejectValue will add errors to the UserForm so they get displayed properly and in the proper fields
+            if(msgLow.contains("email")) {
+                errors.rejectValue("email", "error.email", "An account exists with this email");
+            } else if(msgLow.contains("username")) {
+                errors.rejectValue("username", "error.username", "Username already taken");
+            } else {
+                errors.addError(new ObjectError("error", "Error creating account, please try again"));
+                System.err.println("Unrecognized message in UserExistsException: \"" + e.getMessage() + "\". Printing stack trace:");
+                e.printStackTrace();
+            }
+            return register(form);
+        }
         System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
