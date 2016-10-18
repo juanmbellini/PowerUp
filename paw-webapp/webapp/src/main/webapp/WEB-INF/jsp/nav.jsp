@@ -11,6 +11,7 @@
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List <i class="material-icons right">menu</i></a></li>
+                    <%--TODO decide what to do with this button (also see mobile nav)--%>
                     <li><a href="#!">${currentUsername} <i class="material-icons right">person</i></a></li>
                     <li><a href="<c:url value="/logout" /> ">Log Out <i class="material-icons right">exit_to_app</i></a></li>
                 </c:when>
