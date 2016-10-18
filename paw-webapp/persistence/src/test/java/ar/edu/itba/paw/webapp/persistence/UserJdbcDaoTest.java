@@ -377,6 +377,7 @@ public class UserJdbcDaoTest {
         assertTrue("Game didn't got scored correctly", u.hasScoredGame(id));
         assertEquals(10, u.getGameScore(id));
         userDao.removeScore(u,id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
         userDao.removeScore(u,id);
         assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
     }
@@ -393,6 +394,7 @@ public class UserJdbcDaoTest {
         assertTrue("Game didn't got given PlayStatus correctly", u.hasPlayStatus(id));
         assertEquals(PlayStatus.PLAN_TO_PLAY, u.getPlayStatus(id));
         userDao.removeStatus(u,id);
+        assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
         userDao.removeStatus(u,id);
         assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
     }
