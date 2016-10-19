@@ -47,6 +47,7 @@
                                         <p>Repeat Password:</p>
                                         <form:input type="password" path="repeatPassword"/>
                                         <form:errors path="repeatPassword" cssClass="formError" element="p" Style="size: 1px"/>
+                                        <form:errors path="" cssClass="formError" element="p"/>
                                     </div>
                                 </div>
 
