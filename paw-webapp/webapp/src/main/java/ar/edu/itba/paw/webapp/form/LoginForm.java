@@ -8,12 +8,12 @@ import javax.validation.constraints.Size;
 /**
  * Created by julian on 13/10/16.
  */
-public class LoginForm {
-    @Size(min = 6, max = 100)
+public class
+LoginForm {
+
     @Pattern(regexp = "[a-zA-Z0-9]+")
     private String username;
 
-    @Size(min = 6, max = 100)
     private String password;
 
     public String getUsername() {

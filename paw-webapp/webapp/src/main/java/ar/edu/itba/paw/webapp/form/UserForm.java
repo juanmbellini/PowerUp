@@ -8,8 +8,8 @@ import javax.validation.constraints.*;
 @EqualProperties({"password","repeatPassword"})
 public class UserForm {
 
-    @Size(min = 6, max = 100)
-    @Pattern(regexp = "[a-zA-Z0-9]+")
+    @Size(min = 1, max = 25)
+    @Pattern(regexp = "[a-zA-Z0-9]*")
     private String username;
 
     @Size(min = 6, max = 100)
