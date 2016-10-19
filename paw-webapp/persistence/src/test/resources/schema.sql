@@ -1,6 +1,6 @@
 
 -- Creation of entity tables
-CREATE TABLE games (
+CREATE TABLE IF NOT EXISTS games (
   id                          INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name                        VARCHAR(1024),
   summary                     VARCHAR(1024),
@@ -9,19 +9,19 @@ CREATE TABLE games (
   cover_picture_cloudinary_id VARCHAR(1024),
   counter                     INTEGER          NOT NULL
 );
-CREATE TABLE genres (
+CREATE TABLE IF NOT EXISTS genres (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE platforms (
+CREATE TABLE IF NOT EXISTS platforms (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE companies (
+CREATE TABLE IF NOT EXISTS companies (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id              INTEGER IDENTITY     NOT NULL PRIMARY KEY,
   email           VARCHAR(1024)        NOT NULL,
   username        VARCHAR(1024) DEFAULT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE users (
 );
 
 -- Creation of relationship tables
-CREATE TABLE game_genres (
+CREATE TABLE IF NOT EXISTS game_genres (
   id       INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id  INTEGER          NOT NULL,
   genre_id INTEGER          NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE game_genres (
     ON UPDATE CASCADE,
   UNIQUE (game_id, genre_id)
 );
-CREATE TABLE game_platforms (
+CREATE TABLE IF NOT EXISTS game_platforms (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   platform_id  INTEGER          NOT NULL,
@@ -60,11 +60,11 @@ CREATE TABLE game_platforms (
     ON UPDATE CASCADE,
   UNIQUE (game_id, platform_id, release_date)  --The same game can be released for the same platform multiple times
 );
-CREATE TABLE keywords (
+CREATE TABLE IF NOT EXISTS keywords (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)    NOT NULL
 );
-CREATE TABLE game_keywords (
+CREATE TABLE IF NOT EXISTS game_keywords (
   id         INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id    INTEGER          NOT NULL,
   keyword_id INTEGER          NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE game_keywords (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
-CREATE TABLE game_developers (
+CREATE TABLE IF NOT EXISTS game_developers (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   developer_id INTEGER          NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE game_developers (
     ON UPDATE CASCADE,
   UNIQUE (game_id, developer_id)
 );
-CREATE TABLE game_publishers (
+CREATE TABLE IF NOT EXISTS game_publishers (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   publisher_id INTEGER          NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE game_publishers (
     ON UPDATE CASCADE,
   UNIQUE (game_id, publisher_id)
 );
-CREATE TABLE game_pictures (
+CREATE TABLE IF NOT EXISTS game_pictures (
   id            INTEGER IDENTITY NOT NULL PRIMARY KEY,
   cloudinary_id VARCHAR(1024)    NOT NULL,
   game_id       INTEGER          NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE game_pictures (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
 );
-CREATE TABLE game_scores (
+CREATE TABLE IF NOT EXISTS game_scores (
   id      INTEGER IDENTITY NOT NULL PRIMARY KEY,
   user_id INTEGER          NOT NULL,
   game_id INTEGER          NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE game_scores (
     ON UPDATE CASCADE,
   UNIQUE (user_id, game_id)
 );
-CREATE TABLE game_play_statuses (
+CREATE TABLE IF NOT EXISTS game_play_statuses (
   id      INTEGER IDENTITY NOT NULL PRIMARY KEY,
   user_id INTEGER          NOT NULL,
   game_id INTEGER          NOT NULL,
@@ -141,11 +141,13 @@ CREATE TABLE game_play_statuses (
     ON UPDATE CASCADE,
   UNIQUE (user_id, game_id)
 );
-CREATE TABLE user_authorities (
+CREATE TABLE IF NOT EXISTS user_authorities (
   id        INTEGER IDENTITY NOT NULL PRIMARY KEY,
   username  VARCHAR(1024)    NOT NULL,
   authority VARCHAR(1024)    NOT NULL,
 
-  FOREIGN KEY (username) REFERENCES users (username),
+  FOREIGN KEY (username) REFERENCES users (username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   UNIQUE (username, authority)
 );
