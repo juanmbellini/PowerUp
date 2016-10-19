@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Created by Juan Marcos Bellini on 19/10/16.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
- *
+ * <p>
  * This controller is in charge of handling errors.
  */
 @Controller
@@ -24,20 +24,17 @@ public class ErrorController extends BaseController {
 
     @RequestMapping("/error500")
     public ModelAndView error500() {
-        final ModelAndView mav = new ModelAndView("error500");
-        return mav;
+        return new ModelAndView("error500");
     }
 
     @RequestMapping("/error404")
     public ModelAndView error404() {
-        final ModelAndView mav = new ModelAndView("error404");
-        return mav;
+        return new ModelAndView("error404");
     }
 
     @RequestMapping("/error400")
     public ModelAndView error400() {
-        final ModelAndView mav = new ModelAndView("error400");
-        return mav;
+        return new ModelAndView("error400");
     }
 
 }

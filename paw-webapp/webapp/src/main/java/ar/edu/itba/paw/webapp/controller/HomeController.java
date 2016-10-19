@@ -13,11 +13,11 @@ import java.util.*;
 /**
  * Created by Juan Marcos Bellini on 19/10/16.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
- *
+ * <p>
  * This controller is in charge of handling requests to the home page.
  */
 @Controller
-public class HomeController extends BaseController{
+public class HomeController extends BaseController {
 
 
     @Autowired
@@ -30,7 +30,7 @@ public class HomeController extends BaseController{
     public ModelAndView home() {
         final ModelAndView mav = new ModelAndView("index");
         Collection<Game> recommendedGames = new LinkedHashSet<>();
-        if(isLoggedIn()){
+        if (isLoggedIn()) {
             User u = getCurrentUser();
             recommendedGames = getUserService().recommendGames(u);
         }
