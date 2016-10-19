@@ -515,7 +515,7 @@ public class GameJdbcDao implements GameDao {
         if(ids==null) throw new IllegalArgumentException();
         Map<Long,Game> gameMap = new HashMap();
         if(ids.isEmpty()) return gameMap;
-        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM power_up.games WHERE");
+        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM games WHERE");
         Iterator<Long> iter = ids.iterator();
         queryBuilder.append(" id = "+iter.next());
         while(iter.hasNext()){ //TODO change to id IN (id1, id2,...)
