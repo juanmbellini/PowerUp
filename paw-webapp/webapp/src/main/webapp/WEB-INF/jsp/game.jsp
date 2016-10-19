@@ -24,7 +24,7 @@
         <%--Rate and status form if logged in--%>
         <div class ="section">
             <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-            <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align">
+            <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align" id="rateAndStatusForm">
                 <div class="row" >
                     <div class="col s3">
                     </div>
@@ -32,7 +32,7 @@
                         <div class="row">
 
                             <div class="col s4 center-align">
-                                <form:select path="score">
+                                <form:select path="score" id="score">
                                     <form:option value="" label="Select score"/>
                                     <form:options items="${scoreValues}"/>
                                 </form:select>
@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="col s4 center-align">
-                                <form:select path="playStatus">
+                                <form:select path="playStatus" id="status">
                                     <form:option value="" label="Select status"/>
                                     <form:options items="${statuses}"/>
                                 </form:select>
@@ -54,7 +54,7 @@
                             <c:choose>
                                 <c:when test="${isLoggedIn}">
                                     <div class="col s4 center">
-                                        <button type="submit" class="btn waves-effect waves-light">Update List!</button>
+                                        <button id="submit" type="submit" class="btn waves-effect waves-light">Update List!</button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
