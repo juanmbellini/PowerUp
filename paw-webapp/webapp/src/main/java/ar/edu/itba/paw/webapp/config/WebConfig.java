@@ -75,6 +75,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
         registry.addResourceHandler("/slick/**").addResourceLocations("/slick/");
     }
+
     @Bean
     public MessageSource messageSource()
     {
