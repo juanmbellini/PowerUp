@@ -28,18 +28,20 @@
                         <ul class="ul_game_list collection games-list">
                             <c:forEach items="${statusMap.value}" var="game">
                                 <li class="collection-item avatar col s12">
-                                    <div class="col s2" style="padding: 0;">
-                                        <img src="${game.coverPictureUrl}" alt="${game.name}" style="max-width: 100%; height: auto;">
+                                    <div class="col s2 cover-pic-container">
+                                        <img class="cover-picture"
+                                             src="${game.coverPictureUrl}" alt="${game.name}">
                                     </div>
                                     <div class="col primary-content s7">
-                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+                                        <p class="title"><a
+                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                     </div>
                                     <div class="col s1 center">
                                         <p style="margin-top: 33px;">${game.releaseDate.year}</p>
                                     </div>
                                     <div class="col s2">
                                         <div class="secondary-content">
-                                            <c:set var="score" value="${user.scoredGames.get(game.id)}" />
+                                            <c:set var="score" value="${user.scoredGames.get(game.id)}"/>
                                             <c:choose>
                                                 <c:when test="${score <= 10 && score>=0}">
                                                     <p class="rating-number center"><b>${score}</b></p>
@@ -72,7 +74,8 @@
                 </c:otherwise>
             </c:choose>
             <c:if test="${!loopStatus.last && statusMap.value.size() == 0}">
-                <div class="col s12 divider"></div><br />
+                <div class="col s12 divider"></div>
+                <br/>
             </c:if>
         </c:forEach>
     </div>

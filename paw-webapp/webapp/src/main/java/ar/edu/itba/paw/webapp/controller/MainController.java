@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.form.LoginForm;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
@@ -18,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,7 @@ import org.springframework.web.util.HtmlUtils;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.*;
 
 @Controller
@@ -44,12 +47,15 @@ public class MainController {
             = new TypeReference<HashMap<FilterCategory, ArrayList<String>>>() {
     };
 
+    final private UrlCreator urlCreator;
+
     @Autowired
     public MainController(GameService gameService, UserService userService, PasswordEncoder passwordEncoder) {
         //Spring is in charge of providing the gameService parameter.
         this.userService = userService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
+        urlCreator = new UrlCreator();
     }
 
     @RequestMapping("/")
@@ -60,13 +66,20 @@ public class MainController {
 
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
+                               @RequestParam(value = "filters", required = false) String filtersStr,
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
                                @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
-                               @RequestParam(value = "filters", required = false) String filtersStr,
                                @RequestParam(value = "pageSize", required = false) String pageSizeStr,
                                @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
 
         final ModelAndView mav = new ModelAndView();
+
+        // This is done here in order to get parameters without further modification
+        String changePageUrl = urlCreator.getSearchUrl(name, filtersStr, orderParameter, orderBooleanStr,
+                pageSizeStr, null);
+        String changeOrderUrl = urlCreator.getSearchUrl(name, filtersStr, null, null, pageSizeStr, null);
+        String changePageSizeUrl = urlCreator.getSearchUrl(name, filtersStr, orderParameter,
+                orderBooleanStr, null, null);
 
         name = name == null ? "" : name;
         filtersStr = (filtersStr == null || filtersStr.equals("")) ? "{}" : filtersStr;
@@ -79,9 +92,9 @@ public class MainController {
         // TODO: change string to use those in enum and avoid this
         if (orderParameter == null || orderParameter.equals("name")) {
             orderCategory = "name";
-        } else if (orderParameter.equals("release date")) {
+        } else if (orderParameter.equals("release")) {
             orderCategory = "release";
-        } else if (orderParameter.equals("avg-score")) {
+        } else if (orderParameter.equals("rating")) {
             orderCategory = "avg_score";
         } else {
             mav.setViewName("redirect:error400");
@@ -101,26 +114,26 @@ public class MainController {
         try {
             filters = objectMapper.readValue(filtersStr, typeReference);
 
-            // TODO: In case an exception is thrown in this two next lines, should be redirect to 400 error page, or should be set default values?
             pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
             pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
                     DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
-            // TODO: Change JSP in order to send just the page
-            mav.setViewName("search");
-            mav.addObject("results", page.getData());
-            mav.addObject("pageNumber", page.getPageNumber());
-            mav.addObject("pageSize", page.getPageSize());
-            mav.addObject("totalPages", page.getTotalPages());
 
-            mav.addObject("hasFilters", !filtersStr.equals("{}"));
+            mav.addObject("page", page);
+            mav.addObject("hasFilters", !filtersStr.equals("{}")); // TODO: Check the applied filters size
             mav.addObject("appliedFilters", filters);
             mav.addObject("searchedName", HtmlUtils.htmlEscape(name));
             mav.addObject("orderBoolean", orderBooleanStr);
             mav.addObject("orderCategory", orderParameter);
             mav.addObject("filters", filtersStr);
+
+            mav.addObject("changePageUrl", changePageUrl);
+            mav.addObject("changeOrderUrl", changeOrderUrl);
+            mav.addObject("changePageSizeUrl", changePageSizeUrl);
+
+            mav.setViewName("search");
 
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
@@ -156,7 +169,7 @@ public class MainController {
                 return error404();
             }
             User u = getCurrentUser();
-            if(u != null) {
+            if (u != null) {
                 if (u.hasScoredGame(id)) rateAndStatusForm.setScore(u.getGameScore(id));
                 if (u.hasPlayStatus(id)) rateAndStatusForm.setPlayStatus(u.getPlayStatus(id));
             }
@@ -177,7 +190,7 @@ public class MainController {
             values will be what will get displayed to the user.
          */
         Map<PlayStatus, String> statuses = new LinkedHashMap<>();
-        for(PlayStatus status : PlayStatus.values()) {
+        for (PlayStatus status : PlayStatus.values()) {
             statuses.put(status, status.getPretty());
         }
         mav.addObject("statuses", statuses);
@@ -191,6 +204,7 @@ public class MainController {
     * *****************************************************************************************************************/
 
     //TODO move current-user functions to UserService?
+
     /**
      * Gets the current user. <b>NOTE: </b>To check whether a user is currently logged in, use the less costly (and more
      * obvious) {@link #isLoggedIn()} method.
@@ -215,6 +229,7 @@ public class MainController {
 
     /**
      * Checks whether there is a currently authenticated user.
+     *
      * @return Whether a user is currently authenticated with Spring.
      */
     @ModelAttribute("isLoggedIn")
@@ -225,21 +240,21 @@ public class MainController {
 
     @RequestMapping("/list")
     public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
-        if(username == null) {
-            if(!isLoggedIn()) {
+        if (username == null) {
+            if (!isLoggedIn()) {
                 return error400();
             }
             return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
         }
         final ModelAndView mav = new ModelAndView("list");
         User u = userService.findByUsername(username);      //If we got this far, we know username != null
-        if(u == null) return error400();
+        if (u == null) return error400();
 
         Map<PlayStatus, Set<Game>> gamesInListsMap = new HashMap<>();
-        for(PlayStatus playStatus : PlayStatus.values()){
+        for (PlayStatus playStatus : PlayStatus.values()) {
             gamesInListsMap.put(playStatus, new HashSet<>());           //TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
         }
-        Map<Long, PlayStatus> playStatuses =  u.getPlayStatuses();
+        Map<Long, PlayStatus> playStatuses = u.getPlayStatuses();
         //TODO do this in user?
         Map<Long,Game> longGameMap = gameService.findBasicDataGamesFromArrayId( playStatuses.keySet());
         for(long gameId: playStatuses.keySet()){
@@ -261,24 +276,24 @@ public class MainController {
             return game(rateAndStatusForm, id);
         }
         final User u = getCurrentUser();
-        if(u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
+        if (u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
             return new ModelAndView("redirect:/login");
         }
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) userService.scoreGame(u, id, score);
-        else; //TODO delete score from userMap
+        else userService.removeScore(u,id);
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) userService.setPlayStatus(u, id, playStatus);
-        else;//TODO delete status from userMap
+        else userService.removeStatus(u,id);
 
         return new ModelAndView("redirect:/game?id=" + id);
     }
 
     @RequestMapping("/register")
     public ModelAndView register(@ModelAttribute("registerForm") final UserForm form) {
-            return new ModelAndView("register");
+        return new ModelAndView("register");
     }
 
     @RequestMapping(value = "/register", method = {RequestMethod.POST})
@@ -286,11 +301,26 @@ public class MainController {
         if (errors.hasErrors()) {
             return register(form);
         }
-        //TODO handle duplicate emails/usernames here
         final String email = form.getEmail(),
                     hashedPassword = passwordEncoder.encode(form.getPassword()),
                     username = form.getUsername();
-        final User user = userService.create(email, hashedPassword, username);
+        User user;
+        try {
+            user = userService.create(email, hashedPassword, username);
+        } catch (UserExistsException e) {
+            String msgLow = e.getMessage().toLowerCase();
+            //The calls to rejectValue will add errors to the UserForm so they get displayed properly and in the proper fields
+            if(msgLow.contains("email")) {
+                errors.rejectValue("email", "error.email", "An account exists with this email");
+            } else if(msgLow.contains("username")) {
+                errors.rejectValue("username", "error.username", "Username already taken");
+            } else {
+                errors.addError(new ObjectError("error", "Error creating account, please try again"));
+                System.err.println("Unrecognized message in UserExistsException: \"" + e.getMessage() + "\". Printing stack trace:");
+                e.printStackTrace();
+            }
+            return register(form);
+        }
         System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
@@ -335,5 +365,77 @@ public class MainController {
     public ModelAndView error400() {
         final ModelAndView mav = new ModelAndView("error400");
         return mav;
+    }
+
+
+    // TODO: Move this when adding support for multiple controllers
+
+    /**
+     * Helper class that creates different types of complex URLs to be sent to the view
+     */
+    private static class UrlCreator {
+
+        /**
+         * Creates an URL for the '/search' page.
+         *
+         * @param name The value for the 'name' query string param.
+         * @param filters The value for the 'filters' query string param.
+         * @param orderCategory The value for the 'orderCategory' query string param.
+         * @param orderBoolean The value for the 'orderBoolean' query string param.
+         * @param pageSize The value for the 'pageSize' query string param.
+         * @param pageNumber The value for the 'pageNumber' query string param.
+         * @return
+         */
+        public String getSearchUrl(String name, String filters, String orderCategory, String orderBoolean, String pageSize, String pageNumber) {
+            Map<String, String> params = new LinkedHashMap<>();
+            params.put("name", name);
+            params.put("filters", filters);
+            params.put("orderCategory", orderCategory);
+            params.put("orderBoolean", orderBoolean);
+            params.put("pageSize", pageSize);
+            params.put("pageNumber", pageNumber);
+            return createUrl("/search", params);
+        }
+
+
+        /**
+         * Method to create an URL given a {@code baseUrl} and a map of query string parameters - values.
+         *
+         * @param baseUrl The base URL.
+         * @param params A map containing as keys the name of the query string parameters,
+         *               and values the corresponding values for those parameters.
+         * @return The complex URL.
+         */
+        private String createUrl(String baseUrl, Map<String, String> params) {
+            return baseUrl + createUrl(params, params.keySet().iterator(), true);
+        }
+
+        /**
+         * Recursive method to create a query string, given a map of parameters - values.
+         *
+         * @param params The map of parameters - values.
+         * @param keysIterator The {@code params#keySet} iterator.
+         * @param questionMark A flag that says if the question mark (or the ampersand) must be placed.
+         * @return
+         */
+        private String createUrl(Map<String, String> params, Iterator<String> keysIterator, boolean questionMark) {
+            if (!keysIterator.hasNext()) {
+                return "";
+            }
+            String param = keysIterator.next();
+            String value = params.get(param);
+            String symbol = questionMark ? "?" : "&";
+            String result = "";
+            if (value != null && !value.equals("")) {
+                try {
+                    result = symbol + param + "=" + URLEncoder.encode(value, "UTF-8");
+                    questionMark = false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return result + createUrl(params, keysIterator, questionMark);
+        }
+
     }
 }

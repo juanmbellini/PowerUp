@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class GameJdbcDao implements GameDao {
         return this.jdbcTemplate;
     }
 
-
+    @Transactional
     @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                         OrderCategory orderCategory, boolean ascending)
@@ -49,7 +50,8 @@ public class GameJdbcDao implements GameDao {
     }
 
 
-    @Override
+    @Transactional
+    @Override //TODO transaction
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
             throws IllegalArgumentException {
@@ -60,6 +62,7 @@ public class GameJdbcDao implements GameDao {
     }
 
 
+    @Transactional
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
 
@@ -96,8 +99,8 @@ public class GameJdbcDao implements GameDao {
         Object[] parameters = new Object[1];
         parameters[0] = id;
         String query;
-        query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score, " +
-                "cover_picture_cloudinary_id FROM power_up.games WHERE power_up.games.id = ?";
+        query = "SELECT games.id, games.name, summary, release, avg_score, " +
+                "cover_picture_cloudinary_id FROM games WHERE games.id = ?";
         System.out.println(query);
         final boolean[] found = {false};
         try {
@@ -122,8 +125,8 @@ public class GameJdbcDao implements GameDao {
             return null;
         }
 
-        query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
-                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
+        query = "SELECT platforms.name,release_date FROM games, platforms, game_platforms " +
+                "WHERE games.id = ? AND game_platforms.game_Id = games.id AND game_platforms.platform_Id = platforms.id ";
         System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -139,8 +142,8 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
-                "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
+        query = "SELECT genres.name FROM games, genres, game_genres " +
+                "WHERE games.id = ? AND game_genres.game_Id = games.id AND game_genres.genre_Id = genres.id ";
         System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -155,8 +158,8 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
-                "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
+        query = "SELECT companies.name FROM games, companies, game_publishers " +
+                "WHERE games.id = ? AND game_publishers.game_Id = games.id AND game_publishers.publisher_Id = companies.id ";
         System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -171,8 +174,8 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
-                "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
+        query = "SELECT companies.name FROM games, companies, game_developers " +
+                "WHERE games.id = ? AND game_developers.game_Id = games.id AND game_developers.developer_Id = companies.id ";
         System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -187,8 +190,8 @@ public class GameJdbcDao implements GameDao {
 
         }
 
-        query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
-                "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
+        query = "SELECT keywords.name FROM games, keywords, game_keywords " +
+                "WHERE games.id = ? AND game_keywords.game_id = games.id AND game_keywords.keyword_id = keywords.id ";
         System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -204,7 +207,7 @@ public class GameJdbcDao implements GameDao {
         }
 
         // Get cloudinary IDs in the same order always.
-        query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
+        query = "SELECT cloudinary_id FROM game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
         System.out.println(query);
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
@@ -222,7 +225,7 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public boolean existsWithId(long id) {
-        String query = "SELECT COUNT(*) FROM power_up.games WHERE id = ?";
+        String query = "SELECT COUNT(*) FROM games WHERE id = ?";
         System.out.println(query);
         int count = jdbcTemplate.queryForObject(query, new Object[] {id}, Integer.class);
 
@@ -231,10 +234,11 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public boolean existsWithTitle(String title) {
-        String query = "SELECT COUNT(*) FROM power_up.games WHERE LOWER(name) = LOWER(?)";
+        String query = "SELECT COUNT(*) FROM games WHERE LOWER(name) = LOWER(?)";
         System.out.println(query);
         int count = jdbcTemplate.queryForObject(query, new Object[] {title}, Integer.class);
 
+        int count = jdbcTemplate.queryForObject(, new Object[] {title}, Integer.class);
         return count > 0;
     }
 
@@ -242,8 +246,8 @@ public class GameJdbcDao implements GameDao {
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
         Set<String> result = new LinkedHashSet<>();
-        StringBuilder query = new StringBuilder().append("SELECT power_up.");
-        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+        StringBuilder query = new StringBuilder().append("SELECT ");
+        StringBuilder fromSentence = new StringBuilder().append(" FROM ");
 
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
             query.append(tableName);
@@ -251,9 +255,9 @@ public class GameJdbcDao implements GameDao {
         } else {
             query.append("companies");
             fromSentence.append("companies");
-            fromSentence.append(" INNER JOIN power_up.game_")
+            fromSentence.append(" INNER JOIN game_")
                     .append(tableName)
-                    .append(" ON power_up.companies.id = power_up.game_")
+                    .append(" ON companies.id = game_")
                     .append(tableName)
                     .append(".")
                     .append(filterCategory.name())
@@ -314,17 +318,17 @@ public class GameJdbcDao implements GameDao {
         boolean paginationOn = pageSize > 0;
 
         StringBuilder selectString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("SELECT power_up.games.id, power_up.games.name, avg_score, summary, " +
-                        "power_up.games.release, cover_picture_cloudinary_id");
+                .append("SELECT games.id, games.name, avg_score, summary, " +
+                        "games.release, cover_picture_cloudinary_id");
         StringBuilder fromString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("FROM power_up.games")
-                .append(" INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id")
-                .append(" INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id");
+                .append("FROM games")
+                .append(" INNER JOIN game_platforms ON games.id = game_platforms.game_id")
+                .append(" INNER JOIN platforms ON game_platforms.platform_id = platforms.id");
         StringBuilder nameString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'");
+                .append("WHERE LOWER(games.name) like '%' || LOWER(?) || '%'");
         StringBuilder filtersString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY);
         StringBuilder groupByString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append("GROUP BY power_up.games.id, power_up.games.name, avg_score, cover_picture_cloudinary_id, summary");
+                .append("GROUP BY games.id, games.name, avg_score, cover_picture_cloudinary_id, summary");
 
         addDoSearchGamesFilters(filters, parameters, fromString, filtersString, 1);
 
@@ -340,11 +344,11 @@ public class GameJdbcDao implements GameDao {
                 .append(queryBuilderWithoutSelectGroupByAndOrderBy)
                 .append(" ")
                 .append(groupByString)
-                .append(" ORDER BY power_up.games.").append(orderCategory.name())
+                .append(" ORDER BY games.").append(orderCategory.name())
                 .append(ascending ? " ASC" : " DESC");
         ;
         StringBuilder rowsCountQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("SELECT count(DISTINCT power_up.games.id) AS rows")
+                .append("SELECT count(DISTINCT games.id) AS rows")
                 .append(queryBuilderWithoutSelectGroupByAndOrderBy);
 
         System.out.println(dataFetchQuery);
@@ -360,8 +364,6 @@ public class GameJdbcDao implements GameDao {
             page.setPageNumber(1);
         }
 
-
-        // TODO: Make this in a transaction?
         try {
             // Count rows
             jdbcTemplate.query(rowsCountQuery.toString(), parameters, new RowCallbackHandler() {
@@ -376,6 +378,7 @@ public class GameJdbcDao implements GameDao {
                     } else {
                         page.setPageSize(rowsCount);
                     }
+                    page.setOverAllAmountOfElements(rowsCount);
                 }
             });
             // Fetch data
@@ -454,10 +457,10 @@ public class GameJdbcDao implements GameDao {
         String filterName = filter.name();
         String pluralFilterName = English.plural(filterName);
         String entityTable = getEntityTable(filter);
-        String relationTable = "power_up.game_" + pluralFilterName;
+        String relationTable = "game_" + pluralFilterName;
 
         StringBuilder sentence = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append("INNER JOIN ").append(relationTable).append(" ON power_up.games.id = ")
+                .append("INNER JOIN ").append(relationTable).append(" ON games.id = ")
                 .append(relationTable).append(".game_id").append(" INNER JOIN ").append(entityTable).append(" ON ")
                 .append(relationTable).append(".").append(filterName).append("_id = ").append(pluralFilterName)
                 .append(".id");
@@ -502,13 +505,14 @@ public class GameJdbcDao implements GameDao {
     private String getEntityTable(FilterCategory filter) {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
         String pluralFilter = English.plural(filter.name());
-        return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
+        return "" + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
 
     /**
      * @param ids the collection of the ids
      * @return a Map from gameId to a Game with the basic data of the game.
      */
+    @Transactional
     public Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids){
         if(ids==null) throw new IllegalArgumentException();
         Map<Long,Game> gameMap = new HashMap();
@@ -545,13 +549,15 @@ public class GameJdbcDao implements GameDao {
     }
 
 
+    @Transactional
     public void updateAvgScore(long gameId){
-        String query = " UPDATE power_up.games SET avg_score = (SELECT AVG(CAST(score AS FLOAT))" +
-                                                            " FROM power_up.game_scores" +
-                                                             " WHERE power_up.game_scores.game_id = ?)" +
+        String query = " UPDATE games SET avg_score = COALESCE((SELECT AVG(CAST(score AS FLOAT))" +
+                                                            " FROM game_scores" +
+                                                             " WHERE game_scores.game_id = ?),0)" +
                 " WHERE id = ?";
 
         jdbcTemplate.update(query, gameId, gameId);
+
     }
 
 

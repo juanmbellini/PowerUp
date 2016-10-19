@@ -68,6 +68,16 @@ public interface UserDao {
     void setPlayStatus(User user, Game game, PlayStatus status);
 
     /**
+     * @see UserService#removeScore(User, long)
+     */
+    void removeScore(User u, long id);
+
+    /**
+     * @see UserService#removeStatus(User, long)
+     */
+    void removeStatus(User u, long id);
+
+    /**
      * @see UserService#recommendGames(User)
      */
     Collection<Game> recommendGames(User user);

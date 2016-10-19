@@ -11,8 +11,9 @@
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List <i class="material-icons right">menu</i></a></li>
-                    <li><a href="#!">${currentUsername} <i class="material-icons right">person</i></a></li>
-                    <li><a href="<c:url value="/logout" /> ">Log Out <i class="material-icons right">exit_to_app</i></a></li>
+                    <%--TODO make a Profile page and have the commented nav item redirect there (also see mobile nav)--%>
+                    <%--<li><a href="#!">${currentUsername} <i class="material-icons right">person</i></a></li>--%>
+                    <li><a href="<c:url value="/logout" /> ">${currentUsername} - Log Out <i class="material-icons right">exit_to_app</i></a></li>
                     <li><a href="<c:url value="/recommend" /> ">Recommend me!</a></li>
                 </c:when>
                 <c:otherwise>
@@ -28,8 +29,8 @@
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List</a></li>
-                    <li><a href="#!">Logged in as ${currentUsername}</a></li>
-                    <li><a href="<c:url value="/logout" /> ">Log Out</a></li>
+                    <%--<li><a href="#!">Logged in as ${currentUsername}</a></li>--%>
+                    <li><a href="<c:url value="/logout" /> ">${currentUsername} - Log Out</a></li>
                     <li><a href="<c:url value="/recommend" /> ">Recommend me!</a></li>
                 </c:when>
                 <c:otherwise>

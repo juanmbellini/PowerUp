@@ -21,11 +21,6 @@
         <!-- Project modules -->
         <!-- Nothing here... -->
 
-        <!--Spring security for the Authority enum-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
         <!-- External libraries -->
         <!-- Others -->
         <dependency>
