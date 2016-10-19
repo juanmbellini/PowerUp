@@ -30,7 +30,7 @@ public class UserJdbcDaoTest {
     private JdbcTemplate jdbcTemplate;
 
     private void insertOneGame(int id) {
-        jdbcTemplate.execute("INSERT INTO games VALUES ("+id+", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',null,0);");
+        jdbcTemplate.execute("INSERT INTO games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30', null, 0);");
     }
 
     @Before
@@ -230,9 +230,7 @@ public class UserJdbcDaoTest {
         int id = 1;
         final User u = userDao.create(email, password, username);
         insertOneGame(id);
-        Game g = new Game();
-        g.setId(id);
-
+        Game g = new Game.GameBuilder().setId(id).setName("").setSummary("").build();
 
         userDao.scoreGame(u, g, 2);
 
@@ -264,8 +262,6 @@ public class UserJdbcDaoTest {
         u.getGameScore(1);
 
     }
-
-
 
 
     @Test(expected = IllegalArgumentException.class)
@@ -327,13 +323,11 @@ public class UserJdbcDaoTest {
     public void setPlayStatusWithGameParameter() {
 
 
-
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
 
-        Game g = new Game();
-        g.setId(id);
+        Game g = new Game.GameBuilder().setId(id).setName("").setSummary("").build();
 
         insertOneGame(id);
 
@@ -342,7 +336,6 @@ public class UserJdbcDaoTest {
         assertEquals(PlayStatus.PLAYED, userDao.findById(u.getId()).getPlayStatus(id));
 
     }
-
 
 
     @Test
@@ -356,10 +349,10 @@ public class UserJdbcDaoTest {
         final User u2 = userDao.create(email2, password2, username2);
 
         insertOneGame(id);
-        userDao.scoreGame(u,id,10);
-        userDao.scoreGame(u2,id,1);
+        userDao.scoreGame(u, id, 10);
+        userDao.scoreGame(u2, id, 1);
 
-        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
+        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
 
 
         assertEquals(5.5, avgScore);
@@ -367,54 +360,54 @@ public class UserJdbcDaoTest {
     }
 
     @Test
-    public void deleteScore(){
+    public void deleteScore() {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
 
         insertOneGame(id);
-        userDao.scoreGame(u,id,10);
+        userDao.scoreGame(u, id, 10);
         assertTrue("Game didn't got scored correctly", u.hasScoredGame(id));
         assertEquals(10, u.getGameScore(id));
-        userDao.removeScore(u,id);
+        userDao.removeScore(u, id);
         assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
-        userDao.removeScore(u,id);
+        userDao.removeScore(u, id);
         assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
     }
 
     @Test
-    public void deleteStatus(){
+    public void deleteStatus() {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
 
         insertOneGame(id);
-        userDao.setPlayStatus(u,id,PlayStatus.PLAN_TO_PLAY);
+        userDao.setPlayStatus(u, id, PlayStatus.PLAN_TO_PLAY);
         assertTrue("Game didn't got given PlayStatus correctly", u.hasPlayStatus(id));
         assertEquals(PlayStatus.PLAN_TO_PLAY, u.getPlayStatus(id));
-        userDao.removeStatus(u,id);
+        userDao.removeStatus(u, id);
         assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
-        userDao.removeStatus(u,id);
+        userDao.removeStatus(u, id);
         assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
     }
 
     @Test
-    public void avgWhenDeleteScore(){
+    public void avgWhenDeleteScore() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        double avgScore=0;
+        double avgScore = 0;
         insertOneGame(id);
-        userDao.scoreGame(u,id,10);
+        userDao.scoreGame(u, id, 10);
         assertEquals(10, u.getGameScore(id));
-        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
-        assertEquals(10.0,avgScore);
-        userDao.removeScore(u,id);
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
+        assertEquals(10.0, avgScore);
+        userDao.removeScore(u, id);
         assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
-        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
-        assertEquals(0.0,avgScore);
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
+        assertEquals(0.0, avgScore);
 
     }
 }

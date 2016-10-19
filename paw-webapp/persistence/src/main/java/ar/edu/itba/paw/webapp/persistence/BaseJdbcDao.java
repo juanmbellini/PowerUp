@@ -18,9 +18,13 @@ public abstract class BaseJdbcDao {
      */
     private JdbcTemplate jdbcTemplate;
 
+
+
+
     public BaseJdbcDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 
     /* package */ JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;

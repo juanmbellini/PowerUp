@@ -697,13 +697,14 @@ public class GameJdbcDaoTest {
     @Test
     public void testPaginationWithSmallerPageSizeThanRowsCountAndWithoutBeingRowsCountMultipleOfPageSize() {
         String baseResultString = "Search Games with pagination didn't returned as expected.";
+        Game testingGame = new Game.GameBuilder().setId(2).setName("").setSummary("").build();
 
         Page<Game> page1 = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 5, 1);
         Assert.assertNotNull(baseResultString + " Expected a page of games, got null.", page1);
         assertEquals(baseResultString + " Expected a page with 5 elements, got " + page1.getData().size(),
                 5, page1.getData().size());
         assertFalse(baseResultString + " Expected a page not containing 'Super Mario Party', got a page containing it",
-                page1.getData().contains(new Game(2, "", "")));
+                page1.getData().contains(testingGame));
         assertEquals(baseResultString + " Expected 2 pages, got " + page1.getTotalPages(),
                 2, page1.getTotalPages());
         assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
@@ -717,7 +718,8 @@ public class GameJdbcDaoTest {
         assertEquals(baseResultString + " Expected a page of size 1, got a page of size " + page2.getAmountOfElements(),
                 1, page2.getAmountOfElements());
         assertTrue(baseResultString + " Expected a page containing 'Super Mario Party', got a page not containing it",
-                page2.getData().contains(new Game(2, "", "")));
+                page2.getData().contains(testingGame));
+
         assertEquals(baseResultString + " Expected 2 pages, got " + page2.getTotalPages(),
                 2, page2.getTotalPages());
         assertEquals(baseResultString + " Expected overall amount of data to be 6, was " +
