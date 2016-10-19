@@ -10,7 +10,6 @@ import ar.edu.itba.paw.webapp.utilities.Page;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
