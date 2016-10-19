@@ -319,7 +319,7 @@ public class UserJdbcDao implements UserDao {
         //more negatives than positive or have too few games.
         Collection<Game> resultGames = gameDao.searchGames("",new HashMap(), OrderCategory.avg_score,false);
         for(Game game: resultGames){
-            if(!scoredGames.containsKey(game)){
+            if(!scoredGames.containsKey(game.getId())){
                 gamesWeightMap.put(game,(int)(2*game.getAvgScore()));
             }
         }
@@ -360,11 +360,17 @@ public class UserJdbcDao implements UserDao {
 
         }
 
+
         Collection<Game>  finalResultList = new LinkedHashSet<>();
+        int counter = 0;
         if(!gameWeightMapInOrder.isEmpty()){
-            for(Integer gameWeight : gameWeightMapInOrder.keySet()){
-                for(Game game: gameWeightMapInOrder.get(gameWeight)){
-                    finalResultList.add(game);
+            Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
+            while(weightIterator.hasNext() && counter<100){
+                int gameWeight = weightIterator.next();
+                Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
+                while(gameIterator.hasNext() && counter<100){
+                    finalResultList.add(gameIterator.next());
+                    counter++;
                 }
             }
         }

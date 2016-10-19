@@ -7,7 +7,7 @@ $(function() {
     });
 
     $('.slick-carousel').slick({
-        infinite: true,
+        infinite: false,
         slidesToShow: 4,
         slidesToScroll: 4,
         arrows: true,
