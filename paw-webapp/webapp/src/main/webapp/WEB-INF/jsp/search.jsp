@@ -18,7 +18,7 @@
     <div class="container">
         <div class="section">
             <h1 class="header center orange-text">
-                <c:if test="${hasFilters}">Avanced </c:if>Search for "${searchedName}"
+                Search Results
             </h1>
         </div>
         <div class="section search-results">
