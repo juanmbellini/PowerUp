@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -40,8 +41,8 @@ public class GameJdbcDao implements GameDao {
         return this.jdbcTemplate;
     }
 
-
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                         OrderCategory orderCategory, boolean ascending)
             throws IllegalArgumentException {
@@ -49,6 +50,7 @@ public class GameJdbcDao implements GameDao {
     }
 
 
+    @Transactional
     @Override //TODO transaction
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
@@ -60,6 +62,7 @@ public class GameJdbcDao implements GameDao {
     }
 
 
+    @Transactional
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
 
@@ -347,8 +350,6 @@ public class GameJdbcDao implements GameDao {
             page.setPageNumber(1);
         }
 
-
-        // TODO: Make this in a transaction?
         try {
             // Count rows
             jdbcTemplate.query(rowsCountQuery.toString(), parameters, new RowCallbackHandler() {
@@ -493,8 +494,8 @@ public class GameJdbcDao implements GameDao {
         return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
 
-
-    public void updateAvgScore(long gameId){ //TODO check non null AVG? //TODO transaction?
+    @Transactional
+    public void updateAvgScore(long gameId){
         String query = " UPDATE power_up.games SET avg_score = COALESCE((SELECT AVG(CAST(score AS FLOAT))" +
                                                             " FROM power_up.game_scores" +
                                                              " WHERE power_up.game_scores.game_id = ?),0)" +
