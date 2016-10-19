@@ -171,7 +171,7 @@ public class GameJdbcDao extends BaseJdbcDao implements GameDao {
         query.append(".name")
                 .append(fromSentence)
                 .append(" ORDER BY name ASC LIMIT 500;");
-        System.out.println(query.toString());
+
         try {
             getJdbcTemplate().query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
                 @Override
@@ -342,9 +342,7 @@ public class GameJdbcDao extends BaseJdbcDao implements GameDao {
                 .append("SELECT count(DISTINCT games.id) AS rows")
                 .append(queryBuilderWithoutSelectGroupByAndOrderBy);
 
-        System.out.println(dataFetchQuery);
         Set<Game> gamesSet = new LinkedHashSet<>();
-
         final Page<Game> page = new Page<>();
         if (paginationOn) {
             page.setPageSize(pageSize);
