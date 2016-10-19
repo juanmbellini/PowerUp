@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.form;
 
-import com.sun.istack.internal.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,7 +17,6 @@ LoginForm {
 
     private String password;
 
-    @NotNull
     private Boolean rememberMe;
 
     public String getUsername() {
