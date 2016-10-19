@@ -54,7 +54,7 @@
                             <c:choose>
                                 <c:when test="${isLoggedIn}">
                                     <div class="col s4 center">
-                                        <input class="btn waves-effect waves-light" type="submit" value="Update list!"/>
+                                        <button type="submit" class="btn waves-effect waves-light">Update List!</button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -176,7 +176,7 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
 <script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
 </body>
 </html>

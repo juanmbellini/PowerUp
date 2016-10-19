@@ -4,10 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.model.Authority;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -19,10 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 
 /**
@@ -30,6 +25,8 @@ import java.util.Map;
  */
 @Repository
 public class UserJdbcDao implements UserDao {
+
+    private int MAX_FILTERS_CHECKS_RECOMMEND = 10;
 
     private final JdbcTemplate jdbcTemplate;
     private final GameDao gameDao;
@@ -268,8 +265,130 @@ public class UserJdbcDao implements UserDao {
         gameDao.updateAvgScore(id);
     }
 
+    @Override
+    public Collection<Game> recommendGames(User user) { //TODO change this to make something more efficient.
 
-    /**
+
+        Map<Long,Integer> scoredGames = user.getScoredGames();
+
+        if(scoredGames==null || scoredGames.size()==0) return new LinkedHashSet<>();
+
+        Map<FilterCategory,Map<String,Double>> filtersScoresMap  = new HashMap();
+
+        //Genres
+        String genreQuery = "select genres.name as genreName, SUM(score) AS scoreSum, COUNT(score) as countScores " +
+                        "FROM games INNER JOIN game_scores ON games.id = game_scores.game_id " +
+                        "INNER JOIN game_genres ON games.id = game_genres.game_id " +
+                        "INNER JOIN genres ON genres.id = game_genres.genre_id "+
+                        "GROUP BY genreName "+
+                        "ORDER BY scoreSum DESC "+
+                        "LIMIT ? ";
+        Map<String,Double> mapFilterToFilterScoreGenre = new HashMap<>();
+        jdbcTemplate.query(genreQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        mapFilterToFilterScoreGenre.put(rs.getString("genreName"),(double)rs.getInt("scoreSum")/rs.getInt("countScores"));
+                    }
+                }
+        );
+        filtersScoresMap.put(FilterCategory.genre,mapFilterToFilterScoreGenre);
+
+        //Keywords
+        String keywordQuery = "select keywords.name as keywordName, SUM(score) AS scoreSum, COUNT(score) as countScores " +
+                "FROM games INNER JOIN game_scores ON games.id = game_scores.game_id " +
+                "INNER JOIN game_keywords ON games.id = game_keywords.game_id " +
+                "INNER JOIN keywords ON keywords.id = game_keywords.keyword_id "+
+                "GROUP BY keywordName "+
+                "ORDER BY scoreSum DESC "+
+                "LIMIT ? ";
+        Map<String,Double> mapFilterToFilterScoreKeyword = new HashMap<>();
+        jdbcTemplate.query(keywordQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
+                    @Override
+                    public void processRow(ResultSet rs) throws SQLException {
+                        mapFilterToFilterScoreKeyword.put(rs.getString("keywordName"),(double)rs.getInt("scoreSum")/rs.getInt("countScores"));
+                    }
+                }
+        );
+        filtersScoresMap.put(FilterCategory.keyword,mapFilterToFilterScoreKeyword);
+
+        //Get all games with each of X filter with higher weight and give each a weight based on each appearance and avg_score(?
+
+        HashMap<Game,Integer> gamesWeightMap = new HashMap();
+
+        //Initialize all games in 0. eliminate this if it is taking too long. Only add something to the ones who have much
+        //more negatives than positive or have too few games.
+        Collection<Game> resultGames = gameDao.searchGames("",new HashMap(), OrderCategory.avg_score,false);
+        for(Game game: resultGames){
+            if(!scoredGames.containsKey(game.getId())){
+                gamesWeightMap.put(game,(int)(2*game.getAvgScore()));
+            }
+        }
+
+        for(FilterCategory filterCategory : filtersScoresMap.keySet()){
+            Map<String,Double> mapFilter = filtersScoresMap.get(filterCategory);
+            for (String filter: mapFilter.keySet()){
+                double filterScore = mapFilter.get(filter);
+                HashMap<FilterCategory,List<String>> filterParameterMap = new HashMap();
+                ArrayList filterArrayParameter = new ArrayList<String>();
+                filterArrayParameter.add(filter);
+                filterParameterMap.put(filterCategory,filterArrayParameter);
+                System.out.println(filter);
+                resultGames = gameDao.searchGames("",filterParameterMap, OrderCategory.avg_score,false);
+                for(Game game: resultGames){
+                    if(gamesWeightMap.containsKey(game)){
+                        gamesWeightMap.put(game,gamesWeightMap.get(game)+(int)filterScore);
+                    }
+                }
+            }
+        }
+
+
+        //Show all games ordered by weight.
+        Map<Integer,ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        for (Game game: gamesWeightMap.keySet()){
+            int gameWeight = gamesWeightMap.get(game);
+            if(!gameWeightMapInOrder.containsKey(gameWeight)){
+                gameWeightMapInOrder.put(gameWeight,new ArrayList<>());
+            }
+            gameWeightMapInOrder.get(gameWeight).add(game);
+
+        }
+
+
+        Collection<Game>  finalResultList = new LinkedHashSet<>();
+        int counter = 0;
+        if(!gameWeightMapInOrder.isEmpty()){
+            Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
+            while(weightIterator.hasNext() && counter<100){
+                int gameWeight = weightIterator.next();
+                Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
+                while(gameIterator.hasNext() && counter<100){
+                    finalResultList.add(gameIterator.next());
+                    counter++;
+                }
+            }
+        }
+
+        return finalResultList;
+    }
+
+//    private void addScoreOfScoredGamedToCategory(Map<String, ArrayList<Integer>> filterCategoryMap, Collection<String> filters, Integer score) {
+//
+//        for(String filter :  filters){
+//            if(!filterCategoryMap.containsKey(filter)){
+//                filterCategoryMap.put(filter,new ArrayList<>());
+//            }
+//            filterCategoryMap.get(filter).add(score);
+//        }
+//    }
+
+     /**
      * Adds relationship information for a specific user that is not readily available from the users table (e.g. scored
      * games, played games)
      *

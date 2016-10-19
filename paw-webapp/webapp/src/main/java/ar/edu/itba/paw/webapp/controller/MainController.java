@@ -61,6 +61,12 @@ public class MainController {
     @RequestMapping("/")
     public ModelAndView home() {
         final ModelAndView mav = new ModelAndView("index");
+        Collection<Game> recommendedGames = new LinkedHashSet<>();
+        if(isLoggedIn()){
+            User u = getCurrentUser();
+            recommendedGames = userService.recommendGames(u);
+        }
+        mav.addObject("recommendedGames", recommendedGames);
         return mav;
     }
 
@@ -256,9 +262,10 @@ public class MainController {
         }
         Map<Long, PlayStatus> playStatuses = u.getPlayStatuses();
         //TODO do this in user?
-        for (long gameId : playStatuses.keySet()) {
-            Game game = gameService.findById(gameId);
-            if (game == null) throw new IllegalStateException("Status list should have a game that do not exist");
+        Map<Long,Game> longGameMap = gameService.findBasicDataGamesFromArrayId( playStatuses.keySet());
+        for(long gameId: playStatuses.keySet()){
+            Game game = longGameMap.get(gameId);
+            if(game==null) throw new IllegalStateException("Status list should have a game that do not exist");
             gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);

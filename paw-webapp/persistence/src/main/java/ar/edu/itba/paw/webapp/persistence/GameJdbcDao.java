@@ -101,6 +101,7 @@ public class GameJdbcDao implements GameDao {
         String query;
         query = "SELECT games.id, games.name, summary, release, avg_score, " +
                 "cover_picture_cloudinary_id FROM games WHERE games.id = ?";
+        System.out.println(query);
         final boolean[] found = {false};
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
@@ -126,6 +127,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT platforms.name,release_date FROM games, platforms, game_platforms " +
                 "WHERE games.id = ? AND game_platforms.game_Id = games.id AND game_platforms.platform_Id = platforms.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -142,6 +144,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT genres.name FROM games, genres, game_genres " +
                 "WHERE games.id = ? AND game_genres.game_Id = games.id AND game_genres.genre_Id = genres.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -157,6 +160,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT companies.name FROM games, companies, game_publishers " +
                 "WHERE games.id = ? AND game_publishers.game_Id = games.id AND game_publishers.publisher_Id = companies.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -172,6 +176,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT companies.name FROM games, companies, game_developers " +
                 "WHERE games.id = ? AND game_developers.game_Id = games.id AND game_developers.developer_Id = companies.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -187,6 +192,7 @@ public class GameJdbcDao implements GameDao {
 
         query = "SELECT keywords.name FROM games, keywords, game_keywords " +
                 "WHERE games.id = ? AND game_keywords.game_id = games.id AND game_keywords.keyword_id = keywords.id ";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
@@ -202,6 +208,7 @@ public class GameJdbcDao implements GameDao {
 
         // Get cloudinary IDs in the same order always.
         query = "SELECT cloudinary_id FROM game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
+        System.out.println(query);
         try {
             jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
                 @Override
@@ -218,13 +225,18 @@ public class GameJdbcDao implements GameDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM games WHERE id = ?", new Object[] {id}, Integer.class);
+        String query = "SELECT COUNT(*) FROM games WHERE id = ?";
+        System.out.println(query);
+        int count = jdbcTemplate.queryForObject(query, new Object[] {id}, Integer.class);
+
         return count > 0;
     }
 
     @Override
     public boolean existsWithTitle(String title) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM games WHERE LOWER(name) = LOWER(?)", new Object[] {title}, Integer.class);
+        String query = "SELECT COUNT(*) FROM games WHERE LOWER(name) = LOWER(?)";
+        System.out.println(query);
+        int count = jdbcTemplate.queryForObject(query, new Object[] {title}, Integer.class);
         return count > 0;
     }
 
@@ -493,6 +505,47 @@ public class GameJdbcDao implements GameDao {
         String pluralFilter = English.plural(filter.name());
         return "" + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
+
+    /**
+     * @param ids the collection of the ids
+     * @return a Map from gameId to a Game with the basic data of the game.
+     */
+    @Transactional
+    public Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids){
+        if(ids==null) throw new IllegalArgumentException();
+        Map<Long,Game> gameMap = new HashMap();
+        if(ids.isEmpty()) return gameMap;
+        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM power_up.games WHERE");
+        Iterator<Long> iter = ids.iterator();
+        queryBuilder.append(" id = "+iter.next());
+        while(iter.hasNext()){ //TODO change to id IN (id1, id2,...)
+            queryBuilder.append(" OR ");
+            queryBuilder.append(" id = "+iter.next());
+        }
+        String query = queryBuilder.toString();
+        System.out.println(query);
+
+        try {
+            jdbcTemplate.query(query.toLowerCase(),new RowCallbackHandler() { //TODO usar object[] o al pedo porque es seguro?
+                        @Override
+                        public void processRow(ResultSet rs) throws SQLException {
+                            Game result = new Game();
+                            result.setId(rs.getLong("id"));
+                            result.setName(rs.getString("name"));
+                            result.setSummary(rs.getString("summary"));
+                            result.setAvgScore(rs.getDouble("avg_score"));
+                            result.setReleaseDate(new LocalDate(rs.getString("release")));
+                            result.setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
+                            gameMap.put(result.getId(),result);
+                        }
+                    }
+            );
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+        }
+        return gameMap;
+    }
+
 
     @Transactional
     public void updateAvgScore(long gameId){
