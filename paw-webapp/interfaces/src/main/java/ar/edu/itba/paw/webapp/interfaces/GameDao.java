@@ -57,6 +57,11 @@ public interface GameDao {
     Collection<String> getFiltersByType(FilterCategory filterCategory);
 
     /**
+     * @see GameService#findBasicDataGamesFromArrayId(Collection<Long>)
+     */
+    Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
+
+    /**
      * Update the avgScore of the game with id gameId.
      * @param gameId
      */

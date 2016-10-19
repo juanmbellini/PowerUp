@@ -115,6 +115,12 @@
                 <scope>test</scope>
             </dependency>
 
+            <!--AOP-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
 
             <!-- Others -->
             <!-- Joda-Time: a quality replacement for the Java date and time classes -->

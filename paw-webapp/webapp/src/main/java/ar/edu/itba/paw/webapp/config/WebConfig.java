@@ -7,10 +7,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -22,8 +25,10 @@ import org.springframework.web.servlet.view.JstlView;
 import javax.sql.DataSource;
 import java.nio.charset.StandardCharsets;
 
+
 @Configuration
 @EnableWebMvc
+@EnableTransactionManagement
 @ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -32,9 +37,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Value("classpath:initial-data.sql")
     private Resource initialDataSql;
-
-    @Value("classpath:add_cover_pic.sql")
-    private Resource coverPicturesSql;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -49,9 +51,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost/paw");
-        dataSource.setUsername("paw");
-        dataSource.setPassword("paw");
+        dataSource.setUrl("jdbc:postgresql://localhost/paw-2016b-02");
+        dataSource.setUsername("paw-2016b-02");
+        dataSource.setPassword("Zae0lohT");
 
         return dataSource;
     }
@@ -94,7 +96,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
         dbp.addScript(initialDataSql);
-        dbp.addScript(coverPicturesSql);
         return dbp;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(final DataSource ds) {
+        return new DataSourceTransactionManager(ds);
     }
 }

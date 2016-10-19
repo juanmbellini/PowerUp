@@ -72,7 +72,7 @@ public class IgdbDownloader {
             paginate("keywords/?fields=*", new SqlConsumer(keywordsFile) {
                 @Override
                 public void accept(JSONObject keyword) {
-                    String query = "INSERT INTO power_up.keywords (\"id\", \"name\") VALUES (" + keyword.getInt("id") + ", '" + escapeQuotesToPostgres(keyword.getString("name")) + "');\n";
+                    String query = "INSERT INTO keywords (\"id\", \"name\") VALUES (" + keyword.getInt("id") + ", '" + escapeQuotesToPostgres(keyword.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
@@ -91,7 +91,7 @@ public class IgdbDownloader {
             paginate("genres/?fields=*", new SqlConsumer(genresFile) {
                 @Override
                 public void accept(JSONObject genre) {
-                    String query = "INSERT INTO power_up.genres (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
+                    String query = "INSERT INTO genres (\"id\", \"name\") VALUES (" + genre.getInt("id") + ", '" + escapeQuotesToPostgres(genre.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
@@ -110,7 +110,7 @@ public class IgdbDownloader {
             paginate("platforms/?fields=*", new SqlConsumer(platformsFile) {
                 @Override
                 public void accept(JSONObject platform) {
-                    String query = "INSERT INTO power_up.platforms (\"id\", \"name\") VALUES (" + platform.getInt("id") + ", '" + escapeQuotesToPostgres(platform.getString("name")) + "');\n";
+                    String query = "INSERT INTO platforms (\"id\", \"name\") VALUES (" + platform.getInt("id") + ", '" + escapeQuotesToPostgres(platform.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
@@ -129,7 +129,7 @@ public class IgdbDownloader {
             paginate("companies/?fields=*", new SqlConsumer(companiesFile) {
                 @Override
                 public void accept(JSONObject company) {
-                    String query = "INSERT INTO power_up.companies (\"id\", \"name\") VALUES (" + company.getInt("id") + ", '" + escapeQuotesToPostgres(company.getString("name")) + "');\n";
+                    String query = "INSERT INTO companies (\"id\", \"name\") VALUES (" + company.getInt("id") + ", '" + escapeQuotesToPostgres(company.getString("name")) + "');\n";
                     try {
                         System.out.print(query);
                         this.fw.write(query);
@@ -145,20 +145,20 @@ public class IgdbDownloader {
 
     public void downloadAllGames() {
         try {
-            gameGenresFile.write("BEGIN;\nINSERT INTO power_up.game_genres (\"game_id\", \"genre_id\") \n" +
+            gameGenresFile.write("BEGIN;\nINSERT INTO game_genres (\"game_id\", \"genre_id\") \n" +
                     "SELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
-            gameDevelopersFile.write("BEGIN;\nINSERT INTO power_up.game_developers (\"game_id\", \"developer_id\")\nSELECT val.game_id, val.id\n" +
+            gameDevelopersFile.write("BEGIN;\nINSERT INTO game_developers (\"game_id\", \"developer_id\")\nSELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
-            gamePublishersFile.write("BEGIN;\nINSERT INTO power_up.game_publishers (\"game_id\", \"publisher_id\")\nSELECT val.game_id, val.id\n" +
+            gamePublishersFile.write("BEGIN;\nINSERT INTO game_publishers (\"game_id\", \"publisher_id\")\nSELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
-            gamePlatformsFile.write("BEGIN;\nINSERT INTO power_up.game_platforms (\"game_id\", \"platform_id\")\nSELECT val.game_id, val.id\n" +
+            gamePlatformsFile.write("BEGIN;\nINSERT INTO game_platforms (\"game_id\", \"platform_id\")\nSELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
-            gameKeywordsFile.write("BEGIN;\nINSERT INTO power_up.game_keywords (\"game_id\", \"keyword_id\")\nSELECT val.game_id, val.id\n" +
+            gameKeywordsFile.write("BEGIN;\nINSERT INTO game_keywords (\"game_id\", \"keyword_id\")\nSELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
             gamesFile.write("BEGIN;\n");
@@ -177,7 +177,7 @@ public class IgdbDownloader {
                     if (game.has("first_release_date")) {
                         dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
                     }
-                    String gameQuery = "INSERT INTO power_up.games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");\n";
+                    String gameQuery = "INSERT INTO games VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + "0, " + dateStr + ");\n";
                     StringBuilder genreQueries = new StringBuilder(),
                             developerQueries = new StringBuilder(),
                             publisherQueries = new StringBuilder(),
@@ -242,36 +242,36 @@ public class IgdbDownloader {
             gamesFile.write("COMMIT;\n");
             gamesFile.close();
             gameKeywordsFile.write(") AS val (game_id, id)\n" +
-                    "INNER JOIN power_up.games ON val.game_id = power_up.games.id\n" +
-                    "INNER JOIN power_up.keywords ON val.id = power_up.keywords.id\n" +
+                    "INNER JOIN games ON val.game_id = games.id\n" +
+                    "INNER JOIN keywords ON val.id = keywords.id\n" +
                     "ON CONFLICT DO NOTHING;\n" +
                     "\n" +
                     "COMMIT;\n");
             gameKeywordsFile.close();
             gamePlatformsFile.write(") AS val (game_id, id)\n" +
-                    "INNER JOIN power_up.games ON val.game_id = power_up.games.id\n" +
-                    "INNER JOIN power_up.platforms ON val.id = power_up.platforms.id\n" +
+                    "INNER JOIN games ON val.game_id = games.id\n" +
+                    "INNER JOIN platforms ON val.id = platforms.id\n" +
                     "ON CONFLICT DO NOTHING;\n" +
                     "\n" +
                     "COMMIT;\n");
             gamePlatformsFile.close();
             gameGenresFile.write(") AS val (game_id, id)\n" +
-                    "INNER JOIN power_up.games ON val.game_id = power_up.games.id\n" +
-                    "INNER JOIN power_up.genres ON val.id = power_up.genres.id\n" +
+                    "INNER JOIN games ON val.game_id = games.id\n" +
+                    "INNER JOIN genres ON val.id = genres.id\n" +
                     "ON CONFLICT DO NOTHING;\n" +
                     "\n" +
                     "COMMIT;\n");
             gameGenresFile.close();
             gameDevelopersFile.write(") AS val (game_id, id)\n" +
-                    "INNER JOIN power_up.games ON val.game_id = power_up.games.id\n" +
-                    "INNER JOIN power_up.companies ON val.id = power_up.companies.id\n" +
+                    "INNER JOIN games ON val.game_id = games.id\n" +
+                    "INNER JOIN companies ON val.id = companies.id\n" +
                     "ON CONFLICT DO NOTHING;\n" +
                     "\n" +
                     "COMMIT;\n");
             gameDevelopersFile.close();
             gamePublishersFile.write(") AS val (game_id, id)\n" +
-                    "INNER JOIN power_up.games ON val.game_id = power_up.games.id\n" +
-                    "INNER JOIN power_up.companies ON val.id = power_up.companies.id\n" +
+                    "INNER JOIN games ON val.game_id = games.id\n" +
+                    "INNER JOIN companies ON val.id = companies.id\n" +
                     "ON CONFLICT DO NOTHING;\n" +
                     "\n" +
                     "COMMIT;\n");
