@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.form;
 
+import com.sun.istack.internal.NotNull;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -16,6 +18,9 @@ public class LoginForm {
     @Size(min = 6, max = 100)
     private String password;
 
+    @NotNull
+    private Boolean rememberMe;
+
     public String getUsername() {
         return username;
     }
@@ -30,5 +35,13 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Boolean rememberMe) {
+        this.rememberMe = rememberMe;
     }
 }
