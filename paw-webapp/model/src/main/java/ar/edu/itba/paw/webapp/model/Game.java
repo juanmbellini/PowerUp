@@ -119,27 +119,27 @@ public class Game {
     }
 
     // Setters
-    public void setId(long id) {
+    private void setId(long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setSummary(String summary) {
+    private void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public void setAvgScore(double avg_score) {
+    private void setAvgScore(double avg_score) {
         this.avgScore = avg_score;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    private void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public void setCoverPictureUrl(String cloudinaryId) {
+    private void setCoverPictureUrl(String cloudinaryId) {
         if (cloudinaryId != null && !cloudinaryId.equals("")) {
             coverPictureUrl = getPictureURL(cloudinaryId);
         }
