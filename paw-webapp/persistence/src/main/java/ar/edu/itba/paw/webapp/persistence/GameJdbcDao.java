@@ -237,8 +237,6 @@ public class GameJdbcDao implements GameDao {
         String query = "SELECT COUNT(*) FROM games WHERE LOWER(name) = LOWER(?)";
         System.out.println(query);
         int count = jdbcTemplate.queryForObject(query, new Object[] {title}, Integer.class);
-
-        int count = jdbcTemplate.queryForObject(, new Object[] {title}, Integer.class);
         return count > 0;
     }
 
