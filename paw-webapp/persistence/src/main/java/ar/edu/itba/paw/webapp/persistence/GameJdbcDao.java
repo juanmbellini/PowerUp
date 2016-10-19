@@ -170,7 +170,6 @@ public class GameJdbcDao extends BaseJdbcDao implements GameDao {
         query.append(".name")
                 .append(fromSentence)
                 .append(" ORDER BY name ASC LIMIT 500;");
-
         try {
             getJdbcTemplate().query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
                 @Override
@@ -200,22 +199,21 @@ public class GameJdbcDao extends BaseJdbcDao implements GameDao {
      * @return a Map from gameId to a Game with the basic data of the game.
      */
     @Transactional
-    public Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids){
-        if(ids==null) throw new IllegalArgumentException();
-        Map<Long,Game> gameMap = new HashMap();
-        if(ids.isEmpty()) return gameMap;
+    public Map<Long, Game> findBasicDataGamesFromArrayId(Collection<Long> ids) {
+        if (ids == null) throw new IllegalArgumentException();
+        Map<Long, Game> gameMap = new HashMap();
+        if (ids.isEmpty()) return gameMap;
         StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM games WHERE");
         Iterator<Long> iter = ids.iterator();
-        queryBuilder.append(" id = "+iter.next());
-        while(iter.hasNext()){ //TODO change to id IN (id1, id2,...)
+        queryBuilder.append(" id = " + iter.next());
+        while (iter.hasNext()) { //TODO change to id IN (id1, id2,...)
             queryBuilder.append(" OR ");
-            queryBuilder.append(" id = "+iter.next());
+            queryBuilder.append(" id = " + iter.next());
         }
         String query = queryBuilder.toString();
-        System.out.println(query);
 
         try {
-            getJdbcTemplate().query(query.toLowerCase(),new RowCallbackHandler() { //TODO usar object[] o al pedo porque es seguro?
+            getJdbcTemplate().query(query.toLowerCase(), new RowCallbackHandler() { //TODO usar object[] o al pedo porque es seguro?
                         @Override
                         public void processRow(ResultSet rs) throws SQLException {
                             Game game = new Game.GameBuilder().setId(rs.getLong("id"))
@@ -225,7 +223,7 @@ public class GameJdbcDao extends BaseJdbcDao implements GameDao {
                                     .setReleaseDate(new LocalDate(rs.getString("release")))
                                     .setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id")).build();
 
-                            gameMap.put(game.getId(),game);
+                            gameMap.put(game.getId(), game);
                         }
                     }
             );
