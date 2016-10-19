@@ -4,6 +4,7 @@ import de.malkusch.validation.constraints.EqualProperties;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.*;
+
 @EqualProperties({"password","repeatPassword"})
 public class UserForm {
 

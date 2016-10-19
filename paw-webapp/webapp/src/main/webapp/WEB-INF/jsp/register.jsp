@@ -27,7 +27,7 @@
                                 <div class='row'>
                                     <div class='input-field col s6'>
                                         <p>Email:</p>
-                                        <form:input type="email" path="email"/>
+                                        <form:input type="text" path="email"/>
                                         <form:errors path="email" cssClass="formError" element="p"/>
                                     </div>
                                     <div class='input-field col s6'>
@@ -40,7 +40,7 @@
                                 <div class='row'>
                                     <div class='input-field col s6'>
                                         <p>Password:</p>
-                                        <form:input type="password" path="password"/>
+                                         <form:input type="password" path="password"/>
                                         <form:errors path="password" cssClass="formError" element="p"/>
                                     </div>
                                     <div class='input-field col s6'>
