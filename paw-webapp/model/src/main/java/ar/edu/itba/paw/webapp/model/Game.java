@@ -9,7 +9,7 @@ import java.util.*;
  * This class communicates with the database adding, removing and modifying information.
  */
 public class Game {
-    
+
     final static private double INITIAL_AVG_SCORE = 0.0;
     final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
     final private static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
@@ -29,31 +29,23 @@ public class Game {
     private Set<String> pictureUrls;
 
 
-    public Game() {
-        this(0, "", "");
-    }
-
-    public Game(long id, String name, String summary) {
-        this(id, name, summary, INITIAL_AVG_SCORE);
-    }
-
-    public Game(long id, String name, String summary, double avgScore) {
-
-        this.id = id;
-        this.name = name;
-        this.summary = summary;
+    /**
+     * Private default constructor used by Builder
+     */
+    private Game() {
+        id = 0;
+        name = "";
+        summary = "";
         genres = new HashSet<>();
         platforms = new HashMap<>();
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
         reviews = new HashSet<>();
-        this.avgScore = avgScore;
+        avgScore = INITIAL_AVG_SCORE;
         releaseDate = new LocalDate();
         coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
         pictureUrls = new LinkedHashSet<>();
-
-
     }
 
 
@@ -127,28 +119,28 @@ public class Game {
     }
 
     // Setters
-    public void setId(long id) {
+    private void setId(long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setSummary(String summary) {
+    private void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public void setAvgScore(double avg_score) {
+    private void setAvgScore(double avg_score) {
         this.avgScore = avg_score;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    private void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public void setCoverPictureUrl(String cloudinaryId) {
-        if (cloudinaryId != null) {
+    private void setCoverPictureUrl(String cloudinaryId) {
+        if (cloudinaryId != null && !cloudinaryId.equals("")) {
             coverPictureUrl = getPictureURL(cloudinaryId);
         }
     }
@@ -214,7 +206,158 @@ public class Game {
      * @param cloudinaryId The cloudinary ID.
      * @return The picture URL.
      */
-    private String getPictureURL(String cloudinaryId) {
+    private static String getPictureURL(String cloudinaryId) {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
+
+
+    public static class GameBuilder {
+
+        // TODO: Make a better Builder Implementation [JMB]
+
+        final private Game game = new Game();
+        private boolean built = false;
+        private boolean startedBuilding = false;
+
+        private boolean idSet = false;
+        private boolean nameSet = false;
+        private boolean summarySet = false;
+
+
+        /**
+         * Builds the game that was configured.
+         * Note: Once built, this builder won't be able to build any more.
+         *
+         * @return The game built.
+         */
+        public Game build() {
+            if (!idSet || !nameSet || !summarySet) {
+                throw new IllegalStateException();
+            }
+            checkBuilt();
+            built = true;
+            startedBuilding = false;
+            return game;
+        }
+
+
+        public boolean startedBuilding() {
+            return startedBuilding;
+        }
+
+        public long getBuildingGameId() {
+            checkBuilt();
+            if (!startedBuilding) {
+                throw new IllegalStateException();
+            }
+            return game.getId();
+        }
+
+
+        // Required things
+        public GameBuilder setId(long id) {
+            checkBuilt();
+            game.setId(id);
+            idSet = true;
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder setName(String name) {
+            checkBuilt();
+            game.setName(name);
+            nameSet = true;
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder setSummary(String summary) {
+            checkBuilt();
+            game.setSummary(summary);
+            summarySet = true;
+            startedBuilding = true;
+            return this;
+        }
+
+
+        // Optional things
+        public GameBuilder setAvgScore(double avgScore) {
+            checkBuilt();
+            game.setAvgScore(avgScore);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder setCoverPictureUrl(String cloudinaryId) {
+            checkBuilt();
+            game.setCoverPictureUrl(cloudinaryId);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder setReleaseDate(LocalDate releaseDate) {
+            checkBuilt();
+            game.setReleaseDate(releaseDate);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addGenre(String genre) {
+            checkBuilt();
+            game.addGenre(genre);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addPlatform(String platform, LocalDate date) {
+            checkBuilt();
+            game.addPlatform(platform, date);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addPublisher(String publisher) {
+            checkBuilt();
+            game.addPublisher(publisher);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addDeveloper(String developer) {
+            checkBuilt();
+            game.addDeveloper(developer);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addKeyword(String keyword) {
+            checkBuilt();
+            game.addKeyword(keyword);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addReview(Review review) {
+            checkBuilt();
+            game.addReview(review);
+            startedBuilding = true;
+            return this;
+        }
+
+        public GameBuilder addPictureURL(String cloudinaryId) {
+            checkBuilt();
+            game.addPictureURL(cloudinaryId);
+            startedBuilding = true;
+            return this;
+        }
+
+
+        private void checkBuilt() {
+            if (built) {
+                throw new IllegalStateException();
+            }
+        }
+
+    }
+
 }

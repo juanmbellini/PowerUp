@@ -22,6 +22,7 @@
         <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
         <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
         <spring-security.version>4.0.4.RELEASE</spring-security.version>
+        <se.malkusch.validation.version>0.3.0</se.malkusch.validation.version>
     </properties>
 
     <modules>
@@ -157,6 +158,11 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${org.hibernate.validator}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.malkusch.validation</groupId>
+                <artifactId>validation</artifactId>
+                <version>${se.malkusch.validation.version}</version>
             </dependency>
 
         </dependencies>
