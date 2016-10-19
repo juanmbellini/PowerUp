@@ -92,7 +92,9 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService)
             .and().jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder())
+                .usersByUsernameQuery("SELECT username, hashed_password, enabled FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, authority FROM user_authorities WHERE username = ?");;
     }
 
     @Override
