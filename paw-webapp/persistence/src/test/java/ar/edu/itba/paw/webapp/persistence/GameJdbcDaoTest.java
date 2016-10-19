@@ -46,76 +46,76 @@ public class GameJdbcDaoTest {
 
         StringBuilder insert = new StringBuilder().append("")
                 // Inserts genres
-                .append("INSERT INTO power_up.genres (id, name) VALUES (1, 'Platformer');\n")
-                .append("INSERT INTO power_up.genres (id, name) VALUES (2, 'Action');\n")
-                .append("INSERT INTO power_up.genres (id, name) VALUES (3, 'Party Game');\n")
+                .append("INSERT INTO genres (id, name) VALUES (1, 'Platformer');\n")
+                .append("INSERT INTO genres (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO genres (id, name) VALUES (3, 'Party Game');\n")
                 // Inserts platforms
-                .append("INSERT INTO power_up.platforms (id, name) VALUES (2, 'SEGA');\n")
-                .append("INSERT INTO power_up.platforms (id, name) VALUES (1, 'Nintendo 64');\n")
-                .append("INSERT INTO power_up.platforms (id, name) VALUES (3, 'Nintendo GameCube');\n")
+                .append("INSERT INTO platforms (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO platforms (id, name) VALUES (1, 'Nintendo 64');\n")
+                .append("INSERT INTO platforms (id, name) VALUES (3, 'Nintendo GameCube');\n")
                 //* Inserts keywords
-                .append("INSERT INTO power_up.keywords (id, name) VALUES (1, 'Fun');\n")
-                .append("INSERT INTO power_up.keywords (id, name) VALUES (2, 'Action');\n")
-                .append("INSERT INTO power_up.keywords (id, name) VALUES (3, 'Party');\n")
+                .append("INSERT INTO keywords (id, name) VALUES (1, 'Fun');\n")
+                .append("INSERT INTO keywords (id, name) VALUES (2, 'Action');\n")
+                .append("INSERT INTO keywords (id, name) VALUES (3, 'Party');\n")
                 // Inserts companies
-                .append("INSERT INTO power_up.companies (id, name) VALUES (1, 'Nintendo');\n")
-                .append("INSERT INTO power_up.companies (id, name) VALUES (2, 'SEGA');\n")
-                .append("INSERT INTO power_up.companies (id, name) VALUES (3, 'Nintendo Party');\n")
+                .append("INSERT INTO companies (id, name) VALUES (1, 'Nintendo');\n")
+                .append("INSERT INTO companies (id, name) VALUES (2, 'SEGA');\n")
+                .append("INSERT INTO companies (id, name) VALUES (3, 'Nintendo Party');\n")
                 // Inserts games
-                .append("INSERT INTO power_up.games\n")
+                .append("INSERT INTO games\n")
                 .append("VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30', 'whgrfj9muktnnpags6qg', 0);\n")
-                .append("INSERT INTO power_up.games\n")
+                .append("INSERT INTO games\n")
                 .append("VALUES (2, 'Super Mario Party', '', 0, '2018-12-30', 'fouukgohwdwhusnx05dx', 0);\n")
-                .append("INSERT INTO power_up.games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30', null, 0);\n")
-                .append("INSERT INTO power_up.games VALUES (4, 'Megaman I', 'Megaman .', 0, '2000-12-30', null, 0);\n")
-                .append("INSERT INTO power_up.games VALUES (5, 'Megaman II', '', 0, '2012-12-30', null, 0);\n")
-                .append("INSERT INTO power_up.games VALUES (6, 'Megaman III', 'Megaman!!', 0, '2014-12-30', null, 0);\n")
+                .append("INSERT INTO games VALUES (3, 'Sonic', 'SANIC.', 0, '2018-12-30', null, 0);\n")
+                .append("INSERT INTO games VALUES (4, 'Megaman I', 'Megaman .', 0, '2000-12-30', null, 0);\n")
+                .append("INSERT INTO games VALUES (5, 'Megaman II', '', 0, '2012-12-30', null, 0);\n")
+                .append("INSERT INTO games VALUES (6, 'Megaman III', 'Megaman!!', 0, '2014-12-30', null, 0);\n")
 
                 // Inserts game-keywords relationship
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (1, 2);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 1);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (2, 3);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 1);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (3, 2);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (4, 2);\n")
-                .append("INSERT INTO power_up.game_keywords (game_id, keyword_id) VALUES (5, 2);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (1, 1);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (1, 2);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (2, 1);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (2, 3);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (3, 1);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (3, 2);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (4, 2);\n")
+                .append("INSERT INTO game_keywords (game_id, keyword_id) VALUES (5, 2);\n")
                 // Inserts game-platforms relationship
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (4, 2, '2018-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (5, 2, '2018-12-30');\n")
-                .append("INSERT INTO power_up.game_platforms (game_id, platform_id, release_date) VALUES (6, 2, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (1, 1, '1998-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (1, 3, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (2, 1, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (3, 2, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (4, 2, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (5, 2, '2018-12-30');\n")
+                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) VALUES (6, 2, '2018-12-30');\n")
                 // Inserts game-publishers relationship
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (1, 1);\n")
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (2, 1);\n")
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (3, 2);\n")
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (4, 2);\n")
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (5, 2);\n")
-                .append("INSERT INTO power_up.game_publishers (game_id, publisher_id) VALUES (6, 2);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (1, 1);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (2, 1);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (3, 2);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (4, 2);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (5, 2);\n")
+                .append("INSERT INTO game_publishers (game_id, publisher_id) VALUES (6, 2);\n")
                 // Inserts game-genres relationship
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 1);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (1, 2);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (2, 3);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (3, 1);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (4, 2);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (5, 2);\n")
-                .append("INSERT INTO power_up.game_genres (game_id, genre_id) VALUES (6, 2);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (1, 1);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (1, 2);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (2, 3);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (3, 1);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (4, 2);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (5, 2);\n")
+                .append("INSERT INTO game_genres (game_id, genre_id) VALUES (6, 2);\n")
                 // Inserts game-developers relationship
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (1, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (2, 3);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (3, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (4, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (5, 1);\n")
-                .append("INSERT INTO power_up.game_developers (game_id, developer_id) VALUES (6, 1);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (1, 1);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (2, 3);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (3, 1);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (4, 1);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (5, 1);\n")
+                .append("INSERT INTO game_developers (game_id, developer_id) VALUES (6, 1);\n")
                 // Inserts game-images relationship
-                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("INSERT INTO game_pictures (game_id, cloudinary_id, width, height)")
                 .append("VALUES(1, 'whgrfj9muktnnpags6qg', 1280, 720);\n")
-                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("INSERT INTO game_pictures (game_id, cloudinary_id, width, height)")
                 .append("VALUES(2, 'fouukgohwdwhusnx05dx', 1920, 1080);\n")
-                .append("INSERT INTO power_up.game_pictures (game_id, cloudinary_id, width, height)")
+                .append("INSERT INTO game_pictures (game_id, cloudinary_id, width, height)")
                 .append("VALUES(1, 'vacodos9raqxrtibmsnc', 2560, 1440);");
         jdbcTemplate.execute(insert.toString());
     }
@@ -124,18 +124,18 @@ public class GameJdbcDaoTest {
     @Before
     public void setUp() {
         jdbcTemplate = gameDao.getJdbcTemplate();
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
-                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
-                "power_up.companies", "power_up.keywords", "power_up.genres");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "games", "platforms", "game_platforms",
+                "game_developers", " game_genres ", "game_publishers", "game_keywords",
+                "companies", "keywords", "genres");
         initializeDataBase();
     }
 
 //    @AfterClass
 //    public static void cleanDb(){
 //        jdbcTemplate = gameDao.getJdbcTemplate();
-//        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
-//                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
-//                "power_up.companies", "power_up.keywords", "power_up.genres");
+//        JdbcTestUtils.deleteFromTables(jdbcTemplate, "games", "platforms", "game_platforms",
+//                "game_developers", " game_genres ", "game_publishers", "game_keywords",
+//                "companies", "keywords", "genres");
 //    }
 //
 //    //TODO afterClass to clean DB that works
