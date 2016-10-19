@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -25,8 +26,10 @@ public class SessionController extends BaseController{
 
 
     @RequestMapping(value = "/login", method = {RequestMethod.GET})
-    public ModelAndView login(@ModelAttribute("loginForm") final LoginForm form) {
-        return new ModelAndView("login");
+    public ModelAndView login(@ModelAttribute("loginForm") final LoginForm form, @RequestParam(value = "error", required = false) String error) {
+        ModelAndView mav = new ModelAndView("login");
+        mav.addObject("error", error != null);
+        return mav;
     }
 
 

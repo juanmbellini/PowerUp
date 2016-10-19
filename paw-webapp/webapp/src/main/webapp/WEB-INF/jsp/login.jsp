@@ -49,6 +49,14 @@
                                     <%--</label>--%>
                                 </div>
 
+                                <c:if test="${error}" >
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <p class="center" style="font-size: larger">Invalid username/password</p>
+                                        </div>
+                                    </div>
+                                </c:if>
+
                                 <div class='row'>
                                     <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Login
                                     </button>
