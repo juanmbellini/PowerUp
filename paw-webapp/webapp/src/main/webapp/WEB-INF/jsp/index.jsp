@@ -1,9 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
+    <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
     <title>PowerUp</title>
 </head>
 <body>
@@ -35,6 +38,27 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="section">
+            <c:if test="${ fn:length( recommendedGames) > 0 }">
+                <div class="row">
+                    <h5 class="center">Recommended Games</h5>
+                    <div class="slick-carousel">
+                        <c:forEach var="game" items="${recommendedGames}">
+                            <div>
+                                <a href="<c:url value="/game?id=${game.id}"/>">
+                                    <img data-lazy="${game.coverPictureUrl}" />
+                                </a>
+                                <h5 class="center" style="overflow-wrap: break-word;">
+                                    <a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
+                                </h5>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:if>
+        </div>
+    </div>
 
     <div class="container">
         <div class="section">
