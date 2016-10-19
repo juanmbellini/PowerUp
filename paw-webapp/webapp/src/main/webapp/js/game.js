@@ -12,7 +12,6 @@ $(function () {
     var selectedStatus = $("#status").val();
 
     $form.on("submit", function(event) {
-        debugger;
         var newScore = $("#score").val();
         var newStatus = $("#status").val();
         if(newScore === selectedScore && newStatus === selectedStatus) {
