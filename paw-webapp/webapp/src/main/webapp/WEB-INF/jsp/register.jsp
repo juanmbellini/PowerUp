@@ -46,7 +46,7 @@
                                     <div class='input-field col s6'>
                                         <p>Repeat Password:</p>
                                         <form:input type="password" path="repeatPassword"/>
-                                        <form:errors path="repeatPassword" cssClass="formError" element="p"/>
+                                        <form:errors path="repeatPassword" cssClass="formError" element="p" Style="size: 1px"/>
                                     </div>
                                 </div>
 
