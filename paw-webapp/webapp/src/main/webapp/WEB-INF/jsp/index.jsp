@@ -42,7 +42,7 @@
         <div class="section">
             <c:if test="${ fn:length( recommendedGames) > 0 }">
                 <div class="row">
-                    <h5 class="center">Recommended Games</h5>
+                    <h5 class="center">Recommended Games for you!</h5>
                     <div class="slick-carousel">
                         <c:forEach var="game" items="${recommendedGames}">
                             <div>
