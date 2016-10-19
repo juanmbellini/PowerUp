@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -71,7 +72,8 @@ public class UserJdbcDao implements UserDao {
         return this.jdbcTemplate;
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public User create(String email, String hashedPassword, String username) {
         if (email == null) {
             throw new IllegalArgumentException("Email can't be null");
@@ -106,7 +108,8 @@ public class UserJdbcDao implements UserDao {
         }
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public User findByUsername(String username) {
         final String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
         List<User> result;
@@ -118,7 +121,8 @@ public class UserJdbcDao implements UserDao {
         return result.isEmpty() ? null : completeUser(result.get(0));
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public User findByEmail(String email) {
         final String query = "SELECT * FROM users WHERE LOWER(email) = LOWER(?) LIMIT 1";
         List<User> result;
@@ -130,7 +134,8 @@ public class UserJdbcDao implements UserDao {
         return result.isEmpty() ? null : completeUser(result.get(0));
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public User findById(long id) {
         final String query = "SELECT * FROM users WHERE id = ? LIMIT 1";
         List<User> result;
@@ -160,7 +165,8 @@ public class UserJdbcDao implements UserDao {
         return count > 0;
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public void scoreGame(User user, long gameId, int score) {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
@@ -185,17 +191,18 @@ public class UserJdbcDao implements UserDao {
         }
 
         user.scoreGame(gameId, score);
-        //TODO cambiar para que sea mejor que en todas las veces
         String querySelect = "SELECT counter FROM games WHERE id = ?";
         int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
         String queryUpdate = "UPDATE games SET counter=? WHERE id = ?";
         jdbcTemplate.update(queryUpdate, counter, gameId);
+        //TODO cambiar para que el updateAvgScore no se efectue siempre sino cada X cantidad de cambios, dependiendo de la cantidad de cambios X varie.
         if (counter % 1 == 0) {
             gameDao.updateAvgScore(gameId);
         }
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public void scoreGame(User user, Game game, int score) {
         if (game == null) {
             throw new IllegalArgumentException("Game can't be null");
@@ -203,7 +210,8 @@ public class UserJdbcDao implements UserDao {
         scoreGame(user, game.getId(), score);
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public void setPlayStatus(User user, long gameId, PlayStatus status) {
         if (user == null) {
             throw new IllegalArgumentException("User can't be null");
@@ -229,7 +237,8 @@ public class UserJdbcDao implements UserDao {
         user.setPlayStatus(gameId, status);
     }
 
-    @Override //TODO transaction
+    @Transactional
+    @Override
     public void setPlayStatus(User user, Game game, PlayStatus status) {
         if (game == null) {
             throw new IllegalArgumentException("Game cannot be null");
@@ -237,7 +246,8 @@ public class UserJdbcDao implements UserDao {
         setPlayStatus(user, game.getId(), status);
     }
 
-    @Override//TODO transaction
+    @Transactional
+    @Override
     public void removeScore(User u, long id) {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasScoredGame(id)){
@@ -247,7 +257,8 @@ public class UserJdbcDao implements UserDao {
         gameDao.updateAvgScore(id);
     }
 
-    @Override//TODO transaction
+    @Transactional
+    @Override
     public void removeStatus(User u, long id) {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasPlayStatus(id)){
