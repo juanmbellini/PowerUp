@@ -116,7 +116,7 @@
                             <p><b>Platforms</b></p>
                                 <c:forEach var="platformEntry" items="${game.platforms}" varStatus="status">
                                     <a href="<c:url value="/search">
-                                        <c:param name="name" value=""/>
+                                        <c:param name="name" value="" />
                                         <c:param name="filters" value='{"platform":["${platformEntry.key}"]}'/>
                                        </c:url>
                                     ">${platformEntry.key}</a><span style="font-size: small; float: right;">${platformEntry.value}</span>
