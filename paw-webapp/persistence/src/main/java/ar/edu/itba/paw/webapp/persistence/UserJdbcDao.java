@@ -6,7 +6,6 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -19,16 +18,15 @@ import java.sql.SQLException;
 import java.util.*;
 
 
-
 /**
  * Implementation of {@link ar.edu.itba.paw.webapp.interfaces.UserDao} oriented towards JDBC.
  */
 @Repository
-public class UserJdbcDao implements UserDao {
+public class UserJdbcDao extends BaseJdbcDao implements UserDao {
+
 
     private int MAX_FILTERS_CHECKS_RECOMMEND = 10;
 
-    private final JdbcTemplate jdbcTemplate;
     private final GameDao gameDao;
     private final SimpleJdbcInsert userCreator,
             userAuthorityCreator,
@@ -39,8 +37,8 @@ public class UserJdbcDao implements UserDao {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             //Fetch this user's authorities
             List<Authority> authorities = new ArrayList<>();
-            for(Map<String, Object> row : jdbcTemplate.queryForList("SELECT authority FROM user_authorities WHERE username = ?", rs.getString("username"))) {
-                authorities.add(Authority.valueOf((String)row.get("authority")));
+            for (Map<String, Object> row : getJdbcTemplate().queryForList("SELECT authority FROM user_authorities WHERE username = ?", rs.getString("username"))) {
+                authorities.add(Authority.valueOf((String) row.get("authority")));
             }
             return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"), authorities);
         }
@@ -48,26 +46,23 @@ public class UserJdbcDao implements UserDao {
 
     @Autowired
     public UserJdbcDao(DataSource dataSource, GameDao gameDao) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        super(dataSource);
         this.gameDao = gameDao;
-        userCreator = new SimpleJdbcInsert(jdbcTemplate)
+        userCreator = new SimpleJdbcInsert(getJdbcTemplate())
                 .withTableName("users")
                 .usingColumns("email", "username", "hashed_password")
                 .usingGeneratedKeyColumns("id");
-        userAuthorityCreator = new SimpleJdbcInsert(jdbcTemplate)
+        userAuthorityCreator = new SimpleJdbcInsert(getJdbcTemplate())
                 .withTableName("user_authorities")
                 .usingColumns("username", "authority");
-        gamePlayStatusInserter = new SimpleJdbcInsert(jdbcTemplate)
+        gamePlayStatusInserter = new SimpleJdbcInsert(getJdbcTemplate())
                 .withTableName("game_play_statuses")
                 .usingGeneratedKeyColumns("id");
-        gameScoreInserter = new SimpleJdbcInsert(jdbcTemplate)
+        gameScoreInserter = new SimpleJdbcInsert(getJdbcTemplate())
                 .withTableName("game_scores")
                 .usingGeneratedKeyColumns("id");
     }
 
-    protected JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
 
     @Transactional
     @Override
@@ -111,7 +106,7 @@ public class UserJdbcDao implements UserDao {
         final String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
         List<User> result;
         try {
-            result = jdbcTemplate.query(query, userRowMapper, username);
+            result = getJdbcTemplate().query(query, userRowMapper, username);
         } catch (Exception e) {
             throw new FailedToProcessQueryException(e);
         }
@@ -124,7 +119,7 @@ public class UserJdbcDao implements UserDao {
         final String query = "SELECT * FROM users WHERE LOWER(email) = LOWER(?) LIMIT 1";
         List<User> result;
         try {
-            result = jdbcTemplate.query(query, userRowMapper, email);
+            result = getJdbcTemplate().query(query, userRowMapper, email);
         } catch (Exception e) {
             throw new FailedToProcessQueryException(e);
         }
@@ -137,7 +132,7 @@ public class UserJdbcDao implements UserDao {
         final String query = "SELECT * FROM users WHERE id = ? LIMIT 1";
         List<User> result;
         try {
-            result = jdbcTemplate.query(query, userRowMapper, id);
+            result = getJdbcTemplate().query(query, userRowMapper, id);
         } catch (Exception e) {
             throw new FailedToProcessQueryException(e);
         }
@@ -146,19 +141,19 @@ public class UserJdbcDao implements UserDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE id = ?", new Object[]{id}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM users WHERE id = ?", new Object[]{id}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithUsername(String username) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", new Object[]{username}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", new Object[]{username}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithEmail(String email) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
         return count > 0;
     }
 
@@ -176,9 +171,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
-            jdbcTemplate.update("UPDATE game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
+            getJdbcTemplate().update("UPDATE game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -189,9 +184,9 @@ public class UserJdbcDao implements UserDao {
 
         user.scoreGame(gameId, score);
         String querySelect = "SELECT counter FROM games WHERE id = ?";
-        int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
+        int counter = 1 + getJdbcTemplate().queryForObject(querySelect, new Object[]{gameId}, Integer.class);
         String queryUpdate = "UPDATE games SET counter=? WHERE id = ?";
-        jdbcTemplate.update(queryUpdate, counter, gameId);
+        getJdbcTemplate().update(queryUpdate, counter, gameId);
         //TODO cambiar para que el updateAvgScore no se efectue siempre sino cada X cantidad de cambios, dependiendo de la cantidad de cambios X varie.
         if (counter % 1 == 0) {
             gameDao.updateAvgScore(gameId);
@@ -221,9 +216,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
-            jdbcTemplate.update("UPDATE game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
+            getJdbcTemplate().update("UPDATE game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -246,10 +241,10 @@ public class UserJdbcDao implements UserDao {
     @Transactional
     @Override
     public void removeScore(User u, long id) {
-        if(u==null) throw new IllegalArgumentException();
-        if(u.hasScoredGame(id)){
+        if (u == null) throw new IllegalArgumentException();
+        if (u.hasScoredGame(id)) {
             u.getScoredGames().remove(id);
-            jdbcTemplate.update("DELETE FROM game_scores where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+            getJdbcTemplate().update("DELETE FROM game_scores where user_id = ? and game_id = ?", new Object[]{u.getId(), id});
         }
         gameDao.updateAvgScore(id);
     }
@@ -257,10 +252,10 @@ public class UserJdbcDao implements UserDao {
     @Transactional
     @Override
     public void removeStatus(User u, long id) {
-        if(u==null) throw new IllegalArgumentException();
-        if(u.hasPlayStatus(id)){
+        if (u == null) throw new IllegalArgumentException();
+        if (u.hasPlayStatus(id)) {
             u.getPlayStatuses().remove(id);
-            jdbcTemplate.update("DELETE FROM game_play_statuses where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+            getJdbcTemplate().update("DELETE FROM game_play_statuses where user_id = ? and game_id = ?", new Object[]{u.getId(), id});
         }
         gameDao.updateAvgScore(id);
     }
@@ -269,74 +264,73 @@ public class UserJdbcDao implements UserDao {
     public Collection<Game> recommendGames(User user) { //TODO change this to make something more efficient.
 
 
-        Map<Long,Integer> scoredGames = user.getScoredGames();
+        Map<Long, Integer> scoredGames = user.getScoredGames();
 
-        if(scoredGames==null || scoredGames.size()==0) return new LinkedHashSet<>();
+        if (scoredGames == null || scoredGames.size() == 0) return new LinkedHashSet<>();
 
-        Map<FilterCategory,Map<String,Double>> filtersScoresMap  = new HashMap();
+        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap();
 
         //Genres
         String genreQuery = "select genres.name as genreName, SUM(score) AS scoreSum, COUNT(score) as countScores " +
-                        "FROM games INNER JOIN game_scores ON games.id = game_scores.game_id " +
-                        "INNER JOIN game_genres ON games.id = game_genres.game_id " +
-                        "INNER JOIN genres ON genres.id = game_genres.genre_id "+
-                        "GROUP BY genreName "+
-                        "ORDER BY scoreSum DESC "+
-                        "LIMIT ? ";
-        Map<String,Double> mapFilterToFilterScoreGenre = new HashMap<>();
-        jdbcTemplate.query(genreQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
+                "FROM games INNER JOIN game_scores ON games.id = game_scores.game_id " +
+                "INNER JOIN game_genres ON games.id = game_genres.game_id " +
+                "INNER JOIN genres ON genres.id = game_genres.genre_id " +
+                "GROUP BY genreName " +
+                "ORDER BY scoreSum DESC " +
+                "LIMIT ? ";
+        Map<String, Double> mapFilterToFilterScoreGenre = new HashMap<>();
+        getJdbcTemplate().query(genreQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
-                        mapFilterToFilterScoreGenre.put(rs.getString("genreName"),(double)rs.getInt("scoreSum")/rs.getInt("countScores"));
+                        mapFilterToFilterScoreGenre.put(rs.getString("genreName"), (double) rs.getInt("scoreSum") / rs.getInt("countScores"));
                     }
                 }
         );
-        filtersScoresMap.put(FilterCategory.genre,mapFilterToFilterScoreGenre);
+        filtersScoresMap.put(FilterCategory.genre, mapFilterToFilterScoreGenre);
 
         //Keywords
         String keywordQuery = "select keywords.name as keywordName, SUM(score) AS scoreSum, COUNT(score) as countScores " +
                 "FROM games INNER JOIN game_scores ON games.id = game_scores.game_id " +
                 "INNER JOIN game_keywords ON games.id = game_keywords.game_id " +
-                "INNER JOIN keywords ON keywords.id = game_keywords.keyword_id "+
-                "GROUP BY keywordName "+
-                "ORDER BY scoreSum DESC "+
+                "INNER JOIN keywords ON keywords.id = game_keywords.keyword_id " +
+                "GROUP BY keywordName " +
+                "ORDER BY scoreSum DESC " +
                 "LIMIT ? ";
-        Map<String,Double> mapFilterToFilterScoreKeyword = new HashMap<>();
-        jdbcTemplate.query(keywordQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
+        Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
+        getJdbcTemplate().query(keywordQuery.toLowerCase(), new Object[]{3}, new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
-                        mapFilterToFilterScoreKeyword.put(rs.getString("keywordName"),(double)rs.getInt("scoreSum")/rs.getInt("countScores"));
+                        mapFilterToFilterScoreKeyword.put(rs.getString("keywordName"), (double) rs.getInt("scoreSum") / rs.getInt("countScores"));
                     }
                 }
         );
-        filtersScoresMap.put(FilterCategory.keyword,mapFilterToFilterScoreKeyword);
+        filtersScoresMap.put(FilterCategory.keyword, mapFilterToFilterScoreKeyword);
 
         //Get all games with each of X filter with higher weight and give each a weight based on each appearance and avg_score(?
 
-        HashMap<Game,Integer> gamesWeightMap = new HashMap();
+        HashMap<Game, Integer> gamesWeightMap = new HashMap();
 
         //Initialize all games in 0. eliminate this if it is taking too long. Only add something to the ones who have much
         //more negatives than positive or have too few games.
-        Collection<Game> resultGames = gameDao.searchGames("",new HashMap(), OrderCategory.avg_score,false);
-        for(Game game: resultGames){
-            if(!scoredGames.containsKey(game.getId())){
-                gamesWeightMap.put(game,(int)(2*game.getAvgScore()));
+        Collection<Game> resultGames = gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, false);
+        for (Game game : resultGames) {
+            if (!scoredGames.containsKey(game.getId())) {
+                gamesWeightMap.put(game, (int) (2 * game.getAvgScore()));
             }
         }
 
-        for(FilterCategory filterCategory : filtersScoresMap.keySet()){
-            Map<String,Double> mapFilter = filtersScoresMap.get(filterCategory);
-            for (String filter: mapFilter.keySet()){
+        for (FilterCategory filterCategory : filtersScoresMap.keySet()) {
+            Map<String, Double> mapFilter = filtersScoresMap.get(filterCategory);
+            for (String filter : mapFilter.keySet()) {
                 double filterScore = mapFilter.get(filter);
-                HashMap<FilterCategory,List<String>> filterParameterMap = new HashMap();
+                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap();
                 ArrayList filterArrayParameter = new ArrayList<String>();
                 filterArrayParameter.add(filter);
-                filterParameterMap.put(filterCategory,filterArrayParameter);
-                System.out.println(filter);
-                resultGames = gameDao.searchGames("",filterParameterMap, OrderCategory.avg_score,false);
-                for(Game game: resultGames){
-                    if(gamesWeightMap.containsKey(game)){
-                        gamesWeightMap.put(game,gamesWeightMap.get(game)+(int)filterScore);
+                filterParameterMap.put(filterCategory, filterArrayParameter);
+                resultGames = gameDao.searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                for (Game game : resultGames) {
+                    if (gamesWeightMap.containsKey(game)) {
+                        gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
                     }
                 }
             }
@@ -344,31 +338,31 @@ public class UserJdbcDao implements UserDao {
 
 
         //Show all games ordered by weight.
-        Map<Integer,ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
+        Map<Integer, ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o2.compareTo(o1);
             }
         });
 
-        for (Game game: gamesWeightMap.keySet()){
+        for (Game game : gamesWeightMap.keySet()) {
             int gameWeight = gamesWeightMap.get(game);
-            if(!gameWeightMapInOrder.containsKey(gameWeight)){
-                gameWeightMapInOrder.put(gameWeight,new ArrayList<>());
+            if (!gameWeightMapInOrder.containsKey(gameWeight)) {
+                gameWeightMapInOrder.put(gameWeight, new ArrayList<>());
             }
             gameWeightMapInOrder.get(gameWeight).add(game);
 
         }
 
 
-        Collection<Game>  finalResultList = new LinkedHashSet<>();
+        Collection<Game> finalResultList = new LinkedHashSet<>();
         int counter = 0;
-        if(!gameWeightMapInOrder.isEmpty()){
+        if (!gameWeightMapInOrder.isEmpty()) {
             Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
-            while(weightIterator.hasNext() && counter<100){
+            while (weightIterator.hasNext() && counter < 100) {
                 int gameWeight = weightIterator.next();
                 Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
-                while(gameIterator.hasNext() && counter<100){
+                while (gameIterator.hasNext() && counter < 100) {
                     finalResultList.add(gameIterator.next());
                     counter++;
                 }
@@ -378,17 +372,8 @@ public class UserJdbcDao implements UserDao {
         return finalResultList;
     }
 
-//    private void addScoreOfScoredGamedToCategory(Map<String, ArrayList<Integer>> filterCategoryMap, Collection<String> filters, Integer score) {
-//
-//        for(String filter :  filters){
-//            if(!filterCategoryMap.containsKey(filter)){
-//                filterCategoryMap.put(filter,new ArrayList<>());
-//            }
-//            filterCategoryMap.get(filter).add(score);
-//        }
-//    }
 
-     /**
+    /**
      * Adds relationship information for a specific user that is not readily available from the users table (e.g. scored
      * games, played games)
      *
@@ -398,7 +383,7 @@ public class UserJdbcDao implements UserDao {
     private User completeUser(User u) {
         //Scores
         Map<Long, Integer> scores = new HashMap<>();
-        jdbcTemplate.query(
+        getJdbcTemplate().query(
                 "SELECT * FROM game_scores WHERE user_id = ?",
                 new RowCallbackHandler() {
                     @Override
@@ -411,7 +396,7 @@ public class UserJdbcDao implements UserDao {
 
         //Played games
         Map<Long, PlayStatus> statuses = new HashMap<>();
-        jdbcTemplate.query(
+        getJdbcTemplate().query(
                 "SELECT * FROM game_play_statuses WHERE user_id = ?",
                 new RowCallbackHandler() {
                     @Override
