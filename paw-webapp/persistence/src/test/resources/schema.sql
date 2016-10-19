@@ -1,8 +1,6 @@
-DROP SCHEMA IF EXISTS power_up CASCADE;
-CREATE SCHEMA power_up;
 
 -- Creation of entity tables
-CREATE TABLE power_up.games (
+CREATE TABLE games (
   id                          INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name                        VARCHAR(1024),
   summary                     VARCHAR(1024),
@@ -11,19 +9,19 @@ CREATE TABLE power_up.games (
   cover_picture_cloudinary_id VARCHAR(1024),
   counter                     INTEGER          NOT NULL
 );
-CREATE TABLE power_up.genres (
+CREATE TABLE genres (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE power_up.platforms (
+CREATE TABLE platforms (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE power_up.companies (
+CREATE TABLE companies (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)
 );
-CREATE TABLE power_up.users (
+CREATE TABLE users (
   id              INTEGER IDENTITY     NOT NULL PRIMARY KEY,
   email           VARCHAR(1024)        NOT NULL,
   username        VARCHAR(1024) DEFAULT NULL,
@@ -35,119 +33,119 @@ CREATE TABLE power_up.users (
 );
 
 -- Creation of relationship tables
-CREATE TABLE power_up.game_genres (
+CREATE TABLE game_genres (
   id       INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id  INTEGER          NOT NULL,
   genre_id INTEGER          NOT NULL,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (genre_id) REFERENCES power_up.genres (id)
+  FOREIGN KEY (genre_id) REFERENCES genres (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (game_id, genre_id)
 );
-CREATE TABLE power_up.game_platforms (
+CREATE TABLE game_platforms (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   platform_id  INTEGER          NOT NULL,
   release_date DATE             NOT NULL,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (platform_id) REFERENCES power_up.platforms (id)
+  FOREIGN KEY (platform_id) REFERENCES platforms (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (game_id, platform_id, release_date)  --The same game can be released for the same platform multiple times
 );
-CREATE TABLE power_up.keywords (
+CREATE TABLE keywords (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
   name VARCHAR(1024)    NOT NULL
 );
-CREATE TABLE power_up.game_keywords (
+CREATE TABLE game_keywords (
   id         INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id    INTEGER          NOT NULL,
   keyword_id INTEGER          NOT NULL,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (keyword_id) REFERENCES power_up.keywords (id)
+  FOREIGN KEY (keyword_id) REFERENCES keywords (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
-CREATE TABLE power_up.game_developers (
+CREATE TABLE game_developers (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   developer_id INTEGER          NOT NULL,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (developer_id) REFERENCES power_up.companies (id)
+  FOREIGN KEY (developer_id) REFERENCES companies (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (game_id, developer_id)
 );
-CREATE TABLE power_up.game_publishers (
+CREATE TABLE game_publishers (
   id           INTEGER IDENTITY NOT NULL PRIMARY KEY,
   game_id      INTEGER          NOT NULL,
   publisher_id INTEGER          NOT NULL,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (publisher_id) REFERENCES power_up.companies (id)
+  FOREIGN KEY (publisher_id) REFERENCES companies (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (game_id, publisher_id)
 );
-CREATE TABLE power_up.game_pictures (
+CREATE TABLE game_pictures (
   id            INTEGER IDENTITY NOT NULL PRIMARY KEY,
   cloudinary_id VARCHAR(1024)    NOT NULL,
   game_id       INTEGER          NOT NULL,
   width         INTEGER,
   height        INTEGER,
 
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
 );
-CREATE TABLE power_up.game_scores (
+CREATE TABLE game_scores (
   id      INTEGER IDENTITY NOT NULL PRIMARY KEY,
   user_id INTEGER          NOT NULL,
   game_id INTEGER          NOT NULL,
   score   INTEGER          NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES power_up.users (id)
+  FOREIGN KEY (user_id) REFERENCES users (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (user_id, game_id)
 );
-CREATE TABLE power_up.game_play_statuses (
+CREATE TABLE game_play_statuses (
   id      INTEGER IDENTITY NOT NULL PRIMARY KEY,
   user_id INTEGER          NOT NULL,
   game_id INTEGER          NOT NULL,
   status  VARCHAR(1024)    NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES power_up.users (id)
+  FOREIGN KEY (user_id) REFERENCES users (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  FOREIGN KEY (game_id) REFERENCES power_up.games (id)
+  FOREIGN KEY (game_id) REFERENCES games (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   UNIQUE (user_id, game_id)
 );
-CREATE TABLE power_up.user_authorities (
+CREATE TABLE user_authorities (
   id        INTEGER IDENTITY NOT NULL PRIMARY KEY,
   username  VARCHAR(1024)    NOT NULL,
   authority VARCHAR(1024)    NOT NULL,
 
-  FOREIGN KEY (username) REFERENCES power_up.users (username),
+  FOREIGN KEY (username) REFERENCES users (username),
   UNIQUE (username, authority)
 );
