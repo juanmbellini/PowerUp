@@ -66,8 +66,7 @@ public class GameController extends BaseController {
         super(us);
         this.gameService = gameService;
         objectMapper = new ObjectMapper();
-        typeReference = new TypeReference<Map<FilterCategory, ArrayList<String>>>() {
-        };
+        typeReference = new TypeReference<Map<FilterCategory, ArrayList<String>>>() {};
     }
 
 
