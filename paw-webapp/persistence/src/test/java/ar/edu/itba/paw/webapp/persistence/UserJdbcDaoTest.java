@@ -30,7 +30,7 @@ public class UserJdbcDaoTest {
     private JdbcTemplate jdbcTemplate;
 
     private void insertOneGame(int id) {
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES ("+id+", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',null,0);");
+        jdbcTemplate.execute("INSERT INTO games VALUES ("+id+", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',null,0);");
     }
 
     @Before
@@ -38,10 +38,10 @@ public class UserJdbcDaoTest {
 
         jdbcTemplate = userDao.getJdbcTemplate();
 
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.users"); //TODO drop rates tables.
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
-                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
-                "power_up.companies", "power_up.keywords", "power_up.genres");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "users"); //TODO drop rates tables.
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "games", "platforms", "game_platforms",
+                "game_developers", " game_genres ", "game_publishers", "game_keywords",
+                "companies", "keywords", "genres");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class UserJdbcDaoTest {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        jdbcTemplate.execute("INSERT INTO power_up.users (id, username, email, hashed_password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
+        jdbcTemplate.execute("INSERT INTO users (id, username, email, hashed_password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
 
         Assert.assertNotNull("Created user not found by email", userDao.findByEmail(email));
         Assert.assertNotNull("Created user not found by username", userDao.findByUsername(username));
@@ -91,7 +91,7 @@ public class UserJdbcDaoTest {
         Assert.assertNotNull("Created user is null", u);
         assertEquals("Mismatching created user email", u.getEmail(), email);
         assertEquals("Mismatching created user username", u.getUsername(), username);
-        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "power_up.users"));
+        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "users"));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -164,7 +164,7 @@ public class UserJdbcDaoTest {
     /*
     @Test(expected = IllegalArgumentException.class)
     public void scoreForNonExistingUser(){
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+        jdbcTemplate.execute("INSERT INTO games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
         userDao.scoreGame(1,1,4);
     }
     */
@@ -359,7 +359,7 @@ public class UserJdbcDaoTest {
         userDao.scoreGame(u,id,10);
         userDao.scoreGame(u2,id,1);
 
-        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
 
 
         assertEquals(5.5, avgScore);
@@ -409,11 +409,11 @@ public class UserJdbcDaoTest {
         insertOneGame(id);
         userDao.scoreGame(u,id,10);
         assertEquals(10, u.getGameScore(id));
-        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
         assertEquals(10.0,avgScore);
         userDao.removeScore(u,id);
         assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
-        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[] {id}, Double.class);
         assertEquals(0.0,avgScore);
 
     }

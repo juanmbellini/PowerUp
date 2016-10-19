@@ -42,7 +42,7 @@ public class UserJdbcDao implements UserDao {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             //Fetch this user's authorities
             List<Authority> authorities = new ArrayList<>();
-            for(Map<String, Object> row : jdbcTemplate.queryForList("SELECT authority FROM power_up.user_authorities WHERE username = ?", rs.getString("username"))) {
+            for(Map<String, Object> row : jdbcTemplate.queryForList("SELECT authority FROM user_authorities WHERE username = ?", rs.getString("username"))) {
                 authorities.add(Authority.valueOf((String)row.get("authority")));
             }
             return new User(rs.getLong("id"), rs.getString("email"), rs.getString("username"), rs.getString("hashed_password"), authorities);
@@ -54,20 +54,16 @@ public class UserJdbcDao implements UserDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.gameDao = gameDao;
         userCreator = new SimpleJdbcInsert(jdbcTemplate)
-                .withSchemaName("power_up")
                 .withTableName("users")
                 .usingColumns("email", "username", "hashed_password")
                 .usingGeneratedKeyColumns("id");
         userAuthorityCreator = new SimpleJdbcInsert(jdbcTemplate)
-                .withSchemaName("power_up")
                 .withTableName("user_authorities")
                 .usingColumns("username", "authority");
         gamePlayStatusInserter = new SimpleJdbcInsert(jdbcTemplate)
-                .withSchemaName("power_up")
                 .withTableName("game_play_statuses")
                 .usingGeneratedKeyColumns("id");
         gameScoreInserter = new SimpleJdbcInsert(jdbcTemplate)
-                .withSchemaName("power_up")
                 .withTableName("game_scores")
                 .usingGeneratedKeyColumns("id");
     }
@@ -114,9 +110,8 @@ public class UserJdbcDao implements UserDao {
 
     @Transactional
     @Override
-
     public User findByUsername(String username) {
-        final String query = "SELECT * FROM power_up.users WHERE username = ? LIMIT 1";
+        final String query = "SELECT * FROM users WHERE username = ? LIMIT 1";
         List<User> result;
         try {
             result = jdbcTemplate.query(query, userRowMapper, username);
@@ -129,7 +124,7 @@ public class UserJdbcDao implements UserDao {
     @Transactional
     @Override
     public User findByEmail(String email) {
-        final String query = "SELECT * FROM power_up.users WHERE LOWER(email) = LOWER(?) LIMIT 1";
+        final String query = "SELECT * FROM users WHERE LOWER(email) = LOWER(?) LIMIT 1";
         List<User> result;
         try {
             result = jdbcTemplate.query(query, userRowMapper, email);
@@ -142,7 +137,7 @@ public class UserJdbcDao implements UserDao {
     @Transactional
     @Override
     public User findById(long id) {
-        final String query = "SELECT * FROM power_up.users WHERE id = ? LIMIT 1";
+        final String query = "SELECT * FROM users WHERE id = ? LIMIT 1";
         List<User> result;
         try {
             result = jdbcTemplate.query(query, userRowMapper, id);
@@ -154,19 +149,19 @@ public class UserJdbcDao implements UserDao {
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE id = ?", new Object[]{id}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE id = ?", new Object[]{id}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithUsername(String username) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE username = ?", new Object[]{username}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE username = ?", new Object[]{username}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithEmail(String email) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM users WHERE LOWER(email) = LOWER(?)", new Object[]{email}, Integer.class);
         return count > 0;
     }
 
@@ -184,9 +179,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM game_scores WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
-            jdbcTemplate.update("UPDATE power_up.game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
+            jdbcTemplate.update("UPDATE game_scores SET score = ? WHERE user_id = ? AND game_id = ?", score, user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -196,9 +191,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         user.scoreGame(gameId, score);
-       String querySelect = "SELECT counter FROM power_up.games WHERE id = ?";
+        String querySelect = "SELECT counter FROM games WHERE id = ?";
         int counter = 1 + jdbcTemplate.queryForObject(querySelect, new Object[]{gameId}, Integer.class);
-        String queryUpdate = "UPDATE power_up.games SET counter=? WHERE id = ?";
+        String queryUpdate = "UPDATE games SET counter=? WHERE id = ?";
         jdbcTemplate.update(queryUpdate, counter, gameId);
         //TODO cambiar para que el updateAvgScore no se efectue siempre sino cada X cantidad de cambios, dependiendo de la cantidad de cambios X varie.
         if (counter % 1 == 0) {
@@ -229,9 +224,9 @@ public class UserJdbcDao implements UserDao {
         }
 
         //Update if exists, otherwise insert
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM game_play_statuses WHERE user_id = ? AND game_id = ?", new Object[]{user.getId(), gameId}, Integer.class);
         if (count > 0) {
-            jdbcTemplate.update("UPDATE power_up.game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
+            jdbcTemplate.update("UPDATE game_play_statuses SET status = ? WHERE user_id = ? AND game_id = ?", status.name(), user.getId(), gameId);
         } else {
             Map<String, Object> params = new HashMap<>();
             params.put("user_id", user.getId());
@@ -257,7 +252,7 @@ public class UserJdbcDao implements UserDao {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasScoredGame(id)){
             u.getScoredGames().remove(id);
-            jdbcTemplate.update("DELETE FROM power_up.game_scores where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+            jdbcTemplate.update("DELETE FROM game_scores where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
         }
         gameDao.updateAvgScore(id);
     }
@@ -268,7 +263,7 @@ public class UserJdbcDao implements UserDao {
         if(u==null) throw new IllegalArgumentException();
         if(u.hasPlayStatus(id)){
             u.getPlayStatuses().remove(id);
-            jdbcTemplate.update("DELETE FROM power_up.game_play_statuses where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
+            jdbcTemplate.update("DELETE FROM game_play_statuses where user_id = ? and game_id = ?",new Object[]{u.getId(),id});
         }
         gameDao.updateAvgScore(id);
     }
@@ -285,7 +280,7 @@ public class UserJdbcDao implements UserDao {
         //Scores
         Map<Long, Integer> scores = new HashMap<>();
         jdbcTemplate.query(
-                "SELECT * FROM power_up.game_scores WHERE user_id = ?",
+                "SELECT * FROM game_scores WHERE user_id = ?",
                 new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
@@ -298,7 +293,7 @@ public class UserJdbcDao implements UserDao {
         //Played games
         Map<Long, PlayStatus> statuses = new HashMap<>();
         jdbcTemplate.query(
-                "SELECT * FROM power_up.game_play_statuses WHERE user_id = ?",
+                "SELECT * FROM game_play_statuses WHERE user_id = ?",
                 new RowCallbackHandler() {
                     @Override
                     public void processRow(ResultSet rs) throws SQLException {
