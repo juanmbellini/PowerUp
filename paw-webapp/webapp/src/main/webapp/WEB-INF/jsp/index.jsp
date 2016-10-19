@@ -109,5 +109,6 @@
     <%@include file="footer.jsp" %>
 </footer>
 <script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
+<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
 </body>
 </html>
