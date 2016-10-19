@@ -5,6 +5,8 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
+import java.util.Collection;
+
 /**
  * Data Access Object for users.
  */
@@ -75,5 +77,8 @@ public interface UserDao {
      */
     void removeStatus(User u, long id);
 
-
+    /**
+     * @see UserService#recommendGames(User)
+     */
+    Collection<Game> recommendGames(User user);
 }

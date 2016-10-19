@@ -71,4 +71,10 @@ public interface GameService {
      * @return A collection with all the filters that can be applied with the given filter category.
      */
     Collection<String> getFiltersByType(FilterCategory filterCategory);
+
+    /**
+     * @param ids the collection of the ids
+     * @return a Map from gameId to a Game with the basic data of the game.
+     */
+    Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
 }

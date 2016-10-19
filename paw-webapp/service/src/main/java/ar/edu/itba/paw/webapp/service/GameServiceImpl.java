@@ -55,6 +55,11 @@ public class GameServiceImpl implements GameService {
         return gameDao.getFiltersByType(filterCategory);
     }
 
+    @Override
+    public Map<Long, Game> findBasicDataGamesFromArrayId(Collection<Long> ids) {
+        return gameDao.findBasicDataGamesFromArrayId(ids);
+    }
+
     // TODO: Move to controller as this is a controller's task
     public String escapeUnsafeCharacters(String name){
         char[] escape = new char[1];

@@ -5,6 +5,9 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+
 /**
  * User service class. Exposes all functionality available to users.
  */
@@ -120,5 +123,12 @@ public interface UserService {
      * @param id The id of the game whose gameStatus is getting removed
      */
     void removeStatus(User u, long id);
+
+    /**
+     * Recommends games for user based on the scores of the games he has scored
+     *
+     * @param user The user who is getting the recommendations
+     */
+    Collection<Game> recommendGames(User user);
 
 }
