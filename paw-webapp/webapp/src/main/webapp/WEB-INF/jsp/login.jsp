@@ -49,9 +49,21 @@
                                     <%--</label>--%>
                                 </div>
 
-                                <div class='row'>
-                                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Login
-                                    </button>
+                                <c:if test="${error}" >
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <p class="center" style="font-size: larger">Invalid username/password</p>
+                                        </div>
+                                    </div>
+                                </c:if>
+
+                                <p>
+                                    <form:checkbox path="rememberMe" checked="checked" cssStyle="display: none;"/>
+                                    <%--<form:label path="rememberMe1">Remember Me</form:label>--%>
+                                </p>
+
+                                <div class="row">
+                                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Log In</button>
                                 </div>
                             </form>
                         </form:form>

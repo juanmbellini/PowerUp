@@ -51,8 +51,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
             .and().rememberMe()
-                .rememberMeParameter("rememberme")
                 .userDetailsService(userDetailsService)
+                .rememberMeParameter("rememberMe")
                 .key("MIIEpQIBAAKCAQEAnRousecdD54t+HcaC+41DP0yKUayPr1lCPXnV8n1DvXZ7Hmg\n" +
                     "xFoqVJnP7t7yhJmGiIM8+iWfUGPqJKDu/Riwo429kI1U0trar8DfyFKOOTwIGhA+\n" +
                     "Pu2Okv7D2aZVTThxqu8iMB8UEZ516ZnHQIwTfmGrZhvM5U73WVQntjac7U3mFz4b\n" +
@@ -92,9 +92,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService)
             .and().jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("SELECT username, hashed_password, enabled FROM users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authority FROM user_authorities WHERE username = ?");
+                .passwordEncoder(passwordEncoder());
     }
 
     @Override
