@@ -23,7 +23,7 @@ public interface GameService {
      *
      * @param name    Partial or complete name of the game. An empty name will match all games.
      * @param filters Criteria for the games to match. May be empty, but not {@code null}.
-     * @return Games matching the specified criteria. TODO is there a maximum list size? If so, specify. If not, specify.
+     * @return A {@link Page} of games matching the specified criteria.
      * @throws IllegalArgumentException if a list in the {@code filters} map is null.
      */
     Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
@@ -71,4 +71,10 @@ public interface GameService {
      * @return A collection with all the filters that can be applied with the given filter category.
      */
     Collection<String> getFiltersByType(FilterCategory filterCategory);
+
+    /**
+     * @param ids the collection of the ids
+     * @return a Map from gameId to a Game with the basic data of the game.
+     */
+    Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
 }

@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
@@ -10,9 +10,9 @@ import ar.edu.itba.paw.webapp.utilities.Page;
 import org.atteo.evo.inflector.English;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -24,23 +24,38 @@ import java.util.*;
  * Implementation of {@link GameDao} oriented towards JDBC.
  */
 @Repository
-public class GameJdbcDao implements GameDao {
+public class GameJdbcDao extends BaseJdbcDao implements GameDao {
 
-    public static final int STRING_BUILDER_INITIAL_CAPACITY = 2048;
-    public static final int STRING_BUILDER_SMALL_INITIAL_CAPACITY = 128;
-    private JdbcTemplate jdbcTemplate;
+    private static final int STRING_BUILDER_INITIAL_CAPACITY = 2048;
+    private static final int STRING_BUILDER_SMALL_INITIAL_CAPACITY = 128;
+    private static final int MAX_PAGE_SIZE = 150;
 
+
+    private PlatformDao platformDao;
+    private GenreDao genreDao;
+    private PublisherDao publisherDao;
+    private DeveloperDao developerDao;
+    private KeywordDao keywordDao;
+    private PictureDao picturesDao;
 
     @Autowired
-    public GameJdbcDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public GameJdbcDao(DataSource dataSource,
+                       PlatformDao platformDao,
+                       GenreDao genreDao,
+                       PublisherDao publisherDao,
+                       DeveloperDao developerDao,
+                       KeywordDao keywordDao,
+                       PictureDao pictureDao) {
+        super(dataSource);
+        this.platformDao = platformDao;
+        this.genreDao = genreDao;
+        this.publisherDao = publisherDao;
+        this.developerDao = developerDao;
+        this.keywordDao = keywordDao;
+        this.picturesDao = pictureDao;
     }
 
-    protected JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
-
-
+    @Transactional
     @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                         OrderCategory orderCategory, boolean ascending)
@@ -49,17 +64,19 @@ public class GameJdbcDao implements GameDao {
     }
 
 
+    @Transactional
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber)
             throws IllegalArgumentException {
-        if (pageSize <= 0 || pageNumber <= 0) {
-            throw new IllegalArgumentException();
+        if (pageSize <= 0 || pageNumber <= 0 || pageSize > MAX_PAGE_SIZE) {
+            throw new IllegalPageException();
         }
         return doSearchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
     }
 
 
+    @Transactional
     @Override
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
 
@@ -91,135 +108,41 @@ public class GameJdbcDao implements GameDao {
     }
 
     @Override
+    @Transactional
     public Game findById(long id) {
-        Game result = new Game();
+        final Game.GameBuilder gb = new Game.GameBuilder();
         Object[] parameters = new Object[1];
         parameters[0] = id;
-        String query;
-        query = "SELECT power_up.games.id, power_up.games.name, summary, release, avg_score FROM power_up.games WHERE power_up.games.id = ?";
-        final boolean[] found = {false};
+
+        String query = "SELECT games.id, games.name, summary, release, avg_score, cover_picture_cloudinary_id" +
+                " FROM games WHERE games.id = ?";
         try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.setId(rs.getLong("id"));
-                            result.setName(rs.getString("name"));
-                            result.setSummary(rs.getString("summary"));
-                            result.setAvgScore(rs.getDouble("avg_score"));
-                            result.setReleaseDate(new LocalDate(rs.getString("release")));
-                            found[0] = true;
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-        }
-
-        if (!found[0]) {
-            return null;
-        }
-
-        query = "SELECT power_up.platforms.name,release_date FROM power_up.games, power_up.platforms, power_up.game_platforms " +
-                "WHERE power_up.games.id = ? AND power_up.game_platforms.game_Id = power_up.games.id AND power_up.game_platforms.platform_Id = power_up.platforms.id ";
-        try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.addPlatform(rs.getString("name"), new LocalDate(rs.getDate("release_date")));
-
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-
-        }
-
-        query = "SELECT power_up.genres.name FROM power_up.games, power_up.genres, power_up.game_genres " +
-                "WHERE power_up.games.id = ? AND power_up.game_genres.game_Id = power_up.games.id AND power_up.game_genres.genre_Id = power_up.genres.id ";
-        try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.addGenre(rs.getString("name"));
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-
-        }
-
-        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_publishers " +
-                "WHERE power_up.games.id = ? AND power_up.game_publishers.game_Id = power_up.games.id AND power_up.game_publishers.publisher_Id = power_up.companies.id ";
-        try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.addPublisher(rs.getString("name"));
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-
-        }
-
-        query = "SELECT power_up.companies.name FROM power_up.games, power_up.companies, power_up.game_developers " +
-                "WHERE power_up.games.id = ? AND power_up.game_developers.game_Id = power_up.games.id AND power_up.game_developers.developer_Id = power_up.companies.id ";
-        try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.addDeveloper(rs.getString("name"));
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-
-        }
-
-        query = "SELECT power_up.keywords.name FROM power_up.games, power_up.keywords, power_up.game_keywords " +
-                "WHERE power_up.games.id = ? AND power_up.game_keywords.game_id = power_up.games.id AND power_up.game_keywords.keyword_id = power_up.keywords.id ";
-        try {
-            jdbcTemplate.query(query.toLowerCase(), parameters, new RowCallbackHandler() {
-                        @Override
-                        public void processRow(ResultSet rs) throws SQLException {
-                            result.addKeyword(rs.getString("name"));
-                        }
-                    }
-            );
-        } catch (Exception e) {
-            throw new FailedToProcessQueryException();
-
-        }
-
-        //Get cloudinary IDs in the same order always. This way, thanks to {@link Game#getCoverPictureUrl}, the cover picture is always the same.
-        query = "SELECT cloudinary_id FROM power_up.game_pictures AS t1 WHERE game_id = ? ORDER BY id ASC";
-        try {
-            jdbcTemplate.query(query, parameters, new RowCallbackHandler() {
+            getJdbcTemplate().query(query.toLowerCase(), parameters, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
-                    result.addPictureURL(rs.getString("cloudinary_id"));
+                    gb.setId(rs.getLong("id"))
+                            .setName(rs.getString("name"))
+                            .setSummary(rs.getString("summary"))
+                            .setAvgScore(rs.getDouble("avg_score"))
+                            .setReleaseDate(new LocalDate(rs.getString("release")))
+                            .setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
                 }
             });
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
         }
-
-        return result;
+        return gb.startedBuilding() ? completeGame(gb).build() : null;
     }
 
     @Override
     public boolean existsWithId(long id) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE id = ?", new Object[] {id}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM games WHERE id = ?", new Object[]{id}, Integer.class);
         return count > 0;
     }
 
     @Override
     public boolean existsWithTitle(String title) {
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM power_up.games WHERE LOWER(name) = LOWER(?)", new Object[] {title}, Integer.class);
+        int count = getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM games WHERE LOWER(name) = LOWER(?)", new Object[]{title}, Integer.class);
         return count > 0;
     }
 
@@ -227,8 +150,8 @@ public class GameJdbcDao implements GameDao {
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
         String tableName = English.plural(filterCategory.name());
         Set<String> result = new LinkedHashSet<>();
-        StringBuilder query = new StringBuilder().append("SELECT power_up.");
-        StringBuilder fromSentence = new StringBuilder().append(" FROM power_up.");
+        StringBuilder query = new StringBuilder().append("SELECT ");
+        StringBuilder fromSentence = new StringBuilder().append(" FROM ");
 
         if (filterCategory != FilterCategory.developer && filterCategory != FilterCategory.publisher) {
             query.append(tableName);
@@ -236,9 +159,9 @@ public class GameJdbcDao implements GameDao {
         } else {
             query.append("companies");
             fromSentence.append("companies");
-            fromSentence.append(" INNER JOIN power_up.game_")
+            fromSentence.append(" INNER JOIN game_")
                     .append(tableName)
-                    .append(" ON power_up.companies.id = power_up.game_")
+                    .append(" ON companies.id = game_")
                     .append(tableName)
                     .append(".")
                     .append(filterCategory.name())
@@ -247,22 +170,106 @@ public class GameJdbcDao implements GameDao {
         query.append(".name")
                 .append(fromSentence)
                 .append(" ORDER BY name ASC LIMIT 500;");
-        System.out.println(query.toString());
         try {
-            jdbcTemplate.query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+            getJdbcTemplate().query(query.toString().toLowerCase(), (Object[]) null, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    result.add(rs.getString("name"));
+                }
+            });
+        } catch (Exception e) {
+            throw new FailedToProcessQueryException();
+        }
+        return result;
+    }
+
+
+    @Transactional
+    public void updateAvgScore(long gameId) {
+        String query = new StringBuilder(" UPDATE games SET avg_score = COALESCE(").
+                append("(SELECT AVG(CAST(score AS FLOAT))")
+                .append(" FROM game_scores")
+                .append(" WHERE game_scores.game_id = ?), 0)")
+                .append(" WHERE id = ?").toString();
+        getJdbcTemplate().update(query, gameId, gameId);
+    }
+
+    /**
+     * @param ids the collection of the ids
+     * @return a Map from gameId to a Game with the basic data of the game.
+     */
+    @Transactional
+    public Map<Long, Game> findBasicDataGamesFromArrayId(Collection<Long> ids) {
+        if (ids == null) throw new IllegalArgumentException();
+        Map<Long, Game> gameMap = new HashMap();
+        if (ids.isEmpty()) return gameMap;
+        StringBuilder queryBuilder = new StringBuilder().append("SELECT id, name, summary, release, avg_score,cover_picture_cloudinary_id FROM games WHERE");
+        Iterator<Long> iter = ids.iterator();
+        queryBuilder.append(" id = " + iter.next());
+        while (iter.hasNext()) { //TODO change to id IN (id1, id2,...)
+            queryBuilder.append(" OR ");
+            queryBuilder.append(" id = " + iter.next());
+        }
+        String query = queryBuilder.toString();
+
+        try {
+            getJdbcTemplate().query(query.toLowerCase(), new RowCallbackHandler() { //TODO usar object[] o al pedo porque es seguro?
                         @Override
                         public void processRow(ResultSet rs) throws SQLException {
-                            result.add(rs.getString("name"));
+                            Game game = new Game.GameBuilder().setId(rs.getLong("id"))
+                                    .setName(rs.getString("name"))
+                                    .setSummary(rs.getString("summary"))
+                                    .setAvgScore(rs.getDouble("avg_score"))
+                                    .setReleaseDate(new LocalDate(rs.getString("release")))
+                                    .setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id")).build();
+
+                            gameMap.put(game.getId(), game);
                         }
                     }
             );
         } catch (Exception e) {
             throw new FailedToProcessQueryException();
-
         }
+        return gameMap;
+    }
 
 
-        return result;
+    /**
+     * Gives a GameBuilder with completed fields.
+     *
+     * @param gb The Game Builder to be completed.
+     * @return The completed Game Builder.
+     */
+    private Game.GameBuilder completeGame(Game.GameBuilder gb) {
+        Map<String, LocalDate> platforms = platformDao.getGamePlatforms(gb.getBuildingGameId());
+        for (String platform : platforms.keySet()) {
+            gb.addPlatform(platform, platforms.get(platform));
+        }
+        genreDao.getGameGenres(gb.getBuildingGameId()).forEach(gb::addGenre);
+        publisherDao.getGamePublishers(gb.getBuildingGameId()).forEach(gb::addPublisher);
+        developerDao.getGameDevelopers(gb.getBuildingGameId()).forEach(gb::addDeveloper);
+        keywordDao.getGameKeywords(gb.getBuildingGameId()).forEach(gb::addKeyword);
+        picturesDao.getGamePictures(gb.getBuildingGameId()).forEach(gb::addPictureURL);
+        return gb;
+    }
+
+    /**
+     * Gives a Game with completed fields.
+     *
+     * @param game The Game to be completed
+     * @return The completed Game.
+     */
+    private Game completeGame(Game game) {
+        Map<String, LocalDate> platforms = platformDao.getGamePlatforms(game.getId());
+        for (String platform : platforms.keySet()) {
+            game.addPlatform(platform, platforms.get(platform));
+        }
+        genreDao.getGameGenres(game.getId()).forEach(game::addGenre);
+        publisherDao.getGamePublishers(game.getId()).forEach(game::addPublisher);
+        developerDao.getGameDevelopers(game.getId()).forEach(game::addDeveloper);
+        keywordDao.getGameKeywords(game.getId()).forEach(game::addKeyword);
+        picturesDao.getGamePictures(game.getId()).forEach(game::addPictureURL);
+        return game;
     }
 
 
@@ -282,7 +289,7 @@ public class GameJdbcDao implements GameDao {
      *                                  {@code orderCategory} is null, if a list in the {@code filters} map is null,
      *                                  if {@code pageSize} is negative, if {@code pageNumber} is negative
      *                                  or if {@code pageSize} is {@code 0} and {@code pageNumber} not, or vice versa.
-     * @throws IllegalPageException If there were problems creating a page with results
+     * @throws IllegalPageException     If there were problems creating a page with results
      *                                  (i.e. {@code pageSize} smaller than the amount of elements in the result set,
      *                                  {@code pageNumber} bigger than the total amount of pages available,
      *                                  or Illegal arguments when creating the page).
@@ -299,22 +306,17 @@ public class GameJdbcDao implements GameDao {
         boolean paginationOn = pageSize > 0;
 
         StringBuilder selectString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("SELECT power_up.games.id, power_up.games.name, avg_score, summary, cloudinary_id, " +
-                        "power_up.games.release");
+                .append("SELECT games.id, games.name, avg_score, summary, " +
+                        "games.release, cover_picture_cloudinary_id");
         StringBuilder fromString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("FROM power_up.games")
-                .append(" INNER JOIN power_up.game_platforms ON power_up.games.id = power_up.game_platforms.game_id")
-                .append(" INNER JOIN power_up.platforms ON power_up.game_platforms.platform_id = power_up.platforms.id")
-                .append(" LEFT OUTER JOIN power_up.game_pictures AS pictures ON power_up.games.id = pictures.game_id");
+                .append("FROM games")
+                .append(" INNER JOIN game_platforms ON games.id = game_platforms.game_id")
+                .append(" INNER JOIN platforms ON game_platforms.platform_id = platforms.id");
         StringBuilder nameString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("WHERE LOWER(power_up.games.name) like '%' || LOWER(?) || '%'");
+                .append("WHERE LOWER(games.name) like '%' || LOWER(?) || '%'");
         StringBuilder filtersString = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY);
-        StringBuilder picturesString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append(" AND (pictures.id = (SELECT min(id) FROM power_up.game_pictures")
-                .append(" WHERE pictures.game_id = game_id)")
-                .append(" OR pictures.id IS NULL)");
         StringBuilder groupByString = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append("GROUP BY power_up.games.id, power_up.games.name, avg_score, pictures.cloudinary_id, summary");
+                .append("GROUP BY games.id, games.name, avg_score, cover_picture_cloudinary_id, summary");
 
         addDoSearchGamesFilters(filters, parameters, fromString, filtersString, 1);
 
@@ -323,25 +325,21 @@ public class GameJdbcDao implements GameDao {
                 .append(fromString)
                 .append(" ")
                 .append(nameString)
-                .append(filtersString)
-                .append(picturesString);
+                .append(filtersString);
 
         StringBuilder dataFetchQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
                 .append(selectString)
                 .append(queryBuilderWithoutSelectGroupByAndOrderBy)
                 .append(" ")
                 .append(groupByString)
-                .append(" ORDER BY power_up.games.").append(orderCategory.name())
+                .append(" ORDER BY games.").append(orderCategory.name())
                 .append(ascending ? " ASC" : " DESC");
         ;
         StringBuilder rowsCountQuery = new StringBuilder(STRING_BUILDER_INITIAL_CAPACITY)
-                .append("SELECT count(DISTINCT power_up.games.id) AS rows")
+                .append("SELECT count(DISTINCT games.id) AS rows")
                 .append(queryBuilderWithoutSelectGroupByAndOrderBy);
 
-        System.out.println(dataFetchQuery);
         Set<Game> gamesSet = new LinkedHashSet<>();
-//        List<Game> gamesSet = new ArrayList<>();
-
         final Page<Game> page = new Page<>();
         if (paginationOn) {
             page.setPageSize(pageSize);
@@ -351,11 +349,9 @@ public class GameJdbcDao implements GameDao {
             page.setPageNumber(1);
         }
 
-
-        // TODO: Make this in a transaction?
         try {
             // Count rows
-            jdbcTemplate.query(rowsCountQuery.toString(), parameters, new RowCallbackHandler() {
+            getJdbcTemplate().query(rowsCountQuery.toString(), parameters, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
                     int rowsCount = rs.getInt("rows");
@@ -367,17 +363,22 @@ public class GameJdbcDao implements GameDao {
                     } else {
                         page.setPageSize(rowsCount);
                     }
+                    page.setOverAllAmountOfElements(rowsCount);
                 }
             });
             // Fetch data
-            jdbcTemplate.query(dataFetchQuery.toString(), parameters, new RowCallbackHandler() {
+            getJdbcTemplate().query(dataFetchQuery.toString(), parameters, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
-                    Game game = new Game(rs.getLong("id"), rs.getString("name"), rs.getString("summary"));
-                    game.addPictureURL(rs.getString("cloudinary_id"));
-                    game.setReleaseDate(new LocalDate(rs.getString("release")));
-                    game.setAvgScore(rs.getDouble("avg_score"));
-                    gamesSet.add(game);
+                    Game.GameBuilder gb = new Game.GameBuilder()
+                            .setId(rs.getLong("id"))
+                            .setName(rs.getString("name"))
+                            .setSummary(rs.getString("summary"))
+                            .setReleaseDate(new LocalDate(rs.getString("release")))
+                            .setAvgScore(rs.getDouble("avg_score"))
+                            .setCoverPictureUrl(rs.getString("cover_picture_cloudinary_id"));
+
+                    gamesSet.add(gb.build());
                 }
             });
         } catch (IllegalPageException e) {
@@ -445,10 +446,10 @@ public class GameJdbcDao implements GameDao {
         String filterName = filter.name();
         String pluralFilterName = English.plural(filterName);
         String entityTable = getEntityTable(filter);
-        String relationTable = "power_up.game_" + pluralFilterName;
+        String relationTable = "game_" + pluralFilterName;
 
         StringBuilder sentence = new StringBuilder(STRING_BUILDER_SMALL_INITIAL_CAPACITY)
-                .append("INNER JOIN ").append(relationTable).append(" ON power_up.games.id = ")
+                .append("INNER JOIN ").append(relationTable).append(" ON games.id = ")
                 .append(relationTable).append(".game_id").append(" INNER JOIN ").append(entityTable).append(" ON ")
                 .append(relationTable).append(".").append(filterName).append("_id = ").append(pluralFilterName)
                 .append(".id");
@@ -493,18 +494,7 @@ public class GameJdbcDao implements GameDao {
     private String getEntityTable(FilterCategory filter) {
         boolean useCompany = filter.equals(FilterCategory.developer) || filter.equals(FilterCategory.publisher);
         String pluralFilter = English.plural(filter.name());
-        return "power_up." + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
+        return "" + (useCompany ? "companies AS " + pluralFilter : pluralFilter);
     }
-
-
-    public void updateAvgScore(long gameId){
-        String query = " UPDATE power_up.games SET avg_score = (SELECT AVG(CAST(score AS FLOAT))" +
-                                                            " FROM power_up.game_scores" +
-                                                             " WHERE power_up.game_scores.game_id = ?)" +
-                " WHERE id = ?";
-
-        jdbcTemplate.update(query, gameId, gameId);
-    }
-
 
 }

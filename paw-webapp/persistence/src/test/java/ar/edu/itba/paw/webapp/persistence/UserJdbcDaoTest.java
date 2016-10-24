@@ -15,8 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNull;
+import static junit.framework.TestCase.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,17 +26,22 @@ public class UserJdbcDaoTest {
     @Autowired
     private UserJdbcDao userDao;
 
+
     private JdbcTemplate jdbcTemplate;
+
+    private void insertOneGame(int id) {
+        jdbcTemplate.execute("INSERT INTO games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30', null, 0);");
+    }
 
     @Before
     public void cleanUp() {
 
         jdbcTemplate = userDao.getJdbcTemplate();
 
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.users"); //TODO drop rates tables.
-        JdbcTestUtils.deleteFromTables(jdbcTemplate, "power_up.games", "power_up.platforms", "power_up.game_platforms",
-                "power_up.game_developers", " power_up.game_genres ", "power_up.game_publishers", "power_up.game_keywords",
-                "power_up.companies", "power_up.keywords", "power_up.genres");
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "users"); //TODO drop rates tables.
+        JdbcTestUtils.deleteFromTables(jdbcTemplate, "games", "platforms", "game_platforms",
+                "game_developers", " game_genres ", "game_publishers", "game_keywords",
+                "companies", "keywords", "genres");
     }
 
     @Test
@@ -61,7 +65,7 @@ public class UserJdbcDaoTest {
 
         String email = "email", password = "password", username = "jorge";
         int id = 1;
-        jdbcTemplate.execute("INSERT INTO power_up.users (id, username, email, hashed_password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
+        jdbcTemplate.execute("INSERT INTO users (id, username, email, hashed_password) VALUES (" + id + ", '" + username + "', '" + email + "', '" + password + "' );");
 
         Assert.assertNotNull("Created user not found by email", userDao.findByEmail(email));
         Assert.assertNotNull("Created user not found by username", userDao.findByUsername(username));
@@ -87,7 +91,7 @@ public class UserJdbcDaoTest {
         Assert.assertNotNull("Created user is null", u);
         assertEquals("Mismatching created user email", u.getEmail(), email);
         assertEquals("Mismatching created user username", u.getUsername(), username);
-        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "power_up.users"));
+        assertEquals(1, JdbcTestUtils.countRowsInTable(jdbcTemplate, "users"));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -153,15 +157,14 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.scoreGame(null, 1, 4);
     }
 
     /*
     @Test(expected = IllegalArgumentException.class)
     public void scoreForNonExistingUser(){
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
+        jdbcTemplate.execute("INSERT INTO games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30');");
         userDao.scoreGame(1,1,4);
     }
     */
@@ -171,7 +174,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         userDao.scoreGame(u, 1, -1);
 
     }
@@ -181,7 +184,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 11);
 
     }
@@ -191,7 +194,8 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 1);
         userDao.scoreGame(u, 1, 10);
     }
@@ -201,8 +205,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.scoreGame(u, 1, 2);
 
         assertEquals(2, userDao.findById(u.getId()).getGameScore(id));
@@ -226,11 +229,8 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
-        Game g = new Game();
-        g.setId(id);
-
+        insertOneGame(id);
+        Game g = new Game.GameBuilder().setId(id).setName("").setSummary("").build();
 
         userDao.scoreGame(u, g, 2);
 
@@ -258,12 +258,10 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         u.getGameScore(1);
 
     }
-
-
 
 
     @Test(expected = IllegalArgumentException.class)
@@ -281,8 +279,7 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
+        insertOneGame(id);
         userDao.setPlayStatus(null, 1, PlayStatus.PLAYED);
     }
 
@@ -292,17 +289,18 @@ public class UserJdbcDaoTest {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (1, 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
         u.getPlayStatus(1);
 
     }
+
 
     @Test
     public void setPlayStatusMultipleTime() {
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
 
         userDao.setPlayStatus(u, 1, PlayStatus.PLAYED);
 
@@ -325,22 +323,19 @@ public class UserJdbcDaoTest {
     public void setPlayStatusWithGameParameter() {
 
 
-
         String email = "email", password = "password", username = "jorge";
         int id = 1;
         final User u = userDao.create(email, password, username);
 
-        Game g = new Game();
-        g.setId(id);
+        Game g = new Game.GameBuilder().setId(id).setName("").setSummary("").build();
 
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
+        insertOneGame(id);
 
         userDao.setPlayStatus(u, g, PlayStatus.PLAYED);
 
         assertEquals(PlayStatus.PLAYED, userDao.findById(u.getId()).getPlayStatus(id));
 
     }
-
 
 
     @Test
@@ -353,16 +348,66 @@ public class UserJdbcDaoTest {
         String email2 = "email2", password2 = "password2", username2 = "jorge2";
         final User u2 = userDao.create(email2, password2, username2);
 
+        insertOneGame(id);
+        userDao.scoreGame(u, id, 10);
+        userDao.scoreGame(u2, id, 1);
 
-        jdbcTemplate.execute("INSERT INTO power_up.games VALUES (" + id + ", 'Mario', 'needs: Nintendo, Nintendo 64, Platformer', 0, '2018-12-30',0);");
-
-        userDao.scoreGame(u,id,10);
-        userDao.scoreGame(u2,id,1);
-
-        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM power_up.games WHERE id = ?", new Object[] {id}, Double.class);
+        double avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
 
 
         assertEquals(5.5, avgScore);
+
+    }
+
+    @Test
+    public void deleteScore() {
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        insertOneGame(id);
+        userDao.scoreGame(u, id, 10);
+        assertTrue("Game didn't got scored correctly", u.hasScoredGame(id));
+        assertEquals(10, u.getGameScore(id));
+        userDao.removeScore(u, id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
+        userDao.removeScore(u, id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
+    }
+
+    @Test
+    public void deleteStatus() {
+
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+
+        insertOneGame(id);
+        userDao.setPlayStatus(u, id, PlayStatus.PLAN_TO_PLAY);
+        assertTrue("Game didn't got given PlayStatus correctly", u.hasPlayStatus(id));
+        assertEquals(PlayStatus.PLAN_TO_PLAY, u.getPlayStatus(id));
+        userDao.removeStatus(u, id);
+        assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
+        userDao.removeStatus(u, id);
+        assertFalse("Game PlayStatus didn't got deleted correctly", u.hasPlayStatus(id));
+    }
+
+    @Test
+    public void avgWhenDeleteScore() {
+        String email = "email", password = "password", username = "jorge";
+        int id = 1;
+        final User u = userDao.create(email, password, username);
+        double avgScore = 0;
+        insertOneGame(id);
+        userDao.scoreGame(u, id, 10);
+        assertEquals(10, u.getGameScore(id));
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
+        assertEquals(10.0, avgScore);
+        userDao.removeScore(u, id);
+        assertFalse("Game score didn't got deleted correctly", u.hasScoredGame(id));
+        avgScore = jdbcTemplate.queryForObject("SELECT avg_score FROM games WHERE id = ?", new Object[]{id}, Double.class);
+        assertEquals(0.0, avgScore);
 
     }
 }

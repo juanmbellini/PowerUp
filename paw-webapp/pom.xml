@@ -23,7 +23,9 @@
         <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
         <spring-security.version>4.0.4.RELEASE</spring-security.version>
         <org.hibernate.version>5.1.0.Final</org.hibernate.version>
-        <org.hibernate.jpa.version>1.0.0.Final</org.hibernate.jpa.version></properties>
+        <org.hibernate.jpa.version>1.0.0.Final</org.hibernate.jpa.version>
+        <se.malkusch.validation.version>0.3.0</se.malkusch.validation.version>
+    </properties>
 
     <modules>
         <module>webapp</module>
@@ -137,6 +139,12 @@
                 <scope>test</scope>
             </dependency>
 
+            <!--AOP-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
 
             <!-- Others -->
             <!-- Joda-Time: a quality replacement for the Java date and time classes -->
@@ -174,6 +182,11 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${org.hibernate.validator}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.malkusch.validation</groupId>
+                <artifactId>validation</artifactId>
+                <version>${se.malkusch.validation.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

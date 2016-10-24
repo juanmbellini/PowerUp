@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.form;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -8,13 +9,15 @@ import javax.validation.constraints.Size;
 /**
  * Created by julian on 13/10/16.
  */
-public class LoginForm {
-    @Size(min = 6, max = 100)
+public class
+LoginForm {
+
     @Pattern(regexp = "[a-zA-Z0-9]+")
     private String username;
 
-    @Size(min = 6, max = 100)
     private String password;
+
+    private Boolean rememberMe;
 
     public String getUsername() {
         return username;
@@ -30,5 +33,13 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Boolean rememberMe) {
+        this.rememberMe = rememberMe;
     }
 }
