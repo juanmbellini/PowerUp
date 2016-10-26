@@ -79,8 +79,8 @@
                         <ul class="collection games-list">
                             <c:forEach var="game" items="${page.data}">
                                 <li class="collection-item avatar col s12">
-                                    <div class="col s2 cover-pic-container">
-                                        <img class="cover-picture"
+                                    <div class="col s2 cover-pic-container valign-wrapper">
+                                        <img class="cover-picture valign"
                                              src="${game.coverPictureUrl}" alt="${game.name}">
 
                                     </div>
