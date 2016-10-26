@@ -132,22 +132,26 @@
                         <div class="row">
 
                             <ul class="pagination center">
-                                <c:choose>
-                                    <c:when test="${page.pageNumber == 1}">
-                                        <li class="disabled">
-                                            <a class="disabled">
-                                                <i class="material-icons disabled">chevron_left</i>
-                                            </a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="waves-effect">
-                                            <a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">
-                                                <i class="material-icons">chevron_left</i>
-                                            </a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
+                                <%--Left chevron - only shown when there are > 1 pages --%>
+                                <c:if test="${page.totalPages > 1}">
+                                    <c:choose>
+                                        <c:when test="${page.pageNumber > 1}">
+                                            <li class="waves-effect">
+                                                <a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">
+                                                    <i class="material-icons">chevron_left</i>
+                                                </a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="disabled">
+                                                <a href="#!">
+                                                    <i class="material-icons">chevron_left</i>
+                                                </a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
+                                <%--Page numbers - always shown--%>
                                 <c:set var="just_one"
                                        value="${(page.pageNumber - 4) <= 0 || page.totalPages <= 10}"/>
                                 <c:set var="no_more_prev"
@@ -175,22 +179,25 @@
 
                                     </li>
                                 </c:forEach>
-                                <c:choose>
-                                    <c:when test="${page.pageNumber == page.totalPages}">
-                                        <li class="disabled">
-                                            <a class="disabled">
-                                                <i class="material-icons disabled">chevron_right</i>
-                                            </a>
-                                        </li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="waves-effect">
-                                            <a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">
-                                                <i class="material-icons">chevron_right</i>
-                                            </a>
-                                        </li>
-                                    </c:otherwise>
-                                </c:choose>
+                                <%--Right chevron - only shown if there are > 1 pages--%>
+                                <c:if test="${page.totalPages > 1}">
+                                    <c:choose>
+                                        <c:when test="${page.pageNumber == page.totalPages}">
+                                            <li class="disabled">
+                                                <a href="#!">
+                                                    <i class="material-icons">chevron_right</i>
+                                                </a>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="waves-effect">
+                                                <a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">
+                                                    <i class="material-icons">chevron_right</i>
+                                                </a>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
                             </ul>
                         </div>
                     </c:otherwise>
