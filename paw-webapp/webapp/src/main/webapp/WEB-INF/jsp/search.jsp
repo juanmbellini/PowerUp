@@ -7,6 +7,7 @@
 <head>
     <%@include file="header.jsp" %>
     <title>Results - PowerUp</title>
+    <%--TODO change default title on all pages--%>
 
 </head>
 <body>
@@ -20,8 +21,6 @@
             <h1 class="header center orange-text">
                 Search Results
             </h1>
-        </div>
-        <div class="section search-results">
             <div class="row filters-row">
                 <div class="col s6">
                     <!-- Nothing here... may be used by future things -->
