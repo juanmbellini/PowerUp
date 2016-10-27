@@ -65,10 +65,22 @@
 
             <%--RESULTS--%>
             <div class="row">
-                <%--"No results" notice--%>
-                <c:if test="${ fn:length(page.data) == 0 }">
-                    <h3 class="center">No results</h3>
-                </c:if>
+                <c:choose>
+                    <%--"No results" notice--%>
+                    <c:when test="${ page.overAllAmountOfElements == 0 }">
+                        <h3 class="center">No results</h3>
+                    </c:when>
+                    <c:otherwise>
+                        <%--Total games count--%>
+                        <ul class="row games-count">
+                            <div class="col s6">
+                                Games ${(page.pageNumber - 1) * page.pageSize + 1 } -
+                                    ${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}
+                                of ${page.overAllAmountOfElements}
+                            </div>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
 
                 <%--Filters collapsible--%>
                 <button class="btn waves-effect waves-light right" id="clear-filters" ${hasFilters ? "" : "disabled"}>Clear filters <i class="material-icons right">close</i></button>
@@ -142,15 +154,6 @@
 
                 <%--Results, if any--%>
                 <c:if test="${ fn:length(page.data) > 0 }">
-                    <%--Total games count--%>
-                    <ul class="row games-count">
-                        <div class="col s6">
-                            Games ${(page.pageNumber - 1) * page.pageSize + 1 } -
-                                ${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}
-                            of ${page.overAllAmountOfElements}
-                        </div>
-                    </ul>
-
                     <%--Games list--%>
                     <ul class="collection games-list">
                         <c:forEach var="game" items="${page.data}">
