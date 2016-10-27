@@ -127,7 +127,7 @@ public class GameController extends BaseController {
             return mav;
         }
 
-        Map<FilterCategory, List<String>> filters;
+        Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersStr, typeReference);
 
@@ -158,6 +158,20 @@ public class GameController extends BaseController {
         } catch (IOException | NumberFormatException | IllegalPageException e) {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
             mav.setViewName("redirect:/error400");
+        }
+
+        //Add all possible filters (categories and values) for the filters section,
+        //indicating whether the filter is applied or not
+        for (FilterCategory filterCategory : FilterCategory.values()) {
+            try {
+                Set<Object[]> values = new LinkedHashSet<>();
+                for(String value : gameService.getFiltersByType(filterCategory)) {
+                    values.add(new Object[] {value, filters != null && filters.containsKey(filterCategory) && filters.get(filterCategory).contains(value)});
+                }
+                mav.addObject(English.plural(filterCategory.name()).toUpperCase(), values);
+            } catch (Exception e) {
+                return new ModelAndView("redirect:/error500");
+            }
         }
         return mav;
     }
@@ -287,6 +301,4 @@ public class GameController extends BaseController {
         }
         return mav;
     }
-
-
 }
