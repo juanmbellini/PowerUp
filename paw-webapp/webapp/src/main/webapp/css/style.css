@@ -116,6 +116,24 @@
     font-weight: bold;
 }
 
+/*Apply 'selected' style to chips not within a 'chips' element*/
+.chip.selected {
+    background-color: #26a69a;
+    color: #fff;
+}
+
+.chip {
+    cursor: pointer;
+}
+
+.collapsible-body div.filter {
+    margin: 5px !important;
+}
+
+button#clear-filters {
+    height:47px;
+}
+
 /*#logo-container {*/
 /*height: 60px;*/
 /*}*/
