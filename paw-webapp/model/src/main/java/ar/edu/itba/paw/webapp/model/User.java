@@ -1,15 +1,35 @@
 package ar.edu.itba.paw.webapp.model;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_userid_seq")
     private long id;
+
+    @Column(length = 100, nullable = false, unique = true)
     private String username;
+
+    //Max length accepted by the IETF
+    @Column(length = 254, nullable = false, unique = true)
     private String email;
+
+    //TODO Check if max length is 100
+    @Column(length = 100, nullable = false)
     private String hashedPassword;
+
+
     private Map<Long, Integer> scoredGames = new HashMap<>();
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
     private Set<Authority> authorities = new HashSet<>();
+
+    /*package*/  User() {
+        //for hibernate
+    }
 
     /**
      * Creates a new user.

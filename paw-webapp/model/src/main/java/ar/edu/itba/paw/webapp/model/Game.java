@@ -2,26 +2,66 @@ package ar.edu.itba.paw.webapp.model;
 
 import org.joda.time.LocalDate;
 
+import javax.persistence.*;
 import java.util.*;
 
 /**
  * Stores basic information about a game as well as its reviews and ratings.
  * This class communicates with the database adding, removing and modifying information.
  */
+@Entity
+@Table(name = "games")
 public class Game {
 
     final static private double INITIAL_AVG_SCORE = 0.0;
     final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
     final private static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_gameid_seq")
     private long id;
+
+    @Column(length = 100, nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false, unique = true)
     private String summary;
-    private Collection<String> genres;
-    private Map<String, LocalDate> platforms;
-    private Collection<String> publishers;
-    private Collection<String> developers;
-    private Collection<String> keywords;
+
+    @ManyToMany
+    @JoinTable(
+            name="game_genres",
+            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="genre_id", referencedColumnName="id"))
+    private Collection<Genre> genres;
+
+    @ElementCollection
+    @CollectionTable(name="game_platforms",
+            joinColumns=@JoinColumn(name="game_id"))
+    @MapKeyJoinColumn(name="platform_Id")
+    private Map<Platform, GamePlatformRelationData> platforms;
+
+    @ManyToMany
+    @JoinTable(
+            name="game_publishers",
+            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="publisher_id", referencedColumnName="id"))
+    private Collection<Publisher> publishers;
+
+    @ManyToMany
+    @JoinTable(
+            name="game_developers",
+            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="developer_id", referencedColumnName="id"))
+    private Collection<Developer> developers;
+
+    @ManyToMany
+    @JoinTable(
+            name="game_keywords",
+            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
+    private Collection<Keyword> keywords;
+
+
     private Collection<Review> reviews;
     private double avgScore;
     private LocalDate releaseDate;
@@ -48,7 +88,6 @@ public class Game {
         pictureUrls = new LinkedHashSet<>();
     }
 
-
     // Getters
     public long getId() {
         return id;
@@ -62,28 +101,28 @@ public class Game {
         return summary;
     }
 
-    public Collection<String> getGenres() {
+    public Collection<Genre> getGenres() {
         return cloneCollection(genres);
     }
 
-    public Map<String, LocalDate> getPlatforms() {
-        HashMap<String, LocalDate> newPlatformMap = new HashMap<String, LocalDate>();
+    public Map<Platform, GamePlatformRelationData> getPlatforms() {
+        HashMap<Platform, GamePlatformRelationData> newPlatformMap = new HashMap<Platform, GamePlatformRelationData>();
 
-        for (String key : platforms.keySet()) {
+        for (Platform key : platforms.keySet()) {
             newPlatformMap.put(key, platforms.get(key)); //TODO check clone for LocalDate.
         }
         return newPlatformMap;
     }
 
-    public Collection<String> getPublishers() {
+    public Collection<Publisher> getPublishers() {
         return cloneCollection(publishers);
     }
 
-    public Collection<String> getDevelopers() {
+    public Collection<Developer> getDevelopers() {
         return cloneCollection(developers);
     }
 
-    public Collection<String> getKeywords() {
+    public Collection<Keyword> getKeywords() {
         return cloneCollection(keywords);
     }
 
@@ -146,23 +185,23 @@ public class Game {
     }
 
     // Adders
-    public void addGenre(String genre) {
+    public void addGenre(Genre genre) {
         genres.add(genre);
     }
 
-    public void addPlatform(String platform, LocalDate date) {
+    public void addPlatform(Platform platform, GamePlatformRelationData date) {
         platforms.put(platform, date);
     }
 
-    public void addPublisher(String publisher) {
+    public void addPublisher(Publisher publisher) {
         publishers.add(publisher);
     }
 
-    public void addDeveloper(String developer) {
+    public void addDeveloper(Developer developer) {
         developers.add(developer);
     }
 
-    public void addKeyword(String keyword) {
+    public void addKeyword(Keyword keyword) {
         keywords.add(keyword);
     }
 
@@ -302,35 +341,35 @@ public class Game {
             return this;
         }
 
-        public GameBuilder addGenre(String genre) {
+        public GameBuilder addGenre(Genre genre) {
             checkBuilt();
             game.addGenre(genre);
             startedBuilding = true;
             return this;
         }
 
-        public GameBuilder addPlatform(String platform, LocalDate date) {
+        public GameBuilder addPlatform(Platform platform, GamePlatformRelationData date) {
             checkBuilt();
             game.addPlatform(platform, date);
             startedBuilding = true;
             return this;
         }
 
-        public GameBuilder addPublisher(String publisher) {
+        public GameBuilder addPublisher(Publisher publisher) {
             checkBuilt();
             game.addPublisher(publisher);
             startedBuilding = true;
             return this;
         }
 
-        public GameBuilder addDeveloper(String developer) {
+        public GameBuilder addDeveloper(Developer developer) {
             checkBuilt();
             game.addDeveloper(developer);
             startedBuilding = true;
             return this;
         }
 
-        public GameBuilder addKeyword(String keyword) {
+        public GameBuilder addKeyword(Keyword keyword) {
             checkBuilt();
             game.addKeyword(keyword);
             startedBuilding = true;
