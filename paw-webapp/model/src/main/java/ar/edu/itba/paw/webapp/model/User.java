@@ -55,14 +55,12 @@ public class User {
     /**
      * Creates a new user.
      *
-     * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
      * @param hashedPassword The user's hashed password.
      * @param authorities The user's authorities.
      */
-    public User(long id, String email, String username, String hashedPassword, Authority... authorities) {
-        this.id = id;
+    public User(String email, String username, String hashedPassword, Authority... authorities) {
         this.email = email;
         this.username = username;
         this.hashedPassword = hashedPassword;
@@ -72,14 +70,13 @@ public class User {
     /**
      * Creates a new user.
      *
-     * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
      * @param hashedPassword The user's hashed password.
      * @param authorities The user's authorities.
      */
-    public User(long id, String email, String username, String hashedPassword, Collection<Authority> authorities) {
-        this(id, email, username, hashedPassword, authorities.toArray(new Authority[0]));
+    public User(String email, String username, String hashedPassword, Collection<Authority> authorities) {
+        this(email, username, hashedPassword, authorities.toArray(new Authority[0]));
     }
 
     /**
