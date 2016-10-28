@@ -24,6 +24,9 @@ public class Developer {
         this.id = id;
         this.name = name;
     }
+    /*package*/  Developer() {
+        //for hibernate
+    }
 
     public long getId() {
         return id;

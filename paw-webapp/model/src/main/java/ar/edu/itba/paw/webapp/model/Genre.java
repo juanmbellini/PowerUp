@@ -20,6 +20,10 @@ public class Genre {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "games")
     private Collection<Game> games;
 
+    /*package*/  Genre() {
+        //for hibernate
+    }
+
     public Genre(long id, String name) {
         this.id = id;
         this.name = name;

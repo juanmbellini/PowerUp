@@ -24,6 +24,10 @@ public class Platform {
         this.name = name;
     }
 
+    /*package*/  Platform() {
+        //for hibernate
+    }
+
     public void setId(long id) {
         this.id = id;
     }

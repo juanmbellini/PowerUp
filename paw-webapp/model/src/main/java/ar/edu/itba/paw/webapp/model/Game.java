@@ -21,51 +21,64 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_gameid_seq")
     private long id;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String summary;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="game_genres",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="genre_id", referencedColumnName="id"))
     private Collection<Genre> genres;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name="game_platforms",
             joinColumns=@JoinColumn(name="game_id"))
     @MapKeyJoinColumn(name="platform_Id")
     private Map<Platform, GamePlatformRelationData> platforms;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="game_publishers",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="publisher_id", referencedColumnName="id"))
     private Collection<Publisher> publishers;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="game_developers",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="developer_id", referencedColumnName="id"))
     private Collection<Developer> developers;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="game_keywords",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
     private Collection<Keyword> keywords;
 
-
+    //TODO DB MAPPING
     private Collection<Review> reviews;
+
+    @Column(name="avg_score", nullable = false)
     private double avgScore;
+
+    @Column(name="release", nullable = false)
     private LocalDate releaseDate;
+
+    @Column(name="cover_picture_cloudinary_id", nullable = false, unique = true)
     private String coverPictureUrl;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "game_scores",
+            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+    )
+    @Column(name="cloudinary_id")
     private Set<String> pictureUrls;
 
 
@@ -87,6 +100,10 @@ public class Game {
         coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
         pictureUrls = new LinkedHashSet<>();
     }
+//TODO no me deja ponerlo porque el otro es privado. Ver como hacer.
+//    /*package*/  Game() {
+        //for hibernate
+  //  }
 
     // Getters
     public long getId() {

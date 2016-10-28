@@ -25,6 +25,10 @@ public class Publisher {
         this.name = name;
     }
 
+    /*package*/  Publisher() {
+        //for hibernate
+    }
+
     public long getId() {
         return id;
     }

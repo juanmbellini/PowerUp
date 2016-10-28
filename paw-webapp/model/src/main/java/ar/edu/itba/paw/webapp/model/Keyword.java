@@ -25,6 +25,10 @@ public class Keyword {
         this.name = name;
     }
 
+    /*package*/  Keyword() {
+        //for hibernate
+    }
+
     public long getId() {
         return id;
     }

@@ -22,9 +22,30 @@ public class User {
     @Column(length = 100, nullable = false)
     private String hashedPassword;
 
-
+    @ElementCollection
+    @CollectionTable(
+            name = "game_pictures",
+            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+    )
+    @MapKeyColumn (name="game_id")
+    @Column(name="score")
     private Map<Long, Integer> scoredGames = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "game_play_statuses",
+            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+    )
+    @MapKeyColumn (name="game_id")
+    @Column(name="status")
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "user_authorities",
+            joinColumns=@JoinColumn(name = "username", referencedColumnName = "username")
+    )
+    @Column(name="status")
     private Set<Authority> authorities = new HashSet<>();
 
     /*package*/  User() {
