@@ -313,13 +313,6 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-
-<script type="text/javascript" src="<c:url value='/js/advanced-search.js' />"></script>
-
-
-</body>
-</html>
-
 <script>
 
     /**
@@ -503,3 +496,5 @@
         window.location = encodeURI(url);
     }
 </script>
+</body>
+</html>
