@@ -23,9 +23,9 @@
             </h3>
 
             <div class="row">
-                <form action="" method="GET">
+                <form id="search-form">
                     <div class="input-field col s6 offset-s3">
-                        <input placeholder="Title" type="text" name="name">
+                        <input placeholder="Title" type="text" name="name" value="${fn:length(searchedName) > 0 ? searchedName : ""}">
                     </div>
                 </form>
             </div>
@@ -321,6 +321,24 @@
 </html>
 
 <script>
+
+    /**
+     * Tracks currently applied filters.
+     */
+    var filters = ${filters};
+
+    /**
+     * Tracks whether filters have changed. If so, searching will reset page number.
+     */
+    var filtersChanged = false;
+
+    /*
+     * Tracks the entered name.
+     */
+    var name = "${searchedName}";
+
+    var nameChanged = false;
+
     $(function () {
         $("#orderSelectId").val("${orderCategory == null ? "name" : orderCategory}");
         $("#orderSelectId").material_select();
@@ -351,6 +369,14 @@
             clearFilters();
             search();
         });
+
+        $("#search-form").on("submit", function(event) {
+            event.preventDefault();
+            var inputName = $(this).find("input[name='name']").val();
+            nameChanged = inputName != name;
+            name = inputName;
+            search();
+        });
     });
 
     function changeOrderDropDown() {
@@ -374,11 +400,6 @@
     }
 
     /**
-     * Tracks currently applied filters.
-     */
-    var filters = ${filters};
-
-    /**
      * Adds the specified filter.
      *
      * @param category The category in which the value is.
@@ -393,6 +414,7 @@
             filters[category] = [];
         }
         filters[category].push(value);
+        filtersChanged = true;
         return filters;
     }
 
@@ -417,6 +439,7 @@
             } else {
                 delete filters[category];
             }
+            filtersChanged = true;
         }
         return filters;
     }
@@ -429,27 +452,53 @@
         $(".chip.selected").each(function () {
             $(this).removeClass("selected");
         });
+        filtersChanged = true;
     }
 
     /**
-     * Reloads the current page with the applied filters and/or title, resetting the page number.
+     * Reloads the current page with the applied filters and/or title, resetting the page number if necessary. Note that
+     * this function is NOT meant to handle changes in page number or sorting parameters.
      */
     function search() {
         var url = decodeURI(window.location.href);
-        //TODO include name from form here
         if (window.location.search) {
-            //Change or add filters
-            if (window.location.search.indexOf("filters=") !== -1) {
-                url = url.replace(/filters={.*}/, "filters=" + JSON.stringify(filters));
-            } else {
-                url += "&filters=" + JSON.stringify(filters);
+            //Change name
+            if(nameChanged) {
+                if (window.location.search.indexOf("name=") !== -1) {
+                    //*? is a non-greedy matcher
+                    if(url.search(/name=.*?&/) !== -1) {   //The name is followed by a &, don't drop it
+                        url = url.replace(/name=.*?&/, (name === "" ? "" : "name=" + encodeURIComponent(name) + "&"));
+                    } else {                                //No & to the right ($ matches end of URL)
+                        url = url.replace(/name=.*?\$/, (name === "" ? "" : "name=" + encodeURIComponent(name)));
+                    }
+                } else {
+                    if(name !== "") {
+                        url += "&name=" + encodeURIComponent(name);
+                    }
+                }
             }
-            //Remove page size
-            if (window.location.search.indexOf("pageSize=") !== -1) {
-                url = url.replace(/pageSize=\d+/, "");
+            //Change filters
+            if(filtersChanged) {
+                if (window.location.search.indexOf("filters=") !== -1) {
+                    url = url.replace(/filters={.*}/, "filters=" + JSON.stringify(filters));
+                } else {
+                    url += "&filters=" + JSON.stringify(filters);
+                }
+            }
+            //Remove page number if necessary
+            if(filtersChanged || nameChanged) {
+                if (window.location.search.indexOf("pageNumber=") !== -1) {
+                    url = url.replace(/pageNumber=\d+/, "");
+                }
             }
         } else {
-            url += "?filters=" + JSON.stringify(filters);
+            if(filtersChanged) {
+                url += "?filters=" + JSON.stringify(filters);
+            }
+            if(nameChanged && name !== "") {
+                url += (filtersChanged ? "&name=" : "?name=") + encodeURIComponent(name);
+            }
+            //No need to handle page/sorting parameters here
         }
         window.location = encodeURI(url);
     }
