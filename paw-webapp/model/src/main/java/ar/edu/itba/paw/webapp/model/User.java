@@ -40,9 +40,10 @@ public class User {
     )
     @MapKeyColumn (name="game_id")
     @Column(name="status")
+    @Enumerated(EnumType.STRING)
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection()
     @CollectionTable(
             name = "user_authorities",
             joinColumns=@JoinColumn(name = "user_id")
