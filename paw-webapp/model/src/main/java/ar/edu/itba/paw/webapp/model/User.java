@@ -8,10 +8,11 @@ import java.util.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_userid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="users_seq", sequenceName="users_userid_seq",allocationSize=1)
     private long id;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, unique = true)
     private String username;
 
     //Max length accepted by the IETF
@@ -19,13 +20,13 @@ public class User {
     private String email;
 
     //TODO Check if max length is 100
-    @Column(length = 100, nullable = false)
+    @Column(name = "hashed_password" ,length = 100, nullable = false)
     private String hashedPassword;
 
     @ElementCollection
     @CollectionTable(
-            name = "game_pictures",
-            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+            name = "game_scores",
+            joinColumns=@JoinColumn(name = "user_id")
     )
     @MapKeyColumn (name="game_id")
     @Column(name="score")
@@ -34,7 +35,7 @@ public class User {
     @ElementCollection
     @CollectionTable(
             name = "game_play_statuses",
-            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+            joinColumns=@JoinColumn(name = "user_id")
     )
     @MapKeyColumn (name="game_id")
     @Column(name="status")

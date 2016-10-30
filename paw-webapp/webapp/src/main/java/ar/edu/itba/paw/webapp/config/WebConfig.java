@@ -128,8 +128,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        return dbp;
 //    }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager(final DataSource ds) {
-//        return new DataSourceTransactionManager(ds);
-//    }
+    @Bean
+    public PlatformTransactionManager transactionManager(final DataSource ds) {
+        return new DataSourceTransactionManager(ds);
+    }
 }

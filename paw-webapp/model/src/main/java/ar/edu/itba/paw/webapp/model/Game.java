@@ -18,13 +18,14 @@ public class Game {
     final private static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_gameid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="games_seq", sequenceName="games_gameid_seq",allocationSize=1)
     private long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String name;
 
-    @Column(nullable = false)
+    @Column()
     private String summary;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -62,23 +63,23 @@ public class Game {
     private Collection<Keyword> keywords;
 
     //TODO DB MAPPING
-    private Collection<Review> reviews;
+//    private Collection<Review> reviews;
 
-    @Column(name="avg_score", nullable = false)
+    @Column(name="avg_score")
     private double avgScore;
 
-    @Column(name="release", nullable = false)
+    @Column(name="release")
     private LocalDate releaseDate;
 
-    @Column(name="cover_picture_cloudinary_id", nullable = false, unique = true)
+    @Column(name="cover_picture_cloudinary_id")
     private String coverPictureUrl;
 
     @ElementCollection
     @CollectionTable(
-            name = "game_scores",
-            joinColumns=@JoinColumn(name = "id", referencedColumnName = "user_id")
+            name = "game_pictures",
+            joinColumns=@JoinColumn(name = "game_id", nullable = false)
     )
-    @Column(name="cloudinary_id")
+    @Column(name="cloudinary_id", nullable = false)
     private Set<String> pictureUrls;
 
 
@@ -94,7 +95,7 @@ public class Game {
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
-        reviews = new HashSet<>();
+//        reviews = new HashSet<>();
         avgScore = INITIAL_AVG_SCORE;
         releaseDate = new LocalDate();
         coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
@@ -143,9 +144,9 @@ public class Game {
         return cloneCollection(keywords);
     }
 
-    public Collection<Review> getReviews() {
-        return cloneCollection(reviews);
-    }//TODO add review table in db
+//    public Collection<Review> getReviews() {
+//        return cloneCollection(reviews);
+//    }//TODO add review table in db
 
     public double getAvgScore() {
         return avgScore;
@@ -222,9 +223,9 @@ public class Game {
         keywords.add(keyword);
     }
 
-    public void addReview(Review review) {
-        reviews.add(review);
-    }
+//    public void addReview(Review review) {
+//        reviews.add(review);
+//    }
 
     public void addPictureURL(String cloudinaryId) {
         if (cloudinaryId != null) {
@@ -393,12 +394,12 @@ public class Game {
             return this;
         }
 
-        public GameBuilder addReview(Review review) {
-            checkBuilt();
-            game.addReview(review);
-            startedBuilding = true;
-            return this;
-        }
+//        public GameBuilder addReview(Review review) {
+//            checkBuilt();
+//            game.addReview(review);
+//            startedBuilding = true;
+//            return this;
+//        }
 
         public GameBuilder addPictureURL(String cloudinaryId) {
             checkBuilt();

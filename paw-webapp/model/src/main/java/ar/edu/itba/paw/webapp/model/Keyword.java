@@ -11,13 +11,14 @@ import java.util.Collection;
 public class Keyword {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "keywords_keywordid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="keywords_seq", sequenceName="keywords_keywordid_seq",allocationSize=1)
     private long id;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "games")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "keywords")
     private Collection<Game> games;
 
     public Keyword(long id, String name) {

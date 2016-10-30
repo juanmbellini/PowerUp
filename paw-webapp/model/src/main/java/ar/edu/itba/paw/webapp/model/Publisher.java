@@ -11,13 +11,14 @@ import java.util.Collection;
 public class Publisher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publishers_publisherid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="publishers_seq", sequenceName="publishers_publisherid_seq",allocationSize=1)
     private long id;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "games")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "publishers")
     private Collection<Game> games;
 
     public Publisher(long id, String name) {

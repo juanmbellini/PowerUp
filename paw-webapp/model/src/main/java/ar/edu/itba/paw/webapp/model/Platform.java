@@ -10,13 +10,14 @@ import java.util.Collection;
 @Table(name = "platforms")
 public class Platform {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "platforms_platformid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="platforms_seq", sequenceName="platforms_platformid_seq",allocationSize=1)
     private long id;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "games")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "platforms")
     private Collection<Game> games;
 
     public Platform(long id, String name) {

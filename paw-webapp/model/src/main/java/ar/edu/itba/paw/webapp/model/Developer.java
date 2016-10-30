@@ -11,13 +11,14 @@ import java.util.Collection;
 public class Developer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "developers_developerid_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="developers_seq", sequenceName="developers_developerid_seq",allocationSize=1)
     private long id;
 
     @Column(length = 100, nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "games")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "developers")
     private Collection<Game> games;
 
     public Developer(long id, String name) {
