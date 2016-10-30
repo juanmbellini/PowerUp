@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
@@ -40,13 +41,14 @@ public class User {
     @MapKeyColumn (name="game_id")
     @Column(name="status")
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
-    
-    @ElementCollection
+
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "user_authorities",
-            joinColumns=@JoinColumn(name = "username")
+            joinColumns=@JoinColumn(name = "user_id")
     )
     @Column(name="authority")
+    @Enumerated(EnumType.STRING)
     private Set<Authority> authorities = new HashSet<>();
 
     /*package*/  User() {
