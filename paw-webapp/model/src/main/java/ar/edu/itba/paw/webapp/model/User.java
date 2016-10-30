@@ -40,13 +40,13 @@ public class User {
     @MapKeyColumn (name="game_id")
     @Column(name="status")
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
-
+    
     @ElementCollection
     @CollectionTable(
             name = "user_authorities",
-            joinColumns=@JoinColumn(name = "username", referencedColumnName = "username")
+            joinColumns=@JoinColumn(name = "username")
     )
-    @Column(name="status")
+    @Column(name="authority")
     private Set<Authority> authorities = new HashSet<>();
 
     /*package*/  User() {
