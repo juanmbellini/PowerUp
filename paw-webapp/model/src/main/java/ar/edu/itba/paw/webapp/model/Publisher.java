@@ -12,7 +12,7 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="publishers_seq", sequenceName="publishers_publisherid_seq",allocationSize=1)
+    @SequenceGenerator(name="companies_seq", sequenceName="companies_companiesid_seq",allocationSize=1)
     private long id;
 
     @Column(length = 100)

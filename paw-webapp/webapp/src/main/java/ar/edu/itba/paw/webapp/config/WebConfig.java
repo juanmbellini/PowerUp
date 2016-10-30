@@ -72,7 +72,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         final Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto","update");
+//        properties.setProperty("hibernate.hbm2ddl.auto","update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL92Dialect");
 // Si ponen esto en prod, hay tabla!!!
 //                properties.setProperty("hibernate.show_sql", "true");
@@ -86,14 +86,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new JpaTransactionManager(emf);
     }
 
-//    @Bean
-//    public DataSourceInitializer dataSourceInitializer(final DataSource ds) {
-//        final DataSourceInitializer dsi = new DataSourceInitializer();
-//        dsi.setDataSource(ds);
-//        dsi.setDatabasePopulator(databasePopulator());
-//
-//        return dsi;
-//    }
+    @Bean
+    public DataSourceInitializer dataSourceInitializer(final DataSource ds) {
+        final DataSourceInitializer dsi = new DataSourceInitializer();
+        dsi.setDataSource(ds);
+        return dsi;
+    }
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
@@ -128,8 +126,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        return dbp;
 //    }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(final DataSource ds) {
-        return new DataSourceTransactionManager(ds);
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(final DataSource ds) {
+//        return new DataSourceTransactionManager(ds);
+//    }
 }

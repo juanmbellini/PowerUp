@@ -12,7 +12,7 @@ public class Developer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="developers_seq", sequenceName="developers_developerid_seq",allocationSize=1)
+    @SequenceGenerator(name="companies_seq", sequenceName="companies_companiesid_seq",allocationSize=1)
     private long id;
 
     @Column(length = 100, nullable = false, unique = true)
