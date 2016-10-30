@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,6 +60,8 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/list")
+    //TODO should controller methods be transactional?
+    @Transactional
     public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
 
         // TODO: Check if we are really allowing anyone to check other's lists. [JMB]

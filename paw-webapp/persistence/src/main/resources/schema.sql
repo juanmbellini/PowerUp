@@ -117,9 +117,12 @@ CREATE TABLE IF NOT EXISTS game_play_statuses (
 CREATE TABLE IF NOT EXISTS user_authorities (
   id        SERIAL  NOT NULL PRIMARY KEY,
   username  VARCHAR NOT NULL,
+  user_id   INTEGER NOT NULL,
   authority VARCHAR NOT NULL,
 
-  FOREIGN KEY (username) REFERENCES users (username),
-  UNIQUE (username, authority)
+  FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE ,
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+  UNIQUE (username, authority),
+  UNIQUE (user_id, authority)
 );
 COMMIT;
