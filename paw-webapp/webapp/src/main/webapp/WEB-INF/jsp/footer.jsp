@@ -34,8 +34,6 @@
     <div class="container">
         <strong>
             Game data freely provided by <a href="http://www.igdb.com" target="_blank">IGDB.com</a>.
-            Made using <a href="http://materializecss.com" target="_blank">Materialize</a>.
-            <%--Logo by <a href="http://www.bonoos.com/" target="_blank">Bonoos</a>.--%>
         </strong>
     </div>
 </div>
