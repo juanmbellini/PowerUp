@@ -40,7 +40,7 @@ public class User {
     @MapKeyColumn (name="game_id")
     @Column(name="status")
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
-    
+
     @ElementCollection
     @CollectionTable(
             name = "user_authorities",
