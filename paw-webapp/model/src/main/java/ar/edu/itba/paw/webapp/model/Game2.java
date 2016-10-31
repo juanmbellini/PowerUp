@@ -1,9 +1,9 @@
 package ar.edu.itba.paw.webapp.model;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -69,7 +69,7 @@ public class Game2 {
     public double avgScore;
 
     @Column(name="release")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    @Type(type="org.hibernate.type.LocalDateTimeType")
     public LocalDate releaseDate;
 
     @Column(name="cover_picture_cloudinary_id")
