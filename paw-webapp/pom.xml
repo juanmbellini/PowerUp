@@ -25,6 +25,7 @@
         <org.hibernate.version>5.1.0.Final</org.hibernate.version>
         <org.hibernate.jpa.version>1.0.0.Final</org.hibernate.jpa.version>
         <se.malkusch.validation.version>0.3.0</se.malkusch.validation.version>
+        <joda-time-hibernate-version>1.4</joda-time-hibernate-version>
     </properties>
 
     <modules>
@@ -153,6 +154,18 @@
                 <artifactId>joda-time</artifactId>
                 <version>${org.joda-time.version}</version>
             </dependency>
+            <!-- Hibernate support for Joda-Time -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time-hibernate</artifactId>
+                <version>${joda-time-hibernate-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.core</artifactId>
+                <version>6.0.1.GA</version>
+            </dependency>
+
             <!-- Jackson: The standard JSON library for Java (or best JSON parser for Java) -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
