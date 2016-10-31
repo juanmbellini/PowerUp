@@ -33,10 +33,10 @@ public class Game2 {
             inverseJoinColumns=@JoinColumn(name="genre_id", referencedColumnName="id"))
     public Collection<Genre> genres;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name="game_platforms", joinColumns=@JoinColumn(name="game_id"))
-//    @MapKeyJoinColumn(name="platform_id")
-//    public Map<Platform, GamePlatformRelationData> platforms;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="game_platforms", joinColumns=@JoinColumn(name="game_id"))
+    @MapKeyJoinColumn(name="platform_id")
+    public Map<Platform, GamePlatformRelationData> platforms;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="game_publishers",
@@ -69,7 +69,7 @@ public class Game2 {
     public double avgScore;
 
     @Column(name="release")
-    @Type(type="org.hibernate.type.LocalDateTimeType")
+    @Type(type="org.hibernate.type.LocalDateType")
     public LocalDate releaseDate;
 
     @Column(name="cover_picture_cloudinary_id")

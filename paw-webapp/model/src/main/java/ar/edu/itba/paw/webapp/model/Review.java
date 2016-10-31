@@ -1,6 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.joda.time.DateTime;
+import java.time.LocalDate;
 
 /**
  * Models a review made by a specific user for a specific game.
@@ -11,9 +11,9 @@ public class Review {
     private int rating;
     private User user;
     private String review;
-    private DateTime date;
+    private LocalDate date;
 
-    public Review(int rating, User user, String review, DateTime date) {
+    public Review(int rating, User user, String review, LocalDate date) {
         this.rating = rating;
         this.user = user;
         this.review = review;
@@ -32,7 +32,7 @@ public class Review {
         return user;
     }
 
-    public DateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -48,7 +48,7 @@ public class Review {
         this.user = user;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

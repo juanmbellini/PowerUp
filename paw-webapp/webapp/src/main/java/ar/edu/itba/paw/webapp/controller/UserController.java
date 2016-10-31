@@ -87,13 +87,13 @@ public class UserController extends BaseController {
         for (long gameId : playStatuses.keySet()) {
             Game2 game = gameService.findById2(gameId);
             System.out.println(game.genres);
-//            System.out.println(game.platforms);
             System.out.println(game.name);
             System.out.println(game.id);
             System.out.println(game.releaseDate);
             System.out.println(game.coverPictureUrl);
             System.out.println(game.developers);
             System.out.println(game.publishers);
+            System.out.println(game.platforms);
             System.out.println(game.keywords);
             System.out.println(game.avgScore);
             System.out.println(game.pictureUrls);

@@ -1,8 +1,7 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.joda.time.LocalDate;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -95,7 +94,7 @@ public class Game {
         keywords = new HashSet<>();
 //        reviews = new HashSet<>();
         avgScore = INITIAL_AVG_SCORE;
-        releaseDate = new LocalDate();
+        releaseDate = LocalDate.now();
         coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
         pictureUrls = new LinkedHashSet<>();
     }
