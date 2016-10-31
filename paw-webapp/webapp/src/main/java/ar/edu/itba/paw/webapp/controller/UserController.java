@@ -7,6 +7,7 @@ import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +85,10 @@ public class UserController extends BaseController {
         Map<Long, PlayStatus> playStatuses = u.getPlayStatuses();
         // TODO do this in user?
         for (long gameId : playStatuses.keySet()) {
-            Game game = gameService.findById(gameId);
+            Game2 game = gameService.findById2(gameId);
             if (game == null) throw new IllegalStateException("Status list should have a game that do not exist");
-            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
+            //TODO uncomment
+//            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);
         mav.addObject("playStatuses", gamesInListsMap);

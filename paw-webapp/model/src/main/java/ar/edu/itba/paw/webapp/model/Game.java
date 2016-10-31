@@ -25,7 +25,6 @@ public class Game {
     @Column(length = 100)
     private String name;
 
-    @Column()
     private String summary;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -37,8 +36,8 @@ public class Game {
 
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name="game_platforms",
-            joinColumns=@JoinColumn(name="game_id"))
-    @MapKeyJoinColumn(name="platform_Id")
+                    joinColumns=@JoinColumn(name="game_id"))
+    @MapKeyJoinColumn(name="platform_id")
     private Map<Platform, GamePlatformRelationData> platforms;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -76,15 +75,14 @@ public class Game {
 
     @ElementCollection
     @CollectionTable(
-            name = "game_pictures",
-            joinColumns=@JoinColumn(name = "game_id", nullable = false)
-    )
+                    name = "game_pictures",
+                    joinColumns=@JoinColumn(name = "game_id", nullable = false))
     @Column(name="cloudinary_id", nullable = false)
     private Set<String> pictureUrls;
 
 
     /**
-     * Private default constructor used by Builder
+     * Default constructor used by Builder and Hibernate.
      */
     private Game() {
         id = 0;
@@ -101,10 +99,6 @@ public class Game {
         coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
         pictureUrls = new LinkedHashSet<>();
     }
-//TODO no me deja ponerlo porque el otro es privado. Ver como hacer.
-//    /*package*/  Game() {
-        //for hibernate
-  //  }
 
     // Getters
     public long getId() {
@@ -234,7 +228,6 @@ public class Game {
         }
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -249,7 +242,6 @@ public class Game {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
-
 
     private <T> List<T> cloneCollection(Collection<T> original) {
         List<T> list = new ArrayList<>();
@@ -297,7 +289,6 @@ public class Game {
             return game;
         }
 
-
         public boolean startedBuilding() {
             return startedBuilding;
         }
@@ -309,7 +300,6 @@ public class Game {
             }
             return game.getId();
         }
-
 
         // Required things
         public GameBuilder setId(long id) {
@@ -414,7 +404,5 @@ public class Game {
                 throw new IllegalStateException();
             }
         }
-
     }
-
 }

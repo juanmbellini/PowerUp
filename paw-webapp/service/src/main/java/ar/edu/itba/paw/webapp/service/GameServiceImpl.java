@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game findById(long id) {
         return gameDao.findById(id);
+    }
+
+    public Game2 findById2(long id) {
+        return gameDao.findById2(id);
     }
 
     @Override

@@ -11,6 +11,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GamePlatformRelationData {
 
-        @Column(name="release_DATE")
-        LocalDate createdAt;
+    @Column(name = "release_DATE")
+    LocalDate createdAt;
+
+    /*package*/ GamePlatformRelationData() {
+        //For Hibernate
+    }
 }

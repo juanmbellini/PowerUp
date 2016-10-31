@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Collection;
@@ -37,7 +38,7 @@ public class GameHibernateDao implements GameDao {
                 firstArgument = false;
             }
         }
-        final TypedQuery<User> query = em.createQuery(fromString.toString(), Game.class);
+        TypedQuery<Game> query = em.createQuery(fromString.toString(), Game.class);
         query.setParameter("name",name);
         for(FilterCategory filterCategory: filters.keySet()){
             for(String filter: filters.get(filterCategory)){
@@ -69,7 +70,24 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        return null;
+        TypedQuery<Game> baseQuery = em.createQuery("FROM Game AS G where G.id = :id", Game.class);
+        baseQuery.setParameter("id", id);
+        try {
+            return baseQuery.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Game2 findById2(long id) {
+        TypedQuery<Game2> baseQuery = em.createQuery("FROM Game2 AS G where G.id = :id", Game2.class);
+        baseQuery.setParameter("id", id);
+        try {
+            return baseQuery.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
     @Override

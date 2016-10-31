@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -77,4 +78,6 @@ public interface GameService {
      * @return a Map from gameId to a Game with the basic data of the game.
      */
     Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
+
+    public Game2 findById2(long id);
 }
