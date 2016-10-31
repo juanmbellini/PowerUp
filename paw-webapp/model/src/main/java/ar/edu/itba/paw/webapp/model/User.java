@@ -6,7 +6,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -46,7 +46,7 @@ public class User {
     @ElementCollection
     @CollectionTable(
             name = "user_authorities",
-            joinColumns=@JoinColumn(name = "user_id")
+            joinColumns=@JoinColumn(name = "username", referencedColumnName = "username")
     )
     @Column(name="authority")
     @Enumerated(EnumType.STRING)
