@@ -9,6 +9,7 @@ import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Collection;
@@ -33,7 +34,7 @@ public class GameHibernateDao implements GameDao {
             for(String filter: filters.get(filterCategory)){
                 fromString.append(", " + filterCategory.name() + " as " + filterCategory.name()+filter);
                 if(!firstArgument){
-                    whereString.append("and " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
+                    whereString.append("AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
                 }
                 firstArgument = false;
             }
@@ -71,10 +72,24 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id = :id", Game.class);
-        query.setParameter("id", id);
-        final List<Game> list = query.getResultList();
-        return list.isEmpty() ? null : list.get(0);
+        TypedQuery<Game> baseQuery = em.createQuery("FROM Game AS G where G.id = :id", Game.class);
+        baseQuery.setParameter("id", id);
+        try {
+            return baseQuery.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Game2 findById2(long id) {
+        TypedQuery<Game2> baseQuery = em.createQuery("FROM Game2 AS G where G.id = :id", Game2.class);
+        baseQuery.setParameter("id", id);
+        try {
+            return baseQuery.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
     @Override

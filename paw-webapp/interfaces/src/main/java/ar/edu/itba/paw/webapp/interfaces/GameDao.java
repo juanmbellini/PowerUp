@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -66,4 +67,6 @@ public interface GameDao {
      * @param gameId
      */
     void updateAvgScore(long gameId);
+
+    Game2 findById2(long id);
 }

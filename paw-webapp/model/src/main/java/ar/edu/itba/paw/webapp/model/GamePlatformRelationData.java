@@ -1,9 +1,9 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.joda.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.time.LocalDate;
 
 /**
  * Created by julrodriguez on 26/10/16.
@@ -11,6 +11,14 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GamePlatformRelationData {
 
-        @Column(name="release_DATE")
-        LocalDate createdAt;
+    @Column(name = "release_date")
+    private LocalDate releaseDate;
+
+    /*package*/ GamePlatformRelationData() {
+        //For Hibernate
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
 }

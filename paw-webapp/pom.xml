@@ -13,7 +13,6 @@
         <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
         <servlet-api.version>2.5</servlet-api.version>
         <jstl.version>1.2</jstl.version>
-        <org.joda-time.version>2.9.4</org.joda-time.version>
         <org.postgresql.version>9.3-1102-jdbc41</org.postgresql.version>
         <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
         <org.atteo.evo-inflector.version>1.2</org.atteo.evo-inflector.version>
@@ -25,6 +24,7 @@
         <org.hibernate.version>5.1.0.Final</org.hibernate.version>
         <org.hibernate.jpa.version>1.0.0.Final</org.hibernate.jpa.version>
         <se.malkusch.validation.version>0.3.0</se.malkusch.validation.version>
+        <hibernate-java8-version>5.0.4.Final</hibernate-java8-version>
     </properties>
 
     <modules>
@@ -104,6 +104,12 @@
                 <artifactId>hibernate-jpa-2.1-api</artifactId>
                 <version>${org.hibernate.jpa.version}</version>
             </dependency>
+            <!--Hibernate support for Java 8 time-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-java8</artifactId>
+                <version>${hibernate-java8-version}</version>
+            </dependency>
 
             <!-- Servlets stuff -->
             <dependency>
@@ -147,12 +153,7 @@
             </dependency>
 
             <!-- Others -->
-            <!-- Joda-Time: a quality replacement for the Java date and time classes -->
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>${org.joda-time.version}</version>
-            </dependency>
+
             <!-- Jackson: The standard JSON library for Java (or best JSON parser for Java) -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>

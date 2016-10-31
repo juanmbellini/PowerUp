@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.exceptions.FailedToProcessQueryException;
 import ar.edu.itba.paw.webapp.interfaces.PlatformDao;
 import ar.edu.itba.paw.webapp.model.Game;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,8 +47,7 @@ public class PlatformJdbcDao extends BaseJdbcDao implements PlatformDao {
             getJdbcTemplate().query(query.toString().toLowerCase(), parameters, new RowCallbackHandler() {
                         @Override
                         public void processRow(ResultSet rs) throws SQLException {
-                            result.put(rs.getString("name"), new LocalDate(rs.getDate("release_date")));
-
+                            result.put(rs.getString("name"), LocalDate.parse(rs.getString("release_date")));
                         }
                     }
             );
