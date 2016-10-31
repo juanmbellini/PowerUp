@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
+import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
@@ -32,12 +33,12 @@ public class GameHibernateDao implements GameDao {
             for(String filter: filters.get(filterCategory)){
                 fromString.append(", " + filterCategory.name() + " as " + filterCategory.name()+filter);
                 if(!firstArgument){
-                    whereString.append("&& " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
+                    whereString.append("and " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
                 }
                 firstArgument = false;
             }
         }
-        final TypedQuery<User> query = em.createQuery(fromString.toString(), Game.class);
+        TypedQuery<Game> query = em.createQuery(fromString.toString(), Game.class);
         query.setParameter("name",name);
         for(FilterCategory filterCategory: filters.keySet()){
             for(String filter: filters.get(filterCategory)){
@@ -63,28 +64,39 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
+    //TODO Diego hacelo vos
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
-        return null;
+        throw new notImplementedException();
     }
 
     @Override
     public Game findById(long id) {
-        return null;
+        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id = :id", Game.class);
+        query.setParameter("id", id);
+        final List<Game> list = query.getResultList();
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
     public boolean existsWithId(long id) {
-        return false;
+        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id = :id", Game.class);
+        query.setParameter("id", id);
+        final List<Game> list = query.getResultList();
+        return !list.isEmpty();
     }
 
     @Override
     public boolean existsWithTitle(String title) {
-        return false;
+        final TypedQuery<Game> query = em.createQuery("from Game as g where g.name = :title", Game.class);
+        query.setParameter("title", title);
+        final List<Game> list = query.getResultList();
+        return !list.isEmpty();
     }
 
     @Override
+    @Deprecated
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        return null;
+        throw new notImplementedException();
     }
 
     @Override
@@ -94,6 +106,6 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public void updateAvgScore(long gameId) {
-
+        throw new notImplementedException();
     }
 }
