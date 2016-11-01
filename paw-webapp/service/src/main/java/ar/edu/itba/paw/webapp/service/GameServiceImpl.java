@@ -17,6 +17,7 @@ import java.util.Set;
 
 
 @Service
+@Transactional
 public class GameServiceImpl implements GameService {
 
     @Autowired
@@ -33,13 +34,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Transactional
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
         return gameDao.findRelatedGames(baseGame, filters);
     }
 
     @Override
-    @Transactional
     public Game findById(long id) {
         return gameDao.findById(id);
     }

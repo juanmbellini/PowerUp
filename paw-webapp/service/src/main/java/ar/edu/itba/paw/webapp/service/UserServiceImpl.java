@@ -1,13 +1,16 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
@@ -19,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    GameService gameService;
 
     public UserServiceImpl() {}
 
@@ -62,6 +68,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void scoreGame(User user, Game game, int score) { userDao.scoreGame(user,game,score); }
+
+    @Override
+    public Set<Game> getGamesByStatus(User user, PlayStatus status) {
+        final Set<Game> result = new LinkedHashSet<>();
+        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
+            if(entry.getValue() == status) {
+                result.add(gameService.findById(entry.getKey()));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<Game, Integer> getScoredGames(User user) {
+        final Map<Game, Integer> result = new LinkedHashMap<>();
+        final Map<Long, Integer> scores = user.getScoredGames();
+        for(long gameId : scores.keySet()) {
+            result.put(gameService.findById(gameId), scores.get(gameId));
+        }
+        return result;
+    }
 
     @Override
     public void setPlayStatus(User user, long gameId, PlayStatus status) { userDao.setPlayStatus(user,gameId,status); }

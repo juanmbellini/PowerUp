@@ -32,7 +32,7 @@ public class HomeController extends BaseController {
         Collection<Game> recommendedGames = new LinkedHashSet<>();
         if (isLoggedIn()) {
             User u = getCurrentUser();
-            recommendedGames = getUserService().recommendGames(u);
+            recommendedGames = userService.recommendGames(u);
         }
         mav.addObject("recommendedGames", recommendedGames);
         return mav;

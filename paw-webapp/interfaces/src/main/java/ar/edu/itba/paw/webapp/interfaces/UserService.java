@@ -6,7 +6,8 @@ import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * User service class. Exposes all functionality available to users.
@@ -89,6 +90,23 @@ public interface UserService {
      * @param score The score, where 1 <= {@code score} <= 10
      */
     void scoreGame(User user, Game game, int score);
+
+    /**
+     * Gets the games in the specified user's game list that are marked with the specified play status.
+     *
+     * @param user The user whose game list to look in.
+     * @param status The status for games to match.
+     * @return The matching games.
+     */
+    Set<Game> getGamesByStatus(User user, PlayStatus status);
+
+    /**
+     * Gets a map of all games scored by this user with their corresponding score.
+     *
+     * @param user The user whose scored games to check.
+     * @return The resulting map.
+     */
+    Map<Game, Integer> getScoredGames(User user);
 
     /**
      * Sets or updates a play status for a specified game for a specified user.

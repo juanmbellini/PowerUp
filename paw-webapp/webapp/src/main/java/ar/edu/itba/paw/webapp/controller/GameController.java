@@ -231,16 +231,16 @@ public class GameController extends BaseController {
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) {
-            getUserService().scoreGame(u, id, score);
+            userService.scoreGame(u, id, score);
         } else {
-            getUserService().removeScore(u, id);
+            userService.removeScore(u, id);
         }
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) {
-            getUserService().setPlayStatus(u, id, playStatus);
+            userService.setPlayStatus(u, id, playStatus);
         } else {
-            getUserService().removeStatus(u, id);
+            userService.removeStatus(u, id);
         }
         return mav;
     }

@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -26,7 +27,7 @@ public abstract class BaseController {
     /**
      * A user service to make user operations.
      */
-    private UserService userService;
+    protected UserService userService;
 
     /**
      * A url creator, which mey be used by child controllers.
@@ -44,20 +45,11 @@ public abstract class BaseController {
      *
      * @param userService The user service.
      */
+    @Autowired
     public BaseController(UserService userService) {
         this.userService = userService;
         this.urlCreator = new UrlCreator();
         LOG = LoggerFactory.getLogger(getClass());
-    }
-
-
-    /**
-     * User service getter. Child controllers might need to use it.
-     *
-     * @return The user service.
-     */
-    protected UserService getUserService() {
-        return userService;
     }
 
     /**
