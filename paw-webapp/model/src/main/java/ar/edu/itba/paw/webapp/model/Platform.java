@@ -45,6 +45,10 @@ public class Platform {
         return name;
     }
 
+    public Collection<Game> getGames() {
+        return games;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

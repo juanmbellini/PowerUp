@@ -1,30 +1,32 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Publisher;
 
 import java.util.Set;
 
 /**
- * Created by Juan Marcos Bellini on 19/10/16.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
- *
  * Data Access Object for Game Publishers
  */
 public interface PublisherDao {
 
     /**
-     * Returns a set of publishers for the given game.
-     *
-     * @param game The game whose publishers will be returned.
-     * @return The set of publishers for the given game.
+     * @see PublisherService#all()
      */
-    Set<String> getGamePublishers(Game game);
+    Set<Publisher> all();
 
     /**
-     * Returns a set of publishers for the game with the given id.
-     *
-     * @param gameId The game's id whose publishers. will be returned.
-     * @return The set of publishers for the game with the given if.
+     * @see PublisherService#findById(long)
      */
-    Set<String> getGamePublishers(long gameId);
+    Publisher findById(long id);
+
+    /**
+     * @see PublisherService#findByName(String)
+     */
+    Publisher findByName(String name);
+
+    /**
+     * @see PublisherService#gamesPublishedBy(Publisher)
+     */
+    Set<Game> gamesPublishedBy(Publisher p);
 }

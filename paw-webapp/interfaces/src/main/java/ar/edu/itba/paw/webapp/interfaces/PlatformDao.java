@@ -1,32 +1,38 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Platform;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.Set;
 
 /**
- * Created by Juan Marcos Bellini on 19/10/16.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
- *
- * Data Access Object for Game Platforms
+ * Data Access Object for platforms.
  */
 public interface PlatformDao {
 
     /**
-     * Returns a map of platforms-localDates with the platforms for the given game, and the corresponding release date.
-     *
-     * @param game The game whose platforms will be returned.
-     * @return The map with platform-localDates for the given game.
+     * @see PlatformService#all()
      */
-    Map<String, LocalDate> getGamePlatforms(Game game);
+    Set<Platform> all();
 
     /**
-     * Returns a map of platforms-localDates with the platforms for the game with the given id,
-     * and the corresponding release date.
-     *
-     * @param gameId The game's id whose platforms will be returned.
-     * @return The map with platform-localDates for game with the given id.
+     * @see PlatformService#findById(long)
      */
-    Map<String, LocalDate> getGamePlatforms(long gameId);
+    Platform findById(long id);
+
+    /**
+     * @see PlatformService#findByName(String)
+     */
+    Platform findByName(String name);
+
+    /**
+     * @see PlatformService#gamesReleasedFor(Platform)
+     */
+    Set<Game> gamesReleasedFor(Platform p);
+
+    /**
+     * @see PlatformService#releaseDateForGame(Game, Platform)
+     */
+    LocalDate releaseDateForGame(Game g, Platform p);
 }

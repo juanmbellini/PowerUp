@@ -46,6 +46,10 @@ public class Publisher {
         this.name = name;
     }
 
+    public Collection<Game> getGames() {
+        return games;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

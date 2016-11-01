@@ -37,7 +37,7 @@ public class Game {
     @CollectionTable(name="game_platforms",
                     joinColumns=@JoinColumn(name="game_id"))
     @MapKeyJoinColumn(name="platform_id")
-    private Map<Platform, GamePlatformRelationData> platforms;
+    private Map<Platform, GamePlatformReleaseDate> platforms;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -120,8 +120,8 @@ public class Game {
         return cloneCollection(genres);
     }
 
-    public Map<Platform, GamePlatformRelationData> getPlatforms() {
-        HashMap<Platform, GamePlatformRelationData> newPlatformMap = new HashMap<Platform, GamePlatformRelationData>();
+    public Map<Platform, GamePlatformReleaseDate> getPlatforms() {
+        HashMap<Platform, GamePlatformReleaseDate> newPlatformMap = new HashMap<Platform, GamePlatformReleaseDate>();
 
         for (Platform key : platforms.keySet()) {
             newPlatformMap.put(key, platforms.get(key)); //TODO check clone for LocalDate.
@@ -206,7 +206,7 @@ public class Game {
         genres.add(genre);
     }
 
-    public void addPlatform(Platform platform, GamePlatformRelationData date) {
+    public void addPlatform(Platform platform, GamePlatformReleaseDate date) {
         platforms.put(platform, date);
     }
 
@@ -372,7 +372,7 @@ public class Game {
             return this;
         }
 
-        public GameBuilder addPlatform(Platform platform, GamePlatformRelationData date) {
+        public GameBuilder addPlatform(Platform platform, GamePlatformReleaseDate date) {
             checkBuilt();
             game.addPlatform(platform, date);
             startedBuilding = true;

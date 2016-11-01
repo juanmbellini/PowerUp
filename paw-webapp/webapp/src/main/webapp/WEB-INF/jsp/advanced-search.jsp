@@ -27,7 +27,7 @@
                         <div class="input-field col s6">
                             <select name="platform" multiple>
                                 <option value="" selected disabled>Any</option>
-                                <c:forEach var="platform" items="${PLATFORMS}">
+                                <c:forEach var="platform" items="${platforms}">
                                     <option value="${platform}">${platform}</option>
                                 </c:forEach>
                             </select>
@@ -36,7 +36,7 @@
                         <div class="input-field col s6">
                             <select name="genre" multiple>
                                 <option value="" selected disabled>Any</option>
-                                <c:forEach var="genre" items="${GENRES}">
+                                <c:forEach var="genre" items="${genres}">
                                     <option value="${genre}">${genre}</option>
                                 </c:forEach>
                             </select>
@@ -47,7 +47,7 @@
                         <div class="input-field col s6">
                             <select name="developer" multiple>
                                 <option value="" selected disabled>Any</option>
-                                <c:forEach var="developer" items="${DEVELOPERS}">
+                                <c:forEach var="developer" items="${developers}">
                                     <option value="${developer}">${developer}</option>
                                 </c:forEach>
                             </select>
@@ -56,7 +56,7 @@
                         <div class="input-field col s6">
                             <select name="publisher" multiple>
                                 <option value="" selected disabled>Any</option>
-                                <c:forEach var="publisher" items="${PUBLISHERS}">
+                                <c:forEach var="publisher" items="${publishers}">
                                     <option value="${publisher}">${publisher}</option>
                                 </c:forEach>
                             </select>

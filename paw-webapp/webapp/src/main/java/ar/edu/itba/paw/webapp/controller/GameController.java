@@ -2,15 +2,13 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
-import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -60,11 +58,23 @@ public class GameController extends BaseController {
      */
     private final TypeReference<Map<FilterCategory, ArrayList<String>>> typeReference;
 
+    private final PlatformService platformService;
+
+    private final DeveloperService developerService;
+
+    private final PublisherService publisherService;
+
+    private final GenreService genreService;
+
 
     @Autowired
-    public GameController(GameService gameService, UserService us) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService) {
         super(us);
         this.gameService = gameService;
+        this.platformService = platformService;
+        this.developerService = developerService;
+        this.publisherService = publisherService;
+        this.genreService = genreService;
         objectMapper = new ObjectMapper();
         typeReference = new TypeReference<Map<FilterCategory, ArrayList<String>>>() {};
     }
@@ -151,14 +161,38 @@ public class GameController extends BaseController {
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
-        //Add all possible filter types
-        for (FilterCategory filterCategory : FilterCategory.values()) {
-            try {
-                mav.addObject(English.plural(filterCategory.name()).toUpperCase(),
-                        gameService.getFiltersByType(filterCategory));
-            } catch (Exception e) {
-                return new ModelAndView("redirect:/error500");
+        //Add all possible filter types, as strings, in ascending alphabetical order
+        try {
+            //Platforms
+            Set<String> platforms = new TreeSet<>();
+            for(Platform p : platformService.all()) {
+                platforms.add(p.getName());
             }
+            mav.addObject("platforms", platforms);
+
+            //Developers
+            Set<String> developers = new TreeSet<>();
+            for(Developer p : developerService.all()) {
+                developers.add(p.getName());
+            }
+            mav.addObject("developers", developers);
+
+            //Publishers
+            Set<String> publishers = new TreeSet<>();
+            for(Publisher p : publisherService.all()) {
+                publishers.add(p.getName());
+            }
+            mav.addObject("publishers", publishers);
+
+            //Genres
+            Set<String> genres = new TreeSet<>();
+            for(Genre p : genreService.all()) {
+                genres.add(p.getName());
+            }
+            mav.addObject("genres", genres);
+        } catch (Exception e) {
+            LOG.error("Error populating filter types", e);
+            return new ModelAndView("redirect:/error500");
         }
         return mav;
     }
