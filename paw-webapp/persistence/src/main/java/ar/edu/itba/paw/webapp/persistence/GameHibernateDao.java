@@ -12,10 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Julian on 10/30/2016.
@@ -73,17 +70,6 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Game findById(long id) {
         TypedQuery<Game> baseQuery = em.createQuery("FROM Game AS G where G.id = :id", Game.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public Game2 findById2(long id) {
-        TypedQuery<Game2> baseQuery = em.createQuery("FROM Game2 AS G where G.id = :id", Game2.class);
         baseQuery.setParameter("id", id);
         try {
             return baseQuery.getSingleResult();

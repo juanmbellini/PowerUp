@@ -1,13 +1,10 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.form.LoginForm;
-import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +58,6 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/list")
-    //TODO should controller methods be transactional?
-    @Transactional
     public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
 
         // TODO: Check if we are really allowing anyone to check other's lists. [JMB]
@@ -85,24 +80,15 @@ public class UserController extends BaseController {
         Map<Long, PlayStatus> playStatuses = u.getPlayStatuses();
         // TODO do this in user?
         for (long gameId : playStatuses.keySet()) {
-            Game2 game = gameService.findById2(gameId);
-            System.out.println(game.genres);
-            System.out.println(game.name);
-            System.out.println(game.id);
-            System.out.println(game.releaseDate);
-            System.out.println(game.coverPictureUrl);
-            System.out.println(game.developers);
-            System.out.println(game.publishers);
-            System.out.println(game.platforms);
-            System.out.println(game.keywords);
-            System.out.println(game.avgScore);
-            System.out.println(game.pictureUrls);
+            Game game = gameService.findById(gameId);
             if (game == null) throw new IllegalStateException("Status list should have a game that do not exist");
-            //TODO uncomment
-//            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
+            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
         }
         mav.addObject("user", u);
         mav.addObject("playStatuses", gamesInListsMap);
+
+        //TODO remove this hack, it' only to prevent no session error in view
+        u.getScoredGames().size();
 
         return mav;
     }

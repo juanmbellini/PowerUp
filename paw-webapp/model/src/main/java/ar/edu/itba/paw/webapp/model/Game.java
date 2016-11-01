@@ -70,13 +70,16 @@ public class Game {
     private LocalDate releaseDate;
 
     @Column(name="cover_picture_cloudinary_id")
-    private String coverPictureUrl;
+    private String coverPictureId;
 
     @ElementCollection
     @CollectionTable(
                     name = "game_pictures",
                     joinColumns=@JoinColumn(name = "game_id", nullable = false))
     @Column(name="cloudinary_id", nullable = false)
+    private Set<String> pictureIds;
+
+    @Transient
     private Set<String> pictureUrls;
 
 
@@ -95,7 +98,8 @@ public class Game {
 //        reviews = new HashSet<>();
         avgScore = INITIAL_AVG_SCORE;
         releaseDate = LocalDate.now();
-        coverPictureUrl = DEFAULT_COVER_PICTURE_URL;
+        coverPictureId = null;
+        pictureIds = new LinkedHashSet<>();
         pictureUrls = new LinkedHashSet<>();
     }
 
@@ -149,26 +153,27 @@ public class Game {
         return releaseDate;
     }
 
+    /**
+     * Gets this game's picture URLs.
+     *
+     * @return An <b>unmodifiable</b> set containing this game's picture URLs.
+     * @see #addPicture(String)
+     */
     public Set<String> getPictureUrls() {
-        return new HashSet<>(pictureUrls);
+        return Collections.unmodifiableSet(pictureUrls);
     }
 
     /**
-     * Returns the url set in {@link #coverPictureUrl}.
-     * <p>
-     * In case that url is the {@link #DEFAULT_COVER_PICTURE_URL} and {@link #pictureUrls} set is not empty,
-     * the first url of this set is returned.
+     * Returns the URL of this game's cover picture, or a default picture if none is set.
      *
      * @return The cover picture URL.
      */
     public String getCoverPictureUrl() {
-        if (coverPictureUrl.equals(DEFAULT_COVER_PICTURE_URL) && !pictureUrls.isEmpty()) {
-            return pictureUrls.iterator().next();
-        }
-        return coverPictureUrl;
+        return coverPictureId == null ? DEFAULT_COVER_PICTURE_URL : buildCloudinaryURL(coverPictureId);
     }
 
     // Setters
+    //TODO remove setters, the builder has access to these fields and these shouldn't be changed once built
     private void setId(long id) {
         this.id = id;
     }
@@ -189,13 +194,14 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    private void setCoverPictureUrl(String cloudinaryId) {
+    private void setCoverPictureId(String cloudinaryId) {
         if (cloudinaryId != null && !cloudinaryId.equals("")) {
-            coverPictureUrl = getPictureURL(cloudinaryId);
+            coverPictureId = cloudinaryId;
         }
     }
 
     // Adders
+    //TODO also consider removing these, or at least those that we're sure won't change after the game is built
     public void addGenre(Genre genre) {
         genres.add(genre);
     }
@@ -220,10 +226,15 @@ public class Game {
 //        reviews.add(review);
 //    }
 
-    public void addPictureURL(String cloudinaryId) {
+    /**
+     * Adds a picture to this game, populating both its picture IDs collection and its picture URLs collection.
+     *
+     * @param cloudinaryId The Cloudinary ID of the picture to add.
+     */
+    public void addPicture(String cloudinaryId) {
         if (cloudinaryId != null) {
-            pictureUrls.add(getPictureURL(cloudinaryId));
-
+            pictureIds.add(cloudinaryId);
+            pictureUrls.add(buildCloudinaryURL(cloudinaryId));
         }
     }
 
@@ -242,6 +253,12 @@ public class Game {
         return (int) (id ^ (id >>> 32));
     }
 
+    /**
+     * @deprecated There's no use for this method, and it's probably slower than its alternatives. Instead, use either
+     * <p>{@code new MyCollection(originalCollection)} which already adds all elements from the original collection</p>
+     * or <p>{@link Collections#unmodifiableCollection(Collection)}</p>
+     * and its variants as appropriate.
+     */
     private <T> List<T> cloneCollection(Collection<T> original) {
         List<T> list = new ArrayList<>();
         list.addAll(original);
@@ -249,12 +266,12 @@ public class Game {
     }
 
     /**
-     * Gets a full cloudinary picture URL given a cloudinary ID.
+     * Gets a full Cloudinary picture URL given a cloudinary ID.
      *
      * @param cloudinaryId The cloudinary ID.
      * @return The picture URL.
      */
-    private static String getPictureURL(String cloudinaryId) {
+    private static String buildCloudinaryURL(String cloudinaryId) {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
 
@@ -336,7 +353,7 @@ public class Game {
 
         public GameBuilder setCoverPictureUrl(String cloudinaryId) {
             checkBuilt();
-            game.setCoverPictureUrl(cloudinaryId);
+            game.setCoverPictureId(cloudinaryId);
             startedBuilding = true;
             return this;
         }
@@ -392,7 +409,7 @@ public class Game {
 
         public GameBuilder addPictureURL(String cloudinaryId) {
             checkBuilt();
-            game.addPictureURL(cloudinaryId);
+            game.addPicture(cloudinaryId);
             startedBuilding = true;
             return this;
         }

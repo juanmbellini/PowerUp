@@ -403,9 +403,9 @@
 //
 //        assertEquals(buildUrl("fouukgohwdwhusnx05dx"), gameSinglePicture.getCoverPictureUrl());
 //
-//        assertNotNull(gameSinglePicture.getPictureUrls());
-//        assertEquals(1, gameSinglePicture.getPictureUrls().size());
-//        assertTrue(gameSinglePicture.getPictureUrls().contains(buildUrl("fouukgohwdwhusnx05dx")));
+//        assertNotNull(gameSinglePicture.getPictureIds());
+//        assertEquals(1, gameSinglePicture.getPictureIds().size());
+//        assertTrue(gameSinglePicture.getPictureIds().contains(buildUrl("fouukgohwdwhusnx05dx")));
 //    }
 //
 //    private String buildUrl(String s) {
@@ -417,8 +417,8 @@
 //    public void testGetMultiplePictures() {
 //        Game gameMultiplePictures = gameDao.findById(1);
 //
-//        assertNotNull(gameMultiplePictures.getPictureUrls());
-//        assertEquals(2, gameMultiplePictures.getPictureUrls().size());
+//        assertNotNull(gameMultiplePictures.getPictureIds());
+//        assertEquals(2, gameMultiplePictures.getPictureIds().size());
 //        assertTrue(gameMultiplePictures.getPictureUrls().contains(buildUrl("whgrfj9muktnnpags6qg")));
 //        assertTrue(gameMultiplePictures.getPictureUrls().contains(gameMultiplePictures.getCoverPictureUrl()));
 //    }

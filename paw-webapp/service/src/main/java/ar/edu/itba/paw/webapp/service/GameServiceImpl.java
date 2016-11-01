@@ -4,11 +4,11 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Game2;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,17 +33,15 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
         return gameDao.findRelatedGames(baseGame, filters);
     }
 
     @Override
+    @Transactional
     public Game findById(long id) {
         return gameDao.findById(id);
-    }
-
-    public Game2 findById2(long id) {
-        return gameDao.findById2(id);
     }
 
     @Override
