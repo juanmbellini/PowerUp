@@ -6,5 +6,10 @@ public enum FilterCategory {
     developer,
     genre,
     keyword,
-    platform
+    platform;
+
+    //TODO delete if unused
+    public String pretty() {
+        return ((Character)(name().charAt(0))).toString().toUpperCase() + name().substring(1);
+    }
 }
