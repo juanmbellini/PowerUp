@@ -36,6 +36,7 @@ public class GameHibernateDao implements GameDao {
                 firstArgument = false;
             }
         }
+        fromString.append(whereString);
         TypedQuery<Game> query = em.createQuery(fromString.toString(), Game.class);
         query.setParameter("name",name);
         for(FilterCategory filterCategory: filters.keySet()){
