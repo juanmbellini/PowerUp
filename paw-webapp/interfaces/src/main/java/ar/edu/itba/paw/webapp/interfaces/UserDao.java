@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
+import javax.persistence.TransactionRequiredException;
 import java.util.Collection;
 
 /**
@@ -81,4 +82,17 @@ public interface UserDao {
      * @see UserService#recommendGames(User)
      */
     Collection<Game> recommendGames(User user);
+
+    /**
+     * Binds the specified user to the current transaction context so lazily-loaded collections can be fetched from the
+     * database.
+     *
+     * @param user The user to bind.
+     * @throws IllegalArgumentException If the specified user instance is not an entity or is a removed entity. (TODO remove this annotation? This should never happen)
+     * @throws TransactionRequiredException If there is no transaction ongoing.
+     */
+    //TODO does this belong at interface level? JDBC wouldn't need to implement this at all, this is 100% Hibernate-dependent
+    //Consider moving to Hibernate DAOs, storing Hibernate types in Hibernate services (e.g. UserHibernateDao in
+    //UserService, instead of generid UserDao) and calling method directly
+    User bindToCurrentTransaction(User user);
 }

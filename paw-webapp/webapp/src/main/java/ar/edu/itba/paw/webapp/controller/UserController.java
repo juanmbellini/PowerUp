@@ -33,7 +33,6 @@ import java.util.*;
  * This controller is in charge of handling users' operations request.
  */
 @Controller
-@Transactional  //TODO exterminate exterminate exterminate exterminate exterminate exterminate exterminate exterminate exterminate exterminate exterminate exterminate
 public class UserController extends BaseController {
 
 

@@ -148,5 +148,4 @@ public interface UserService {
      * @param user The user who is getting the recommendations
      */
     Collection<Game> recommendGames(User user);
-
 }

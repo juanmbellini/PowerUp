@@ -8,9 +8,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
@@ -21,10 +19,11 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao userDao;
+    //TODO consider making this a HibernateUserDao type so we can remove the bindToCurrentTransaction method from the interface, it doesn't belong there
+    private UserDao userDao;
 
     @Autowired
-    GameService gameService;
+    private GameService gameService;
 
     public UserServiceImpl() {}
 
@@ -71,6 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Set<Game> getGamesByStatus(User user, PlayStatus status) {
+        user = userDao.bindToCurrentTransaction(user);
         final Set<Game> result = new LinkedHashSet<>();
         for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
             if(entry.getValue() == status) {
@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<Game, Integer> getScoredGames(User user) {
+        user = userDao.bindToCurrentTransaction(user);
         final Map<Game, Integer> result = new LinkedHashMap<>();
         final Map<Long, Integer> scores = user.getScoredGames();
         for(long gameId : scores.keySet()) {
