@@ -52,6 +52,13 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Set<Authority> authorities = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(
+            name = "reviews",
+            joinColumns=@JoinColumn(name = "user_id")
+    )
+    private Collection<Review> reviews;
+
     /*package*/  User() {
         //for hibernate
     }
@@ -146,6 +153,8 @@ public class User implements Serializable {
     }
 
     /**
+     * Checks whether this user has recorded a play status for the game with the specified ID.
+     *
      * @param gameId The ID of the game to check.
      * @return Whether this user has registered a play status for the game with ID {@code gameId}.
      */

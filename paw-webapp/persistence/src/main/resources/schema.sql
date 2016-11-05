@@ -27,6 +27,22 @@ CREATE TABLE IF NOT EXISTS keywords (
   id   SERIAL  NOT NULL PRIMARY KEY,
   name VARCHAR NOT NULL
 );
+CREATE TABLE IF NOT EXISTS reviews (
+  id                      SERIAL  NOT NULL PRIMARY KEY,
+  game_id                 INTEGER  NOT NULL PRIMARY KEY,
+  user_id                 INTEGER  NOT NULL PRIMARY KEY,
+  review                  TEXT NOT NULL,
+  story_score             INTEGER,
+  graphics_score          INTEGER,
+  audio_score             INTEGER,
+  controls_score          INTEGER,
+  fun_score               INTEGER,
+  date                    DATE,
+
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (user_id, game_id)
+);
 CREATE TABLE IF NOT EXISTS users (
   id              SERIAL  NOT NULL PRIMARY KEY,
   email           VARCHAR NOT NULL,

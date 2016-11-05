@@ -109,13 +109,41 @@ public interface UserService {
     Map<Game, Integer> getScoredGames(User user);
 
     /**
-     * Sets or updates a play status for a specified game for a specified user.
+     * Checks whether the specified user has scored the game with the specified ID.
      *
-     * @param user   The user who is setting or updating status.
-     * @param gameId The ID of the game whose status is being registered.
-     * @param status The status.
+     * @param user The user who should have rated the game.
+     * @param gameId The ID of the game to check.
+     * @return Whether the specified user has scored the game with ID {@code gameId}.
      */
-    void setPlayStatus(User user, long gameId, PlayStatus status);
+    boolean hasScoredGame(User user, long gameId);
+
+    /**
+     * Gets the score that this user gave to a specified game.
+     *
+     * @param gameId The ID of the game for which to get score.
+     * @return The score that this user gave to the game with ID {@code gameId}.
+     * @throws IllegalArgumentException If this user hasn't scored the specified game.
+     * @see #hasScoredGame(User, long)
+     */
+    int getGameScore(User user, long gameId);
+
+    /**
+     * Checks whether this user has recorded a play status for the game with the specified ID.
+     *
+     * @param gameId The ID of the game to check.
+     * @return Whether this user has registered a play status for the game with ID {@code gameId}.
+     */
+    boolean hasPlayStatus(User user, long gameId);
+
+    /**
+     * Gets the play status that this user set for a specified game.
+     *
+     * @param gameId The ID of the game for which to get a play status.
+     * @return The registered play status.
+     * @throws IllegalArgumentException If this user hasn't set a play status for the game with ID {@code gameId}.
+     * @see #hasPlayStatus(User, long)
+     */
+    PlayStatus getPlayStatus(User user, long gameId);
 
     /**
      * Sets or updates a play status for a specified game for a specified user.
@@ -127,10 +155,10 @@ public interface UserService {
     void setPlayStatus(User user, Game game, PlayStatus status);
 
     /**
-     * Removes score from user u to game id.
+     * Removes a score recorded by a specified user for a specified game.
      *
-     * @param u  The user who is getting a score removed
-     * @param id The id of the game whose score is getting removed
+     * @param u  The user who is getting a score removed.
+     * @param id The ID of the game whose score is getting removed.
      */
     void removeScore(User u, long id);
 

@@ -80,6 +80,30 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    public boolean hasScoredGame(User user, long gameId) {
+        user = userDao.bindToCurrentTransaction(user);
+        return user.getScoredGames().containsKey(gameId);
+    }
+    public int getGameScore(User user, long gameId) {
+        user = userDao.bindToCurrentTransaction(user);
+        if(!user.hasScoredGame(gameId)) {
+            throw new IllegalArgumentException(user.getUsername() + " has not scored game with ID " + gameId);
+        }
+        return user.getScoredGames().get(gameId);
+    }
+
+    public PlayStatus getPlayStatus(User user, long gameId) {
+        user = userDao.bindToCurrentTransaction(user);
+        if(!user.hasPlayStatus(gameId)) {
+            throw new IllegalArgumentException(user.getUsername() + " has no play status for game with ID " + gameId);
+        }
+        return user.getPlayStatus(gameId);
+    }
+
+    public boolean hasPlayStatus(User user, long gameId){
+        user = userDao.bindToCurrentTransaction(user);
+        return user.getPlayStatuses().containsKey(gameId);
+    }
     @Override
     public Map<Game, Integer> getScoredGames(User user) {
         user = userDao.bindToCurrentTransaction(user);

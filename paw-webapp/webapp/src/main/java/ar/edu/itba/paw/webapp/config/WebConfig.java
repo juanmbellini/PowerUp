@@ -118,13 +118,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
-//    @Bean
-//    /*package*/ DatabasePopulator databasePopulator() {
-//        final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
-//        dbp.addScript(schemaSql);
+    @Bean
+    /*package*/ DatabasePopulator databasePopulator() {
+        final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
+        dbp.addScript(schemaSql);
 //        dbp.addScript(initialDataSql);
-//        return dbp;
-//    }
+        return dbp;
+    }
 
 //    @Bean
 //    public PlatformTransactionManager transactionManager(final DataSource ds) {

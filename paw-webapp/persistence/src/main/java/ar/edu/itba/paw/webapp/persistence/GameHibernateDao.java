@@ -54,11 +54,9 @@ public class GameHibernateDao implements GameDao {
         Root<Game> gamesRoot = criteriaQuery.from(Game.class);
         criteriaQuery.select(gamesRoot);
 
-
-
         //Create and add all conditions
         List<Predicate> conditions2 = new ArrayList<>();
-        if(name != null) {
+        if (name != null) {
             conditions2.add(criteriaBuilder.like(gamesRoot.get("name"), "%"+name+"%"));
         }
 

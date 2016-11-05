@@ -60,8 +60,12 @@ public class Game {
             inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
     private Collection<Keyword> keywords;
 
-    //TODO DB MAPPING
-//    private Collection<Review> reviews;
+    @ElementCollection
+    @CollectionTable(
+            name = "reviews",
+            joinColumns=@JoinColumn(name = "game_Id")
+    )
+    private Collection<Review> reviews;
 
     @Column(name="avg_score")
     private double avgScore;

@@ -30,7 +30,7 @@ import java.util.*;
  * This controller is in charge of handling games' operations requests.
  */
 @Controller
-@Transactional  //TODO die die die die die die die die
+//@Transactional  //TODO die die die die die die die die
 public class GameController extends BaseController {
 
 
@@ -207,18 +207,18 @@ public class GameController extends BaseController {
                              @ModelAttribute("currentUser") User user) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
-        Set<Game> relatedGames;
+        Set<Game> relatedGames = new HashSet<>();
         try {
             game = gameService.findById(id);
             if (game == null) {
                 return new ModelAndView("redirect:/error404");
             }
             if (user != null) {
-                if (user.hasScoredGame(id)) {
-                    rateAndStatusForm.setScore(user.getGameScore(id));
+                if (userService.hasScoredGame(user, id)) {
+                    rateAndStatusForm.setScore(userService.getGameScore(user, id));
                 }
-                if (user.hasPlayStatus(id)) {
-                    rateAndStatusForm.setPlayStatus(user.getPlayStatus(id));
+                if (userService.hasPlayStatus(user, id)) {
+                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(user, id));
                 }
             }
 
@@ -226,7 +226,7 @@ public class GameController extends BaseController {
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
-            relatedGames = gameService.findRelatedGames(game, filters);
+            //relatedGames = gameService.findRelatedGames(game, filters);
         } catch (Exception e) {
             return new ModelAndView("redirect:/error500");
         }
