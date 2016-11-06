@@ -310,7 +310,6 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
-<script>
 <style type="text/css">
     <c:set var="fontSizeStr" value="16px" />
     <c:set var="fontSizeInt" value="16" />
@@ -332,6 +331,7 @@
         text-overflow: ellipsis;
     }
 </style>
+
 <script type="text/javascript">
     /**
      * Tracks currently applied filters.
