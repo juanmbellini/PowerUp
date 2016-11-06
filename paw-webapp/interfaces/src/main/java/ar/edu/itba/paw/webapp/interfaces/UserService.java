@@ -100,6 +100,15 @@ public interface UserService {
     Map<Game, Integer> getScoredGames(long userId);
 
     /**
+     * Gets the specified user's scored games in reverse indexing - instead of mapping <gameId, score>, the mapping is
+     * of <score, gameIds>.
+     *
+     * @return An unmodifiable map containing the same information as {@link #getScoredGames(long)} but with reverse
+     * indexing.
+     */
+     Map<Integer, Set<Long>> getScoredGamesRev(long userId);
+
+    /**
      * Checks whether the specified user has scored the game with the specified ID.
      *
      * @param userId The ID of the user who should have rated the game.
@@ -170,4 +179,12 @@ public interface UserService {
      * @param userId The ID of the user who is getting the recommendations
      */
     Collection<Game> recommendGames(long userId);
+
+    /**
+     * Gets all games in this user's main game list (games they have marked as playing, played, etc.).
+     *
+     * @param userId The ID of the user whose list to fetch.
+     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
+     */
+    Map<PlayStatus, Set<Game>> getGameList(long userId);
 }

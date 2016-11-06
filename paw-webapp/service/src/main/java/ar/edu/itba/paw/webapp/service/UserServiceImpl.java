@@ -125,6 +125,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Map<Integer, Set<Long>> getScoredGamesRev(long userId) {
+        User user = getFreshUser(userId);
+        final Map<Integer, Set<Long>> result = new HashMap<>();
+        for (Map.Entry<Long, Integer> entry : user.getScoredGames().entrySet()) {
+            long gameId = entry.getKey();
+            int score = entry.getValue();
+            if(!result.containsKey(score)) {
+                result.put(score, new LinkedHashSet<>());
+            }
+            result.get(score).add(gameId);
+        }
+        return result;
+    }
+
+    @Override
     public void setPlayStatus(long userId, long gameId, PlayStatus status) {
         userDao.setPlayStatus(userId, gameId, status);
     }
@@ -142,6 +157,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public Collection<Game> recommendGames(long userId) {
         return userDao.recommendGames(userId);
+    }
+
+    @Override
+    public Map<PlayStatus, Set<Game>> getGameList(long userId) {
+        User user = getFreshUser(userId);
+        Map<PlayStatus, Set<Game>> result = new HashMap<>();
+        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
+            Game game = gameService.findById(entry.getKey());
+            PlayStatus status = entry.getValue();
+            if(!result.containsKey(status)) {
+                result.put(status, new LinkedHashSet<>());
+            }
+            result.get(status).add(game);
+        }
+        return result;
     }
 
     /**

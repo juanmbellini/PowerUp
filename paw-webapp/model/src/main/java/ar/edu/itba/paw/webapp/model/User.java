@@ -43,9 +43,6 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
 
-    @Transient
-    private Map<Integer, Set<Long>> scoredGamesRev = new HashMap<>();
-
     @ElementCollection
     @CollectionTable(
             name = "user_authorities",
@@ -145,10 +142,6 @@ public class User implements Serializable {
      */
     public void scoreGame(long gameId, int score) {
         scoredGames.put(gameId, score);
-        if(!scoredGamesRev.containsKey(score)) {
-            scoredGamesRev.put(score, new HashSet<>());
-        }
-        scoredGamesRev.get(score).add(gameId);
     }
 
     /**
@@ -265,16 +258,5 @@ public class User implements Serializable {
 
     public Map<Long, Integer> getScoredGames(){
         return scoredGames;
-    }
-
-    /**
-     * Gets this user's scored games in reverse indexing - instead of mapping <gameId, score>, the mapping is of
-     * <score, gameIds>.
-     *
-     * @return An unmodifiable map containing the same information as {@link #getScoredGames()} but with reverse
-     * indexing.
-     */
-    public Map<Integer, Set<Long>> getScoredGamesRev() {
-        return Collections.unmodifiableMap(scoredGamesRev);
     }
 }
