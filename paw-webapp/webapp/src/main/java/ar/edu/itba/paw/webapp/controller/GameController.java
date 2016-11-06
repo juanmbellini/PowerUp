@@ -202,23 +202,24 @@ public class GameController extends BaseController {
     }
 
     @RequestMapping("/game")
-    public ModelAndView game(@RequestParam(name = "id") long id,
+    public ModelAndView game(@RequestParam(name = "id") long gameId,
                              @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm,
                              @ModelAttribute("currentUser") User user) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
+        long userId = user.getId();
         Set<Game> relatedGames = new HashSet<>();
         try {
-            game = gameService.findById(id);
+            game = gameService.findById(gameId);
             if (game == null) {
                 return new ModelAndView("redirect:/error404");
             }
             if (user != null) {
-                if (userService.hasScoredGame(user, id)) {
-                    rateAndStatusForm.setScore(userService.getGameScore(user, id));
+                if (userService.hasScoredGame(userId, gameId)) {
+                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
                 }
-                if (userService.hasPlayStatus(user, id)) {
-                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(user, id));
+                if (userService.hasPlayStatus(userId, gameId)) {
+                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
                 }
             }
 
@@ -266,19 +267,20 @@ public class GameController extends BaseController {
         if (u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
             return new ModelAndView("redirect:/login");
         }
+        long userId = u.getId();
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) {
-            userService.scoreGame(u, id, score);
+            userService.scoreGame(userId, id, score);
         } else {
-            userService.removeScore(u, id);
+            userService.removeScore(userId, id);
         }
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) {
-            userService.setPlayStatus(u, id, playStatus);
+            userService.setPlayStatus(userId, id, playStatus);
         } else {
-            userService.removeStatus(u, id);
+            userService.removeStatus(userId, id);
         }
         return mav;
     }

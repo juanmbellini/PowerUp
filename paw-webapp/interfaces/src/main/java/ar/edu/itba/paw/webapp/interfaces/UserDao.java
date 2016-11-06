@@ -49,50 +49,27 @@ public interface UserDao {
     boolean existsWithEmail(String email);
 
     /**
-     * @see UserService#scoreGame(User, long, int)
+     * @see UserService#scoreGame(long, long, int)
      */
-    void scoreGame(User user, long gameId, int score);
+    void scoreGame(long userId, long gameId, int score);
 
     /**
-     * @see UserService#scoreGame(User, Game, int)
+     * @see UserService#setPlayStatus(long, long, PlayStatus)
      */
-    void scoreGame(User user, Game game, int score);
+    void setPlayStatus(long userId, long gameId, PlayStatus status);
 
     /**
-     * @see UserService#setPlayStatus(User, long, PlayStatus)
+     * @see UserService#removeScore(long, long)
      */
-    void setPlayStatus(User user, long gameId, PlayStatus status);
+    void removeScore(long userId, long id);
 
     /**
-     * @see UserService#setPlayStatus(User, Game, PlayStatus)
+     * @see UserService#removeStatus(long, long)
      */
-    void setPlayStatus(User user, Game game, PlayStatus status);
+    void removeStatus(long userId, long id);
 
     /**
-     * @see UserService#removeScore(User, long)
+     * @see UserService#recommendGames(long)
      */
-    void removeScore(User u, long id);
-
-    /**
-     * @see UserService#removeStatus(User, long)
-     */
-    void removeStatus(User u, long id);
-
-    /**
-     * @see UserService#recommendGames(User)
-     */
-    Collection<Game> recommendGames(User user);
-
-    /**
-     * Binds the specified user to the current transaction context so lazily-loaded collections can be fetched from the
-     * database.
-     *
-     * @param user The user to bind.
-     * @throws IllegalArgumentException If the specified user instance is not an entity or is a removed entity. (TODO remove this annotation? This should never happen)
-     * @throws TransactionRequiredException If there is no transaction ongoing.
-     */
-    //TODO does this belong at interface level? JDBC wouldn't need to implement this at all, this is 100% Hibernate-dependent
-    //Consider moving to Hibernate DAOs, storing Hibernate types in Hibernate services (e.g. UserHibernateDao in
-    //UserService, instead of generid UserDao) and calling method directly
-    User bindToCurrentTransaction(User user);
+    Collection<Game> recommendGames(long userId);
 }

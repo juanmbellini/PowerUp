@@ -70,11 +70,11 @@ public class UserController extends BaseController {
 
         //User found, populate their list
         Map<PlayStatus, Map<Game, Integer>> gameList = new HashMap<>();
-        Map<Game, Integer> scores = userService.getScoredGames(u);
+        Map<Game, Integer> scores = userService.getScoredGames(u.getId());
         for (PlayStatus playStatus : PlayStatus.values()) {
             // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
             Map<Game, Integer> gameCategory = new LinkedHashMap<>();
-            for(Game game : userService.getGamesByStatus(u, playStatus)) {
+            for(Game game : userService.getGamesByStatus(u.getId(), playStatus)) {
                 gameCategory.put(game, scores.containsKey(game.getId()) ? scores.get(game.getId()) : -1);
             }
             gameList.put(playStatus, gameCategory);

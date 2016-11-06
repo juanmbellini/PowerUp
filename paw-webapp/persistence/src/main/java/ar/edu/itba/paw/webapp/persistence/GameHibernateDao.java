@@ -127,13 +127,7 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        TypedQuery<Game> baseQuery = em.createQuery("FROM Game AS G where G.id = :id", Game.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return em.find(Game.class, id);
     }
 
     @Override

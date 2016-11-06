@@ -31,8 +31,7 @@ public class HomeController extends BaseController {
         final ModelAndView mav = new ModelAndView("index");
         Collection<Game> recommendedGames = new LinkedHashSet<>();
         if (isLoggedIn()) {
-            User u = getCurrentUser();
-            recommendedGames = userService.recommendGames(u);
+            recommendedGames = userService.recommendGames(getCurrentUser().getId());
         }
         mav.addObject("recommendedGames", recommendedGames);
         return mav;
