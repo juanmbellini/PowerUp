@@ -56,7 +56,7 @@ public class GameHibernateDao implements GameDao {
 
         criteriaQuery.where(conditions2.toArray(new Predicate[0]));
 
-        List<Game> games = em.createQuery(criteriaQuery).getResultList();
+        List<Game> games = em.createQuery(criteriaQuery).setFirstResult(pageSize * (pageNumber - 1)).setMaxResults(pageSize).getResultList();
         Page<Game> page = new Page<>();
         page.setTotalPages(Math.max((int)Math.floor(games.size() / pageSize), 1));
         page.setPageNumber(pageNumber);
