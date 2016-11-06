@@ -111,7 +111,7 @@
                             </div>
                             <%--Filter values--%>
                             <div id="platforms" class="col s12 filter">
-                                <c:forEach items="${PLATFORMS}" var="platform">
+                                <c:forEach items="${platforms}" var="platform">
                                     <c:choose>
                                         <c:when test="${platform[1]}">
                                             <div class="chip selected" data-filter-type="platform"
@@ -125,7 +125,7 @@
                                 </c:forEach>
                             </div>
                             <div id="genres" class="col s12 filter">
-                                <c:forEach items="${GENRES}" var="genre">
+                                <c:forEach items="${genres}" var="genre">
                                     <c:choose>
                                         <c:when test="${genre[1]}">
                                             <div class="chip selected" data-filter-type="genre"
@@ -139,7 +139,7 @@
                                 </c:forEach>
                             </div>
                             <div id="developers" class="col s12 filter">
-                                <c:forEach items="${DEVELOPERS}" var="developer">
+                                <c:forEach items="${developers}" var="developer">
                                     <c:choose>
                                         <c:when test="${developer[1]}">
                                             <div class="chip selected" data-filter-type="developer"
@@ -153,7 +153,7 @@
                                 </c:forEach>
                             </div>
                             <div id="publishers" class="col s12 filter">
-                                <c:forEach items="${PUBLISHERS}" var="publisher">
+                                <c:forEach items="${publishers}" var="publisher">
                                     <c:choose>
                                         <c:when test="${publisher[1]}">
                                             <div class="chip selected" data-filter-type="publisher"
@@ -183,12 +183,8 @@
 
                             </div>
                             <div class="col primary-content s7">
-                                <p class="title"><a
-                                        href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
-                                <p>
-                                    <c:forEach var="platform" items="${game.platforms}" varStatus="status">
-                                        ${platform} <c:if test="${!status.last}"> | </c:if>
-                                    </c:forEach>
+                                <p class="title">
+                                    <a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
                                 </p>
                             </div>
                             <div class="col s1 center">
