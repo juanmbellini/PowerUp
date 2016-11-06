@@ -1,8 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.form.LoginForm;
-import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
@@ -15,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,10 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Juan Marcos Bellini on 19/10/16.
@@ -69,24 +65,22 @@ public class UserController extends BaseController {
             return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
         }
         final ModelAndView mav = new ModelAndView("list");
-        User u = getUserService().findByUsername(username);
+        User u = userService.findByUsername(username);
         if (u == null) return new ModelAndView("error400");
 
-
-        Map<PlayStatus, Set<Game>> gamesInListsMap = new HashMap<>();
+        //User found, populate their list
+        Map<PlayStatus, Map<Game, Integer>> gameList = new HashMap<>();
+        Map<Game, Integer> scores = userService.getScoredGames(u.getId());
         for (PlayStatus playStatus : PlayStatus.values()) {
             // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
-            gamesInListsMap.put(playStatus, new HashSet<>());
-        }
-        Map<Long, PlayStatus> playStatuses = u.getPlayStatuses();
-        // TODO do this in user?
-        for (long gameId : playStatuses.keySet()) {
-            Game game = gameService.findById(gameId);
-            if (game == null) throw new IllegalStateException("Status list should have a game that do not exist");
-            gamesInListsMap.get(playStatuses.get(gameId)).add(game);
+            Map<Game, Integer> gameCategory = new LinkedHashMap<>();
+            for(Game game : userService.getGamesByStatus(u.getId(), playStatus)) {
+                gameCategory.put(game, scores.containsKey(game.getId()) ? scores.get(game.getId()) : -1);
+            }
+            gameList.put(playStatus, gameCategory);
         }
         mav.addObject("user", u);
-        mav.addObject("playStatuses", gamesInListsMap);
+        mav.addObject("gameList", gameList);
 
         return mav;
     }
@@ -113,7 +107,7 @@ public class UserController extends BaseController {
 
         User user;
         try {
-            user = getUserService().create(email, hashedPassword, username);
+            user = userService.create(email, hashedPassword, username);
         } catch (UserExistsException e) {
             String msgLow = e.getMessage().toLowerCase();
             // The calls to rejectValue will add errors to the UserForm so they get displayed properly and in the proper fields

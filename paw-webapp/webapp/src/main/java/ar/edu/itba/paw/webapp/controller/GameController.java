@@ -2,16 +2,14 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
-import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +30,7 @@ import java.util.*;
  * This controller is in charge of handling games' operations requests.
  */
 @Controller
+//@Transactional  //TODO die die die die die die die die
 public class GameController extends BaseController {
 
 
@@ -60,11 +59,23 @@ public class GameController extends BaseController {
      */
     private final TypeReference<Map<FilterCategory, ArrayList<String>>> typeReference;
 
+    private final PlatformService platformService;
+
+    private final DeveloperService developerService;
+
+    private final PublisherService publisherService;
+
+    private final GenreService genreService;
+
 
     @Autowired
-    public GameController(GameService gameService, UserService us) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService) {
         super(us);
         this.gameService = gameService;
+        this.platformService = platformService;
+        this.developerService = developerService;
+        this.publisherService = publisherService;
+        this.genreService = genreService;
         objectMapper = new ObjectMapper();
         typeReference = new TypeReference<Map<FilterCategory, ArrayList<String>>>() {};
     }
@@ -126,6 +137,9 @@ public class GameController extends BaseController {
 
             Page<Game> page = gameService.searchGames(name, filters, OrderCategory.valueOf(orderCategory),
                     orderBoolean, pageSize, pageNumber);
+//            for(Game g : page.getData()) {
+//                g.getPlatforms().size();
+//            }
 
             mav.addObject("page", page);
             mav.addObject("hasFilters", !filtersStr.equals("{}")); // TODO: Check the applied filters size [JMB]
@@ -151,44 +165,68 @@ public class GameController extends BaseController {
     @RequestMapping("/advanced-search")
     public ModelAndView advancedSearch() {
         final ModelAndView mav = new ModelAndView("advanced-search");
-        //Add all possible filter types
-        for (FilterCategory filterCategory : FilterCategory.values()) {
-            try {
-                mav.addObject(English.plural(filterCategory.name()).toUpperCase(),
-                        gameService.getFiltersByType(filterCategory));
-            } catch (Exception e) {
-                return new ModelAndView("redirect:/error500");
+        //Add all possible filter types, as strings, in ascending alphabetical order
+        try {
+            //Platforms
+            Set<String> platforms = new TreeSet<>();
+            for(Platform p : platformService.all()) {
+                platforms.add(p.getName());
             }
+            mav.addObject("platforms", platforms);
+
+            //Developers
+            Set<String> developers = new TreeSet<>();
+            for(Developer p : developerService.all()) {
+                developers.add(p.getName());
+            }
+            mav.addObject("developers", developers);
+
+            //Publishers
+            Set<String> publishers = new TreeSet<>();
+            for(Publisher p : publisherService.all()) {
+                publishers.add(p.getName());
+            }
+            mav.addObject("publishers", publishers);
+
+            //Genres
+            Set<String> genres = new TreeSet<>();
+            for(Genre p : genreService.all()) {
+                genres.add(p.getName());
+            }
+            mav.addObject("genres", genres);
+        } catch (Exception e) {
+            LOG.error("Error populating filter types", e);
+            return new ModelAndView("redirect:/error500");
         }
         return mav;
     }
 
     @RequestMapping("/game")
-    public ModelAndView game(@RequestParam(name = "id") long id,
+    public ModelAndView game(@RequestParam(name = "id") long gameId,
                              @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm,
                              @ModelAttribute("currentUser") User user) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
-        Set<Game> relatedGames;
+        long userId = user.getId();
+        Set<Game> relatedGames = new HashSet<>();
         try {
-            game = gameService.findById(id);
+            game = gameService.findById(gameId);
             if (game == null) {
                 return new ModelAndView("redirect:/error404");
             }
             if (user != null) {
-                if (user.hasScoredGame(id)) {
-                    rateAndStatusForm.setScore(user.getGameScore(id));
+                if (userService.hasScoredGame(userId, gameId)) {
+                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
                 }
-                if (user.hasPlayStatus(id)) {
-                    rateAndStatusForm.setPlayStatus(user.getPlayStatus(id));
+                if (userService.hasPlayStatus(userId, gameId)) {
+                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
                 }
             }
-
 
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
-            relatedGames = gameService.findRelatedGames(game, filters);
+            //relatedGames = gameService.findRelatedGames(game, filters);
         } catch (Exception e) {
             return new ModelAndView("redirect:/error500");
         }
@@ -205,6 +243,10 @@ public class GameController extends BaseController {
         }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
+        mav.addObject("genres", gameService.getGenres(gameId));
+        mav.addObject("platforms", gameService.getPlatforms(gameId));
+        mav.addObject("developers", gameService.getDevelopers(gameId));
+        mav.addObject("publishers", gameService.getPublishers(gameId));
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }
@@ -228,19 +270,20 @@ public class GameController extends BaseController {
         if (u == null) {     //This should never happen; Spring only gives access to this page to authenticated users
             return new ModelAndView("redirect:/login");
         }
+        long userId = u.getId();
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) {
-            getUserService().scoreGame(u, id, score);
+            userService.scoreGame(userId, id, score);
         } else {
-            getUserService().removeScore(u, id);
+            userService.removeScore(userId, id);
         }
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) {
-            getUserService().setPlayStatus(u, id, playStatus);
+            userService.setPlayStatus(userId, id, playStatus);
         } else {
-            getUserService().removeStatus(u, id);
+            userService.removeStatus(userId, id);
         }
         return mav;
     }

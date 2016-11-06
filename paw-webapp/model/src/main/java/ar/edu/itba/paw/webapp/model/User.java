@@ -1,27 +1,77 @@
 package ar.edu.itba.paw.webapp.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
-public class User {
+@Entity
+@Table(name = "users")
+public class User implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="users_seq", sequenceName="users_userid_seq",allocationSize=1)
     private long id;
+
+    @Column(length = 100, unique = true)
     private String username;
+
+    //Max length accepted by the IETF
+    @Column(length = 254, nullable = false, unique = true)
     private String email;
+
+    //TODO Check if max length is 100
+    @Column(name = "hashed_password" ,length = 100, nullable = false)
     private String hashedPassword;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "game_scores",
+            joinColumns=@JoinColumn(name = "user_id")
+    )
+    @MapKeyColumn (name="game_id")
+    @Column(name="score")
     private Map<Long, Integer> scoredGames = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "game_play_statuses",
+            joinColumns=@JoinColumn(name = "user_id")
+    )
+    @MapKeyColumn (name="game_id")
+    @Column(name="status")
+    @Enumerated(EnumType.STRING)
     private Map<Long, PlayStatus> playedGames = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "user_authorities",
+            joinColumns=@JoinColumn(name = "username", referencedColumnName = "username")
+    )
+    @Column(name="authority")
+    @Enumerated(EnumType.STRING)
     private Set<Authority> authorities = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "reviews",
+            joinColumns=@JoinColumn(name = "user_id")
+    )
+    private Collection<Review> reviews;
+
+    /*package*/  User() {
+        //for hibernate
+    }
 
     /**
      * Creates a new user.
      *
-     * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
      * @param hashedPassword The user's hashed password.
      * @param authorities The user's authorities.
      */
-    public User(long id, String email, String username, String hashedPassword, Authority... authorities) {
-        this.id = id;
+    public User(String email, String username, String hashedPassword, Authority... authorities) {
         this.email = email;
         this.username = username;
         this.hashedPassword = hashedPassword;
@@ -31,14 +81,13 @@ public class User {
     /**
      * Creates a new user.
      *
-     * @param id The user's id.
      * @param email The user's identifying email.
      * @param username The user's identifying username.
      * @param hashedPassword The user's hashed password.
      * @param authorities The user's authorities.
      */
-    public User(long id, String email, String username, String hashedPassword, Collection<Authority> authorities) {
-        this(id, email, username, hashedPassword, authorities.toArray(new Authority[0]));
+    public User(String email, String username, String hashedPassword, Collection<Authority> authorities) {
+        this(email, username, hashedPassword, authorities.toArray(new Authority[0]));
     }
 
     /**
@@ -104,6 +153,8 @@ public class User {
     }
 
     /**
+     * Checks whether this user has recorded a play status for the game with the specified ID.
+     *
      * @param gameId The ID of the game to check.
      * @return Whether this user has registered a play status for the game with ID {@code gameId}.
      */

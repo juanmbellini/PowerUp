@@ -6,7 +6,8 @@ import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * User service class. Exposes all functionality available to users.
@@ -75,60 +76,98 @@ public interface UserService {
     /**
      * Sets or updates a score for a specified game by a specified user.
      *
-     * @param user   The user who is scoring the game.
+     * @param userId The ID of user who is scoring the game.
      * @param gameId The scored game's ID.
      * @param score  The score, where 1 <= {@code score} <= 10
      */
-    void scoreGame(User user, long gameId, int score);
+    void scoreGame(long userId, long gameId, int score);
 
     /**
-     * Sets or updates a score for a specified game by a specified user.
+     * Gets the games in the specified user's game list that are marked with the specified play status.
      *
-     * @param user  The user who is scoring the game.
-     * @param game  The scored game.
-     * @param score The score, where 1 <= {@code score} <= 10
+     * @param userId The ID of the user whose game list to look in.
+     * @param status The status for games to match.
+     * @return The matching games.
      */
-    void scoreGame(User user, Game game, int score);
+    Set<Game> getGamesByStatus(long userId, PlayStatus status);
+
+    /**
+     * Gets a map of all games scored by this user with their corresponding score.
+     *
+     * @param userId The ID of the user whose scored games to check.
+     * @return The resulting map.
+     */
+    Map<Game, Integer> getScoredGames(long userId);
+
+    /**
+     * Checks whether the specified user has scored the game with the specified ID.
+     *
+     * @param userId The ID of the user who should have rated the game.
+     * @param gameId The ID of the game to check.
+     * @return Whether the specified user has scored the game with ID {@code gameId}.
+     */
+    boolean hasScoredGame(long userId, long gameId);
+
+    /**
+     * Gets the score that this user gave to a specified game.
+     *
+     * @param userId The ID of the user whose scores to check.
+     * @param gameId The ID of the game for which to get score.
+     * @return The score that this user gave to the game with ID {@code gameId}.
+     * @throws IllegalArgumentException If this user hasn't scored the specified game.
+     * @see #hasScoredGame(long, long)
+     */
+    int getGameScore(long userId, long gameId);
+
+    /**
+     * Checks whether this user has recorded a play status for the game with the specified ID.
+     *
+     * @param userId The ID of the user to check.
+     * @param gameId The ID of the game to check.
+     * @return Whether this user has registered a play status for the game with ID {@code gameId}.
+     */
+    boolean hasPlayStatus(long userId, long gameId);
+
+    /**
+     * Gets the play status that this user set for a specified game.
+     *
+     * @param userId The ID of the user to check.
+     * @param gameId The ID of the game for which to get a play status.
+     * @return The registered play status.
+     * @throws IllegalArgumentException If this user hasn't set a play status for the game with ID {@code gameId}.
+     * @see #hasPlayStatus(long, long)
+     */
+    PlayStatus getPlayStatus(long userId, long gameId);
 
     /**
      * Sets or updates a play status for a specified game for a specified user.
      *
-     * @param user   The user who is setting or updating status.
+     * @param userId The ID of the user who is setting or updating status.
      * @param gameId The ID of the game whose status is being registered.
      * @param status The status.
      */
-    void setPlayStatus(User user, long gameId, PlayStatus status);
+    void setPlayStatus(long userId, long gameId, PlayStatus status);
 
     /**
-     * Sets or updates a play status for a specified game for a specified user.
+     * Removes a score recorded by a specified user for a specified game.
      *
-     * @param user   The user who is setting or updating status.
-     * @param game   The game whose status is being registered.
-     * @param status The status.
+     * @param userId The ID of the user who is getting a score removed.
+     * @param gameId The ID of the game whose score is getting removed.
      */
-    void setPlayStatus(User user, Game game, PlayStatus status);
-
-    /**
-     * Removes score from user u to game id.
-     *
-     * @param u  The user who is getting a score removed
-     * @param id The id of the game whose score is getting removed
-     */
-    void removeScore(User u, long id);
+    void removeScore(long userId, long gameId);
 
     /**
      * Removes status from user u to game id.
      *
-     * @param u  The user who is getting a gameStatus removed
-     * @param id The id of the game whose gameStatus is getting removed
+     * @param userId The ID of the user who is getting a gameStatus removed
+     * @param gameId The ID of the game whose gameStatus is getting removed
      */
-    void removeStatus(User u, long id);
+    void removeStatus(long userId, long gameId);
 
     /**
      * Recommends games for user based on the scores of the games he has scored
      *
-     * @param user The user who is getting the recommendations
+     * @param userId The ID of the user who is getting the recommendations
      */
-    Collection<Game> recommendGames(User user);
-
+    Collection<Game> recommendGames(long userId);
 }

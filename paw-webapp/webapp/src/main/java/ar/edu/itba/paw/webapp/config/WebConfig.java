@@ -12,6 +12,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
@@ -22,8 +26,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 
 @Configuration
@@ -59,11 +65,31 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setPackagesToScan("ar.edu.itba.paw.webapp.model");
+        factoryBean.setDataSource(dataSource());
+        final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factoryBean.setJpaVendorAdapter(vendorAdapter);
+        final Properties properties = new Properties();
+//        properties.setProperty("hibernate.hbm2ddl.auto","update");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL92Dialect");
+// Si ponen esto en prod, hay tabla!!!
+//                properties.setProperty("hibernate.show_sql", "true");
+//                        properties.setProperty("format_sql", "true");
+        factoryBean.setJpaProperties(properties);
+        return factoryBean;
+    }
+    @Bean
+    public PlatformTransactionManager transactionManager(
+            final EntityManagerFactory emf) {
+        return new JpaTransactionManager(emf);
+    }
+
+    @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource ds) {
         final DataSourceInitializer dsi = new DataSourceInitializer();
         dsi.setDataSource(ds);
-        dsi.setDatabasePopulator(databasePopulator());
-
         return dsi;
     }
 
@@ -96,12 +122,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     /*package*/ DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
         dbp.addScript(schemaSql);
-        dbp.addScript(initialDataSql);
+//        dbp.addScript(initialDataSql);
         return dbp;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(final DataSource ds) {
-        return new DataSourceTransactionManager(ds);
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(final DataSource ds) {
+//        return new DataSourceTransactionManager(ds);
+//    }
 }

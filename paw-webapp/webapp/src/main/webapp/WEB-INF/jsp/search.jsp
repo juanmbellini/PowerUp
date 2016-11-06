@@ -87,11 +87,7 @@
                                     </div>
                                     <div class="col primary-content s7">
                                         <p class="title"><a
-                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
-                                        <p>
-                                            <c:forEach var="platform" items="${game.platforms}" varStatus="status">
-                                                ${platform} <c:if test="${!status.last}"> | </c:if>
-                                            </c:forEach>
+                                                href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
                                         </p>
                                     </div>
                                     <div class="col s1 center">

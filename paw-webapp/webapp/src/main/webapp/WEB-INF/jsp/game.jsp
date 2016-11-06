@@ -102,45 +102,45 @@
 
                             <p><b>Genres</b></p>
                             <p>
-                                <c:forEach var="genre" items="${game.genres}" varStatus="status">
+                                <c:forEach var="genre" items="${genres}" varStatus="status">
                                     <a href="<c:url value="/search">
                                         <c:param name="name" value=""/>
-                                        <c:param name="filters" value='{"genre":["${genre}"]}'/>
+                                        <c:param name="filters" value='{"genre":["${genre.name}"]}'/>
                                        </c:url>
                                     ">
-                                    ${genre}
+                                    ${genre.name}
                                     </a>
                                     <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
-                                <c:forEach var="platformEntry" items="${game.platforms}" varStatus="status">
+                                <c:forEach var="platformEntry" items="${platforms}" varStatus="status">
                                     <a href="<c:url value="/search">
                                         <c:param name="name" value="" />
-                                        <c:param name="filters" value='{"platform":["${platformEntry.key}"]}'/>
+                                        <c:param name="filters" value='{"platform":["${platformEntry.key.name}"]}'/>
                                        </c:url>
-                                    ">${platformEntry.key}</a><span style="font-size: small; float: right;">${platformEntry.value}</span>
+                                    ">${platformEntry.key.name}</a><span style="font-size: small; float: right;">${platformEntry.value.releaseDate}</span>
                                     <c:if test="${!status.last}"><div class="col s12 divider"></div><br /></c:if>
                                 </c:forEach>
                             <p><b>Developers</b></p>
-                            <c:forEach var="developer" items="${game.developers}" varStatus="status">
+                            <c:forEach var="developer" items="${developers}" varStatus="status">
                                 <a href="<c:url value="/search">
                                         <c:param name="name" value=""/>
-                                        <c:param name="filters" value='{"developer":["${developer}"]}'/>
+                                        <c:param name="filters" value='{"developer":["${developer.name}"]}'/>
                                        </c:url>
                                     ">
-                                        ${developer}
+                                        ${developer.name}
                                 </a>
                                 <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
                             <p><b>Publishers</b></p>
-                            <c:forEach var="publisher" items="${game.publishers}" varStatus="status">
+                            <c:forEach var="publisher" items="${publishers}" varStatus="status">
                                 <a href="<c:url value="/search">
                                         <c:param name="name" value=""/>
-                                        <c:param name="filters" value='{"publisher":["${publisher}"]}'/>
+                                        <c:param name="filters" value='{"publisher":["${publisher.name}"]}'/>
                                        </c:url>
                                     ">
-                                        ${publisher}
+                                        ${publisher.name}
                                 </a>
 
                                 <c:if test="${!status.last}"><br /></c:if>

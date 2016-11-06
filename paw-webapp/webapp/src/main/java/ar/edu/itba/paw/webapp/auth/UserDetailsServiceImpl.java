@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserService us;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final User user = us.findByUsername(username);
         if (user == null) {

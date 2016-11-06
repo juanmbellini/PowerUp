@@ -1,22 +1,34 @@
 package ar.edu.itba.paw.webapp.service;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-
+/**
+ * Implementation of user service layer.
+ * <b>WARNING:</b> Most of these methods may throw {@link NoSuchUserException} if an invalid user ID is provided.
+ */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao userDao;
+    //TODO consider making this a HibernateUserDao type so we can remove the bindToCurrentTransaction method from the interface, it doesn't belong there
+    private UserDao userDao;
+
+    @Autowired
+    private GameService gameService;
 
     public UserServiceImpl() {}
 
@@ -56,27 +68,95 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void scoreGame(User user, long gameId, int score) { userDao.scoreGame(user,gameId,score); }
-
-    @Override
-    public void scoreGame(User user, Game game, int score) { userDao.scoreGame(user,game,score); }
-
-    @Override
-    public void setPlayStatus(User user, long gameId, PlayStatus status) { userDao.setPlayStatus(user,gameId,status); }
-
-    @Override
-    public void setPlayStatus(User user, Game game, PlayStatus status) { userDao.setPlayStatus(user,game,status); }
-
-    @Override
-    public void removeScore(User u, long id) {
-        userDao.removeScore(u,id);
+    public void scoreGame(long userId, long gameId, int score) {
+        userDao.scoreGame(userId, gameId, score);
     }
 
     @Override
-    public void removeStatus(User u, long id) {
-        userDao.removeStatus(u,id);
+    public Set<Game> getGamesByStatus(long userId, PlayStatus status) {
+        User user = getFreshUser(userId);
+        final Set<Game> result = new LinkedHashSet<>();
+        for (Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
+            if (entry.getValue() == status) {
+                result.add(gameService.findById(entry.getKey()));
+            }
+        }
+        return result;
     }
 
     @Override
-    public Collection<Game> recommendGames(User user) { return userDao.recommendGames(user); }
+    public boolean hasScoredGame(long userId, long gameId) {
+        return getScoredGames(userId).containsKey(gameService.findById(gameId));
+    }
+
+    @Override
+    public int getGameScore(long userId, long gameId) {
+        User user = getFreshUser(userId);
+        if (!user.hasScoredGame(gameId)) {
+            throw new IllegalArgumentException(user.getUsername() + " has not scored game with ID " + gameId);
+        }
+        return user.getScoredGames().get(gameId);
+    }
+
+    @Override
+    public PlayStatus getPlayStatus(long userId, long gameId) {
+        User user = getFreshUser(userId);
+        if (!user.hasPlayStatus(gameId)) {
+            throw new IllegalArgumentException(user.getUsername() + " has no play status for game with ID " + gameId);
+        }
+        return user.getPlayStatus(gameId);
+    }
+
+    @Override
+    public boolean hasPlayStatus(long userId, long gameId) {
+        User user = getFreshUser(userId);
+        return user.getPlayStatuses().containsKey(gameId);
+    }
+
+    @Override
+    public Map<Game, Integer> getScoredGames(long userId) {
+        User user = getFreshUser(userId);
+        final Map<Game, Integer> result = new LinkedHashMap<>();
+        final Map<Long, Integer> scores = user.getScoredGames();
+        for (long gameId : scores.keySet()) {
+            result.put(gameService.findById(gameId), scores.get(gameId));
+        }
+        return result;
+    }
+
+    @Override
+    public void setPlayStatus(long userId, long gameId, PlayStatus status) {
+        userDao.setPlayStatus(userId, gameId, status);
+    }
+
+    @Override
+    public void removeScore(long userId, long gameId) {
+        userDao.removeScore(userId, gameId);
+    }
+
+    @Override
+    public void removeStatus(long userId, long gameId) {
+        userDao.removeStatus(userId, gameId);
+    }
+
+    @Override
+    public Collection<Game> recommendGames(long userId) {
+        return userDao.recommendGames(userId);
+    }
+
+    /**
+     * Gets a user by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
+     * and throws exception if not found. Helper method used to reduce code in other service methods.
+     *
+     * @param userId The ID of the user to fetch.
+     * @return The found user.
+     * @throws NoSuchUserException If no such user exists.
+     */
+    private User getFreshUser(long userId) {
+        User result = findById(userId);
+        if (result == null) {
+            throw new NoSuchUserException(userId);
+        }
+        return result;
+    }
 }

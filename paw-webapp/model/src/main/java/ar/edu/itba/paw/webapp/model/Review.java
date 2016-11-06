@@ -1,27 +1,117 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.joda.time.DateTime;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Models a review made by a specific user for a specific game.
  */
+@Entity
+@Table(name = "reviews")
 public class Review {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="reviews_seq", sequenceName="reviews_reviewid_seq",allocationSize=1)
     private long id; //TODO set id
-    private int rating;
-    private User user;
-    private String review;
-    private DateTime date;
 
-    public Review(int rating, User user, String review, DateTime date) {
-        this.rating = rating;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "game_id",referencedColumnName = "id",nullable = false)
+    private Game game;
+
+    @Column(nullable = false)
+    private String review;
+
+    @Column(nullable = false)
+    private LocalDate date;
+
+    @Column(nullable = false)
+    private int story_score;
+
+    @Column(nullable = false)
+    private int graphics_score;
+
+    @Column(nullable = false)
+    private int audio_score;
+
+    @Column(nullable = false)
+    private int controls_score;
+
+    @Column(nullable = false)
+    private int fun_score;
+
+    /*package*/  Review() {
+        //for hibernate
+    }
+    public Review(User user, String review, LocalDate date) {
         this.user = user;
         this.review = review;
         this.date = date;
     }
 
-    public int getRating() {
-        return rating;
+
+    public double getRating() {
+        return (double)(this.audio_score + this.controls_score + this.fun_score + this.graphics_score + this.story_score)/5;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public int getStory_score() {
+        return story_score;
+    }
+
+    public void setStory_score(int story_score) {
+        this.story_score = story_score;
+    }
+
+    public int getGraphics_score() {
+        return graphics_score;
+    }
+
+    public void setGraphics_score(int graphics_score) {
+        this.graphics_score = graphics_score;
+    }
+
+    public int getAudio_score() {
+        return audio_score;
+    }
+
+    public void setAudio_score(int audio_score) {
+        this.audio_score = audio_score;
+    }
+
+    public int getControls_score() {
+        return controls_score;
+    }
+
+    public void setControls_score(int controls_score) {
+        this.controls_score = controls_score;
+    }
+
+    public int getFun_score() {
+        return fun_score;
+    }
+
+    public void setFun_score(int fun_score) {
+        this.fun_score = fun_score;
     }
 
     public String getReview() {
@@ -32,12 +122,8 @@ public class Review {
         return user;
     }
 
-    public DateTime getDate() {
+    public LocalDate getDate() {
         return date;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public void setReview(String review) {
@@ -48,7 +134,7 @@ public class Review {
         this.user = user;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
