@@ -770,7 +770,7 @@
 //        array.add(1l);
 //        array.add(3l);
 //
-//        Map<Long,Game> gameMap = gameDao.findBasicDataGamesFromArrayId(array);
+//        Map<Long,Game> gameMap = gameDao.findByIds(array);
 //        Assert.assertNotNull(gameMap);
 //        assertEquals(2,gameMap.size());
 //        Game game1 = gameMap.get(1l);

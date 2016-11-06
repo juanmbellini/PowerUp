@@ -1,22 +1,16 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
-import org.hibernate.Criteria;
-import org.hibernate.internal.CriteriaImpl;
-import org.hibernate.jpa.internal.metamodel.SingularAttributeImpl;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import javax.persistence.metamodel.Metamodel;
 import java.util.*;
 
 /**
@@ -121,7 +115,7 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     //TODO Diego hacelo vos
-    public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
+    public Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters) {
         throw new notImplementedException();
     }
 
@@ -153,12 +147,67 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
-    public Map<Long, Game> findBasicDataGamesFromArrayId(Collection<Long> ids) {
-        return null;
+    public Map<Long, Game> findByIds(Collection<Long> ids) {
+        final Map<Long, Game> result = new HashMap<>();
+        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id IN (:ids)", Game.class);
+        query.setParameter("ids", ids);
+        for(Game game : query.getResultList()) {
+            result.put(game.getId(), game);
+        }
+        return result;
     }
 
     @Override
     public void updateAvgScore(long gameId) {
         throw new notImplementedException();
+    }
+
+    @Override
+    public Collection<Genre> getGenres(long gameId) {
+        return getFreshGame(gameId).getGenres();
+    }
+
+    @Override
+    public Map<Platform, GamePlatformReleaseDate> getPlatforms(long gameId) {
+        return getFreshGame(gameId).getPlatforms();
+    }
+
+    @Override
+    public Collection<Publisher> getPublishers(long gameId) {
+        return getFreshGame(gameId).getPublishers();
+    }
+
+    @Override
+    public Collection<Developer> getDevelopers(long gameId) {
+        return getFreshGame(gameId).getDevelopers();
+    }
+
+    @Override
+    public Collection<Keyword> getKeywords(long gameId) {
+        return getFreshGame(gameId).getKeywords();
+    }
+
+    @Override
+    public Collection<Review> getReviews(long gameId) {
+        return Collections.emptySet();
+        //TODO implement
+//        return getFreshGame(gameId).getReviews();
+    }
+
+    /**
+     * Gets a game by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
+     * and throws exception if not found. If present in current transaction context, the game is returned from there
+     * instead of querying the database.
+     *
+     * @param gameId The ID of the game to fetch.
+     * @return The found game.
+     * @throws NoSuchGameException If no such game exists.
+     */
+    private Game getFreshGame(long gameId) {
+        Game result = em.find(Game.class, gameId);
+        if (result == null) {
+            throw new NoSuchGameException(gameId);
+        }
+        return result;
     }
 }

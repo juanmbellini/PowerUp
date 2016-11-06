@@ -1,10 +1,9 @@
 package ar.edu.itba.paw.webapp.service;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
-import ar.edu.itba.paw.webapp.model.FilterCategory;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +33,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters) {
-        return gameDao.findRelatedGames(baseGame, filters);
+    public Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters) {
+        return gameDao.findRelatedGames(baseGameId, filters);
     }
 
     @Override
@@ -58,8 +57,38 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Map<Long, Game> findBasicDataGamesFromArrayId(Collection<Long> ids) {
-        return gameDao.findBasicDataGamesFromArrayId(ids);
+    public Collection<Genre> getGenres(long gameId) {
+        return gameDao.getGenres(gameId);
+    }
+
+    @Override
+    public Map<Platform, GamePlatformReleaseDate> getPlatforms(long gameId) {
+        return gameDao.getPlatforms(gameId);
+    }
+
+    @Override
+    public Collection<Publisher> getPublishers(long gameId) {
+        return gameDao.getPublishers(gameId);
+    }
+
+    @Override
+    public Collection<Developer> getDevelopers(long gameId) {
+        return gameDao.getDevelopers(gameId);
+    }
+
+    @Override
+    public Collection<Keyword> getKeywords(long gameId) {
+        return gameDao.getKeywords(gameId);
+    }
+
+    @Override
+    public Collection<Review> getReviews(long gameId) {
+        return gameDao.getReviews(gameId);
+    }
+
+    @Override
+    public Map<Long, Game> findByIds(Collection<Long> ids) {
+        return gameDao.findByIds(ids);
     }
 
     // TODO: Move to controller as this is a controller's task

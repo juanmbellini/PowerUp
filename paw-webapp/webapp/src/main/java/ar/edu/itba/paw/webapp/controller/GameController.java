@@ -223,7 +223,6 @@ public class GameController extends BaseController {
                 }
             }
 
-
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
@@ -244,6 +243,10 @@ public class GameController extends BaseController {
         }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
+        mav.addObject("genres", gameService.getGenres(gameId));
+        mav.addObject("platforms", gameService.getPlatforms(gameId));
+        mav.addObject("developers", gameService.getDevelopers(gameId));
+        mav.addObject("publishers", gameService.getPublishers(gameId));
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }

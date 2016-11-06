@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
@@ -85,7 +86,7 @@ public class UserHibernateDao implements UserDao {
             throw new NoSuchUserException(userId);
         }
         if(!gameDao.existsWithId(gameId)) {
-            throw new NoSuchEntityException(Game.class, gameId);
+            throw new NoSuchGameException(gameId);
         }
         user.scoreGame(gameId, score);
         em.persist(user);
@@ -98,7 +99,7 @@ public class UserHibernateDao implements UserDao {
             throw new NoSuchUserException(userId);
         }
         if(!gameDao.existsWithId(gameId)) {
-            throw new NoSuchEntityException(Game.class, gameId);
+            throw new NoSuchGameException(gameId);
         }
         user.setPlayStatus(gameId, status);
         em.persist(user);

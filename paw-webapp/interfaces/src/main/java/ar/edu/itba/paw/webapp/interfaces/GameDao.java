@@ -1,8 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.model.FilterCategory;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
@@ -29,14 +27,19 @@ public interface GameDao {
                                  boolean ascending) throws IllegalArgumentException;
 
     /**
-     * @see GameService#findRelatedGames(Game, Set)
+     * @see GameService#findRelatedGames(long, Set)
      */
-    Set<Game> findRelatedGames(Game baseGame, Set<FilterCategory> filters);
+    Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters);
 
     /**
      * @see GameService#findById(long)
      */
     Game findById(long id);
+
+    /**
+     * @see GameService#findByIds(Collection<Long>)
+     */
+    Map<Long,Game> findByIds(Collection<Long> ids);
 
     /**
      * @see GameService#existsWithId(long)
@@ -57,13 +60,38 @@ public interface GameDao {
     Collection<String> getFiltersByType(FilterCategory filterCategory);
 
     /**
-     * @see GameService#findBasicDataGamesFromArrayId(Collection<Long>)
-     */
-    Map<Long,Game> findBasicDataGamesFromArrayId(Collection<Long> ids);
-
-    /**
      * Update the avgScore of the game with id gameId.
      * @param gameId
      */
     void updateAvgScore(long gameId);
+
+    /**
+     * @see GameService#getGenres(long)
+     */
+    Collection<Genre> getGenres(long gameId);
+
+    /**
+     * @see GameService#getPlatforms(long)
+     */
+    Map<Platform, GamePlatformReleaseDate> getPlatforms(long gameId);
+
+    /**
+     * @see GameService#getPublishers(long)
+     */
+    Collection<Publisher> getPublishers(long gameId);
+
+    /**
+     * @see GameService#getDevelopers(long)
+     */
+    Collection<Developer> getDevelopers(long gameId);
+
+    /**
+     * @see GameService#getKeywords(long)
+     */
+    Collection<Keyword> getKeywords(long gameId);
+
+    /**
+     * @see GameService#getReviews(long)
+     */
+    Collection<Review> getReviews(long gameId);
 }
