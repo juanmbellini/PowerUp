@@ -186,6 +186,7 @@
                                 <p class="title">
                                     <a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
                                 </p>
+                                <p class="summary">${game.summary}</p>
                             </div>
                             <div class="col s1 center">
                                 <p style="margin-top: 33px;">${game.releaseDate.year}</p>
@@ -310,7 +311,28 @@
     <%@include file="footer.jsp" %>
 </footer>
 <script>
+<style type="text/css">
+    <c:set var="fontSizeStr" value="16px" />
+    <c:set var="fontSizeInt" value="16" />
+    <c:set var="lineHeight" value="1.5" />
+    <c:set var="maxLines" value="3" />
 
+    /* Multi-line clamping adapted from http://codepen.io/martinwolf/pen/qlFdp */
+    .summary {
+        margin: 5px auto 0 auto !important;
+        display: block; /* Fallback for non-webkit */
+        display: -webkit-box;
+        max-width: 100%;
+        font-size: ${fontSizeStr};
+        line-height: ${lineHeight};
+        -webkit-line-clamp: ${maxLines};
+        height: ${fontSizeInt * lineHeight * maxLines}; /* Fallback for non-webkit */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<script type="text/javascript">
     /**
      * Tracks currently applied filters.
      */
