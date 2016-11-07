@@ -13,4 +13,8 @@ public class NoSuchUserException extends NoSuchEntityException {
     public NoSuchUserException(long userId) {
         super(User.class, userId);
     }
+
+    public NoSuchUserException(String username) {
+        super("No User with username " + username);
+    }
 }

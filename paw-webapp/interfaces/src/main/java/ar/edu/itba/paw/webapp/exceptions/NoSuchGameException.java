@@ -13,4 +13,8 @@ public class NoSuchGameException extends NoSuchEntityException {
     public NoSuchGameException(long gameId) {
         super(Game.class, gameId);
     }
+
+    public NoSuchGameException(String title) {
+        super("No Game with title " + title);
+    }
 }
