@@ -18,7 +18,7 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="games_seq", sequenceName="games_gameid_seq",allocationSize=1)
+    @SequenceGenerator(name = "games_seq", sequenceName = "games_gameid_seq", allocationSize = 1)
     private long id;
 
     @Column(length = 100)

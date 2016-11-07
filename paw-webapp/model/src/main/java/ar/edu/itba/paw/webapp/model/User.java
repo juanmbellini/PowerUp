@@ -9,8 +9,8 @@ import java.util.*;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="users_seq", sequenceName="users_userid_seq",allocationSize=1)
+    @SequenceGenerator(name = "users_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
     private long id;
 
     @Column(length = 100, unique = true)

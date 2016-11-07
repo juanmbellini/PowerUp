@@ -11,8 +11,8 @@ import java.util.Collection;
 public class Keyword {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="keywords_seq", sequenceName="keywords_keywordid_seq",allocationSize=1)
+    @SequenceGenerator(name = "keywords_seq", sequenceName = "keywords_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "keywords_seq")
     private long id;
 
     @Column(length = 100, nullable = false)
