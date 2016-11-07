@@ -5,20 +5,16 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
+import ar.edu.itba.paw.webapp.interfaces.GenreDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.model.Authority;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by julrodriguez on 28/10/16.
@@ -30,10 +26,12 @@ public class UserHibernateDao implements UserDao {
     private EntityManager em;
 
     private final GameDao gameDao;
+    private final GenreDao genreDao;
 
     @Autowired
-    public UserHibernateDao(GameDao gameDao) {
+    public UserHibernateDao(GameDao gameDao, GenreDao genreDao) {
         this.gameDao = gameDao;
+        this.genreDao = genreDao;
     }
 
     @Override
@@ -127,7 +125,119 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public Collection<Game> recommendGames(long userId) {
-        //TODO implement
-        return Collections.emptySet();
+        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap();
+
+        User user = findById(userId);
+        Map<Long, Integer> scoredGames = user.getScoredGames();
+
+        if (scoredGames == null || scoredGames.size() == 0) return new LinkedHashSet<>();
+
+        //Genres
+        Map<Genre, Integer> countGenre = new HashMap<>();
+        Map<Genre, Long> sumGenre = new HashMap<>();
+        for (long gameId : scoredGames.keySet()) {
+           Game scoredGame = gameDao.findById(gameId);
+           for(Genre genre: scoredGame.getGenres()) {
+               if(!countGenre.containsKey(genre)) {
+                   countGenre.put(genre,0);
+               }
+               if(!sumGenre.containsKey(genre)){
+                   sumGenre.put(genre,0l);
+               }
+               countGenre.put(genre,countGenre.get(genre)+1);
+               sumGenre.put(genre,sumGenre.get(genre)+scoredGames.get(gameId));
+           }
+        }
+        Map<String, Double> mapFilterToFilterScoreGenre = new HashMap<>();
+        for(Genre genre: countGenre.keySet()){
+            mapFilterToFilterScoreGenre.put(genre.getName(),((double)sumGenre.get(genre))/countGenre.get(genre));
+        }
+        filtersScoresMap.put(FilterCategory.genre, mapFilterToFilterScoreGenre);
+
+        //Keywords
+        Map<Keyword, Integer> countKeyword = new HashMap<>();
+        Map<Keyword, Long> sumKeyword = new HashMap<>();
+        for (long gameId : scoredGames.keySet()) {
+            Game scoredGame = gameDao.findById(gameId);
+            for(Keyword keyword: scoredGame.getKeywords()) {
+                if(!countKeyword.containsKey(keyword)) {
+                    countKeyword.put(keyword,0);
+                }
+                if(!sumKeyword.containsKey(keyword)){
+                    sumKeyword.put(keyword,0l);
+                }
+                countKeyword.put(keyword,countKeyword.get(keyword)+1);
+                sumKeyword.put(keyword,sumKeyword.get(keyword)+scoredGames.get(gameId));
+            }
+        }
+        Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
+        for(Keyword keyword: countKeyword.keySet()){
+            mapFilterToFilterScoreKeyword.put(keyword.getName(),((double)sumKeyword.get(keyword))/countKeyword.get(keyword));
+        }
+        filtersScoresMap.put(FilterCategory.keyword, mapFilterToFilterScoreKeyword);
+
+        //Get all games with each of X filter with higher weight and give each a weight based on avg_score we gave.
+
+        HashMap<Game, Integer> gamesWeightMap = new HashMap();
+
+        //Initialize all games in with 2*avgScore, to favour the users acclaimed best games.
+        Collection<Game> resultGames = gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, false);
+        for (Game game : resultGames) {
+            if (!scoredGames.containsKey(game.getId())) {
+                gamesWeightMap.put(game, (int) (2 * game.getAvgScore()));
+            }
+        }
+
+        for (FilterCategory filterCategory : filtersScoresMap.keySet()) {
+            Map<String, Double> mapFilter = filtersScoresMap.get(filterCategory);
+            for (String filter : mapFilter.keySet()) {
+                double filterScore = mapFilter.get(filter);
+                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap();
+                ArrayList filterArrayParameter = new ArrayList<String>();
+                filterArrayParameter.add(filter);
+                filterParameterMap.put(filterCategory, filterArrayParameter);
+                resultGames = gameDao.searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                for (Game game : resultGames) {
+                    if (gamesWeightMap.containsKey(game)) {
+                        gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
+                    }
+                }
+            }
+        }
+
+        //Show all games ordered by weight.
+        Map<Integer, ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        for (Game game : gamesWeightMap.keySet()) {
+            int gameWeight = gamesWeightMap.get(game);
+            if (!gameWeightMapInOrder.containsKey(gameWeight)) {
+                gameWeightMapInOrder.put(gameWeight, new ArrayList<>());
+            }
+            gameWeightMapInOrder.get(gameWeight).add(game);
+
+        }
+
+
+        Collection<Game> finalResultList = new LinkedHashSet<>();
+        int counter = 0;
+        if (!gameWeightMapInOrder.isEmpty()) {
+            Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
+            while (weightIterator.hasNext() && counter < 100) {
+                int gameWeight = weightIterator.next();
+                Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
+                while (gameIterator.hasNext() && counter < 100) {
+                    finalResultList.add(gameIterator.next());
+                    counter++;
+                }
+            }
+        }
+
+        return finalResultList;
+
     }
 }
