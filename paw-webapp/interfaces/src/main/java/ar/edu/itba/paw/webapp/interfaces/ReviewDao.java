@@ -1,5 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
@@ -14,22 +16,22 @@ public interface ReviewDao {
     /**
      * @see ReviewService#findByGameId(long)
      */
-    Set<Review> findByGameId(long id);
+    Set<Review> findByGameId(long id) throws NoSuchGameException;
 
     /**
      * @see ReviewService#findByGameName(String)
      */
-    Set<Review> findByGameName(String name);
+    Set<Review> findByGameName(String name) throws NoSuchGameException;
 
     /**
      * @see ReviewService#findByUserId(long)
      */
-    Set<Review> findByUserId(long id);
+    Set<Review> findByUserId(long id) throws NoSuchUserException;
 
     /**
      * @see ReviewService#findByUserName(String)
      */
-    Set<Review> findByUserName(String name);
+    Set<Review> findByUserName(String username) throws NoSuchUserException;
 
     /**
      * @see ReviewService#findById(long)
@@ -37,7 +39,7 @@ public interface ReviewDao {
     Review findById(long reviewId);
 
     /**
-     * @see ReviewService#exists(Game, User)
+     * @see ReviewService#find(long, long)
      */
-    boolean exists(Game game, User user);
+    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
 }
