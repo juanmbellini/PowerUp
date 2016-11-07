@@ -94,4 +94,9 @@ public interface GameDao {
      * @see GameService#getReviews(long)
      */
     Collection<Review> getReviews(long gameId);
+
+    /**
+     * @see GameService#getScores(long)
+     */
+    Map<Long, Integer> getScores(long gameId);
 }

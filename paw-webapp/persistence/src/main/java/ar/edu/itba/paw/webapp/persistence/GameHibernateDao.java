@@ -194,6 +194,11 @@ public class GameHibernateDao implements GameDao {
 //        return getFreshGame(gameId).getReviews();
     }
 
+    @Override
+    public Map<Long, Integer> getScores(long gameId) {
+        return getFreshGame(gameId).getScores();
+    }
+
     /**
      * Gets a game by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
      * and throws exception if not found. If present in current transaction context, the game is returned from there
