@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
@@ -68,11 +69,14 @@ public class GameController extends BaseController {
 
     private final GenreService genreService;
 
+    private final ReviewService reviewService;
+
 
     @Autowired
-    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService, ReviewService reviewService) {
         super(us);
         this.gameService = gameService;
+        this.reviewService = reviewService;
         this.platformService = platformService;
         this.developerService = developerService;
         this.publisherService = publisherService;
@@ -273,6 +277,23 @@ public class GameController extends BaseController {
             userService.setPlayStatus(userId, id, playStatus);
         } else {
             userService.removeStatus(userId, id);
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/reviews")
+    public ModelAndView reviews(@RequestParam(name = "id") long gameId) {
+        ModelAndView mav = null;
+        try {
+            mav = new ModelAndView("reviews");
+            mav.addObject("reviews", reviewService.findByGameId(gameId));
+            mav.addObject("game", gameService.findById(gameId));    //Don't get the game from the reviews set - it might be empty
+        } catch (NoSuchGameException e) {
+            LOG.warn("Requested reviews nonexistent game (ID=" + gameId + ")");
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error rendering Reviews page", e);
+            mav = new ModelAndView("error500");
         }
         return mav;
     }
