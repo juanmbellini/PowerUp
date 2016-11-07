@@ -73,12 +73,13 @@ public class GameHibernateDao implements GameDao {
         boolean firstArgument = true;
         for(FilterCategory filterCategory: filters.keySet()){
             for(String filter: filters.get(filterCategory)){
-                fromString.append(", " + filterCategory.pretty() + " as " + filterCategory.name()+filter);
-//                if(!firstArgument){
-//                    whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-//                }
-                whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-                firstArgument = false;
+                if(!(filterCategory.name() == "platform")){
+                    fromString.append(", innerjoin g." + filterCategory.pretty() + "s as " + filter +filterCategory.name());
+                    whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
+                }
+                else{
+
+                }
             }
         }
         fromString.append(whereString);
@@ -86,7 +87,9 @@ public class GameHibernateDao implements GameDao {
         query.setParameter("name", "%"+name.toLowerCase()+"%");
         for(FilterCategory filterCategory: filters.keySet()){
             for(String filter: filters.get(filterCategory)){
-                query.setParameter(filterCategory.name() + filter.toString(),filter);
+                if(!(filterCategory.name() == "platform")) {
+                    query.setParameter(filterCategory.name() + filter.toString(), filter);
+                }
             }
         }
         fromString.append(" order by g.").append(orderCategory.name()).append(ascending ? " ASC" : " DESC");
@@ -102,7 +105,13 @@ public class GameHibernateDao implements GameDao {
         query.setMaxResults(pageSize);
         //We have to re-bind parameters after changing the query
         query.setParameter("name", "%"+name.toLowerCase()+"%");
-
+        for(FilterCategory filterCategory: filters.keySet()){
+            for(String filter: filters.get(filterCategory)){
+                if(!(filterCategory.name() == "platform")) {
+                    query.setParameter(filterCategory.name() + filter.toString(), filter);
+                }
+            }
+        }
         list = query.getResultList();
         pageResult.setOverAllAmountOfElements(list.size());
         return pageResult;
