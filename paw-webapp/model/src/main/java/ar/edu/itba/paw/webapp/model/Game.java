@@ -67,6 +67,15 @@ public class Game {
     )
     private Collection<Review> reviews;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "game_scores",
+            joinColumns=@JoinColumn(name = "game_id")
+    )
+    @MapKeyColumn (name="user_id")
+    @Column(name="score")
+    private Map<Long, Integer> scores = new HashMap<>();
+
     @Column(name="avg_score")
     private double avgScore;
 
@@ -279,6 +288,15 @@ public class Game {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
 
+    /**
+     * Gets an inverse mapping of {@link User#getScoredGames()}, where each user ID
+     * is mapped to the score that said user gave this game.
+     *
+     * @return The scores map.
+     */
+    public Map<Long, Integer> getScores() {
+        return scores;
+    }
 
     public static class GameBuilder {
 
