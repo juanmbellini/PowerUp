@@ -37,16 +37,19 @@ public class GameHibernateDao implements GameDao {
 
                 if(firstArgument){
                     firstArgument=false;
-                    fromString.append(" join g." + filterCategory.pretty().toLowerCase() + "s as " + filterCategory.name());
+                    if(!(filterCategory.name().equals("platform"))){
+                        fromString.append(" join g." + filterCategory.pretty().toLowerCase() + "s as " + filterCategory.name());
+                    }else{
+                        fromString.append(" , Platform as platform");
+                    }
                     whereString.append(" AND ( ");
                 }else{
                     whereString.append(" OR ");
                 }
-
                 if(!(filterCategory.name().equals("platform"))){
                     whereString.append(filterCategory.name() + ".name = :" + "filter"+filterToken);
                 }else{
-                    whereString.append("index("+filterCategory.name()+").name = :" + "filter"+filterToken);
+                    whereString.append(" ( platform in indices(g.platforms) and platform.name = :" + "filter"+filterToken+" ) ");
                 }
                 filterToken++;
             }
@@ -66,11 +69,9 @@ public class GameHibernateDao implements GameDao {
         filterToken=0;
         for(FilterCategory filterCategory: filters.keySet()){
             for(String filter: filters.get(filterCategory)){
-                if(!(filterCategory.name().equals("platform"))) {
-                    querySelect.setParameter("filter"+filterToken, filter);
-                    queryCount.setParameter("filter"+filterToken, filter);
-                    filterToken++;
-                }
+                querySelect.setParameter("filter"+filterToken, filter);
+                queryCount.setParameter("filter"+filterToken, filter);
+                filterToken++;
             }
         }
 
