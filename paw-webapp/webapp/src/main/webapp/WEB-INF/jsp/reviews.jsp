@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,7 @@
 </header>
 
 <main>
+    <%--TODO link back to game--%>
     <div class="container">
         <div class="section">
             <h2 class="header center orange-text">${game.name} Reviews</h2>
@@ -27,44 +29,36 @@
                     <c:when test="${fn:length(reviews) > 0}">
                         <%--REVIEWS LIST--%>
                         <ul class="collection">
-                            <c:forEach items="${reviews}" var="statusMap" varStatus="loopStatus">
+                            <c:forEach items="${reviews}" var="review">
                                 <li class="collection-item avatar">
-                                    <%--TODO: Fill with data--%>
-                                    <h5><b>TODO: Fill with data</b></h5>
                                     <i class="material-icons circle blue">exit_to_app</i>
-                                    <span class="title">Username</span>
-                                    <p class="secondary-content" style="color: black;">Date</p>
-                                    <p><a href="#!">Other reviews by &lt;username&gt;</a></p>
+                                    <span class="title">${review.user.username}</span>
+                                    <p class="secondary-content" style="color: black;">${review.date}</p>
+                                    <%--TODO Link --%>
+                                    <p><a href="#!">Other reviews by ${review.user.username}</a></p>
                                     <br/>
                                     <div class="row">
-                                        <p class="col s10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis
-                                            condimentum elit, et posuere dui faucibus at. Nunc facilisis ligula viverra risus
-                                            vestibulum, tincidunt lacinia justo finibus. Donec id pharetra purus, a lacinia sapien.
-                                            Proin vel arcu ut ligula rhoncus gravida. Praesent augue ex, suscipit at iaculis vitae,
-                                            posuere eu erat. Duis egestas enim non purus tempus vestibulum. Cras in sem ut metus
-                                            luctus maximus posuere sit amet tellus. In varius non diam sed porttitor. Suspendisse ut
-                                            ullamcorper est. Sed imperdiet ante diam, eget aliquet nisl mattis nec. Interdum et
-                                            malesuada fames ac ante ipsum primis in faucibus. Vestibulum tempus consectetur tortor a
-                                            blandit.</p>
+                                        <p class="col s10">${review.review}</p>
                                         <div class="col s2">
                                             <p style="color: #26a69a;">
-                                                Story: <span class="right">5</span>
+                                                Story: <span class="right">${review.storyScore}</span>
                                                 <br/>
-                                                Graphics: <span class="right">7</span>
+                                                Graphics: <span class="right">${review.graphicsScore}</span>
                                                 <br/>
-                                                Audio: <span class="right">6</span>
+                                                Audio: <span class="right">${review.audioScore}</span>
                                                 <br/>
-                                                Controls: <span class="right">2</span>
+                                                Controls: <span class="right">${review.controlsScore}</span>
                                                 <br/>
-                                                Fun: <span class="right">5</span>
+                                                Fun: <span class="right">${review.funScore}</span>
                                                 <br/>
-                                                <b>Overall: <span class="right">5</span></b>
+                                                <b>Overall: <span class="right"><fmt:formatNumber value="${review.overallScore}" maxFractionDigits="2" /></span></b>
                                             </p>
                                         </div>
                                     </div>
                                 </li>
                             </c:forEach>
                         </ul>
+                        <%--END REVIEWS LIST--%>
                     </c:when>
                     <c:otherwise>
                         <%--NO REVIEWS--%>
@@ -76,11 +70,11 @@
                     </c:otherwise>
                 </c:choose>
 
-                <%--Review button TODO show this conditionally and link properly--%>
-                <c:if test="${isLoggedIn}">
+                <%--Review button--%>
+                <c:if test="${isEnabled}">
                     <div class="row">
                         <div class="col s12 center">
-                            <a href="#!" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+                            <a href="<c:url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
                         </div>
                     </div>
                 </c:if>

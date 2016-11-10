@@ -1,10 +1,9 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
-import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Set;
 
@@ -14,9 +13,19 @@ import java.util.Set;
 public interface ReviewDao {
 
     /**
+     * @see ReviewService#create(long, long, String, int, int, int, int, int) 
+     */
+    Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException;
+
+    /**
      * @see ReviewService#findByGameId(long)
      */
     Set<Review> findByGameId(long id) throws NoSuchGameException;
+
+    /**
+     * @see ReviewService#findRecentByGameId(long, int)
+     */
+    Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
 
     /**
      * @see ReviewService#findByGameName(String)
@@ -24,14 +33,29 @@ public interface ReviewDao {
     Set<Review> findByGameName(String name) throws NoSuchGameException;
 
     /**
+     * @see ReviewService#findRecentByGameName(String, int)
+     */
+    Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException;
+
+    /**
      * @see ReviewService#findByUserId(long)
      */
     Set<Review> findByUserId(long id) throws NoSuchUserException;
 
     /**
-     * @see ReviewService#findByUserName(String)
+     * @see ReviewService#findRecentByUserId(long, int)
      */
-    Set<Review> findByUserName(String username) throws NoSuchUserException;
+    Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException;
+
+    /**
+     * @see ReviewService#findByUsername(String)
+     */
+    Set<Review> findByUsername(String username) throws NoSuchUserException;
+
+    /**
+     * @see ReviewService#findRecentByUsername(String, int)
+     */
+    Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException;
 
     /**
      * @see ReviewService#findById(long)

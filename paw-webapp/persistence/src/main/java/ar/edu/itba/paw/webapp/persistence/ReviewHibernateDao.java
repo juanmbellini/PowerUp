@@ -1,14 +1,12 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Platform;
-import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,12 +39,42 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
+    public Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException {
+        User user = userDao.findById(reviewerId);
+        if(user == null) {
+            throw new NoSuchUserException(reviewerId);
+        }
+        Game game = gameDao.findById(gameId);
+        if(game == null) {
+            throw new NoSuchGameException(gameId);
+        }
+        final Review reviewObj = new Review(user, game, review, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        em.persist(reviewObj);
+        return reviewObj;
+    }
+
+    @Override
     public Set<Review> findByGameId(long id) {
         if(!gameDao.existsWithId(id)) {
             throw new NoSuchGameException(id);
         }
         TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :id", Review.class);
         baseQuery.setParameter("id", id);
+        try {
+            return new LinkedHashSet<>(baseQuery.getResultList());
+        } catch(NoResultException e) {
+            return Collections.emptySet();
+        }
+    }
+
+    @Override
+    public Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException {
+        if(!gameDao.existsWithId(id)) {
+            throw new NoSuchGameException(id);
+        }
+        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :id ORDER BY R.date DESC", Review.class);
+        baseQuery.setParameter("id", id);
+        baseQuery.setMaxResults(limit);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -69,6 +97,21 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
+    public Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException {
+        if(!gameDao.existsWithTitle(name)) {
+            throw new NoSuchGameException(name);
+        }
+        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.name = :name ORDER BY R.date DESC", Review.class);
+        baseQuery.setParameter("name", name);
+        baseQuery.setMaxResults(limit);
+        try {
+            return new LinkedHashSet<>(baseQuery.getResultList());
+        } catch(NoResultException e) {
+            return Collections.emptySet();
+        }
+    }
+
+    @Override
     public Set<Review> findByUserId(long id) {
         if(!userDao.existsWithId(id)) {
             throw new NoSuchUserException(id);
@@ -83,12 +126,42 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
-    public Set<Review> findByUserName(String name) {
+    public Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException {
+        if(!userDao.existsWithId(id)) {
+            throw new NoSuchUserException(id);
+        }
+        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.id = :id ORDER BY R.date DESC", Review.class);
+        baseQuery.setParameter("id", id);
+        baseQuery.setMaxResults(limit);
+        try {
+            return new LinkedHashSet<>(baseQuery.getResultList());
+        } catch(NoResultException e) {
+            return Collections.emptySet();
+        }
+    }
+
+    @Override
+    public Set<Review> findByUsername(String name) {
         if(!userDao.existsWithUsername(name)) {
             throw new NoSuchUserException(name);
         }
         TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.username = :name", Review.class);
         baseQuery.setParameter("name", name);
+        try {
+            return new LinkedHashSet<>(baseQuery.getResultList());
+        } catch(NoResultException e) {
+            return Collections.emptySet();
+        }
+    }
+
+    @Override
+    public Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException {
+        if(!userDao.existsWithUsername(username)) {
+            throw new NoSuchUserException(username);
+        }
+        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.username = :username ORDER BY R.date DESC", Review.class);
+        baseQuery.setParameter("username", username);
+        baseQuery.setMaxResults(limit);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {

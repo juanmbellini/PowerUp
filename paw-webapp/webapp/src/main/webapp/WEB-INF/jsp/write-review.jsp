@@ -16,6 +16,7 @@
 </header>
 
 <main>
+    <%--TODO link back to game (in new tab)--%>
     <div class="container">
         <div class="section">
             <h2 class="header center orange-text">Write a review for ${game.name}</h2>
@@ -24,16 +25,38 @@
         <div class="section">
             <div class="row">
                 <div class="col s12">
-                    <h5 class="center">Write a Review</h5>
-                    <form>
+                    <c:url value="/write-review" var="postURL">
+                        <c:param name="id" value="${game.id}" />
+                    </c:url>
+                    <form:form modelAttribute="reviewForm" action="${postURL}" method="post">
                         <div class="row">
-                            <div class="input-field col s10 offset-s1">
-                                <i class="material-icons prefix">mode_edit</i>
-                                <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                <label for="icon_prefix2">First Name</label>
+                            <div class="col s9">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <form:textarea path="review" cssClass="materialize-textarea" length="10000" />
+                                    <form:errors path="review" />
+                                    <form:label path="review">Review</form:label>
+                                </div>
+                            </div>
+                            <div class="col s3">
+                                <c:set var="criteria" value="${['story', 'graphics', 'audio', 'controls', 'fun']}" />
+                                <c:set var="scores" value="${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}" />
+                                <c:forEach items="${criteria}" var="criterium">
+                                    <div class="input-field col s12">
+                                        <p style="text-transform: capitalize;">${criterium}</p>
+                                        <form:select path="${criterium}Score">
+                                            <form:options items="${scores}"/>
+                                        </form:select>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
-                    </form>
+                        <div class="row center">
+                            <button class="btn-large waves-effect waves-light" type="submit">
+                                Submit <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -44,5 +67,10 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('textarea').characterCounter();
+    });
+</script>
 </body>
 </html>

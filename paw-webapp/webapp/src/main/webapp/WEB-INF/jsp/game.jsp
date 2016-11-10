@@ -1,6 +1,7 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -152,63 +153,57 @@
                         <div class="col s12 divider"></div>
                     </div>
                     <div class="row">
-                        <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?id=${game.id}" />">See All</a></h5>
-                        <ul class="collection">
-                            <li class="collection-item avatar">
-                                <i class="material-icons circle blue">exit_to_app</i>
-                                <span class="title">Username</span>
-                                <p class="secondary-content">Overall Score: <b>8</b></p>
-                                <p>First Line (e.g. review count?)</p>
-                                <br />
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis condimentum elit, et posuere dui faucibus at. Nunc facilisis ligula viverra risus vestibulum, tincidunt lacinia justo finibus. Donec id pharetra purus, a lacinia sapien. Proin vel arcu ut ligula rhoncus gravida. Praesent augue ex, suscipit at iaculis vitae, posuere eu erat. Duis egestas enim non purus tempus vestibulum. Cras in sem ut metus luctus maximus posuere sit amet tellus. In varius non diam sed porttitor. Suspendisse ut ullamcorper est. Sed imperdiet ante diam, eget aliquet nisl mattis nec. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum tempus consectetur tortor a blandit.</p>
-                            </li>
-                            <li class="collection-item avatar">
-                                <i class="material-icons circle">folder</i>
-                                <span class="title">Username</span>
-                                <p class="secondary-content">Overall Score: <b>9</b></p>
-                                <p>First Line</p>
-                                <br />
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis condimentum elit, et posuere dui faucibus at. Nunc facilisis ligula viverra risus vestibulum, tincidunt lacinia justo finibus. Donec id pharetra purus, a lacinia sapien. Proin vel arcu ut ligula rhoncus gravida. Praesent augue ex, suscipit at iaculis vitae, posuere eu erat. Duis egestas enim non purus tempus vestibulum. Cras in sem ut metus luctus maximus posuere sit amet tellus. In varius non diam sed porttitor. Suspendisse ut ullamcorper est. Sed imperdiet ante diam, eget aliquet nisl mattis nec. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum tempus consectetur tortor a blandit.</p>
-                            </li>
-                                <%--<li class="collection-item avatar">--%>
-                                <%--<i class="material-icons circle green">insert_chart</i>--%>
-                                <%--<span class="title">Title</span>--%>
-                                <%--<p>First Line <br>--%>
-                                <%--Second Line--%>
-                                <%--</p>--%>
-                                <%--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>--%>
-                                <%--</li>--%>
-                                <%--<li class="collection-item avatar">--%>
-                                <%--<i class="material-icons circle red">play_arrow</i>--%>
-                                <%--<span class="title">Title</span>--%>
-                                <%--<p>First Line <br>--%>
-                                <%--Second Line--%>
-                                <%--</p>--%>
-                                <%--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>--%>
-                                <%--</li>--%>
-                        </ul>
+                        <c:choose>
+                            <%--No Reviews--%>
+                            <c:when test="${fn:length(reviews) == 0}">
+                                <h5 class="center">Recent Reviews</h5>
+                                <p class="center">No reviews</p>
+                            </c:when>
+                            <%--End No Reviews--%>
+                            <%--Review list--%>
+                            <c:otherwise>
+                                <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?id=${game.id}" />">See All</a></h5>
+                                <ul class="collection">
+                                    <c:forEach items="${reviews}" var="review">
+                                        <li class="collection-item avatar">
+                                            <i class="material-icons circle blue">exit_to_app</i>
+                                            <span class="title">${review.user.username}</span>
+                                            <p class="secondary-content" style="color: black;">${review.date}</p>
+                                            <%--TODO Link --%>
+                                            <p><a href="#!">Other reviews by ${review.user.username}</a></p>
+                                            <br/>
+                                            <div class="row">
+                                                <p class="col s10">${review.review}</p>
+                                                <div class="col s2">
+                                                    <p style="color: #26a69a;">
+                                                        Story: <span class="right">${review.storyScore}</span>
+                                                        <br/>
+                                                        Graphics: <span class="right">${review.graphicsScore}</span>
+                                                        <br/>
+                                                        Audio: <span class="right">${review.audioScore}</span>
+                                                        <br/>
+                                                        Controls: <span class="right">${review.controlsScore}</span>
+                                                        <br/>
+                                                        Fun: <span class="right">${review.funScore}</span>
+                                                        <br/>
+                                                        <b>Overall: <span class="right"><fmt:formatNumber value="${review.overallScore}" maxFractionDigits="2" /></span></b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </c:otherwise>
+                            <%--End Review List--%>
+                        </c:choose>
 
-                            <%--Review button TODO show this conditionally and link properly--%>
-                        <div class="row">
-                            <div class="col s12 center">
-                                <a href="#!" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+                        <c:if test="${isEnabled}">
+                            <div class="row">
+                                <div class="col s12 center">
+                                    <a href="<c:url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                                <%--<div class="col s12">--%>
-                                <%--<h5 class="center">Write a Review</h5>--%>
-                                <%--<form>--%>
-                                <%--<div class="row">--%>
-                                <%--<div class="input-field col s10 offset-s1">--%>
-                                <%--<i class="material-icons prefix">mode_edit</i>--%>
-                                <%--<textarea id="icon_prefix2" class="materialize-textarea"></textarea>--%>
-                                <%--<label for="icon_prefix2">First Name</label>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</form>--%>
-                                <%--</div>--%>
-                        </div>
+                        </c:if>
                     </div>
                     <%--END REVIEWS--%>
 
