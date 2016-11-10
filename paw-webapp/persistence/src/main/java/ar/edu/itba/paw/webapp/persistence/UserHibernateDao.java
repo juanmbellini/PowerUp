@@ -178,64 +178,7 @@ public class UserHibernateDao implements UserDao {
 
         //Get all games with each of X filter with higher weight and give each a weight based on avg_score we gave.
 
-        HashMap<Game, Integer> gamesWeightMap = new HashMap();
-
-        //Initialize all games in with 2*avgScore, to favour the users acclaimed best games.
-        Collection<Game> resultGames = gameDao.searchGames("", new HashMap(), OrderCategory.avg_score, false);
-        for (Game game : resultGames) {
-            if (!scoredGames.containsKey(game.getId())) {
-                gamesWeightMap.put(game, (int) (2 * game.getAvgScore()));
-            }
-        }
-
-        for (FilterCategory filterCategory : filtersScoresMap.keySet()) {
-            Map<String, Double> mapFilter = filtersScoresMap.get(filterCategory);
-            for (String filter : mapFilter.keySet()) {
-                double filterScore = mapFilter.get(filter);
-                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap();
-                ArrayList filterArrayParameter = new ArrayList<String>();
-                filterArrayParameter.add(filter);
-                filterParameterMap.put(filterCategory, filterArrayParameter);
-                resultGames = gameDao.searchGames("", filterParameterMap, OrderCategory.avg_score, false);
-                for (Game game : resultGames) {
-                    if (gamesWeightMap.containsKey(game)) {
-                        gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
-                    }
-                }
-            }
-        }
-
-        //Show all games ordered by weight.
-        Map<Integer, ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2.compareTo(o1);
-            }
-        });
-
-        for (Game game : gamesWeightMap.keySet()) {
-            int gameWeight = gamesWeightMap.get(game);
-            if (!gameWeightMapInOrder.containsKey(gameWeight)) {
-                gameWeightMapInOrder.put(gameWeight, new ArrayList<>());
-            }
-            gameWeightMapInOrder.get(gameWeight).add(game);
-
-        }
-
-
-        Collection<Game> finalResultList = new LinkedHashSet<>();
-        int counter = 0;
-        if (!gameWeightMapInOrder.isEmpty()) {
-            Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
-            while (weightIterator.hasNext() && counter < 100) {
-                int gameWeight = weightIterator.next();
-                Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
-                while (gameIterator.hasNext() && counter < 100) {
-                    finalResultList.add(gameIterator.next());
-                    counter++;
-                }
-            }
-        }
+        Collection<Game> finalResultList = gameDao.getRecommendedGames(scoredGames.keySet(), filtersScoresMap);
 
         return finalResultList;
 

@@ -197,7 +197,7 @@ public class GameController extends BaseController {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
         long userId = user.getId();
-        Set<Game> relatedGames = new HashSet<>();
+        Collection<Game> relatedGames = new LinkedHashSet<>();
         try {
             game = gameService.findById(gameId);
             if (game == null) {
@@ -215,7 +215,7 @@ public class GameController extends BaseController {
             Set<FilterCategory> filters = new HashSet<>();
             filters.add(FilterCategory.platform);
             filters.add(FilterCategory.genre);
-            //relatedGames = gameService.findRelatedGames(game, filters);
+            relatedGames = gameService.findRelatedGames(game.getId(), filters);
         } catch (Exception e) {
             return new ModelAndView("redirect:/error500");
         }

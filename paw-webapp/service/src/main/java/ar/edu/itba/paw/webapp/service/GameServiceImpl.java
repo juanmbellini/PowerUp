@@ -33,8 +33,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters) {
-        return gameDao.findRelatedGames(baseGameId, filters);
+    public Collection<Game> findRelatedGames(Long gameId, Set<FilterCategory> filters) {
+        return gameDao.findRelatedGames(gameId, filters);
     }
 
     @Override
