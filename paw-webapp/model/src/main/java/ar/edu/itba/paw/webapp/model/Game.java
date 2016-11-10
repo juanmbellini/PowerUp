@@ -279,6 +279,12 @@ public class Game {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
 
+    public static String getOrderField(OrderCategory orderCategory){
+        if(orderCategory==OrderCategory.avg_score) return "avgScore";
+        if(orderCategory==OrderCategory.name) return "name";
+        if(orderCategory==OrderCategory.release) return "releaseDate";
+        throw new IllegalStateException();
+    }
 
     public static class GameBuilder {
 
@@ -424,5 +430,8 @@ public class Game {
                 throw new IllegalStateException();
             }
         }
+
+
+
     }
 }
