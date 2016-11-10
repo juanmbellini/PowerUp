@@ -7,7 +7,7 @@
         <a id="logo-container" href="<c:url value="/" />" class="brand-logo">P<span class="material-icons">gamepad</span>werUp</a>
 
         <ul class="right hide-on-med-and-down">
-            <li><a href="<c:url value="/advanced-search" /> ">Search <i class="material-icons right">search</i></a></li>
+            <li><a href="<c:url value="/search" /> ">Search <i class="material-icons right">search</i></a></li>
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List <i class="material-icons right">menu</i></a></li>
@@ -24,7 +24,7 @@
 
         <ul id="nav-mobile" class="side-nav black-text">
             <%--No icons on mobile because they don't work nicely, and there's not as much room--%>
-            <li><a href="<c:url value="/advanced-search" /> ">Search</a></li>
+            <li><a href="<c:url value="/search" /> ">Search</a></li>
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List</a></li>

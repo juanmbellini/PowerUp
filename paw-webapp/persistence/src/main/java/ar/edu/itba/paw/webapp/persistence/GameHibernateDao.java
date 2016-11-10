@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.*;
@@ -23,76 +24,143 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//
-//        //Build queries for each filter
-//        for(FilterCategory category : filters.keySet()) {
-//            switch (category) {
-//                case developer:
-//                    criteriaBuilder.createQuery(Developer.class);
-//
-//
-////                    Join<Game, Developer> developerJoin = gamesRoot.join(new CollectionJoin<>());
-////                    gamesRoot.join()
-////                    conditions2.add(criteriaBuilder.in())
-////                    break;
-//            }
-//            criteriaQuery.where(criteriaBuilder.in(gamesRoot.get("platforms"), "%"+name+"%"));
-//        }
-//
-//
-//
-//
-//
-        CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
-        Root<Game> gamesRoot = criteriaQuery.from(Game.class);
-        criteriaQuery.select(gamesRoot);
 
-        //Create and add all conditions
-        List<Predicate> conditions2 = new ArrayList<>();
-        if (name != null) {
-            conditions2.add(criteriaBuilder.like(gamesRoot.get("name"), "%"+name+"%"));
+        String selectString = "select g ";
+        String countString = "select count(distinct g.id) ";
+        StringBuilder fromString = new StringBuilder("from Game as g ");
+        StringBuilder whereString = new StringBuilder(" where LOWER(g.name) like :name");
+        boolean firstArgument = true;
+        long filterToken = 0;
+        for (FilterCategory filterCategory : filters.keySet()) {
+            firstArgument = true;
+            for (String filter : filters.get(filterCategory)) {
+
+                if (firstArgument) {
+                    firstArgument = false;
+                    if (!(filterCategory.name().equals("platform"))) {
+                        fromString.append(" join g." + filterCategory.pretty().toLowerCase() + "s as " + filterCategory.name());
+                    } else {
+                        fromString.append(" , Platform as platform");
+                    }
+                    whereString.append(" AND ( ");
+                } else {
+                    whereString.append(" OR ");
+                }
+                if (!(filterCategory.name().equals("platform"))) {
+                    whereString.append(filterCategory.name() + ".name = :" + "filter" + filterToken);
+                } else {
+                    whereString.append(" ( platform in indices(g.platforms) and platform.name = :" + "filter" + filterToken + " ) ");
+                }
+                filterToken++;
+            }
+            if (!firstArgument) whereString.append(" )");
+        }
+        fromString.append(whereString);
+
+        Query queryCount = em.createQuery(countString + fromString.toString());
+
+        fromString.append(" order by g.").append(Game.getOrderField(orderCategory)).append(ascending ? " ASC" : " DESC");
+        TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
+        querySelect.setFirstResult(pageSize * (pageNumber - 1));
+        querySelect.setMaxResults(pageSize);
+        http://localhost:8080/search?filters=%7B%22platform%22:%5B%22Ouya%22%5D%7D&pageSize=50&orderCategory=release&orderBoolean=descending&name=d
+        http://localhost:8080/search?filters=%7B%22platform%22%3A%5B%22Ouya%22%5D%7D&pageSize=50&orderCategory=name&orderBoolean=descending&name=d
+        querySelect.setParameter("name", "%" + name.toLowerCase() + "%");
+        queryCount.setParameter("name", "%" + name.toLowerCase() + "%");
+        filterToken = 0;
+        for (FilterCategory filterCategory : filters.keySet()) {
+            for (String filter : filters.get(filterCategory)) {
+                querySelect.setParameter("filter" + filterToken, filter);
+                queryCount.setParameter("filter" + filterToken, filter);
+                filterToken++;
+            }
         }
 
-        criteriaQuery.where(conditions2.toArray(new Predicate[0]));
+        Long count = (Long) queryCount.getSingleResult();
 
-        List<Game> games = em.createQuery(criteriaQuery).getResultList();
-        Page<Game> page = new Page<>();
-        page.setTotalPages(Math.max((int)Math.floor(games.size() / pageSize), 1));
-        page.setPageNumber(pageNumber);
-        page.setPageSize(pageSize);
-        page.setOverAllAmountOfElements(games.size());
-        page.setData(games);
+        Page<Game> pageResult = new Page<>();
+        pageResult.setTotalPages(Math.max((int) Math.ceil((double) count / pageSize), 1));
+        pageResult.setPageNumber(pageNumber);
+        pageResult.setPageSize(pageSize);
+        pageResult.setOverAllAmountOfElements(count);
 
-        return page;
+        List<Game> list = querySelect.getResultList();
+        pageResult.setData(list);
+        return pageResult;
+
+
+//        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+////
+////        //Build queries for each filter
+////        for(FilterCategory category : filters.keySet()) {
+////            switch (category) {
+////                case developer:
+////                    criteriaBuilder.createQuery(Developer.class);
+////
+////
+//////                    Join<Game, Developer> developerJoin = gamesRoot.join(new CollectionJoin<>());
+//////                    gamesRoot.join()
+//////                    conditions2.add(criteriaBuilder.in())
+//////                    break;
+////            }
+////            criteriaQuery.where(criteriaBuilder.in(gamesRoot.get("platforms"), "%"+name+"%"));
+////        }
+////
+////
+////
+////
+////
+//        CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
+//        Root<Game> gamesRoot = criteriaQuery.from(Game.class);
+//        criteriaQuery.select(gamesRoot);
+//
+//        //Create and add all conditions
+//        List<Predicate> conditions2 = new ArrayList<>();
+//        if (name != null) {
+//            conditions2.add(criteriaBuilder.like(gamesRoot.get("name"), "%"+name+"%"));
+//        }
+//
+//        criteriaQuery.where(conditions2.toArray(new Predicate[0]));
+//
+//        List<Game> games = em.createQuery(criteriaQuery).setFirstResult(pageSize * (pageNumber - 1)).setMaxResults(pageSize).getResultList();
+//        Page<Game> page = new Page<>();
+//        page.setTotalPages(Math.max((int)Math.floor(games.size() / pageSize), 1));
+//        page.setPageNumber(pageNumber);
+//        page.setPageSize(pageSize);
+//        page.setOverAllAmountOfElements(games.size());
+//        page.setData(games);
+//
+//        return page;
     }
 
     public Page<Game> searchGames2(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
         StringBuilder fromString = new StringBuilder("from Game as g ");
         StringBuilder whereString = new StringBuilder(" where LOWER(g.name) like :name");
         boolean firstArgument = true;
-        for(FilterCategory filterCategory: filters.keySet()){
-            for(String filter: filters.get(filterCategory)){
-                fromString.append(", " + filterCategory.pretty() + " as " + filterCategory.name()+filter);
-//                if(!firstArgument){
-//                    whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-//                }
-                whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-                firstArgument = false;
+        for (FilterCategory filterCategory : filters.keySet()) {
+            for (String filter : filters.get(filterCategory)) {
+                if (!(filterCategory.name() == "platform")) {
+                    fromString.append(" join g." + filterCategory.pretty().toLowerCase() + "s as " + filter + filterCategory.name());
+                    whereString.append(" AND " + filterCategory.name() + filter.toString() + ".name = :" + filterCategory.name() + filter);
+                } else {
+
+                }
             }
         }
         fromString.append(whereString);
         TypedQuery<Game> query = em.createQuery(fromString.toString(), Game.class);
-        query.setParameter("name", "%"+name.toLowerCase()+"%");
-        for(FilterCategory filterCategory: filters.keySet()){
-            for(String filter: filters.get(filterCategory)){
-                query.setParameter(filterCategory.name() + filter.toString(),filter);
+        query.setParameter("name", "%" + name.toLowerCase() + "%");
+        for (FilterCategory filterCategory : filters.keySet()) {
+            for (String filter : filters.get(filterCategory)) {
+                if (!(filterCategory.name() == "platform")) {
+                    query.setParameter(filterCategory.name() + filter.toString(), filter);
+                }
             }
         }
         fromString.append(" order by g.").append(orderCategory.name()).append(ascending ? " ASC" : " DESC");
         List<Game> list = query.getResultList();
         Page<Game> pageResult = new Page<>();
-        pageResult.setTotalPages(Math.max((int)Math.floor(list.size() / pageSize), 1));
+        pageResult.setTotalPages(Math.max((int) Math.floor(list.size() / pageSize), 1));
         pageResult.setPageNumber(pageNumber);
         pageResult.setPageSize(pageSize);
         pageResult.setData(list);
@@ -101,8 +169,14 @@ public class GameHibernateDao implements GameDao {
         query.setFirstResult(pageSize * (pageNumber - 1));
         query.setMaxResults(pageSize);
         //We have to re-bind parameters after changing the query
-        query.setParameter("name", "%"+name.toLowerCase()+"%");
-
+        query.setParameter("name", "%" + name.toLowerCase() + "%");
+        for (FilterCategory filterCategory : filters.keySet()) {
+            for (String filter : filters.get(filterCategory)) {
+                if (!(filterCategory.name() == "platform")) {
+                    query.setParameter(filterCategory.name() + filter.toString(), filter);
+                }
+            }
+        }
         list = query.getResultList();
         pageResult.setOverAllAmountOfElements(list.size());
         return pageResult;
@@ -151,7 +225,7 @@ public class GameHibernateDao implements GameDao {
         final Map<Long, Game> result = new HashMap<>();
         final TypedQuery<Game> query = em.createQuery("from Game as g where g.id IN (:ids)", Game.class);
         query.setParameter("ids", ids);
-        for(Game game : query.getResultList()) {
+        for (Game game : query.getResultList()) {
             result.put(game.getId(), game);
         }
         return result;

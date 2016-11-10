@@ -7,6 +7,7 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -127,7 +128,7 @@ public class GameController extends BaseController {
             return mav;
         }
 
-        Map<FilterCategory, List<String>> filters;
+        Map<FilterCategory, List<String>> filters = null;
         try {
             filters = objectMapper.readValue(filtersStr, typeReference);
 
@@ -159,45 +160,33 @@ public class GameController extends BaseController {
             e.printStackTrace();  // Wrong filtersJson, pageSizeStr or pageNumberStr, or pageNumber strings
             mav.setViewName("redirect:/error400");
         }
-        return mav;
-    }
 
-    @RequestMapping("/advanced-search")
-    public ModelAndView advancedSearch() {
-        final ModelAndView mav = new ModelAndView("advanced-search");
-        //Add all possible filter types, as strings, in ascending alphabetical order
-        try {
-            //Platforms
-            Set<String> platforms = new TreeSet<>();
-            for(Platform p : platformService.all()) {
-                platforms.add(p.getName());
-            }
-            mav.addObject("platforms", platforms);
-
-            //Developers
-            Set<String> developers = new TreeSet<>();
-            for(Developer p : developerService.all()) {
-                developers.add(p.getName());
-            }
-            mav.addObject("developers", developers);
-
-            //Publishers
-            Set<String> publishers = new TreeSet<>();
-            for(Publisher p : publisherService.all()) {
-                publishers.add(p.getName());
-            }
-            mav.addObject("publishers", publishers);
-
-            //Genres
-            Set<String> genres = new TreeSet<>();
-            for(Genre p : genreService.all()) {
-                genres.add(p.getName());
-            }
-            mav.addObject("genres", genres);
-        } catch (Exception e) {
-            LOG.error("Error populating filter types", e);
-            return new ModelAndView("redirect:/error500");
+        //Add all possible filters (categories and values) for the filters section, indicating whether the filter is applied or not
+        //Genres
+        Set<Object[]> genres = new LinkedHashSet<>();
+        for(Genre g : genreService.all()) {
+            genres.add(new Object[] {g.getName(), filters != null && filters.containsKey(FilterCategory.genre) && filters.get(FilterCategory.genre).contains(g.getName())});
         }
+        mav.addObject("genres", genres);
+        //Platforms
+        Set<Object[]> platforms = new LinkedHashSet<>();
+        for(Platform p : platformService.all()) {
+            platforms.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
+        }
+        mav.addObject("platforms", platforms);
+        //Developers
+        Set<Object[]> developers = new LinkedHashSet<>();
+        for(Developer d : developerService.all()) {
+            developers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
+        }
+        mav.addObject("developers", developers);
+        //Publishers
+        Set<Object[]> publishers = new LinkedHashSet<>();
+        for(Publisher d : publisherService.all()) {
+            publishers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(d.getName())});
+        }
+        mav.addObject("publishers", publishers);
+
         return mav;
     }
 
@@ -287,6 +276,4 @@ public class GameController extends BaseController {
         }
         return mav;
     }
-
-
 }
