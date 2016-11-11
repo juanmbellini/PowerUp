@@ -155,12 +155,14 @@
                             <h5 class="center">Related Games</h5>
                             <div class="slick-carousel">
                                 <c:forEach var="game" items="${relatedGames}">
-                                    <div>
-                                        <a href="<c:url value="/game?id=${game.id}"/>">
-                                            <img data-lazy="${game.coverPictureUrl}" />
-                                        </a>
-                                        <h5 class="center" style="overflow-wrap: break-word;">
-                                            <a style="color:black;" href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
+                                    <div class="slide-container">
+                                        <div class="valign-wrapper slide-image">
+                                            <a href="<c:url value="/game?id=${game.id}"/>">
+                                                <img data-lazy="${game.coverPictureUrl}" class="valign"/>
+                                            </a>
+                                        </div>
+                                        <h5 class="center slide-text">
+                                            <a href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
                                         </h5>
                                     </div>
                                 </c:forEach>
