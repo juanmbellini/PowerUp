@@ -87,9 +87,7 @@ public class GameHibernateDao implements GameDao {
         List<Game> list = querySelect.getResultList();
         pageResult.setData(list);
         return pageResult;
-
     }
-
 
     @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) throws IllegalArgumentException {
@@ -272,6 +270,11 @@ public class GameHibernateDao implements GameDao {
         }
 
         return finalResultList;
+    }
+
+    @Override
+    public Map<Long, Integer> getScores(long gameId) {
+        return getFreshGame(gameId).getScores();
     }
 
     /**

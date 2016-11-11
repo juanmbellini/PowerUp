@@ -125,4 +125,14 @@ public interface GameService {
      * @return The matching reviews.
      */
     Collection<Review> getReviews(long gameId);
+
+    /**
+     * Given a game ID, gets a map relating user IDs to the scores that said users
+     * gave to the specified game. This returns the "inverse" map that would result
+     * from calling {@link UserService#getScoredGames(long)}.
+     *
+     * @param gameId The ID of the game whose scores to get.
+     * @return The resulting map.
+     */
+    Map<Long, Integer> getScores(long gameId);
 }

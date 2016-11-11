@@ -67,6 +67,15 @@ public class Game {
     )
     private Collection<Review> reviews;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "game_scores",
+            joinColumns=@JoinColumn(name = "game_id")
+    )
+    @MapKeyColumn (name="user_id")
+    @Column(name="score")
+    private Map<Long, Integer> scores = new HashMap<>();
+
     @Column(name="avg_score")
     private double avgScore;
 
@@ -279,11 +288,27 @@ public class Game {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
 
-    public static String getOrderField(OrderCategory orderCategory){
-        if(orderCategory==OrderCategory.avg_score) return "avgScore";
-        if(orderCategory==OrderCategory.name) return "name";
-        if(orderCategory==OrderCategory.release) return "releaseDate";
-        throw new IllegalStateException();
+    public static String getOrderField(OrderCategory orderCategory) {
+        switch (orderCategory) {
+            case avg_score:
+                return "avgScore";
+            case name:
+                return "name";
+            case release:
+                return "releaseDate";
+            default:
+                throw new IllegalStateException("Attempted to get an orderBy field from an unsupported order category: " + orderCategory);
+        }
+    }
+
+    /**
+     * Gets an inverse mapping of {@link User#getScoredGames()}, where each user ID
+     * is mapped to the score that said user gave this game.
+     *
+     * @return The scores map.
+     */
+    public Map<Long, Integer> getScores() {
+        return scores;
     }
 
     public static class GameBuilder {
@@ -430,8 +455,5 @@ public class Game {
                 throw new IllegalStateException();
             }
         }
-
-
-
     }
 }

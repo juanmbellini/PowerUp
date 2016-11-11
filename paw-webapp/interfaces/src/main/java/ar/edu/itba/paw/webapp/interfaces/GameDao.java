@@ -97,6 +97,11 @@ public interface GameDao {
     Collection<Review> getReviews(long gameId);
 
     /**
+     * @see GameService#getScores(long)
+     */
+    Map<Long, Integer> getScores(long gameId);
+
+    /**
      * Return the recommended games, giving different importance to different filters.
      *
      * @param excludedGameIds A set of games that must no be in the result set.

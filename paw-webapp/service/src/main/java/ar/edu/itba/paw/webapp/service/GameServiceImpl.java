@@ -86,6 +86,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Map<Long, Integer> getScores(long gameId) {
+        return gameDao.getScores(gameId);
+    }
+
+    @Override
     public Map<Long, Game> findByIds(Collection<Long> ids) {
         return gameDao.findByIds(ids);
     }
