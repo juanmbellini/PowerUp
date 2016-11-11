@@ -34,7 +34,7 @@ public interface GameService {
      * @param filters    Criteria under which to find related games.
      * @return The matching games. May be empty but not {@code null}.
      */
-    Collection<Game> findRelatedGames(Long gameId, Set<FilterCategory> filters);
+    Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters);
 
     /**
      * Finds the {@link Game} with the specified ID.

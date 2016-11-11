@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
 import java.util.*;
 
 /**
@@ -38,7 +37,7 @@ public class GameHibernateDao implements GameDao {
                 if (firstArgument) {
                     firstArgument = false;
                     if (!(filterCategory.name().equals("platform"))) {
-                        fromString.append(" join g." + filterCategory.pretty().toLowerCase() + "s as " + filterCategory.name());
+                        fromString.append(" join g.").append(filterCategory.pretty().toLowerCase()).append("s as ").append(filterCategory.name());
                     } else {
                         fromString.append(" , Platform as platform");
                     }
@@ -47,9 +46,9 @@ public class GameHibernateDao implements GameDao {
                     whereString.append(" OR ");
                 }
                 if (!(filterCategory.name().equals("platform"))) {
-                    whereString.append(filterCategory.name() + ".name = :" + "filter" + filterToken);
+                    whereString.append(filterCategory.name()).append(".name = :").append("filter").append(filterToken);
                 } else {
-                    whereString.append(" ( platform in indices(g.platforms) and platform.name = :" + "filter" + filterToken + " ) ");
+                    whereString.append(" ( platform in indices(g.platforms) and platform.name = :" + "filter").append(filterToken).append(" ) ");
                 }
                 filterToken++;
             }
@@ -99,42 +98,46 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
-    public Collection<Game> findRelatedGames(Long id, Set<FilterCategory> filters) {//Filters?
+    public Collection<Game> findRelatedGames(long id, Set<FilterCategory> unusedFilters) {
 
         Game game = findById(id);
         Set<Long> notToIncludeGames = new HashSet<>();
         notToIncludeGames.add(id);
-        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap();
+        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap<>();
+        final int genreLimit = 5, keywordLimit = 5, developerLimit = 1;
+        final double genreWeight = 10, keywordWeight = 10, developerWeight = 5;
         int countFilter = 0;
 
+        //Consider up to genreLimit genres, with a weight of genreWeight
         Map<String, Double> mapFilterToFilterScoreGenre = new HashMap<>();
         Iterator<Genre> genreIterator = game.getGenres().iterator();
-        while (countFilter < 5 && genreIterator.hasNext()) {
-            mapFilterToFilterScoreGenre.put(genreIterator.next().getName(), 10.0);
+        while (countFilter < genreLimit && genreIterator.hasNext()) {
+            mapFilterToFilterScoreGenre.put(genreIterator.next().getName(), genreWeight);
             countFilter++;
         }
         filtersScoresMap.put(FilterCategory.genre, mapFilterToFilterScoreGenre);
 
+        //Analogous, with keywords
         countFilter=0;
         Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
         Iterator<Keyword> keywordIterator = game.getKeywords().iterator();
-        while (countFilter < 5 && keywordIterator.hasNext()) {
-            mapFilterToFilterScoreKeyword.put(keywordIterator.next().getName(), 10.0);
+        while (countFilter < keywordLimit && keywordIterator.hasNext()) {
+            mapFilterToFilterScoreKeyword.put(keywordIterator.next().getName(), keywordWeight);
             countFilter++;
         }
         filtersScoresMap.put(FilterCategory.keyword, mapFilterToFilterScoreKeyword);
 
+        //Analogous, with developers
         countFilter=0;
         Map<String, Double> mapFilterToFilterScoreDeveloper = new HashMap<>();
         Iterator<Developer> developerIterator = game.getDevelopers().iterator();
-        while (countFilter < 1 && developerIterator.hasNext()) {
-            mapFilterToFilterScoreDeveloper.put(developerIterator.next().getName(), 5.0);
+        while (countFilter < developerLimit && developerIterator.hasNext()) {
+            mapFilterToFilterScoreDeveloper.put(developerIterator.next().getName(), developerWeight);
             countFilter++;
         }
         filtersScoresMap.put(FilterCategory.developer, mapFilterToFilterScoreDeveloper);
 
-        Collection<Game> finalResultList = getRecommendedGames(notToIncludeGames, filtersScoresMap);
-        return finalResultList;
+        return getRecommendedGames(notToIncludeGames, filtersScoresMap);
     }
 
     @Override
@@ -212,41 +215,24 @@ public class GameHibernateDao implements GameDao {
 //        return getFreshGame(gameId).getReviews();
     }
 
-    /**
-     * Gets a game by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
-     * and throws exception if not found. If present in current transaction context, the game is returned from there
-     * instead of querying the database.
-     *
-     * @param gameId The ID of the game to fetch.
-     * @return The found game.
-     * @throws NoSuchGameException If no such game exists.
-     */
-    private Game getFreshGame(long gameId) {
-        Game result = em.find(Game.class, gameId);
-        if (result == null) {
-            throw new NoSuchGameException(gameId);
-        }
-        return result;
-    }
+    public Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap) {
+        HashMap<Game, Integer> gamesWeightMap = new HashMap<>();
 
-
-    public Collection<Game> getRecommendedGames(Set<Long> notToIncludeGames, Map<FilterCategory, Map<String, Double>> filtersScoresMap) {
-        HashMap<Game, Integer> gamesWeightMap = new HashMap();
-
+        //TODO document this method, very hard to understand what each part is doing at a glance
 
         for (FilterCategory filterCategory : filtersScoresMap.keySet()) {
             Map<String, Double> mapFilter = filtersScoresMap.get(filterCategory);
             for (String filter : mapFilter.keySet()) {
                 double filterScore = mapFilter.get(filter);
-                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap();
-                ArrayList filterArrayParameter = new ArrayList<String>();
+                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap<>();
+                ArrayList<String> filterArrayParameter = new ArrayList<>();
                 filterArrayParameter.add(filter);
                 filterParameterMap.put(filterCategory, filterArrayParameter);
                 Collection<Game> resultGames  = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
                 for (Game game : resultGames) {
-                    if (!notToIncludeGames.contains(game.getId())) {
+                    if (!excludedGameIds.contains(game.getId())) {
                         if(!gamesWeightMap.containsKey(game)){
-                            gamesWeightMap.put(game,0);
+                            gamesWeightMap.put(game, 0);
                         }
                         gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
                     }
@@ -271,7 +257,6 @@ public class GameHibernateDao implements GameDao {
 
         }
 
-
         Collection<Game> finalResultList = new LinkedHashSet<>();
         int counter = 0;
         if (!gameWeightMapInOrder.isEmpty()) {
@@ -287,5 +272,22 @@ public class GameHibernateDao implements GameDao {
         }
 
         return finalResultList;
+    }
+
+    /**
+     * Gets a game by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
+     * and throws exception if not found. If present in current transaction context, the game is returned from there
+     * instead of querying the database.
+     *
+     * @param gameId The ID of the game to fetch.
+     * @return The found game.
+     * @throws NoSuchGameException If no such game exists.
+     */
+    private Game getFreshGame(long gameId) {
+        Game result = em.find(Game.class, gameId);
+        if (result == null) {
+            throw new NoSuchGameException(gameId);
+        }
+        return result;
     }
 }

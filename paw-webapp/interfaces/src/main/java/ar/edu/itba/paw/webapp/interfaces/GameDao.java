@@ -27,9 +27,9 @@ public interface GameDao {
                                  boolean ascending) throws IllegalArgumentException;
 
     /**
-     * @see GameService#findRelatedGames(Long, Set)
+     * @see GameService#findRelatedGames(long, Set)
      */
-    Collection<Game> findRelatedGames(Long gameId, Set<FilterCategory> filters);
+    Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters);
 
     /**
      * @see GameService#findById(long)
@@ -97,12 +97,13 @@ public interface GameDao {
     Collection<Review> getReviews(long gameId);
 
     /**
-     * Return the recommended games following the scores for each filter.
+     * Return the recommended games, giving different importance to different filters.
      *
-     * @param notToIncludeGames A set of games that must no be in the result set.
-     * @param filtersScoresMap  The mao with the score given for each filter.
-     * @return
+     * @param excludedGameIds A set of games that must no be in the result set.
+     * @param filtersScoresMap A map with the score given for each filter. The higher the score, the more likely that a
+     *                         different game that matches the same filter will be included in the result.
+     * @return The recommended games.
      */
-    Collection<Game> getRecommendedGames(Set<Long> notToIncludeGames, Map<FilterCategory, Map<String, Double>> filtersScoresMap);
+    Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap);
 
 }
