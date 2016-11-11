@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.service;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.*;
@@ -33,8 +32,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters) {
-        return gameDao.findRelatedGames(baseGameId, filters);
+    public Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters) {
+        return gameDao.findRelatedGames(gameId, filters);
     }
 
     @Override

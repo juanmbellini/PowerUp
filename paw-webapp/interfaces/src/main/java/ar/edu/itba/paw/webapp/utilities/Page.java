@@ -30,7 +30,7 @@ public class Page<T> {
     /**
      * The total amount of elements in all the pages
      */
-    private int overAllAmountOfElements = 0;
+    private long overAllAmountOfElements = 0;
     /**
      * The data included in this page
      */
@@ -78,7 +78,7 @@ public class Page<T> {
      *
      * @return The overall amount of elements in all the pages
      */
-    public int getOverAllAmountOfElements() {
+    public long getOverAllAmountOfElements() {
         return overAllAmountOfElements;
     }
 
@@ -136,7 +136,7 @@ public class Page<T> {
      *
      * @param overAllAmountOfElements The number of elements in all the pages
      */
-    public void setOverAllAmountOfElements(int overAllAmountOfElements) {
+    public void setOverAllAmountOfElements(long overAllAmountOfElements) {
         if (overAllAmountOfElements > pageSize * totalPages) {
             throw new IllegalPageException();
         }

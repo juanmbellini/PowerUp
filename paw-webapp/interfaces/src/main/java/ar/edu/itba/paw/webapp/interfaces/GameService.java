@@ -20,6 +20,7 @@ public interface GameService {
      *
      * @param name    Partial or complete name of the game. An empty name will match all games.
      * @param filters Criteria for the games to match. May be empty, but not {@code null}.
+     * @param pageSize is the size of the page. If it is 0, it will be considered to be the full page.
      * @return A {@link Page} of games matching the specified criteria.
      * @throws IllegalArgumentException if a list in the {@code filters} map is null.
      */
@@ -29,11 +30,11 @@ public interface GameService {
     /**
      * Finds games related to a base game that match criteria specified in {@code filters}.
      *
-     * @param baseGameId The ID of the game to compare against.
+     * @param gameId The ID form the game to compare against.
      * @param filters    Criteria under which to find related games.
      * @return The matching games. May be empty but not {@code null}.
      */
-    Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters);
+    Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters);
 
     /**
      * Finds the {@link Game} with the specified ID.

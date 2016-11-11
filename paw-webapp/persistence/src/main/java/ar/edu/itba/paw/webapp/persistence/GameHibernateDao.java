@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
 import java.util.*;
 
 /**
@@ -23,100 +23,119 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//
-//        //Build queries for each filter
-//        for(FilterCategory category : filters.keySet()) {
-//            switch (category) {
-//                case developer:
-//                    criteriaBuilder.createQuery(Developer.class);
-//
-//
-////                    Join<Game, Developer> developerJoin = gamesRoot.join(new CollectionJoin<>());
-////                    gamesRoot.join()
-////                    conditions2.add(criteriaBuilder.in())
-////                    break;
-//            }
-//            criteriaQuery.where(criteriaBuilder.in(gamesRoot.get("platforms"), "%"+name+"%"));
-//        }
-//
-//
-//
-//
-//
-        CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
-        Root<Game> gamesRoot = criteriaQuery.from(Game.class);
-        criteriaQuery.select(gamesRoot);
 
-        //Create and add all conditions
-        List<Predicate> conditions2 = new ArrayList<>();
-        if (name != null) {
-            conditions2.add(criteriaBuilder.like(gamesRoot.get("name"), "%"+name+"%"));
-        }
-
-        criteriaQuery.where(conditions2.toArray(new Predicate[0]));
-
-        List<Game> games = em.createQuery(criteriaQuery).getResultList();
-        Page<Game> page = new Page<>();
-        page.setTotalPages(Math.max((int)Math.floor(games.size() / pageSize), 1));
-        page.setPageNumber(pageNumber);
-        page.setPageSize(pageSize);
-        page.setOverAllAmountOfElements(games.size());
-        page.setData(games);
-
-        return page;
-    }
-
-    public Page<Game> searchGames2(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
+        String selectString = "select g ";
+        String countString = "select count(distinct g.id) ";
         StringBuilder fromString = new StringBuilder("from Game as g ");
         StringBuilder whereString = new StringBuilder(" where LOWER(g.name) like :name");
         boolean firstArgument = true;
-        for(FilterCategory filterCategory: filters.keySet()){
-            for(String filter: filters.get(filterCategory)){
-                fromString.append(", " + filterCategory.pretty() + " as " + filterCategory.name()+filter);
-//                if(!firstArgument){
-//                    whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-//                }
-                whereString.append(" AND " + filterCategory.name()+filter.toString() + ".name = :" + filterCategory.name() + filter);
-                firstArgument = false;
+        long filterToken = 0;
+        for (FilterCategory filterCategory : filters.keySet()) {
+            firstArgument = true;
+            for (String filter : filters.get(filterCategory)) {
+
+                if (firstArgument) {
+                    firstArgument = false;
+                    if (!(filterCategory.name().equals("platform"))) {
+                        fromString.append(" join g.").append(filterCategory.pretty().toLowerCase()).append("s as ").append(filterCategory.name());
+                    } else {
+                        fromString.append(" , Platform as platform");
+                    }
+                    whereString.append(" AND ( ");
+                } else {
+                    whereString.append(" OR ");
+                }
+                if (!(filterCategory.name().equals("platform"))) {
+                    whereString.append(filterCategory.name()).append(".name = :").append("filter").append(filterToken);
+                } else {
+                    whereString.append(" ( platform in indices(g.platforms) and platform.name = :" + "filter").append(filterToken).append(" ) ");
+                }
+                filterToken++;
             }
+            if (!firstArgument) whereString.append(" )");
         }
         fromString.append(whereString);
-        TypedQuery<Game> query = em.createQuery(fromString.toString(), Game.class);
-        query.setParameter("name", "%"+name.toLowerCase()+"%");
-        for(FilterCategory filterCategory: filters.keySet()){
-            for(String filter: filters.get(filterCategory)){
-                query.setParameter(filterCategory.name() + filter.toString(),filter);
+
+        Query queryCount = em.createQuery(countString + fromString.toString());
+
+        fromString.append(" order by g.").append(Game.getOrderField(orderCategory)).append(ascending ? " ASC" : " DESC");
+        TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
+
+
+        querySelect.setParameter("name", "%" + name.toLowerCase() + "%");
+        queryCount.setParameter("name", "%" + name.toLowerCase() + "%");
+        filterToken = 0;
+        for (FilterCategory filterCategory : filters.keySet()) {
+            for (String filter : filters.get(filterCategory)) {
+                querySelect.setParameter("filter" + filterToken, filter);
+                queryCount.setParameter("filter" + filterToken, filter);
+                filterToken++;
             }
         }
-        fromString.append(" order by g.").append(orderCategory.name()).append(ascending ? " ASC" : " DESC");
-        List<Game> list = query.getResultList();
-        Page<Game> pageResult = new Page<>();
-        pageResult.setTotalPages(Math.max((int)Math.floor(list.size() / pageSize), 1));
-        pageResult.setPageNumber(pageNumber);
-        pageResult.setPageSize(pageSize);
-        pageResult.setData(list);
-//        fromString.append(" LIMIT ").append(pageSize).append(" OFFSET ").append(pageSize * (pageNumber - 1));
-        query = em.createQuery(fromString.toString(), Game.class);
-        query.setFirstResult(pageSize * (pageNumber - 1));
-        query.setMaxResults(pageSize);
-        //We have to re-bind parameters after changing the query
-        query.setParameter("name", "%"+name.toLowerCase()+"%");
 
-        list = query.getResultList();
-        pageResult.setOverAllAmountOfElements(list.size());
+        int count = ((Long) queryCount.getSingleResult()).intValue(); //TODO wat if more?
+        int actualPageSize = pageSize == 0 ? count : pageSize;
+
+        querySelect.setFirstResult(actualPageSize * (pageNumber - 1));
+        querySelect.setMaxResults(actualPageSize);
+        Page<Game> pageResult = new Page<>();
+        pageResult.setTotalPages(Math.max((int) Math.ceil((double) count / actualPageSize), 1));
+        pageResult.setPageNumber(pageNumber);
+        pageResult.setPageSize(actualPageSize);
+        pageResult.setOverAllAmountOfElements(count);
+
+        List<Game> list = querySelect.getResultList();
+        pageResult.setData(list);
         return pageResult;
     }
 
     @Override
     public Collection<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending) throws IllegalArgumentException {
-        return null;
+        Page<Game> page = searchGames(name, filters, orderCategory, ascending, 0, 1);
+        return page.getData();
     }
 
     @Override
-    //TODO Diego hacelo vos
-    public Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters) {
-        throw new notImplementedException();
+    public Collection<Game> findRelatedGames(long id, Set<FilterCategory> unusedFilters) {
+
+        Game game = findById(id);
+        Set<Long> notToIncludeGames = new HashSet<>();
+        notToIncludeGames.add(id);
+        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap<>();
+        final int genreLimit = 5, keywordLimit = 5, developerLimit = 1;
+        final double genreWeight = 10, keywordWeight = 10, developerWeight = 5;
+        int countFilter = 0;
+
+        //Consider up to genreLimit genres, with a weight of genreWeight
+        Map<String, Double> mapFilterToFilterScoreGenre = new HashMap<>();
+        Iterator<Genre> genreIterator = game.getGenres().iterator();
+        while (countFilter < genreLimit && genreIterator.hasNext()) {
+            mapFilterToFilterScoreGenre.put(genreIterator.next().getName(), genreWeight);
+            countFilter++;
+        }
+        filtersScoresMap.put(FilterCategory.genre, mapFilterToFilterScoreGenre);
+
+        //Analogous, with keywords
+        countFilter=0;
+        Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
+        Iterator<Keyword> keywordIterator = game.getKeywords().iterator();
+        while (countFilter < keywordLimit && keywordIterator.hasNext()) {
+            mapFilterToFilterScoreKeyword.put(keywordIterator.next().getName(), keywordWeight);
+            countFilter++;
+        }
+        filtersScoresMap.put(FilterCategory.keyword, mapFilterToFilterScoreKeyword);
+
+        //Analogous, with developers
+        countFilter=0;
+        Map<String, Double> mapFilterToFilterScoreDeveloper = new HashMap<>();
+        Iterator<Developer> developerIterator = game.getDevelopers().iterator();
+        while (countFilter < developerLimit && developerIterator.hasNext()) {
+            mapFilterToFilterScoreDeveloper.put(developerIterator.next().getName(), developerWeight);
+            countFilter++;
+        }
+        filtersScoresMap.put(FilterCategory.developer, mapFilterToFilterScoreDeveloper);
+
+        return getRecommendedGames(notToIncludeGames, filtersScoresMap);
     }
 
     @Override
@@ -151,7 +170,7 @@ public class GameHibernateDao implements GameDao {
         final Map<Long, Game> result = new HashMap<>();
         final TypedQuery<Game> query = em.createQuery("from Game as g where g.id IN (:ids)", Game.class);
         query.setParameter("ids", ids);
-        for(Game game : query.getResultList()) {
+        for (Game game : query.getResultList()) {
             result.put(game.getId(), game);
         }
         return result;
@@ -192,6 +211,65 @@ public class GameHibernateDao implements GameDao {
         return Collections.emptySet();
         //TODO implement
 //        return getFreshGame(gameId).getReviews();
+    }
+
+    public Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap) {
+        HashMap<Game, Integer> gamesWeightMap = new HashMap<>();
+
+        //TODO document this method, very hard to understand what each part is doing at a glance
+
+        for (FilterCategory filterCategory : filtersScoresMap.keySet()) {
+            Map<String, Double> mapFilter = filtersScoresMap.get(filterCategory);
+            for (String filter : mapFilter.keySet()) {
+                double filterScore = mapFilter.get(filter);
+                HashMap<FilterCategory, List<String>> filterParameterMap = new HashMap<>();
+                ArrayList<String> filterArrayParameter = new ArrayList<>();
+                filterArrayParameter.add(filter);
+                filterParameterMap.put(filterCategory, filterArrayParameter);
+                Collection<Game> resultGames  = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                for (Game game : resultGames) {
+                    if (!excludedGameIds.contains(game.getId())) {
+                        if(!gamesWeightMap.containsKey(game)){
+                            gamesWeightMap.put(game, 0);
+                        }
+                        gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
+                    }
+                }
+            }
+        }
+
+        //Show all games ordered by weight.
+        Map<Integer, ArrayList<Game>> gameWeightMapInOrder = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        for (Game game : gamesWeightMap.keySet()) {
+            int gameWeight = gamesWeightMap.get(game);
+            if (!gameWeightMapInOrder.containsKey(gameWeight)) {
+                gameWeightMapInOrder.put(gameWeight, new ArrayList<>());
+            }
+            gameWeightMapInOrder.get(gameWeight).add(game);
+
+        }
+
+        Collection<Game> finalResultList = new LinkedHashSet<>();
+        int counter = 0;
+        if (!gameWeightMapInOrder.isEmpty()) {
+            Iterator<Integer> weightIterator = gameWeightMapInOrder.keySet().iterator();
+            while (weightIterator.hasNext() && counter < 100) {
+                int gameWeight = weightIterator.next();
+                Iterator<Game> gameIterator = gameWeightMapInOrder.get(gameWeight).iterator();
+                while (gameIterator.hasNext() && counter < 100) {
+                    finalResultList.add(gameIterator.next());
+                    counter++;
+                }
+            }
+        }
+
+        return finalResultList;
     }
 
     @Override

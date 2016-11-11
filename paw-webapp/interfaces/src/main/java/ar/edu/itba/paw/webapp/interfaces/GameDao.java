@@ -29,7 +29,7 @@ public interface GameDao {
     /**
      * @see GameService#findRelatedGames(long, Set)
      */
-    Set<Game> findRelatedGames(long baseGameId, Set<FilterCategory> filters);
+    Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters);
 
     /**
      * @see GameService#findById(long)
@@ -39,7 +39,7 @@ public interface GameDao {
     /**
      * @see GameService#findByIds(Collection<Long>)
      */
-    Map<Long,Game> findByIds(Collection<Long> ids);
+    Map<Long, Game> findByIds(Collection<Long> ids);
 
     /**
      * @see GameService#existsWithId(long)
@@ -61,6 +61,7 @@ public interface GameDao {
 
     /**
      * Update the avgScore of the game with id gameId.
+     *
      * @param gameId
      */
     void updateAvgScore(long gameId);
@@ -99,4 +100,15 @@ public interface GameDao {
      * @see GameService#getScores(long)
      */
     Map<Long, Integer> getScores(long gameId);
+
+    /**
+     * Return the recommended games, giving different importance to different filters.
+     *
+     * @param excludedGameIds A set of games that must no be in the result set.
+     * @param filtersScoresMap A map with the score given for each filter. The higher the score, the more likely that a
+     *                         different game that matches the same filter will be included in the result.
+     * @return The recommended games.
+     */
+    Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap);
+
 }

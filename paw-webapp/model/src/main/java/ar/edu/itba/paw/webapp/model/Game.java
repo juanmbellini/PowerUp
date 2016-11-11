@@ -288,6 +288,19 @@ public class Game {
         return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
     }
 
+    public static String getOrderField(OrderCategory orderCategory) {
+        switch (orderCategory) {
+            case avg_score:
+                return "avgScore";
+            case name:
+                return "name";
+            case release:
+                return "releaseDate";
+            default:
+                throw new IllegalStateException("Attempted to get an orderBy field from an unsupported order category: " + orderCategory);
+        }
+    }
+
     /**
      * Gets an inverse mapping of {@link User#getScoredGames()}, where each user ID
      * is mapped to the score that said user gave this game.
