@@ -30,8 +30,8 @@
                                 <c:set value="${gameScorePair.key}" var="game" />
                                 <c:set value="${gameScorePair.value}" var="score" />
                                 <li class="collection-item avatar col s12">
-                                    <div class="col s2 cover-pic-container">
-                                        <img class="cover-picture"
+                                    <div class="col s2 cover-pic-container valign-wrapper">
+                                        <img class="cover-picture valign"
                                              src="${game.coverPictureUrl}" alt="${game.name}">
                                     </div>
                                     <div class="col primary-content s7">

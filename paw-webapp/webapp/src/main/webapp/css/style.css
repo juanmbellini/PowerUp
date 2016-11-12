@@ -71,9 +71,26 @@
 }
 
 .slick-carousel img {
-    max-height: 400px;
+    max-height: 200px;
     width: 100%;
     padding: 0 5px;
+}
+
+.slick-carousel .slide-container .slide-image {
+    height:200px;
+}
+
+.slick-carousel .slide-container .slide-image > a {
+    width: 100%;
+}
+
+.slick-carousel .slide-container .slide-text {
+    overflow-wrap: break-word;
+    margin-top: 5px;
+}
+
+.slick-carousel .slide-container .slide-text > a {
+    color: black;
 }
 
 .slick-prev:before, .slick-next:before {
