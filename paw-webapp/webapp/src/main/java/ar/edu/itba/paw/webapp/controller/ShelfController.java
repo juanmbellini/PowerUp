@@ -55,6 +55,27 @@ public class ShelfController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(value = "/create-shelf", method = RequestMethod.POST)
+    public ModelAndView createShelf(@RequestParam(value = "name") String name, @RequestParam(value = "gameIds", required = false) long[] gameIds) {
+        try {
+            if(!isLoggedIn()) {
+                LOG.warn("User {} attempted to create a, unauthorized", getCurrentUsername());
+                return new ModelAndView("error404");
+            }
+            if(!shelfService.findByName(name).isEmpty()) {
+                LOG.info("User {} attempted to create Shelf with duplicate name (\"{}\")", getCurrentUsername(), name);
+                //TODO show the error to the user
+                return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+            }
+            shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
+        } catch (Exception e) {
+            LOG.error("Error creating shelf \"{}\" for user {}:", name, getCurrentUsername(), e);
+            return new ModelAndView("error500");
+        }
+
+        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+    }
+
     @RequestMapping(value = "/update-shelf", method = RequestMethod.POST)
     public ModelAndView updateShelf(@RequestParam(value = "shelfId") long shelfId, @RequestParam(value = "newIds") long[] newGameIds) {
         try {
