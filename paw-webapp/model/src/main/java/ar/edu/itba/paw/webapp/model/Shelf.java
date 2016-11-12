@@ -30,12 +30,12 @@ public class Shelf {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(
-            name = "shelf_games",
-            joinColumns=@JoinColumn(name = "shelf_id")
-    )
-    private Set<Game> games = new LinkedHashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="shelf_games",
+            joinColumns=@JoinColumn(name="shelf_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="game_id", referencedColumnName="id"))
+    private Set<Game> games;
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -76,6 +76,10 @@ public class Shelf {
 
     public User getUser() {
         return user;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Set<Game> getGames() {

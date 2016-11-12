@@ -57,7 +57,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByGameId(long id) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where S.game.id = :id", Shelf.class);
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S JOIN S.games AS game WHERE game.id = :id", Shelf.class);
         baseQuery.setParameter("id", id);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
@@ -68,8 +68,8 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByGameName(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.game.name) = :name", Shelf.class);
-        baseQuery.setParameter("name", name.toLowerCase());
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S JOIN S.games AS game WHERE LOWER(game.name) = LOWER(:name)", Shelf.class);
+        baseQuery.setParameter("name", name);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -79,7 +79,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByUserId(long id) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where S.user.id = :id", Shelf.class);
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE S.user.id = :id", Shelf.class);
         baseQuery.setParameter("id", id);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
@@ -90,8 +90,8 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByUsername(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.user.name) = :name", Shelf.class);
-        baseQuery.setParameter("name", name.toLowerCase());
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE LOWER(S.user.name) = LOWER(:name)", Shelf.class);
+        baseQuery.setParameter("name", name);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -125,8 +125,8 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByName(String shelfName) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.name) = :name", Shelf.class);
-        baseQuery.setParameter("name", shelfName.toLowerCase());
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE LOWER(S.name) = LOWER(:name)", Shelf.class);
+        baseQuery.setParameter("name", shelfName);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
