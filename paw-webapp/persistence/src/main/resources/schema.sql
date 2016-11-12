@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS shelves (
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE SEQUENCE shelves_id_seq;
+CREATE SEQUENCE IF NOT EXISTS shelves_id_seq;
 
 -- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS game_genres (
