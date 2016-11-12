@@ -162,15 +162,14 @@
                             <%--End No Reviews--%>
                             <%--Review list--%>
                             <c:otherwise>
-                                <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?id=${game.id}" />">See All</a></h5>
+                                <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?gameId=${game.id}" />">See All</a></h5>
                                 <ul class="collection">
                                     <c:forEach items="${reviews}" var="review">
                                         <li class="collection-item avatar">
                                             <i class="material-icons circle blue">exit_to_app</i>
                                             <span class="title">${review.user.username}</span>
                                             <p class="secondary-content" style="color: black;">${review.date}</p>
-                                            <%--TODO Link --%>
-                                            <p><a href="#!">Other reviews by ${review.user.username}</a></p>
+                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a></p>
                                             <br/>
                                             <div class="row">
                                                 <p class="col s10">${review.review}</p>

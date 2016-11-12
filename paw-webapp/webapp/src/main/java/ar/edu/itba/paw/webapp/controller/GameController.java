@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
 import ar.edu.itba.paw.webapp.form.ReviewForm;
 import ar.edu.itba.paw.webapp.interfaces.*;
@@ -286,15 +287,38 @@ public class GameController extends BaseController {
     }
 
     @RequestMapping(value = "/reviews")
-    public ModelAndView reviews(@RequestParam(name = "id") long gameId) {
+    public ModelAndView reviews(@RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId, @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId) {
+        //Need at least one of the two
+        if(gameId == -1 && userId == -1) {
+            return new ModelAndView("error400");
+        }
         ModelAndView mav = null;
         try {
             mav = new ModelAndView("reviews");
-            mav.addObject("reviews", reviewService.findByGameId(gameId));
-            mav.addObject("game", gameService.findById(gameId));    //Don't get the game from the reviews set - it might be empty
-            mav.addObject("isEnabled", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
+            if(gameId != -1) {
+                if(userId != -1) {
+                    //Find by both
+                    Set<Review> singleReview = new LinkedHashSet<>(1);  //Add as set because view assumes it will be a collection
+                    singleReview.add(reviewService.find(userId, gameId));
+                    mav.addObject("reviews", singleReview);
+                    mav.addObject("user", userService.findById(userId));
+                } else {
+                    //Find by game ID
+                    mav.addObject("reviews", reviewService.findByGameId(gameId));
+                }
+                //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
+                mav.addObject("game", gameService.findById(gameId));
+            } else {
+                //Find by user ID
+                mav.addObject("reviews", reviewService.findByUserId(userId));
+                mav.addObject("user", userService.findById(userId));
+            }
+            mav.addObject("isEnabled", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
         } catch (NoSuchGameException e) {
-            LOG.warn("Requested reviews nonexistent game (ID={})", gameId);
+            LOG.warn("Requested reviews for nonexistent game (ID={})", gameId);
+            mav = new ModelAndView("error404");
+        } catch (NoSuchUserException e) {
+            LOG.warn("Requested reviews for nonexistent user (ID={})", userId);
             mav = new ModelAndView("error404");
         } catch (Exception e) {
             LOG.error("Error rendering Reviews page", e);
@@ -346,6 +370,6 @@ public class GameController extends BaseController {
             return new ModelAndView("error500");
         }
         //Created successfully, redirect to all reviews page
-        return new ModelAndView("redirect:/reviews?id=" + gameId);
+        return new ModelAndView("redirect:/reviews?gameId=" + gameId);
     }
 }

@@ -70,6 +70,10 @@
     font-weight: bold;
 }
 
+.reviews-list .title {
+    font-size: 20px !important;
+}
+
 .slick-carousel img {
     max-height: 200px;
     width: 100%;

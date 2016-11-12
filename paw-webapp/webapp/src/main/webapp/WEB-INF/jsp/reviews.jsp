@@ -9,7 +9,16 @@
     <%@include file="header.jsp" %>
     <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
-    <title>${game.name} Reviews - PowerUp</title>
+    <title>
+        <c:if test="${not empty game}">
+            ${game.name}
+        </c:if>
+        Reviews
+        <c:if test="${not empty user}">
+            <%--TODO link to profile--%>
+             by ${user.username}
+        </c:if>
+        - PowerUp</title>
 </head>
 <body>
 <header>
@@ -20,7 +29,16 @@
     <%--TODO link back to game--%>
     <div class="container">
         <div class="section">
-            <h2 class="header center orange-text">${game.name} Reviews</h2>
+            <h2 class="header center orange-text">
+                <c:if test="${not empty game}">
+                    ${game.name}
+                </c:if>
+                Reviews
+                <c:if test="${not empty user}">
+                    <%--TODO link to profile--%>
+                    by ${user.username}
+                </c:if>
+            </h2>
         </div>
         <%--REVIEWS--%>
         <div class="section">
@@ -28,14 +46,39 @@
                 <c:choose>
                     <c:when test="${fn:length(reviews) > 0}">
                         <%--REVIEWS LIST--%>
-                        <ul class="collection">
+                        <ul class="collection reviews-list">
                             <c:forEach items="${reviews}" var="review">
                                 <li class="collection-item avatar">
                                     <i class="material-icons circle blue">exit_to_app</i>
-                                    <span class="title">${review.user.username}</span>
+                                    <span class="title">
+                                        <c:choose>
+                                            <c:when test="${empty user && not empty game}">
+                                                <%--TODO link--%>
+                                                <a href="#!">${review.user.username}</a>
+                                            </c:when>
+                                            <c:when test="${empty game && not empty user}">
+                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <%--TODO link user--%>
+                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> - <a href="#!">${review.user.username}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
                                     <p class="secondary-content" style="color: black;">${review.date}</p>
-                                    <%--TODO Link --%>
-                                    <p><a href="#!">Other reviews by ${review.user.username}</a></p>
+                                    <p>
+                                        <c:choose>
+                                            <c:when test="${empty user && not empty game}">
+                                                <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                            </c:when>
+                                            <c:when test="${empty game && not empty user}">
+                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a> - <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
                                     <br/>
                                     <div class="row">
                                         <p class="col s10">${review.review}</p>
