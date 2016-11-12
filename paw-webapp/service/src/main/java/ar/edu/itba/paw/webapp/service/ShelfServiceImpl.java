@@ -54,6 +54,16 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
+    public boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException {
+        return shelfDao.belongsTo(shelfId, userId);
+    }
+
+    @Override
+    public void update(long shelfId, long... newGameIds) throws NoSuchEntityException {
+        shelfDao.update(shelfId, newGameIds);
+    }
+
+    @Override
     public void addGame(long shelfId, long gameId) throws NoSuchEntityException {
         shelfDao.addGame(shelfId, gameId);
     }

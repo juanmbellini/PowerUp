@@ -63,10 +63,29 @@ public interface ShelfService {
     /**
      * Finds shelves by name.
      *
-     * @param shelfName The name to match.
+     * @param shelfName The name to match. Case <b>in</b>sensitive.
      * @return The matching shelves.
      */
     Set<Shelf> findByName(String shelfName);
+
+    /**
+     * Checks whether a specified shelf belongs to a specified user.
+     *
+     * @param shelfId The shelf ID.
+     * @param userId The user ID.
+     * @return Whether the shelf belongs to the user.
+     * @throws NoSuchEntityException If the shelf doesn't exist.
+     */
+    boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
+
+    /**
+     * Updates the contents of the specified shelf, overwriting previous content.
+     *
+     * @param shelfId The ID of the shelf to update.
+     * @param newGameIds The new game IDs. Note that the previous game IDs will be overwritten with these.
+     * @throws NoSuchEntityException If the shelf or at least one of the games don't exist.
+     */
+    void update(long shelfId, long... newGameIds) throws NoSuchEntityException;
 
     /**
      * Adds a specified game to a specified shelf.

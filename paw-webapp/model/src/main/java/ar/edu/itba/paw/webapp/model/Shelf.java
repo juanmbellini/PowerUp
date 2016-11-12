@@ -11,8 +11,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Shelves are custom-named game lists created by users to organize their gameIds. Users might create a Shelf for the
- * weekends, another one with their favorite gameIds, and yet another one for the gameIds they want to buy, etc.
+ * Shelves are custom-named game lists created by users to organize their games. Users might create a Shelf for the
+ * weekends, another one with their favorite games, and yet another one for the games they want to buy, etc.
  */
 @Entity
 @Table(name = "shelves")
@@ -30,12 +30,12 @@ public class Shelf {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "shelf_games",
             joinColumns=@JoinColumn(name = "shelf_id")
     )
-    private Set<Long> gameIds = new LinkedHashSet<>();
+    private Set<Game> games = new LinkedHashSet<>();
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -52,7 +52,7 @@ public class Shelf {
         //for Hibernate
     }
 
-    public Shelf(String name, User creator, Set<Long> initialGameIds) {
+    public Shelf(String name, User creator, Set<Game> initialGames) {
         if(name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Shelf name cannot be null or empty");
         }
@@ -61,8 +61,8 @@ public class Shelf {
         }
         this.name = name;
         this.user = creator;
-        if(initialGameIds != null) {
-            this.gameIds.addAll(initialGameIds);
+        if(initialGames != null) {
+            this.games.addAll(initialGames);
         }
     }
 
@@ -78,8 +78,8 @@ public class Shelf {
         return user;
     }
 
-    public Set<Long> getGameIds() {
-        return Collections.unmodifiableSet(gameIds);
+    public Set<Game> getGames() {
+        return Collections.unmodifiableSet(games);
     }
 
     public LocalDateTime getCreatedAt() {
@@ -90,22 +90,22 @@ public class Shelf {
         return LocalDateTime.ofInstant(updatedAt.toInstant(), updatedAt.getTimeZone().toZoneId());
     }
 
-    public void addGame(long gameId) {
-        if(gameIds.contains(gameId)) {
-            throw new IllegalArgumentException("Game #" + gameId + " is already in Shelf #" + id);
+    public void addGame(Game game) {
+        if(games.contains(game)) {
+            throw new IllegalArgumentException("Game #" + game + " is already in Shelf #" + id);
         }
-        gameIds.add(gameId);
+        games.add(game);
     }
 
-    public void removeGame(long gameId) {
-        if(!gameIds.contains(gameId)) {
-            throw new IllegalArgumentException("Game #" + gameId + " is not in Shelf #" + id);
+    public void removeGame(Game game) {
+        if(!games.contains(game)) {
+            throw new IllegalArgumentException("Game #" + game + " is not in Shelf #" + id);
         }
-        gameIds.remove(gameId);
+        games.remove(game);
     }
 
     public void clear() {
-        gameIds.clear();
+        games.clear();
     }
 
     @Override
@@ -116,7 +116,6 @@ public class Shelf {
         Shelf shelf = (Shelf) o;
 
         return id == shelf.id;
-
     }
 
     @Override

@@ -41,6 +41,16 @@ public interface ShelfDao {
     Shelf findById(long shelfId);
 
     /**
+     * @see ShelfService#belongsTo(long, long)
+     */
+    boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
+
+    /**
+     * @see ShelfService#update(long, long...)
+     */
+    void update(long shelfId, long... newGameIds) throws NoSuchEntityException;
+
+    /**
      * @see ShelfService#findByName(String)
      */
     Set<Shelf> findByName(String shelfName);

@@ -6,6 +6,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +42,15 @@ public class ShelfHibernateDao implements ShelfDao {
         if(creator == null) {
             throw new NoSuchUserException(creatorUserId);
         }
-        Set<Long> gameIds = new LinkedHashSet<>();
+        Set<Game> games = new LinkedHashSet<>();
         for(long id : initialGameIds) {
-            if(!gameDao.existsWithId(id)) {
+            Game g = gameDao.findById(id);
+            if(g == null) {
                 throw new NoSuchGameException(id);
             }
-            gameIds.add(id);
+            games.add(g);
         }
-        Shelf result = new Shelf(name, creator, gameIds);
+        Shelf result = new Shelf(name, creator, games);
         em.persist(result);
         return result;
     }
@@ -66,8 +68,8 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByGameName(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where S.game.name = :name", Shelf.class);
-        baseQuery.setParameter("name", name);
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.game.name) = :name", Shelf.class);
+        baseQuery.setParameter("name", name.toLowerCase());
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -88,8 +90,8 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Set<Shelf> findByUsername(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where S.user.name = :name", Shelf.class);
-        baseQuery.setParameter("name", name);
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.user.name) = :name", Shelf.class);
+        baseQuery.setParameter("name", name.toLowerCase());
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -103,9 +105,28 @@ public class ShelfHibernateDao implements ShelfDao {
     }
 
     @Override
+    public boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException {
+        return getFreshShelf(shelfId).getUser().getId() == userId;
+    }
+
+    @Override
+    public void update(long shelfId, long... newGameIds) throws NoSuchEntityException {
+        Shelf shelf = getFreshShelf(shelfId);
+        shelf.clear();
+        for(long id : newGameIds) {
+            Game g = gameDao.findById(id);
+            if(g == null) {
+                throw new NoSuchGameException(id);
+            }
+            shelf.addGame(g);
+        }
+        em.persist(shelf);
+    }
+
+    @Override
     public Set<Shelf> findByName(String shelfName) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where S.name = :name", Shelf.class);
-        baseQuery.setParameter("name", shelfName);
+        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S where LOWER(S.name) = :name", Shelf.class);
+        baseQuery.setParameter("name", shelfName.toLowerCase());
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
         } catch(NoResultException e) {
@@ -116,14 +137,22 @@ public class ShelfHibernateDao implements ShelfDao {
     @Override
     public void addGame(long shelfId, long gameId) throws NoSuchEntityException {
         Shelf shelf = getFreshShelf(shelfId);
-        shelf.addGame(gameId);
+        Game g = gameDao.findById(gameId);
+        if(g == null) {
+            throw new NoSuchGameException(gameId);
+        }
+        shelf.addGame(g);
         em.persist(shelf);
     }
 
     @Override
     public void removeGame(long shelfId, long gameId) throws NoSuchEntityException {
         Shelf shelf = getFreshShelf(shelfId);
-        shelf.removeGame(gameId);
+        Game g = gameDao.findById(gameId);
+        if(g == null) {
+            throw new NoSuchGameException(gameId);
+        }
+        shelf.removeGame(g);
         em.persist(shelf);
     }
 
