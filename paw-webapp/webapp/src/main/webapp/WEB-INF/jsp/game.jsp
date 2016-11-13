@@ -95,8 +95,12 @@
                                                 <c:set var="shelf" value="${entry.key}" />
                                                 <c:set var="isInShelf" value="${entry.value}" />
                                                 <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> >${shelf.name}</option>
-                                                <input type="hidden" name="${shelf.id}" value="${isInShelf}" />
                                             </c:forEach>
+                                            <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
+                                            <c:forEach var="entry" items="${shelves}">
+                                                <c:set var="shelf" value="${entry.key}" />
+                                                <c:set var="isInShelf" value="${entry.value}" />
+                                                <input type="hidden" class="shelfHidden" name="${shelf.id}" value="${isInShelf}" /></c:forEach>
                                         </select>
                                     </c:otherwise>
                                 </c:choose>
@@ -300,14 +304,11 @@
             var selectedShelves = $(this).val();
             if(selectedShelves.length == 0) {
                 //No selected shelves, set everything to false
-                $("input[type=hidden][name!=gameId]").val("false");
+                $(".shelfHidden").val("false");
             } else {
-                $.each($(this).val(), function(i, shelfId) {
-                    if(shelfId.length > 0) {
-                        var $target = $("input[type=hidden][name="+shelfId+"]");
-                        var newVal = $target.val() == "true" ? "false" : "true";
-                        $target.val(newVal);
-                    }
+                $(".shelfHidden").each(function(i, element) {
+                    element = $(element);
+                    element.val(selectedShelves.indexOf(element.attr("name")) != -1);
                 });
             }
             $("#shelvesForm").find("button[type=submit]").removeAttr('disabled');

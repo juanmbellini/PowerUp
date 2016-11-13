@@ -149,8 +149,8 @@ public class ShelfController extends BaseController {
             for(Map.Entry<String, String> entry : updates.entrySet()) {
                 if(!entry.getKey().equals("gameId")) {
                     //Treat each operation separately - if one fails (but ONLY from a NoSuchEntityException), the others can still try to execute
-                    boolean add = Boolean.valueOf(entry.getValue());
                     long shelfId = Long.valueOf(entry.getKey());
+                    boolean add = Boolean.valueOf(entry.getValue());
                     try {
                         if(shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
                             if(add) {
