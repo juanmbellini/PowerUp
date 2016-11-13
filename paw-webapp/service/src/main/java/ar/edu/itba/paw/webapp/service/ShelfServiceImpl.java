@@ -59,6 +59,11 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
+    public void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException {
+        shelfDao.rename(shelfId, newName);
+    }
+
+    @Override
     public void update(long shelfId, long... newGameIds) throws NoSuchEntityException {
         shelfDao.update(shelfId, newGameIds);
     }

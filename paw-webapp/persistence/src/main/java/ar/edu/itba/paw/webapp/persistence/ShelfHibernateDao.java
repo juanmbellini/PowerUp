@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
@@ -107,6 +108,16 @@ public class ShelfHibernateDao implements ShelfDao {
     @Override
     public boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException {
         return getFreshShelf(shelfId).getUser().getId() == userId;
+    }
+
+    @Override
+    public void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException {
+        if(newName == null || newName.isEmpty()) {
+            throw new IllegalArgumentException("Invalid new name for Shelf #" + shelfId + ": " + newName);
+        }
+        Shelf shelf = getFreshShelf(shelfId);
+        shelf.setName(newName);
+        em.persist(shelf);
     }
 
     @Override

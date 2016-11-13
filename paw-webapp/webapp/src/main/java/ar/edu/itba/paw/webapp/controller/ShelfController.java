@@ -68,6 +68,7 @@ public class ShelfController extends BaseController {
                 return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
             }
             shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
+            LOG.info("Created Shelf \"{}\" for user {}", name, getCurrentUsername());
         } catch (Exception e) {
             LOG.error("Error creating shelf \"{}\" for user {}:", name, getCurrentUsername(), e);
             return new ModelAndView("error500");
@@ -84,11 +85,53 @@ public class ShelfController extends BaseController {
                 return new ModelAndView("error404");
             }
             shelfService.update(shelfId, newGameIds);
+            LOG.info("Updated Shelf #{} with the following game IDs: {}", shelfId, newGameIds);
         } catch (NoSuchEntityException e) {
             LOG.info("User {} attempted to update nonexistent Shelf #{}", getCurrentUsername(), shelfId);
             return new ModelAndView("error404");
         } catch (Exception e) {
             LOG.error("Error updating shelf #{}:", shelfId, e);
+            return new ModelAndView("error500");
+        }
+
+        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+    }
+
+    @RequestMapping(value = "/delete-shelf", method = RequestMethod.POST)
+    public ModelAndView deleteShelf(@RequestParam(value = "shelfId") long shelfId) {
+        try {
+            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+                LOG.warn("User {} attempted to delete Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
+                return new ModelAndView("error404");
+            }
+            shelfService.delete(shelfId);
+            LOG.info("Deleted Shelf #{}", shelfId);
+        } catch (NoSuchEntityException e) {
+            LOG.info("User {} attempted to delete nonexistent Shelf #{}", getCurrentUsername(), shelfId);
+            return new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error deleting shelf #{}:", shelfId, e);
+            return new ModelAndView("error500");
+        }
+
+        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+    }
+
+    @RequestMapping(value = "/rename-shelf", method = RequestMethod.POST)
+    public ModelAndView renameShelf(@RequestParam(value = "shelfId") long shelfId, @RequestParam(value = "name") String newName) {
+        try {
+            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+                LOG.warn("User {} attempted to rename Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
+                return new ModelAndView("error404");
+            }
+            String oldName = shelfService.findById(shelfId).getName();
+            shelfService.rename(shelfId, newName);
+            LOG.info("Renamed Shelf \"{}\" (#{}) to \"{}\"", oldName, shelfId, newName);
+        } catch (NoSuchEntityException e) {
+            LOG.info("User {} attempted to rename nonexistent Shelf #{}", getCurrentUsername(), shelfId);
+            return new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error deleting shelf #{}:", shelfId, e);
             return new ModelAndView("error500");
         }
 

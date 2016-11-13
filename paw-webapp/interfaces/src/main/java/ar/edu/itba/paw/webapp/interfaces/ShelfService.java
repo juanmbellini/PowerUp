@@ -79,6 +79,16 @@ public interface ShelfService {
     boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
 
     /**
+     * Renames a shelf.
+     *
+     * @param shelfId The ID of the shelf to rename.
+     * @param newName The shelf's new name.
+     * @throws NoSuchEntityException If the shelf doesn't exist.
+     * @throws IllegalArgumentException If the name is null or invalid (e.g. empty).
+     */
+    void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException;
+
+    /**
      * Updates the contents of the specified shelf, overwriting previous content.
      *
      * @param shelfId The ID of the shelf to update.

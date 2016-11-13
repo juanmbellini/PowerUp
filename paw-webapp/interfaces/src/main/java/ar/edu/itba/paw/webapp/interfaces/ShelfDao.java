@@ -46,6 +46,11 @@ public interface ShelfDao {
     boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
 
     /**
+     * @see ShelfService#rename(long, String)
+     */
+    void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException;
+
+    /**
      * @see ShelfService#update(long, long...)
      */
     void update(long shelfId, long... newGameIds) throws NoSuchEntityException;

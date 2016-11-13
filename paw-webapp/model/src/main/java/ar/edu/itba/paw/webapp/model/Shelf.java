@@ -35,7 +35,7 @@ public class Shelf {
             name="shelf_games",
             joinColumns=@JoinColumn(name="shelf_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="game_id", referencedColumnName="id"))
-    private Set<Game> games;
+    private Set<Game> games = new LinkedHashSet<>();
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -80,6 +80,10 @@ public class Shelf {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
     }
 
     public Set<Game> getGames() {
