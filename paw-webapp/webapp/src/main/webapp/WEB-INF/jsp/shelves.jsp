@@ -26,15 +26,20 @@
                     <div class="col s12 divider"></div>
                     <br/>
                 </c:if>
-                <h4>${shelf.name} <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="${shelf.id}" data-name="${shelf.name}">rename</a> | <a href="#!" class="delete" data-id="${shelf.id}" data-name="${shelf.name}" >delete</a></span></h4>
+                <h4>
+                    ${shelf.name}
+                    <c:if test="${isLoggedIn && currentUsername == user.username}">
+                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="${shelf.id}" data-name="${shelf.name}">rename</a> | <a href="#!" class="delete" data-id="${shelf.id}" data-name="${shelf.name}" >delete</a></span>
+                    </c:if>
+                </h4>
                 <c:choose>
                     <c:when test="${fn:length(shelf.games) == 0}">
                         <h5 class="center">No games here</h5>
                     </c:when>
                     <c:otherwise>
-                        <ul class="ul_game_list collection games-list">
+                        <ul class="collection games-list">
                             <%--TODO limit number of shown games, create link to show more--%>
-                            <c:forEach items="${game}" var="shelf.games">
+                            <c:forEach items="${shelf.games}" var="game">
                                 <li class="collection-item avatar col s12">
                                     <div class="col s2 cover-pic-container valign-wrapper">
                                         <img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">
