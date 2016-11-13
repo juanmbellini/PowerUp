@@ -7,11 +7,11 @@ $(function () {
         lazyload: 'ondemand'
     });
 
-    var $form = $("#rateAndStatusForm");
+    var $rateAndStatusForm = $("#rateAndStatusForm");
     var selectedScore = $("#score").val();
     var selectedStatus = $("#status").val();
 
-    $form.on("submit", function(event) {
+    $rateAndStatusForm.on("submit", function(event) {
         var newScore = $("#score").val();
         var newStatus = $("#status").val();
         if(newScore === selectedScore && newStatus === selectedStatus) {
@@ -25,4 +25,12 @@ $(function () {
         selectedScore = newScore;
         selectedStatus = newStatus;
     });
+
+    // $('#shelves').on('change', function(event) {
+    //     $(this).material_select();          //Y u do dis Materialize
+    //     debugger;
+    //     if($(this).val().indexOf("newShelf") !== -1) {
+    //         //TODO add support for creating new shelves via AJAX
+    //     }
+    // });
 });

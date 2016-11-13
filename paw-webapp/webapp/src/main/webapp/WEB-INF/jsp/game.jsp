@@ -71,6 +71,57 @@
                 </div>
             </form:form>
         </div>
+
+        <%--SHELVES FORM--%>
+        <div class ="section">
+            <c:url value="/update-shelves-by-game" var="shelvesUrl"/>
+            <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
+                <input type="hidden" name="gameId" value="${game.id}" />
+                <div class="row">
+                    <div class="col s3"></div>
+                    <div class="col s6 center-align">
+                        <div class="row">
+                            <p class="col s4 center">Update in shelves</p>
+                            <div class="col s4">
+                                <c:choose>
+                                    <c:when test="${fn:length(shelves) == 0}">
+                                        <p>You have no shelves. Why not <a href="<c:url value="/shelves" />">create one</a>?</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <select id="shelves" multiple>
+                                            <option value="" disabled selected>Select shelves</option>
+                                            <%--<option id="newShelf" value="newShelf" >New shelf...</option>--%>
+                                            <c:forEach var="entry" items="${shelves}">
+                                                <c:set var="shelf" value="${entry.key}" />
+                                                <c:set var="isInShelf" value="${entry.value}" />
+                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> >${shelf.name}</option>
+                                                <input type="hidden" name="${shelf.id}" value="${isInShelf}" />
+                                            </c:forEach>
+                                        </select>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+
+                            <c:choose>
+                                <c:when test="${isLoggedIn}">
+                                    <div class="col s4">
+                                        <button type="submit" class="btn waves-effect waves-light" disabled>Update Shelves</button>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="col s4 center">
+                                            <%--TODO redirect user back  here after login--%>
+                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <%--END SHELVES FORM--%>
+
         <div class="section">
             <c:choose>
                 <c:when test="${game == null}">
@@ -242,5 +293,26 @@
 </footer>
 <script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#shelves").on("change", function (event) {
+            $(this).material_select();
+            var selectedShelves = $(this).val();
+            if(selectedShelves.length == 0) {
+                //No selected shelves, set everything to false
+                $("input[type=hidden][name!=gameId]").val("false");
+            } else {
+                $.each($(this).val(), function(i, shelfId) {
+                    if(shelfId.length > 0) {
+                        var $target = $("input[type=hidden][name="+shelfId+"]");
+                        var newVal = $target.val() == "true" ? "false" : "true";
+                        $target.val(newVal);
+                    }
+                });
+            }
+            $("#shelvesForm").find("button[type=submit]").removeAttr('disabled');
+        });
+    });
+</script>
 </body>
 </html>

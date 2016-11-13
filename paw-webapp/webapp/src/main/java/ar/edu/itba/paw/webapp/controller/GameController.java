@@ -71,11 +71,13 @@ public class GameController extends BaseController {
 
     private final GenreService genreService;
 
+    private final ShelfService shelfService;
+
     private final ReviewService reviewService;
 
 
     @Autowired
-    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService, ReviewService reviewService) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService, ShelfService shelfService, ReviewService reviewService) {
         super(us);
         this.gameService = gameService;
         this.reviewService = reviewService;
@@ -83,6 +85,7 @@ public class GameController extends BaseController {
         this.developerService = developerService;
         this.publisherService = publisherService;
         this.genreService = genreService;
+        this.shelfService = shelfService;
         objectMapper = new ObjectMapper();
         typeReference = new TypeReference<Map<FilterCategory, ArrayList<String>>>() {};
     }
@@ -198,24 +201,29 @@ public class GameController extends BaseController {
 
     @RequestMapping("/game")
     public ModelAndView game(@RequestParam(name = "id") long gameId,
-                             @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm,
-                             @ModelAttribute("currentUser") User user) {
+                             @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm) {
         final ModelAndView mav = new ModelAndView("game");
         Game game;
-        long userId = user.getId();
+        User currentUser = getCurrentUser();
         Collection<Game> relatedGames = new LinkedHashSet<>();
         try {
             game = gameService.findById(gameId);
             if (game == null) {
                 return new ModelAndView("redirect:/error404");
             }
-            if (user != null) {
+            if (currentUser != null) {
+                long userId = currentUser.getId();
                 if (userService.hasScoredGame(userId, gameId)) {
                     rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
                 }
                 if (userService.hasPlayStatus(userId, gameId)) {
                     rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
                 }
+                Map<Shelf, Boolean> shelves = new LinkedHashMap<>();
+                for(Shelf shelf : shelfService.findByUserId(userId)) {
+                    shelves.put(shelf, shelf.getGames().contains(game));
+                }
+                mav.addObject("shelves", shelves);
             }
 
             Set<FilterCategory> filters = new HashSet<>();

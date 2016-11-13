@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -136,5 +137,41 @@ public class ShelfController extends BaseController {
         }
 
         return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+    }
+
+    @RequestMapping(value = "/update-shelves-by-game", method = RequestMethod.POST)
+    public ModelAndView updateByGame(@RequestParam(value = "gameId") long gameId, @RequestParam Map<String, String> updates) {
+        try {
+            if(!isLoggedIn()) {
+                LOG.warn("Unauthenticated user attempted to update Game #{} in shelves, unauthorized", gameId);
+                return new ModelAndView("error404");
+            }
+            for(Map.Entry<String, String> entry : updates.entrySet()) {
+                if(!entry.getKey().equals("gameId")) {
+                    //Treat each operation separately - if one fails (but ONLY from a NoSuchEntityException), the others can still try to execute
+                    boolean add = Boolean.valueOf(entry.getValue());
+                    long shelfId = Long.valueOf(entry.getKey());
+                    try {
+                        if(shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+                            if(add) {
+                                shelfService.addGame(shelfId, gameId);
+                            } else {
+                                shelfService.removeGame(shelfId, gameId);
+                            }
+                            LOG.info("{} Game #{} {} {}'s Shelf #{}", add ? "Added" : "Removed", gameId, add ? "to" : "from", getCurrentUsername(), shelfId);
+                        } else {
+                            LOG.info("User {} attempted to modify Shelf #{} that doesn't belong to them, skipping", getCurrentUsername(), shelfId);
+                        }
+                    } catch(NoSuchEntityException e) {
+                        LOG.info("User {} attempted to {} Game #{} {} nonexistent Shelf #{}", getCurrentUsername(), add ? "add" : "remove", gameId, add ? "to" : "from", shelfId);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Error updating shelves by game:", gameId, e);
+            return new ModelAndView("error500");
+        }
+
+        return new ModelAndView("redirect:/game?id=" + gameId);
     }
 }
