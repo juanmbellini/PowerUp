@@ -99,16 +99,10 @@ public class Shelf {
     }
 
     public void addGame(Game game) {
-        if(games.contains(game)) {
-            throw new IllegalArgumentException("Game #" + game + " is already in Shelf #" + id);
-        }
         games.add(game);
     }
 
     public void removeGame(Game game) {
-        if(!games.contains(game)) {
-            throw new IllegalArgumentException("Game #" + game + " is not in Shelf #" + id);
-        }
         games.remove(game);
     }
 
