@@ -4,6 +4,8 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,11 +51,19 @@ public class ShelfController extends BaseController {
         User user = userService.findByUsername(username);
         if (user == null) return new ModelAndView("error400");
 
-        //User found, populate their shelves
+        //User found, populate data
         Set<Shelf> shelves = shelfService.findByUserId(user.getId());
-        mav.addObject("shelves", shelves);
+        Map<Game, PlayStatus> playStatuses = new HashMap<>();
+        for(Shelf shelf : shelves) {
+            for(Game game : shelf.getGames()) {
+                if(!playStatuses.containsKey(game)) {   //Avoid unnecessary DB lookups
+                    playStatuses.put(game, userService.hasPlayStatus(user.getId(), game.getId()) ? userService.getPlayStatus(user.getId(), game.getId()) : null);
+                }
+            }
+        }
         mav.addObject("user", user);
-
+        mav.addObject("shelves", shelves);
+        mav.addObject("playStatuses", playStatuses);
         return mav;
     }
 
@@ -140,14 +151,14 @@ public class ShelfController extends BaseController {
     }
 
     @RequestMapping(value = "/update-shelves-by-game", method = RequestMethod.POST)
-    public ModelAndView updateByGame(@RequestParam(value = "gameId") long gameId, @RequestParam Map<String, String> updates) {
+    public ModelAndView updateByGame(@RequestParam(value = "gameId") long gameId, @RequestParam Map<String, String> updates, @RequestParam(value = "returnUrl", required = false) String returnUrl) {
         try {
             if(!isLoggedIn()) {
                 LOG.warn("Unauthenticated user attempted to update Game #{} in shelves, unauthorized", gameId);
                 return new ModelAndView("error404");
             }
             for(Map.Entry<String, String> entry : updates.entrySet()) {
-                if(!entry.getKey().equals("gameId")) {
+                if(!entry.getKey().equals("gameId") && !entry.getKey().equals("returnUrl")) {
                     //Treat each operation separately - if one fails (but ONLY from a NoSuchEntityException), the others can still try to execute
                     long shelfId = Long.valueOf(entry.getKey());
                     boolean add = Boolean.valueOf(entry.getValue());
@@ -172,6 +183,6 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/game?id=" + gameId);
+        return new ModelAndView("redirect:" + (returnUrl != null ? returnUrl : "/game?id=" + gameId));
     }
 }

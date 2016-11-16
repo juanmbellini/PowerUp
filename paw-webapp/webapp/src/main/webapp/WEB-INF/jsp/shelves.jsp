@@ -34,7 +34,7 @@
                 </h4>
                 <c:choose>
                     <c:when test="${fn:length(shelf.games) == 0}">
-                        <h5 class="center">No games here</h5>
+                        <h5 class="center">${shelf.name} is empty</h5>
                     </c:when>
                     <c:otherwise>
                         <ul class="collection games-list">
@@ -48,34 +48,11 @@
                                         <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                     </div>
                                     <div class="col s1 center">
-                                        <p style="margin-top: 33px;">${game.releaseDate.year}</p>
+                                        <p style="margin-top: 33px;"><b>${empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}</b></p>
                                     </div>
                                     <div class="col s2">
                                         <div class="secondary-content">
-                                            <c:set value="${game.avgScore}" var="score" />
-                                            <c:choose>
-                                                <c:when test="${score <= 10 && score>=0}">
-                                                    <p class="rating-number center"><b><fmt:formatNumber value="${score}" maxFractionDigits="2" /></b></p>
-                                                    <p class="rating-stars hide-on-small-and-down">
-                                                        <c:forEach begin="0" end="4" var="i">
-                                                            <c:choose>
-                                                                <c:when test="${score-(i*2)-1<0}">
-                                                                    <i class="material-icons">star_border</i>
-                                                                </c:when>
-                                                                <c:when test="${score-(i*2)-1==0}">
-                                                                    <i class="material-icons">star_half</i>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <i class="material-icons">star</i>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </c:forEach>
-                                                    </p>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <p class="rating-number center"><b>Unrated</b></p>
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <button class="btn delete-button waves-effect waves-light" data-shelf-id="${shelf.id}" data-game-id="${game.id}">Delete <i class="material-icons right">delete</i></button>
                                         </div>
                                     </div>
                                 </li>
@@ -83,10 +60,6 @@
                         </ul>
                     </c:otherwise>
                 </c:choose>
-                <c:if test="${!loopStatus.last}">
-                    <div class="col s12 divider"></div>
-                    <br/>
-                </c:if>
             </c:forEach>
             <c:if test="${fn:length(shelves) == 0}">
                 <h4 class="center">No shelves. Why not create one?</h4>
@@ -114,6 +87,18 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
 <script type="text/javascript">
     $(function() {
+
+        $(".delete-button").on('click', function (event) {
+            var gameId = $(this).data('game-id');
+            var shelfId = $(this).data('shelf-id');
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/update-shelves-by-game" />' method='POST'> \
+                <input type='hidden' name='gameId' value='" + gameId + "' /> \
+                <input type='hidden' name='" + shelfId + "' value='false' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "' /> \
+               </form>").submit();
+        });
+
         /* ***********************
          *      SWEET ALERTS
          * **********************/
