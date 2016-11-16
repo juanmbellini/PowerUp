@@ -178,7 +178,11 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public void updateAvgScore(long gameId) {
-        throw new notImplementedException();
+        Game game = findById(gameId);
+        final Query query = em.createQuery("select AVG(elements(g.scores)) from Game as g where g.id = (:gameId)");
+        query.setParameter("gameId",gameId);
+        double avgScore = (double)query.getSingleResult();
+        game.setAvgScore(avgScore);
     }
 
     @Override

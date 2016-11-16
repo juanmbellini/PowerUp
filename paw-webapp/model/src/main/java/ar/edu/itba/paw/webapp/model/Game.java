@@ -199,7 +199,7 @@ public class Game {
         this.summary = summary;
     }
 
-    private void setAvgScore(double avg_score) {
+    public void setAvgScore(double avg_score) {
         this.avgScore = avg_score;
     }
 
