@@ -41,6 +41,22 @@
     margin-bottom: 10px;
 }
 
+#sorting {
+    margin-bottom: 5px;
+}
+
+#sorting button.inactive {
+    background-color:lightblue;
+}
+
+#games-list-header p {
+    margin: 0;
+}
+
+#games-list-header p:last-child {
+    padding-right: 0;
+}
+
 .ul_game_list {
     margin-top: 5px;
 }
@@ -95,10 +111,6 @@
 
 .slick-prev:before, .slick-next:before {
     color: grey !important;
-}
-
-.filters-row {
-    margin-bottom: 0;
 }
 
 .select-title {
