@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
-    <title>Results - PowerUp</title>
+    <title>Search - PowerUp</title>
     <%--TODO change default title on all pages--%>
 
 </head>
@@ -22,7 +22,7 @@
                 Search
             </h3>
 
-            <div class="row">
+            <div class="col s12">
                 <form id="search-form">
                     <div class="input-field col s6 offset-s3">
                         <input placeholder="Title" type="text" name="name" value="${fn:length(searchedName) > 0 ? searchedName : ""}">
@@ -30,44 +30,46 @@
                 </form>
             </div>
 
-            <div class="col s6">
-                <!-- Nothing here... may be used by future things -->
-            </div>
-            <div class="col s4">
-                <div class="row select-title">
-                    Order by
-                </div>
-                <div class="row">
-                    <select class="col s5 select-drop-down" id="orderSelectId" onchange="changeOrderDropDown()">
-                        <option value="name">Name</option>
-                        <option value="release">Release date</option>
-                        <option value="rating">Rating</option>
-                    </select>
-                    <div class="col s1">
+            <%--OLD SORTING--%>
+            <%--<div class="col s6">--%>
+                <%--<!-- Nothing here... may be used by future things -->--%>
+            <%--</div>--%>
+            <%--<div class="col s4">--%>
+                <%--<div class="row select-title">--%>
+                    <%--Order by--%>
+                <%--</div>--%>
+                <%--<div class="row">--%>
+                    <%--<select class="col s5 select-drop-down" id="orderSelectId" onchange="changeOrderDropDown()">--%>
+                        <%--<option value="name">Name</option>--%>
+                        <%--<option value="release">Release date</option>--%>
+                        <%--<option value="rating">Rating</option>--%>
+                    <%--</select>--%>
+                    <%--<div class="col s1">--%>
 
-                    </div>
-                    <select class="col s5 select-drop-down" id="orderBooleanId" onchange="changeOrderDropDown()">
-                        <option value="ascending">Ascending</option>
-                        <option value="descending">Descending</option>
-                    </select>
-                    <div class="col s1">
+                    <%--</div>--%>
+                    <%--<select class="col s5 select-drop-down" id="orderBooleanId" onchange="changeOrderDropDown()">--%>
+                        <%--<option value="ascending">Ascending</option>--%>
+                        <%--<option value="descending">Descending</option>--%>
+                    <%--</select>--%>
+                    <%--<div class="col s1">--%>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col s2">
-                <div class="row select-title">
-                    Page size
-                </div>
-                <select class="row select-drop-down" id="pageSizeSelectId" onchange="changePageSize()">
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <c:if test="${page.pageSize != 25 && page.pageSize != 50 && page.pageSize != 100}">
-                        <option value="${page.pageSize}">Other: ${page.pageSize}</option>
-                    </c:if>
-                </select>
-            </div>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="col s2">--%>
+                <%--<div class="row select-title">--%>
+                    <%--Page size--%>
+                <%--</div>--%>
+                <%--<select class="row select-drop-down" id="pageSizeSelectId" onchange="changePageSize()">--%>
+                    <%--<option value="25">25</option>--%>
+                    <%--<option value="50">50</option>--%>
+                    <%--<option value="100">100</option>--%>
+                    <%--<c:if test="${page.pageSize != 25 && page.pageSize != 50 && page.pageSize != 100}">--%>
+                        <%--<option value="${page.pageSize}">Other: ${page.pageSize}</option>--%>
+                    <%--</c:if>--%>
+                <%--</select>--%>
+            <%--</div>--%>
+            <%--END OLD SORTING--%>
 
         </div>
 
@@ -173,14 +175,62 @@
 
             <%--Results, if any--%>
             <c:if test="${ fn:length(page.data) > 0 }">
+                <%--Sorting--%>
+                <c:if test="${ fn:length(page.data) > 1 }">
+                    <div class="right-align" id="sorting">
+                        <%--SORT BY NAME--%>
+                        <c:choose>
+                            <c:when test="${empty orderCategory || orderCategory == 'name'}">
+                                <c:set var="nameSort" value="${empty orderBoolean ? 'ascending' : orderBoolean}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="nameSort" value="ascending" />
+                            </c:otherwise>
+                        </c:choose>
+                        <button class="btn waves-effect waves-light<c:if test="${not empty orderCategory && orderCategory != 'name'}"> inactive</c:if>" data-category="name" data-sort="${nameSort}">
+                            Name <i class="material-icons right">arrow_drop_${nameSort == "ascending" ? "up" : "down"}</i>
+                        </button>
+                        <%--SORT BY RELEASE DATE--%>
+                        <c:choose>
+                            <c:when test="${orderCategory == 'release'}">
+                                <c:set var="releaseSort" value="${orderBoolean}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="releaseSort" value="descending" />
+                            </c:otherwise>
+                        </c:choose>
+                        <button class="btn waves-effect waves-light<c:if test="${orderCategory != 'release'}"> inactive</c:if>" data-category="release" data-sort="${releaseSort}">
+                            Release <i class="material-icons right">arrow_drop_${releaseSort == "ascending" ? "up" : "down"}</i>
+                        </button>
+                        <%--SORT BY AVERAGE RATING--%>
+                        <c:choose>
+                            <c:when test="${orderCategory == 'rating'}">
+                                <c:set var="ratingSort" value="${orderBoolean}" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="ratingSort" value="descending" />
+                            </c:otherwise>
+                        </c:choose>
+                        <button class="btn waves-effect waves-light<c:if test="${orderCategory != 'rating'}"> inactive</c:if>" data-category="rating" data-sort="${ratingSort}">
+                            Rating <i class="material-icons right">arrow_drop_${ratingSort == "ascending" ? "up" : "down"}</i>
+                        </button>
+                    </div>
+                </c:if>
+                <%--End sorting--%>
+                <%--TODO pagination--%>
+                <%--Games list header--%>
+                <div class="col s12 center" id="games-list-header">
+                    <p class="col s2">Cover Picture</p>
+                    <p class="col s7 left-align">Title and Summary</p>
+                    <p class="col s1">Release</p>
+                    <p class="col s2 right-align">Avg. Rating</p>
+                </div>
                 <%--Games list--%>
                 <ul class="collection games-list">
                     <c:forEach var="game" items="${page.data}">
                         <li class="collection-item avatar col s12">
                             <div class="col s2 cover-pic-container valign-wrapper">
-                                <img class="cover-picture valign"
-                                     src="${game.coverPictureUrl}" alt="${game.name}">
-
+                                <img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">
                             </div>
                             <div class="col primary-content s7">
                                 <p class="title">
@@ -189,7 +239,7 @@
                                 <p class="summary">${game.summary}</p>
                             </div>
                             <div class="col s1 center">
-                                <p style="margin-top: 33px;">${game.releaseDate.year}</p>
+                                <p style="margin-top: 33px;">${empty game.releaseDate.year ? "Unknown" : game.releaseDate.year}</p>
                             </div>
                             <div class="col s2">
                                 <div class="secondary-content">
@@ -213,7 +263,7 @@
                                             </p>
                                         </c:when>
                                         <c:otherwise>
-                                            <p class="rating-number center"><b>unrated</b></p>
+                                            <p class="rating-number center"><b>Unrated</b></p>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -387,6 +437,21 @@
             nameChanged = inputName != name;
             name = inputName;
             search();
+        });
+
+        $("#sorting button").on("click", function() {
+            var $elem = $(this);
+            var category = $elem.data("category");
+            var sort = $elem.data("sort");
+            if(!$elem.hasClass("inactive")) {
+                //Clicking on an active sorting should have the effect of flipping it.
+                sort = (sort == "ascending" ? "descending" : "ascending");
+            }
+            var url = "<c:url value="${changeOrderUrl}"/>";
+            var hasQuery = url.indexOf("?") != -1;
+            url += (hasQuery ? "&" : "?") + "orderCategory=" + category + "&orderBoolean=" + sort;
+            debugger;
+            window.location = url;
         });
     });
 

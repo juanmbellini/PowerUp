@@ -149,7 +149,9 @@ public class User implements Serializable {
      * @param scoredGames The games that this user has scored, with their corresponding scores.
      */
     public void setScoredGames(Map<Long, Integer> scoredGames) {
-        this.scoredGames.putAll(scoredGames);
+        for(Map.Entry<Long, Integer> entry : scoredGames.entrySet()) {
+            scoreGame(entry.getKey(), entry.getValue());
+        }
     }
 
     /**
@@ -248,6 +250,7 @@ public class User implements Serializable {
     /**
      * Get the map with all games status.
      *
+     * @return A map with all game statuses.
      */
     public  Map<Long, PlayStatus> getPlayStatuses(){
         return playedGames;

@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,10 +54,47 @@ public class UserController extends BaseController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @RequestMapping("/profile")
+    public ModelAndView profile(@RequestParam(value = "username", required = false) String username) {
+        if(username == null) {
+            if(isLoggedIn()) {
+                return new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
+            } else {
+                return new ModelAndView("redirect:/");
+            }
+        }
+        User user = userService.findByUsername(username);
+        if(user == null) {
+            return new ModelAndView("redirect:error400");
+        }
+        //Safe to render Profile page
+        ModelAndView mav = new ModelAndView("profile");
+        mav.addObject("user", user);
+        Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
+        mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
+        mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
+        mav.addObject("planToPlayGames", gameList.get(PlayStatus.PLAN_TO_PLAY));
+
+        //Add up to 10 games in descending rank order
+        Map<Game, Integer> topGames = new LinkedHashMap<>();
+        Map<Integer, Set<Long>> reverseScoredGames = userService.getScoredGamesRev(user.getId());
+        for (int score = 10; score > 0 && topGames.size() < 10; score--) {
+            if(reverseScoredGames.containsKey(score)) {
+                for(long gameId : reverseScoredGames.get(score)) {
+                    topGames.put(gameService.findById(gameId), score);
+                    if(topGames.size() >= 10) {
+                        break;
+                    }
+                }
+            }
+        }
+        mav.addObject("topGames", topGames);
+
+        return mav;
+    }
 
     @RequestMapping("/list")
     public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
-
         // TODO: Check if we are really allowing anyone to check other's lists. [JMB]
         if (username == null) {
             if (!isLoggedIn()) {
@@ -64,24 +102,29 @@ public class UserController extends BaseController {
             }
             return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
         }
+
         final ModelAndView mav = new ModelAndView("list");
         User u = userService.findByUsername(username);
         if (u == null) return new ModelAndView("error400");
 
         //User found, populate their list
-        Map<PlayStatus, Map<Game, Integer>> gameList = new HashMap<>();
+        Map<PlayStatus, Map<Game, Integer>> gameListWithScores = new HashMap<>();
         Map<Game, Integer> scores = userService.getScoredGames(u.getId());
-        for (PlayStatus playStatus : PlayStatus.values()) {
+        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(u.getId()).entrySet()) {
             // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
-            Map<Game, Integer> gameCategory = new LinkedHashMap<>();
-            for(Game game : userService.getGamesByStatus(u.getId(), playStatus)) {
+            PlayStatus status = entry.getKey();
+            Set<Game> games = entry.getValue();
+            if(!gameListWithScores.containsKey(status)) {
+                gameListWithScores.put(status, new LinkedHashMap<>());
+            }
+            Map<Game, Integer> gameCategory = gameListWithScores.get(status);
+            for(Game game : games) {
                 gameCategory.put(game, scores.containsKey(game) ? scores.get(game) : -1);
             }
-            gameList.put(playStatus, gameCategory);
+            gameListWithScores.put(status, gameCategory);
         }
         mav.addObject("user", u);
-        mav.addObject("gameList", gameList);
-
+        mav.addObject("gameList", gameListWithScores);
         return mav;
     }
 
@@ -132,6 +175,4 @@ public class UserController extends BaseController {
         SecurityContextHolder.getContext().setAuthentication(auth);
         return new ModelAndView("redirect:/");
     }
-
-
 }
