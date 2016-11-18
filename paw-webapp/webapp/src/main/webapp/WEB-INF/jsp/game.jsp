@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -79,7 +80,6 @@
                 </c:when>
                 <c:otherwise>
                     <div class="row">
-                        <%--<img class="col s3" src="https://myanimelist.cdn-dena.com/images/anime/9/21055.jpg" alt="">--%>
                         <img class="col s3" src="${game.coverPictureUrl}" alt="${game.name}">
                         <div class="col s5">
                             <p style="margin-top: 0;">
@@ -93,7 +93,7 @@
                             <p><b>Rating</b></p>
                             <c:choose>
                                 <c:when test="${game.avgScore>0}">
-                                    <p style="margin-top:0;">${game.avgScore}</p>
+                                    <p style="margin-top:0;"><fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" /></p>
                                 </c:when>
                                 <c:otherwise>
                                     <p style="margin-top:0;">unrated</p>
