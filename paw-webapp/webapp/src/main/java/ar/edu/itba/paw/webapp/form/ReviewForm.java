@@ -13,7 +13,7 @@ import javax.validation.constraints.Min;
  */
 public class ReviewForm {
 
-    @Length(min = 50, max = 10000, message = "Please write between 50 and 10000 characters")
+    @Length(min = 5, max = 10000, message = "Please write between 5 and 10000 characters")
     private String review;
 
     @Min(value = 1, message = "Score must be between 1 and 10")

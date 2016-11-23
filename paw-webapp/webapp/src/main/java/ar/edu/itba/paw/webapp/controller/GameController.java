@@ -240,7 +240,7 @@ public class GameController extends BaseController {
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
         mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
-        mav.addObject("isEnabled", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
@@ -313,7 +313,7 @@ public class GameController extends BaseController {
                 mav.addObject("reviews", reviewService.findByUserId(userId));
                 mav.addObject("user", userService.findById(userId));
             }
-            mav.addObject("isEnabled", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
         } catch (NoSuchGameException e) {
             LOG.warn("Requested reviews for nonexistent game (ID={})", gameId);
             mav = new ModelAndView("error404");

@@ -52,25 +52,6 @@ public interface ReviewService {
     Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
 
     /**
-     * Returns a set of reviews for a specified game.
-     *
-     * @param name The name of the game whose reviews to fetch. Case <b>in</b>sensitive.
-     * @return The resulting set of reviews.
-     * @throws NoSuchGameException When an invalid game name is provided.
-     */
-    Set<Review> findByGameName(String name) throws NoSuchGameException;
-
-    /**
-     * Returns a set of recent reviews, ordered by descending date, for a specified game, identified by title.
-     *
-     * @param name The title of the game whose reviews to fetch. Case <b>in</b>sensitive.
-     * @param limit The maximum number of reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchGameException When an invalid game title is provided.
-     */
-    Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException;
-
-    /**
      * Returns a set of reviews created by a specified user.
      *
      * @param id The ID of the user whose reviews to fetch.

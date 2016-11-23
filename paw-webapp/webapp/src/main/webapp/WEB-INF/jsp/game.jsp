@@ -196,7 +196,7 @@
                             <%--End Review List--%>
                         </c:choose>
 
-                        <c:if test="${isEnabled}">
+                        <c:if test="${canSubmitReview}">
                             <div class="row">
                                 <div class="col s12 center">
                                     <a href="<c:url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>

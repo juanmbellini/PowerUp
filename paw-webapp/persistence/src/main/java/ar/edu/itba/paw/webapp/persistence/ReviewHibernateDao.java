@@ -24,6 +24,8 @@ import java.util.Set;
 @Repository
 public class ReviewHibernateDao implements ReviewDao {
 
+    //TODO fix repeated code, extract some finding functionality to a generalized method if possible
+
     @PersistenceContext
     private EntityManager em;
 
@@ -74,35 +76,6 @@ public class ReviewHibernateDao implements ReviewDao {
         }
         TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :id ORDER BY R.date DESC", Review.class);
         baseQuery.setParameter("id", id);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Review> findByGameName(String name) {
-        if(!gameDao.existsWithTitle(name)) {
-            throw new NoSuchGameException(name);
-        }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.name = :name", Review.class);
-        baseQuery.setParameter("name", name);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException {
-        if(!gameDao.existsWithTitle(name)) {
-            throw new NoSuchGameException(name);
-        }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.name = :name ORDER BY R.date DESC", Review.class);
-        baseQuery.setParameter("name", name);
         baseQuery.setMaxResults(limit);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());

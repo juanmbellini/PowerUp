@@ -28,16 +28,6 @@ public interface ReviewDao {
     Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
 
     /**
-     * @see ReviewService#findByGameName(String)
-     */
-    Set<Review> findByGameName(String name) throws NoSuchGameException;
-
-    /**
-     * @see ReviewService#findRecentByGameName(String, int)
-     */
-    Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException;
-
-    /**
      * @see ReviewService#findByUserId(long)
      */
     Set<Review> findByUserId(long id) throws NoSuchUserException;

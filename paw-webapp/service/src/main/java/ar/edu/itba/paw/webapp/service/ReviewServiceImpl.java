@@ -38,16 +38,6 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Set<Review> findByGameName(String name) throws NoSuchGameException {
-        return reviewDao.findByGameName(name);
-    }
-
-    @Override
-    public Set<Review> findRecentByGameName(String name, int limit) throws NoSuchGameException {
-        return reviewDao.findRecentByGameName(name, limit);
-    }
-
-    @Override
     public Set<Review> findByUserId(long id) throws NoSuchUserException {
         return reviewDao.findByUserId(id);
     }
