@@ -53,6 +53,17 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE (email),
   UNIQUE (username)
 );
+CREATE TABLE IF NOT EXISTS shelves (
+  id            SERIAL NOT NULL PRIMARY KEY,
+  name          VARCHAR NOT NULL,
+  user_id       INTEGER NOT NULL,
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  -- Other fields like whether this shelf is public?
+
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE SEQUENCE IF NOT EXISTS shelves_id_seq;
 
 -- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS game_genres (
@@ -137,5 +148,14 @@ CREATE TABLE IF NOT EXISTS user_authorities (
 
   FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE ,
   UNIQUE (username, authority)
+);
+CREATE TABLE IF NOT EXISTS shelf_games (
+  id            SERIAL NOT NULL PRIMARY KEY,
+  shelf_id      INTEGER NOT NULL,
+  game_id       INTEGER NOT NULL,
+
+  FOREIGN KEY (shelf_id) REFERENCES shelves(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE(shelf_id, game_id)
 );
 COMMIT;
