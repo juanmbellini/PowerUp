@@ -3,7 +3,8 @@ package ar.edu.itba.paw.webapp.form;
 import de.malkusch.validation.constraints.EqualProperties;
 import org.hibernate.validator.constraints.Email;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @EqualProperties({"password","repeatPassword"})
 public class UserForm {

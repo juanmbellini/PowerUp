@@ -1,8 +1,6 @@
 package ar.edu.itba.paw.webapp.form;
 
-import com.sun.istack.internal.NotNull;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

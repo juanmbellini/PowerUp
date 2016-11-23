@@ -3,11 +3,8 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
-import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
 
-import javax.persistence.EntityExistsException;
 import java.util.Set;
 
 /**
