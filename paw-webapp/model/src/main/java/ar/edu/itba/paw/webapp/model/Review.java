@@ -29,24 +29,41 @@ public class Review {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false)
-    private int story_score;
+    @Column(nullable = false, name = "story_score")
+    private int storyScore;
 
-    @Column(nullable = false)
-    private int graphics_score;
+    @Column(nullable = false, name = "graphics_score")
+    private int graphicsScore;
 
-    @Column(nullable = false)
-    private int audio_score;
+    @Column(nullable = false, name = "audio_score")
+    private int audioScore;
 
-    @Column(nullable = false)
-    private int controls_score;
+    @Column(nullable = false, name = "controls_score")
+    private int controlsScore;
 
-    @Column(nullable = false)
-    private int fun_score;
+    @Column(nullable = false, name = "fun_score")
+    private int funScore;
 
     /*package*/  Review() {
         //for hibernate
     }
+
+    public Review(User user, Game game, String review, LocalDate date, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) {
+        this.user = user;
+        this.game = game;
+        this.review = review;
+        this.date = date;
+        this.storyScore = storyScore;
+        this.graphicsScore = graphicsScore;
+        this.audioScore = audioScore;
+        this.controlsScore = controlsScore;
+        this.funScore = funScore;
+    }
+
+    public Review(User user, Game game, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) {
+        this(user, game, review, LocalDate.now(), storyScore, graphicsScore, audioScore, controlsScore, funScore);
+    }
+
     public Review(User user, String review, LocalDate date) {
         this.user = user;
         this.review = review;
@@ -55,7 +72,7 @@ public class Review {
 
 
     public double getRating() {
-        return (double)(this.audio_score + this.controls_score + this.fun_score + this.graphics_score + this.story_score)/5;
+        return (double)(this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore)/5;
     }
 
     public long getId() {
@@ -74,44 +91,44 @@ public class Review {
         this.game = game;
     }
 
-    public int getStory_score() {
-        return story_score;
+    public int getStoryScore() {
+        return storyScore;
     }
 
-    public void setStory_score(int story_score) {
-        this.story_score = story_score;
+    public void setStoryScore(int storyScore) {
+        this.storyScore = storyScore;
     }
 
-    public int getGraphics_score() {
-        return graphics_score;
+    public int getGraphicsScore() {
+        return graphicsScore;
     }
 
-    public void setGraphics_score(int graphics_score) {
-        this.graphics_score = graphics_score;
+    public void setGraphicsScore(int graphicsScore) {
+        this.graphicsScore = graphicsScore;
     }
 
-    public int getAudio_score() {
-        return audio_score;
+    public int getAudioScore() {
+        return audioScore;
     }
 
-    public void setAudio_score(int audio_score) {
-        this.audio_score = audio_score;
+    public void setAudioScore(int audioScore) {
+        this.audioScore = audioScore;
     }
 
-    public int getControls_score() {
-        return controls_score;
+    public int getControlsScore() {
+        return controlsScore;
     }
 
-    public void setControls_score(int controls_score) {
-        this.controls_score = controls_score;
+    public void setControlsScore(int controlsScore) {
+        this.controlsScore = controlsScore;
     }
 
-    public int getFun_score() {
-        return fun_score;
+    public int getFunScore() {
+        return funScore;
     }
 
-    public void setFun_score(int fun_score) {
-        this.fun_score = fun_score;
+    public void setFunScore(int funScore) {
+        this.funScore = funScore;
     }
 
     public String getReview() {
@@ -138,6 +155,10 @@ public class Review {
         this.date = date;
     }
 
+    @Transient
+    public double getOverallScore() {
+        return (storyScore + graphicsScore + audioScore + controlsScore + funScore) / 5.0;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,7 +1,11 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.form.RateAndStatusForm;
+import ar.edu.itba.paw.webapp.form.ReviewForm;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -10,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,11 +71,14 @@ public class GameController extends BaseController {
 
     private final GenreService genreService;
 
+    private final ReviewService reviewService;
+
 
     @Autowired
-    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService, ReviewService reviewService) {
         super(us);
         this.gameService = gameService;
+        this.reviewService = reviewService;
         this.platformService = platformService;
         this.developerService = developerService;
         this.publisherService = publisherService;
@@ -219,6 +225,7 @@ public class GameController extends BaseController {
         } catch (Exception e) {
             return new ModelAndView("redirect:/error500");
         }
+
         List<Integer> scoreValues = new ArrayList<>();
         for (int i = 1; i <= 10; i++) scoreValues.add(i);
         mav.addObject("scoreValues", scoreValues);
@@ -232,6 +239,8 @@ public class GameController extends BaseController {
         }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
+        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
+        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
@@ -275,5 +284,92 @@ public class GameController extends BaseController {
             userService.removeStatus(userId, id);
         }
         return mav;
+    }
+
+    @RequestMapping(value = "/reviews")
+    public ModelAndView reviews(@RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId, @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId) {
+        //Need at least one of the two
+        if(gameId == -1 && userId == -1) {
+            return new ModelAndView("error400");
+        }
+        ModelAndView mav = null;
+        try {
+            mav = new ModelAndView("reviews");
+            if(gameId != -1) {
+                if(userId != -1) {
+                    //Find by both
+                    Set<Review> singleReview = new LinkedHashSet<>(1);  //Add as set because view assumes it will be a collection
+                    singleReview.add(reviewService.find(userId, gameId));
+                    mav.addObject("reviews", singleReview);
+                    mav.addObject("user", userService.findById(userId));
+                } else {
+                    //Find by game ID
+                    mav.addObject("reviews", reviewService.findByGameId(gameId));
+                }
+                //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
+                mav.addObject("game", gameService.findById(gameId));
+            } else {
+                //Find by user ID
+                mav.addObject("reviews", reviewService.findByUserId(userId));
+                mav.addObject("user", userService.findById(userId));
+            }
+            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        } catch (NoSuchGameException e) {
+            LOG.warn("Requested reviews for nonexistent game (ID={})", gameId);
+            mav = new ModelAndView("error404");
+        } catch (NoSuchUserException e) {
+            LOG.warn("Requested reviews for nonexistent user (ID={})", userId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error rendering Reviews page", e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/write-review", method = RequestMethod.GET)
+    public ModelAndView writeReview(@RequestParam(name = "id") long gameId,
+                                    @ModelAttribute("reviewForm") final ReviewForm reviewForm) {
+        ModelAndView mav = null;
+        try {
+            Game game = gameService.findById(gameId);
+            if(game == null) {
+                LOG.warn("Requested to write a review for a nonexistent game (ID={})", gameId);
+                return new ModelAndView("error404");
+            }
+            //No need to check if logged in - spring security restricts access to this page to authenticated users
+            if(reviewService.find(getCurrentUser().getId(), gameId) != null) {
+                LOG.info("User #{} attempted to write a review for Game #{} when they already have a review, access denied", getCurrentUser().getId(), gameId);
+                return new ModelAndView("error400");
+            }
+            mav = new ModelAndView("write-review");
+            mav.addObject("game", game);
+        } catch (Exception e) {
+            LOG.error("Error rendering Write Review page", e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/write-review", method = RequestMethod.POST)
+    public ModelAndView submitReview(@RequestParam(name = "id") long gameId,
+                                     @Valid @ModelAttribute("reviewForm") final ReviewForm reviewForm,
+                                     final BindingResult errors) {
+        if (errors.hasErrors()) {
+            return writeReview(gameId, reviewForm);
+        }
+        //Valid review, create
+        try {
+            reviewService.create(getCurrentUser().getId(), gameId, reviewForm.getReview(), reviewForm.getStoryScore(), reviewForm.getGraphicsScore(), reviewForm.getAudioScore(), reviewForm.getControlsScore(), reviewForm.getStoryScore());
+        } catch (NoSuchEntityException e) {
+            LOG.warn("Attempted to create a review with an invalid user or game ID {}", e);
+            return new ModelAndView("error404");
+        } catch (Exception e) {
+            //TODO handle users submitting duplicate reviews more gracefully
+            LOG.error("Error creating review for Game #{} for User #{}", gameId, getCurrentUser().getId(), e);
+            return new ModelAndView("error500");
+        }
+        //Created successfully, redirect to all reviews page
+        return new ModelAndView("redirect:/reviews?gameId=" + gameId);
     }
 }

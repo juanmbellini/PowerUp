@@ -1,7 +1,8 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,10 +148,70 @@
                             </c:forEach>
                         </div>
                     </div>
+
+                    <%--REVIEWS--%>
                     <div class="row">
                         <div class="col s12 divider"></div>
                     </div>
+                    <div class="row">
+                        <c:choose>
+                            <%--No Reviews--%>
+                            <c:when test="${fn:length(reviews) == 0}">
+                                <h5 class="center">Recent Reviews</h5>
+                                <p class="center">No reviews</p>
+                            </c:when>
+                            <%--End No Reviews--%>
+                            <%--Review list--%>
+                            <c:otherwise>
+                                <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?gameId=${game.id}" />">See All</a></h5>
+                                <ul class="collection">
+                                    <c:forEach items="${reviews}" var="review">
+                                        <li class="collection-item avatar">
+                                            <i class="material-icons circle blue">exit_to_app</i>
+                                            <span class="title">${review.user.username}</span>
+                                            <p class="secondary-content" style="color: black;">${review.date}</p>
+                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a></p>
+                                            <br/>
+                                            <div class="row">
+                                                <p class="col s10">${review.review}</p>
+                                                <div class="col s2">
+                                                    <p style="color: #26a69a;">
+                                                        Story: <span class="right">${review.storyScore}</span>
+                                                        <br/>
+                                                        Graphics: <span class="right">${review.graphicsScore}</span>
+                                                        <br/>
+                                                        Audio: <span class="right">${review.audioScore}</span>
+                                                        <br/>
+                                                        Controls: <span class="right">${review.controlsScore}</span>
+                                                        <br/>
+                                                        Fun: <span class="right">${review.funScore}</span>
+                                                        <br/>
+                                                        <b>Overall: <span class="right"><fmt:formatNumber value="${review.overallScore}" maxFractionDigits="2" /></span></b>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </c:otherwise>
+                            <%--End Review List--%>
+                        </c:choose>
+
+                        <c:if test="${canSubmitReview}">
+                            <div class="row">
+                                <div class="col s12 center">
+                                    <a href="<c:url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+                                </div>
+                            </div>
+                        </c:if>
+                    </div>
+                    <%--END REVIEWS--%>
+
+                    <%--RELATED GAMES--%>
                     <c:if test="${ fn:length( relatedGames) > 0 }">
+                        <div class="row">
+                            <div class="col s12 divider"></div>
+                        </div>
                         <div class="row">
                             <h5 class="center">Related Games</h5>
                             <div class="slick-carousel">
@@ -169,6 +230,7 @@
                             </div>
                         </div>
                     </c:if>
+                    <%--END RELATED GAMES--%>
                 </c:otherwise>
             </c:choose>
         </div>

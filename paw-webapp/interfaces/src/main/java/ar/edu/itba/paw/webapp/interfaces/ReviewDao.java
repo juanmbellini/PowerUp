@@ -1,8 +1,9 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
+import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Set;
 
@@ -12,24 +13,39 @@ import java.util.Set;
 public interface ReviewDao {
 
     /**
-     * @see ReviewService#findByGameId(long)
+     * @see ReviewService#create(long, long, String, int, int, int, int, int) 
      */
-    Set<Review> findByGameId(long id);
+    Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException;
 
     /**
-     * @see ReviewService#findByGameName(String)
+     * @see ReviewService#findByGameId(long)
      */
-    Set<Review> findByGameName(String name);
+    Set<Review> findByGameId(long id) throws NoSuchGameException;
+
+    /**
+     * @see ReviewService#findRecentByGameId(long, int)
+     */
+    Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
 
     /**
      * @see ReviewService#findByUserId(long)
      */
-    Set<Review> findByUserId(long id);
+    Set<Review> findByUserId(long id) throws NoSuchUserException;
 
     /**
-     * @see ReviewService#findByUserName(String)
+     * @see ReviewService#findRecentByUserId(long, int)
      */
-    Set<Review> findByUserName(String name);
+    Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException;
+
+    /**
+     * @see ReviewService#findByUsername(String)
+     */
+    Set<Review> findByUsername(String username) throws NoSuchUserException;
+
+    /**
+     * @see ReviewService#findRecentByUsername(String, int)
+     */
+    Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException;
 
     /**
      * @see ReviewService#findById(long)
@@ -37,7 +53,7 @@ public interface ReviewDao {
     Review findById(long reviewId);
 
     /**
-     * @see ReviewService#exists(Game, User)
+     * @see ReviewService#find(long, long)
      */
-    boolean exists(Game game, User user);
+    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
 }
