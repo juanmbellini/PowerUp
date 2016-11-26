@@ -23,12 +23,9 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
 
     private final UserDao userDao;
 
-    private final CommentDao commentDao;
-
     @Autowired
-    public CommentLikeHibernateDao(UserDao userDao, CommentDao commentDao) {
+    public CommentLikeHibernateDao(UserDao userDao) {
         this.userDao = userDao;
-        this.commentDao = commentDao;
     }
 
     @Override
@@ -48,7 +45,7 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
         if(user == null) {
             throw new NoSuchUserException(userId);
         }
-        Comment comment = commentDao.findById(commentId);
+        Comment comment = em.find(Comment.class, commentId);
         if(comment == null) {
             throw new NoSuchEntityException(Comment.class, commentId);
         }

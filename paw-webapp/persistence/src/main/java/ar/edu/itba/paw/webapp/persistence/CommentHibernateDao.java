@@ -26,18 +26,15 @@ public class CommentHibernateDao implements CommentDao {
 
     private final UserDao userDao;
 
-    private final ThreadDao threadDao;
-
     @Autowired
-    public CommentHibernateDao(CommentLikeDao commentLikeDao, UserDao userDao, ThreadDao threadDao) {
+    public CommentHibernateDao(CommentLikeDao commentLikeDao, UserDao userDao) {
         this.commentLikeDao = commentLikeDao;
         this.userDao = userDao;
-        this.threadDao = threadDao;
     }
 
     @Override
     public void comment(long threadId, long commenterId, String comment) {
-        Thread thread = threadDao.findById(threadId);
+        Thread thread = em.find(Thread.class, threadId);
         if(thread == null) {
             throw new NoSuchEntityException(Thread.class, threadId);
         }
