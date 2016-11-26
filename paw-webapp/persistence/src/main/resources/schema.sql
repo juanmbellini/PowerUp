@@ -66,24 +66,29 @@ CREATE TABLE IF NOT EXISTS shelves (
 CREATE SEQUENCE IF NOT EXISTS shelves_id_seq;
 
 CREATE TABLE IF NOT EXISTS threads(
-  id          SERIAL NOT NULL PRIMARY KEY,
-  title       VARCHAR NOT NULL,
-  user_id     INTEGER NOT NULL,
-  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  id              SERIAL NOT NULL PRIMARY KEY,
+  title           VARCHAR NOT NULL,
+  user_id         INTEGER NOT NULL,
+  initial_comment VARCHAR NOT NULL DEFAULT '',
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE SEQUENCE IF NOT EXISTS threads_id_seq;
 
 CREATE TABLE IF NOT EXISTS comments(
-  id          SERIAL NOT NULL PRIMARY KEY,
-  user_id     INTEGER NOT NULL,
-  comment     VARCHAR NOT NULL,
-  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  id                SERIAL NOT NULL PRIMARY KEY,
+  user_id           INTEGER NOT NULL,
+  comment           VARCHAR NOT NULL,
+  thread_id         INTEGER NOT NULL,
+  parent_comment    INTEGER NULL,
+  created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
 
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (thread_id) REFERENCES threads(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (parent_comment) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE SEQUENCE IF NOT EXISTS comments_id_seq;
 

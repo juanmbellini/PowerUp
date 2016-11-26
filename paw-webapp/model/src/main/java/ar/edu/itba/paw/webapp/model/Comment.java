@@ -26,17 +26,23 @@ public class Comment {
     @Column(name = "comment")
     private String comment;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Thread thread;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Comment parentComment;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
             name = "comments",
-            joinColumns=@JoinColumn(name = "reply_to")
+            joinColumns = @JoinColumn(name = "reply_to")
     )
     private Collection<Comment> replies;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "comment_likes",
-            joinColumns=@JoinColumn(name = "comment_id")
+            joinColumns = @JoinColumn(name = "comment_id")
     )
     private Collection<CommentLike> likes;
 
@@ -54,8 +60,31 @@ public class Comment {
         //For Hibernate
     }
 
-    public Comment(User commenter, String comment) {
+    /**
+     * Creates a new top-level comment.
+     *
+     * @param thread    The thread this comment belongs to.
+     * @param commenter The user who is commenting.
+     * @param comment   The comment content.
+     */
+    public Comment(Thread thread, User commenter, String comment) {
+        this.thread = thread;
+        this.parentComment = null;
         this.commenter = commenter;
+        this.comment = comment;
+    }
+
+    /**
+     * Creates a new reply to a previous comment.
+     *
+     * @param parent  The parent comment that this comment is replying to.
+     * @param replier The user who is replying.
+     * @param comment The comment content.
+     */
+    public Comment(Comment parent, User replier, String comment) {
+        this.thread = parent.getThread();
+        this.parentComment = parent;
+        this.commenter = replier;
         this.comment = comment;
     }
 
@@ -77,6 +106,14 @@ public class Comment {
 
     public Collection<Comment> getReplies() {
         return replies;
+    }
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public Comment getParentComment() {
+        return parentComment;
     }
 
     public Calendar getCreatedAt() {

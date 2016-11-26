@@ -4,7 +4,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Collection;
 
@@ -27,17 +26,20 @@ public class Thread {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "initial_comment")
+    private String initialComment;
+
     @ElementCollection
     @CollectionTable(
             name = "comments",
-            joinColumns=@JoinColumn(name = "thread_id")
+            joinColumns = @JoinColumn(name = "thread_id")
     )
     private Collection<Comment> topLevelComments;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "thread_likes",
-            joinColumns=@JoinColumn(name = "thread_id")
+            joinColumns = @JoinColumn(name = "thread_id")
     )
     private Collection<ThreadLike> likes;
 
@@ -55,9 +57,27 @@ public class Thread {
         //for hibernate
     }
 
-    public Thread(User creator, String title) {
+    /**
+     * Creates a new thread.
+     *
+     * @param creator        The thread's creator.
+     * @param title          The thread's title.
+     * @param initialComment The thread's initial comment. May be empty, but not null.
+     */
+    public Thread(User creator, String title, String initialComment) {
         this.creator = creator;
         this.title = title;
+        this.initialComment = initialComment;
+    }
+
+    /**
+     * Creates a new thread with an empty initial comment.
+     *
+     * @param creator The thread's creator.
+     * @param title   The thread's title.
+     */
+    public Thread(User creator, String title) {
+        this(creator, title, "");
     }
 
     public long getId() {
@@ -70,6 +90,14 @@ public class Thread {
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getInitialComment() {
+        return initialComment;
     }
 
     public Collection<Comment> getComments() {
@@ -101,5 +129,14 @@ public class Thread {
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
+    }
+
+    @Override
+    public String toString() {
+        return "Thread #" +
+                id +
+                ", creator=" + creator.getUsername() +
+                ", title='" + title + '\'' +
+                ", initialComment='" + initialComment + '\'';
     }
 }
