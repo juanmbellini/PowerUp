@@ -120,7 +120,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     /*package*/ DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
-        dbp.addScript(schemaSql);
+        dbp.addScript(schemaSql); //TODO esto sirve de algo?
 //        dbp.addScript(initialDataSql);
         return dbp;
     }

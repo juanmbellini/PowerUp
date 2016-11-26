@@ -128,7 +128,7 @@ public class GameHibernateDao implements GameDao {
         //Analogous, with developers
         countFilter=0;
         Map<String, Double> mapFilterToFilterScoreDeveloper = new HashMap<>();
-        Iterator<Developer> developerIterator = game.getDevelopers().iterator();
+        Iterator<Company> developerIterator = game.getDevelopers().iterator();
         while (countFilter < developerLimit && developerIterator.hasNext()) {
             mapFilterToFilterScoreDeveloper.put(developerIterator.next().getName(), developerWeight);
             countFilter++;
@@ -196,12 +196,12 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
-    public Collection<Publisher> getPublishers(long gameId) {
+    public Collection<Company> getPublishers(long gameId) {
         return getFreshGame(gameId).getPublishers();
     }
 
     @Override
-    public Collection<Developer> getDevelopers(long gameId) {
+    public Collection<Company> getDevelopers(long gameId) {
         return getFreshGame(gameId).getDevelopers();
     }
 

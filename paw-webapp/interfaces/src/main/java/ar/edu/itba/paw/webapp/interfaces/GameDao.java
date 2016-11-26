@@ -79,12 +79,12 @@ public interface GameDao {
     /**
      * @see GameService#getPublishers(long)
      */
-    Collection<Publisher> getPublishers(long gameId);
+    Collection<Company> getPublishers(long gameId);
 
     /**
      * @see GameService#getDevelopers(long)
      */
-    Collection<Developer> getDevelopers(long gameId);
+    Collection<Company> getDevelopers(long gameId);
 
     /**
      * @see GameService#getKeywords(long)

@@ -100,7 +100,7 @@ public interface GameService {
      * @param gameId The ID of the game to search.
      * @return The matching publishers.
      */
-    Collection<Publisher> getPublishers(long gameId);
+    Collection<Company> getPublishers(long gameId);
 
     /**
      * Gets all developers associated with a game.
@@ -108,7 +108,7 @@ public interface GameService {
      * @param gameId The ID of the game to search.
      * @return The matching developers.
      */
-    Collection<Developer> getDevelopers(long gameId);
+    Collection<Company> getDevelopers(long gameId);
 
     /**
      * Gets all keywords associated with a game.

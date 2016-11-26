@@ -64,9 +64,7 @@ public class GameController extends BaseController {
 
     private final PlatformService platformService;
 
-    private final DeveloperService developerService;
-
-    private final PublisherService publisherService;
+    private final CompanyService companyService;
 
     private final GenreService genreService;
 
@@ -76,13 +74,12 @@ public class GameController extends BaseController {
 
 
     @Autowired
-    public GameController(GameService gameService, UserService us, PlatformService platformService, DeveloperService developerService, PublisherService publisherService, GenreService genreService, ShelfService shelfService, ReviewService reviewService) {
+    public GameController(GameService gameService, UserService us, PlatformService platformService, CompanyService companyService, GenreService genreService, ShelfService shelfService, ReviewService reviewService) {
         super(us);
         this.gameService = gameService;
+        this.companyService = companyService;
         this.reviewService = reviewService;
         this.platformService = platformService;
-        this.developerService = developerService;
-        this.publisherService = publisherService;
         this.genreService = genreService;
         this.shelfService = shelfService;
         objectMapper = new ObjectMapper();
@@ -184,14 +181,14 @@ public class GameController extends BaseController {
         mav.addObject("platforms", platforms);
         //Developers
         Set<Object[]> developers = new LinkedHashSet<>();
-        for(Developer d : developerService.all()) {
+        for(Company d : companyService.all()) {
             developers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
         }
         mav.addObject("developers", developers);
         //Publishers
         Set<Object[]> publishers = new LinkedHashSet<>();
-        for(Publisher d : publisherService.all()) {
-            publishers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(d.getName())});
+        for(Company p : companyService.all()) {
+            publishers.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(p.getName())});
         }
         mav.addObject("publishers", publishers);
 

@@ -44,14 +44,14 @@ public class Game {
             name="game_publishers",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="publisher_id", referencedColumnName="id"))
-    private Collection<Publisher> publishers;
+    private Collection<Company> publishers;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="game_developers",
             joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="developer_id", referencedColumnName="id"))
-    private Collection<Developer> developers;
+    private Collection<Company> developers;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -142,11 +142,11 @@ public class Game {
         return newPlatformMap;
     }
 
-    public Collection<Publisher> getPublishers() {
+    public Collection<Company> getPublishers() {
         return cloneCollection(publishers);
     }
 
-    public Collection<Developer> getDevelopers() {
+    public Collection<Company> getDevelopers() {
         return cloneCollection(developers);
     }
 
@@ -223,11 +223,11 @@ public class Game {
         platforms.put(platform, date);
     }
 
-    public void addPublisher(Publisher publisher) {
+    public void addPublisher(Company publisher) {
         publishers.add(publisher);
     }
 
-    public void addDeveloper(Developer developer) {
+    public void addDeveloper(Company developer) {
         developers.add(developer);
     }
 
@@ -311,7 +311,7 @@ public class Game {
         return scores;
     }
 
-    public static class GameBuilder {
+    public static class GameBuilder { //TODO se usa esto ahora que tenemos Hibernate?
 
         // TODO: Make a better Builder Implementation [JMB]
 
@@ -414,14 +414,14 @@ public class Game {
             return this;
         }
 
-        public GameBuilder addPublisher(Publisher publisher) {
+        public GameBuilder addPublisher(Company publisher) {
             checkBuilt();
             game.addPublisher(publisher);
             startedBuilding = true;
             return this;
         }
 
-        public GameBuilder addDeveloper(Developer developer) {
+        public GameBuilder addDeveloper(Company developer) {
             checkBuilt();
             game.addDeveloper(developer);
             startedBuilding = true;

@@ -450,7 +450,6 @@
             var url = "<c:url value="${changeOrderUrl}"/>";
             var hasQuery = url.indexOf("?") != -1;
             url += (hasQuery ? "&" : "?") + "orderCategory=" + category + "&orderBoolean=" + sort;
-            debugger;
             window.location = url;
         });
     });

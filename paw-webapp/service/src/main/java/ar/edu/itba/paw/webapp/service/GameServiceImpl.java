@@ -66,12 +66,12 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Collection<Publisher> getPublishers(long gameId) {
+    public Collection<Company> getPublishers(long gameId) {
         return gameDao.getPublishers(gameId);
     }
 
     @Override
-    public Collection<Developer> getDevelopers(long gameId) {
+    public Collection<Company> getDevelopers(long gameId) {
         return gameDao.getDevelopers(gameId);
     }
 

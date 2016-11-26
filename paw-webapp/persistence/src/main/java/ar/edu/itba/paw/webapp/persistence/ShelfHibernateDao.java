@@ -83,7 +83,8 @@ public class ShelfHibernateDao implements ShelfDao {
         baseQuery.setParameter("id", id);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
+        } catch(Exception e) {
+            e.printStackTrace();
             return Collections.emptySet();
         }
     }
