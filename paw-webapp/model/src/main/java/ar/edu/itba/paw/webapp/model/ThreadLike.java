@@ -23,7 +23,6 @@ public class ThreadLike {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "thread_id", referencedColumnName = "id", nullable = false)
     private Thread thread;
 
     @Column(name = "created_at")

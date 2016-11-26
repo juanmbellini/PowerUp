@@ -82,13 +82,13 @@ CREATE TABLE IF NOT EXISTS comments(
   user_id           INTEGER NOT NULL,
   comment           VARCHAR NOT NULL,
   thread_id         INTEGER NOT NULL,
-  parent_comment    INTEGER NULL,
+  parent_comment_id INTEGER NULL,
   created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (thread_id) REFERENCES threads(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (parent_comment) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (parent_comment_id) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE SEQUENCE IF NOT EXISTS comments_id_seq;
 

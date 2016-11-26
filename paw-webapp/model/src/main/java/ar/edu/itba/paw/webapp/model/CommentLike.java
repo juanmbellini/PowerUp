@@ -25,7 +25,6 @@ public class CommentLike {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "comment_id", referencedColumnName = "id", nullable = false)
     private Comment comment;
 
     @Column(name = "created_at")

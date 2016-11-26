@@ -29,18 +29,10 @@ public class Thread {
     @Column(name = "initial_comment")
     private String initialComment;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "comments",
-            joinColumns = @JoinColumn(name = "thread_id")
-    )
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
     private Collection<Comment> topLevelComments;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(
-            name = "thread_likes",
-            joinColumns = @JoinColumn(name = "thread_id")
-    )
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
     private Collection<ThreadLike> likes;
 
     @Column(name = "created_at")

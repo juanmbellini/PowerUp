@@ -30,20 +30,13 @@ public class Comment {
     private Thread thread;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(
-            name = "comments",
-            joinColumns = @JoinColumn(name = "reply_to")
-    )
+    @OneToMany(mappedBy = "parentComment", fetch = FetchType.LAZY, orphanRemoval = true)
     private Collection<Comment> replies;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(
-            name = "comment_likes",
-            joinColumns = @JoinColumn(name = "comment_id")
-    )
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
     private Collection<CommentLike> likes;
 
     @Column(name = "created_at")
