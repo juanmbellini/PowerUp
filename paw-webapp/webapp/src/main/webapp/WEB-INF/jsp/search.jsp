@@ -361,7 +361,7 @@
     <%@include file="footer.jsp" %>
 </footer>
 <style type="text/css">
-    <c:set var="fontSizeStr" value="16px" />
+    <c:set var="fontSizeStr" value="16px" /> /*TODO porque aca css???*/
     <c:set var="fontSizeInt" value="16" />
     <c:set var="lineHeight" value="1.5" />
     <c:set var="maxLines" value="3" />
@@ -542,9 +542,9 @@
                 if (window.location.search.indexOf("name=") !== -1) {
                     //*? is a non-greedy matcher
                     if(url.search(/name=.*?&/) !== -1) {   //The name is followed by a &, don't drop it
-                        url = url.replace(/name=.*?&/, (name === "" ? "" : "name=" + encodeURIComponent(name) + "&"));
+                        url = url.replace(/name=.*?&/, (name === "" ? "" : "name=" + name + "&"));
                     } else {                                //No & to the right ($ matches end of URL)
-                        url = url.replace(/name=.*?\$/, (name === "" ? "" : "name=" + encodeURIComponent(name)));
+                        url = url.replace(/name=.*?\$/, (name === "" ? "" : "name=" + name));
                     }
                 } else {
                     if(name !== "") {
@@ -571,7 +571,7 @@
                 url += "?filters=" + JSON.stringify(filters);
             }
             if(nameChanged && name !== "") {
-                url += (filtersChanged ? "&name=" : "?name=") + encodeURIComponent(name);
+                url += (filtersChanged ? "&name=" : "?name=") + name;
             }
             //No need to handle page/sorting parameters here
         }
