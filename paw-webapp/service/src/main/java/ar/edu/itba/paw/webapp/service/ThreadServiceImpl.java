@@ -28,6 +28,11 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
+    public Set<Thread> findRecent(int limit) {
+        return threadDao.findRecent(limit);
+    }
+
+    @Override
     public Set<Thread> findByUserId(long id) {
         return threadDao.findByUserId(id);
     }

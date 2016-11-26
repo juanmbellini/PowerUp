@@ -31,6 +31,14 @@ public interface ThreadService {
     }
 
     /**
+     * Finds up to a specified amount of recently updated threads.
+     *
+     * @param limit The maximum number of threads to get.
+     * @return Up to {@code limit} threads.
+     */
+    Set<Thread> findRecent(int limit);
+
+    /**
      * Returns a set of shelves created by a specified user, identified by ID.
      *
      * @param id The ID of the user whose shelves to fetch.

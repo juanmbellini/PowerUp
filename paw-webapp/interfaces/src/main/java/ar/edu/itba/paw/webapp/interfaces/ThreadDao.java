@@ -23,6 +23,11 @@ public interface ThreadDao {
     }
 
     /**
+     * @see ThreadService#findRecent(int)
+     */
+    Set<Thread> findRecent(int limit);
+
+    /**
      * @see ThreadService#findByUserId(long id)
      */
     Set<Thread> findByUserId(long id);
@@ -81,4 +86,5 @@ public interface ThreadDao {
      * @see ThreadService#deleteThread(long threadId)
      */
     void deleteThread(long threadId) throws NoSuchEntityException;
+
 }

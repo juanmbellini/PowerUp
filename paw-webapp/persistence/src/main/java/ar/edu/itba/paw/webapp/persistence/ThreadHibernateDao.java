@@ -41,6 +41,17 @@ public class ThreadHibernateDao implements ThreadDao {
     }
 
     @Override
+    public Set<Thread> findRecent(int limit) {
+        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY T.updatedAt DESC", Thread.class);
+        baseQuery.setMaxResults(limit);
+        try {
+            return new LinkedHashSet<>(baseQuery.getResultList());
+        } catch(NoResultException e) {
+            return Collections.emptySet();
+        }
+    }
+
+    @Override
     public Set<Thread> findByUserId(long id) {
         TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T where T.user.id = :id", Thread.class);
         baseQuery.setParameter("id", id);

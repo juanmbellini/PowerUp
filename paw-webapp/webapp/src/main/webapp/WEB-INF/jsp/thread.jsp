@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
-    <title>${thread.title} - PowerUp</title>
+    <title><c:out value="${thread.title}" /> - PowerUp</title>
 </head>
 <body>
 <header>
@@ -16,17 +16,17 @@
 <main class="section">
     <div class="container row">
         <%--Title--%>
-        <h1 class="center">${thread.title}</h1>
+        <h1 class="center"><c:out value="${thread.title}" /></h1>
 
         <%--Original comment--%>
         <div class="row">
             <ul class="collection">
                 <li class="collection-item avatar">
-                    <img src="http://placehold.it/200x200" alt="${thread.title}" class="circle">
-                    <span class="title">Submitted by ${thread.creator.username}</span>
-                    <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /><br>
-                        ${thread.initialComment}
-                    </p>
+                    <img src="http://placehold.it/200x200" alt="<c:out value="${thread.title}" />" class="circle">
+                    <span class="title">Submitted by <c:out value="${thread.creator.username}" /></span>
+                    <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
+                    <br />
+                    <p><c:out value="${thread.initialComment}" /></p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
                 </li>
             </ul>
@@ -42,11 +42,11 @@
                     <ul class="collection">
                         <c:forEach var="comment" items="${thread.comments}" varStatus="status">
                             <li class="collection-item avatar">
-                                <img src="http://placehold.it/200x200" alt="${comment.commenter}" class="circle">
-                                <span class="title">${thread.commenter}</span>
-                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both" /><br>
-                                        ${thread.initialComment}
-                                </p>
+                                <img src="http://placehold.it/200x200" alt="<c:out value="${comment.commenter}" />" class="circle">
+                                <span class="title"><c:out value="${comment.commenter}" /></span>
+                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both" /></p>
+                                <br />
+                                <p><c:out value="${comment.initialComment}" /></p>
                                 <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
                             </li>
                         </c:forEach>
@@ -54,6 +54,13 @@
                 </c:otherwise>
             </c:choose>
         </div>
+        <%--FAB--%>
+        <div class="fixed-action-btn" style="bottom:10%;">
+            <a class="btn-floating btn-large waves-effect waves-light red" href="<c:url value="/create-thread" />">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+        </div>
+        <%--END FAB--%>
     </div>
 </main>
 
