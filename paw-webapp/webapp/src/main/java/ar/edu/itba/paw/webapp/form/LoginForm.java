@@ -1,10 +1,6 @@
 package ar.edu.itba.paw.webapp.form;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * Created by julian on 13/10/16.

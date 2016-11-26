@@ -5,7 +5,6 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
-import javax.persistence.TransactionRequiredException;
 import java.util.Collection;
 
 /**
