@@ -355,9 +355,9 @@ public class Game {
          * @return The game built.
          */
         public Game build() {
-            if (!idSet || !nameSet || !summarySet) {
-                throw new IllegalStateException();
-            }
+//            if (!idSet || !nameSet || !summarySet) {
+//                throw new IllegalStateException();
+//            }
             checkBuilt();
             built = true;
             startedBuilding = false;

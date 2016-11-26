@@ -20,13 +20,13 @@ import java.util.Set;
 public class CompanyHibernateDao implements CompanyDao {
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public Set<Company> all() {
         TypedQuery<Company> query = em.createQuery("FROM Company", Company.class);
         try {
             return Collections.unmodifiableSet(new LinkedHashSet<>(query.getResultList()));
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return Collections.EMPTY_SET;
         }
     }
@@ -37,7 +37,7 @@ public class CompanyHibernateDao implements CompanyDao {
         baseQuery.setParameter("id", id);
         try {
             return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -48,10 +48,16 @@ public class CompanyHibernateDao implements CompanyDao {
         baseQuery.setParameter("name", name);
         try {
             return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
+
+
+
+    
+
+    // TODO: Check these two methods bellow --> They aren't needed here
 
     @Override
     public Set<Game> gamesDevelopedBy(Company d) {
