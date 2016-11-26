@@ -141,8 +141,7 @@ public class UserController extends BaseController {
                                      final RedirectAttributes redirectAttributes) {
 
         if (errors.hasErrors()) {
-            redirectAttributes.addFlashAttribute("registerForm", form);
-            return new ModelAndView("redirect:/register");
+            return registerGet(form);
         }
         final String email = form.getEmail(),
                 // TODO: Move encryption to UserService [JMB]
@@ -155,18 +154,10 @@ public class UserController extends BaseController {
         } catch (UserExistsException e) {
             String msgLow = e.getMessage().toLowerCase();
             // The calls to rejectValue will add errors to the UserForm so they get displayed properly and in the proper fields
-            if (msgLow.contains("email")) {
-                errors.rejectValue("email", "error.email", "An account exists with this email");
-            } else if (msgLow.contains("username")) {
-                errors.rejectValue("username", "error.username", "Username already taken");
-            } else {
-                errors.addError(new ObjectError("error", "Error creating account, please try again"));
-                System.err.println("Unrecognized message in UserExistsException: \"" + e.getMessage() + "\".");
-                System.err.println("Printing stack trace:");
-                e.printStackTrace();
-            }
-            redirectAttributes.addFlashAttribute("registerForm", form);
-            return new ModelAndView("redirect:/register");
+            System.err.println("Unrecognized message in UserExistsException: \"" + e.getMessage() + "\".");
+            System.err.println("Printing stack trace:");
+            e.printStackTrace(); //TODO log
+            return registerGet(form);
         }
         // TODO: Remove this println [JMB]
         System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
