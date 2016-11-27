@@ -17,17 +17,17 @@
 <main class="section">
     <div class="container row">
         <%--Title--%>
-        <h1 class="center"><c:out value="${thread.title}" /></h1>
+        <h1 class="center wrap-text"><c:out value="${thread.title}" /></h1>
 
         <%--Original comment--%>
         <div class="row">
             <ul class="collection">
                 <li class="collection-item avatar">
                     <img src="http://placehold.it/200x200" alt="<c:out value="${thread.title}" />" class="circle">
-                    <span class="title">Submitted by <c:out value="${thread.creator.username}" /></span>
+                    <span class="title wrap-text">Submitted by <c:out value="${thread.creator.username}" /></span>
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
-                    <p class="preserve-newlines"><c:out value="${thread.initialComment}" /></p>
+                    <p class="preserve-newlines wrap-text"><c:out value="${thread.initialComment}" /></p>
                     <%--Un/like thread section--%>
                     <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;
                         <c:choose>
@@ -66,12 +66,14 @@
                                 <a name="${comment.id}"></a>
                                 <img src="http://placehold.it/200x200"
                                      alt="<c:out value="${comment.commenter.username}" />" class="circle">
-                                <span class="title"><a
-                                        href="<c:url value="/profile?username=${comment.commenter.username}" />"><c:out
-                                        value="${comment.commenter.username}"/></a></span>
+                                <span class="title wrap-text">
+                                    <a href="<c:url value="/profile?username=${comment.commenter.username}" />">
+                                        <c:out value="${comment.commenter.username}"/>
+                                    </a>
+                                </span>
                                 <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both"/></p>
                                 <br/>
-                                <p class="preserve-newlines"><c:out value="${comment.comment}"/></p>
+                                <p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>
                                 <br/>
                                 <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
                                 <%--Un/like comment section--%>
@@ -103,13 +105,14 @@
                                                 <img src="http://placehold.it/200x200"
                                                      alt="<c:out value="${reply.commenter.username}" />"
                                                      class="circle">
-                                                <span class="title"><a
-                                                        href="<c:url value="/profile?username=${reply.commenter.username}" />"><c:out
-                                                        value="${reply.commenter.username}"/></a></span>
-                                                <p>Submitted <fmt:formatDate value="${reply.createdAt.time}"
-                                                                             type="both"/></p>
+                                                <span class="title wrap-text">
+                                                    <a href="<c:url value="/profile?username=${reply.commenter.username}" />">
+                                                        <c:out value="${reply.commenter.username}"/>
+                                                    </a>
+                                                </span>
+                                                <p>Submitted <fmt:formatDate value="${reply.createdAt.time}" type="both"/></p>
                                                 <br/>
-                                                <p class="preserve-newlines"><c:out value="${reply.comment}"/></p>
+                                                <p class="preserve-newlines wrap-text"><c:out value="${reply.comment}"/></p>
                                                 <%--Un/like reply section--%>
                                                 <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
                                                     <c:choose>
