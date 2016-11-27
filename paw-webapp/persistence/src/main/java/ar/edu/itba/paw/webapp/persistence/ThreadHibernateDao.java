@@ -122,6 +122,11 @@ public class ThreadHibernateDao implements ThreadDao {
     }
 
     @Override
+    public void editComment(long commentId, String newComment) {
+        commentDao.edit(commentId, newComment);
+    }
+
+    @Override
     public void deleteComment(long commentId) throws NoSuchEntityException {
         commentDao.delete(commentId);
     }

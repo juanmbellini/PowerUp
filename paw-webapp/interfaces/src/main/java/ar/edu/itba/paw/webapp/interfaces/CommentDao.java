@@ -32,7 +32,7 @@ public interface CommentDao {
      * Finds a top-level comment for a given thread by a given user.
      *
      * @param threadId The thread ID.
-     * @param userId The user ID.
+     * @param userId   The user ID.
      * @return The found comment, or {@code null} if not found.
      */
     Comment findComment(long threadId, long userId);
@@ -41,7 +41,7 @@ public interface CommentDao {
      * Finds a reply to a given comment by a given user. Does <b>NOT</b> search recursively down further replies.
      *
      * @param commentId The parent comment ID.
-     * @param userId The user ID.
+     * @param userId    The user ID.
      * @return The found reply, or {@code null} if not found.
      */
     Comment findReply(long commentId, long userId);
@@ -51,17 +51,17 @@ public interface CommentDao {
      * found.
      *
      * @param rootCommentId The root comment ID.
-     * @param userId The user ID.
+     * @param userId        The user ID.
      * @return The found reply, or {@code null} if not found.
      */
     default Comment deepFindReply(long rootCommentId, long userId) {
         Deque<Comment> queue = new LinkedList<>();
         Comment root = findById(rootCommentId);
-        if(root == null) return null;
+        if (root == null) return null;
         queue.addFirst(root);
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             for (Comment reply : root.getReplies()) {
-                if(reply.getCommenter().getId() == userId) {
+                if (reply.getCommenter().getId() == userId) {
                     return reply;
                 }
                 //TODO check if this is necessary
@@ -76,17 +76,27 @@ public interface CommentDao {
 
     /**
      * Creates a like for a given comment or reply by a a given user.
-     *  @param id The comment or reply ID.
+     *
+     * @param id     The comment or reply ID.
      * @param userId The ID of the user liking the comment or reply.
      */
     int like(long id, long userId);
 
     /**
      * Removes a like from a given comment or reply by a a given user.
-     *  @param id The comment or reply ID.
+     *
+     * @param id     The comment or reply ID.
      * @param userId The ID of the user unliking the comment or reply.
      */
     int unlike(long id, long userId);
+
+    /**
+     * Changes a comment's content.
+     *
+     * @param id         The comment ID.
+     * @param newComment The new comment content.
+     */
+    void edit(long id, String newComment);
 
     /**
      * Deletes a comment or reply.

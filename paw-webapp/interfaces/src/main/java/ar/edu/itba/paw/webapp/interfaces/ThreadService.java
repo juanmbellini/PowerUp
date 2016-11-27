@@ -14,8 +14,8 @@ public interface ThreadService {
     /**
      * Creates a thread with a given name, created by a given user, with a given initial comment.
      *
-     * @param title The thread's title.
-     * @param creatorUserId The user ID of the creator of the thread.
+     * @param title          The thread's title.
+     * @param creatorUserId  The user ID of the creator of the thread.
      * @param creatorComment The creator's initial thread comment, to start discussion.
      * @return The created thread.
      * @throws NoSuchEntityException If the creator doesn't exist.
@@ -68,7 +68,7 @@ public interface ThreadService {
      *
      * @param threadId The ID of the thread whose title to change.
      * @param newTitle The thread's new title.
-     * @throws NoSuchEntityException If the thread doesn't exist.
+     * @throws NoSuchEntityException    If the thread doesn't exist.
      * @throws IllegalArgumentException If the name is null or invalid (e.g. empty).
      */
     void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException;
@@ -77,7 +77,7 @@ public interface ThreadService {
      * Marks a like for a given thread by a given user, if not already liked.
      *
      * @param threadId The ID of the thread to like.
-     * @param userId The ID of the user liking the thread.
+     * @param userId   The ID of the user liking the thread.
      * @return The new like count.
      */
     int likeThread(long threadId, long userId);
@@ -86,7 +86,7 @@ public interface ThreadService {
      * Removes a like from a given thread by a given user, if liked.
      *
      * @param threadId The ID of the thread to unlike.
-     * @param userId The ID of the user unliking the thread.
+     * @param userId   The ID of the user unliking the thread.
      * @return The new like count.
      */
     int unlikeThread(long threadId, long userId);
@@ -94,9 +94,9 @@ public interface ThreadService {
     /**
      * Adds a top-level comment to a given thread, created by a given user.
      *
-     * @param threadId The ID of the thread to which the comment belongs.
+     * @param threadId    The ID of the thread to which the comment belongs.
      * @param commenterId The ID of the commenter.
-     * @param comment The comment.
+     * @param comment     The comment.
      * @return The created comment.
      */
     Comment comment(long threadId, long commenterId, String comment);
@@ -106,7 +106,7 @@ public interface ThreadService {
      *
      * @param commentId The ID of the comment being replied.
      * @param replierId The ID of the replier.
-     * @param reply The reply.
+     * @param reply     The reply.
      * @return The created reply.
      */
     Comment replyToComment(long commentId, long replierId, String reply);
@@ -114,7 +114,7 @@ public interface ThreadService {
     /**
      * Marks a like for a given comment or reply by a given user, if not already liked.
      *
-     * @param id The ID of the comment or reply to like.
+     * @param id     The ID of the comment or reply to like.
      * @param userId The ID of the user liking the comment.
      * @return The new like count.
      */
@@ -123,11 +123,20 @@ public interface ThreadService {
     /**
      * Removes a like from a given comment or reply by a given user, if liked.
      *
-     * @param id The ID of the comment or reply to unlike.
+     * @param id     The ID of the comment or reply to unlike.
      * @param userId The ID of the user unliking the comment.
      * @return The new like count.
      */
     int unlikeComment(long id, long userId);
+
+    /**
+     * Edits a comment. Only the original commenter may edit their comment.
+     *
+     * @param commentId  The comment ID.
+     * @param userId     The commenter ID.
+     * @param newComment The new comment.
+     */
+    void editComment(long commentId, long userId, String newComment);
 
     /**
      * Deletes a comment along with all its replies.

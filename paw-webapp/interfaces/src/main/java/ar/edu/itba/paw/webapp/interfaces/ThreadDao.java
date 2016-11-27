@@ -79,6 +79,11 @@ public interface ThreadDao {
     int unlikeComment(long commentId, long userId);
 
     /**
+     * @see ThreadService#editComment(long, long, String)
+     */
+    void editComment(long commentId, String newComment);
+
+    /**
      * @see ThreadService#deleteComment(long commentId)
      */
     void deleteComment(long commentId) throws NoSuchEntityException;
@@ -87,5 +92,4 @@ public interface ThreadDao {
      * @see ThreadService#deleteThread(long threadId)
      */
     void deleteThread(long threadId) throws NoSuchEntityException;
-
 }

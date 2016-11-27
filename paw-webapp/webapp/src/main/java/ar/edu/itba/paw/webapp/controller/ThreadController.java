@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.form.CommentForm;
 import ar.edu.itba.paw.webapp.form.CreateThreadForm;
 import ar.edu.itba.paw.webapp.interfaces.ThreadService;
@@ -131,7 +132,7 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/unlike-thread", method = RequestMethod.POST)
     public ModelAndView unlikeThread(@RequestParam(name = "threadId") final Long threadId,
-                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             threadService.unlikeThread(threadId, getCurrentUser().getId());
@@ -149,7 +150,7 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/like-comment", method = RequestMethod.POST)
     public ModelAndView likeComment(@RequestParam(name = "commentId") final Long commentId,
-                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             threadService.likeComment(commentId, getCurrentUser().getId());
@@ -167,7 +168,7 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/unlike-comment", method = RequestMethod.POST)
     public ModelAndView unlikeComment(@RequestParam(name = "commentId") final Long commentId,
-                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             threadService.unlikeComment(commentId, getCurrentUser().getId());
@@ -178,6 +179,28 @@ public class ThreadController extends BaseController {
             mav = new ModelAndView("error404");
         } catch (Exception e) {
             LOG.error("Error liking comment #{} for {}: {}", commentId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "edit-comment", method = RequestMethod.POST)
+    public ModelAndView editComment(@RequestParam(name = "commentId") final Long commentId,
+                                    @RequestParam(name = "newComment") final String newComment,
+                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.editComment(commentId, getCurrentUser().getId(), newComment);
+            LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (UnauthorizedException e) {
+            LOG.warn("{} attempted to edit comment #{} which is not theirs, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error400"); //TODO make 403 page
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to edit nonexistent comment #{}, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error editing comment #{} for {}: {}", commentId, getCurrentUsername(), e);
             mav = new ModelAndView("error500");
         }
         return mav;

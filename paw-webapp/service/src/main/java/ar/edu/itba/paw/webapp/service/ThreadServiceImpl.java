@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
+import ar.edu.itba.paw.webapp.interfaces.CommentDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadService;
 import ar.edu.itba.paw.webapp.model.Comment;
@@ -18,9 +20,12 @@ public class ThreadServiceImpl implements ThreadService {
 
     private final ThreadDao threadDao;
 
+    private final CommentDao commentDao;
+
     @Autowired
-    public ThreadServiceImpl(ThreadDao threadDao) {
+    public ThreadServiceImpl(ThreadDao threadDao, CommentDao commentDao) {
         this.threadDao = threadDao;
+        this.commentDao = commentDao;
     }
 
     @Override
@@ -81,6 +86,14 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public int unlikeComment(long id, long userId) {
         return threadDao.unlikeComment(id, userId);
+    }
+
+    @Override
+    public void editComment(long commentId, long userId, String newComment) {
+        if(commentDao.findById(commentId).getCommenter().getId() != userId) {
+            throw new UnauthorizedException("Comment #" + commentId + " does not belong to user #" + userId + ", can't edit");
+        }
+        threadDao.editComment(commentId, newComment);
     }
 
     @Override

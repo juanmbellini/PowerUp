@@ -102,6 +102,13 @@ public class CommentHibernateDao implements CommentDao {
     }
 
     @Override
+    public void edit(long id, String newComment) {
+        Comment c = DaoHelper.findSingleOrThrow(em, Comment.class, id);
+        c.setComment(newComment);
+        em.persist(c);
+    }
+
+    @Override
     public void delete(long id) {
         Comment c = findById(id);
         if(c != null) {

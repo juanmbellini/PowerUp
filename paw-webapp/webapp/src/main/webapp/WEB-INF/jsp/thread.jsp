@@ -77,7 +77,14 @@
                                 <br/>
                                 <p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>
                                 <br/>
-                                <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
+                                <div class="action-links">
+                                    <%--Reply link--%>
+                                    <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
+                                    <%--Edit link--%>
+                                    <c:if test="${isLoggedIn && comment.commenter.id == currentUser.id}">
+                                        | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
+                                    </c:if>
+                                </div>
                                 <%--Un/like comment section--%>
                                 <span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;
                                     <c:choose>
@@ -115,6 +122,12 @@
                                                 <p>Submitted <fmt:formatDate value="${reply.createdAt.time}" type="both"/></p>
                                                 <br/>
                                                 <p class="preserve-newlines wrap-text"><c:out value="${reply.comment}"/></p>
+                                                <div class="action-links">
+                                                    <%--Edit link--%>
+                                                    <c:if test="${isLoggedIn && comment.commenter.id == currentUser.id}">
+                                                        <a href="#!" class="edit-comment-link" data-comment-id="${reply.id}" data-comment="<c:out value="${reply.comment}"/>" data-form-shown="false">Edit</a>
+                                                    </c:if>
+                                                </div>
                                                 <%--Un/like reply section--%>
                                                 <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
                                                     <c:choose>
@@ -226,8 +239,45 @@
                         </div>	\
                     </div>");
 
-                $form.insertAfter($me);
+                $form.insertAfter($me.closest(".action-links"));
                 $me.data("form-shown", true);
+                $form.find("textarea").focus();
+            }
+        });
+
+        $(".edit-comment-link").on("click", function (event) {
+            var $me = $(this);
+            if (!$me.data("form-shown")) {
+                var commentId = $me.data("comment-id");
+                var comment = $me.data("comment").trim();
+                var $form = $("<form></form>");
+                $form.attr("action", "<c:url value="/edit-comment" />");
+                $form.attr("method", "POST");
+                $form.css("margin-top", "10px");
+
+                $form.append("<input type='hidden' name='commentId' value='"+ commentId +"' />");
+                $form.append("<input type='hidden' name='returnUrl' value='"+ window.location.pathname + "?id=${thread.id}#" + commentId +"' />");
+
+                //Text area
+                $form.append("<div class='row'> \
+                        <div class='input-field col s12'> \
+                            <textarea name='newComment' class='materialize-textarea' required='required'>"+comment+"</textarea> \
+                            <label for='newComment'>Comment</label> \
+                        </div> \
+                    </div>");
+
+                //Submit button
+                $form.append("<div class='row'>	\
+                        <div class='col s4 offset-s5'>	\
+                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\
+                                Submit <i class='material-icons right'>send</i>	\
+                            </button>	\
+                        </div>	\
+                    </div>");
+
+                $form.insertAfter($me.closest(".action-links"));
+                $me.data("form-shown", true);
+                $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
             }
         });

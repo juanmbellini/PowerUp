@@ -95,6 +95,10 @@ public class Comment {
         return comment;
     }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public int getLikeCount() {
         return likes.size();
     }
