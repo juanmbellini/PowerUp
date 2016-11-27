@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
-    <title>${user.username}'s Game List - PowerUp</title>
+    <title><c:out value="${user.username}'s Game List - PowerUp"></c:out></title>
     <%--TODO suffix ' instead of 's if username ends with s--%>
 </head>
 <body>
@@ -18,7 +18,7 @@
 <main class="section">
     <div class="container">
         <div class="row">
-            <h1 class="center">${user.username}'s Shelves</h1>
+            <h1 class="center"><c:out value="${user.username}'s Shelves"></c:out></h1>
             <h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your shelves!</h5>
             <%--TODO limit number of shelves shown?--%>
             <c:forEach var="shelf" items="${shelves}" varStatus="loopStatus">
@@ -27,14 +27,14 @@
                     <br/>
                 </c:if>
                 <h4>
-                    ${shelf.name}
+                    <c:out value="${shelf.name}"></c:out>
                     <c:if test="${isLoggedIn && currentUsername == user.username}">
-                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="${shelf.id}" data-name="${shelf.name}">rename</a> | <a href="#!" class="delete" data-id="${shelf.id}" data-name="${shelf.name}" >delete</a></span>
+                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>
                     </c:if>
                 </h4>
                 <c:choose>
                     <c:when test="${fn:length(shelf.games) == 0}">
-                        <h5 class="center">${shelf.name} is empty</h5>
+                        <h5 class="center"><c:out value="${shelf.name} is empty"></c:out></h5>
                     </c:when>
                     <c:otherwise>
                         <ul class="collection games-list">
@@ -45,7 +45,7 @@
                                         <img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">
                                     </div>
                                     <div class="col primary-content s7">
-                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
+                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />"><c:out value="${game.name}"></c:out></a></p>
                                     </div>
                                     <div class="col s1 center">
                                         <p style="margin-top: 33px;"><b>${empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}</b></p>
@@ -131,6 +131,7 @@
             var $target = $(this);
             var name = $target.data('name');
             var id = $target.data('id');
+            debugger;
             swal({
                 title: "Rename \"" + name + "\" to...",
                 type: "input",
