@@ -68,7 +68,7 @@ public class CompanyHibernateDaoTest {
 
     @Test
     public void testAllCompaniesAreReturned() {
-        String message = "Get all companies didn't returned as expected.";
+        String message = "Get all companies didn't return as expected.";
         Set<Company> returnedCompanies = companyDao.all();
 
         Assert.assertNotNull(message, returnedCompanies);
@@ -81,7 +81,7 @@ public class CompanyHibernateDaoTest {
 
     @Test
     public void testFindById() {
-        String message = "Find by id didn't returned as expected.";
+        String message = "Find by id didn't return as expected.";
         Company returnedCompany = companyDao.findById(nintendo.getId());
 
         Assert.assertNotNull(message, returnedCompany);
@@ -91,7 +91,7 @@ public class CompanyHibernateDaoTest {
 
     @Test
     public void testFindByName() {
-        String message = "Find by name didn't returned as expected.";
+        String message = "Find by name didn't return as expected.";
         Company returnedCompany = companyDao.findByName(nintendo.getName());
 
         Assert.assertNotNull(message, returnedCompany);
@@ -101,7 +101,7 @@ public class CompanyHibernateDaoTest {
 
     @Test
     public void testGamesDevelopedBy() {
-        String message = "Games developed by didn't returned as expected.";
+        String message = "Games developed by didn't return as expected.";
 
         Company rareware = createRarewareCompanyWithTwoGames();
         Collection<Game> developedByRare = rareware.getGamesDeveloped();
@@ -120,7 +120,7 @@ public class CompanyHibernateDaoTest {
 
     @Test
     public void testGamesPublishedBy() {
-        String message = "Games published by didn't returned as expected.";
+        String message = "Games published by didn't return as expected.";
 
         setGamesToNintendo();
         Collection<Game> publishedByNintendo = nintendo.getGamesPublished();

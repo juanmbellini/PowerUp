@@ -47,7 +47,7 @@ public class GenreHibernateDaoTest {
      */
     private final List<Genre> genres;
     /**
-     * Constains a specific company
+     * Contains a specific company
      */
     private final Genre platformer;
 
@@ -56,7 +56,7 @@ public class GenreHibernateDaoTest {
         this.genres = new LinkedList<>();
         this.platformer = new Genre(0, "Platformer");
         genres.add(platformer);
-        genres.add(new Genre(0, "RPF"));
+        genres.add(new Genre(0, "RPG"));
         genres.add(new Genre(0, "Action"));
     }
 
