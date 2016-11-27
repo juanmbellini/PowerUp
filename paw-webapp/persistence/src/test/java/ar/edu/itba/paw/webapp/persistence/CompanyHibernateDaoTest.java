@@ -104,8 +104,14 @@ public class CompanyHibernateDaoTest {
 
         Company rareware = new Company(0, "Rareware");
         List<Game> developedByRare = new LinkedList<>();
-        developedByRare.add(new Game.GameBuilder().setName("Donkey Kong Country 1").build());
-        developedByRare.add(new Game.GameBuilder().setName("Donkey Kong 64").build());
+        developedByRare.add(new Game.GameBuilder()
+                .setName("Donkey Kong Country 1")
+                .addDeveloper(rareware)
+                .build());
+        developedByRare.add(new Game.GameBuilder()
+                .setName("Donkey Kong 64")
+                .addDeveloper(rareware)
+                .build());
         developedByRare.forEach(gameDao.getEntityManager()::persist);
         rareware.setGamesDeveloped(developedByRare);
 
@@ -129,8 +135,14 @@ public class CompanyHibernateDaoTest {
         String message = "Games published by didn't returned as expected.";
 
         List<Game> publishedByNintendo = new LinkedList<>();
-        publishedByNintendo.add(new Game.GameBuilder().setName("Donkey Kong Country 1").build());
-        publishedByNintendo.add(new Game.GameBuilder().setName("The Legend of Zelda: A Link to the Past").build());
+        publishedByNintendo.add(new Game.GameBuilder()
+                .setName("Donkey Kong Country 1")
+                .addPublisher(nintendo)
+                .build());
+        publishedByNintendo.add(new Game.GameBuilder()
+                .setName("The Legend of Zelda: A Link to the Past")
+                .addPublisher(nintendo)
+                .build());
         publishedByNintendo.forEach(gameDao.getEntityManager()::persist);
         nintendo.setGamesPublished(publishedByNintendo);
 
