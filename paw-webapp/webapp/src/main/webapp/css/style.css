@@ -159,6 +159,10 @@ button#clear-filters {
     height:47px;
 }
 
+.preserve-newlines {
+    white-space: pre-line;
+}
+
 /*#logo-container {*/
 /*height: 60px;*/
 /*}*/

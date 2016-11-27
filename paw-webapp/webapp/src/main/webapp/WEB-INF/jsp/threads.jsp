@@ -35,8 +35,10 @@
                             <li class="collection-item avatar">
                                 <img src="http://placehold.it/200x200" alt="<c:out value="${thread.creator.username}" />" class="circle">
                                 <a class="title" href="<c:url value="/thread?id=${thread.id}" />"><c:out value="${thread.title}" /></a>
-                                <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /><br>
-                                        <c:out value="${thread.initialComment}" />
+                                <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>
+                                <br>
+                                <p class="truncate">
+                                    <c:out value="${thread.initialComment}" />
                                 </p>
                                 <%--Un/like section--%>
                                 <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;

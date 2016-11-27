@@ -81,6 +81,7 @@
                                     </p>
                                     <br/>
                                     <div class="row">
+                                        <%--TODO use c:out and preserve-newlines class--%>
                                         <p class="col s10">${review.review}</p>
                                         <div class="col s2">
                                             <p style="color: #26a69a;">
