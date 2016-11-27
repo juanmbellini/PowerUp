@@ -105,7 +105,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
-                                    <li class="tab col s3"><a href="#platforms">Plaftorms</a></li>
+                                    <li class="tab col s3"><a href="#platforms" class="active">Platforms</a></li>
                                     <li class="tab col s3"><a href="#genres">Genres</a></li>
                                     <li class="tab col s3"><a href="#developers">Developers</a></li>
                                     <li class="tab col s3"><a href="#publishers">Publishers</a></li>
@@ -400,6 +400,8 @@
 
     var nameChanged = false;
 
+
+
     $(function () {
         $("#orderSelectId").val("${orderCategory == null ? "name" : orderCategory}");
         $("#orderSelectId").material_select();
@@ -407,6 +409,15 @@
         $("#orderBooleanId").material_select();
         $("#pageSizeSelectId").val("${page.pageSize}");
         $("#pageSizeSelectId").material_select();
+
+        $(document).ready(function(){
+            $(".indicator").attr('style',"right: 75%; left: 0px;");
+        });
+
+        $("#collapsible-header").on('click', function () {
+            $('tabs').tabs('select_tab', 'platformTab');
+        });
+
 
         $('.chip').on('click', function (e) {
             var $chip = $(e.target);
@@ -430,6 +441,9 @@
             clearFilters();
             search();
         });
+
+
+
 
         $("#search-form").on("submit", function(event) {
             event.preventDefault();
