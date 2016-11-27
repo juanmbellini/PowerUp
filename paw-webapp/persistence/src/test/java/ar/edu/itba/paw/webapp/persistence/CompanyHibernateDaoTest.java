@@ -20,7 +20,6 @@ import java.util.Set;
 
 /**
  * Created by Juan Marcos Bellini on 26/11/16.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -106,14 +105,14 @@ public class CompanyHibernateDaoTest {
     @Transactional
     public void testGamesDevelopedBy() {
         String message = "Games developed by didn't returned as expected.";
+
         Company rareware = new Company(0, "Rareware");
         List<Game> developedByRare = new LinkedList<>();
         developedByRare.add(new Game.GameBuilder().setName("Donkey Kong Country 1").build());
         developedByRare.add(new Game.GameBuilder().setName("Donkey Kong 64").build());
-        for (Game each : developedByRare) {
-            gameDao.getEntityManager().persist(each);
-        }
+        developedByRare.forEach(gameDao.getEntityManager()::persist);
         rareware.setGamesDeveloped(developedByRare);
+
         companyDao.getEntityManager().persist(rareware);
         Set<Game> returnedGamesDeveloped = companyDao.gamesDevelopedBy(rareware);
 
@@ -132,13 +131,13 @@ public class CompanyHibernateDaoTest {
     @Transactional
     public void testGamesPublishedBy() {
         String message = "Games published by didn't returned as expected.";
+
         List<Game> publishedByNintendo = new LinkedList<>();
         publishedByNintendo.add(new Game.GameBuilder().setName("Donkey Kong Country 1").build());
         publishedByNintendo.add(new Game.GameBuilder().setName("The Legend of Zelda: A Link to the Past").build());
-        for (Game each : publishedByNintendo) {
-            gameDao.getEntityManager().persist(each);
-        }
+        publishedByNintendo.forEach(gameDao.getEntityManager()::persist);
         nintendo.setGamesPublished(publishedByNintendo);
+
         companyDao.getEntityManager().merge(nintendo);
         Set<Game> returnedGamesPublished = companyDao.gamesPublishedBy(nintendo);
 
