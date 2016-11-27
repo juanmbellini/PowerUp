@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Models a comment. A comment is part of a {@link Thread} and can have replies.
@@ -35,10 +36,10 @@ public class Comment {
 
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER, orphanRemoval = true)
     @OrderBy("createdAt DESC")
-    private Collection<Comment> replies;
+    private Set<Comment> replies;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
-    private Collection<CommentLike> likes;
+    private Set<CommentLike> likes;
 
     @Column(name = "created_at")
     @CreationTimestamp
