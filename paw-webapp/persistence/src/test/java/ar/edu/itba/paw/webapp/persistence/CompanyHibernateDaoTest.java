@@ -35,7 +35,7 @@ public class CompanyHibernateDaoTest {
     /**
      * Contains companies for testing
      */
-    private final Set<Company> companies;
+    private final List<Company> companies;
 
     /**
      * Contains a specific company
@@ -43,7 +43,7 @@ public class CompanyHibernateDaoTest {
     private final Company nintendo;
 
     public CompanyHibernateDaoTest() {
-        companies = new HashSet<>();
+        companies = new LinkedList<>();
         nintendo = new Company(0, "Nintendo");
         companies.add(nintendo);
         companies.add(new Company(0, "Square-Enix"));
