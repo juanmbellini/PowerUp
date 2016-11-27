@@ -152,15 +152,10 @@ public class UserController extends BaseController {
         try {
             user = userService.create(email, hashedPassword, username);
         } catch (UserExistsException e) {
-            String msgLow = e.getMessage().toLowerCase();
-            // The calls to rejectValue will add errors to the UserForm so they get displayed properly and in the proper fields
-            System.err.println("Unrecognized message in UserExistsException: \"" + e.getMessage() + "\".");
-            System.err.println("Printing stack trace:");
-            e.printStackTrace(); //TODO log
+            LOG.warn("Registration form validated but UserExists exception still thrown during registration of {} / {}: {}", username, email, e);
             return registerGet(form);
         }
-        // TODO: Remove this println [JMB]
-        System.out.println("Registered user " + user.getUsername() + " with email " + user.getEmail() + ", logging them in and redirecting to home");
+        LOG.info("Registered user {} with email {}, logging them in and redirecting to home", user.getUsername(), user.getEmail());
 
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
