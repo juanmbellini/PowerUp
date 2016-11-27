@@ -65,8 +65,10 @@ public class ThreadController extends BaseController {
         //Valid, create
         ModelAndView mav = null;
         try {
-            Thread thread = threadService.create(form.getTitle(), getCurrentUser().getId(), form.getInitialComment());
-            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), thread.getTitle());
+            String title = form.getTitle().trim(),
+                initialComment = form.getInitialComment().trim();
+            Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
+            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
             mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
         } catch (Exception e) {
             LOG.error("Error creating thread: {}", e);
@@ -84,8 +86,9 @@ public class ThreadController extends BaseController {
         //Valid, create
         ModelAndView mav = null;
         try {
-            Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), form.getComment());
-            LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), form.getComment());
+            String commentContent = form.getComment().trim();
+            Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
+            LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), commentContent);
             mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
         } catch (Exception e) {
             LOG.error("Error creating thread: {}", e);
@@ -95,14 +98,15 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/reply", method = {RequestMethod.POST})
-    public ModelAndView reply(@RequestParam(name = "threadId") final Long threadId,
-                              @RequestParam(name = "parentCommentId") final Long parentCommentId,
-                              @RequestParam(name = "reply") final String reply) {
+    public ModelAndView reply(@RequestParam(name = "threadId") final long threadId,
+                              @RequestParam(name = "parentCommentId") final long parentCommentId,
+                              @RequestParam(name = "reply") String reply) {
         if (reply.isEmpty()) {
             LOG.warn("Empty reply to comment {}, denied", parentCommentId);
             return new ModelAndView("error400");
         }
         try {
+            reply = reply.trim();
             Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
             LOG.info("{} replied to comment #{} with \"{}\"", getCurrentUsername(), parentCommentId, reply);
             return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
@@ -113,7 +117,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/like-thread", method = RequestMethod.POST)
-    public ModelAndView likeThread(@RequestParam(name = "threadId") final Long threadId,
+    public ModelAndView likeThread(@RequestParam(name = "threadId") final long threadId,
                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
@@ -131,7 +135,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/unlike-thread", method = RequestMethod.POST)
-    public ModelAndView unlikeThread(@RequestParam(name = "threadId") final Long threadId,
+    public ModelAndView unlikeThread(@RequestParam(name = "threadId") final long threadId,
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
@@ -149,11 +153,12 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/edit-thread-title", method = RequestMethod.POST)
-    public ModelAndView editThread(@RequestParam(name = "threadId") final Long threadId,
-                                    @RequestParam(name = "newTitle") final String newTitle,
+    public ModelAndView editThread(@RequestParam(name = "threadId") final long threadId,
+                                    @RequestParam(name = "newTitle") String newTitle,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
+            newTitle = newTitle.trim();
             threadService.changeTitle(threadId, getCurrentUser().getId(), newTitle);
             LOG.info("{} changed thread #{}'s title to \"{}\"", getCurrentUsername(), threadId, newTitle);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -171,12 +176,12 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/edit-thread-initial-comment", method = RequestMethod.POST)
-    public ModelAndView deleteThread(@RequestParam(name = "threadId") final Long threadId,
+    public ModelAndView deleteThread(@RequestParam(name = "threadId") final long threadId,
                                      @RequestParam(name = "newComment") final String newInitialComment,
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.changeInitialComment(threadId, getCurrentUser().getId(), newInitialComment);
+            threadService.changeInitialComment(threadId, getCurrentUser().getId(), newInitialComment.trim());
             LOG.info("{} changed initial comment of thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
@@ -193,7 +198,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/delete-thread", method = RequestMethod.POST)
-    public ModelAndView deleteThread(@RequestParam(name = "threadId") final Long threadId,
+    public ModelAndView deleteThread(@RequestParam(name = "threadId") final long threadId,
                                       @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
@@ -214,7 +219,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/like-comment", method = RequestMethod.POST)
-    public ModelAndView likeComment(@RequestParam(name = "commentId") final Long commentId,
+    public ModelAndView likeComment(@RequestParam(name = "commentId") final long commentId,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
@@ -232,7 +237,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/unlike-comment", method = RequestMethod.POST)
-    public ModelAndView unlikeComment(@RequestParam(name = "commentId") final Long commentId,
+    public ModelAndView unlikeComment(@RequestParam(name = "commentId") final long commentId,
                                       @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
@@ -250,11 +255,12 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/edit-comment", method = RequestMethod.POST)
-    public ModelAndView editComment(@RequestParam(name = "commentId") final Long commentId,
-                                    @RequestParam(name = "newComment") final String newComment,
+    public ModelAndView editComment(@RequestParam(name = "commentId") final long commentId,
+                                    @RequestParam(name = "newComment") String newComment,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
+            newComment = newComment.trim();
             threadService.editComment(commentId, getCurrentUser().getId(), newComment);
             LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -272,7 +278,7 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
-    public ModelAndView deleteComment(@RequestParam(name = "commentId") final Long commentId,
+    public ModelAndView deleteComment(@RequestParam(name = "commentId") final long commentId,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
