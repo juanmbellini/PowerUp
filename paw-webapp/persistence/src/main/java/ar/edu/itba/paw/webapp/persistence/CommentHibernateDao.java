@@ -4,7 +4,6 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.CommentDao;
 import ar.edu.itba.paw.webapp.interfaces.CommentLikeDao;
-import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
@@ -33,7 +32,7 @@ public class CommentHibernateDao implements CommentDao {
     }
 
     @Override
-    public void comment(long threadId, long commenterId, String comment) {
+    public Comment comment(long threadId, long commenterId, String comment) {
         Thread thread = em.find(Thread.class, threadId);
         if(thread == null) {
             throw new NoSuchEntityException(Thread.class, threadId);
@@ -43,10 +42,12 @@ public class CommentHibernateDao implements CommentDao {
             throw new NoSuchUserException(commenterId);
         }
         Comment c = new Comment(thread, commenter, comment);
+        em.persist(c);
+        return c;
     }
 
     @Override
-    public void reply(long commentId, long replierId, String reply) {
+    public Comment reply(long commentId, long replierId, String reply) {
         Comment parent = findById(commentId);
         if(parent == null) {
             throw new NoSuchEntityException(Comment.class, commentId);
@@ -56,6 +57,8 @@ public class CommentHibernateDao implements CommentDao {
             throw new NoSuchUserException(replierId);
         }
         Comment c = new Comment(parent, replier, reply);
+        em.persist(c);
+        return c;
     }
 
     @Override

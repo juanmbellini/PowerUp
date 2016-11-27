@@ -13,12 +13,12 @@ public interface CommentDao {
     /**
      * @see ThreadService#comment(long, long, String)
      */
-    void comment(long threadId, long commenterId, String comment);
+    Comment comment(long threadId, long commenterId, String comment);
 
     /**
      * @see ThreadService#replyToComment(long, long, String)
      */
-    void reply(long commentId, long replierId, String reply);
+    Comment reply(long commentId, long replierId, String reply);
 
     /**
      * Finds a comment or a reply by ID.

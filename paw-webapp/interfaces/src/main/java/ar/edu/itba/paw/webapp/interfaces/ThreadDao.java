@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 
 import java.util.Set;
@@ -60,12 +61,12 @@ public interface ThreadDao {
     /**
      * @see ThreadService#comment(long threadId, long commenterId, String comment)
      */
-    void comment(long threadId, long commenterId, String comment);
+    Comment comment(long threadId, long commenterId, String comment);
 
     /**
      * @see ThreadService#replyToComment(long commentId, long commenterId, String reply)
      */
-    void replyToComment(long commentId, long replierId, String reply);
+    Comment replyToComment(long commentId, long replierId, String reply);
 
     /**
      * @see ThreadService#likeComment(long commentId, long userId)

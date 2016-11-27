@@ -29,11 +29,11 @@ public class Comment {
     @ManyToOne(fetch = FetchType.EAGER)
     private Thread thread;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 
-    @OneToMany(mappedBy = "parentComment", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER, orphanRemoval = true)
     private Collection<Comment> replies;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")

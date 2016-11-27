@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadService;
+import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,13 +64,13 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void comment(long threadId, long commenterId, String comment) {
-        threadDao.comment(threadId, commenterId, comment);
+    public Comment comment(long threadId, long commenterId, String comment) {
+        return threadDao.comment(threadId, commenterId, comment);
     }
 
     @Override
-    public void replyToComment(long commentId, long replierId, String reply) {
-        threadDao.replyToComment(commentId, replierId, reply);
+    public Comment replyToComment(long commentId, long replierId, String reply) {
+        return threadDao.replyToComment(commentId, replierId, reply);
     }
 
     @Override

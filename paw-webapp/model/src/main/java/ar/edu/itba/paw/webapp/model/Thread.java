@@ -1,17 +1,22 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
  */
 @Entity
 @Table(name = "threads")
+//@FilterDef(name = "onlyTopLevelComments", parameters = @ParamDef(name = "parentComment", type = ""))
 public class Thread {
 
     @Id
@@ -30,7 +35,8 @@ public class Thread {
     private String initialComment;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
-    private Collection<Comment> topLevelComments;
+//    @org.hibernate.annotations.Filter(name = "onlyTopLevelComments")
+    private Collection<Comment> allComments;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
     private Collection<ThreadLike> likes;
@@ -92,8 +98,17 @@ public class Thread {
         return initialComment;
     }
 
+    @Transient
     public Collection<Comment> getComments() {
-        return topLevelComments;
+        //Not caching this into a variable since allComments may change and we have no way of tracking when this happens
+        //to recompute all top-level comments.
+        Set<Comment> result = new LinkedHashSet<>();
+        for(Comment c : allComments) {
+            if(c.getParentComment() == null) {
+                result.add(c);
+            }
+        }
+        return result;
     }
 
     public int getLikeCount() {

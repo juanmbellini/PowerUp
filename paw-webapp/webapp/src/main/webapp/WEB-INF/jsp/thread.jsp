@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,40 +33,145 @@
             </ul>
         </div>
 
-        <%--Top-level comments--%>
+        <%--COMMENTS--%>
         <div class="row">
             <c:choose>
                 <c:when test="${fn:length(thread.comments) == 0}">
                     <h5 class="center">No comments</h5>
                 </c:when>
                 <c:otherwise>
+                    <h5 class="center">All ${fn:length(thread.comments)} comments</h5>
+                    <%--TOP-LEVEL COMMENTS and replies - recursive JSP--%>
                     <ul class="collection">
-                        <c:forEach var="comment" items="${thread.comments}" varStatus="status">
+                        <c:forEach var="comment" items="${thread.comments}">
                             <li class="collection-item avatar">
-                                <img src="http://placehold.it/200x200" alt="<c:out value="${comment.commenter}" />" class="circle">
-                                <span class="title"><c:out value="${comment.commenter}" /></span>
-                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both" /></p>
-                                <br />
-                                <p><c:out value="${comment.initialComment}" /></p>
+                                <a name="${comment.id}"></a>
+                                <img src="http://placehold.it/200x200"
+                                     alt="<c:out value="${comment.commenter.username}" />" class="circle">
+                                <span class="title"><a
+                                        href="<c:url value="/profile?username=${comment.commenter.username}" />"><c:out
+                                        value="${comment.commenter.username}"/></a></span>
+                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both"/></p>
+                                <br/>
+                                <p><c:out value="${comment.comment}"/></p>
                                 <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
+                                <br/>
+                                <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
+                                
+                                <%--Replies--%>
+                                <c:if test="${fn:length(comment.replies) > 0}">
+                                    <ul class="collection">
+                                        <c:forEach var="reply" items="${comment.replies}">
+                                            <li class="collection-item avatar">
+                                                <a name="${reply.id}"></a>
+                                                <img src="http://placehold.it/200x200"
+                                                     alt="<c:out value="${reply.commenter.username}" />"
+                                                     class="circle">
+                                                <span class="title"><a
+                                                        href="<c:url value="/profile?username=${reply.commenter.username}" />"><c:out
+                                                        value="${reply.commenter.username}"/></a></span>
+                                                <p>Submitted <fmt:formatDate value="${reply.createdAt.time}"
+                                                                             type="both"/></p>
+                                                <br/>
+                                                <p><c:out value="${reply.comment}"/></p>
+                                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </c:if>
                             </li>
                         </c:forEach>
                     </ul>
+
+                    <%--TODO allow further nesting level--%>
+                    <%--<c:set var="root" value="${thread.comments}" scope="request" />--%>
+                    <%--<c:set var="depth" value="0" scope="request" />--%>
+                    <%--<c:import url="comment-partial.jsp" />--%>
+
+                    <%--<jsp:include page="comment-partial.jsp">--%>
+                    <%--<jsp:param name="root" value="${thread.comments}"/>--%>
+                    <%--<jsp:param name="depth" value="1"/>--%>
+                    <%--</jsp:include>--%>
                 </c:otherwise>
             </c:choose>
         </div>
-        <%--FAB--%>
-        <div class="fixed-action-btn" style="bottom:10%;">
-            <a class="btn-floating btn-large waves-effect waves-light red" href="<c:url value="/create-thread" />">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-        </div>
-        <%--END FAB--%>
+        <%--END COMMENTS--%>
+
+        <c:if test="${isLoggedIn}">
+            <%--Add a comment form--%>
+            <div class="row">
+                <c:url value="/comment" var="commentUrl"/>
+                <form:form modelAttribute="commentForm" action="${commentUrl}" method="POST">
+                    <form:hidden path="threadId"/>
+                    <div class='row'>
+                        <div class='input-field col s12'>
+                            <form:textarea path="comment" cssClass="materialize-textarea" required="required" />
+                            <form:label path="comment">Your comment</form:label>
+                            <form:errors path="comment" cssClass="formError" element="p"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s4 offset-s5">
+                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>
+                                Submit <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form:form>
+            </div>
+            <%--End comment form--%>
+            <%--FAB--%>
+            <div class="fixed-action-btn" style="bottom:10%;">
+                <a class="btn-floating btn-large waves-effect waves-light red" href="<c:url value="/create-thread" />">
+                    <i class="large material-icons">mode_edit</i>
+                </a>
+            </div>
+            <%--END FAB--%>
+        </c:if>
     </div>
 </main>
 
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript">
+    $(function () {
+        $(".reply-link").on("click", function (event) {
+            var $me = $(this);
+            if (!$me.data("form-shown")) {
+                var parentCommentId = $me.data("comment-id");
+                var $form = $("<form></form>");
+                $form.attr("action", "<c:url value="/reply" />");
+                $form.attr("method", "POST");
+                $form.css("margin-top", "10px");
+
+                //Thread and parent comment IDs
+                $form.append("<input type='hidden' name='threadId' value='${thread.id}' />");
+                $form.append("<input type='hidden' name='parentCommentId' value='" + parentCommentId + "' />");
+
+                //Text area
+                $form.append("<div class='row'> \
+                        <div class='input-field col s12'> \
+                            <textarea name='reply' class='materialize-textarea' required='required' /> \
+                            <label for='reply'>Your reply</label> \
+                        </div> \
+                    </div>");
+
+                //Submit button
+                $form.append("<div class='row'>	\
+                        <div class='col s4 offset-s5'>	\
+                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\
+                                Submit <i class='material-icons right'>send</i>	\
+                            </button>	\
+                        </div>	\
+                    </div>");
+
+                $form.insertAfter($me);
+                $me.data("form-shown", true);
+            }
+        });
+    });
+</script>
 </body>
 </html>

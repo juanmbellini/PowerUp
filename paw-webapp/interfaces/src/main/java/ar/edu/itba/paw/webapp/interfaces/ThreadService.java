@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 
 import java.util.Set;
@@ -95,9 +96,10 @@ public interface ThreadService {
      *
      * @param threadId The ID of the thread to which the comment belongs.
      * @param commenterId The ID of the commenter.
-     * @param comment The comment
+     * @param comment The comment.
+     * @return The created comment.
      */
-    void comment(long threadId, long commenterId, String comment);
+    Comment comment(long threadId, long commenterId, String comment);
 
     /**
      * Adds a reply to a given comment, created by a given user.
@@ -105,8 +107,9 @@ public interface ThreadService {
      * @param commentId The ID of the comment being replied.
      * @param replierId The ID of the replier.
      * @param reply The reply.
+     * @return The created reply.
      */
-    void replyToComment(long commentId, long replierId, String reply);
+    Comment replyToComment(long commentId, long replierId, String reply);
 
     /**
      * Marks a like for a given comment or reply by a given user, if not already liked.

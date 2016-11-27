@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.CommentDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadLikeDao;
+import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,13 +102,13 @@ public class ThreadHibernateDao implements ThreadDao {
     }
 
     @Override
-    public void comment(long threadId, long commenterId, String comment) {
-        commentDao.comment(threadId, commenterId, comment);
+    public Comment comment(long threadId, long commenterId, String comment) {
+        return commentDao.comment(threadId, commenterId, comment);
     }
 
     @Override
-    public void replyToComment(long commentId, long replierId, String reply) {
-        commentDao.reply(commentId, replierId, reply);
+    public Comment replyToComment(long commentId, long replierId, String reply) {
+        return commentDao.reply(commentId, replierId, reply);
     }
 
     @Override

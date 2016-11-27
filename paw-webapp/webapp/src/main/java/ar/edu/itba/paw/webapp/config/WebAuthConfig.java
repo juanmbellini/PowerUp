@@ -44,6 +44,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**-shelf").authenticated()
                 .antMatchers("/write-review").authenticated()
                 .antMatchers("/create-thread").authenticated()
+                .antMatchers("/comment").authenticated()
+                .antMatchers("/reply").authenticated()
 //                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
             .and().formLogin()

@@ -41,11 +41,13 @@
             </c:choose>
         </div>
         <%--FAB--%>
-        <div class="fixed-action-btn" style="bottom:10%;">
-            <a id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red" href="<c:url value="/create-thread" />">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-        </div>
+        <c:if test="${isLoggedIn}">
+            <div class="fixed-action-btn" style="bottom:10%;">
+                <a id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red" href="<c:url value="/create-thread" />">
+                    <i class="large material-icons">mode_edit</i>
+                </a>
+            </div>
+        </c:if>
         <%--END FAB--%>
     </div>
 
