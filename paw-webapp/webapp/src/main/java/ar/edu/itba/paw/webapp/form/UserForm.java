@@ -1,5 +1,7 @@
 package ar.edu.itba.paw.webapp.form;
 
+import ar.edu.itba.paw.webapp.anotationValidators.CheckTakenEmail;
+import ar.edu.itba.paw.webapp.anotationValidators.CheckTakenUsername;
 import de.malkusch.validation.constraints.EqualProperties;
 import org.hibernate.validator.constraints.Email;
 
@@ -11,6 +13,7 @@ public class UserForm {
 
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[a-zA-Z0-9]*")
+    @CheckTakenUsername
     private String username;
 
     @Size(min = 6, max = 100)
@@ -19,6 +22,7 @@ public class UserForm {
     private String repeatPassword;
 
     @Email
+    @CheckTakenEmail
     private String email;
 
     public String getEmail() {
