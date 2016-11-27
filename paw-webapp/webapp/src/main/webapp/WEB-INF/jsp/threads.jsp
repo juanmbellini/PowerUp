@@ -22,18 +22,41 @@
         <div class="row">
             <c:choose>
                 <c:when test="${fn:length(threads) == 0}">
-                    <h5 class="center">No threads to show. Why not #create one?#</h5>
+                    <h5 class="center">
+                        No threads to show.
+                        <c:if test="${isLoggedIn}">
+                            Why not <a href="<c:url value="/create-thread" />">create one?</a>
+                        </c:if>
+                    </h5>
                 </c:when>
                 <c:otherwise>
                     <ul class="collection">
-                        <c:forEach var="comment" items="${threads}">
+                        <c:forEach var="thread" items="${threads}">
                             <li class="collection-item avatar">
-                                <img src="http://placehold.it/200x200" alt="<c:out value="${comment.creator.username}" />" class="circle">
-                                <a class="title" href="<c:url value="/thread?id=${comment.id}" />"><c:out value="${comment.title}" /></a>
-                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both" /> by <c:out value="${comment.creator.username}" /><br>
-                                        <c:out value="${comment.initialComment}" />
+                                <img src="http://placehold.it/200x200" alt="<c:out value="${thread.creator.username}" />" class="circle">
+                                <a class="title" href="<c:url value="/thread?id=${thread.id}" />"><c:out value="${thread.title}" /></a>
+                                <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /><br>
+                                        <c:out value="${thread.initialComment}" />
                                 </p>
-                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
+                                <%--Un/like section--%>
+                                <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;
+                                    <c:choose>
+                                        <c:when test="${isLoggedIn}">
+                                            <c:choose>
+                                                <c:when test="${thread.isLikedBy(currentUser)}">
+                                                    <a href="#!" class="unlike-thread" data-thread-id="${thread.id}"><i class="material-icons green-text">thumb_up</i></a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#!" class="like-thread" data-thread-id="${thread.id}"><i class="material-icons black-text">thumb_up</i></a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="material-icons black-text">thumb_up</i>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                                <%--End un/like section--%>
                             </li>
                         </c:forEach>
                     </ul>
@@ -57,4 +80,25 @@
     <%@include file="footer.jsp" %>
 </footer>
 </body>
+<script type="text/javascript">
+    $(function() {
+        $(".like-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/like-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "#" + threadId + "' /> \
+               </form>").submit();
+        });
+
+        $(".unlike-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "#" + threadId + "' /> \
+               </form>").submit();
+        });
+    });
+</script>
 </html>

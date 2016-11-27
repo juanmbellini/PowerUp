@@ -5,6 +5,7 @@ import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Collection;
@@ -35,11 +36,12 @@ public class Thread {
     private String initialComment;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
+    @OrderBy("createdAt DESC")
 //    @org.hibernate.annotations.Filter(name = "onlyTopLevelComments")
-    private Collection<Comment> allComments;
+    private Set<Comment> allComments;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
-    private Collection<ThreadLike> likes;
+    private Set<ThreadLike> likes;
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -113,6 +115,15 @@ public class Thread {
 
     public int getLikeCount() {
         return likes.size();
+    }
+
+    public boolean isLikedBy(User user) {
+        for(ThreadLike like : likes) {
+            if(like.getUser().equals(user)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Calendar getCreatedAt() {

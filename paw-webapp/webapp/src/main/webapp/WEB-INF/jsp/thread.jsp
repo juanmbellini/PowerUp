@@ -28,7 +28,25 @@
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
                     <p><c:out value="${thread.initialComment}" /></p>
-                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
+                    <%--Un/like thread section--%>
+                    <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;
+                        <c:choose>
+                            <c:when test="${isLoggedIn}">
+                                <c:choose>
+                                    <c:when test="${thread.isLikedBy(currentUser)}">
+                                        <a href="#!" class="unlike-thread" data-thread-id="${thread.id}"><i class="material-icons green-text">thumb_up</i></a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="#!" class="like-thread" data-thread-id="${thread.id}"><i class="material-icons black-text">thumb_up</i></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="material-icons black-text">thumb_up</i>
+                            </c:otherwise>
+                        </c:choose>
+                    </span>
+                    <%--End un/like thread section--%>
                 </li>
             </ul>
         </div>
@@ -54,9 +72,27 @@
                                 <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both"/></p>
                                 <br/>
                                 <p><c:out value="${comment.comment}"/></p>
-                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
                                 <br/>
                                 <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
+                                <%--Un/like comment section--%>
+                                <span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;
+                                    <c:choose>
+                                        <c:when test="${isLoggedIn}">
+                                            <c:choose>
+                                                <c:when test="${comment.isLikedBy(currentUser)}">
+                                                    <a href="#!" class="unlike-comment" data-comment-id="${comment.id}"><i class="material-icons green-text">thumb_up</i></a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#!" class="like-comment" data-comment-id="${comment.id}"><i class="material-icons black-text">thumb_up</i></a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="material-icons black-text">thumb_up</i>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                                <%--End un/like comment section--%>
                                 
                                 <%--Replies--%>
                                 <c:if test="${fn:length(comment.replies) > 0}">
@@ -74,7 +110,25 @@
                                                                              type="both"/></p>
                                                 <br/>
                                                 <p><c:out value="${reply.comment}"/></p>
-                                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i> likes</a>
+                                                <%--Un/like reply section--%>
+                                                <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
+                                                    <c:choose>
+                                                        <c:when test="${isLoggedIn}">
+                                                            <c:choose>
+                                                                <c:when test="${reply.isLikedBy(currentUser)}">
+                                                                    <a href="#!" class="unlike-comment" data-comment-id="${reply.id}"><i class="material-icons green-text">thumb_up</i></a>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <a href="#!" class="like-comment" data-comment-id="${reply.id}"><i class="material-icons black-text">thumb_up</i></a>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <i class="material-icons black-text">thumb_up</i>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </span>
+                                                <%--End un/like reply section--%>
                                             </li>
                                         </c:forEach>
                                     </ul>
@@ -170,6 +224,42 @@
                 $form.insertAfter($me);
                 $me.data("form-shown", true);
             }
+        });
+
+        $(".like-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/like-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+               </form>").submit();
+        });
+
+        $(".unlike-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+               </form>").submit();
+        });
+
+        $(".like-comment").on("click", function(event) {
+            var commentId = $(this).data("comment-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/like-comment" />' method='POST'> \
+                <input type='hidden' name='commentId' value='" + commentId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}#" + commentId + "' /> \
+               </form>").submit();
+        });
+
+        $(".unlike-comment").on("click", function(event) {
+            var commentId = $(this).data("comment-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/unlike-comment" />' method='POST'> \
+                <input type='hidden' name='commentId' value='" + commentId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}#" + commentId + "' /> \
+               </form>").submit();
         });
     });
 </script>

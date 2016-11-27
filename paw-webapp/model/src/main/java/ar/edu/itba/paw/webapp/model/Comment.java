@@ -34,6 +34,7 @@ public class Comment {
     private Comment parentComment;
 
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OrderBy("createdAt DESC")
     private Collection<Comment> replies;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
@@ -95,6 +96,15 @@ public class Comment {
 
     public int getLikeCount() {
         return likes.size();
+    }
+
+    public boolean isLikedBy(User user) {
+        for(CommentLike like : likes) {
+            if(like.getUser().equals(user)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Collection<Comment> getReplies() {

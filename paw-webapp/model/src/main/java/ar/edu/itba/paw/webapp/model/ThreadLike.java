@@ -11,7 +11,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "thread_likes",
        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "thread_id"}))
-public class ThreadLike {
+    public class ThreadLike {
 
     @Id
     @SequenceGenerator(name = "thread_likes_seq", sequenceName = "thread_likes_id_seq", allocationSize = 1)

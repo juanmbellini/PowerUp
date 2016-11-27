@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.form.CommentForm;
 import ar.edu.itba.paw.webapp.form.CreateThreadForm;
 import ar.edu.itba.paw.webapp.interfaces.ThreadService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.util.Set;
 
@@ -44,7 +44,7 @@ public class ThreadController extends BaseController {
         if (thread == null) {
             mav = new ModelAndView("error404");
         } else {
-            mav.addObject("thread", threadService.findById(threadId));
+            mav.addObject("thread", thread);
             form.setThreadId(thread.getId());
         }
         return mav;
@@ -109,5 +109,77 @@ public class ThreadController extends BaseController {
             LOG.error("Error creating reply to comment #{}: {}", parentCommentId, e);
             return new ModelAndView("error500");
         }
+    }
+
+    @RequestMapping(value = "/like-thread", method = RequestMethod.POST)
+    public ModelAndView likeThread(@RequestParam(name = "threadId") final Long threadId,
+                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.likeThread(threadId, getCurrentUser().getId());
+            LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to like nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error liking thread #{} for {}: {}", threadId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/unlike-thread", method = RequestMethod.POST)
+    public ModelAndView unlikeThread(@RequestParam(name = "threadId") final Long threadId,
+                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.unlikeThread(threadId, getCurrentUser().getId());
+            LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to unlike nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error liking thread #{} for {}: {}", threadId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/like-comment", method = RequestMethod.POST)
+    public ModelAndView likeComment(@RequestParam(name = "commentId") final Long commentId,
+                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.likeComment(commentId, getCurrentUser().getId());
+            LOG.info("{} liked comment #{}", getCurrentUsername(), commentId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to like nonexistent comment #{}, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error liking comment #{} for {}: {}", commentId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/unlike-comment", method = RequestMethod.POST)
+    public ModelAndView unlikeComment(@RequestParam(name = "commentId") final Long commentId,
+                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.unlikeComment(commentId, getCurrentUser().getId());
+            LOG.info("{} unliked comment #{}", getCurrentUsername(), commentId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to unlike nonexistent comment #{}, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error liking comment #{} for {}: {}", commentId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
     }
 }
