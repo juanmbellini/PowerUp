@@ -54,14 +54,14 @@
         <%--COMMENTS--%>
         <div class="row">
             <c:choose>
-                <c:when test="${fn:length(thread.comments) == 0}">
+                <c:when test="${fn:length(thread.allComments) == 0}">
                     <h5 class="center">No comments</h5>
                 </c:when>
                 <c:otherwise>
-                    <h5 class="center">All ${fn:length(thread.comments)} comments</h5>
+                    <h5 class="center">All ${fn:length(thread.allComments)} comments</h5>
                     <%--TOP-LEVEL COMMENTS and replies - recursive JSP--%>
                     <ul class="collection">
-                        <c:forEach var="comment" items="${thread.comments}">
+                        <c:forEach var="comment" items="${thread.topLevelComments}">
                             <li class="collection-item avatar">
                                 <a name="${comment.id}"></a>
                                 <img src="http://placehold.it/200x200"

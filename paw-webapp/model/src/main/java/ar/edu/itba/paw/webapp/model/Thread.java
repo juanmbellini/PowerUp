@@ -100,8 +100,12 @@ public class Thread {
         return initialComment;
     }
 
+    public Collection<Comment> getAllComments() {
+        return allComments;
+    }
+
     @Transient
-    public Collection<Comment> getComments() {
+    public Collection<Comment> getTopLevelComments() {
         //Not caching this into a variable since allComments may change and we have no way of tracking when this happens
         //to recompute all top-level comments.
         Set<Comment> result = new LinkedHashSet<>();
