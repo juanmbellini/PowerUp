@@ -228,6 +228,7 @@
 
                 $form.insertAfter($me);
                 $me.data("form-shown", true);
+                $form.find("textarea").focus();
             }
         });
 
