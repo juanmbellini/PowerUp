@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS users (
   username        VARCHAR          DEFAULT NULL,
   hashed_password VARCHAR NOT NULL,
   enabled         BOOLEAN NOT NULL DEFAULT TRUE,
+  profile_picture bytea, --ALTER TABLE users ADD profile_picture bytea
 
   UNIQUE (email),
   UNIQUE (username)

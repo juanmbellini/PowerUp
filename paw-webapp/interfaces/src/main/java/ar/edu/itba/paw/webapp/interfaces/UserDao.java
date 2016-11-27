@@ -71,4 +71,11 @@ public interface UserDao {
      * @see UserService#recommendGames(long)
      */
     Collection<Game> recommendGames(long userId);
+
+    /**
+     * Sets the profile picture for a user
+     * @param userId
+     * @param picture
+     */
+    void setProfilePicture(long userId, byte[] picture);
 }

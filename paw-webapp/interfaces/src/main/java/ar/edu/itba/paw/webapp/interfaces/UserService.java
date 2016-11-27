@@ -187,4 +187,12 @@ public interface UserService {
      * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
      */
     Map<PlayStatus, Set<Game>> getGameList(long userId);
+
+
+    /**
+     * Sets the profile picture for a user
+     * @param userId
+     * @param picture
+     */
+    void setProfilePicture(long userId, byte[] picture);
 }
