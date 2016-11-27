@@ -140,23 +140,17 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        return em.find(Game.class, id);
+        return DaoHelper.findSingle(em, Game.class, id);
     }
 
     @Override
     public boolean existsWithId(long id) {
-        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id = :id", Game.class);
-        query.setParameter("id", id);
-        final List<Game> list = query.getResultList();
-        return !list.isEmpty();
+        return findById(id) != null;
     }
 
     @Override
     public boolean existsWithTitle(String title) {
-        final TypedQuery<Game> query = em.createQuery("from Game as g where g.name = :title", Game.class);
-        query.setParameter("title", title);
-        final List<Game> list = query.getResultList();
-        return !list.isEmpty();
+        return DaoHelper.findSingleWithConditions(em, Game.class, "FROM Game AS G WHERE G.name = ?1", title) != null;
     }
 
     @Override
@@ -168,9 +162,8 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Map<Long, Game> findByIds(Collection<Long> ids) {
         final Map<Long, Game> result = new HashMap<>();
-        final TypedQuery<Game> query = em.createQuery("from Game as g where g.id IN (:ids)", Game.class);
-        query.setParameter("ids", ids);
-        for (Game game : query.getResultList()) {
+        final List<Game> games = DaoHelper.findManyWithConditions(em, Game.class, "FROM Game AS G WHERE G.id IN (?1)", ids);
+        for (Game game : games) {
             result.put(game.getId(), game);
         }
         return result;
@@ -179,42 +172,40 @@ public class GameHibernateDao implements GameDao {
     @Override
     public void updateAvgScore(long gameId) {
         Game game = findById(gameId);
-        final Query query = em.createQuery("select AVG(elements(g.scores)) from Game as g where g.id = (:gameId)");
-        query.setParameter("gameId",gameId);
-        double avgScore = (double)query.getSingleResult();
-        game.setAvgScore(avgScore);
+        Double newAvg = DaoHelper.findSingleWithConditions(em, Double.class, "SELECT AVG(ELEMENTS(G.scores)) FROM Game AS G WHERE G.id = ?1", gameId);
+        game.setAvgScore(newAvg);
     }
 
     @Override
     public Collection<Genre> getGenres(long gameId) {
-        return getFreshGame(gameId).getGenres();
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getGenres();
     }
 
     @Override
     public Map<Platform, GamePlatformReleaseDate> getPlatforms(long gameId) {
-        return getFreshGame(gameId).getPlatforms();
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getPlatforms();
     }
 
     @Override
     public Collection<Company> getPublishers(long gameId) {
-        return getFreshGame(gameId).getPublishers();
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getPublishers();
     }
 
     @Override
     public Collection<Company> getDevelopers(long gameId) {
-        return getFreshGame(gameId).getDevelopers();
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getDevelopers();
     }
 
     @Override
     public Collection<Keyword> getKeywords(long gameId) {
-        return getFreshGame(gameId).getKeywords();
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getKeywords();
     }
 
     @Override
     public Collection<Review> getReviews(long gameId) {
         return Collections.emptySet();
         //TODO implement
-//        return getFreshGame(gameId).getReviews();
+//        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getReviews();
     }
 
     public Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap) {
@@ -278,23 +269,6 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Map<Long, Integer> getScores(long gameId) {
-        return getFreshGame(gameId).getScores();
-    }
-
-    /**
-     * Gets a game by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
-     * and throws exception if not found. If present in current transaction context, the game is returned from there
-     * instead of querying the database.
-     *
-     * @param gameId The ID of the game to fetch.
-     * @return The found game.
-     * @throws NoSuchGameException If no such game exists.
-     */
-    private Game getFreshGame(long gameId) {
-        Game result = em.find(Game.class, gameId);
-        if (result == null) {
-            throw new NoSuchGameException(gameId);
-        }
-        return result;
+        return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
     }
 }

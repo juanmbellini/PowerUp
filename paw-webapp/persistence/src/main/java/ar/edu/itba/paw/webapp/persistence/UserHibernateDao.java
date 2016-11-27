@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.*;
 
 /**
@@ -42,7 +41,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findById(long id) {
-        return em.find(User.class, id);
+        return DaoHelper.findSingle(em, User.class, id);
     }
 
     @Override
@@ -52,10 +51,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findByUsername(String username) {
-        final TypedQuery<User> query = em.createQuery("from User as u where u.username = :username", User.class);
-        query.setParameter("username", username);
-        final List<User> list = query.getResultList();
-        return list.isEmpty() ? null : list.get(0);
+        return DaoHelper.findSingleWithConditions(em, User.class, "FROM User as U WHERE U.username = ?1", username);
     }
 
     @Override
@@ -65,10 +61,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findByEmail(String email) {
-        final TypedQuery<User> query = em.createQuery("from User as u where u.email = :email", User.class);
-        query.setParameter("email", email);
-        final List<User> list = query.getResultList();
-        return list.isEmpty() ? null : list.get(0);
+        return DaoHelper.findSingleWithConditions(em, User.class, "FROM User as U WHERE U.email = ?1", email);
     }
 
     @Override
