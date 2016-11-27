@@ -13,10 +13,9 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.*;
 
 /**
  * Created by Juan Marcos Bellini on 26/11/16.
@@ -24,13 +23,17 @@ import java.util.Set;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @Sql("classpath:schema.sql")
+@Transactional
 public class CompanyHibernateDaoTest {
+
+    /**
+     * Used to persist testing data.
+     */
+    @PersistenceContext
+    protected EntityManager em;
 
     @Autowired
     private CompanyHibernateDao companyDao;
-
-    @Autowired
-    private GameHibernateDao gameDao;
 
     /**
      * Contains companies for testing
@@ -52,17 +55,18 @@ public class CompanyHibernateDaoTest {
 
     @Before
     public void initializeDatabase() {
-        companies.forEach(companyDao.getEntityManager()::persist);
+        companies.forEach(em::persist);
+        em.flush();
     }
 
     @After
     public void removeAllData() {
-        companyDao.getEntityManager().createNativeQuery("delete from companies");
+        em.createNativeQuery("delete from companies");
+        em.flush();
     }
 
 
     @Test
-    @Transactional
     public void testAllCompaniesAreReturned() {
         String message = "Get all companies didn't returned as expected.";
         Set<Company> returnedCompanies = companyDao.all();
@@ -76,7 +80,6 @@ public class CompanyHibernateDaoTest {
     }
 
     @Test
-    @Transactional
     public void testFindById() {
         String message = "Find by id didn't returned as expected.";
         Company returnedCompany = companyDao.findById(nintendo.getId());
@@ -87,7 +90,6 @@ public class CompanyHibernateDaoTest {
     }
 
     @Test
-    @Transactional
     public void testFindByName() {
         String message = "Find by name didn't returned as expected.";
         Company returnedCompany = companyDao.findByName(nintendo.getName());
@@ -98,10 +100,50 @@ public class CompanyHibernateDaoTest {
     }
 
     @Test
-    @Transactional
     public void testGamesDevelopedBy() {
         String message = "Games developed by didn't returned as expected.";
 
+        Company rareware = createRarewareCompanyWithTwoGames();
+        Collection<Game> developedByRare = rareware.getGamesDeveloped();
+        Set<Game> returnedGamesDeveloped = companyDao.gamesDevelopedBy(rareware);
+
+        Assert.assertNotNull(message, returnedGamesDeveloped);
+        Assert.assertEquals(message, developedByRare.size(), returnedGamesDeveloped.size());
+        for (Game each : developedByRare) {
+            Assert.assertTrue(message, returnedGamesDeveloped.contains(each));
+        }
+
+        // Remove games that were just persisted
+        deleteGames();
+    }
+
+
+    @Test
+    public void testGamesPublishedBy() {
+        String message = "Games published by didn't returned as expected.";
+
+        setGamesToNintendo();
+        Collection<Game> publishedByNintendo = nintendo.getGamesPublished();
+        Set<Game> returnedGamesPublished = companyDao.gamesPublishedBy(nintendo);
+
+        Assert.assertNotNull(message, returnedGamesPublished);
+        Assert.assertEquals(message, publishedByNintendo.size(), returnedGamesPublished.size());
+        for (Game each : publishedByNintendo) {
+            Assert.assertTrue(message, returnedGamesPublished.contains(each));
+        }
+
+        // Remove games that were just persisted
+        deleteGames();
+    }
+
+    /**
+     * Creates a {@link Company} (with name Rareware), setting two games as developed games.
+     * This method persists those games and the company. After that it flushes data into the database.
+     * Note: deleteGames method should be called after in order to clean the database.
+     *
+     * @return A new Company with two games in its developed games set.
+     */
+    private Company createRarewareCompanyWithTwoGames() {
         Company rareware = new Company(0, "Rareware");
         List<Game> developedByRare = new LinkedList<>();
         developedByRare.add(new Game.GameBuilder()
@@ -112,51 +154,43 @@ public class CompanyHibernateDaoTest {
                 .setName("Donkey Kong 64")
                 .addDeveloper(rareware)
                 .build());
-        developedByRare.forEach(gameDao.getEntityManager()::persist);
+        developedByRare.forEach(em::persist);
+
         rareware.setGamesDeveloped(developedByRare);
+        em.persist(rareware);
+        em.flush();
 
-        companyDao.getEntityManager().persist(rareware);
-        Set<Game> returnedGamesDeveloped = companyDao.gamesDevelopedBy(rareware);
-
-        Assert.assertNotNull(message, returnedGamesDeveloped);
-        Assert.assertEquals(message, developedByRare.size(), returnedGamesDeveloped.size());
-        for (Game each : developedByRare) {
-            Assert.assertTrue(message, returnedGamesDeveloped.contains(each));
-        }
-
-        // Remove games that were just persisted
-        gameDao.getEntityManager().createNativeQuery("delete from games");
+        return rareware;
     }
 
-
-    @Test
-    @Transactional
-    public void testGamesPublishedBy() {
-        String message = "Games published by didn't returned as expected.";
-
+    /**
+     * Sets two games into the Nintendo {@link Company}.
+     * This method persists those games, and merges the company. After that it flushes data into the database.
+     * Note: deleteGames method should be called after in order to clean the database.
+     */
+    private void setGamesToNintendo() {
         List<Game> publishedByNintendo = new LinkedList<>();
         publishedByNintendo.add(new Game.GameBuilder()
-                .setName("Donkey Kong Country 1")
+                .setName("Donkey Kong Country 2")
                 .addPublisher(nintendo)
                 .build());
         publishedByNintendo.add(new Game.GameBuilder()
                 .setName("The Legend of Zelda: A Link to the Past")
                 .addPublisher(nintendo)
                 .build());
-        publishedByNintendo.forEach(gameDao.getEntityManager()::persist);
+        publishedByNintendo.forEach(em::persist);
+
         nintendo.setGamesPublished(publishedByNintendo);
+        em.merge(nintendo);
+        em.flush();
+    }
 
-        companyDao.getEntityManager().merge(nintendo);
-        Set<Game> returnedGamesPublished = companyDao.gamesPublishedBy(nintendo);
-
-        Assert.assertNotNull(message, returnedGamesPublished);
-        Assert.assertEquals(message, publishedByNintendo.size(), returnedGamesPublished.size());
-        for (Game each : publishedByNintendo) {
-            Assert.assertTrue(message, returnedGamesPublished.contains(each));
-        }
-
-        // Remove games that were just persisted
-        gameDao.getEntityManager().createNativeQuery("delete from games");
+    /**
+     * Removes games and flushes it into the database.
+     */
+    private void deleteGames() {
+        em.createNativeQuery("delete from games");
+        em.flush();
     }
 
 }
