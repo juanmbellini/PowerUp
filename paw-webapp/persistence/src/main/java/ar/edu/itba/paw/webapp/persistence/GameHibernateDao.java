@@ -129,7 +129,7 @@ public class GameHibernateDao implements GameDao {
         filtersScoresMap.put(FilterCategory.genre, mapFilterToFilterScoreGenre);
 
         //Analogous, with keywords
-        countFilter=0;
+        countFilter = 0;
         Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
         Iterator<Keyword> keywordIterator = game.getKeywords().iterator();
         while (countFilter < keywordLimit && keywordIterator.hasNext()) {
@@ -139,7 +139,7 @@ public class GameHibernateDao implements GameDao {
         filtersScoresMap.put(FilterCategory.keyword, mapFilterToFilterScoreKeyword);
 
         //Analogous, with developers
-        countFilter=0;
+        countFilter = 0;
         Map<String, Double> mapFilterToFilterScoreDeveloper = new HashMap<>();
         Iterator<Company> developerIterator = game.getDevelopers().iterator();
         while (countFilter < developerLimit && developerIterator.hasNext()) {
@@ -235,10 +235,10 @@ public class GameHibernateDao implements GameDao {
                 ArrayList<String> filterArrayParameter = new ArrayList<>();
                 filterArrayParameter.add(filter);
                 filterParameterMap.put(filterCategory, filterArrayParameter);
-                Collection<Game> resultGames  = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                Collection<Game> resultGames = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
                 for (Game game : resultGames) {
                     if (!excludedGameIds.contains(game.getId())) {
-                        if(!gamesWeightMap.containsKey(game)){
+                        if (!gamesWeightMap.containsKey(game)) {
                             gamesWeightMap.put(game, 0);
                         }
                         gamesWeightMap.put(game, gamesWeightMap.get(game) + (int) filterScore);
