@@ -84,7 +84,7 @@ public interface ThreadDao {
     void editComment(long commentId, String newComment);
 
     /**
-     * @see ThreadService#deleteComment(long commentId)
+     * @see ThreadService#deleteComment(long, long)
      */
     void deleteComment(long commentId) throws NoSuchEntityException;
 

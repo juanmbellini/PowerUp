@@ -205,4 +205,25 @@ public class ThreadController extends BaseController {
         }
         return mav;
     }
+
+    @RequestMapping(value = "delete-comment", method = RequestMethod.POST)
+    public ModelAndView deleteComment(@RequestParam(name = "commentId") final Long commentId,
+                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.deleteComment(commentId, getCurrentUser().getId());
+            LOG.info("{} deleted comment #{}", getCurrentUsername(), commentId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (UnauthorizedException e) {
+            LOG.warn("{} attempted to delete comment #{} which is not theirs, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error400"); //TODO make 403 page
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to delete nonexistent comment #{}, denied", getCurrentUsername(), commentId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error deleting comment #{} by {}: {}", commentId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
 }

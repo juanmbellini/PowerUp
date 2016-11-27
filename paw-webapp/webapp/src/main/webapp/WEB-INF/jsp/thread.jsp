@@ -77,14 +77,20 @@
                                 <br/>
                                 <p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>
                                 <br/>
-                                <div class="action-links">
-                                    <%--Reply link--%>
-                                    <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
-                                    <%--Edit link--%>
-                                    <c:if test="${isLoggedIn && comment.commenter.id == currentUser.id}">
-                                        | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
-                                    </c:if>
-                                </div>
+                                <c:if test="${isLoggedIn}">
+                                    <div class="action-links">
+                                        <%--Reply link--%>
+                                        <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
+                                        <%--Edit link--%>
+                                        <c:if test="${comment.commenter.id == currentUser.id}">
+                                            | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
+                                        </c:if>
+                                        <%--Delete link--%>
+                                        <c:if test="${comment.commenter.id == currentUser.id}">
+                                            | <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>
+                                        </c:if>
+                                    </div>
+                                </c:if>
                                 <%--Un/like comment section--%>
                                 <span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;
                                     <c:choose>
@@ -122,12 +128,18 @@
                                                 <p>Submitted <fmt:formatDate value="${reply.createdAt.time}" type="both"/></p>
                                                 <br/>
                                                 <p class="preserve-newlines wrap-text"><c:out value="${reply.comment}"/></p>
-                                                <div class="action-links">
-                                                    <%--Edit link--%>
-                                                    <c:if test="${isLoggedIn && comment.commenter.id == currentUser.id}">
-                                                        <a href="#!" class="edit-comment-link" data-comment-id="${reply.id}" data-comment="<c:out value="${reply.comment}"/>" data-form-shown="false">Edit</a>
-                                                    </c:if>
-                                                </div>
+                                                <c:if test="${isLoggedIn}">
+                                                    <div class="action-links">
+                                                        <%--Edit link--%>
+                                                        <c:if test="${comment.commenter.id == currentUser.id}">
+                                                            | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
+                                                        </c:if>
+                                                        <%--Delete link--%>
+                                                        <c:if test="${comment.commenter.id == currentUser.id}">
+                                                            | <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>
+                                                        </c:if>
+                                                    </div>
+                                                </c:if>
                                                 <%--Un/like reply section--%>
                                                 <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
                                                     <c:choose>
@@ -207,8 +219,14 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<%--Sweet Alert--%>
+<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
+<%--End Sweet Alert--%>
 <script type="text/javascript">
     $(function () {
+
+        //Replies
         $(".reply-link").on("click", function (event) {
             var $me = $(this);
             if (!$me.data("form-shown")) {
@@ -245,7 +263,71 @@
             }
         });
 
+        //Comment edits
         $(".edit-comment-link").on("click", function (event) {
+            var $me = $(this);
+            if (!$me.data("form-shown")) {
+                var commentId = $me.data("comment-id");
+                var comment = $me.data("comment").trim();
+                var $form = $("<form></form>");
+                $form.attr("action", "<c:url value="/edit-comment" />");
+                $form.attr("method", "POST");
+                $form.css("margin-top", "10px");
+
+                $form.append("<input type='hidden' name='commentId' value='"+ commentId +"' />");
+                $form.append("<input type='hidden' name='returnUrl' value='"+ window.location.pathname + "?id=${thread.id}#" + commentId +"' />");
+
+                //Text area
+                $form.append("<div class='row'> \
+                        <div class='input-field col s12'> \
+                            <textarea name='newComment' class='materialize-textarea' required='required'>"+comment+"</textarea> \
+                            <label for='newComment'>Comment</label> \
+                        </div> \
+                    </div>");
+
+                //Submit button
+                $form.append("<div class='row'>	\
+                        <div class='col s4 offset-s5'>	\
+                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\
+                                Submit <i class='material-icons right'>send</i>	\
+                            </button>	\
+                        </div>	\
+                    </div>");
+
+                $form.insertAfter($me.closest(".action-links"));
+                $me.data("form-shown", true);
+                $form.find("textarea").trigger('autoresize');
+                $form.find("textarea").focus();
+            }
+        });
+
+        //Comment deletions
+        $(".delete-comment-link").on("click", function (event) {
+            var $me = $(this);
+            var commentId = $me.data("comment-id");
+            swal({
+                title: "Are you sure?",
+                text: "This comment and all replies will be permanently lost",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                closeOnConfirm: false
+            },
+            function(){
+                //Disable submit button to prevent multiple submissions
+                $(".confirm").attr('disabled', 'disabled');
+
+                //Create an inline form and submit it to redirect with POST
+                $("<form action='<c:url value="/delete-comment" />' method='POST'> \
+                <input type='hidden' name='commentId' value='" + commentId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}' /> \
+               </form>").submit();
+            });
+
+
+
             var $me = $(this);
             if (!$me.data("form-shown")) {
                 var commentId = $me.data("comment-id");

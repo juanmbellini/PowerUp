@@ -97,7 +97,10 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void deleteComment(long commentId) throws NoSuchEntityException {
+    public void deleteComment(long commentId, long userId) throws NoSuchEntityException {
+        if(commentDao.findById(commentId).getCommenter().getId() != userId) {
+            throw new UnauthorizedException("Comment #" + commentId + " does not belong to user #" + userId + ", can't delete");
+        }
         threadDao.deleteComment(commentId);
     }
 

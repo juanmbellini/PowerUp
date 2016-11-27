@@ -139,12 +139,13 @@ public interface ThreadService {
     void editComment(long commentId, long userId, String newComment);
 
     /**
-     * Deletes a comment along with all its replies.
+     * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
      *
      * @param commentId The ID of the comment to delete.
+     * @param userId The ID of the user attempting to delete the comment.
      * @throws NoSuchEntityException If the comment doesn't exist.
      */
-    void deleteComment(long commentId) throws NoSuchEntityException;
+    void deleteComment(long commentId, long userId) throws NoSuchEntityException;
 
     /**
      * Deletes a thread along with all its comments.
