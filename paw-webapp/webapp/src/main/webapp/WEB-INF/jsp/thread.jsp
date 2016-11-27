@@ -36,8 +36,9 @@
                             <%--Edit link--%>
                             | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-comment="<c:out value="${thread.initialComment}"/>" data-form-shown="false">Edit Comment</a>
                             <%--Delete link--%>
-                            | <a href="#!" class="delete-thread-link" data-thread-id="${thread.id}" data-form-shown="false">Delete</a>
+                            | <a href="#!" class="delete-thread-link" data-thread-id="${thread.id}">Delete</a>
                         </div>
+                        <div class="action-form"></div>
                     </c:if>
                     <%--Un/like thread section--%>
                     <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;
@@ -102,6 +103,7 @@
                                             | <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>
                                         </c:if>
                                     </div>
+                                    <div class="action-form"></div>
                                 </c:if>
                                 <%--Un/like comment section--%>
                                 <span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;
@@ -151,6 +153,7 @@
                                                             | <a href="#!" class="delete-comment-link" data-comment-id="${reply.id}" data-form-shown="false">Delete</a>
                                                         </c:if>
                                                     </div>
+                                                    <div class="action-form"></div>
                                                 </c:if>
                                                 <%--Un/like reply section--%>
                                                 <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
@@ -202,7 +205,7 @@
                     <div class='row'>
                         <div class='input-field col s12'>
                             <form:textarea path="comment" cssClass="materialize-textarea" required="required" />
-                            <form:label path="comment">Your comment</form:label>
+                            <form:label path="comment">New comment</form:label>
                             <form:errors path="comment" cssClass="formError" element="p"/>
                         </div>
                     </div>
@@ -270,10 +273,12 @@
                         </div>	\
                     </div>");
 
-                $form.insertAfter($me.closest(".action-links"));
+                $me.parent().parent().find(".action-form").html($form);
                 $me.data("form-shown", true);
                 $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
+            } else {
+                $me.parent().parent().find(".action-form form textarea").focus();
             }
         });
 
@@ -389,9 +394,14 @@
                         </div>	\
                     </div>");
 
-                $form.insertAfter($me.closest(".action-links"));
+
+                $me.parent().parent().find(".action-form").html($form);
                 $me.data("form-shown", true);
+                $me.siblings(".edit-comment-link").data("form-shown", false);
+                $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
+            } else {
+                $me.parent().parent().find(".action-form form textarea").focus();
             }
         });
 
@@ -426,10 +436,13 @@
                         </div>	\
                     </div>");
 
-                $form.insertAfter($me.closest(".action-links"));
+                $me.parent().parent().find(".action-form").html($form);
                 $me.data("form-shown", true);
+                $me.siblings(".reply-link").data("form-shown", false);
                 $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
+            } else {
+                $me.parent().parent().find(".action-form form textarea").focus();
             }
         });
 
