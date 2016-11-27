@@ -148,6 +148,71 @@ public class ThreadController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(value = "/edit-thread-title", method = RequestMethod.POST)
+    public ModelAndView editThread(@RequestParam(name = "threadId") final Long threadId,
+                                    @RequestParam(name = "newTitle") final String newTitle,
+                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.changeTitle(threadId, getCurrentUser().getId(), newTitle);
+            LOG.info("{} changed thread #{}'s title to \"{}\"", getCurrentUsername(), threadId, newTitle);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (UnauthorizedException e) {
+            LOG.warn("{} attempted to edit title of thread thread #{} which is not theirs, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error400"); //TODO make 403 page
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to edit title of nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error editing title of thread #{} for {}: {}", threadId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/edit-thread-initial-comment", method = RequestMethod.POST)
+    public ModelAndView deleteThread(@RequestParam(name = "threadId") final Long threadId,
+                                     @RequestParam(name = "newComment") final String newInitialComment,
+                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.changeInitialComment(threadId, getCurrentUser().getId(), newInitialComment);
+            LOG.info("{} changed initial comment of thread #{}", getCurrentUsername(), threadId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (UnauthorizedException e) {
+            LOG.warn("{} attempted to change initial comment of thread #{} which is not theirs, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error400"); //TODO make 403 page
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to change initial comment of nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error changing initial comment of thread #{} by {}: {}", threadId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/delete-thread", method = RequestMethod.POST)
+    public ModelAndView deleteThread(@RequestParam(name = "threadId") final Long threadId,
+                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            threadService.deleteThread(threadId, getCurrentUser().getId());
+            LOG.info("{} deleted thread #{}", getCurrentUsername(), threadId);
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (UnauthorizedException e) {
+            LOG.warn("{} attempted to delete thread #{} which is not theirs, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error400"); //TODO make 403 page
+        } catch (NoSuchEntityException e) {
+            LOG.warn("{} attempted to delete nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            mav = new ModelAndView("error404");
+        } catch (Exception e) {
+            LOG.error("Error deleting thread #{} by {}: {}", threadId, getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
+
     @RequestMapping(value = "/like-comment", method = RequestMethod.POST)
     public ModelAndView likeComment(@RequestParam(name = "commentId") final Long commentId,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
@@ -184,7 +249,7 @@ public class ThreadController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "edit-comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit-comment", method = RequestMethod.POST)
     public ModelAndView editComment(@RequestParam(name = "commentId") final Long commentId,
                                     @RequestParam(name = "newComment") final String newComment,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
@@ -206,7 +271,7 @@ public class ThreadController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "delete-comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
     public ModelAndView deleteComment(@RequestParam(name = "commentId") final Long commentId,
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;

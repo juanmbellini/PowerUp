@@ -92,6 +92,13 @@ public class ThreadHibernateDao implements ThreadDao {
     }
 
     @Override
+    public void changeInitialCommentTitle(long threadId, String newInitialComment) {
+        Thread t = DaoHelper.findSingleOrThrow(em, Thread.class, threadId);
+        t.setInitialComment(newInitialComment);
+        em.persist(t);
+    }
+
+    @Override
     public int likeThread(long threadId, long userId) {
         return threadLikeDao.create(threadId, userId);
     }

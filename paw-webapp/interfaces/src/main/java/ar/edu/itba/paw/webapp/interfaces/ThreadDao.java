@@ -44,9 +44,14 @@ public interface ThreadDao {
     Thread findById(long threadId);
 
     /**
-     * @see ThreadService#changeTitle(long threadId, String newTitle)
+     * @see ThreadService#changeTitle(long, long, String)
      */
     void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException;
+
+    /**
+     * @see ThreadService#changeInitialComment(long, long, String)
+     */
+    void changeInitialCommentTitle(long threadId, String newInitialComment);
 
     /**
      * @see ThreadService#likeThread(long threadId, long userId)
@@ -89,7 +94,7 @@ public interface ThreadDao {
     void deleteComment(long commentId) throws NoSuchEntityException;
 
     /**
-     * @see ThreadService#deleteThread(long threadId)
+     * @see ThreadService#deleteThread(long, long)
      */
     void deleteThread(long threadId) throws NoSuchEntityException;
 }

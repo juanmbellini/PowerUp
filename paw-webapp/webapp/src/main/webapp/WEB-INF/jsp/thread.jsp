@@ -28,6 +28,17 @@
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
                     <p class="preserve-newlines wrap-text"><c:out value="${thread.initialComment}" /></p>
+                    <%--Thread action links--%>
+                    <c:if test="${isLoggedIn && thread.creator.id == currentUser.id}">
+                        <div class="action-links">
+                            <%--Rename link--%>
+                            <a href="#!" class="edit-thread-title-link" data-thread-id="${thread.id}" data-thread-title="${thread.title}">Change Title</a>
+                            <%--Edit link--%>
+                            | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-comment="<c:out value="${thread.initialComment}"/>" data-form-shown="false">Edit Comment</a>
+                            <%--Delete link--%>
+                            | <a href="#!" class="delete-thread-link" data-thread-id="${thread.id}" data-form-shown="false">Delete</a>
+                        </div>
+                    </c:if>
                     <%--Un/like thread section--%>
                     <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;
                         <c:choose>
@@ -77,6 +88,7 @@
                                 <br/>
                                 <p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>
                                 <br/>
+                                <%--Comment action links--%>
                                 <c:if test="${isLoggedIn}">
                                     <div class="action-links">
                                         <%--Reply link--%>
@@ -131,12 +143,12 @@
                                                 <c:if test="${isLoggedIn}">
                                                     <div class="action-links">
                                                         <%--Edit link--%>
-                                                        <c:if test="${comment.commenter.id == currentUser.id}">
-                                                            | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
+                                                        <c:if test="${reply.commenter.id == currentUser.id}">
+                                                            | <a href="#!" class="edit-comment-link" data-comment-id="${reply.id}" data-comment="<c:out value="${reply.comment}"/>" data-form-shown="false">Edit</a>
                                                         </c:if>
                                                         <%--Delete link--%>
-                                                        <c:if test="${comment.commenter.id == currentUser.id}">
-                                                            | <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>
+                                                        <c:if test="${reply.commenter.id == currentUser.id}">
+                                                            | <a href="#!" class="delete-comment-link" data-comment-id="${reply.id}" data-form-shown="false">Delete</a>
                                                         </c:if>
                                                     </div>
                                                 </c:if>
@@ -226,7 +238,127 @@
 <script type="text/javascript">
     $(function () {
 
-        //Replies
+        /* ************************
+         *      Thread actions
+         * ***********************/
+        $(".edit-thread-initial-comment-link").on("click", function (event) {
+            var $me = $(this);
+            if (!$me.data("form-shown")) {
+                var initialComment = $me.data("thread-initial-comment");
+                var $form = $("<form></form>");
+                $form.attr("action", "<c:url value="/edit-thread-initial-comment" />");
+                $form.attr("method", "POST");
+                $form.css("margin-top", "10px");
+
+                $form.append("<input type='hidden' name='threadId' value='${thread.id}' />");
+                $form.append("<input type='hidden' name='returnUrl' value='<c:out value="/thread?id=${thread.id}" />' />");
+
+                //Text area
+                $form.append("<div class='row'> \
+                        <div class='input-field col s12'> \
+                            <textarea name='newComment' class='materialize-textarea' required='required'>"+ initialComment +"</textarea> \
+                            <label for='newComment'>New initial comment</label> \
+                        </div> \
+                    </div>");
+
+                //Submit button
+                $form.append("<div class='row'>	\
+                        <div class='col s4 offset-s5'>	\
+                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\
+                                Submit <i class='material-icons right'>send</i>	\
+                            </button>	\
+                        </div>	\
+                    </div>");
+
+                $form.insertAfter($me.closest(".action-links"));
+                $me.data("form-shown", true);
+                $form.find("textarea").trigger('autoresize');
+                $form.find("textarea").focus();
+            }
+        });
+
+        $(".edit-thread-title-link").on("click", function (event) {
+            var $me = $(this);
+            var threadId = $me.data("thread-id");
+            var threadTitle = $me.data("thread-title");
+            swal({
+                title: "Change thread title",
+                text: "Change from \""+ threadTitle +"\" to",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                inputPlaceholder: "New title"
+            },
+            function(inputValue){
+                if(inputValue === false) {
+                    return false
+                }
+
+                if (inputValue === "") {
+                    swal.showInputError("You need to write something!");
+                    return false
+                }
+
+                //Disable submit button to prevent multiple submissions
+                $(".confirm").attr('disabled', 'disabled');
+
+                //Create an inline form and submit it to redirect with POST
+                $("<form action='<c:url value="/edit-thread-title" />' method='POST'> \
+                        <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                        <input type='hidden' name='newTitle' value='"+ inputValue +"' /> \
+                        <input type='hidden' name='returnUrl' value='<c:out value="/thread?id=${thread.id}" />' /> \
+                        </form>").submit();
+            });
+        });
+
+        $(".delete-thread-link").on("click", function (event) {
+            var $me = $(this);
+            var threadId = $me.data("thread-id");
+            swal({
+                    title: "Are you sure?",
+                    text: "This thread and all its comments will be permanently lost",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: false
+                },
+                function(){
+                    //Disable submit button to prevent multiple submissions
+                    $(".confirm").attr('disabled', 'disabled');
+
+                    //Create an inline form and submit it to redirect with POST
+                    $("<form action='<c:url value="/delete-thread" />' method='POST'> \
+                        <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                        <input type='hidden' name='returnUrl' value='<c:out value="/threads" />' /> \
+                        </form>").submit();
+                        });
+        });
+
+        $(".like-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/like-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+               </form>").submit();
+        });
+
+        $(".unlike-thread").on("click", function(event) {
+            var threadId = $(this).data("thread-id");
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
+                <input type='hidden' name='threadId' value='" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+               </form>").submit();
+        });
+
+        /* ************************
+         *      Comment actions
+         * ***********************/
+
+        //Comment replies
         $(".reply-link").on("click", function (event) {
             var $me = $(this);
             if (!$me.data("form-shown")) {
@@ -325,61 +457,6 @@
                 <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}' /> \
                </form>").submit();
             });
-
-
-
-            var $me = $(this);
-            if (!$me.data("form-shown")) {
-                var commentId = $me.data("comment-id");
-                var comment = $me.data("comment").trim();
-                var $form = $("<form></form>");
-                $form.attr("action", "<c:url value="/edit-comment" />");
-                $form.attr("method", "POST");
-                $form.css("margin-top", "10px");
-
-                $form.append("<input type='hidden' name='commentId' value='"+ commentId +"' />");
-                $form.append("<input type='hidden' name='returnUrl' value='"+ window.location.pathname + "?id=${thread.id}#" + commentId +"' />");
-
-                //Text area
-                $form.append("<div class='row'> \
-                        <div class='input-field col s12'> \
-                            <textarea name='newComment' class='materialize-textarea' required='required'>"+comment+"</textarea> \
-                            <label for='newComment'>Comment</label> \
-                        </div> \
-                    </div>");
-
-                //Submit button
-                $form.append("<div class='row'>	\
-                        <div class='col s4 offset-s5'>	\
-                            <button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\
-                                Submit <i class='material-icons right'>send</i>	\
-                            </button>	\
-                        </div>	\
-                    </div>");
-
-                $form.insertAfter($me.closest(".action-links"));
-                $me.data("form-shown", true);
-                $form.find("textarea").trigger('autoresize');
-                $form.find("textarea").focus();
-            }
-        });
-
-        $(".like-thread").on("click", function(event) {
-            var threadId = $(this).data("thread-id");
-            //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/like-thread" />' method='POST'> \
-                <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
-               </form>").submit();
-        });
-
-        $(".unlike-thread").on("click", function(event) {
-            var threadId = $(this).data("thread-id");
-            //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
-                <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
-               </form>").submit();
         });
 
         $(".like-comment").on("click", function(event) {

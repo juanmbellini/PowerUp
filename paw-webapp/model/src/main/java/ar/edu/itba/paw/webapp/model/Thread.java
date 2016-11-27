@@ -100,6 +100,10 @@ public class Thread {
         return initialComment;
     }
 
+    public void setInitialComment(String initialComment) {
+        this.initialComment = initialComment;
+    }
+
     public Collection<Comment> getAllComments() {
         return allComments;
     }

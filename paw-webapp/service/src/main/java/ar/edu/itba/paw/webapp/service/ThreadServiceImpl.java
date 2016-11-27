@@ -54,8 +54,19 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException {
+    public void changeTitle(long threadId, long userId, String newTitle) throws NoSuchEntityException, IllegalArgumentException {
+        if(findById(threadId).getCreator().getId() != userId) {
+            throw new UnauthorizedException("User #" + userId + " is not the creator of thread #" + threadId + ", can't change title");
+        }
         threadDao.changeTitle(threadId, newTitle);
+    }
+
+    @Override
+    public void changeInitialComment(long threadId, long userId, String newInitialComment) throws NoSuchEntityException, UnauthorizedException {
+        if(findById(threadId).getCreator().getId() != userId) {
+            throw new UnauthorizedException("User #" + userId + " is not the creator of thread #" + threadId + ", can't change initial comment");
+        }
+        threadDao.changeInitialCommentTitle(threadId, newInitialComment);
     }
 
     @Override
@@ -105,7 +116,10 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public void deleteThread(long threadId) throws NoSuchEntityException {
+    public void deleteThread(long threadId, long userId) throws NoSuchEntityException {
+        if(findById(threadId).getCreator().getId() != userId) {
+            throw new UnauthorizedException("Thread #" + threadId + " does not belong to user #" + userId + ", can't delete");
+        }
         threadDao.deleteThread(threadId);
     }
 }

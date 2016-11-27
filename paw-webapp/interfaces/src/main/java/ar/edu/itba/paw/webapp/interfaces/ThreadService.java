@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 
@@ -67,11 +68,25 @@ public interface ThreadService {
      * Changes the title of a thread.
      *
      * @param threadId The ID of the thread whose title to change.
+     * @param userId   The ID of the user attempting to change the title.
      * @param newTitle The thread's new title.
      * @throws NoSuchEntityException    If the thread doesn't exist.
+     * @throws UnauthorizedException    If the user isn't allowed to change the thread's title.
      * @throws IllegalArgumentException If the name is null or invalid (e.g. empty).
      */
-    void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException;
+    void changeTitle(long threadId, long userId, String newTitle) throws NoSuchEntityException, UnauthorizedException, IllegalArgumentException;
+
+    /**
+     * Changes the initial comment of a thread.
+     *
+     * @param threadId          The ID of the thread whose initial comment to change.
+     * @param userId            The ID of the user attempting to change the initial comment.
+     * @param newInitialComment The thread's new initial comment. May be empty but not null.
+     * @throws NoSuchEntityException    If the thread doesn't exist.
+     * @throws UnauthorizedException    If the user isn't allowed to change the thread's initial comment.
+     * @throws IllegalArgumentException If the new initial comment is {@code null}. Note that an empty content is allowed.
+     */
+    void changeInitialComment(long threadId, long userId, String newInitialComment) throws NoSuchEntityException, UnauthorizedException, IllegalArgumentException;
 
     /**
      * Marks a like for a given thread by a given user, if not already liked.
@@ -142,16 +157,18 @@ public interface ThreadService {
      * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
      *
      * @param commentId The ID of the comment to delete.
-     * @param userId The ID of the user attempting to delete the comment.
+     * @param userId    The ID of the user attempting to delete the comment.
      * @throws NoSuchEntityException If the comment doesn't exist.
      */
     void deleteComment(long commentId, long userId) throws NoSuchEntityException;
 
     /**
-     * Deletes a thread along with all its comments.
+     * Deletes a thread along with all its comments. Only the thread's creator may delete threads.
      *
      * @param threadId The ID of the thread to delete.
+     * @param userId   The ID of the user attempting to delete the thread.
      * @throws NoSuchEntityException If the thread doesn't exist.
+     * @throws UnauthorizedException If the user isn't allowed to delete the thread.
      */
-    void deleteThread(long threadId) throws NoSuchEntityException;
+    void deleteThread(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
 }

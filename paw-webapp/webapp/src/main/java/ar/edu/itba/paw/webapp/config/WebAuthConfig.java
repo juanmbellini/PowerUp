@@ -43,7 +43,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/update-shelves-by-game").authenticated()
                 .antMatchers("/**-shelf").authenticated()
                 .antMatchers("/write-review").authenticated()
-                .antMatchers("/**-thread").authenticated()
+                .antMatchers("/**-thread**").authenticated()
                 .antMatchers("/**-comment").authenticated()
                 .antMatchers("/comment").authenticated()
                 .antMatchers("/reply").authenticated()
