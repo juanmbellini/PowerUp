@@ -38,7 +38,7 @@ public class CompanyHibernateDaoTest {
     private final Set<Company> companies;
 
     /**
-     * Contains a specific compaany
+     * Contains a specific company
      */
     private final Company nintendo;
 
@@ -79,26 +79,22 @@ public class CompanyHibernateDaoTest {
     @Transactional
     public void testFindById() {
         String message = "Find by id didn't returned as expected.";
-        Company rareware = new Company(0, "Rareware");
-        companyDao.getEntityManager().persist(rareware);
-        Company returnedCompany = companyDao.findById(rareware.getId());
+        Company returnedCompany = companyDao.findById(nintendo.getId());
 
         Assert.assertNotNull(message, returnedCompany);
-        Assert.assertEquals(message, rareware.getId(), returnedCompany.getId());
-        Assert.assertEquals(message, rareware.getName(), returnedCompany.getName());
+        Assert.assertEquals(message, nintendo.getId(), returnedCompany.getId());
+        Assert.assertEquals(message, nintendo.getName(), returnedCompany.getName());
     }
 
     @Test
     @Transactional
     public void testFindByName() {
         String message = "Find by name didn't returned as expected.";
-        Company rareware = new Company(0, "Rareware");
-        companyDao.getEntityManager().persist(rareware);
-        Company returnedCompany = companyDao.findByName(rareware.getName());
+        Company returnedCompany = companyDao.findByName(nintendo.getName());
 
         Assert.assertNotNull(message, returnedCompany);
-        Assert.assertEquals(message, rareware.getId(), returnedCompany.getId());
-        Assert.assertEquals(message, rareware.getName(), returnedCompany.getName());
+        Assert.assertEquals(message, nintendo.getId(), returnedCompany.getId());
+        Assert.assertEquals(message, nintendo.getName(), returnedCompany.getName());
     }
 
     @Test
