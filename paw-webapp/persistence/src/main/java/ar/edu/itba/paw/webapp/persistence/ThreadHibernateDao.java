@@ -47,7 +47,7 @@ public class ThreadHibernateDao implements ThreadDao {
 
     @Override
     public Set<Thread> findRecent(int limit) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY T.updatedAt DESC", Thread.class);
+        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY T.createdAt DESC", Thread.class);
         baseQuery.setMaxResults(limit);
         try {
             return new LinkedHashSet<>(baseQuery.getResultList());
@@ -127,16 +127,12 @@ public class ThreadHibernateDao implements ThreadDao {
     @Override
     public int likeThread(long threadId, long userId) {
         int likeInt = threadLikeDao.create(threadId, userId);
-        em.flush();
-        updateHotValue(findById(threadId));
         return likeInt;
     }
 
     @Override
     public int unlikeThread(long threadId, long userId) {
         int likeInt = threadLikeDao.delete(threadId, userId);
-        em.flush();
-        updateHotValue(findById(threadId));
         return likeInt;
     }
 
@@ -144,24 +140,16 @@ public class ThreadHibernateDao implements ThreadDao {
     public Comment comment(long threadId, long commenterId, String comment) {
 
         Comment commentToReturn =commentDao.comment(threadId, commenterId, comment);
-        em.flush(); updateHotValue(findById(threadId));
         return commentToReturn;
     }
 
     @Override
     public Comment replyToComment(long commentId, long replierId, String reply) {
         Comment commentToReturn =commentDao.reply(commentId, replierId, reply);
-        em.flush();
-        updateHotValue(commentToReturn.getThread());
         return commentToReturn;
     }
 
-    private void updateHotValue(Thread thread) {
-        LocalDate ldt = LocalDate.parse("2016-01-01");
-        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
-        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
-        thread.setHotValue((Math.log10(thread.getLikeCount()+1)+(thread.getUpdatedAt().getTimeInMillis()/1000 - epoch)/45000.0));
-    }
+
 
     @Override
     public int likeComment(long commentId, long userId) {
@@ -176,7 +164,6 @@ public class ThreadHibernateDao implements ThreadDao {
     @Override
     public void editComment(long commentId, String newComment) {
         commentDao.edit(commentId, newComment);
-        em.flush(); updateHotValue(commentDao.findById(commentId).getThread());
     }
 
     @Override
@@ -187,6 +174,15 @@ public class ThreadHibernateDao implements ThreadDao {
     @Override
     public void deleteThread(long threadId) throws NoSuchEntityException {
         em.remove(find(Thread.class, threadId));
+    }
+
+    @Override
+    public void updateHotValue(long threadId) {
+        Thread thread = findById(threadId);
+        LocalDate ldt = LocalDate.parse("2016-01-01");
+        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
+        thread.setHotValue((Math.log10(thread.getLikeCount()+1)+(thread.getUpdatedAt().getTimeInMillis()/1000 - epoch)/45000.0));
     }
 
     /**

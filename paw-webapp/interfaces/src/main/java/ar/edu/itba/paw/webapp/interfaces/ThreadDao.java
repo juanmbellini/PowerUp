@@ -107,4 +107,9 @@ public interface ThreadDao {
      * @see ThreadService#deleteThread(long, long)
      */
     void deleteThread(long threadId) throws NoSuchEntityException;
+
+    /**
+     * @see ThreadService#updateHotValue(long)
+     */
+    void updateHotValue(long threadId);
 }

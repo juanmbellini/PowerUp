@@ -30,6 +30,19 @@
                     </h5>
                 </c:when>
                 <c:otherwise>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Hot')}"> inactive</c:if>">
+                                <a href="<c:url value="/threads?order=Hot"/>">Hot</a>
+                            </button>
+                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Newest')}"> inactive</c:if>">
+                                <a href="<c:url value="/threads?order=Newest"/>">Newest First</a>
+                            </button>
+                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Best')}"> inactive</c:if>">
+                                <a href="<c:url value="/threads?order=Best"/>">Bests Pointed</a>
+                            </button>
+                        </div>
+                    </div>
                     <ul class="collection">
                         <c:forEach var="thread" items="${threads}">
                             <li class="collection-item avatar">

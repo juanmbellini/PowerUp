@@ -132,4 +132,9 @@ public class ThreadServiceImpl implements ThreadService {
         }
         threadDao.deleteThread(threadId);
     }
+
+    @Override
+    public void updateHotValue(long threadId) {
+        threadDao.updateHotValue(threadId);
+    }
 }

@@ -187,4 +187,10 @@ public interface ThreadService {
      * @throws UnauthorizedException If the user isn't allowed to delete the thread.
      */
     void deleteThread(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
+
+    /**
+     * Updates the HotValue of the thread.
+     * @param threadId
+     */
+    void updateHotValue(long threadId);
 }

@@ -31,9 +31,22 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping("/threads")
-    public ModelAndView recentThreads() {
+    public ModelAndView recentThreads(@RequestParam(name = "order", required = false, defaultValue = "Hot") String order) {
+        Set<Thread> threads;
+        String newOrder;
+        if(order.equals("Best")){
+            newOrder = order;
+            threads = threadService.findBestPointed(50);
+        }else if(order.equals("Newest")){
+            newOrder = order;
+            threads = threadService.findRecent(50);
+        }else{
+            newOrder = "Hot";
+            threads =threadService.findHottest(50);
+        }
+
         ModelAndView mav = new ModelAndView("threads");
-        Set<Thread> threads = threadService.findHottest(50);
+        mav.addObject("order",newOrder);
         mav.addObject("threads", threads);
         return mav;
     }
@@ -88,6 +101,7 @@ public class ThreadController extends BaseController {
         try {
             String commentContent = form.getComment().trim();
             Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
+            threadService.updateHotValue(form.getThreadId());
             LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), commentContent);
             mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
         } catch (Exception e) {
@@ -108,6 +122,7 @@ public class ThreadController extends BaseController {
         try {
             reply = reply.trim();
             Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
+            threadService.updateHotValue(createdReply.getThread().getId());
             LOG.info("{} replied to comment #{} with \"{}\"", getCurrentUsername(), parentCommentId, reply);
             return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
         } catch (Exception e) {
@@ -122,6 +137,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.likeThread(threadId, getCurrentUser().getId());
+            threadService.updateHotValue(threadId);
             LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -140,6 +156,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.unlikeThread(threadId, getCurrentUser().getId());
+            threadService.updateHotValue(threadId);
             LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -261,7 +278,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             newComment = newComment.trim();
-            threadService.editComment(commentId, getCurrentUser().getId(), newComment);
+            threadService.editComment(commentId, getCurrentUser().getId(), newComment);//TODO udates hotValue?
             LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
