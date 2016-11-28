@@ -113,18 +113,17 @@
                             </div>
                             <%--Filter values--%>
                             <div id="platforms" class="col s12 filter">
-                                <c:forEach items="${platforms}" var="platform">
-                                    <c:choose>
-                                        <c:when test="${platform[1]}">
-                                            <div class="chip selected" data-filter-type="platform"
-                                                 data-value="${platform[0]}">${platform[0]}</div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="chip" data-filter-type="platform"
-                                                 data-value="${platform[0]}">${platform[0]}</div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="platforms-ac-input" placeholder="Please input some letters" data-activates="platforms-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                                        </div>
+                                        <div id="platforms-ac-appender" class="ac-appender col"></div>
+                                        <ul id="platforms-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                        <input type="hidden" name="platforms" id="platforms-ac-hidden" />
+                                    </div>
+                                    <%--<label class="active" for="platforms-ac-dropdown">Multiple autocomplete: </label>--%>
+                                </div>
                             </div>
                             <div id="genres" class="col s12 filter">
                                 <c:forEach items="${genres}" var="genre">
@@ -382,6 +381,7 @@
     }
 </style>
 
+<script type="text/javascript" src="<c:url value="/js/jquery.materialize-autocomplete.js" />"></script>
 <script type="text/javascript">
     /**
      * Tracks currently applied filters.
@@ -591,6 +591,102 @@
         }
         window.location = encodeURI(url);
     }
+
+    /* ******************************************
+                AUTOCOMPLETE INITIALIZATION
+     * *****************************************/
+
+    /**
+     * Searches for values in an array matching a query using regex. Adapted from http://stackoverflow.com/a/10152699/2333689
+     *
+     * @param array The array in which to search.
+     * @param query The query.
+     * @returns {Array} The matching values as objects in the form {match ID, match text}
+     */
+    function searchInArray(array, query) {
+        var results = [];
+        for(var index in array) {
+            //Case-insensitive matching with anything before and/or anything after
+            if(array[index].match(new RegExp(".*"+query+".*", "i"))) {
+                results.push({"id": index, "text": array[index]});
+            }
+        }
+        return results;
+    }
+
+    $(function() {
+        var allPlatforms = [];
+        <c:forEach items="${platforms}" var="platform" varStatus="status">
+            allPlatforms[${platform[0].id}] = "${platform[0].name}";
+        </c:forEach>
+
+        var multiple = $('#platforms-ac-input').materialize_autocomplete({
+            cacheable: false,
+            multiple: {
+                enable: true,
+                maxSize: 100
+            },
+            appender: {
+                el: '#platforms-ac-appender'
+            },
+            dropdown: {
+                el: '#platforms-ac-dropdown'
+            },
+            hidden: {
+                enable: true,
+                el: '#platforms-ac-hidden',
+                name: 'platforms'
+            },
+            getData: function(query, callback) {
+                //Perform search
+                var matches = searchInArray(allPlatforms, query);
+                //Exclude selected values
+                var result = [];
+                var selected = $("#platforms-ac-hidden").val().split(",");
+                for(var index in matches) {
+                    if(selected.indexOf(matches[index].id.toString()) === -1) {
+                        result.push(matches[index]);
+                    }
+                }
+                //Show dropdown with unselected results
+                callback(query, result);
+            }
+        });
+        //--------------------------------------------------
+
+
+
+
+
+
+        $("#platforms").on("click", ".autocomplete-content.dropdown-content li", function(event) {
+            debugger;
+        });
+        var allGenres = {
+            <c:forEach items="${genres}" var="genre">
+            "${genre[0]}": null,
+            </c:forEach>
+        };
+        $("#genres-autocomplete").autocomplete({
+            data: allGenres
+        });
+        var allDevelopers = {
+            <c:forEach items="${developers}" var="developer">
+            "${developer[0]}": null,
+            </c:forEach>
+        };
+        $("#developers-autocomplete").autocomplete({
+            data: allDevelopers
+        });
+        var allPublishers = {
+            <c:forEach items="${publishers}" var="publisher">
+            "${publisher[0]}": null,
+            </c:forEach>
+        };
+        $("#publishers-autocomplete").autocomplete({
+            data: allPublishers
+        });
+    });
 </script>
 </body>
 </html>

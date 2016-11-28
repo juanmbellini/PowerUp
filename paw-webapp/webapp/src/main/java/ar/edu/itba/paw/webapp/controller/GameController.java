@@ -176,7 +176,7 @@ public class GameController extends BaseController {
         //Platforms
         Set<Object[]> platforms = new LinkedHashSet<>();
         for(Platform p : platformService.all()) {
-            platforms.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
+            platforms.add(new Object[] {p, filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
         }
         mav.addObject("platforms", platforms);
         //Developers
