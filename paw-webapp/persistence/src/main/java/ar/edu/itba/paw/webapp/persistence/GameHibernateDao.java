@@ -58,9 +58,14 @@ public class GameHibernateDao implements GameDao {
 
         Query queryCount = em.createQuery(countString + fromString.toString());
 
-        fromString.append(" order by g.").append(Game.getOrderField(orderCategory)).append(ascending ? " ASC NULLS LAST" : " DESC NULLS LAST");
-        TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
+        fromString.append(" order by ")
+                .append(orderCategory==OrderCategory.avg_score?"NULLIF(":"")
+                .append("g.")
+                .append(Game.getOrderField(orderCategory))
+                .append(orderCategory==OrderCategory.avg_score?",0)":"")
+                .append(ascending ? " ASC NULLS LAST" : " DESC NULLS LAST");
 
+        TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
 
         querySelect.setParameter("name", "%" + name.toLowerCase() + "%");
         queryCount.setParameter("name", "%" + name.toLowerCase() + "%");
