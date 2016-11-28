@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.service;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
@@ -178,6 +179,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setProfilePicture(long userId, byte[] picture) {
         userDao.setProfilePicture(userId,picture);
+    }
+
+    @Override
+    public void removeProfilePicture(long userId) throws NoSuchEntityException {
+        userDao.removeProfilePicture(userId);
     }
 
     /**

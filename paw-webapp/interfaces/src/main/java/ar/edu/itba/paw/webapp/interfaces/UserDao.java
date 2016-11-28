@@ -77,4 +77,9 @@ public interface UserDao {
      * @see UserService#setProfilePicture(long, byte[])
      */
     void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+
+    /**
+     * @see UserService#removeProfilePicture(long)
+     */
+    void removeProfilePicture(long userId);
 }

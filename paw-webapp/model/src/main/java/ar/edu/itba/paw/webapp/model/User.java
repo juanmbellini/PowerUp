@@ -271,6 +271,10 @@ public class User implements Serializable {
         return profilePicture;
     }
 
+    public boolean hasProfilePicture() {
+        return profilePicture != null && profilePicture.length > 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

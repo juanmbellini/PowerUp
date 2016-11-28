@@ -69,4 +69,18 @@ public class ProfilePictureController extends BaseController {
             return new ResponseEntity<>(data, responseHeaders, HttpStatus.OK);
         }
     }
+
+    @RequestMapping(value = "/remove-profile-picture", method = RequestMethod.POST)
+    public ModelAndView removeProfilePicture(@RequestParam(name = "returnUrl", required = false, defaultValue = "/profile") String returnUrl) {
+        ModelAndView mav = null;
+        try {
+            userService.removeProfilePicture(getCurrentUser().getId());
+            LOG.info("Removed profile picture for {}", getCurrentUsername());
+            mav = new ModelAndView("redirect:" + returnUrl);
+        } catch (Exception e) {
+            LOG.error("Error removing profile picture for {}: {}", getCurrentUsername(), e);
+            mav = new ModelAndView("error500");
+        }
+        return mav;
+    }
 }

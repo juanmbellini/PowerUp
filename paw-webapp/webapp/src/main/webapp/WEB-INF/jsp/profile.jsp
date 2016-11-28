@@ -18,11 +18,47 @@
     <div class="row">
         <div class="col s4">
             <img src="<c:url value="/profile-picture?username=${user.username}" />" style="max-width: 100%; height:auto;"/>
-            <br /> <br />
+            <c:if test="${isLoggedIn && user.username == currentUsername}">
+                <c:url value="/profile-picture" var="uploadFileUrl" />
+                <form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">
+                    <input type='hidden' name='username' value='${user.username}'/>
+                    <div class="file-field input-field">
+                        <div class="btn waves-effect waves-light">
+                            <span>Upload picture</span>
+                            <input type="file" name="picture" accept=".jpeg, .jpg, .png, .gif">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path" type="text" />
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <c:if test="${user.hasProfilePicture()}">
+                        or <a id="remove-profile-picture" href="#!" class="red-text">delete profile picture</a>
+                        <script type="text/javascript">
+                            $(function() {
+                                var removingProfilePicture = false;
+                                $("#remove-profile-picture").on("click", function() {
+                                    if(!removingProfilePicture) {
+                                        removingProfilePicture = true;
+                                        //Create an inline form and submit it to redirect with POST
+                                        $("<form action='<c:url value="/remove-profile-picture" />' method='POST'> \
+                                            <input type='hidden' name='returnUrl' value='<c:url value="/profile?username=${currentUsername}" />' /> \
+                                           </form>").submit();
+                                    }
+                                });
+                            });
+                        </script>
+                    </c:if>
+                </form>
+            </c:if>
+            <br />
+            <br />
             <h5>Profile Stats</h5>
-            <p>Played <b>${playedGames.size()}</b> game${playedGames.size() == 1 ? "" : "s"}</p>
-            <p>Playing <b>${playingGames.size()}</b> game${playingGames.size() == 1 ? "" : "s"}</p>
-            <p>Plans to play <b>${planToPlayGames.size()}</b> game${planToPlayGames.size() == 1 ? "" : "s"}</p>
+            <p>Played <b>${fn:length(playedGames)}</b> game${fn:length(playedGames) == 1 ? "" : "s"}</p>
+            <p>Playing <b>${fn:length(playingGames)}</b> game${fn:length(playingGames) == 1 ? "" : "s"}</p>
+            <p>Plans to play <b>${fn:length(planToPlayGames)}</b> game${fn:length(planToPlayGames) == 1 ? "" : "s"}</p>
         </div>
         <div class="col s8">
             <h4 class="center">Top 10 games</h4>
@@ -72,25 +108,6 @@
             </c:choose>
         </div>
     </div>
-    <c:url value="/profile-picture" var="uploadFileUrl" />
-    <%--<form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">--%>
-
-        <%--&lt;%&ndash;<form:errors path="*" cssClass="errorblock" element="div" />&ndash;%&gt;--%>
-
-        <%--<input type='hidden' name='username' value='${user.username}'/>--%>
-        <%--Please select a file to upload : <input type="file" name="file" accept=".jpg,.png,.gif" />--%>
-        <%--<input type="submit" value="upload" />--%>
-    <%--&lt;%&ndash;<span><form:errors path="file" cssClass="error" />&ndash;%&gt;--%>
-		<%--&lt;%&ndash;</span>&ndash;%&gt;--%>
-
-    <%--</form>--%>
-    <c:if test="${user.username == currentUsername}">
-    <form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">
-        File to upload: <input type="file" name="picture" accept=".jpg,.png,.gif">
-        <input type='hidden' name='username' value='${user.username}'/>
-        <button type="submit">Upload</button>
-    </form>
-    </c:if>
 </main>
 
 <footer class="page-footer orange">

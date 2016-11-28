@@ -189,7 +189,6 @@ public interface UserService {
      */
     Map<PlayStatus, Set<Game>> getGameList(long userId);
 
-
     /**
      * Sets the profile picture for a user. Only authenticated users may set their own pictures.
      *
@@ -198,4 +197,12 @@ public interface UserService {
      * @throws NoSuchEntityException If no such user exists.
      */
     void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+
+    /**
+     * Removes the profile picture for a user. Only authenticated users may remove their own pictures.
+     *
+     * @param userId  The ID of the user whose profile picture to remove.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void removeProfilePicture(long userId) throws NoSuchEntityException;
 }

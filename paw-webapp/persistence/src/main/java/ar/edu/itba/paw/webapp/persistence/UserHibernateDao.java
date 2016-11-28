@@ -179,11 +179,13 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public void setProfilePicture(long userId, byte[] picture) {
-        if(existsWithId(userId)){
-            User user = DaoHelper.findSingleOrThrow(em, User.class, userId);
-            user.setProfilePicture(picture);
-            em.persist(user);
-        }
+        User user = DaoHelper.findSingleOrThrow(em, User.class, userId);
+        user.setProfilePicture(picture);
+        em.persist(user);
+    }
 
+    @Override
+    public void removeProfilePicture(long userId) {
+        setProfilePicture(userId, null);
     }
 }
