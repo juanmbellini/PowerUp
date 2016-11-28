@@ -2,6 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="paw" uri="http://paw.edu.itba.edu.ar/taglibs" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,124 +74,122 @@
                 </c:when>
                 <c:otherwise>
                     <h5 class="center">All ${fn:length(thread.allComments)} comments</h5>
-                    <%--TOP-LEVEL COMMENTS and replies - recursive JSP--%>
-                    <ul class="collection">
-                        <c:forEach var="comment" items="${thread.topLevelComments}">
-                            <li class="collection-item avatar">
-                                <a name="${comment.id}"></a>
-                                <img src="http://placehold.it/200x200"
-                                     alt="<c:out value="${comment.commenter.username}" />" class="circle">
-                                <span class="title wrap-text">
-                                    <a href="<c:url value="/profile?username=${comment.commenter.username}" />">
-                                        <c:out value="${comment.commenter.username}"/>
-                                    </a>
-                                </span>
-                                <p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both"/></p>
-                                <br/>
-                                <p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>
-                                <br/>
-                                <%--Comment action links--%>
-                                <c:if test="${isLoggedIn}">
-                                    <div class="action-links">
-                                        <%--Reply link--%>
-                                        <a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>
-                                        <%--Edit link--%>
-                                        <c:if test="${comment.commenter.id == currentUser.id}">
-                                            | <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>
-                                        </c:if>
-                                        <%--Delete link--%>
-                                        <c:if test="${comment.commenter.id == currentUser.id}">
-                                            | <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>
-                                        </c:if>
-                                    </div>
-                                    <div class="action-form"></div>
-                                </c:if>
-                                <%--Un/like comment section--%>
-                                <span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;
-                                    <c:choose>
-                                        <c:when test="${isLoggedIn}">
-                                            <c:choose>
-                                                <c:when test="${comment.isLikedBy(currentUser)}">
-                                                    <a href="#!" class="unlike-comment" data-comment-id="${comment.id}"><i class="material-icons green-text">thumb_up</i></a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a href="#!" class="like-comment" data-comment-id="${comment.id}"><i class="material-icons black-text">thumb_up</i></a>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <i class="material-icons black-text">thumb_up</i>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
-                                <%--End un/like comment section--%>
-                                
-                                <%--Replies--%>
-                                <c:if test="${fn:length(comment.replies) > 0}">
-                                    <ul class="collection">
-                                        <c:forEach var="reply" items="${comment.replies}">
-                                            <li class="collection-item avatar">
-                                                <a name="${reply.id}"></a>
-                                                <img src="http://placehold.it/200x200"
-                                                     alt="<c:out value="${reply.commenter.username}" />"
-                                                     class="circle">
-                                                <span class="title wrap-text">
-                                                    <a href="<c:url value="/profile?username=${reply.commenter.username}" />">
-                                                        <c:out value="${reply.commenter.username}"/>
-                                                    </a>
-                                                </span>
-                                                <p>Submitted <fmt:formatDate value="${reply.createdAt.time}" type="both"/></p>
-                                                <br/>
-                                                <p class="preserve-newlines wrap-text"><c:out value="${reply.comment}"/></p>
-                                                <c:if test="${isLoggedIn}">
-                                                    <div class="action-links">
-                                                        <%--Edit link--%>
-                                                        <c:if test="${reply.commenter.id == currentUser.id}">
-                                                            | <a href="#!" class="edit-comment-link" data-comment-id="${reply.id}" data-comment="<c:out value="${reply.comment}"/>" data-form-shown="false">Edit</a>
-                                                        </c:if>
-                                                        <%--Delete link--%>
-                                                        <c:if test="${reply.commenter.id == currentUser.id}">
-                                                            | <a href="#!" class="delete-comment-link" data-comment-id="${reply.id}" data-form-shown="false">Delete</a>
-                                                        </c:if>
-                                                    </div>
-                                                    <div class="action-form"></div>
-                                                </c:if>
-                                                <%--Un/like reply section--%>
-                                                <span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;
-                                                    <c:choose>
-                                                        <c:when test="${isLoggedIn}">
-                                                            <c:choose>
-                                                                <c:when test="${reply.isLikedBy(currentUser)}">
-                                                                    <a href="#!" class="unlike-comment" data-comment-id="${reply.id}"><i class="material-icons green-text">thumb_up</i></a>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    <a href="#!" class="like-comment" data-comment-id="${reply.id}"><i class="material-icons black-text">thumb_up</i></a>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <i class="material-icons black-text">thumb_up</i>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </span>
-                                                <%--End un/like reply section--%>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </c:if>
-                            </li>
-                        </c:forEach>
-                    </ul>
+                    <%--Print entire comment tree recursively--%>
+                    <c:url value="/" var="baseUrl" />
+                    ${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}
 
-                    <%--TODO allow further nesting level--%>
-                    <%--<c:set var="root" value="${thread.comments}" scope="request" />--%>
-                    <%--<c:set var="depth" value="0" scope="request" />--%>
-                    <%--<c:import url="comment-partial.jsp" />--%>
+                    <%--TODO delete this when unused--%>
+                    <%--<ul class="collection">--%>
+                        <%--<c:forEach var="comment" items="${thread.topLevelComments}">--%>
+                            <%--<li class="collection-item avatar">--%>
+                                <%--<a name="${comment.id}"></a>--%>
+                                <%--<img src="http://placehold.it/200x200"--%>
+                                     <%--alt="<c:out value="${comment.commenter.username}" />" class="circle">--%>
+                                <%--<span class="title wrap-text">--%>
+                                    <%--<a href="<c:url value="/profile?username=${comment.commenter.username}" />">--%>
+                                        <%--<c:out value="${comment.commenter.username}"/>--%>
+                                    <%--</a>--%>
+                                <%--</span>--%>
+                                <%--<p>Submitted <fmt:formatDate value="${comment.createdAt.time}" type="both"/></p>--%>
+                                <%--<br/>--%>
+                                <%--<p class="preserve-newlines wrap-text"><c:out value="${comment.comment}"/></p>--%>
+                                <%--<br/>--%>
+                                <%--&lt;%&ndash;Comment action links&ndash;%&gt;--%>
+                                <%--<c:if test="${isLoggedIn}">--%>
+                                    <%--<div class="action-links">--%>
+                                        <%--&lt;%&ndash;Reply link&ndash;%&gt;--%>
+                                        <%--<a href="#!" class="reply-link" data-comment-id="${comment.id}" data-form-shown="false">Reply</a>--%>
+                                        <%--&lt;%&ndash;Edit link&ndash;%&gt;--%>
+                                        <%--<c:if test="${comment.commenter.id == currentUser.id}">--%>
+                                            <%--| <a href="#!" class="edit-comment-link" data-comment-id="${comment.id}" data-comment="<c:out value="${comment.comment}"/>" data-form-shown="false">Edit</a>--%>
+                                        <%--</c:if>--%>
+                                        <%--&lt;%&ndash;Delete link&ndash;%&gt;--%>
+                                        <%--<c:if test="${comment.commenter.id == currentUser.id}">--%>
+                                            <%--| <a href="#!" class="delete-comment-link" data-comment-id="${comment.id}" data-form-shown="false">Delete</a>--%>
+                                        <%--</c:if>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="action-form"></div>--%>
+                                <%--</c:if>--%>
+                                <%--&lt;%&ndash;Un/like comment section&ndash;%&gt;--%>
+                                <%--<span href="#!" class="secondary-content"><b>${comment.likeCount}</b>&nbsp;&nbsp;--%>
+                                    <%--<c:choose>--%>
+                                        <%--<c:when test="${isLoggedIn}">--%>
+                                            <%--<c:choose>--%>
+                                                <%--<c:when test="${comment.isLikedBy(currentUser)}">--%>
+                                                    <%--<a href="#!" class="unlike-comment" data-comment-id="${comment.id}"><i class="material-icons green-text">thumb_up</i></a>--%>
+                                                <%--</c:when>--%>
+                                                <%--<c:otherwise>--%>
+                                                    <%--<a href="#!" class="like-comment" data-comment-id="${comment.id}"><i class="material-icons black-text">thumb_up</i></a>--%>
+                                                <%--</c:otherwise>--%>
+                                            <%--</c:choose>--%>
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                            <%--<i class="material-icons black-text">thumb_up</i>--%>
+                                        <%--</c:otherwise>--%>
+                                    <%--</c:choose>--%>
+                                <%--</span>--%>
+                                <%--&lt;%&ndash;End un/like comment section&ndash;%&gt;--%>
+                                <%----%>
+                                <%--&lt;%&ndash;Replies&ndash;%&gt;--%>
+                                <%--<c:if test="${fn:length(comment.replies) > 0}">--%>
+                                    <%--<ul class="collection">--%>
+                                        <%--<c:forEach var="reply" items="${comment.replies}">--%>
+                                            <%--<li class="collection-item avatar">--%>
+                                                <%--<a name="${reply.id}"></a>--%>
+                                                <%--<img src="http://placehold.it/200x200"--%>
+                                                     <%--alt="<c:out value="${reply.commenter.username}" />"--%>
+                                                     <%--class="circle">--%>
+                                                <%--<span class="title wrap-text">--%>
+                                                    <%--<a href="<c:url value="/profile?username=${reply.commenter.username}" />">--%>
+                                                        <%--<c:out value="${reply.commenter.username}"/>--%>
+                                                    <%--</a>--%>
+                                                <%--</span>--%>
+                                                <%--<p>Submitted <fmt:formatDate value="${reply.createdAt.time}" type="both"/></p>--%>
+                                                <%--<br/>--%>
+                                                <%--<p class="preserve-newlines wrap-text"><c:out value="${reply.comment}"/></p>--%>
+                                                <%--<c:if test="${isLoggedIn}">--%>
+                                                    <%--<div class="action-links">--%>
+                                                        <%--&lt;%&ndash;Edit link&ndash;%&gt;--%>
+                                                        <%--<c:if test="${reply.commenter.id == currentUser.id}">--%>
+                                                            <%--| <a href="#!" class="edit-comment-link" data-comment-id="${reply.id}" data-comment="<c:out value="${reply.comment}"/>" data-form-shown="false">Edit</a>--%>
+                                                        <%--</c:if>--%>
+                                                        <%--&lt;%&ndash;Delete link&ndash;%&gt;--%>
+                                                        <%--<c:if test="${reply.commenter.id == currentUser.id}">--%>
+                                                            <%--| <a href="#!" class="delete-comment-link" data-comment-id="${reply.id}" data-form-shown="false">Delete</a>--%>
+                                                        <%--</c:if>--%>
+                                                    <%--</div>--%>
+                                                    <%--<div class="action-form"></div>--%>
+                                                <%--</c:if>--%>
+                                                <%--&lt;%&ndash;Un/like reply section&ndash;%&gt;--%>
+                                                <%--<span href="#!" class="secondary-content"><b>${reply.likeCount}</b>&nbsp;&nbsp;--%>
+                                                    <%--<c:choose>--%>
+                                                        <%--<c:when test="${isLoggedIn}">--%>
+                                                            <%--<c:choose>--%>
+                                                                <%--<c:when test="${reply.isLikedBy(currentUser)}">--%>
+                                                                    <%--<a href="#!" class="unlike-comment" data-comment-id="${reply.id}"><i class="material-icons green-text">thumb_up</i></a>--%>
+                                                                <%--</c:when>--%>
+                                                                <%--<c:otherwise>--%>
+                                                                    <%--<a href="#!" class="like-comment" data-comment-id="${reply.id}"><i class="material-icons black-text">thumb_up</i></a>--%>
+                                                                <%--</c:otherwise>--%>
+                                                            <%--</c:choose>--%>
+                                                        <%--</c:when>--%>
+                                                        <%--<c:otherwise>--%>
+                                                            <%--<i class="material-icons black-text">thumb_up</i>--%>
+                                                        <%--</c:otherwise>--%>
+                                                    <%--</c:choose>--%>
+                                                <%--</span>--%>
+                                                <%--&lt;%&ndash;End un/like reply section&ndash;%&gt;--%>
+                                            <%--</li>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</ul>--%>
+                                <%--</c:if>--%>
+                            <%--</li>--%>
+                        <%--</c:forEach>--%>
+                    <%--</ul>--%>
 
-                    <%--<jsp:include page="comment-partial.jsp">--%>
-                    <%--<jsp:param name="root" value="${thread.comments}"/>--%>
-                    <%--<jsp:param name="depth" value="1"/>--%>
-                    <%--</jsp:include>--%>
+
+
+
                 </c:otherwise>
             </c:choose>
         </div>
@@ -394,14 +393,13 @@
                         </div>	\
                     </div>");
 
-
-                $me.parent().parent().find(".action-form").html($form);
+                $me.parent().parent().find(".action-form:first").html($form);
                 $me.data("form-shown", true);
                 $me.siblings(".edit-comment-link").data("form-shown", false);
                 $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
             } else {
-                $me.parent().parent().find(".action-form form textarea").focus();
+                $me.parent().parent().find(".action-form:first form textarea").focus();
             }
         });
 
@@ -436,13 +434,13 @@
                         </div>	\
                     </div>");
 
-                $me.parent().parent().find(".action-form").html($form);
+                $me.parent().parent().find(".action-form:first").html($form);
                 $me.data("form-shown", true);
                 $me.siblings(".reply-link").data("form-shown", false);
                 $form.find("textarea").trigger('autoresize');
                 $form.find("textarea").focus();
             } else {
-                $me.parent().parent().find(".action-form form textarea").focus();
+                $me.parent().parent().find(".action-form:first form textarea").focus();
             }
         });
 
