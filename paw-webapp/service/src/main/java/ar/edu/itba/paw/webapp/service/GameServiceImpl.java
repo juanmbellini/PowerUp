@@ -97,6 +97,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Set<String> getPictureUrls(long gameId) throws NoSuchEntityException {
+        return gameDao.getPictureUrls(gameId);
+    }
+
+    @Override
     public Map<Long, Game> findByIds(Collection<Long> ids) {
         return gameDao.findByIds(ids);
     }

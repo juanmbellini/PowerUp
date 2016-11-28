@@ -278,6 +278,11 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
+    public Set<String> getPictureUrls(long gameId) {
+        return new LinkedHashSet<>(DaoHelper.findSingleOrThrow(em, Game.class, gameId).getPictureUrls());
+    }
+
+    @Override
     public Map<Long, Integer> getScores(long gameId) {
         return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
     }

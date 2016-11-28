@@ -60,12 +60,12 @@ public class Game {
             inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
     private Collection<Keyword> keywords;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "reviews",
-            joinColumns=@JoinColumn(name = "game_Id")
-    )
-    private Collection<Review> reviews;
+//    @ElementCollection
+//    @CollectionTable(
+//            name = "reviews",
+//            joinColumns=@JoinColumn(name = "game_id")
+//    )
+//    private Collection<Review> reviews;
 
     @ElementCollection
     @CollectionTable(
@@ -177,11 +177,15 @@ public class Game {
     /**
      * Gets this game's picture URLs.
      *
-     * @return An <b>unmodifiable</b> set containing this game's picture URLs.
+     * @return An set containing this game's picture URLs.
      * @see #addPicture(String)
      */
     public Set<String> getPictureUrls() {
-        return Collections.unmodifiableSet(pictureUrls);
+        Set<String> result = new LinkedHashSet<>();
+        for(String id : pictureIds) {
+            result.add(buildCloudinaryURL(id));
+        }
+        return result;
     }
 
     /**

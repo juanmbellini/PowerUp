@@ -12,6 +12,12 @@ $(function () {
         arrows: true
     });
 
+    $('#screenshots-carousel').slick({
+        infinite: false,
+        arrows: true,
+        lazyload: 'ondemand'
+    });
+
     var $rateAndStatusForm = $("#rateAndStatusForm");
     var selectedScore = $("#score").val();
     var selectedStatus = $("#status").val();
