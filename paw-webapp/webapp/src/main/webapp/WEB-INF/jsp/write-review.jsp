@@ -42,12 +42,11 @@
                                 <c:set var="criteria" value="${['story', 'graphics', 'audio', 'controls', 'fun']}" />
                                 <c:set var="scores" value="${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}" />
                                 <c:forEach items="${criteria}" var="criterium">
-                                    <div class="input-field col s12">
-                                        <p style="text-transform: capitalize;">${criterium}</p>
-                                        <form:select path="${criterium}Score">
-                                            <form:options items="${scores}"/>
-                                        </form:select>
-                                    </div>
+                                    <p style="text-transform: capitalize;">${criterium}</p>
+                                    <form:select path="${criterium}Score">
+                                        <form:option disabled="true" selected="true" value="-1" label="--Please Select" />
+                                        <form:options items="${scores}"/>
+                                    </form:select>
                                 </c:forEach>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
     <%@include file="header.jsp" %>
     <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
-    <title>${game.name} - PowerUp</title>
+    <title><c:out value="${game.name} - PowerUp"></c:out></title>
 </head>
 <body>
 <header>
@@ -19,8 +19,8 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text">${game.name}</h1>
-            <h5 class="center orange-text">${game.releaseDate.year}</h5>
+            <h1 class="header center orange-text"><c:out value="${game.name}"></c:out></h1>
+            <h5 class="center orange-text"><c:out value="${game.releaseDate.year}"></c:out></h5>
         </div>
         <%--Rate and status form if logged in--%>
         <div class ="section">
@@ -93,7 +93,7 @@
                                             <c:forEach var="entry" items="${shelves}">
                                                 <c:set var="shelf" value="${entry.key}" />
                                                 <c:set var="isInShelf" value="${entry.value}" />
-                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> >${shelf.name}</option>
+                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> ><c:out value="${shelf.name}"></c:out></option>
                                             </c:forEach>
                                             <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
                                             <c:forEach var="entry" items="${shelves}">
@@ -138,9 +138,10 @@
                         <img class="col s3" src="${game.coverPictureUrl}" alt="${game.name}">
                         <div class="col s5">
                             <p style="margin-top: 0;">
+                                <c:out value=" ${genre.name}"></c:out>
                                 <c:choose>
                                     <c:when test="${empty game.summary}">No summary =(</c:when>
-                                    <c:otherwise>${game.summary}</c:otherwise>
+                                    <c:otherwise> <c:out value="${game.summary}"></c:out></c:otherwise>
                                 </c:choose>
                             </p>
                         </div>
@@ -163,7 +164,8 @@
                                         <c:param name="filters" value='{"genre":["${genre.name}"]}'/>
                                        </c:url>
                                     ">
-                                    ${genre.name}
+                                        <c:out value=" ${genre.name}"></c:out>
+
                                     </a>
                                     <c:if test="${!status.last}"><br /></c:if>
                                 </c:forEach>
@@ -174,7 +176,9 @@
                                         <c:param name="name" value="" />
                                         <c:param name="filters" value='{"platform":["${platformEntry.key.name}"]}'/>
                                        </c:url>
-                                    ">${platformEntry.key.name}</a><span style="font-size: small; float: right;">${platformEntry.value.releaseDate}</span>
+                                    ">
+                                        <c:out value=" ${platformEntry.key.name}"></c:out>
+                                       </a><span style="font-size: small; float: right;"><c:out value="${platformEntry.value.releaseDate}"></c:out></span>
                                     <c:if test="${!status.last}"><div class="col s12 divider"></div><br /></c:if>
                                 </c:forEach>
                             <p><b>Developers</b></p>
@@ -184,7 +188,8 @@
                                         <c:param name="filters" value='{"developer":["${developer.name}"]}'/>
                                        </c:url>
                                     ">
-                                        ${developer.name}
+
+                                            <c:out value="${developer.name}"></c:out>
                                 </a>
                                 <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
@@ -195,7 +200,7 @@
                                         <c:param name="filters" value='{"publisher":["${publisher.name}"]}'/>
                                        </c:url>
                                     ">
-                                        ${publisher.name}
+                                        <c:out value="${publisher.name}"></c:out>
                                 </a>
 
                                 <c:if test="${!status.last}"><br /></c:if>
