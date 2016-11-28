@@ -208,6 +208,31 @@
                         </div>
                     </div>
 
+                    <%--SCREENSHOTS AND VIDEOS--%>
+                    <c:if test="${fn:length(videos) > 0}">
+                        <div class="row">
+                            <div class="col s12 divider"></div>
+                        </div>
+                        <div class="row">
+                            <h5 class="center">Videos</h5>
+                            <div class="slick-carousel" id="videos-carousel">
+                                <c:forEach var="game" items="${relatedGames}">
+                                    <c:forEach var="entry" items="${videos}">
+                                        <c:set var="videoId" value="${entry.key}" />
+                                        <c:set var="videoName" value="${entry.value}" />
+                                        <div class="slide-container">
+                                            <iframe type="text/html" width="640" height="360"
+                                                    src="https://www.youtube.com/embed/${videoId}"
+                                                <%--?autoplay=1&origin=http://example.com--%>
+                                                    frameborder="0"></iframe>
+                                        </div>
+                                    </c:forEach>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                    <%--END SCREENSHOTS AND VIDEOS--%>
+
                     <%--REVIEWS--%>
                     <div class="row">
                         <div class="col s12 divider"></div>
@@ -273,7 +298,7 @@
                         </div>
                         <div class="row">
                             <h5 class="center">Related Games</h5>
-                            <div class="slick-carousel">
+                            <div class="slick-carousel" id="related-games-carousel">
                                 <c:forEach var="game" items="${relatedGames}">
                                     <div class="slide-container">
                                         <div class="valign-wrapper slide-image">

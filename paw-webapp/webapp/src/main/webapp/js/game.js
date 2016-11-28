@@ -1,10 +1,17 @@
 $(function () {
-    $('.slick-carousel').slick({
+    $('#related-games-carousel').slick({
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 4,
         arrows: true,
         lazyload: 'ondemand'
+    });
+
+    $('#videos-carousel').slick({
+        infinite: false,
+        // slidesToShow: 4,
+        // slidesToScroll: 4,
+        arrows: true
     });
 
     var $rateAndStatusForm = $("#rateAndStatusForm");

@@ -95,6 +95,14 @@ public class Game {
     @Transient
     private Set<String> pictureUrls;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "game_videos",
+            joinColumns=@JoinColumn(name = "game_id", nullable = false))
+    @MapKeyColumn(name = "video_id")
+    @Column(name = "name")
+    private Map<String, String> videos;
+
 
     /**
      * Default constructor used by Builder and Hibernate.
@@ -185,6 +193,10 @@ public class Game {
         return coverPictureId == null ? DEFAULT_COVER_PICTURE_URL : buildCloudinaryURL(coverPictureId);
     }
 
+    public Map<String, String> getVideos() {
+        return videos;
+    }
+
     // Setters
     //TODO remove setters, the builder has access to these fields and these shouldn't be changed once built
     private void setId(long id) {
@@ -248,6 +260,12 @@ public class Game {
         if (cloudinaryId != null) {
             pictureIds.add(cloudinaryId);
             pictureUrls.add(buildCloudinaryURL(cloudinaryId));
+        }
+    }
+
+    public void addVideo(String videoId, String videoName) {
+        if(videoId != null && !videoId.isEmpty() && videoName != null && !videoName.isEmpty()) {
+            videos.put(videoId, videoName);
         }
     }
 
@@ -449,6 +467,12 @@ public class Game {
             return this;
         }
 
+        public GameBuilder addVideo(String videoId, String videoName) {
+            checkBuilt();
+            game.addVideo(videoId, videoName);
+            startedBuilding = true;
+            return this;
+        }
 
         private void checkBuilt() {
             if (built) {

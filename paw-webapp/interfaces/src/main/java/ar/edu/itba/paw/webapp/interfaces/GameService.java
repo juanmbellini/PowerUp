@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -135,4 +136,13 @@ public interface GameService {
      * @return The resulting map.
      */
     Map<Long, Integer> getScores(long gameId);
+
+    /**
+     * Gets all videos for a given game.
+     *
+     * @param gameId The ID of the game.
+     * @return A map whose keys are YouTube video IDs and whose values are video names.
+     * @throws NoSuchEntityException If the game doesn't exist.
+     */
+    Map<String, String> getVideos(long gameId) throws NoSuchEntityException;
 }

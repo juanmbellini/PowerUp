@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.service;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.*;
@@ -88,6 +89,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public Map<Long, Integer> getScores(long gameId) {
         return gameDao.getScores(gameId);
+    }
+
+    @Override
+    public Map<String, String> getVideos(long gameId) throws NoSuchEntityException {
+        return gameDao.getVideos(gameId);
     }
 
     @Override

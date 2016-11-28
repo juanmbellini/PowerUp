@@ -111,4 +111,8 @@ public interface GameDao {
      */
     Collection<Game> getRecommendedGames(Set<Long> excludedGameIds, Map<FilterCategory, Map<String, Double>> filtersScoresMap);
 
+    /**
+     * @see GameService#getVideos(long)
+     */
+    Map<String,String> getVideos(long gameId);
 }
