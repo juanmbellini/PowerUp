@@ -221,7 +221,7 @@
                                 <ul class="collection">
                                     <c:forEach items="${reviews}" var="review">
                                         <li class="collection-item avatar">
-                                            <i class="material-icons circle blue">exit_to_app</i>
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
                                             <span class="title">${review.user.username}</span>
                                             <p class="secondary-content" style="color: black;">${review.date}</p>
                                             <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a></p>

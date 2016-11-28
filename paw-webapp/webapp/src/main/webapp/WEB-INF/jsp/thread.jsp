@@ -24,7 +24,7 @@
         <div class="row">
             <ul class="collection">
                 <li class="collection-item avatar">
-                    <img src="http://placehold.it/200x200" alt="<c:out value="${thread.title}" />" class="circle">
+                    <img src="<c:url value="/profile-picture?username=${thread.creator.username}" />" alt="<c:out value="${thread.title}" />" class="circle">
                     <span class="title wrap-text">Submitted by <c:out value="${thread.creator.username}" /></span>
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
