@@ -9,8 +9,6 @@ $(function () {
 
     $('#videos-carousel').slick({
         infinite: false,
-        // slidesToShow: 4,
-        // slidesToScroll: 4,
         arrows: true
     });
 

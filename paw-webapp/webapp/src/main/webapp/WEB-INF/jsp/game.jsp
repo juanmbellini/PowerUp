@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="paw" uri="http://paw.edu.itba.edu.ar/taglibs" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -215,14 +216,14 @@
                         </div>
                         <div class="row">
                             <h5 class="center">Videos</h5>
-                            <div class="slick-carousel" id="videos-carousel">
+                            <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": ${paw:min(fn:length(videos), 4)}, "slidesToScroll": ${paw:min(fn:length(videos), 4)}}'>
                                 <c:forEach var="entry" items="${videos}">
                                     <c:set var="videoId" value="${entry.key}" />
                                     <c:set var="videoName" value="${entry.value}" />
                                     <div class="slide-container">
-                                        <iframe type="text/html" width="640" height="360"
+                                        <iframe type="text/html" width="${fn:length(videos) > 1 ? '90%' : '640'}" height="360"
                                                 src="https://www.youtube.com/embed/${videoId}"
-                                            <%--?autoplay=1&origin=http://example.com--%>
+                                                <%--?autoplay=1&origin=http://example.com--%>
                                                 frameborder="0"></iframe>
                                     </div>
                                 </c:forEach>

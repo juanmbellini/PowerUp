@@ -14,6 +14,9 @@
         <function-signature>java.lang.String printCommentsTree(java.util.Collection,int,java.lang.String,ar.edu.itba.paw.webapp.model.User)</function-signature>
     </function>
 
-
-    <short-name/>
+    <function>
+        <name>min</name>
+        <function-class>ar.edu.itba.paw.webapp.el.Functions</function-class>
+        <function-signature>int min(int,int)</function-signature>
+    </function>
 </taglib>
