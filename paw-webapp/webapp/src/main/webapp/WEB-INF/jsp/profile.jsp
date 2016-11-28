@@ -28,7 +28,7 @@
             <h4 class="center">Top 10 games</h4>
             <c:choose>
                 <c:when test="${fn:length(topGames) == 0}">
-                    <p class="center">No scored games. Why don't you <a href="<c:url value="/search"/>">search</a> and score some?</p>
+                    <p class="center">No scored games. <c:if test="${user.username == currentUsername}">Why don't you <a href="<c:url value="/search"/>">search</a> and score some?</c:if> </p>
                 </c:when>
                 <c:otherwise>
                     <ul class="collection games-list">
@@ -84,12 +84,13 @@
 		<%--&lt;%&ndash;</span>&ndash;%&gt;--%>
 
     <%--</form>--%>
-
+    <c:if test="${user.username == currentUsername}">
     <form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">
         File to upload: <input type="file" name="picture" accept=".jpg,.png,.gif">
         <input type='hidden' name='username' value='${user.username}'/>
         <button type="submit">Upload</button>
     </form>
+    </c:if>
 </main>
 
 <footer class="page-footer orange">

@@ -162,12 +162,14 @@ public class UserServiceImpl implements UserService {
     public Map<PlayStatus, Set<Game>> getGameList(long userId) {
         User user = getFreshUser(userId);
         Map<PlayStatus, Set<Game>> result = new HashMap<>();
-        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
-            Game game = gameService.findById(entry.getKey());
-            PlayStatus status = entry.getValue();
+        for(PlayStatus status: PlayStatus.values()){
             if(!result.containsKey(status)) {
                 result.put(status, new LinkedHashSet<>());
             }
+        }
+        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
+            Game game = gameService.findById(entry.getKey());
+            PlayStatus status = entry.getValue();
             result.get(status).add(game);
         }
         return result;

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class UserForm {
 
     @Size(min = 1, max = 25)
-    @Pattern(regexp = "[a-zA-Z0-9]*")
+    @Pattern(regexp = "[a-zA-Z0-9_-]*")
     @CheckTakenUsername
     private String username;
 
