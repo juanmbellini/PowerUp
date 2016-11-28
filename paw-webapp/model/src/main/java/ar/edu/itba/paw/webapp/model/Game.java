@@ -183,7 +183,9 @@ public class Game {
     public Set<String> getPictureUrls() {
         Set<String> result = new LinkedHashSet<>();
         for(String id : pictureIds) {
-            result.add(buildCloudinaryURL(id));
+            if(!id.equals(coverPictureId)) {
+                result.add(buildCloudinaryURL(id));
+            }
         }
         return result;
     }
