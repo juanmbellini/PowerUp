@@ -96,6 +96,14 @@
     padding: 0 5px;
 }
 
+#screenshots-carousel img {
+    max-height: 200px;
+    width: initial;
+    max-width: 100%;
+    padding: 0 5px;
+    margin: 0 auto;
+}
+
 .slick-carousel .slide-container .slide-image {
     height:200px;
 }

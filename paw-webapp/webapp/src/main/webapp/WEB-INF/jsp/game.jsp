@@ -234,6 +234,11 @@
                             </div>
                         </c:if>
                         <c:if test="${picturesLength > 0}">
+                            <c:if test="${videosLength > 0}">
+                                <div class="row">
+                                    <div class="col s12 divider"></div>
+                                </div>
+                            </c:if>
                             <div class="row">
                                 <h4 class="center">Screenshots</h4>
                                 <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": ${paw:min(picturesLength, 4)}, "slidesToScroll": ${paw:min(picturesLength, 4)}}'>
