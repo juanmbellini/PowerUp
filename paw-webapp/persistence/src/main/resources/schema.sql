@@ -151,8 +151,9 @@ CREATE TABLE IF NOT EXISTS game_pictures (
 );
 CREATE TABLE IF NOT EXISTS game_videos (
   id            SERIAL  NOT NULL PRIMARY KEY,
-  game_id       INTEGER NOT NULL,
+  name          VARCHAR NOT NULL,
   video_id      VARCHAR NOT NULL,
+  game_id       INTEGER NOT NULL,
 
   FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
