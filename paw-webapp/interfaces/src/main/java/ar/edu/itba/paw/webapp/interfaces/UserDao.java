@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
@@ -71,4 +72,9 @@ public interface UserDao {
      * @see UserService#recommendGames(long)
      */
     Collection<Game> recommendGames(long userId);
+
+    /**
+     * @see UserService#setProfilePicture(long, byte[])
+     */
+    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
 }
