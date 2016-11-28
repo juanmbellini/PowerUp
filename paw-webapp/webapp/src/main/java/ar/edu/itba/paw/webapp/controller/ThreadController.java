@@ -33,7 +33,7 @@ public class ThreadController extends BaseController {
     @RequestMapping("/threads")
     public ModelAndView recentThreads() {
         ModelAndView mav = new ModelAndView("threads");
-        Set<Thread> threads = threadService.findRecent(50);
+        Set<Thread> threads = threadService.findHottest(50);
         mav.addObject("threads", threads);
         return mav;
     }

@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS threads(
   title           VARCHAR NOT NULL,
   user_id         INTEGER NOT NULL,
   initial_comment VARCHAR NOT NULL DEFAULT '',
+  hot_value       REAL NOT NULL DEFAULT 0, -- alter table threads add hot_value REAL NOT NULL DEFAULT 0
   created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
 

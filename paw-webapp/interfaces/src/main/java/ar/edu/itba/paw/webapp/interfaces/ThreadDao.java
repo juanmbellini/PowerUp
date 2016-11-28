@@ -29,6 +29,16 @@ public interface ThreadDao {
     Set<Thread> findRecent(int limit);
 
     /**
+     * @see ThreadService#findBestPointed(int)
+     */
+    Set<Thread> findBestPointed(int limit);
+
+    /**
+     * @see ThreadService#findHottest(int)
+     */
+    Set<Thread> findHottest(int limit);
+
+    /**
      * @see ThreadService#findByUserId(long id)
      */
     Set<Thread> findByUserId(long id);

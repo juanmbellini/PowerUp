@@ -7,10 +7,9 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
@@ -53,6 +52,9 @@ public class Thread {
     @Access(value = AccessType.FIELD)
     private Calendar updatedAt;
 
+    @Column(name = "hot_value")
+    private double hotValue;
+
     /*package*/  Thread() {
         //for hibernate
     }
@@ -68,6 +70,13 @@ public class Thread {
         this.creator = creator;
         this.title = title;
         this.initialComment = initialComment;
+        allComments = new HashSet();
+        likes = new HashSet<>();
+        LocalDate ldt = LocalDate.parse("2016-01-01");
+        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
+        setHotValue((Math.log10(1)+(System.currentTimeMillis())/1000 - epoch)/45000);
+
     }
 
     /**
@@ -164,5 +173,9 @@ public class Thread {
                 ", creator=" + creator.getUsername() +
                 ", title='" + title + '\'' +
                 ", initialComment='" + initialComment + '\'';
+    }
+
+    public void setHotValue(double hotValue) {
+        this.hotValue = hotValue;
     }
 }
