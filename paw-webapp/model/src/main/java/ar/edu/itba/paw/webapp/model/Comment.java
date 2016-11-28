@@ -35,7 +35,7 @@ public class Comment {
     private Comment parentComment;
 
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER, orphanRemoval = true)
-    @OrderBy("createdAt DESC")
+    @OrderBy("createdAt ASC")
     private Set<Comment> replies;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")

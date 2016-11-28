@@ -36,7 +36,7 @@ public class Thread {
     private String initialComment;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
-    @OrderBy("createdAt DESC")
+    @OrderBy("createdAt ASC")
 //    @org.hibernate.annotations.Filter(name = "onlyTopLevelComments")
     private Set<Comment> allComments;
 
