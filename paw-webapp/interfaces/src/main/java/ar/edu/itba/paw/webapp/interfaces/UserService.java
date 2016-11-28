@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
@@ -106,7 +107,7 @@ public interface UserService {
      * @return An unmodifiable map containing the same information as {@link #getScoredGames(long)} but with reverse
      * indexing.
      */
-     Map<Integer, Set<Long>> getScoredGamesRev(long userId);
+    Map<Integer, Set<Long>> getScoredGamesRev(long userId);
 
     /**
      * Checks whether the specified user has scored the game with the specified ID.
@@ -190,9 +191,11 @@ public interface UserService {
 
 
     /**
-     * Sets the profile picture for a user
-     * @param userId
-     * @param picture
+     * Sets the profile picture for a user. Only authenticated users may set their own pictures.
+     *
+     * @param userId  The ID of the user whose profile picture to set.
+     * @param picture The picture's binary data.
+     * @throws NoSuchEntityException If no such user exists.
      */
-    void setProfilePicture(long userId, byte[] picture);
+    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
 }

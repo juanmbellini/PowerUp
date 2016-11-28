@@ -17,8 +17,7 @@
     <h1 class="center orange-text">${user.username}'s Profile</h1>
     <div class="row">
         <div class="col s4">
-            <%--TODO replace with actual profile picture and allow changes "http://placehold.it/250x250" --%>
-            <img src="<c:url value="/profile-picture?username=${user.username}"></c:url>" style="max-width: 100%; height:auto;"/>
+            <img src="<c:url value="/profile-picture?username=${user.username}" />" style="max-width: 100%; height:auto;"/>
             <br /> <br />
             <h5>Profile Stats</h5>
             <p>Played <b>${playedGames.size()}</b> game${playedGames.size() == 1 ? "" : "s"}</p>
@@ -73,7 +72,7 @@
             </c:choose>
         </div>
     </div>
-    <c:url value="/upload-file" var="uploadFileUrl" />
+    <c:url value="/profile-picture" var="uploadFileUrl" />
     <%--<form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">--%>
 
         <%--&lt;%&ndash;<form:errors path="*" cssClass="errorblock" element="div" />&ndash;%&gt;--%>
@@ -87,11 +86,9 @@
     <%--</form>--%>
 
     <form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">
-        File to upload: <input type="file" name="file" accept=".jpg,.png,.gif">
-
+        File to upload: <input type="file" name="picture" accept=".jpg,.png,.gif">
         <input type='hidden' name='username' value='${user.username}'/>
-
-        <input type="submit" value="Upload" > Press here to upload the file!
+        <button type="submit">Upload</button>
     </form>
 </main>
 
