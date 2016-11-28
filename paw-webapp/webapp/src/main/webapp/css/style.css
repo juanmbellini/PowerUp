@@ -159,6 +159,14 @@ button#clear-filters {
     height:47px;
 }
 
+.preserve-newlines {
+    white-space: pre-line;
+}
+
+.wrap-text {
+    word-wrap: break-word;
+}
+
 /*#logo-container {*/
 /*height: 60px;*/
 /*}*/

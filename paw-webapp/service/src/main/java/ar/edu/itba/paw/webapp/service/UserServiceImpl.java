@@ -173,6 +173,11 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public void setProfilePicture(long userId, byte[] picture) {
+        userDao.setProfilePicture(userId,picture);
+    }
+
     /**
      * Gets a user by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
      * and throws exception if not found. Helper method used to reduce code in other service methods.

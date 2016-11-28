@@ -176,4 +176,14 @@ public class UserHibernateDao implements UserDao {
         return finalResultList;
 
     }
+
+    @Override
+    public void setProfilePicture(long userId, byte[] picture) {
+        if(existsWithId(userId)){
+            User user = DaoHelper.findSingleOrThrow(em, User.class, userId);
+            user.setProfilePicture(picture);
+            em.persist(user);
+        }
+
+    }
 }

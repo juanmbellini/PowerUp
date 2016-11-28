@@ -24,6 +24,9 @@ public class User implements Serializable {
     @Column(name = "hashed_password" ,length = 100, nullable = false)
     private String hashedPassword;
 
+    @Column(name = "profile_picture")
+    private byte[] profilePicture;
+
     @ElementCollection
     @CollectionTable(
             name = "game_scores",
@@ -258,5 +261,28 @@ public class User implements Serializable {
 
     public Map<Long, Integer> getScoredGames(){
         return scoredGames;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }

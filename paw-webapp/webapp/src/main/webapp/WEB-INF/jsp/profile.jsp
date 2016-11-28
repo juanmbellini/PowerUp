@@ -17,9 +17,8 @@
     <h1 class="center orange-text">${user.username}'s Profile</h1>
     <div class="row">
         <div class="col s4">
-            <%--TODO replace with actual profile picture and allow changes--%>
-            <img src="http://placehold.it/250x250" style="max-width: 100%; height:auto;"/>
-            <br />
+            <img src="<c:url value="/profile-picture?username=${user.username}" />" style="max-width: 100%; height:auto;"/>
+            <br /> <br />
             <h5>Profile Stats</h5>
             <p>Played <b>${playedGames.size()}</b> game${playedGames.size() == 1 ? "" : "s"}</p>
             <p>Playing <b>${playingGames.size()}</b> game${playingGames.size() == 1 ? "" : "s"}</p>
@@ -73,6 +72,24 @@
             </c:choose>
         </div>
     </div>
+    <c:url value="/profile-picture" var="uploadFileUrl" />
+    <%--<form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">--%>
+
+        <%--&lt;%&ndash;<form:errors path="*" cssClass="errorblock" element="div" />&ndash;%&gt;--%>
+
+        <%--<input type='hidden' name='username' value='${user.username}'/>--%>
+        <%--Please select a file to upload : <input type="file" name="file" accept=".jpg,.png,.gif" />--%>
+        <%--<input type="submit" value="upload" />--%>
+    <%--&lt;%&ndash;<span><form:errors path="file" cssClass="error" />&ndash;%&gt;--%>
+		<%--&lt;%&ndash;</span>&ndash;%&gt;--%>
+
+    <%--</form>--%>
+
+    <form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">
+        File to upload: <input type="file" name="picture" accept=".jpg,.png,.gif">
+        <input type='hidden' name='username' value='${user.username}'/>
+        <button type="submit">Upload</button>
+    </form>
 </main>
 
 <footer class="page-footer orange">
