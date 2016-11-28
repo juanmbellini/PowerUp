@@ -29,7 +29,7 @@ public class Functions {
             //Basic section
             builder.append("<li class='collection-item avatar'>")
                     .append("<a name='").append(comment.getId()).append("'></a>")
-                    .append("<img src='http://placehold.it/200x200' alt='").append(escapedUsername).append("' class='circle'>")
+                    .append("<img src='").append(baseURL).append("profile-picture?username=").append(escapedUsername).append("' class='circle'>")
                     .append("<span class='title wrap-text'><a href='").append(baseURL).append("profile?username=").append(escapedUsername).append("'>").append(escapedUsername).append("</a></span>")
                     .append("<p class='wrap-text'>Submitted ").append(dateFormat.format(comment.getCreatedAt().getTime())).append("</p>")
                     .append("<br />")

@@ -49,7 +49,7 @@
                         <ul class="collection reviews-list">
                             <c:forEach items="${reviews}" var="review">
                                 <li class="collection-item avatar">
-                                    <i class="material-icons circle blue">exit_to_app</i>
+                                    <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
                                     <span class="title">
                                         <c:choose>
                                             <c:when test="${empty user && not empty game}">
@@ -61,7 +61,7 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <%--TODO link user--%>
-                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> - <a href="#!">${review.user.username}</a>
+                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> - <a href="<c:url value="/profile?username=${review.user.username}" />"><c:out value="${review.user.username}" /></a>
                                             </c:otherwise>
                                         </c:choose>
                                     </span>

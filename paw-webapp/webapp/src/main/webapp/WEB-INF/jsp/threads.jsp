@@ -46,7 +46,7 @@
                     <ul class="collection">
                         <c:forEach var="thread" items="${threads}">
                             <li class="collection-item avatar">
-                                <img src="http://placehold.it/200x200" alt="<c:out value="${thread.creator.username}" />" class="circle">
+                                <img src="<c:url value="/profile-picture?username=${thread.creator.username}" />" alt="<c:out value="${thread.creator.username}" />" class="circle">
                                 <a class="title truncate" href="<c:url value="/thread?id=${thread.id}" />"><c:out value="${thread.title}" /></a>
                                 <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>
                                 <br>
