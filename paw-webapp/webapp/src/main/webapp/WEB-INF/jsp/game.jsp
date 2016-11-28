@@ -216,17 +216,15 @@
                         <div class="row">
                             <h5 class="center">Videos</h5>
                             <div class="slick-carousel" id="videos-carousel">
-                                <c:forEach var="game" items="${relatedGames}">
-                                    <c:forEach var="entry" items="${videos}">
-                                        <c:set var="videoId" value="${entry.key}" />
-                                        <c:set var="videoName" value="${entry.value}" />
-                                        <div class="slide-container">
-                                            <iframe type="text/html" width="640" height="360"
-                                                    src="https://www.youtube.com/embed/${videoId}"
-                                                <%--?autoplay=1&origin=http://example.com--%>
-                                                    frameborder="0"></iframe>
-                                        </div>
-                                    </c:forEach>
+                                <c:forEach var="entry" items="${videos}">
+                                    <c:set var="videoId" value="${entry.key}" />
+                                    <c:set var="videoName" value="${entry.value}" />
+                                    <div class="slide-container">
+                                        <iframe type="text/html" width="640" height="360"
+                                                src="https://www.youtube.com/embed/${videoId}"
+                                            <%--?autoplay=1&origin=http://example.com--%>
+                                                frameborder="0"></iframe>
+                                    </div>
                                 </c:forEach>
                             </div>
                         </div>
