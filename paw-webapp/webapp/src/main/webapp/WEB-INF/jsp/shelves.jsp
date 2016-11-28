@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <h1 class="center"><c:out value="${user.username}'s Shelves"></c:out></h1>
-            <h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your shelves!</h5>
+            <c:if test="${user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your shelves!</h5></c:if>
             <%--TODO limit number of shelves shown?--%>
             <c:forEach var="shelf" items="${shelves}" varStatus="loopStatus">
                 <c:if test="${loopStatus.first}">
@@ -62,9 +62,10 @@
                 </c:choose>
             </c:forEach>
             <c:if test="${fn:length(shelves) == 0}">
-                <h4 class="center">No shelves. Why not create one?</h4>
+                <h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>
             </c:if>
         </div>
+        <c:if test="${user.username == currentUsername}">
         <div class="col s12 divider"></div>
         <div class="row">
             <div class="col s6">
@@ -77,6 +78,7 @@
                 </form>
             </div>
         </div>
+        </c:if>
     </div>
 </main>
 

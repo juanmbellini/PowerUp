@@ -299,7 +299,7 @@
 <script type="text/javascript">
     $(function() {
         $("#shelves").on("change", function (event) {
-            $(this).material_select();
+            //$(this).material_select();
             var selectedShelves = $(this).val();
             if(selectedShelves.length == 0) {
                 //No selected shelves, set everything to false
