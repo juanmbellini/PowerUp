@@ -44,8 +44,9 @@
                                 <c:forEach items="${criteria}" var="criterium">
                                     <p style="text-transform: capitalize;">${criterium}</p>
                                     <form:select path="${criterium}Score">
-                                        <form:option disabled="true" selected="true" value="-1" label="--Please Select" />
-                                        <form:options items="${scores}"/>
+                                        <c:forEach begin="1" end="10" step="1" var="score">
+                                            <option value="${score}" ${score == 5 ? "selected" : ""}>${score}</option>
+                                        </c:forEach>
                                     </form:select>
                                 </c:forEach>
                             </div>

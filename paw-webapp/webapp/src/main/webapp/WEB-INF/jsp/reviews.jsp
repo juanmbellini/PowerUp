@@ -15,8 +15,7 @@
         </c:if>
         Reviews
         <c:if test="${not empty user}">
-            <%--TODO link to profile--%>
-             by ${user.username}
+             by <c:out value="${user.username}" />
         </c:if>
         - PowerUp</title>
 </head>
@@ -26,17 +25,15 @@
 </header>
 
 <main>
-    <%--TODO link back to game--%>
     <div class="container">
         <div class="section">
-            <h2 class="header center orange-text">
+            <h2 class="header center orange-text wrap-text">
                 <c:if test="${not empty game}">
-                    ${game.name}
+                    <a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
                 </c:if>
                 Reviews
                 <c:if test="${not empty user}">
-                    <%--TODO link to profile--%>
-                    by ${user.username}
+                    by <a href="<c:url value="/profile?username=${user.username}" />"><c:out value="${user.username}" /> <img class="circle" style="width:50px; height:50px; vertical-align: middle;" src="<c:url value="/profile-picture?username=${user.username}" />" /></a>
                 </c:if>
             </h2>
         </div>
@@ -49,40 +46,46 @@
                         <ul class="collection reviews-list">
                             <c:forEach items="${reviews}" var="review">
                                 <li class="collection-item avatar">
-                                    <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
-                                    <span class="title">
-                                        <c:choose>
-                                            <c:when test="${empty user && not empty game}">
-                                                <%--TODO link--%>
-                                                <a href="#!">${review.user.username}</a>
-                                            </c:when>
-                                            <c:when test="${empty game && not empty user}">
+                                    <c:choose>
+                                        <c:when test="${empty user && not empty game}">
+                                            <%--Viewing reviews by game, variable is user--%>
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
+                                            <span class="title wrap-text">
+                                                <a href="<c:url value="/profile?username=${user.username}" />"><c:out value="${review.user.username}" /></a>
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${empty game && not empty user}">
+                                            <%--Viewing reviews by user, variable is game--%>
+                                            <img src="<c:url value="${review.game.coverPictureUrl}" />" alt="<c:out value="${review.game.name}" />" class="circle">
+                                            <span class="title wrap-text">
                                                 <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <%--TODO link user--%>
-                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> - <a href="<c:url value="/profile?username=${review.user.username}" />"><c:out value="${review.user.username}" /></a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </span>
+                                            </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <%--Viewing reviews by game and user, show user in picture but provide links to both game and user--%>
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
+                                            <span class="title wrap-text">
+                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> | <a href="<c:url value="/profile?username=${review.user.username}" />"><c:out value="${review.user.username}" /></a>
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <p class="secondary-content" style="color: black;">${review.date}</p>
-                                    <p>
+                                    <p class="wrap-text">
                                         <c:choose>
                                             <c:when test="${empty user && not empty game}">
-                                                <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                                <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a>
                                             </c:when>
                                             <c:when test="${empty game && not empty user}">
                                                 <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a>
                                             </c:when>
                                             <c:otherwise>
-                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a> - <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a> | <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a>
                                             </c:otherwise>
                                         </c:choose>
                                     </p>
                                     <br/>
                                     <div class="row">
-                                        <%--TODO use c:out and preserve-newlines class--%>
-                                        <p class="col s10">${review.review}</p>
+                                        <p class="col s10 preserve-newlines wrap-texxt"><c:out value="${review.review}" /></p>
                                         <div class="col s2">
                                             <p style="color: #26a69a;">
                                                 Story: <span class="right">${review.storyScore}</span>
