@@ -18,19 +18,20 @@
 <main class="section">
     <div class="row">
         <div class="col s2">
-            <form id="shelfForm" action="#">
+            <form id="shelfForm" action="<c:url value="/shelves"/>">
                 <c:forEach items="${playstatus}" var="playStatus">
                     <p>
-                        <input type="checkbox" id="${playStatus}" />
+                        <input type="checkbox" name="playStatusesCheckbox"  id="${playStatus}" value="${playStatus}" />
                         <label for="${playStatus}">${playStatus}</label>
                     </p>
                 </c:forEach>
                 <c:forEach items="${shelves}" var="shelf">
                      <p>
-                        <input type="checkbox" id="${shelf.id}" />
+                        <input type="checkbox" name="shelvesCheckbox" id="${shelf.id}" value="${shelf.name}"/>
                         <label for="${shelf.id}">${shelf.name}</label>
                     </p>
                 </c:forEach>
+                <input type="submit">
             </form>
 
         </div>
@@ -134,27 +135,27 @@
 
     $(function() {
 
-        $("#shelfForm").on("submit", function() {
-            debugger;
-            var url = "http://localhost:8080/list";
-            url+="?";
+        <%--$("#shelfForm").on("submit", function() {--%>
+            <%--debugger;--%>
+            <%--var url = "http://localhost:8080/list";--%>
+            <%--url+="?";--%>
 
-            <c:forEach items="${playstatus}" var="playStatus">
-                if($("#${playStatus}").is(":checked")) {
-                    playStatuses.push("${playStatus}");
-                }
-            </c:forEach>
-            <c:forEach items="${shelves}" var="shelf">
-                if($("#${shelf.id}").is(":checked")) {
-                    shelves.push("${shelf.name}");
-                }
-            </c:forEach>
-            debugger;
-            url+="playStatuses="+JSON.stringify(playStatuses);
-            url+="&shelves="+JSON.stringify(shelves)
-            url=encodeURI(url);
-            window.location = url;
-        });
+            <%--<c:forEach items="${playstatus}" var="playStatus">--%>
+                <%--if($("#${playStatus}").is(":checked")) {--%>
+                    <%--playStatuses.push("${playStatus}");--%>
+                <%--}--%>
+            <%--</c:forEach>--%>
+            <%--<c:forEach items="${shelves}" var="shelf">--%>
+                <%--if($("#${shelf.id}").is(":checked")) {--%>
+                    <%--shelves.push("${shelf.name}");--%>
+                <%--}--%>
+            <%--</c:forEach>--%>
+            <%--debugger;--%>
+            <%--url+="playStatuses="+JSON.stringify(playStatuses);--%>
+            <%--url+="&shelves="+JSON.stringify(shelves)--%>
+            <%--url=encodeURI(url);--%>
+            <%--window.location = url;--%>
+        <%--});--%>
 
         $(".delete-button").on('click', function (event) {
             var gameId = $(this).data('game-id');

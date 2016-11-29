@@ -52,8 +52,10 @@ public class ShelfController extends BaseController {
 
     @RequestMapping(value = "/shelves")
     public ModelAndView list(@RequestParam(value = "username", required = false) String username,
-                             @RequestParam(value = "shelves", required = false) String shelvesStr,
-                             @RequestParam(value = "playStatuses", required = false) String playStatusesStr) {
+//                             @RequestParam(value = "shelves", required = false) String shelvesStr,
+//                             @RequestParam(value = "playStatuses", required = false) String playStatusesStr
+                             @RequestParam(value = "playStatusesCheckbox", required = false) String[] playStatusesCheckboxStr,
+                             @RequestParam(value = "shelvesCheckbox", required = false) String[] shelvesCheckboxStr) {
         if (username == null) {
             if (!isLoggedIn()) {
                 return new ModelAndView("redirect:error400");
@@ -91,26 +93,26 @@ public class ShelfController extends BaseController {
         //scores
         Map<Game, Integer> scores = userService.getScoredGames(user.getId());
 
-        String newShelvesStr = (shelvesStr == null || shelvesStr.equals("")) ? "[]" : shelvesStr;
-        Set<String> shelvesFilter;
-        try{
-            shelvesFilter = objectMapper.readValue(newShelvesStr, typeReference);
-        }catch (Exception e){
-            shelvesFilter = new HashSet<>();
-        }
-
-        String newPlayStatuses = (playStatusesStr == null || playStatusesStr.equals("")) ? "{}" : playStatusesStr;
-        Set<String> playStatusesFilter;
-        try{
-            playStatusesFilter = objectMapper.readValue(newPlayStatuses, typeReference);
-        }catch (Exception e){
-            playStatusesFilter = new HashSet<>();
-        }
+//        String newShelvesStr = (shelvesStr == null || shelvesStr.equals("")) ? "[]" : shelvesStr;
+//        Set<String> shelvesFilter;
+//        try{
+//            shelvesFilter = objectMapper.readValue(newShelvesStr, typeReference);
+//        }catch (Exception e){
+//            shelvesFilter = new HashSet<>();
+//        }
+//
+//        String newPlayStatuses = (playStatusesStr == null || playStatusesStr.equals("")) ? "{}" : playStatusesStr;
+//        Set<String> playStatusesFilter;
+//        try{
+//            playStatusesFilter = objectMapper.readValue(newPlayStatuses, typeReference);
+//        }catch (Exception e){
+//            playStatusesFilter = new HashSet<>();
+//        }
 
 
         mav.addObject("playstatus",PlayStatus.values());
-        mav.addObject("playStatusesFilter",playStatusesFilter);
-        mav.addObject("shelvesFilter",shelvesFilter);
+//        mav.addObject("playStatusesFilter",playStatusesFilter);
+//        mav.addObject("shelvesFilter",shelvesFilter);
         mav.addObject("games",playStatuses.keySet());
         mav.addObject("user", user);
         mav.addObject("scores",scores);
