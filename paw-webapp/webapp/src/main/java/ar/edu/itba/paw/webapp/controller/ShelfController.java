@@ -22,16 +22,7 @@ import java.util.*;
 @Controller
 public class ShelfController extends BaseController {
 
-    /**
-     * A Object Mapper to generate Objects from JSONs.
-     */
-    private final ObjectMapper objectMapper;
 
-    /**
-     * A TypeReference that references to a {@code Map<{@link FilterCategory }, List<String>>}, which represents
-     * filters that can be applied to game searches.
-     */
-    private final TypeReference<ArrayList<String>> typeReference;
 
 
     /**
@@ -46,102 +37,6 @@ public class ShelfController extends BaseController {
         super(us);
         this.gameService = gameService;
         this.shelfService = shelfService;
-        objectMapper = new ObjectMapper();
-        typeReference = new TypeReference<ArrayList<String>>() {};
-    }
-
-    @RequestMapping(value = "/shelves")
-    public ModelAndView list(@RequestParam(value = "username", required = false) String username,
-//                             @RequestParam(value = "shelves", required = false) String shelvesStr,
-//                             @RequestParam(value = "playStatuses", required = false) String playStatusesStr
-                             @RequestParam(value = "playStatusesCheckbox", required = false) String[] playStatusesCheckboxStr,
-                             @RequestParam(value = "shelvesCheckbox", required = false) String[] shelvesCheckboxStr) {
-        if (username == null) {
-            if (!isLoggedIn()) {
-                return new ModelAndView("redirect:error400");
-            }
-            return list(getCurrentUsername(),playStatusesCheckboxStr,shelvesCheckboxStr);
-        }
-        final ModelAndView mav = new ModelAndView("shelves");
-        User user = userService.findByUsername(username);
-        if (user == null) return new ModelAndView("error400");
-
-        Set<String> shelvesFilter = new HashSet<>();
-        if(shelvesCheckboxStr!=null){
-            for(String s: shelvesCheckboxStr){
-                shelvesFilter.add(s);
-            }
-        }
-
-        Set<String> playStatusesFilter = new HashSet<>();
-        if(playStatusesCheckboxStr!=null){
-            for(String s: playStatusesCheckboxStr){
-                playStatusesFilter.add(s);
-            }
-        }
-
-
-        Map<Game, Set<Shelf>> shelvesForGames = new HashMap();
-        Map<Game, PlayStatus> playStatuses = new HashMap<>();
-
-
-        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(user.getId()).entrySet()) {
-            // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
-            PlayStatus status = entry.getKey();
-            Set<Game> games = entry.getValue();
-            for(Game game : games) {
-                if(!shelvesForGames.containsKey(game)){
-                    shelvesForGames.put(game,new HashSet<>());
-                }
-                if(!playStatuses.containsKey(game)) {
-                    playStatuses.put(game, status);
-                }
-            }
-        }
-        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
-        for(Shelf shelf : shelves) {
-            for(Game game : shelf.getGames()) {
-                if(shelvesForGames.containsKey(game)){
-                    shelvesForGames.get(game).add(shelf);
-                }
-            }
-        }
-        //scores
-        Map<Game, Integer> scores = userService.getScoredGames(user.getId());
-
-
-        Set<Game> games = new HashSet<>();
-
-        for(Game game: playStatuses.keySet()){
-            boolean validGame = false;
-            if(playStatusesFilter.isEmpty()) validGame =true;
-            for(String playStatusFilter: playStatusesFilter){
-                if(playStatuses.get(game).name().equals(playStatusFilter)){
-                    validGame = true;
-                }
-            }
-            for(String shelfFilter: shelvesFilter){
-                for(Shelf shelf: shelvesForGames.get(game)){
-                    if(!shelf.getName().equals(shelfFilter)){
-                        validGame = false;
-                    }
-                }
-            }
-            if(validGame) games.add(game);
-        }
-
-
-
-        mav.addObject("playstatus",PlayStatus.values());
-        mav.addObject("playStatusesFilter",playStatusesFilter);
-        mav.addObject("shelvesFilter",shelvesFilter);
-        mav.addObject("games",games);
-        mav.addObject("user", user);
-        mav.addObject("scores",scores);
-        mav.addObject("shelves", shelves);
-        mav.addObject("shelvesForGamesMap",shelvesForGames);
-        mav.addObject("playStatuses", playStatuses);
-        return mav;
     }
 
     @RequestMapping(value = "/create-shelf", method = RequestMethod.POST)
@@ -154,7 +49,7 @@ public class ShelfController extends BaseController {
             if(!shelfService.findByName(name).isEmpty()) {
                 LOG.info("User {} attempted to create Shelf with duplicate name (\"{}\")", getCurrentUsername(), name);
                 //TODO show the error to the user
-                return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+                return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
             }
             shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
             LOG.info("Created Shelf \"{}\" for user {}", name, getCurrentUsername());
@@ -163,7 +58,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/update-shelf", method = RequestMethod.POST)
@@ -183,7 +78,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/delete-shelf", method = RequestMethod.POST)
@@ -203,7 +98,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/rename-shelf", method = RequestMethod.POST)
@@ -224,7 +119,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/update-shelves-by-game", method = RequestMethod.POST)

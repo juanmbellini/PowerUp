@@ -18,7 +18,7 @@
 <main class="section">
     <div class="row">
         <div class="col s2">
-            <form id="shelfForm" action="<c:url value="/shelves"/>">
+            <form id="shelfForm" action="<c:url value="/list"/>">
                 <c:forEach items="${playstatus}" var="playStatus">
                     <p>
                         <input type="checkbox" name="playStatusesCheckbox"  <c:if test="${playStatusesFilter.contains(playStatus.name())}">checked</c:if> id="<c:out value="${playStatus}"/>" value="<c:out value="${playStatus.name()}"/>" />
@@ -91,14 +91,43 @@
                                             </b></p>
                                         </div>
                                         <div class="col s1 center">
-                                            <p style="margin-top: 33px;"><b>${empty scores.get(game) ? "No score" : scores.get(game)}</b></p>
-                                        </div>
-                                        <div class="col s1 center">
                                             <p style="margin-top: 33px;"><b>${empty game.avgScore || game.avgScore==0? "No avg rating" : game.avgScore}</b></p>
                                         </div>
+                                        <div class="col s2 center">
+                                            <%--<div class="secondary-content">--%>
+                                                <c:set var="score" value="${scores.get(game)}"/>
+                                                <c:choose>
+                                                    <c:when test="${score <= 10 && score>=0}">
+                                                        <p style="margin-top: 27px;" class="rating-number center"><b>${score}</b></p>
+                                                        <p class="rating-stars hide-on-small-and-down">
+                                                            <c:forEach begin="0" end="4" var="i">
+                                                                <c:choose>
+                                                                    <c:when test="${score-(i*2)-1<0}">
+                                                                        <i class="material-icons">star_border</i>
+                                                                    </c:when>
+                                                                    <c:when test="${score-(i*2)-1==0}">
+                                                                        <i class="material-icons">star_half</i>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <i class="material-icons">star</i>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                        </p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p style="margin-top: 33px;" class="rating-number center"><b>Unrated</b></p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            <%--</div>--%>
+                                        </div>
+                                        <%--<div class="col s1 center">--%>
+                                            <%--<p style="margin-top: 33px;"><b>${empty scores.get(game) ? "No score" : scores.get(game)}</b></p>--%>
+                                        <%--</div>--%>
+
                                         <div class="col s1">
                                             <div class="secondary-content">
-                                                <button class="btn delete-button waves-effect waves-light" data-shelf-id="${shelf.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
+                                                <button class="btn delete-button waves-effect waves-light" data-user-id="${user.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
                                             </div>
                                         </div>
                                     </li>
@@ -136,6 +165,8 @@
     var shelves = [];
     var playStatuses = [];
 
+
+
     $(function() {
 
         <%--$("#shelfForm").on("submit", function() {--%>
@@ -160,14 +191,16 @@
             <%--window.location = url;--%>
         <%--});--%>
 
+
+
         $(".delete-button").on('click', function (event) {
             var gameId = $(this).data('game-id');
-            var shelfId = $(this).data('shelf-id');
+            var userId = $(this).data('user-id');
             //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/update-shelves-by-game" />' method='POST'> \
+            $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
                 <input type='hidden' name='gameId' value='" + gameId + "' /> \
-                <input type='hidden' name='" + shelfId + "' value='false' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "' /> \
+                <input type='hidden' name='userId' value='" + userId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
                </form>").submit();
         });
 

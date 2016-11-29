@@ -104,6 +104,7 @@ public class UserHibernateDao implements UserDao {
             throw new NoSuchUserException(userId);
         }
         user.getScoredGames().remove(gameId);
+        gameDao.updateAvgScore(gameId);
         em.persist(user);
     }
 

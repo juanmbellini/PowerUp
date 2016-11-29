@@ -84,7 +84,7 @@
                             <div class="col s4">
                                 <c:choose>
                                     <c:when test="${fn:length(shelves) == 0}">
-                                        <p>You have no shelves. Why not <a href="<c:url value="/shelves" />">create one</a>?</p>
+                                        <p>You have no shelves. Why not <a href="<c:url value="/list" />">create one</a>?</p>
                                     </c:when>
                                     <c:otherwise>
                                         <select id="shelves" multiple>
