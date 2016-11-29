@@ -562,7 +562,7 @@
                     }
                 } else {
                     if(name !== "") {
-                        url += "&name=" + encodeURIComponent(name);
+                        url += "&name=" + encodeURIComponent(name); //TODO chequear que no este de mas en encode.
                     }
                 }
             }
@@ -589,6 +589,7 @@
             }
             //No need to handle page/sorting parameters here
         }
+        debugger;
         window.location = encodeURI(url);
     }
 </script>

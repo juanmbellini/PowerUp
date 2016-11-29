@@ -4,10 +4,9 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +14,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Controller for shelf operations.
  */
 @Controller
 public class ShelfController extends BaseController {
+
+    /**
+     * A Object Mapper to generate Objects from JSONs.
+     */
+    private final ObjectMapper objectMapper;
+
+    /**
+     * A TypeReference that references to a {@code Map<{@link FilterCategory }, List<String>>}, which represents
+     * filters that can be applied to game searches.
+     */
+    private final TypeReference<ArrayList<String>> typeReference;
+
 
     /**
      * A game service used for listing games.
@@ -37,10 +46,14 @@ public class ShelfController extends BaseController {
         super(us);
         this.gameService = gameService;
         this.shelfService = shelfService;
+        objectMapper = new ObjectMapper();
+        typeReference = new TypeReference<ArrayList<String>>() {};
     }
 
     @RequestMapping(value = "/shelves")
-    public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
+    public ModelAndView list(@RequestParam(value = "username", required = false) String username,
+                             @RequestParam(value = "shelves", required = false) String shelvesStr,
+                             @RequestParam(value = "playStatuses", required = false) String playStatusesStr) {
         if (username == null) {
             if (!isLoggedIn()) {
                 return new ModelAndView("redirect:error400");
@@ -51,18 +64,58 @@ public class ShelfController extends BaseController {
         User user = userService.findByUsername(username);
         if (user == null) return new ModelAndView("error400");
 
-        //User found, populate data
-        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
+        Map<Game, Set<Shelf>> shelvesForGames = new HashMap();
         Map<Game, PlayStatus> playStatuses = new HashMap<>();
-        for(Shelf shelf : shelves) {
-            for(Game game : shelf.getGames()) {
-                if(!playStatuses.containsKey(game)) {   //Avoid unnecessary DB lookups
-                    playStatuses.put(game, userService.hasPlayStatus(user.getId(), game.getId()) ? userService.getPlayStatus(user.getId(), game.getId()) : null);
+
+        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(user.getId()).entrySet()) {
+            // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
+            PlayStatus status = entry.getKey();
+            Set<Game> games = entry.getValue();
+            for(Game game : games) {
+                if(!shelvesForGames.containsKey(game)){
+                    shelvesForGames.put(game,new HashSet<>());
+                }
+                if(!playStatuses.containsKey(game)) {
+                    playStatuses.put(game, status);
                 }
             }
         }
+        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
+        for(Shelf shelf : shelves) {
+            for(Game game : shelf.getGames()) {
+                if(shelvesForGames.containsKey(game)){
+                    shelvesForGames.get(game).add(shelf);
+                }
+            }
+        }
+        //scores
+        Map<Game, Integer> scores = userService.getScoredGames(user.getId());
+
+        String newShelvesStr = (shelvesStr == null || shelvesStr.equals("")) ? "[]" : shelvesStr;
+        Set<String> shelvesFilter;
+        try{
+            shelvesFilter = objectMapper.readValue(newShelvesStr, typeReference);
+        }catch (Exception e){
+            shelvesFilter = new HashSet<>();
+        }
+
+        String newPlayStatuses = (playStatusesStr == null || playStatusesStr.equals("")) ? "{}" : playStatusesStr;
+        Set<String> playStatusesFilter;
+        try{
+            playStatusesFilter = objectMapper.readValue(newPlayStatuses, typeReference);
+        }catch (Exception e){
+            playStatusesFilter = new HashSet<>();
+        }
+
+
+        mav.addObject("playstatus",PlayStatus.values());
+        mav.addObject("playStatusesFilter",playStatusesFilter);
+        mav.addObject("shelvesFilter",shelvesFilter);
+        mav.addObject("games",playStatuses.keySet());
         mav.addObject("user", user);
+        mav.addObject("scores",scores);
         mav.addObject("shelves", shelves);
+        mav.addObject("shelvesForGamesMap",shelvesForGames);
         mav.addObject("playStatuses", playStatuses);
         return mav;
     }

@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
-    <title><c:out value="${user.username}'s Game List - PowerUp"></c:out></title>
+    <title><c:out value="${user.username}'s Game List - PowerUp"/></title>
     <%--TODO suffix ' instead of 's if username ends with s--%>
 </head>
 <body>
@@ -16,70 +16,110 @@
 </header>
 
 <main class="section">
-    <div class="container">
-        <div class="row">
-            <h1 class="center"><c:out value="${user.username}'s Shelves"></c:out></h1>
-            <c:if test="${user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your shelves!</h5></c:if>
-            <%--TODO limit number of shelves shown?--%>
-            <c:forEach var="shelf" items="${shelves}" varStatus="loopStatus">
-                <c:if test="${loopStatus.first}">
+    <div class="row">
+        <div class="col s2">
+            <form id="shelfForm" action="#">
+                <c:forEach items="${playstatus}" var="playStatus">
+                    <p>
+                        <input type="checkbox" id="${playStatus}" />
+                        <label for="${playStatus}">${playStatus}</label>
+                    </p>
+                </c:forEach>
+                <c:forEach items="${shelves}" var="shelf">
+                     <p>
+                        <input type="checkbox" id="${shelf.id}" />
+                        <label for="${shelf.id}">${shelf.name}</label>
+                    </p>
+                </c:forEach>
+            </form>
+
+        </div>
+        <div class="col s9">
+
+                <div class="row">
+                    <h1 class="center"><c:out value="${user.username}'s Game List"></c:out></h1>
+                    <c:if test="${user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your list!</h5></c:if>
+
                     <div class="col s12 divider"></div>
                     <br/>
-                </c:if>
-                <h4>
-                    <c:out value="${shelf.name}"></c:out>
-                    <c:if test="${isLoggedIn && currentUsername == user.username}">
-                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>
-                    </c:if>
-                </h4>
-                <c:choose>
-                    <c:when test="${fn:length(shelf.games) == 0}">
-                        <h5 class="center"><c:out value="${shelf.name} is empty"></c:out></h5>
-                    </c:when>
-                    <c:otherwise>
-                        <ul class="collection games-list">
-                            <%--TODO limit number of shown games, create link to show more--%>
-                            <c:forEach items="${shelf.games}" var="game">
-                                <li class="collection-item avatar col s12">
-                                    <div class="col s2 cover-pic-container valign-wrapper">
-                                        <img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">
-                                    </div>
-                                    <div class="col primary-content s7">
-                                        <p class="title"><a href="<c:url value="/game?id=${game.id}" />"><c:out value="${game.name}"></c:out></a></p>
-                                    </div>
-                                    <div class="col s1 center">
-                                        <p style="margin-top: 33px;"><b>${empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}</b></p>
-                                    </div>
-                                    <div class="col s2">
-                                        <div class="secondary-content">
-                                            <button class="btn delete-button waves-effect waves-light" data-shelf-id="${shelf.id}" data-game-id="${game.id}">Delete <i class="material-icons right">delete</i></button>
+
+                    <%--<h4>--%>
+                    <%--<c:out value="${shelf.name}"></c:out>--%>
+                    <%--<c:if test="${isLoggedIn && currentUsername == user.username}">--%>
+                    <%--<span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>--%>
+                    <%--</c:if>--%>
+                    <%--</h4>--%>
+                    <c:choose>
+                        <c:when test="${fn:length(games) == 0}">
+                            <h5 class="center"><c:out value="Game list is empty"></c:out></h5>
+                        </c:when>
+                        <c:otherwise>
+                            <ul class="collection games-list">
+                                    <%--TODO limit number of shown games, create link to show more--%>
+
+                                <c:forEach items="${games}" var="game">
+                                    <li class="collection-item avatar col s12">
+                                        <div class="col s2 cover-pic-container valign-wrapper">
+                                            <img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">
                                         </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-            <c:if test="${fn:length(shelves) == 0}">
-                <h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>
-            </c:if>
-        </div>
-        <c:if test="${user.username == currentUsername}">
-        <div class="col s12 divider"></div>
-        <div class="row">
-            <div class="col s6">
-                <h4>Create a Shelf</h4>
-                <form action="<c:url value="/create-shelf" />" method="POST">
-                    <div class="input-field center col s12">
-                        <input type="text" name="name" required />
-                    </div>
-                    <button type='submit' class='col s4 btn waves-effect light-blue'>Submit <i class="material-icons right">send</i></button>
-                </form>
+                                        <div class="col primary-content s3">
+                                            <p class="title wrap-text"><a href="<c:url value="/game?id=${game.id}" />"><c:out value="${game.name}"></c:out></a></p>
+                                        </div>
+                                        <div class="col s1 center">
+                                            <p style="margin-top: 33px;"><b>${empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}</b></p>
+                                        </div>
+                                        <div class="col s2 center">
+                                            <p style="margin-top: 33px;"><b>
+                                                <c:choose>
+                                                    <c:when test="${ empty shelvesForGamesMap.get(game)}">No shelves</c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach items="${shelvesForGamesMap.get(game)}" var="shelf">
+                                                            <c:out value="${shelf.name}"/>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </b></p>
+                                        </div>
+                                        <div class="col s1 center">
+                                            <p style="margin-top: 33px;"><b>${empty scores.get(game) ? "No score" : scores.get(game)}</b></p>
+                                        </div>
+                                        <div class="col s1 center">
+                                            <p style="margin-top: 33px;"><b>${empty game.avgScore || game.avgScore==0? "No avg rating" : game.avgScore}</b></p>
+                                        </div>
+                                        <div class="col s1">
+                                            <div class="secondary-content">
+                                                <button class="btn delete-button waves-effect waves-light" data-shelf-id="${shelf.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
+                    <%--<c:if test="${fn:length(shelves) == 0}">--%>
+                    <%--<h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>--%>
+                    <%--</c:if>--%>
+                </div>
+                <%--<c:if test="${user.username == currentUsername}">--%>
+                <%--<div class="col s12 divider"></div>--%>
+                <%--<div class="row">--%>
+                <%--<div class="col s6">--%>
+                <%--<h4>Create a Shelf</h4>--%>
+                <%--<form action="<c:url value="/create-shelf" />" method="POST">--%>
+                <%--<div class="input-field center col s12">--%>
+                <%--<input type="text" name="name" required />--%>
+                <%--</div>--%>
+                <%--<button type='submit' class='col s4 btn waves-effect light-blue'>Submit <i class="material-icons right">send</i></button>--%>
+                <%--</form>--%>
+                <%--</div>--%>
+                <%--</div>--%>
+                <%--</c:if>--%>
             </div>
-        </div>
-        </c:if>
+            <div class="col s1">
+
+            </div>
     </div>
+
 </main>
 
 <footer class="page-footer orange">
@@ -88,7 +128,33 @@
 <script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
 <script type="text/javascript">
+
+    var shelves = [];
+    var playStatuses = [];
+
     $(function() {
+
+        $("#shelfForm").on("submit", function() {
+            debugger;
+            var url = "http://localhost:8080/list";
+            url+="?";
+
+            <c:forEach items="${playstatus}" var="playStatus">
+                if($("#${playStatus}").is(":checked")) {
+                    playStatuses.push("${playStatus}");
+                }
+            </c:forEach>
+            <c:forEach items="${shelves}" var="shelf">
+                if($("#${shelf.id}").is(":checked")) {
+                    shelves.push("${shelf.name}");
+                }
+            </c:forEach>
+            debugger;
+            url+="playStatuses="+JSON.stringify(playStatuses);
+            url+="&shelves="+JSON.stringify(shelves)
+            url=encodeURI(url);
+            window.location = url;
+        });
 
         $(".delete-button").on('click', function (event) {
             var gameId = $(this).data('game-id');
