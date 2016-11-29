@@ -22,23 +22,21 @@ public class MailServiceImpl implements MailService{
     JavaMailSender mailSender;
 
     @Async
-    public void sendEmailChangePassword(User user) {
+    public void sendEmailChangePassword(User user, String newPassword) {
 
 
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                String password="Hola pepito";
-                mimeMessage.setFrom(new InternetAddress("powerappservice@gmail.com"));
+                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
                 mimeMessage.setRecipient(Message.RecipientType.TO,
-                        new InternetAddress(//user.getEmail()
-                                "julrodriguez@itba.edu.ar" ));
+                        new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear "
                         + user.getUsername()
                         + ", \nYour new password is: "
-                        + password
+                        + newPassword
                         + "\nPlease head to your userpage and change your password");
-                mimeMessage.setSubject("Change your Trade My Game password");
+                mimeMessage.setSubject("PowerApp password reset");
             }
         };
 

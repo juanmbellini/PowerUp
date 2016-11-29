@@ -1,8 +1,10 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.interfaces.MailService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
@@ -42,6 +44,11 @@ public class UserController extends BaseController {
      * A game service used for listing games.
      */
     private GameService gameService;
+
+    /**
+     * A mail service used for reseting the user's password.
+     */
+    private MailService mailService;
     /**
      * A password encoder used for hashing passwords when creating users.
      */
@@ -49,8 +56,9 @@ public class UserController extends BaseController {
 
 
     @Autowired
-    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder, MailService mailService) {
         super(us);
+        this.mailService=mailService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -160,6 +168,43 @@ public class UserController extends BaseController {
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
         SecurityContextHolder.getContext().setAuthentication(auth);
+        return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping(value = "/change-password", method = {RequestMethod.POST})
+    public ModelAndView changePassword(@RequestParam(name = "oldPassword") final String oldPassword,
+                                       @RequestParam(name = "newPassword") final String newPassword) {
+
+        User user = getCurrentUser();
+        String hashedOldPassword = passwordEncoder.encode(oldPassword);
+        String hashedNewPassword = passwordEncoder.encode(newPassword);
+        if(oldPassword.equals(user.getHashedPassword())){
+            userService.changePassword(user.getId(),hashedNewPassword);
+        }else{
+            LOG.warn("old password did not match");
+        }
+
+        return new ModelAndView("redirect:/profile");
+    }
+
+    @RequestMapping(value = "/reset-password", method = {RequestMethod.POST})
+    public ModelAndView resetPassword(@RequestParam(name = "email") final String email) {
+
+        //hace un findByEmail, si lo encontraas resetea, listo
+
+        User user;
+        try {
+            user = userService.findByEmail(email);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("No user found associated to that email");
+            return new ModelAndView("redirect:/");
+        }
+        String password = userService.generateNewPassword();
+        String hashedPassword = passwordEncoder.encode(password);
+        userService.changePassword(user.getId(), hashedPassword);
+        mailService.sendEmailChangePassword(user,password);
+        LOG.info("Password has been reseted. Your new password has been sent to your email.");
+
         return new ModelAndView("redirect:/");
     }
 }

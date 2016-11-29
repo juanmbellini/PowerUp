@@ -205,4 +205,18 @@ public interface UserService {
      * @throws NoSuchEntityException If no such user exists.
      */
     void removeProfilePicture(long userId) throws NoSuchEntityException;
+
+    /**
+     * Changes the user's hashed password for the provided one.
+     * @param newHashedPassword new password. Must be hashed.
+     * @param userId  The ID of the user whose password to change.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException;
+
+    /**
+     * Returns a new randomly generated password.
+     * @return The generated password.
+     */
+    String generateNewPassword();
 }

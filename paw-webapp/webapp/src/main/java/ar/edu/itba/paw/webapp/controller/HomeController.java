@@ -20,12 +20,9 @@ import java.util.LinkedHashSet;
 @Controller
 public class HomeController extends BaseController {
 
-    private final MailService mailService;
-
     @Autowired
-    public HomeController(UserService us, MailService mailService) {
+    public HomeController(UserService us) {
         super(us);
-        this.mailService = mailService;
     }
 
 
@@ -35,7 +32,6 @@ public class HomeController extends BaseController {
         Collection<Game> recommendedGames = new LinkedHashSet<>();
         if (isLoggedIn()) {
             recommendedGames = userService.recommendGames(getCurrentUser().getId());
-            mailService.sendEmailChangePassword(getCurrentUser());
         }
         mav.addObject("recommendedGames", recommendedGames);
         return mav;

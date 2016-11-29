@@ -82,4 +82,9 @@ public interface UserDao {
      * @see UserService#removeProfilePicture(long)
      */
     void removeProfilePicture(long userId);
+
+    /**
+     * @see UserService#changePassword(long, String)
+     */
+    void changePassword(long userId, String newHashedPassword);
 }
