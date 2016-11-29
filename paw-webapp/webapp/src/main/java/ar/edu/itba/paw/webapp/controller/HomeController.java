@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.interfaces.MailService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,12 @@ import java.util.LinkedHashSet;
 @Controller
 public class HomeController extends BaseController {
 
+    private final MailService mailService;
 
     @Autowired
-    public HomeController(UserService us) {
+    public HomeController(UserService us, MailService mailService) {
         super(us);
+        this.mailService = mailService;
     }
 
 
@@ -32,6 +35,7 @@ public class HomeController extends BaseController {
         Collection<Game> recommendedGames = new LinkedHashSet<>();
         if (isLoggedIn()) {
             recommendedGames = userService.recommendGames(getCurrentUser().getId());
+            mailService.sendEmailChangePassword(getCurrentUser());
         }
         mav.addObject("recommendedGames", recommendedGames);
         return mav;
