@@ -7,6 +7,8 @@ import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Data Access Object for users.
@@ -82,4 +84,9 @@ public interface UserDao {
      * @see UserService#removeProfilePicture(long)
      */
     void removeProfilePicture(long userId);
+
+//    /**
+//     * @see UserService#getGameList(long,Set,Set)
+//     */
+//    Map<Game,PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter);
 }

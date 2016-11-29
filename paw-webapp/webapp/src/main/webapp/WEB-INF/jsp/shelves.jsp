@@ -21,24 +21,35 @@
             <form id="shelfForm" action="<c:url value="/shelves"/>">
                 <c:forEach items="${playstatus}" var="playStatus">
                     <p>
-                        <input type="checkbox" name="playStatusesCheckbox"  id="${playStatus}" value="${playStatus}" />
-                        <label for="${playStatus}">${playStatus}</label>
+                        <input type="checkbox" name="playStatusesCheckbox"  <c:if test="${playStatusesFilter.contains(playStatus.name())}">checked</c:if> id="${playStatus}" value="${playStatus.name()}" />
+                        <label for="${playStatus}">${playStatus.name()}</label>
                     </p>
                 </c:forEach>
                 <c:forEach items="${shelves}" var="shelf">
                      <p>
-                        <input type="checkbox" name="shelvesCheckbox" id="${shelf.id}" value="${shelf.name}"/>
+                        <input type="checkbox" name="shelvesCheckbox" id="${shelf.id}" <c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if> value="${shelf.name}"/>
                         <label for="${shelf.id}">${shelf.name}</label>
                     </p>
+                    <c:if test="${isLoggedIn && currentUsername == user.username}">
+                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>
+                    </c:if>
                 </c:forEach>
+                <br/>
                 <input type="submit">
+            </form>
+            <span>Create a Shelf</span>
+            <form action="<c:url value="/create-shelf" />" method="POST">
+                <div class="input-field center col s12">
+                    <input type="text" name="name" required />
+                </div>
+                <button type='submit' class='col s4 btn waves-effect light-blue'>Submit <i class="material-icons right">send</i></button>
             </form>
 
         </div>
         <div class="col s9">
 
                 <div class="row">
-                    <h1 class="center"><c:out value="${user.username}'s Game List"></c:out></h1>
+                    <h1 class="center"><c:out value="${user.username}'s Game List"/></h1>
                     <c:if test="${user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your list!</h5></c:if>
 
                     <div class="col s12 divider"></div>
@@ -46,9 +57,7 @@
 
                     <%--<h4>--%>
                     <%--<c:out value="${shelf.name}"></c:out>--%>
-                    <%--<c:if test="${isLoggedIn && currentUsername == user.username}">--%>
-                    <%--<span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>--%>
-                    <%--</c:if>--%>
+
                     <%--</h4>--%>
                     <c:choose>
                         <c:when test="${fn:length(games) == 0}">
@@ -105,13 +114,7 @@
                 <%--<div class="col s12 divider"></div>--%>
                 <%--<div class="row">--%>
                 <%--<div class="col s6">--%>
-                <%--<h4>Create a Shelf</h4>--%>
-                <%--<form action="<c:url value="/create-shelf" />" method="POST">--%>
-                <%--<div class="input-field center col s12">--%>
-                <%--<input type="text" name="name" required />--%>
-                <%--</div>--%>
-                <%--<button type='submit' class='col s4 btn waves-effect light-blue'>Submit <i class="material-icons right">send</i></button>--%>
-                <%--</form>--%>
+
                 <%--</div>--%>
                 <%--</div>--%>
                 <%--</c:if>--%>

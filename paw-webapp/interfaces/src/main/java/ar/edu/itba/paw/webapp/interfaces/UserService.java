@@ -190,6 +190,22 @@ public interface UserService {
     Map<PlayStatus, Set<Game>> getGameList(long userId);
 
     /**
+     *
+     *
+     * @param userId The ID of the user whose list to fetch.
+     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
+     */
+
+//    /**
+//     * Gets all games in this user's main game list (games they have marked as playing, played, etc.), using playStatusFilter and shelvesFilters.
+//     * @param id
+//     * @param playStatusesFilter
+//     * @param shelvesFilter
+//     * @return
+//     */
+//    Map<Game, PlayStatus>  getGameList(long id, Set<String> playStatusesFilter, Set<String> shelvesFilter);
+
+    /**
      * Sets the profile picture for a user. Only authenticated users may set their own pictures.
      *
      * @param userId  The ID of the user whose profile picture to set.
@@ -205,4 +221,5 @@ public interface UserService {
      * @throws NoSuchEntityException If no such user exists.
      */
     void removeProfilePicture(long userId) throws NoSuchEntityException;
+
 }
