@@ -32,15 +32,9 @@
                 <c:otherwise>
                     <div class="row">
                         <div class="col s12">
-                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Hot')}"> inactive</c:if>">
-                                <a href="<c:url value="/threads?order=Hot"/>">Hot</a>
-                            </button>
-                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Newest')}"> inactive</c:if>">
-                                <a href="<c:url value="/threads?order=Newest"/>">Newest First</a>
-                            </button>
-                            <button class="btn waves-effect waves-light<c:if test="${!order.equals('Best')}"> inactive</c:if>">
-                                <a href="<c:url value="/threads?order=Best"/>">Bests Pointed</a>
-                            </button>
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'hot'}"> inactive</c:if>" href="<c:url value="/threads?order=hot"/>">Hottest</a>
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'newest'}"> inactive</c:if>" href="<c:url value="/threads?order=newest"/>">Newest</a>
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'best'}"> inactive</c:if>" href="<c:url value="/threads?order=best"/>">Highest Scoring</a>
                         </div>
                     </div>
                     <ul class="collection">
