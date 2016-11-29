@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.interfaces.ThreadService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.ThreadOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,22 +32,29 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping("/threads")
-    public ModelAndView recentThreads(@RequestParam(name = "order", required = false, defaultValue = "Hot") String order) {
+    public ModelAndView recentThreads(@RequestParam(name = "order", required = false, defaultValue = "HOT") String order) {
         Set<Thread> threads;
-        String newOrder;
-        if(order.equals("Best")){
-            newOrder = order;
-            threads = threadService.findBestPointed(50);
-        }else if(order.equals("Newest")){
-            newOrder = order;
-            threads = threadService.findRecent(50);
-        }else{
-            newOrder = "Hot";
-            threads =threadService.findHottest(50);
+        ThreadOrder enumOrder;
+        try {
+            enumOrder = ThreadOrder.valueOf(order.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            enumOrder = ThreadOrder.HOT;
+        }
+        switch (enumOrder) {
+            case BEST:
+                threads = threadService.findBestPointed(50);
+                break;
+            case NEWEST:
+                threads = threadService.findRecent(50);
+                break;
+            case HOT:
+            default:
+                threads = threadService.findHottest(50);
+                break;
         }
 
         ModelAndView mav = new ModelAndView("threads");
-        mav.addObject("order",newOrder);
+        mav.addObject("order", enumOrder.name().toLowerCase());
         mav.addObject("threads", threads);
         return mav;
     }

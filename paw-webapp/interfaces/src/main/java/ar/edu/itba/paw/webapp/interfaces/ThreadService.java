@@ -190,7 +190,9 @@ public interface ThreadService {
 
     /**
      * Updates the HotValue of the thread.
-     * @param threadId
+     *
+     * @param threadId The ID of the thread to update.
+     * @throws NoSuchEntityException If the thread doesn't exist.
      */
-    void updateHotValue(long threadId);
+    void updateHotValue(long threadId) throws NoSuchEntityException;
 }

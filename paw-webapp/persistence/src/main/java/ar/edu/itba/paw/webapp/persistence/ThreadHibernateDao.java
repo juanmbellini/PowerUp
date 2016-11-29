@@ -11,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Repository
 public class ThreadHibernateDao implements ThreadDao {
@@ -38,7 +34,7 @@ public class ThreadHibernateDao implements ThreadDao {
 
     @Override
     public Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException {
-        User creator = find(User.class, creatorUserId);
+        User creator = DaoHelper.findSingleOrThrow(em, User.class, creatorUserId);
         Thread thread = new Thread(creator, title, creatorComment);
         em.persist(thread);
         return thread;
@@ -47,74 +43,43 @@ public class ThreadHibernateDao implements ThreadDao {
 
     @Override
     public Set<Thread> findRecent(int limit) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY T.createdAt DESC", Thread.class);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditionsAndLimit(em, Thread.class, limit, "FROM Thread AS T ORDER BY T.createdAt DESC"));
     }
 
     @Override
     public Set<Thread> findBestPointed(int limit) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY size(likes) DESC", Thread.class);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditionsAndLimit(em, Thread.class, limit, "FROM Thread AS T ORDER BY SIZE(likes) DESC"));
     }
 
     @Override
     public Set<Thread> findHottest(int limit) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T ORDER BY T.hotValue DESC", Thread.class);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditionsAndLimit(em, Thread.class, limit, "FROM Thread AS T ORDER BY T.hotValue DESC"));
     }
 
     @Override
     public Set<Thread> findByUserId(long id) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T where T.user.id = :id", Thread.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Thread.class, "FROM Thread AS T WHERE T.user.id = ?1", id));
     }
 
     @Override
     public Set<Thread> findByTitle(String title) {
-        TypedQuery<Thread> baseQuery = em.createQuery("FROM Thread AS T where T.title = :title", Thread.class);
-        baseQuery.setParameter("title", title);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Thread.class, "FROM Thread AS T WHERE T.title = ?1", title));
     }
 
     @Override
     public Thread findById(long threadId) {
-        return em.find(Thread.class, threadId);
+        return DaoHelper.findSingle(em, Thread.class, threadId);
     }
 
     @Override
     public void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException {
-        if(newTitle == null) {
+        if (newTitle == null) {
             throw new IllegalArgumentException("New thread title can't be null");
         }
-        if(newTitle.isEmpty()) {
+        if (newTitle.isEmpty()) {
             throw new IllegalArgumentException("New thread title can't be empty");
         }
-        Thread t = find(Thread.class, threadId);
-        t.setTitle(newTitle);
+        DaoHelper.findSingleOrThrow(em, Thread.class, threadId).setTitle(newTitle);
     }
 
     @Override
@@ -126,30 +91,23 @@ public class ThreadHibernateDao implements ThreadDao {
 
     @Override
     public int likeThread(long threadId, long userId) {
-        int likeInt = threadLikeDao.create(threadId, userId);
-        return likeInt;
+        return threadLikeDao.create(threadId, userId);
     }
 
     @Override
     public int unlikeThread(long threadId, long userId) {
-        int likeInt = threadLikeDao.delete(threadId, userId);
-        return likeInt;
+        return threadLikeDao.delete(threadId, userId);
     }
 
     @Override
     public Comment comment(long threadId, long commenterId, String comment) {
-
-        Comment commentToReturn =commentDao.comment(threadId, commenterId, comment);
-        return commentToReturn;
+        return commentDao.comment(threadId, commenterId, comment);
     }
 
     @Override
     public Comment replyToComment(long commentId, long replierId, String reply) {
-        Comment commentToReturn =commentDao.reply(commentId, replierId, reply);
-        return commentToReturn;
+        return commentDao.reply(commentId, replierId, reply);
     }
-
-
 
     @Override
     public int likeComment(long commentId, long userId) {
@@ -173,31 +131,13 @@ public class ThreadHibernateDao implements ThreadDao {
 
     @Override
     public void deleteThread(long threadId) throws NoSuchEntityException {
-        em.remove(find(Thread.class, threadId));
+        em.remove(DaoHelper.findSingleOrThrow(em, Thread.class, threadId));
     }
 
     @Override
     public void updateHotValue(long threadId) {
-        Thread thread = findById(threadId);
-        LocalDate ldt = LocalDate.parse("2016-01-01");
-        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
-        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
-        thread.setHotValue((Math.log10(thread.getLikeCount()+1)+(thread.getUpdatedAt().getTimeInMillis()/1000 - epoch)/45000.0));
-    }
-
-    /**
-     * Attempts to find an entity. If found, returns it, otherwise throws exception.
-     *
-     * @param klass The class of the entity to find
-     * @param id The ID of the entity to find.
-     * @return The found entity.
-     * @throws NoSuchEntityException If no such entity find.
-     */
-    private <T> T find(Class<T> klass, long id) {
-        T result = em.find(klass, id);
-        if (result == null) {
-            throw new NoSuchEntityException(klass, id);
-        }
-        return result;
+        Thread thread = DaoHelper.findSingleOrThrow(em, Thread.class, threadId);
+        long epoch = LocalDate.parse("2016-01-01").atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+        thread.setHotValue((Math.log10(thread.getLikeCount() + 1) + (thread.getUpdatedAt().getTimeInMillis() / 1000 - epoch) / 45000.0));
     }
 }
