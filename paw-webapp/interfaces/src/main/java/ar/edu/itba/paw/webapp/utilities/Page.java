@@ -36,6 +36,16 @@ public class Page<T> {
      */
     private Collection<T> data = null;
 
+    public static final Page EMPTY_PAGE;
+    static {
+        EMPTY_PAGE = new Page();
+        EMPTY_PAGE.setOverAllAmountOfElements(0);
+        //TODO todo lo demás parece tirar exceptions, y u do dis Merca
+    }
+    public static <T> Page<T> emptyPage() {
+        return (Page<T>) EMPTY_PAGE;
+    }
+
 
     /**
      * Total pages getter.

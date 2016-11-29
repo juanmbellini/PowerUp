@@ -312,6 +312,8 @@ public class GameController extends BaseController {
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
+                    //TODO delete
+                    Page<Review> page = reviewService.findPageByGameId(gameId, 1, 25);
                     mav.addObject("reviews", reviewService.findByGameId(gameId));
                 }
                 //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
