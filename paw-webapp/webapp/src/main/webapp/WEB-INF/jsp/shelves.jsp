@@ -21,17 +21,17 @@
             <form id="shelfForm" action="<c:url value="/shelves"/>">
                 <c:forEach items="${playstatus}" var="playStatus">
                     <p>
-                        <input type="checkbox" name="playStatusesCheckbox"  <c:if test="${playStatusesFilter.contains(playStatus.name())}">checked</c:if> id="${playStatus}" value="${playStatus.name()}" />
-                        <label for="${playStatus}">${playStatus.name()}</label>
+                        <input type="checkbox" name="playStatusesCheckbox"  <c:if test="${playStatusesFilter.contains(playStatus.name())}">checked</c:if> id="<c:out value="${playStatus}"/>" value="<c:out value="${playStatus.name()}"/>" />
+                        <label for="<c:out value="${playStatus}"/>"><c:out value="${playStatus.name()}"/></label>
                     </p>
                 </c:forEach>
                 <c:forEach items="${shelves}" var="shelf">
                      <p>
-                        <input type="checkbox" name="shelvesCheckbox" id="${shelf.id}" <c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if> value="${shelf.name}"/>
-                        <label for="${shelf.id}">${shelf.name}</label>
+                        <input type="checkbox" name="shelvesCheckbox" id="<c:out value="${shelf.id}"/>" <c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if> value="<c:out value="${shelf.name}"/>"/>
+                        <label for="<c:out value="${shelf.id}"/>"><c:out value="${shelf.name}"/><label>
                     </p>
                     <c:if test="${isLoggedIn && currentUsername == user.username}">
-                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"></c:out>"data-name="<c:out value="${shelf.name}"></c:out>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"></c:out>" data-name="<c:out value="${shelf.name}"></c:out>" >delete</a></span>
+                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"/>"data-name="<c:out value="${shelf.name}"/>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>" >delete</a></span>
                     </c:if>
                 </c:forEach>
                 <br/>
@@ -224,10 +224,26 @@
                 $(".confirm").attr('disabled', 'disabled');
                 <c:url value="/rename-shelf" var="renameUrl" />
                 //Create an inline form and submit it to redirect with POST
-                $("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + inputValue + "' /></form>").submit();
+                debugger;
+                $("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();
             });
         });
     });
+
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        "/": '&#x2F;'
+    };
+
+    function escapeHtml(string) {
+        return String(string).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+        });
+    }
 </script>
 </body>
 </html>
