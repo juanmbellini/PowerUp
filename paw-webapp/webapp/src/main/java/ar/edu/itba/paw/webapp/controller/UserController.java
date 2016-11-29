@@ -209,19 +209,15 @@ public class UserController extends BaseController {
 
         if(!gameService.existsWithId(gameId))return new ModelAndView("error400");
 
-        userService.removeScore(userId,gameId);
-        userService.removeStatus(userId,gameId);
-        for(Shelf shelf: shelfService.findByUserId(userId)){
-            shelfService.removeGame(shelf.getId(),gameId);
-        }
+        userService.removeFromList(userId,gameId);
+
 
 
 //        shelfService.findByGameId();
 //        shelfService.removeGame();
 
-        return list(null,null,null);
+        return new ModelAndView("redirect:" + returnUrl);
     }
-
 
 
 

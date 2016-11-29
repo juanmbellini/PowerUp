@@ -245,6 +245,7 @@ public class GameController extends BaseController {
         mav.addObject("game", game);
         mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
         mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
@@ -252,6 +253,8 @@ public class GameController extends BaseController {
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }
+
+
 
 
     @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
@@ -285,7 +288,7 @@ public class GameController extends BaseController {
         if (playStatus != null) {
             userService.setPlayStatus(userId, id, playStatus);
         } else {
-            userService.removeStatus(userId, id);
+            return new ModelAndView("error400");
         }
         return mav;
     }

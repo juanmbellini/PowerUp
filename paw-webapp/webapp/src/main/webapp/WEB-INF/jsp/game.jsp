@@ -19,14 +19,16 @@
 <main>
     <div class="container">
         <div class="section">
-            <h1 class="header center orange-text"><c:out value="${game.name}"></c:out></h1>
-            <h5 class="center orange-text"><c:out value="${game.releaseDate.year}"></c:out></h5>
+            <h1 class="header center orange-text"><c:out value="${game.name}"/></h1>
+            <h5 class="center orange-text"><c:out value="${game.releaseDate.year}"/></h5>
         </div>
         <%--Rate and status form if logged in--%>
-        <div class ="section">
-            <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-            <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align" id="rateAndStatusForm">
-                <div class="row" >
+        <div class="section">
+            <div class="row">
+                <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
+                <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post"
+                           class="center-align" id="rateAndStatusForm">
+
                     <div class="col s3">
                     </div>
                     <div class="col s6 center-align">
@@ -44,7 +46,6 @@
 
                             <div class="col s4 center-align">
                                 <form:select path="playStatus" id="status">
-                                    <form:option value="" label="Select status"/>
                                     <form:options items="${statuses}"/>
                                 </form:select>
                                 <form:label path="playStatus">PlayStatus: </form:label>
@@ -55,75 +56,95 @@
                             <c:choose>
                                 <c:when test="${isLoggedIn}">
                                     <div class="col s4 center">
-                                        <button id="submit" type="submit" class="btn waves-effect waves-light">Update List!</button>
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="col s4 center">
-                                        <%--TODO redirect user back  here after login--%>
-                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-                </div>
-            </form:form>
-        </div>
-
-        <%--SHELVES FORM--%>
-        <div class ="section">
-            <c:url value="/update-shelves-by-game" var="shelvesUrl"/>
-            <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
-                <input type="hidden" name="gameId" value="${game.id}" />
-                <div class="row">
-                    <div class="col s3"></div>
-                    <div class="col s6 center-align">
-                        <div class="row">
-                            <p class="col s4 center">Update in shelves</p>
-                            <div class="col s4">
-                                <c:choose>
-                                    <c:when test="${fn:length(shelves) == 0}">
-                                        <p>You have no shelves. Why not <a href="<c:url value="/list" />">create one</a>?</p>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <select id="shelves" multiple>
-                                            <option value="" disabled selected>Select shelves</option>
-                                            <%--<option id="newShelf" value="newShelf" >New shelf...</option>--%>
-                                            <c:forEach var="entry" items="${shelves}">
-                                                <c:set var="shelf" value="${entry.key}" />
-                                                <c:set var="isInShelf" value="${entry.value}" />
-                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> ><c:out value="${shelf.name}"></c:out></option>
-                                            </c:forEach>
-                                            <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
-                                            <c:forEach var="entry" items="${shelves}">
-                                                <c:set var="shelf" value="${entry.key}" />
-                                                <c:set var="isInShelf" value="${entry.value}" />
-                                                <input type="hidden" class="shelfHidden" name="${shelf.id}" value="${isInShelf}" /></c:forEach>
-                                        </select>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-
-                            <c:choose>
-                                <c:when test="${isLoggedIn}">
-                                    <div class="col s4">
-                                        <button type="submit" class="btn waves-effect waves-light" disabled>Update Shelves</button>
+                                        <button id="submit" type="submit" class="btn waves-effect waves-light">Update
+                                            List!
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="col s4 center">
                                             <%--TODO redirect user back  here after login--%>
-                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
+                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log
+                                            in</a>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
+
+
                         </div>
                     </div>
-                </div>
-            </form>
+
+                </form:form>
+                <c:if test="${currentUser!=null && canUpdateShelves}">
+                    <button class="col s1 btn delete-button waves-effect waves-light" data-user-id="${currentUser.id}"
+                            data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
+                </c:if>
+            </div>
         </div>
-        <%--END SHELVES FORM--%>
+
+
+        <c:if test="${canUpdateShelves}">
+            <%--SHELVES FORM--%>
+            <div class="section">
+                <c:url value="/update-shelves-by-game" var="shelvesUrl"/>
+                <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
+                    <input type="hidden" name="gameId" value="${game.id}"/>
+                    <div class="row">
+                        <div class="col s3"></div>
+                        <div class="col s6 center-align">
+                            <div class="row">
+                                <p class="col s4 center">Update in shelves</p>
+                                <div class="col s4">
+                                    <c:choose>
+                                        <c:when test="${fn:length(shelves) == 0}">
+                                            <p>You have no shelves. Why not <a href="<c:url value="/list" />">create
+                                                one</a>?</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <select id="shelves" multiple>
+                                                <option value="" disabled selected>Select shelves</option>
+                                                    <%--<option id="newShelf" value="newShelf" >New shelf...</option>--%>
+                                                <c:forEach var="entry" items="${shelves}">
+                                                    <c:set var="shelf" value="${entry.key}"/>
+                                                    <c:set var="isInShelf" value="${entry.value}"/>
+                                                    <option value="${shelf.id}"
+                                                            <c:if test="${isInShelf}">selected</c:if> ><c:out
+                                                            value="${shelf.name}"></c:out></option>
+                                                </c:forEach>
+                                                    <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
+                                                <c:forEach var="entry" items="${shelves}">
+                                                    <c:set var="shelf" value="${entry.key}"/>
+                                                    <c:set var="isInShelf" value="${entry.value}"/>
+                                                    <input type="hidden" class="shelfHidden" name="${shelf.id}"
+                                                           value="${isInShelf}"/></c:forEach>
+                                            </select>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+
+                                <c:choose>
+                                    <c:when test="${isLoggedIn}">
+                                        <div class="col s4">
+                                            <button type="submit" class="btn waves-effect waves-light" disabled>Update
+                                                Shelves
+                                            </button>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="col s4 center">
+                                                <%--TODO redirect user back  here after login--%>
+                                            <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log
+                                                in</a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <%--END SHELVES FORM--%>
+        </c:if>
 
         <div class="section">
             <c:choose>
@@ -149,7 +170,8 @@
                             <p><b>Rating</b></p>
                             <c:choose>
                                 <c:when test="${game.avgScore>0}">
-                                    <p style="margin-top:0;"><fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" /></p>
+                                    <p style="margin-top:0;"><fmt:formatNumber value="${game.avgScore}"
+                                                                               maxFractionDigits="2"/></p>
                                 </c:when>
                                 <c:otherwise>
                                     <p style="margin-top:0;">unrated</p>
@@ -167,20 +189,23 @@
                                         <c:out value=" ${genre.name}"></c:out>
 
                                     </a>
-                                    <c:if test="${!status.last}"><br /></c:if>
+                                    <c:if test="${!status.last}"><br/></c:if>
                                 </c:forEach>
                             </p>
                             <p><b>Platforms</b></p>
-                                <c:forEach var="platformEntry" items="${platforms}" varStatus="status">
-                                    <a href="<c:url value="/search">
+                            <c:forEach var="platformEntry" items="${platforms}" varStatus="status">
+                                <a href="<c:url value="/search">
                                         <c:param name="name" value="" />
                                         <c:param name="filters" value='{"platform":["${platformEntry.key.name}"]}'/>
                                        </c:url>
                                     ">
-                                        <c:out value=" ${platformEntry.key.name}"></c:out>
-                                       </a><span style="font-size: small; float: right;"><c:out value="${platformEntry.value.releaseDate}"></c:out></span>
-                                    <c:if test="${!status.last}"><div class="col s12 divider"></div><br /></c:if>
-                                </c:forEach>
+                                    <c:out value=" ${platformEntry.key.name}"></c:out>
+                                </a><span style="font-size: small; float: right;"><c:out
+                                    value="${platformEntry.value.releaseDate}"></c:out></span>
+                                <c:if test="${!status.last}">
+                                    <div class="col s12 divider"></div>
+                                    <br/></c:if>
+                            </c:forEach>
                             <p><b>Developers</b></p>
                             <c:forEach var="developer" items="${developers}" varStatus="status">
                                 <a href="<c:url value="/search">
@@ -189,9 +214,9 @@
                                        </c:url>
                                     ">
 
-                                            <c:out value="${developer.name}"></c:out>
+                                    <c:out value="${developer.name}"></c:out>
                                 </a>
-                                <c:if test="${!status.last}"><br /></c:if>
+                                <c:if test="${!status.last}"><br/></c:if>
                             </c:forEach>
                             <p><b>Publishers</b></p>
                             <c:forEach var="publisher" items="${publishers}" varStatus="status">
@@ -200,10 +225,10 @@
                                         <c:param name="filters" value='{"publisher":["${publisher.name}"]}'/>
                                        </c:url>
                                     ">
-                                        <c:out value="${publisher.name}"></c:out>
+                                    <c:out value="${publisher.name}"></c:out>
                                 </a>
 
-                                <c:if test="${!status.last}"><br /></c:if>
+                                <c:if test="${!status.last}"><br/></c:if>
                             </c:forEach>
                         </div>
                     </div>
@@ -222,14 +247,17 @@
                             <%--End No Reviews--%>
                             <%--Review list--%>
                             <c:otherwise>
-                                <h5 class="center">Recent Reviews - <a href="<c:url value="/reviews?gameId=${game.id}" />">See All</a></h5>
+                                <h5 class="center">Recent Reviews - <a
+                                        href="<c:url value="/reviews?gameId=${game.id}" />">See All</a></h5>
                                 <ul class="collection">
                                     <c:forEach items="${reviews}" var="review">
                                         <li class="collection-item avatar">
-                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />"
+                                                 alt="<c:out value="${review.user.username}" />" class="circle">
                                             <span class="title">${review.user.username}</span>
                                             <p class="secondary-content" style="color: black;">${review.date}</p>
-                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a></p>
+                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other
+                                                reviews by ${review.user.username}</a></p>
                                             <br/>
                                             <div class="row">
                                                 <p class="col s10">${review.review}</p>
@@ -245,7 +273,9 @@
                                                         <br/>
                                                         Fun: <span class="right">${review.funScore}</span>
                                                         <br/>
-                                                        <b>Overall: <span class="right"><fmt:formatNumber value="${review.overallScore}" maxFractionDigits="2" /></span></b>
+                                                        <b>Overall: <span class="right"><fmt:formatNumber
+                                                                value="${review.overallScore}"
+                                                                maxFractionDigits="2"/></span></b>
                                                     </p>
                                                 </div>
                                             </div>
@@ -259,7 +289,9 @@
                         <c:if test="${canSubmitReview}">
                             <div class="row">
                                 <div class="col s12 center">
-                                    <a href="<c:url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+                                    <a href="<c:url value="/write-review?id=${game.id}" />"
+                                       class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+                                            class="material-icons right">send</i></a>
                                 </div>
                             </div>
                         </c:if>
@@ -302,15 +334,27 @@
 <script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
+        $(".delete-button").on('click', function (event) {
+            debugger;
+            var gameId = $(this).data('game-id');
+            var userId = $(this).data('user-id');
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
+                <input type='hidden' name='gameId' value='" + gameId + "' /> \
+                <input type='hidden' name='userId' value='" + userId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+               </form>").submit();
+        });
+
         $("#shelves").on("change", function (event) {
             //$(this).material_select();
             var selectedShelves = $(this).val();
-            if(selectedShelves.length == 0) {
+            if (selectedShelves.length == 0) {
                 //No selected shelves, set everything to false
                 $(".shelfHidden").val("false");
             } else {
-                $(".shelfHidden").each(function(i, element) {
+                $(".shelfHidden").each(function (i, element) {
                     element = $(element);
                     element.val(selectedShelves.indexOf(element.attr("name")) != -1);
                 });

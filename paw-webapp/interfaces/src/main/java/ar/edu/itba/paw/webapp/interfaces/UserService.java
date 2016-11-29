@@ -222,4 +222,10 @@ public interface UserService {
      */
     void removeProfilePicture(long userId) throws NoSuchEntityException;
 
+    /**
+     * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
+     * @param userId
+     * @param gameId
+     */
+    void removeFromList(long userId, long gameId);
 }

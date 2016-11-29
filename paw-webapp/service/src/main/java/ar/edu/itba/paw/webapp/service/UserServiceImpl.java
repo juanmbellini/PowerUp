@@ -4,10 +4,12 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private ShelfService shelfService;
 
     public UserServiceImpl() {}
 
@@ -191,6 +196,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeProfilePicture(long userId) throws NoSuchEntityException {
         userDao.removeProfilePicture(userId);
+    }
+
+    @Override
+    public void removeFromList(long userId, long gameId) {
+        removeScore(userId,gameId);
+        removeStatus(userId,gameId);
+        for(Shelf shelf: shelfService.findByUserId(userId)){
+            shelfService.removeGame(shelf.getId(),gameId);
+        }
     }
 
     /**
