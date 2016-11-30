@@ -273,6 +273,16 @@ public class GameHibernateDao implements GameDao {
     }
 
     @Override
+    public Map<String, String> getVideos(long gameId) {
+        return new HashMap<>(DaoHelper.findSingleOrThrow(em, Game.class, gameId).getVideos());
+    }
+
+    @Override
+    public Set<String> getPictureUrls(long gameId) {
+        return new LinkedHashSet<>(DaoHelper.findSingleOrThrow(em, Game.class, gameId).getPictureUrls());
+    }
+
+    @Override
     public Map<Long, Integer> getScores(long gameId) {
         return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
     }

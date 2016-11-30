@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
+import ar.edu.itba.paw.webapp.form.ChangePasswordForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.MailService;
@@ -64,7 +65,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/profile")
-    public ModelAndView profile(@RequestParam(value = "username", required = false) String username) {
+    public ModelAndView profile(@RequestParam(value = "username", required = false) String username,
+                                @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
+                                final BindingResult errors) {
         if(username == null) {
             if(isLoggedIn()) {
                 return new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
@@ -79,6 +82,7 @@ public class UserController extends BaseController {
         //Safe to render Profile page
         ModelAndView mav = new ModelAndView("profile");
         mav.addObject("user", user);
+        mav.addObject("formHasErrors", errors.hasErrors());
         Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
         mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
         mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
@@ -171,14 +175,19 @@ public class UserController extends BaseController {
         return new ModelAndView("redirect:/");
     }
 
-    @RequestMapping(value = "/change-password", method = {RequestMethod.POST})
-    public ModelAndView changePassword(@RequestParam(name = "oldPassword") final String oldPassword,
-                                       @RequestParam(name = "newPassword") final String newPassword) {
+
+    public ModelAndView changePassword(@Valid @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
+                                       final BindingResult errors,
+                                        @RequestParam (value = "username") final String username) {
+
+        if (errors.hasErrors()) {
+            return profile(username, form, errors);
+        }
 
         User user = getCurrentUser();
-        String hashedOldPassword = passwordEncoder.encode(oldPassword);
-        String hashedNewPassword = passwordEncoder.encode(newPassword);
-        if(oldPassword.equals(user.getHashedPassword())){
+        String hashedOldPassword = passwordEncoder.encode(form.getOldPassword());
+        String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
+        if(hashedOldPassword.equals(user.getHashedPassword())){
             userService.changePassword(user.getId(),hashedNewPassword);
         }else{
             LOG.warn("old password did not match");

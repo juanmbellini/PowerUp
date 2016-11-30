@@ -39,6 +39,16 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
+    public Set<Thread> findBestPointed(int limit) {
+        return threadDao.findBestPointed(limit);
+    }
+
+    @Override
+    public Set<Thread> findHottest(int limit) {
+        return threadDao.findHottest(limit);
+    }
+
+    @Override
     public Set<Thread> findByUserId(long id) {
         return threadDao.findByUserId(id);
     }
@@ -121,5 +131,10 @@ public class ThreadServiceImpl implements ThreadService {
             throw new UnauthorizedException("Thread #" + threadId + " does not belong to user #" + userId + ", can't delete");
         }
         threadDao.deleteThread(threadId);
+    }
+
+    @Override
+    public void updateHotValue(long threadId) {
+        threadDao.updateHotValue(threadId);
     }
 }
