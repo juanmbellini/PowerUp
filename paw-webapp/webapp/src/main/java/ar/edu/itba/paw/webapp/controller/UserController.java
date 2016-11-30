@@ -1,8 +1,11 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
+import ar.edu.itba.paw.webapp.form.ChangePasswordForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.interfaces.MailService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.*;
@@ -38,6 +41,11 @@ public class UserController extends BaseController {
      * A game service used for listing games.
      */
     private GameService gameService;
+
+    /**
+     * A mail service used for reseting the user's password.
+     */
+    private MailService mailService;
     /**
      * A shelf service used for getting shelf information.
      */
@@ -56,8 +64,10 @@ public class UserController extends BaseController {
 
 
     @Autowired
-    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
+    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder, ShelfService shelfService, MailService mailService) {
+
         super(us);
+        this.mailService=mailService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
         typeReference = new TypeReference<ArrayList<String>>() {};
@@ -65,7 +75,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/profile")
-    public ModelAndView profile(@RequestParam(value = "username", required = false) String username) {
+    public ModelAndView profile(@RequestParam(value = "username", required = false) String username,
+                                @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
+                                final BindingResult errors) {
         if(username == null) {
             if(isLoggedIn()) {
                 return new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
@@ -80,6 +92,7 @@ public class UserController extends BaseController {
         //Safe to render Profile page
         ModelAndView mav = new ModelAndView("profile");
         mav.addObject("user", user);
+        mav.addObject("formHasErrors", errors.hasErrors());
         Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
         mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
         mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
@@ -247,11 +260,52 @@ public class UserController extends BaseController {
             LOG.warn("Registration form validated but UserExists exception still thrown during registration of {} / {}: {}", username, email, e);
             return registerGet(form);
         }
+        mailService.sendEmailWelcome(user);
         LOG.info("Registered user {} with email {}, logging them in and redirecting to home", user.getUsername(), user.getEmail());
 
         //Log the new user in
         Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
         SecurityContextHolder.getContext().setAuthentication(auth);
+        return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping(value = "/change-password", method = {RequestMethod.POST})
+    public ModelAndView changePassword(@Valid @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
+                                       final BindingResult errors,
+                                        @RequestParam (value = "username") final String username) {
+
+        if (errors.hasErrors()) {
+            return profile(username, form, errors);
+        }
+
+        User user = userService.findByUsername(username);
+        String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
+        userService.changePassword(user.getId(),hashedNewPassword);
+        mailService.sendEmailChangePassword(user);
+        LOG.info("Your password was changed");
+
+
+        return new ModelAndView("redirect:/profile");
+    }
+
+    @RequestMapping(value = "/reset-password", method = {RequestMethod.POST})
+    public ModelAndView resetPassword(@RequestParam(name = "email") final String email) {
+
+        //hace un findByEmail, si lo encontraas resetea, listo
+
+        User user;
+        try {
+            user = userService.findByEmail(email);
+        } catch (NoSuchEntityException e) {
+            LOG.warn("No user found associated to that email");
+            return new ModelAndView("redirect:/");
+        }
+        String password = userService.generateNewPassword();
+        String hashedPassword = passwordEncoder.encode(password);
+        userService.changePassword(user.getId(), hashedPassword);
+        mailService.sendEmailResetPassword(user,password);
+        LOG.info("Password has been reseted. Your new password has been sent to your email.");
+
         return new ModelAndView("redirect:/");
     }
 }

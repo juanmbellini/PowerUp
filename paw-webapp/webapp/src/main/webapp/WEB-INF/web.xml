@@ -30,6 +30,11 @@
         <!--<location>/WEB-INF/jsp/error500.jsp</location>-->
         <location>/error500</location>
     </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <!--<location>/WEB-INF/jsp/error405.jsp</location>-->
+        <location>/error405</location>
+    </error-page>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>

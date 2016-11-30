@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -193,6 +195,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException {
+        userDao.changePassword(userId, newHashedPassword);
+    }
+
+    @Override
     public void removeFromList(long userId, long gameId) {
         removeScore(userId,gameId);
         removeStatus(userId,gameId);
@@ -215,5 +222,15 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchUserException(userId);
         }
         return result;
+    }
+
+    /**
+     * Returns a new randomly generated password.
+     * Credits to erickson, a StackOverflow user.
+     * @return The generated password.
+     */
+    public String generateNewPassword() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
     }
 }
