@@ -25,7 +25,7 @@
             <ul class="collection">
                 <li class="collection-item avatar">
                     <img src="<c:url value="/profile-picture?username=${thread.creator.username}" />" alt="<c:out value="${thread.title}" />" class="circle">
-                    <span class="title wrap-text">Submitted by <c:out value="${thread.creator.username}" /></span>
+                    <span class="title wrap-text">Submitted by <a href="<c:url value="/profile?username=${thread.creator.username}" />"><c:out value="${thread.creator.username}" /></a></span>
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
                     <p class="preserve-newlines wrap-text"><c:out value="${thread.initialComment}" /></p>
