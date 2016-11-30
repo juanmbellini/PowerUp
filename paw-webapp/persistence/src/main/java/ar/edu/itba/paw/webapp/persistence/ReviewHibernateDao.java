@@ -151,4 +151,12 @@ public class ReviewHibernateDao implements ReviewDao {
         }
         return DaoHelper.findSingleWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1 AND R.user.id = ?2", gameId, userId);
     }
+
+    @Override
+    public void delete(long reviewId) {
+        Review review = findById(reviewId);
+        if(review==null) return;
+        em.remove(review);
+
+    }
 }

@@ -84,6 +84,9 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p class="secondary-content" style="color: black;">${review.date}</p>
+                                    <c:if test="${review.user.username == currentUsername}">
+                                        <a href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="${review.id}"><i class="material-icons right">delete</i></a>
+                                    </c:if>
                                     <p class="wrap-text">
                                         <c:choose>
                                             <c:when test="${empty user && not empty game}">
@@ -225,6 +228,15 @@
     $(function() {
         $("#pageSize").on("change", function() {
             window.location = "${changePageUrl}pageSize=" + $(this).val();
+        });
+
+        $(".delete-button").on('click', function (event) {
+            var reviewId = $(this).data('reviewId');
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/delete-review" />' method='POST'> \
+                <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+               </form>").submit();
         });
     });
 </script>

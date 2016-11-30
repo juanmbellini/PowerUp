@@ -127,4 +127,10 @@ public interface ReviewService {
      * @throws NoSuchUserException If an invalid game ID is provided.
      */
     Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
+
+    /**
+     * Deletes review from user.
+     * @param reviewId
+     */
+    void delete(long reviewId);
 }

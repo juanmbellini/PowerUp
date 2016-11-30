@@ -77,4 +77,9 @@ public class ReviewServiceImpl implements ReviewService {
     public Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException {
         return reviewDao.find(userId, gameId);
     }
+
+    @Override
+    public void delete(long reviewId) {
+        reviewDao.delete(reviewId);
+    }
 }

@@ -67,4 +67,9 @@ public interface ReviewDao {
      * @see ReviewService#find(long, long)
      */
     Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
+
+    /**
+     * @see ReviewService#delete(long)
+     */
+    void delete(long reviewId);
 }
