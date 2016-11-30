@@ -42,15 +42,16 @@
                 <button type='submit' class='btn waves-effect'>Search <i class="material-icons right">search</i></button>
             </form>
             <br />
-            <div class="col s12 divider"></div>
-            <h5 style="margin-bottom:0;">Create a Shelf</h5>
-            <form action="<c:url value="/create-shelf" />" method="POST">
-                <div class="input-field center col s12">
-                    <input type="text" name="name" required />
-                </div>
-                <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
-            </form>
-
+            <c:if test="${isLoggedIn && currentUsername == user.username}">
+                <div class="col s12 divider"></div>
+                <h5 style="margin-bottom:0;">Create a Shelf</h5>
+                <form action="<c:url value="/create-shelf" />" method="POST">
+                    <div class="input-field center col s12">
+                        <input type="text" name="name" required />
+                    </div>
+                    <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
+                </form>
+            </c:if>
         </div>
         <div class="col s9">
 
