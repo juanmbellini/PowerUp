@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
@@ -295,7 +296,11 @@ public class GameController extends BaseController {
     }
 
     @RequestMapping(value = "/reviews")
-    public ModelAndView reviews(@RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId, @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId) {
+    public ModelAndView reviews(HttpServletRequest request,
+                                @RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId,
+                                @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId,
+                                @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //Need at least one of the two
         if(gameId == -1 && userId == -1) {
             return new ModelAndView("error400");
@@ -306,24 +311,23 @@ public class GameController extends BaseController {
             if(gameId != -1) {
                 if(userId != -1) {
                     //Find by both
-                    Set<Review> singleReview = new LinkedHashSet<>(1);  //Add as set because view assumes it will be a collection
-                    singleReview.add(reviewService.find(userId, gameId));
-                    mav.addObject("reviews", singleReview);
+                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId)));
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
-                    //TODO delete
-                    Page<Review> page = reviewService.findPageByGameId(gameId, 1, 25);
-                    mav.addObject("reviews", reviewService.findByGameId(gameId));
+                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
                 }
                 //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
                 mav.addObject("game", gameService.findById(gameId));
             } else {
                 //Find by user ID
-                mav.addObject("reviews", reviewService.findByUserId(userId));
+                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
                 mav.addObject("user", userService.findById(userId));
             }
             mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        } catch(IllegalPageException e) {
+            LOG.warn("Invalid reviews page requested for game #{} by user #{}: {}", gameId, userId, e.getMessage());
+            mav = new ModelAndView("error400");
         } catch (NoSuchGameException e) {
             LOG.warn("Requested reviews for nonexistent game (ID={})", gameId);
             mav = new ModelAndView("error404");
@@ -334,6 +338,20 @@ public class GameController extends BaseController {
             LOG.error("Error rendering Reviews page", e);
             mav = new ModelAndView("error500");
         }
+        StringBuilder url = new StringBuilder(request.getContextPath());
+        url.append("/reviews?");
+        if(userId != -1) {
+            url.append("userId=").append(userId);
+        }
+        if(gameId != -1) {
+            if(userId != -1) url.append("&");
+            url.append("gameId=").append(gameId);
+        }
+        if(userId != -1 || gameId != -1) {
+            url.append("&");
+        }
+        mav.addObject("changePageUrl", url.toString());
+        mav.addObject("pageSizes", new int[] {10,25, 50});
         return mav;
     }
 

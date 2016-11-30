@@ -150,7 +150,7 @@ import java.util.List;
         for (int i = 0; i < parameters.length; i++) {
             query.setParameter(i+1, parameters[i]);
         }
-        query.setFirstResult(pageNumber*pageSize);
+        query.setFirstResult((pageNumber-1)*pageSize);
         query.setMaxResults(pageSize);
         try {
             Page<T> page = new Page<>();
@@ -159,7 +159,7 @@ import java.util.List;
             page.setPageSize(pageSize);
             page.setPageNumber(pageNumber);
             page.setOverAllAmountOfElements(data.size());
-            page.setData(data);
+            page.setData(query.getResultList());
             return page;
         } catch (NoResultException e) {
             return Page.emptyPage();

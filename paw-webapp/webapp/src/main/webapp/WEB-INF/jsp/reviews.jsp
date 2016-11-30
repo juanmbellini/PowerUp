@@ -26,7 +26,8 @@
 
 <main>
     <div class="container">
-        <div class="section">
+        <div class="section no-pad-bot">
+        <%--TITLE--%>
             <h2 class="header center orange-text wrap-text">
                 <c:if test="${not empty game}">
                     <a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
@@ -36,15 +37,28 @@
                     by <a href="<c:url value="/profile?username=${user.username}" />"><c:out value="${user.username}" /> <img class="circle" style="width:50px; height:50px; vertical-align: middle;" src="<c:url value="/profile-picture?username=${user.username}" />" /></a>
                 </c:if>
             </h2>
+            <%--PAGE SIZE--%>
+            <c:if test="${reviews.overAllAmountOfElements > 0}">
+                <div class="row">
+                    <div class="input-field col s2 offset-s5">
+                        <select id="pageSize">
+                            <c:forEach var="pageSize" items="${pageSizes}">
+                                <option ${reviews.pageSize == pageSize ? "selected" : ""}>${pageSize}</option>
+                            </c:forEach>
+                        </select>
+                        <label>Reviews per page</label>
+                    </div>
+                </div>
+            </c:if>
         </div>
         <%--REVIEWS--%>
-        <div class="section">
+        <div class="section no-pad-top">
             <div class="row">
                 <c:choose>
-                    <c:when test="${fn:length(reviews) > 0}">
+                    <c:when test="${reviews.overAllAmountOfElements > 0}">
                         <%--REVIEWS LIST--%>
                         <ul class="collection reviews-list">
-                            <c:forEach items="${reviews}" var="review">
+                            <c:forEach items="${reviews.data}" var="review">
                                 <li class="collection-item avatar">
                                     <c:choose>
                                         <c:when test="${empty user && not empty game}">
@@ -106,6 +120,79 @@
                             </c:forEach>
                         </ul>
                         <%--END REVIEWS LIST--%>
+                        <%--PAGINATION--%>
+                        <c:if test="${reviews.totalPages > 1}">
+                            <div class="row">
+                                <ul class="pagination center">
+                                        <%--Left chevron - only shown when there are > 1 pages --%>
+                                    <c:if test="${reviews.totalPages > 1}">
+                                        <c:choose>
+                                            <c:when test="${reviews.pageNumber > 1}">
+                                                <li class="waves-effect">
+                                                    <a href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">
+                                                        <i class="material-icons">chevron_left</i>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="disabled">
+                                                    <a href="#!">
+                                                        <i class="material-icons">chevron_left</i>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                        <%--Page numbers - always shown--%>
+                                    <c:set var="just_one"
+                                           value="${(reviews.pageNumber - 4) <= 0 || reviews.totalPages <= 10}"/>
+                                    <c:set var="no_more_prev"
+                                           value="${(reviews.pageNumber + 5) > reviews.totalPages}"/>
+                                    <c:set var="the_first_ones"
+                                           value="${(reviews.pageNumber + 5) < 10}"/>
+                                    <c:set var="no_more_next"
+                                           value="${reviews.totalPages < 10 || (reviews.pageNumber + 5) >= reviews.totalPages}"/>
+                                    <c:forEach var="pageIt"
+                                               begin="${just_one ? 1 : no_more_prev ? reviews.totalPages - 9 : reviews.pageNumber - 4}"
+                                               end="${no_more_next ? reviews.totalPages : the_first_ones ? 10 : reviews.pageNumber + 5}">
+                                        <li class=${pageIt == reviews.pageNumber ? "active" : "waves-effect"}>
+                                            <c:choose>
+                                                <c:when test="${pageIt == reviews.pageNumber}">
+                                                    <a>
+                                                            ${pageIt}
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="${changePageUrl}pageNumber=${pageIt}&pageSize=${reviews.pageSize}">
+                                                            ${pageIt}
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </li>
+                                    </c:forEach>
+                                        <%--Right chevron - only shown if there are > 1 pages--%>
+                                    <c:if test="${reviews.totalPages > 1}">
+                                        <c:choose>
+                                            <c:when test="${reviews.pageNumber == reviews.totalPages}">
+                                                <li class="disabled">
+                                                    <a href="#!">
+                                                        <i class="material-icons">chevron_right</i>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="waves-effect">
+                                                    <a href="${changePageUrl}pageNumber=${reviews.pageNumber + 1}&pageSize=${reviews.pageSize}">
+                                                        <i class="material-icons">chevron_right</i>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+                        <%--END PAGINATION--%>
                     </c:when>
                     <c:otherwise>
                         <%--NO REVIEWS--%>
@@ -134,5 +221,12 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript">
+    $(function() {
+        $("#pageSize").on("change", function() {
+            window.location = "${changePageUrl}pageSize=" + $(this).val();
+        });
+    });
+</script>
 </body>
 </html>
