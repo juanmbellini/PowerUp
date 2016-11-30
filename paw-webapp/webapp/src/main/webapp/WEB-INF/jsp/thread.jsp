@@ -298,8 +298,8 @@
                     return false
                 }
 
-                if (inputValue === "") {
-                    swal.showInputError("You need to write something!");
+                if (inputValue === "" || inputValue.length > 50) {
+                    swal.showInputError("Please write between 1 and 50 characters");
                     return false
                 }
 
