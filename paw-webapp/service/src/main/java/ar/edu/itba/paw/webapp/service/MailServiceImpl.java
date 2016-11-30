@@ -22,7 +22,7 @@ public class MailServiceImpl implements MailService{
     JavaMailSender mailSender;
 
     @Async
-    public void sendEmailChangePassword(User user, String newPassword) {
+    public void sendEmailResetPassword(User user, String newPassword) {
 
 
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
@@ -37,6 +37,54 @@ public class MailServiceImpl implements MailService{
                         + newPassword
                         + "\nPlease head to your userpage and change your password");
                 mimeMessage.setSubject("PowerApp password reset");
+            }
+        };
+
+        try {
+            mailSender.send(preparator);
+        } catch (MailException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void sendEmailChangePassword(User user) {
+        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+            @Override
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
+                mimeMessage.setRecipient(Message.RecipientType.TO,
+                        new InternetAddress(user.getEmail()));
+                mimeMessage.setText("Dear "
+                        + user.getUsername()
+                        + ", \nYour password was changed. If you haven't changed your password, please reset your password at"
+                        + " the log in page clicking on forgot password.");
+                mimeMessage.setSubject("PowerApp password change notice");
+            }
+        };
+
+        try {
+            mailSender.send(preparator);
+        } catch (MailException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void sendEmailWelcome(User user) {
+        MimeMessagePreparator preparator = new MimeMessagePreparator() {
+            @Override
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
+                mimeMessage.setRecipient(Message.RecipientType.TO,
+                        new InternetAddress(user.getEmail()));
+                mimeMessage.setText("Dear "
+                        + user.getUsername()
+                        + ", \nWelcome to PowerApp, your videogame database and discovery platform. "
+                        + " We hope you enjoy our services. Feel free to send any feedback to powerappcontact@gmail.com. " +
+                        "\n Your sincerely," +
+                        "\n PowerApp team.");
+                mimeMessage.setSubject(user.getUsername() + ", welcome to PowerApp!");
             }
         };
 
