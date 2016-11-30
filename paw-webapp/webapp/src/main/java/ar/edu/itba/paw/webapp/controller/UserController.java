@@ -197,8 +197,17 @@ public class UserController extends BaseController {
             if(validPlayStatus && validShelf) games.add(game);
         }
 
-
-
+        Collection<Game> recommendedGames = new LinkedHashSet<>();
+        if (isLoggedIn()) {
+            Set<Shelf> shelfFilter = new HashSet<>();
+            for(Shelf shelf: shelves){
+                if(shelvesFilter.contains(shelf.getName())){
+                    shelfFilter.add(shelf);
+                }
+            }
+            recommendedGames = userService.recommendGames(getCurrentUser().getId(), shelfFilter);
+        }
+        mav.addObject("recommendedGames", recommendedGames);
         mav.addObject("playStatusEnumValues", PlayStatus.values());
         mav.addObject("playStatusesFilter",playStatusesFilter);
         mav.addObject("shelvesFilter",shelvesFilter);
@@ -307,7 +316,6 @@ public class UserController extends BaseController {
         userService.changePassword(user.getId(), hashedPassword);
         mailService.sendEmailResetPassword(user,password);
         LOG.info("Password has been reseted. Your new password has been sent to your email.");
-
         return new ModelAndView("redirect:/");
     }
 }

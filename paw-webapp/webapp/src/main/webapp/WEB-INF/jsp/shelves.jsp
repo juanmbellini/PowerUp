@@ -7,6 +7,8 @@
 <html lang="en">
 <head>
     <%@include file="header.jsp" %>
+    <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
     <title><c:out value="${user.username}'s Game List - PowerUp"/></title>
     <%--TODO suffix ' instead of 's if username ends with s--%>
 </head>
@@ -173,7 +175,32 @@
             <div class="col s1">
 
             </div>
+        <div class="container">
+            <div class="section">
+                <c:if test="${ fn:length( recommendedGames) > 0 }">
+                    <div class="row">
+                        <h5 class="center">Recommended Games for you <c:if test="${! empty shelvesFilter}">for this shelves</c:if>!</h5>
+                        <div class="slick-carousel">
+                            <c:forEach var="game" items="${recommendedGames}">
+                                <div class="slide-container">
+                                    <div class="valign-wrapper slide-image">
+                                        <a href="<c:url value="/game?id=${game.id}"/>">
+                                            <img data-lazy="${game.coverPictureUrl}" class="valign"/>
+                                        </a>
+                                    </div>
+                                    <h5 class="center slide-text">
+                                        <a href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>
+                                    </h5>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+        </div>
     </div>
+
+
 
 </main>
 
@@ -255,6 +282,14 @@
                 //Create an inline form and submit it to redirect with POST
                 $("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();
             });
+        })
+
+        $('.slick-carousel').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            arrows: true,
+            lazyload: 'ondemand'
         });
     });
 
@@ -272,6 +307,9 @@
             return entityMap[s];
         });
     }
+
 </script>
+
+<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
 </body>
 </html>

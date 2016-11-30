@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
@@ -182,6 +183,14 @@ public interface UserService {
     Collection<Game> recommendGames(long userId);
 
     /**
+     * Recommends games for user based on the scores of the games he has scored for the shelf selected
+     * @param userId
+     * @param shelves
+     * @return
+     */
+    Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
+
+    /**
      * Gets all games in this user's main game list (games they have marked as playing, played, etc.).
      *
      * @param userId The ID of the user whose list to fetch.
@@ -242,4 +251,5 @@ public interface UserService {
      * @param gameId
      */
     void removeFromList(long userId, long gameId);
+
 }

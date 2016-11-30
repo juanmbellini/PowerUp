@@ -167,6 +167,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
+        return userDao.recommendGames(userId,shelves);
+    }
+
+    @Override
     public Map<PlayStatus, Set<Game>> getGameList(long userId) {
         User user = getFreshUser(userId);
         Map<PlayStatus, Set<Game>> result = new HashMap<>();
