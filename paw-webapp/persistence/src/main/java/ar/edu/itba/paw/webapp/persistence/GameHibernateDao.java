@@ -79,6 +79,9 @@ public class GameHibernateDao implements GameDao {
         }
 
         int count = ((Long) queryCount.getSingleResult()).intValue(); //TODO wat if more?
+        if (count == 0) {
+            return Page.emptyPage();
+        }
         int actualPageSize = pageSize == 0 ? count : pageSize;
 
         querySelect.setFirstResult(actualPageSize * (pageNumber - 1));
