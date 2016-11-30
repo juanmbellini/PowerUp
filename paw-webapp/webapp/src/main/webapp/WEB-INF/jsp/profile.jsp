@@ -53,39 +53,10 @@
                         </script>
                     </c:if>
                 </form>
-                    <!-- Modal Trigger -->
-                <a class="waves-effect waves-light btn" href="#modal1">Change Password</a>
-                <!-- Modal Structure -->
-                <div id="modal1" class="modal">
-                    <c:url value="/change-password" var="postUrl" />
-                    <form:form method="POST" modelAttribute="changePasswordForm" action="${postUrl}">
-                        <input type="hidden" value="${user.username}" name="username" />
-                        <div class="modal-content">
-                            <h4>Change Password</h4>
-                            <div class='input-field'>
-                                <p>oldPassword:</p>
-                                <form:input type="text" path="oldPassword"/>
-                                <form:errors path="oldPassword" cssClass="formError" element="p" Style="size: 1px"/>
-                            </div>
-                            <div class='input-field'>
-                                <p>newPassword:</p>
-                                <form:input type="text" path="newPassword"/>
-                                <form:errors path="newPassword" cssClass="formError" element="p" Style="size: 1px"/>
-                            </div>
-                            <div class='input-field'>
-                                <p>repeatNewPassword:</p>
-                                <form:input type="text" path="repeatNewPassword"/>
-                                <form:errors path="repeatNewPassword" cssClass="formError" element="p" Style="size: 1px"/>
-                            </div>
-                            <button type="submit" class="btn waves-effect waves-light">Submit<i class="material-icons">send</i></button>
-                        </div>
-                        <%--<div class="modal-footer">--%>
-                            <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>--%>
-                        <%--</div>--%>
-                    </form:form>
-                </div>
             </c:if>
             <br />
+            <!-- Modal Trigger -->
+            <a id="change-password-trigger" class="waves-effect waves-light btn" href="#change-password-modal">Change Password</a>
             <br />
             <h5>Profile Stats</h5>
             <p>Played <b>${fn:length(playedGames)}</b> game${fn:length(playedGames) == 1 ? "" : "s"}</p>
@@ -145,24 +116,61 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+
+<!-- PASSWORD RESET MODAL -->
+<div id="change-password-modal" class="modal">
+    <c:url value="/change-password" var="postUrl" />
+    <form:form id="change-password-form" method="POST" modelAttribute="changePasswordForm" action="${postUrl}">
+        <input type="hidden" value="${user.username}" name="username" />
+        <div class="modal-content">
+            <h4 class="center">Change Your Password</h4>
+            <div class='input-field'>
+                <form:input type="password" path="oldPassword" required="required" />
+                <form:errors path="" cssClass="formError" element="p" Style="size: 1px"/>
+                <form:label path="oldPassword">Old Password</form:label>
+            </div>
+            <div class='input-field'>
+                <form:input type="password" path="newPassword" required="required" />
+                <form:errors path="" cssClass="formError" element="p" Style="size: 1px"/>
+                <form:label path="newPassword">New Password</form:label>
+            </div>
+            <div class='input-field'>
+                <form:input type="password" path="repeatNewPassword" required="required"/>
+                <form:errors path="" cssClass="formError" element="p" Style="size: 1px"/>
+                <form:label path="repeatNewPassword">Repeat New Password</form:label>
+            </div>
+            <div class="row">
+                <button type="button" class="btn waves-effect waves-light col s3 offset-s1 red lighten-1">Cancel<i class="material-icons right">close</i></button>
+                <button type="submit" class="btn waves-effect waves-light col s3 offset-s4">Submit<i class="material-icons right">send</i></button>
+            </div>
+        </div>
+    </form:form>
+</div>
+<!-- END PASSWORD RESET MODAL -->
 <script type="text/javascript">
-    $(function() {
-        debugger;
-        $('#modal1').modal({
-            dismissible: true, // Modal can be dismissed by clicking outside of the modal
-            opacity: .5, // Opacity of modal background
-            in_duration: 300, // Transition in duration
-            out_duration: 200, // Transition out duration
-            starting_top: '4%', // Starting top style attribute
-            ending_top: '10%', // Ending top style attribute
-            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-                alert("Ready");
-                console.log(modal, trigger);
-            },
-            complete: function () {
-                alert('Closed');
-            } // Callback for Modal close
+    $(function(){
+        $('#change-password-trigger').on("click", function() {
+            $("#change-password-modal").openModal({
+                dismissible: false
+            });
         });
+
+        $('#change-password-form').on("submit", function() {
+            $(this).find("button").attr("disabled", "disabled");
+        });
+
+        $('#change-password-modal button[type=button]').on("click", function() {
+            $("#change-password-modal").closeModal();
+        });
+
+        <c:if test="${formHasErrors}">
+            $('#change-password-trigger').trigger("click");
+        </c:if>
+
+//        $("#change-password-form").on("submit", function(event) {
+//            var errorState = false;
+//            //TODO validate matching new password
+//        });
     });
 </script>
 </body>

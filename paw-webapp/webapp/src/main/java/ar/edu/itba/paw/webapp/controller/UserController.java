@@ -66,7 +66,8 @@ public class UserController extends BaseController {
 
     @RequestMapping("/profile")
     public ModelAndView profile(@RequestParam(value = "username", required = false) String username,
-                                @ModelAttribute("changePasswordForm") final ChangePasswordForm form) {
+                                @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
+                                final BindingResult errors) {
         if(username == null) {
             if(isLoggedIn()) {
                 return new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
@@ -81,6 +82,7 @@ public class UserController extends BaseController {
         //Safe to render Profile page
         ModelAndView mav = new ModelAndView("profile");
         mav.addObject("user", user);
+        mav.addObject("formHasErrors", errors.hasErrors());
         Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
         mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
         mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
@@ -179,7 +181,7 @@ public class UserController extends BaseController {
                                         @RequestParam (value = "username") final String username) {
 
         if (errors.hasErrors()) {
-            return profile(username,form);
+            return profile(username, form, errors);
         }
 
         User user = getCurrentUser();
