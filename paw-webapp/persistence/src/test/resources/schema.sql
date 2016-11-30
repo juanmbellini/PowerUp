@@ -1,4 +1,16 @@
 
+-- Remove all data before
+DROP SCHEMA PUBLIC CASCADE;
+
+-- Sequences
+CREATE SEQUENCE companies_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE hibernate_sequence START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE genres_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE platforms_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE keywords_id_seq START WITH 1 INCREMENT BY 1;
+
+
+
 -- Creation of entity tables
 CREATE TABLE games (
   id                          INTEGER IDENTITY NOT NULL PRIMARY KEY,
