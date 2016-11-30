@@ -33,6 +33,8 @@ public class SessionController extends BaseController{
     }
 
 
+
+
     /*
      * Log out request is handled by Spring Security
      */

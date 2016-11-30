@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -186,6 +188,11 @@ public class UserServiceImpl implements UserService {
         userDao.removeProfilePicture(userId);
     }
 
+    @Override
+    public void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException{
+        userDao.changePassword(userId,newHashedPassword);
+    }
+
     /**
      * Gets a user by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
      * and throws exception if not found. Helper method used to reduce code in other service methods.
@@ -200,5 +207,15 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchUserException(userId);
         }
         return result;
+    }
+
+    /**
+     * Returns a new randomly generated password.
+     * Credits to erickson, a StackOverflow user.
+     * @return The generated password.
+     */
+    public String generateNewPassword() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
     }
 }

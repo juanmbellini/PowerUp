@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +53,37 @@
                         </script>
                     </c:if>
                 </form>
+                    <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn" href="#modal1">Change Password</a>
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <c:url value="/change-password" var="postUrl" />
+                    <form:form method="POST" modelAttribute="changePasswordForm" action="${postUrl}">
+                        <input type="hidden" value="${user.username}" name="username" />
+                        <div class="modal-content">
+                            <h4>Change Password</h4>
+                            <div class='input-field'>
+                                <p>oldPassword:</p>
+                                <form:input type="text" path="oldPassword"/>
+                                <form:errors path="oldPassword" cssClass="formError" element="p" Style="size: 1px"/>
+                            </div>
+                            <div class='input-field'>
+                                <p>newPassword:</p>
+                                <form:input type="text" path="newPassword"/>
+                                <form:errors path="newPassword" cssClass="formError" element="p" Style="size: 1px"/>
+                            </div>
+                            <div class='input-field'>
+                                <p>repeatNewPassword:</p>
+                                <form:input type="text" path="repeatNewPassword"/>
+                                <form:errors path="repeatNewPassword" cssClass="formError" element="p" Style="size: 1px"/>
+                            </div>
+                            <button type="submit" class="btn waves-effect waves-light">Submit<i class="material-icons">send</i></button>
+                        </div>
+                        <%--<div class="modal-footer">--%>
+                            <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>--%>
+                        <%--</div>--%>
+                    </form:form>
+                </div>
             </c:if>
             <br />
             <br />
@@ -113,5 +145,25 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript">
+    $(function() {
+        debugger;
+        $('#modal1').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            starting_top: '4%', // Starting top style attribute
+            ending_top: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                alert("Ready");
+                console.log(modal, trigger);
+            },
+            complete: function () {
+                alert('Closed');
+            } // Callback for Modal close
+        });
+    });
+</script>
 </body>
 </html>
