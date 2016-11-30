@@ -92,7 +92,16 @@
                                             </b></p>
                                         </div>
                                         <div class="col s1 center">
-                                            <p style="margin-top: 33px;"><b>${empty game.avgScore || game.avgScore==0? "No avg rating" : game.avgScore}</b></p>
+                                            <p style="margin-top: 33px;"><b>
+                                                <c:choose>
+                                                    <c:when test="empty game.avgScore || game.avgScore==0">
+                                                        <c:out value="No avg rating"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </b></p>
                                         </div>
                                         <div class="col s2 center">
                                             <%--<div class="secondary-content">--%>

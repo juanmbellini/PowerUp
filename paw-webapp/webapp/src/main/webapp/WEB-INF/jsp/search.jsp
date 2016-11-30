@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -233,7 +233,7 @@
                                 <div class="secondary-content">
                                     <c:choose>
                                         <c:when test="${game.avgScore <= 10 && game.avgScore > 0}">
-                                            <p class="rating-number center"><b>${game.avgScore}</b></p>
+                                            <p class="rating-number center"><b><fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" /></b></p>
                                             <p class="rating-stars hide-on-small-and-down">
                                                 <c:forEach begin="0" end="4" var="i">
                                                     <c:choose>
@@ -523,7 +523,7 @@
         var url = window.location.pathname;
 
         //Add name parameter
-        url += "?name=" + NAME;
+        url += "?name=" + encodeURIComponent(NAME);
 
         //Build filters, extracting the name of each value.
         var filters = {};
@@ -590,7 +590,7 @@
         //Discard page number parameter
 
         //Done, redirect
-        window.location = encodeURI(url);
+        window.location = url;
     }
 
     /* ******************************************

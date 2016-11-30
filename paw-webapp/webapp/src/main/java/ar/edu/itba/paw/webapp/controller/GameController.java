@@ -141,6 +141,7 @@ public class GameController extends BaseController {
             filters = objectMapper.readValue(filtersStr, typeReference);
 
             pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+            if(pageSize>100) pageSize=100;
             pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
                     DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
