@@ -241,6 +241,8 @@
             function (inputValue) {
                 if (inputValue === false) return false;
 
+                inputValue = inputValue.replace(/,/g, ";");
+
                 if (inputValue === "" || inputValue.length > 25) {
                     swal.showInputError("Please write between 1 and 25 characters");
                     return false;
