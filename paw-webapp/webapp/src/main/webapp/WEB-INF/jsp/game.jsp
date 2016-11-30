@@ -10,9 +10,9 @@
     <%@include file="header.jsp" %>
     <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/css/lightbox.css" />" type="text/css" rel="stylesheet"/>
     <title><c:out value="${game.name} - PowerUp"></c:out></title>
 </head>
-<body>
 <header>
     <%@include file="nav.jsp" %>
 </header>
@@ -245,7 +245,9 @@
                                     <c:forEach var="url" items="${pictures}">
                                         <div class="slide-container">
                                             <div class="valign-wrapper slide-image">
-                                                <img data-lazy="${url}" class="valign"/>
+                                                <a href="${url}" data-lightbox="screenshot-${status.index}">
+                                                    <img data-lazy="${url}" class="valign"/>
+                                                </a>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -366,5 +368,6 @@
         });
     });
 </script>
+<script type="text/javascript" src="<c:url value="/js/lightbox.js" />"></script>
 </body>
 </html>
