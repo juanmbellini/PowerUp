@@ -19,18 +19,19 @@
 
 <main>
     <div class="container">
-        <div class="section">
+        <div class="section no-pad-bot">
             <h1 class="header center orange-text"><c:out value="${game.name}"/></h1>
             <h5 class="center orange-text"><c:out value="${game.releaseDate.year}"/></h5>
         </div>
-        <%--Rate and status form if logged in--%>
+        <%--ACTION FORMS--%>
         <div class="section">
+            <%--RATE AND STATUS FORM--%>
             <div class="row">
                 <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
                 <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align" id="rateAndStatusForm">
                     <div class="col s3"></div>
                     <div class="col s6 center-align">
-                        <div class="row">
+                        <div class="row" style="margin-bottom:0;">
                             <div class="col s4 center-align">
                                 <form:select path="score" id="score">
                                     <form:option value="" label="Select score"/>
@@ -67,72 +68,63 @@
                     </div>
                 </form:form>
                 <c:if test="${isLoggedIn && canUpdateShelves}">
-                    <button id="delete-button" class="btn waves-effect waves-light">Remove <i class="material-icons right">delete</i></button>
+                    <button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>
                 </c:if>
             </div>
-        </div>
-
-
-        <c:if test="${canUpdateShelves}">
+            <%--END RATE AND STATUS FORM--%>
             <%--SHELVES FORM--%>
-            <div class="section">
-                <c:url value="/update-shelves-by-game" var="shelvesUrl"/>
-                <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
-                    <input type="hidden" name="gameId" value="${game.id}"/>
-                    <div class="row">
+            <c:if test="${canUpdateShelves}">
+                <div class="row" style="margin-bottom:0; margin-top: 0;">
+                    <c:url value="/update-shelves-by-game" var="shelvesUrl"/>
+                    <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
+                        <input type="hidden" name="gameId" value="${game.id}"/>
                         <div class="col s3"></div>
                         <div class="col s6 center-align">
-                            <div class="row">
-                                <p class="col s4 center">Update in shelves</p>
-                                <div class="col s4">
-                                    <c:choose>
-                                        <c:when test="${fn:length(shelves) == 0}">
-                                            <p>You have no shelves. Why not <a href="<c:url value="/list" />">create
-                                                one</a>?</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <select id="shelves" multiple>
-                                                <option value="" disabled selected>Select shelves</option>
-                                                    <%--<option id="newShelf" value="newShelf" >New shelf...</option>--%>
-                                                <c:forEach var="entry" items="${shelves}">
-                                                    <c:set var="shelf" value="${entry.key}"/>
-                                                    <c:set var="isInShelf" value="${entry.value}"/>
-                                                    <option value="${shelf.id}"
-                                                            <c:if test="${isInShelf}">selected</c:if> ><c:out
-                                                            value="${shelf.name}"></c:out></option>
-                                                </c:forEach>
-                                                    <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
-                                                <c:forEach var="entry" items="${shelves}">
-                                                    <c:set var="shelf" value="${entry.key}"/>
-                                                    <c:set var="isInShelf" value="${entry.value}"/>
-                                                    <input type="hidden" class="shelfHidden" name="${shelf.id}"
-                                                           value="${isInShelf}"/></c:forEach>
-                                            </select>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </div>
-
+                            <p class="col s4 center">Update in shelves</p>
+                            <div class="col s4">
                                 <c:choose>
-                                    <c:when test="${isLoggedIn}">
-                                        <div class="col s4">
-                                            <button type="submit" class="btn waves-effect waves-light">Update Shelves</button>
-                                        </div>
+                                    <c:when test="${fn:length(shelves) == 0}">
+                                        <p>You have no shelves. Why not <a href="<c:url value="/list" />">create
+                                            one</a>?</p>
                                     </c:when>
                                     <c:otherwise>
-                                        <div class="col s4 center">
-                                                <%--TODO redirect user back  here after login--%>
-                                            <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log
-                                                in</a>
-                                        </div>
+                                        <select id="shelves" multiple>
+                                            <option value="" disabled selected>Select shelves</option>
+                                                <%--<option id="newShelf" value="newShelf" >New shelf...</option>--%>
+                                            <c:forEach var="entry" items="${shelves}">
+                                                <c:set var="shelf" value="${entry.key}"/>
+                                                <c:set var="isInShelf" value="${entry.value}"/>
+                                                <option value="${shelf.id}"
+                                                        <c:if test="${isInShelf}">selected</c:if> ><c:out
+                                                        value="${shelf.name}"></c:out></option>
+                                            </c:forEach>
+                                                <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
+                                            <c:forEach var="entry" items="${shelves}">
+                                                <c:set var="shelf" value="${entry.key}"/>
+                                                <c:set var="isInShelf" value="${entry.value}"/>
+                                                <input type="hidden" class="shelfHidden" name="${shelf.id}"
+                                                       value="${isInShelf}"/></c:forEach>
+                                        </select>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
+
+                            <c:choose>
+                                <c:when test="${isLoggedIn}">
+                                    <button type="submit" class="btn waves-effect waves-light">Update Shelves</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <%--TODO redirect user back  here after login--%>
+                                    <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+            </c:if>
             <%--END SHELVES FORM--%>
-        </c:if>
+        </div>
+        <%--END ACTION FORMS--%>
 
         <div class="section">
             <c:choose>
