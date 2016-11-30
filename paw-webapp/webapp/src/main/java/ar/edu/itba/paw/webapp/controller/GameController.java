@@ -249,6 +249,8 @@ public class GameController extends BaseController {
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
         mav.addObject("publishers", gameService.getPublishers(gameId));
+        mav.addObject("pictures", gameService.getPictureUrls(gameId));
+        mav.addObject("videos", gameService.getVideos(gameId));
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }
