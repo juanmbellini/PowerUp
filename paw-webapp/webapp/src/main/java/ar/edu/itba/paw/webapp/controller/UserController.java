@@ -164,21 +164,24 @@ public class UserController extends BaseController {
         Set<Game> games = new HashSet<>();
 
         for(Game game: playStatuses.keySet()){
-            boolean validGame = false;
-            if(playStatusesFilter.isEmpty()) validGame =true;
+            boolean validShelf = false;
+            boolean validPlayStatus = false;
+            if(playStatusesFilter.isEmpty()) validPlayStatus =true;
             for(String playStatusFilter: playStatusesFilter){
                 if(playStatuses.get(game).name().equals(playStatusFilter)){
-                    validGame = true;
+                    validPlayStatus = true;
                 }
             }
+
+            if(shelvesFilter.isEmpty()) validShelf =true;
             for(String shelfFilter: shelvesFilter){
                 for(Shelf shelf: shelvesForGames.get(game)){
-                    if(!shelf.getName().equals(shelfFilter)){
-                        validGame = false;
+                    if(shelf.getName().equals(shelfFilter)){
+                        validShelf = true;
                     }
                 }
             }
-            if(validGame) games.add(game);
+            if(validPlayStatus && validShelf) games.add(game);
         }
 
 

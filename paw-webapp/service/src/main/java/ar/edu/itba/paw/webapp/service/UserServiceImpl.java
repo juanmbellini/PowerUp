@@ -181,12 +181,6 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-//    @Override
-//    public Map<Game, PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter) {
-//
-//        return userDao.getGameList( userId, playStatusesFilter, shelvesFilter);
-//
-//    }
 
     @Override
     public void setProfilePicture(long userId, byte[] picture) {

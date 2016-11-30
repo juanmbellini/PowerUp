@@ -42,6 +42,12 @@ public class ShelfHibernateDao implements ShelfDao {
         if(creator == null) {
             throw new NoSuchUserException(creatorUserId);
         }
+        for(Shelf shelf: findByUserId(creatorUserId)){
+            if(shelf.getName().equals(name)){
+                //Shelf already exists
+                return shelf;
+            }
+        }
         Set<Game> games = new LinkedHashSet<>();
         for(long id : initialGameIds) {
             Game g = gameDao.findById(id);
@@ -116,6 +122,12 @@ public class ShelfHibernateDao implements ShelfDao {
             throw new IllegalArgumentException("Invalid new name for Shelf #" + shelfId + ": " + newName);
         }
         Shelf shelf = getFreshShelf(shelfId);
+        for(Shelf newShelf: findByUserId(shelf.getUser().getId())){
+            if(newShelf.getName().equals(newName)){
+                //Shelf already exists
+                return;
+            }
+        }
         shelf.setName(newName);
         em.persist(shelf);
     }

@@ -191,10 +191,4 @@ public class UserHibernateDao implements UserDao {
         setProfilePicture(userId, null);
     }
 
-//    @Override
-//    public Map<Game, PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter) {
-//
-//        TypedQuery<Game> query = em.createQuery("Select g FROM Game as g, User as u where  ", Game.class);
-//
-//    }
 }
