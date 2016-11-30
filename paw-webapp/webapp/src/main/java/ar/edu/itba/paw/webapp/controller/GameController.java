@@ -90,7 +90,9 @@ public class GameController extends BaseController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersStr,
+                               //TODO change to orderBy
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
+                               //TODO change to order
                                @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
                                @RequestParam(value = "pageSize", required = false) String pageSizeStr,
                                @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
@@ -170,25 +172,25 @@ public class GameController extends BaseController {
         //Genres
         Set<Object[]> genres = new LinkedHashSet<>();
         for(Genre g : genreService.all()) {
-            genres.add(new Object[] {g.getName(), filters != null && filters.containsKey(FilterCategory.genre) && filters.get(FilterCategory.genre).contains(g.getName())});
+            genres.add(new Object[] {g, filters != null && filters.containsKey(FilterCategory.genre) && filters.get(FilterCategory.genre).contains(g.getName())});
         }
         mav.addObject("genres", genres);
         //Platforms
         Set<Object[]> platforms = new LinkedHashSet<>();
         for(Platform p : platformService.all()) {
-            platforms.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
+            platforms.add(new Object[] {p, filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
         }
         mav.addObject("platforms", platforms);
         //Developers
         Set<Object[]> developers = new LinkedHashSet<>();
         for(Company d : companyService.all()) {
-            developers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
+            developers.add(new Object[] {d, filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
         }
         mav.addObject("developers", developers);
         //Publishers
         Set<Object[]> publishers = new LinkedHashSet<>();
         for(Company p : companyService.all()) {
-            publishers.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(p.getName())});
+            publishers.add(new Object[] {p, filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(p.getName())});
         }
         mav.addObject("publishers", publishers);
 

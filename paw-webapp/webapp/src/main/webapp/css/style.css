@@ -163,8 +163,12 @@
     margin: 5px !important;
 }
 
-button#clear-filters {
+button#clear-filters, button#submit-search {
     height:47px;
+}
+
+button#submit-search {
+    margin-left: 5px;
 }
 
 .preserve-newlines {
