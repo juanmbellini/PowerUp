@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.interfaces.ThreadService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.ThreadOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,9 +32,29 @@ public class ThreadController extends BaseController {
     }
 
     @RequestMapping("/threads")
-    public ModelAndView recentThreads() {
+    public ModelAndView recentThreads(@RequestParam(name = "order", required = false, defaultValue = "HOT") String order) {
+        Set<Thread> threads;
+        ThreadOrder enumOrder;
+        try {
+            enumOrder = ThreadOrder.valueOf(order.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            enumOrder = ThreadOrder.HOT;
+        }
+        switch (enumOrder) {
+            case BEST:
+                threads = threadService.findBestPointed(50);
+                break;
+            case NEWEST:
+                threads = threadService.findRecent(50);
+                break;
+            case HOT:
+            default:
+                threads = threadService.findHottest(50);
+                break;
+        }
+
         ModelAndView mav = new ModelAndView("threads");
-        Set<Thread> threads = threadService.findRecent(50);
+        mav.addObject("order", enumOrder.name().toLowerCase());
         mav.addObject("threads", threads);
         return mav;
     }
@@ -88,6 +109,7 @@ public class ThreadController extends BaseController {
         try {
             String commentContent = form.getComment().trim();
             Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
+            threadService.updateHotValue(form.getThreadId());
             LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), commentContent);
             mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
         } catch (Exception e) {
@@ -108,6 +130,7 @@ public class ThreadController extends BaseController {
         try {
             reply = reply.trim();
             Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
+            threadService.updateHotValue(createdReply.getThread().getId());
             LOG.info("{} replied to comment #{} with \"{}\"", getCurrentUsername(), parentCommentId, reply);
             return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
         } catch (Exception e) {
@@ -122,6 +145,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.likeThread(threadId, getCurrentUser().getId());
+            threadService.updateHotValue(threadId);
             LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -140,6 +164,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.unlikeThread(threadId, getCurrentUser().getId());
+            threadService.updateHotValue(threadId);
             LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -261,7 +286,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             newComment = newComment.trim();
-            threadService.editComment(commentId, getCurrentUser().getId(), newComment);
+            threadService.editComment(commentId, getCurrentUser().getId(), newComment);//TODO udates hotValue?
             LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {

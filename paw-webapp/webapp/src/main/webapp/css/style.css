@@ -45,7 +45,7 @@
     margin-bottom: 5px;
 }
 
-#sorting button.inactive {
+.btn.inactive {
     background-color:lightblue;
 }
 

@@ -105,4 +105,29 @@ import java.util.List;
             return Collections.emptyList();
         }
     }
+
+    /**
+     * Performs a basic search with parameters, returning a list of a limited number of results.
+     *
+     * @param <T>           The return type.
+     * @param entityManager An entity manager with which to perform queries.
+     * @param klass         The class of the object type to return.
+     * @param limit         The maximum number of results to fetch.
+     * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
+     *                      e.g. {@code "FROM User AS U WHERE U.username LIKE ?1}"
+     * @param parameters    Parameters for the query, in order of appearance in the query.
+     * @return              A list with the matching entities, or an empty list of nothing is found if not found.
+     */
+    /*package*/ static <T> List<T> findManyWithConditionsAndLimit(EntityManager entityManager, Class<T> klass, int limit, String baseQuery, Object... parameters) {
+        TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
+        for (int i = 0; i < parameters.length; i++) {
+            query.setParameter(i+1, parameters[i]);
+        }
+        query.setMaxResults(limit);
+        try {
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
+    }
 }

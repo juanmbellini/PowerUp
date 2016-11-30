@@ -41,6 +41,22 @@ public interface ThreadService {
     Set<Thread> findRecent(int limit);
 
     /**
+     * Finds up to a specified amount of best pointed threads.
+     *
+     * @param limit The maximum number of threads to get.
+     * @return Up to {@code limit} threads.
+     */
+    Set<Thread> findBestPointed(int limit);
+
+    /**
+     * Finds up to a specified amount of the most relevant thread in the relation point/lastUpdated.
+     *
+     * @param limit The maximum number of threads to get.
+     * @return Up to {@code limit} threads.
+     */
+    Set<Thread> findHottest(int limit);
+
+    /**
      * Returns a set of shelves created by a specified user, identified by ID.
      *
      * @param id The ID of the user whose shelves to fetch.
@@ -171,4 +187,12 @@ public interface ThreadService {
      * @throws UnauthorizedException If the user isn't allowed to delete the thread.
      */
     void deleteThread(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
+
+    /**
+     * Updates the HotValue of the thread.
+     *
+     * @param threadId The ID of the thread to update.
+     * @throws NoSuchEntityException If the thread doesn't exist.
+     */
+    void updateHotValue(long threadId) throws NoSuchEntityException;
 }
