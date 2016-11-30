@@ -52,7 +52,7 @@
                                 <c:if test="${error}" >
                                     <div class="row">
                                         <div class="col s12">
-                                            <p class="center" style="font-size: larger">Invalid username/password</p>
+                                            <p class="center"  style="font-size: larger; color:red;">Invalid username/password</p>
                                         </div>
                                     </div>
                                 </c:if>

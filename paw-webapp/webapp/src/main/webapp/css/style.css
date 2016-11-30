@@ -55,6 +55,11 @@ div.sweet-alert.show-input.showSweetAlert > h2 {
     word-wrap: break-word;
 }
 
+.formError{
+    color:red;
+}
+
+
 .btn.inactive {
     background-color:lightblue;
 }
