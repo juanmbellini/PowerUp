@@ -178,6 +178,7 @@ public class GameHibernateDao implements GameDao {
     public void updateAvgScore(long gameId) {
         Game game = findById(gameId);
         Double newAvg = DaoHelper.findSingleWithConditions(em, Double.class, "SELECT AVG(ELEMENTS(G.scores)) FROM Game AS G WHERE G.id = ?1", gameId);
+        if(newAvg==null) newAvg = 0d;
         game.setAvgScore(newAvg);
     }
 

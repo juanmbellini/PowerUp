@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.*;
 
 /**
@@ -103,6 +104,7 @@ public class UserHibernateDao implements UserDao {
             throw new NoSuchUserException(userId);
         }
         user.getScoredGames().remove(gameId);
+        gameDao.updateAvgScore(gameId);
         em.persist(user);
     }
 
@@ -188,4 +190,11 @@ public class UserHibernateDao implements UserDao {
     public void removeProfilePicture(long userId) {
         setProfilePicture(userId, null);
     }
+
+//    @Override
+//    public Map<Game, PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter) {
+//
+//        TypedQuery<Game> query = em.createQuery("Select g FROM Game as g, User as u where  ", Game.class);
+//
+//    }
 }
