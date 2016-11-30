@@ -1,13 +1,25 @@
 
+-- Remove all data before
+DROP SCHEMA PUBLIC CASCADE;
+
+-- Sequences
+CREATE SEQUENCE companies_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE hibernate_sequence START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE genres_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE platforms_id_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE keywords_id_seq START WITH 1 INCREMENT BY 1;
+
+
+
 -- Creation of entity tables
 CREATE TABLE games (
-  id                          INTEGER IDENTITY NOT NULL PRIMARY KEY,
+  id                          INTEGER IDENTITY  NOT NULL PRIMARY KEY,
   name                        VARCHAR(1024),
   summary                     VARCHAR(1024),
   avg_score                   REAL,
   release                     DATE,
   cover_picture_cloudinary_id VARCHAR(1024),
-  counter                     INTEGER          NOT NULL
+  counter                     INTEGER DEFAULT 0 NOT NULL
 );
 CREATE TABLE genres (
   id   INTEGER IDENTITY NOT NULL PRIMARY KEY,
@@ -147,8 +159,12 @@ CREATE TABLE user_authorities (
   user_id   INTEGER          NOT NULL,
   authority VARCHAR(1024)    NOT NULL,
 
-  FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (username) REFERENCES users (username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   UNIQUE (username, authority),
   UNIQUE (user_id, authority)
 );
