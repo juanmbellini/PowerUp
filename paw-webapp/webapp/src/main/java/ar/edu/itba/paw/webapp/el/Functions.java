@@ -74,4 +74,8 @@ public class Functions {
         builder.append("</ul>");
         return builder.toString();
     }
+
+    public static int min(int a, int b) {
+        return Math.min(a, b);
+    }
 }

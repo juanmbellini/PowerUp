@@ -23,7 +23,7 @@
             </h3>
 
             <div class="col s12">
-                <form id="search-form">
+                <form id="name-form">
                     <div class="input-field col s6 offset-s3">
                         <input placeholder="Title" type="text" name="name" value="${fn:length(searchedName) > 0 ? searchedName : ""}">
                     </div>
@@ -93,8 +93,8 @@
             </c:choose>
 
             <%--Filters collapsible--%>
-            <button class="btn waves-effect waves-light right" id="clear-filters" ${hasFilters ? "" : "disabled"}>Clear
-                filters <i class="material-icons right">close</i></button>
+            <button class="btn waves-effect waves-light right" id="submit-search" ${hasFilters ? "" : "disabled"}>Search <i class="material-icons right">send</i></button>
+            <button class="btn waves-effect waves-light right" id="clear-filters" ${hasFilters ? "" : "disabled"}>Clear filters <i class="material-icons right">close</i></button>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <div class="collapsible-header ${hasFilters ? " active" : ""}"><i
@@ -113,60 +113,48 @@
                             </div>
                             <%--Filter values--%>
                             <div id="platforms" class="col s12 filter">
-                                <c:forEach items="${platforms}" var="platform">
-                                    <c:choose>
-                                        <c:when test="${platform[1]}">
-                                            <div class="chip selected" data-filter-type="platform"
-                                                 data-value="${platform[0]}">${platform[0]}</div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="chip" data-filter-type="platform"
-                                                 data-value="${platform[0]}">${platform[0]}</div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="platforms-ac-input" placeholder="Platform name" data-activates="platforms-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                                        </div>
+                                        <div id="platforms-ac-appender" class="ac-appender col"></div>
+                                        <ul id="platforms-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
                             </div>
                             <div id="genres" class="col s12 filter">
-                                <c:forEach items="${genres}" var="genre">
-                                    <c:choose>
-                                        <c:when test="${genre[1]}">
-                                            <div class="chip selected" data-filter-type="genre"
-                                                 data-value="${genre[0]}">${genre[0]}</div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="chip" data-filter-type="genre"
-                                                 data-value="${genre[0]}">${genre[0]}</div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="genres-ac-input" placeholder="Genre name" data-activates="genres-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                                        </div>
+                                        <div id="genres-ac-appender" class="ac-appender col"></div>
+                                        <ul id="genres-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
                             </div>
                             <div id="developers" class="col s12 filter">
-                                <c:forEach items="${developers}" var="developer">
-                                    <c:choose>
-                                        <c:when test="${developer[1]}">
-                                            <div class="chip selected" data-filter-type="developer"
-                                                 data-value="${developer[0]}">${developer[0]}</div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="chip" data-filter-type="developer"
-                                                 data-value="${developer[0]}">${developer[0]}</div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="developers-ac-input" placeholder="Developer name" data-activates="developers-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                                        </div>
+                                        <div id="developers-ac-appender" class="ac-appender col"></div>
+                                        <ul id="developers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
                             </div>
                             <div id="publishers" class="col s12 filter">
-                                <c:forEach items="${publishers}" var="publisher">
-                                    <c:choose>
-                                        <c:when test="${publisher[1]}">
-                                            <div class="chip selected" data-filter-type="publisher"
-                                                 data-value="${publisher[0]}">${publisher[0]}</div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="chip" data-filter-type="publisher"
-                                                 data-value="${publisher[0]}">${publisher[0]}</div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="publishers-ac-input" placeholder="Publisher name" data-activates="publishers-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                                        </div>
+                                        <div id="publishers-ac-appender" class="ac-appender col"></div>
+                                        <ul id="publishers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -382,11 +370,13 @@
     }
 </style>
 
+<script type="text/javascript" src="<c:url value="/js/jquery.materialize-autocomplete.js" />"></script>
 <script type="text/javascript">
+
     /**
-     * Tracks currently applied filters.
+     * Keeps track of applied filters when the page originally loaded. Used to populate filter values on load.
      */
-    var filters = ${filters};
+    var ORIGINAL_FILTERS = ${filters};
 
     /**
      * Tracks whether filters have changed. If so, searching will reset page number.
@@ -394,13 +384,53 @@
     var filtersChanged = false;
 
     /*
-     * Tracks the entered name.
+     * Tracks the searched name.
      */
-    var name = "${searchedName}";
+    var NAME = "${searchedName}";
 
+    /**
+     * Tracks whether the searched name has changed. If so, searching will reset page number.
+     */
     var nameChanged = false;
 
+    /**
+     * Tracks what results should be ordered by. Not to be confused with ORDER global.
+     */
+    var ORDER_BY = "${orderCategory}" || null;
 
+    /**
+     * Tracks whether order should be performed ascending or descendingly.
+     */
+    var ORDER = "${orderBoolean}" || null;
+
+    /**
+     * Tracks whether the ordering has changed. If so, searching will reset page number.
+     */
+    var orderChanged = false;
+
+    //Platforms
+    var PLATFORMS = [];
+    <c:forEach items="${platforms}" var="platform" varStatus="status">
+        PLATFORMS[${platform[0].id}] = "${platform[0].name}";
+    </c:forEach>
+
+    //Genres
+    var GENRES = [];
+    <c:forEach items="${genres}" var="genre" varStatus="status">
+        GENRES[${genre[0].id}] = "${genre[0].name}";
+    </c:forEach>
+
+    //Developers
+    var DEVELOPERS = [];
+    <c:forEach items="${developers}" var="developer" varStatus="status">
+        DEVELOPERS[${developer[0].id}] = "${developer[0].name}";
+    </c:forEach>
+
+    //Publishers
+    var PUBLISHERS = [];
+    <c:forEach items="${publishers}" var="publisher" varStatus="status">
+        PUBLISHERS[${publisher[0].id}] = "${publisher[0].name}";
+    </c:forEach>
 
     $(function () {
         $("#orderSelectId").val("${orderCategory == null ? "name" : orderCategory}");
@@ -410,50 +440,29 @@
         $("#pageSizeSelectId").val("${page.pageSize}");
         $("#pageSizeSelectId").material_select();
 
-        $(document).ready(function(){
-            $(".indicator").attr('style',"right: 75%; left: 0px;");
-        });
-
+        //Auto-select the platforms tab in search filters
+        $(".indicator").attr('style',"right: 75%; left: 0;");
         $("#collapsible-header").on('click', function () {
             $('tabs').tabs('select_tab', 'platformTab');
         });
 
-
-        $('.chip').on('click', function (e) {
-            var $chip = $(e.target);
-            var value = $chip.html();
-            if ($chip.hasClass('selected')) {
-                removeFilter($chip.data('filter-type'), $chip.data('value'));
-                $chip.removeClass('selected');
-                search();
-                if (filters === {}) {
-                    $("#clear-filters").attr('disabled', 'disabled');
-                }
-            } else {
-                addFilter($chip.data('filter-type'), $chip.data('value'));
-                $chip.addClass('selected');
-                search();
-                $("#clear-filters").removeAttr('disabled');
-            }
-        });
-
         $("#clear-filters").on('click', function () {
             clearFilters();
+        });
+
+        $("#submit-search").on('click', function () {
             search();
         });
 
-
-
-
-        $("#search-form").on("submit", function(event) {
+        $("#name-form").on("submit", function(event) {
             event.preventDefault();
             var inputName = $(this).find("input[name='name']").val();
-            nameChanged = inputName != name;
-            name = inputName;
+            nameChanged = inputName != NAME;
+            NAME = inputName;
             search();
         });
 
-        $("#sorting button").on("click", function() {
+        $("#sorting").on("click", "button", function() {
             var $elem = $(this);
             var category = $elem.data("category");
             var sort = $elem.data("sort");
@@ -461,24 +470,14 @@
                 //Clicking on an active sorting should have the effect of flipping it.
                 sort = (sort == "ascending" ? "descending" : "ascending");
             }
-            var url = "<c:url value="${changeOrderUrl}"/>";
-            var hasQuery = url.indexOf("?") != -1;
-            url += (hasQuery ? "&" : "?") + "orderCategory=" + category + "&orderBoolean=" + sort;
-            window.location = url;
+            orderChanged = category != ORDER_BY || sort != ORDER;
+            ORDER_BY = category;
+            ORDER = sort;
+            search();
         });
     });
 
-    function changeOrderDropDown() {
-        var selectedOrderCategory = document.getElementById("orderSelectId");
-        var selectedOrderBoolean = document.getElementById("orderBooleanId");
-        var strOrderCategory = selectedOrderCategory.options[selectedOrderCategory.selectedIndex].value;
-        var strOrderBoolean = selectedOrderBoolean.options[selectedOrderBoolean.selectedIndex].value;
-        var url = "<c:url value="${changeOrderUrl}"/>";
-        var hasQuery = url.indexOf("?") != -1;
-        url += (hasQuery ? "&" : "?") + "orderCategory=" + strOrderCategory + "&orderBoolean=" + strOrderBoolean;
-        window.location = url;
-    }
-
+    //TODO reimplement page size and reimplement this function
     function changePageSize() {
         var selectedPageSize = document.getElementById("pageSizeSelectId");
         var pageSize = selectedPageSize.options[selectedPageSize.selectedIndex].value;
@@ -489,109 +488,311 @@
     }
 
     /**
-     * Adds the specified filter.
-     *
-     * @param category The category in which the value is.
-     * @param value The value to add.
-     * @return The new filters object, so you can chain this call.
-     */
-    function addFilter(category, value) {
-        if (!category || !value) {
-            return;
-        }
-        if (!filters.hasOwnProperty(category)) {
-            filters[category] = [];
-        }
-        filters[category].push(value);
-        filtersChanged = true;
-        return filters;
-    }
-
-    /**
-     * Removes the specified filter.
-     *
-     * @param category The category in which the value is.
-     * @param value (Optional) The value to remove. If not provided, the entire category will be removed.
-     * @return The new filters object, so you can chain this call.
-     */
-    function removeFilter(category, value) {
-        if (filters.hasOwnProperty(category)) {
-            if (value) {
-                var index = filters[category].indexOf(value);
-                if (index !== -1) {
-                    if (filters[category].length === 1) {
-                        delete filters[category];
-                    } else {
-                        filters[category].splice(index, 1);
-                    }
-                }
-            } else {
-                delete filters[category];
-            }
-            filtersChanged = true;
-        }
-        return filters;
-    }
-
-    /**
      * Clears all applied filters.
      */
     function clearFilters() {
-        filters = {};
-        $(".chip.selected").each(function () {
-            $(this).removeClass("selected");
-        });
+        var platforms = platformsAutocomplete.value;
+        for(var i = 0; i < platforms.length; i++) {
+            platformsAutocomplete.remove(platforms[i]);
+        }
+        var genres = genresAutocomplete.value;
+        for(var i = 0; i < genres.length; i++) {
+            genresAutocomplete.remove(genres[i]);
+        }
+        var developers = developersAutocomplete.value;
+        for(var i = 0; i < developers.length; i++) {
+            developersAutocomplete.remove(developers[i]);
+        }
+        var publishers = publishersAutocomplete.value;
+        for(var i = 0; i < publishers.length; i++) {
+            publishersAutocomplete.remove(publishers[i]);
+        }
         filtersChanged = true;
     }
 
     /**
-     * Reloads the current page with the applied filters and/or title, resetting the page number if necessary. Note that
-     * this function is NOT meant to handle changes in page number or sorting parameters.
+     * Builds a URL to search games with the currently set filters and sorting criteria, resetting the page number if
+     * necessary. Note that this function is NOT meant to handle changes in page number.
      */
     function search() {
-        var url = decodeURI(window.location.href);
-        if (window.location.search) {
-            //Change name
-            if(nameChanged) {
-                if (window.location.search.indexOf("name=") !== -1) {
-                    //*? is a non-greedy matcher
-                    if(url.search(/name=.*?&/) !== -1) {   //The name is followed by a &, don't drop it
-                        url = url.replace(/name=.*?&/, (name === "" ? "" : "name=" + name + "&"));
-                    } else {                                //No & to the right ($ matches end of URL)
-                        url = url.replace(/name=.*?\$/, (name === "" ? "" : "name=" + name));
-                    }
-                } else {
-                    if(name !== "") {
-                        url += "&name=" + encodeURIComponent(name); //TODO chequear que no este de mas en encode.
-                    }
-                }
-            }
-            //Change filters
-            if(filtersChanged) {
-                if (window.location.search.indexOf("filters=") !== -1) {
-                    url = url.replace(/filters={.*}/, "filters=" + JSON.stringify(filters));
-                } else {
-                    url += "&filters=" + JSON.stringify(filters);
-                }
-            }
-            //Remove page number if necessary
-            if(filtersChanged || nameChanged) {
-                if (window.location.search.indexOf("pageNumber=") !== -1) {
-                    url = url.replace(/pageNumber=\d+/, "");
-                }
-            }
-        } else {
-            if(filtersChanged) {
-                url += "?filters=" + JSON.stringify(filters);
-            }
-            if(nameChanged && name !== "") {
-                url += (filtersChanged ? "&name=" : "?name=") + name;
-            }
-            //No need to handle page/sorting parameters here
+        if(!nameChanged && !filtersChanged && !orderChanged) {
+            window.location.reload();
         }
-        debugger;
+
+        //Search changed. Build search URL and clear page number.
+        var url = window.location.pathname;
+
+        //Add name parameter
+        url += "?name=" + NAME;
+
+        //Build filters, extracting the name of each value.
+        var filters = {};
+
+        //Platforms
+        var platformNames = [];
+        var selectedPlatforms = platformsAutocomplete.value;
+        for(var index in selectedPlatforms) {
+            if(selectedPlatforms.hasOwnProperty(index)) {
+                platformNames.push(selectedPlatforms[index].text);
+            }
+        }
+        if(platformNames.length > 0) {
+            filters.platform = platformNames;
+        }
+
+        //Genres
+        var genreNames = [];
+        var selectedGenres = genresAutocomplete.value;
+        for(var index in selectedGenres) {
+            if(selectedGenres.hasOwnProperty(index)) {
+                genreNames.push(selectedGenres[index].text);
+            }
+        }
+        if(genreNames.length > 0) {
+            filters.genre = genreNames;
+        }
+
+        //Developers
+        var developerNames = [];
+        var selectedDevelopers = developersAutocomplete.value;
+        for(var index in selectedDevelopers) {
+            if(selectedDevelopers.hasOwnProperty(index)) {
+                developerNames.push(selectedDevelopers[index].text);
+            }
+        }
+        if(developerNames.length > 0) {
+            filters.developer = developerNames;
+        }
+
+        //Publishers
+        var publisherNames = [];
+        var selectedPublishers = publishersAutocomplete.value;
+        for(var index in selectedPublishers) {
+            if(selectedPublishers.hasOwnProperty(index)) {
+                publisherNames.push(selectedPublishers[index].text);
+            }
+        }
+        if(publisherNames.length > 0) {
+            filters.publisher = publisherNames;
+        }
+
+        //Add filters parameter
+        url += "&filters=" + JSON.stringify(filters);
+
+        //Add order parameter
+        if(ORDER !== null) {
+            url += "&orderCategory=" + ORDER_BY;
+        }
+        if(ORDER !== null) {
+            url += "&orderBoolean=" + ORDER;
+        }
+
+        //Discard page number parameter
+
+        //Done, redirect
         window.location = encodeURI(url);
     }
+
+    /* ******************************************
+     *        AUTOCOMPLETE INITIALIZATION
+     * *****************************************/
+
+    /**
+     * Searches for values in an array matching a query using regex. Adapted from http://stackoverflow.com/a/10152699/2333689
+     *
+     * @param array The array in which to search.
+     * @param query The query.
+     * @returns {Array} The matching values as objects in the form {match ID, match text}
+     */
+    function searchInArray(array, query) {
+        var results = [];
+        for(var index in array) {
+            //Case-insensitive matching with anything before and/or anything after
+            if(array[index].match(new RegExp(".*"+query+".*", "i"))) {
+                results.push({"id": index, "text": array[index]});
+            }
+        }
+        return results;
+    }
+
+    /**
+     * Finds a value in an autocomplete values array.
+     *
+     * @param valuesArray Values array, where each element is an object of the form {id: number, text: String}
+     * @param valueObject The value to find, an object of the same form as each element of the values array.
+     * @returns {boolean} Whether the value is in the array.
+     */
+    function isInAutocompleteValue(valuesArray, valueObject) {
+        for(var i = 0; i < valuesArray.length; i++) {
+            if(valuesArray.hasOwnProperty(i) && valuesArray[i].text === valueObject.text) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    var platformsAutocomplete = null;
+    var genresAutocomplete = null;
+    var developersAutocomplete = null;
+    var publishersAutocomplete = null;
+
+    $(function() {
+        //Platforms
+        platformsAutocomplete = $('#platforms-ac-input').materialize_autocomplete({
+            cacheable: false,
+            multiple: {
+                enable: true,
+                maxSize: 100,
+                onAppend: function(addedValue) {
+                    filtersChanged = true;
+                    $("#submit-search").removeAttr("disabled");
+                }
+            },
+            appender: {
+                el: '#platforms-ac-appender'
+            },
+            dropdown: {
+                el: '#platforms-ac-dropdown'
+            },
+            getData: function(query, callback) {
+                //Perform search
+                var matches = searchInArray(PLATFORMS, query);
+                //Exclude selected values
+                var result = [];
+                var selected = platformsAutocomplete.value;
+                for(var index in matches) {
+                    if(matches.hasOwnProperty(index) && !isInAutocompleteValue(selected, matches[index])) {
+                        result.push(matches[index]);
+                    }
+                }
+                //Show dropdown with unselected results
+                callback(query, result);
+            }
+        });
+        if(ORIGINAL_FILTERS.hasOwnProperty("platform")) {
+            for(var i = 0; i < ORIGINAL_FILTERS.platform.length; i++) {
+                var name = ORIGINAL_FILTERS.platform[i];
+                platformsAutocomplete.append({"id": ORIGINAL_FILTERS.platform.indexOf(name), "text": name});
+            }
+        }
+
+        //Genres
+        genresAutocomplete = $('#genres-ac-input').materialize_autocomplete({
+            cacheable: false,
+            multiple: {
+                enable: true,
+                maxSize: 100,
+                onAppend: function(addedValue) {
+                    filtersChanged = true;
+                    $("#submit-search").removeAttr("disabled");
+                }
+            },
+            appender: {
+                el: '#genres-ac-appender'
+            },
+            dropdown: {
+                el: '#genres-ac-dropdown'
+            },
+            getData: function(query, callback) {
+                //Perform search
+                var matches = searchInArray(GENRES, query);
+                //Exclude selected values
+                var result = [];
+                var selected = genresAutocomplete.value;
+                for(var index in matches) {
+                    if(matches.hasOwnProperty(index) && !isInAutocompleteValue(selected, matches[index])) {
+                        result.push(matches[index]);
+                    }
+                }
+                //Show dropdown with unselected results
+                callback(query, result);
+            }
+        });
+        if(ORIGINAL_FILTERS.hasOwnProperty("genre")) {
+            for(var i = 0; i < ORIGINAL_FILTERS.genre.length; i++) {
+                var name = ORIGINAL_FILTERS.genre[i];
+                genresAutocomplete.append({"id": ORIGINAL_FILTERS.genre.indexOf(name), "text": name});
+            }
+        }
+
+        //Developers
+        developersAutocomplete = $('#developers-ac-input').materialize_autocomplete({
+            cacheable: false,
+            multiple: {
+                enable: true,
+                maxSize: 100,
+                onAppend: function(addedValue) {
+                    filtersChanged = true;
+                    $("#submit-search").removeAttr("disabled");
+                }
+            },
+            appender: {
+                el: '#developers-ac-appender'
+            },
+            dropdown: {
+                el: '#developers-ac-dropdown'
+            },
+            getData: function(query, callback) {
+                //Perform search
+                var matches = searchInArray(DEVELOPERS, query);
+                //Exclude selected values
+                var result = [];
+                var selected = developersAutocomplete.value;
+                for(var index in matches) {
+                    if(matches.hasOwnProperty(index) && !isInAutocompleteValue(selected, matches[index])) {
+                        result.push(matches[index]);
+                    }
+                }
+                //Show dropdown with unselected results
+                callback(query, result);
+            }
+        });
+        if(ORIGINAL_FILTERS.hasOwnProperty("developer")) {
+            for(var i = 0; i < ORIGINAL_FILTERS.developer.length; i++) {
+                var name = ORIGINAL_FILTERS.developer[i];
+                developersAutocomplete.append({"id": ORIGINAL_FILTERS.developer.indexOf(name), "text": name});
+            }
+        }
+
+        //Publishers
+        publishersAutocomplete = $('#publishers-ac-input').materialize_autocomplete({
+            cacheable: false,
+            multiple: {
+                enable: true,
+                maxSize: 100,
+                onAppend: function(addedValue) {
+                    filtersChanged = true;
+                    $("#submit-search").removeAttr("disabled");
+                }
+            },
+            appender: {
+                el: '#publishers-ac-appender'
+            },
+            dropdown: {
+                el: '#publishers-ac-dropdown'
+            },
+            getData: function(query, callback) {
+                //Perform search
+                var matches = searchInArray(PUBLISHERS, query);
+                //Exclude selected values
+                var result = [];
+                var selected = publishersAutocomplete.value;
+                for(var index in matches) {
+                    if(matches.hasOwnProperty(index) && !isInAutocompleteValue(selected, matches[index])) {
+                        result.push(matches[index]);
+                    }
+                }
+                //Show dropdown with unselected results
+                callback(query, result);
+            }
+        });
+        if(ORIGINAL_FILTERS.hasOwnProperty("publisher")) {
+            for(var i = 0; i < ORIGINAL_FILTERS.publisher.length; i++) {
+                var name = ORIGINAL_FILTERS.publisher[i];
+                publishersAutocomplete.append({"id": ORIGINAL_FILTERS.publisher.indexOf(name), "text": name});
+            }
+        }
+    });
 </script>
 </body>
 </html>

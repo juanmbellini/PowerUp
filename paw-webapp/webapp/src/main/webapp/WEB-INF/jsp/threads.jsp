@@ -30,6 +30,13 @@
                     </h5>
                 </c:when>
                 <c:otherwise>
+                    <div class="row">
+                        <div class="col s12">
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'hot'}"> inactive</c:if>" href="<c:url value="/threads?order=hot"/>">Hottest</a>
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'newest'}"> inactive</c:if>" href="<c:url value="/threads?order=newest"/>">Newest</a>
+                            <a class="btn waves-effect waves-light<c:if test="${order != 'best'}"> inactive</c:if>" href="<c:url value="/threads?order=best"/>">Highest Scoring</a>
+                        </div>
+                    </div>
                     <ul class="collection">
                         <c:forEach var="thread" items="${threads}">
                             <li class="collection-item avatar">

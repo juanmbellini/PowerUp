@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="paw" uri="http://paw.edu.itba.edu.ar/taglibs" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +10,9 @@
     <%@include file="header.jsp" %>
     <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
+    <link href="<c:url value="/css/lightbox.css" />" type="text/css" rel="stylesheet"/>
     <title><c:out value="${game.name} - PowerUp"></c:out></title>
 </head>
-<body>
 <header>
     <%@include file="nav.jsp" %>
 </header>
@@ -233,6 +234,54 @@
                         </div>
                     </div>
 
+                    <%--SCREENSHOTS AND VIDEOS--%>
+                    <c:set var="videosLength" value="${fn:length(videos)}" />
+                    <c:set var="picturesLength" value="${fn:length(pictures)}" />
+                    <c:if test="${videosLength > 0 || picturesLength > 0}">
+                        <div class="row">
+                            <div class="col s12 divider"></div>
+                        </div>
+                        <c:if test="${videosLength > 0}">
+                            <div class="row">
+                                <h4 class="center">Videos</h4>
+                                <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": ${paw:min(videosLength, 4)}, "slidesToScroll": ${paw:min(videosLength, 4)}}'>
+                                    <c:forEach var="entry" items="${videos}">
+                                        <c:set var="videoId" value="${entry.key}" />
+                                        <c:set var="videoName" value="${entry.value}" />
+                                        <div class="slide-container">
+                                            <iframe type="text/html" width="${videosLength > 1 ? '90%' : '640'}" height="360"
+                                                    src="https://www.youtube.com/embed/${videoId}"
+                                                    <%--?autoplay=1&origin=http://example.com--%>
+                                                    frameborder="0"></iframe>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${picturesLength > 0}">
+                            <c:if test="${videosLength > 0}">
+                                <div class="row">
+                                    <div class="col s12 divider"></div>
+                                </div>
+                            </c:if>
+                            <div class="row">
+                                <h4 class="center">Screenshots</h4>
+                                <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": ${paw:min(picturesLength, 4)}, "slidesToScroll": ${paw:min(picturesLength, 4)}}'>
+                                    <c:forEach var="url" items="${pictures}">
+                                        <div class="slide-container">
+                                            <div class="valign-wrapper slide-image">
+                                                <a href="${url}" data-lightbox="screenshot-${status.index}">
+                                                    <img data-lazy="${url}" class="valign"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:if>
+                    <%--END SCREENSHOTS AND VIDEOS--%>
+
                     <%--REVIEWS--%>
                     <div class="row">
                         <div class="col s12 divider"></div>
@@ -305,7 +354,7 @@
                         </div>
                         <div class="row">
                             <h5 class="center">Related Games</h5>
-                            <div class="slick-carousel">
+                            <div class="slick-carousel" id="related-games-carousel">
                                 <c:forEach var="game" items="${relatedGames}">
                                     <div class="slide-container">
                                         <div class="valign-wrapper slide-image">
@@ -363,5 +412,6 @@
         });
     });
 </script>
+<script type="text/javascript" src="<c:url value="/js/lightbox.js" />"></script>
 </body>
 </html>

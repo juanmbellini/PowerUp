@@ -84,7 +84,7 @@
                 http://paw.edu.itba.edu.ar/taglibs
             </taglib-uri>
             <taglib-location>
-                /WEB-INF/myTags/commentsTree.tld
+                /WEB-INF/myTags/pawTags.tld
             </taglib-location>
         </taglib>
     </jsp-config>
