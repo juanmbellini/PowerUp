@@ -34,7 +34,7 @@
                             <c:out value="${shelf.name}"/>
                             <c:if test="${isLoggedIn && currentUsername == user.username}">
                                 <a href="#!" class="rename material-icons black-text" style="vertical-align: middle;" data-id="<c:out value='${shelf.id}'/>" data-name="<c:out value='${shelf.name}'/>">mode_edit</a>
-                                <a href="#!" class="delete material-icons red-text text-lighten-1" style="vertical-align: middle;" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>">delete</a>
+                                <a href="#!" class="delete-shelf material-icons red-text text-lighten-1" style="vertical-align: middle;" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>">delete</a>
                             </c:if>
                         </label>
                     </p>
@@ -142,14 +142,10 @@
                                                 </c:choose>
                                             <%--</div>--%>
                                         </div>
-                                        <%--<div class="col s1 center">--%>
-                                            <%--<p style="margin-top: 33px;"><b>${empty scores.get(game) ? "No score" : scores.get(game)}</b></p>--%>
-                                        <%--</div>--%>
 
                                         <div class="col s1">
                                             <div class="secondary-content">
-                                                <%--<a href="#!" class="delete material-icons red-text text-lighten-1" style="vertical-align: middle;" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>">delete</a>--%>
-                                                <a href="#!" class="material-icons red-text text-lighten-1 delete-button" data-user-id="${user.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></a>
+                                                <a href="#!" class="material-icons red-text text-lighten-1 delete-game" data-user-id="${user.id}" data-game-id="${game.id}" data-game-name="<c:out value="${game.name}" />"><i class="material-icons right">delete</i></a>
                                             </div>
                                         </div>
                                     </li>
@@ -187,23 +183,13 @@
     var playStatuses = [];
 
     $(function() {
-        $(".delete-button").on('click', function (event) {
-            var gameId = $(this).data('game-id');
-            var userId = $(this).data('user-id');
-            //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
-                <input type='hidden' name='gameId' value='" + gameId + "' /> \
-                <input type='hidden' name='userId' value='" + userId + "' /> \
-                <input type='hidden' name='returnUrl' value='<c:url value="/list?username=${user.username}" />'/> \
-               </form>").submit();
-        });
 
         /* ***********************
          *      SWEET ALERTS
          * **********************/
 
         //Delete links
-        $(".delete").on('click', function (event) {
+        $(".delete-shelf").on('click', function (event) {
             var $target = $(this);
             var name = $target.data('name');
             var id = $target.data('id');
@@ -223,6 +209,30 @@
                 //Create an inline form and submit it to redirect with POST
                 $("<form action='${deleteUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /></form>").submit();
             });
+        });
+
+        $(".delete-game").on('click', function (event) {
+            var $target = $(this);
+            var gameId = $target.data('game-id');
+            var gameName = $target.data('game-name');
+            var userId = $target.data('user-id');
+            swal({
+                    title: "Are you sure?",
+                    text: "You are about to delete " + gameName + " from all your shelves.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Delete",
+                    closeOnConfirm: false
+                },
+                function () {
+                    //Create an inline form and submit it to redirect with POST
+                    $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
+                        <input type='hidden' name='gameId' value='" + gameId + "' /> \
+                        <input type='hidden' name='userId' value='" + userId + "' /> \
+                        <input type='hidden' name='returnUrl' value='<c:url value="/list?username=${user.username}" />'/> \
+                       </form>").submit();
+                });
         });
 
         //Rename links
