@@ -80,7 +80,7 @@
                     <form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">
                         <input type="hidden" name="gameId" value="${game.id}"/>
                         <div class="col s3"></div>
-                        <div class="col s6 center-align">
+                        <div class="col s8 center-align">
                             <p class="col s4 center">Update in shelves</p>
                             <div class="col s4">
                                 <c:choose>
@@ -95,17 +95,15 @@
                                             <c:forEach var="entry" items="${shelves}">
                                                 <c:set var="shelf" value="${entry.key}"/>
                                                 <c:set var="isInShelf" value="${entry.value}"/>
-                                                <option value="${shelf.id}"
-                                                        <c:if test="${isInShelf}">selected</c:if> >
-                                                    <c:out value="${shelf.name}"/></option>
+                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if>><c:out value="${shelf.name}"/></option>
                                             </c:forEach>
-                                                <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
-                                            <c:forEach var="entry" items="${shelves}">
-                                                <c:set var="shelf" value="${entry.key}"/>
-                                                <c:set var="isInShelf" value="${entry.value}"/>
-                                                <input type="hidden" class="shelfHidden" name="${shelf.id}"
-                                                       value="${isInShelf}"/></c:forEach>
                                         </select>
+                                        <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
+                                        <c:forEach var="entry" items="${shelves}">
+                                            <c:set var="shelf" value="${entry.key}"/>
+                                            <c:set var="isInShelf" value="${entry.value}"/>
+                                            <input type="hidden" class="shelfHidden" name="${shelf.id}" value="${isInShelf}"/>
+                                        </c:forEach>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
