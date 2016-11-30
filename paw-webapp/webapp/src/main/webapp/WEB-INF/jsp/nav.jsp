@@ -30,7 +30,6 @@
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/profile?username=${currentUsername}" />">${currentUsername}</a></li>
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List</a></li>
-                    <li><a href="<c:url value="/shelves?username=${currentUsername}" /> ">Shelves</a></li>
                     <li><a href="<c:url value="/logout" /> ">Log Out</a></li>
                 </c:when>
                 <c:otherwise>
