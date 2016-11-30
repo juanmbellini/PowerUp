@@ -22,7 +22,12 @@ public class GameHibernateDao implements GameDao {
     private EntityManager em;
 
     @Override
-    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
+    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
+                                  boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
+
+        if (name == null || filters == null || orderCategory == null || pageSize < 0 || pageNumber <= 0) {
+            throw new IllegalArgumentException();
+        }
 
         String selectString = "select g ";
         String countString = "select count(distinct g.id) ";
