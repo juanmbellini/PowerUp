@@ -260,6 +260,7 @@ public class UserController extends BaseController {
             LOG.warn("Registration form validated but UserExists exception still thrown during registration of {} / {}: {}", username, email, e);
             return registerGet(form);
         }
+        mailService.sendEmailWelcome(user);
         LOG.info("Registered user {} with email {}, logging them in and redirecting to home", user.getUsername(), user.getEmail());
 
         //Log the new user in
@@ -280,6 +281,7 @@ public class UserController extends BaseController {
         User user = userService.findByUsername(username);
         String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
         userService.changePassword(user.getId(),hashedNewPassword);
+        mailService.sendEmailChangePassword(user);
         LOG.info("Your password was changed");
 
 
@@ -301,7 +303,7 @@ public class UserController extends BaseController {
         String password = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(password);
         userService.changePassword(user.getId(), hashedPassword);
-        mailService.sendEmailChangePassword(user,password);
+        mailService.sendEmailResetPassword(user,password);
         LOG.info("Password has been reseted. Your new password has been sent to your email.");
 
         return new ModelAndView("redirect:/");

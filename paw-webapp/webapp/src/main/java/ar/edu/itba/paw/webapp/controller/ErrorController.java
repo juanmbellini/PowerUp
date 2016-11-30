@@ -32,6 +32,11 @@ public class ErrorController extends BaseController {
         return new ModelAndView("error404");
     }
 
+    @RequestMapping("/error405")
+    public ModelAndView error405() {
+        return new ModelAndView("error405");
+    }
+
     @RequestMapping("/error400")
     public ModelAndView error400() {
         return new ModelAndView("error400");

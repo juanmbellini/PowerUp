@@ -8,5 +8,7 @@ import org.springframework.stereotype.Service;
  */
 public interface MailService {
 
-    public void sendEmailChangePassword(User user, String newPassword);
+    public void sendEmailResetPassword(User user, String newPassword);
+    public void sendEmailChangePassword(User user);
+    public void sendEmailWelcome(User user);
 }
