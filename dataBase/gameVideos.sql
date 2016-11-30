@@ -3608,7 +3608,7 @@ FROM (
 	(338, 'DL_mPw7KEU8', 'Trailer'),
 	(247, 'n0l5N6Exjz0', 'Trailer'),
 	(2549, 'vdJwW_0X0Ug', 'Gameplay video'),
-	(2549, 'qinSOOjFK2c', 'Trailer'),
+	(2549, 'qinSOOjFK2c', 'Trailer')
 ) AS val (game_id, video_id, video_name)
 INNER JOIN games ON val.game_id = games.id
 ON CONFLICT DO NOTHING;
