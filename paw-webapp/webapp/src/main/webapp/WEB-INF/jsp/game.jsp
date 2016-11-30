@@ -44,6 +44,7 @@
 
                             <div class="col s4 center-align">
                                 <form:select path="playStatus" id="status">
+                                    <form:option selected="true" value="" label="Select play status" disabled="true"/>
                                     <form:options items="${statuses}"/>
                                 </form:select>
                                 <form:label path="playStatus">PlayStatus: </form:label>
@@ -95,8 +96,8 @@
                                                 <c:set var="shelf" value="${entry.key}"/>
                                                 <c:set var="isInShelf" value="${entry.value}"/>
                                                 <option value="${shelf.id}"
-                                                        <c:if test="${isInShelf}">selected</c:if> ><c:out
-                                                        value="${shelf.name}"></c:out></option>
+                                                        <c:if test="${isInShelf}">selected</c:if> >
+                                                    <c:out value="${shelf.name}"/></option>
                                             </c:forEach>
                                                 <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
                                             <c:forEach var="entry" items="${shelves}">
