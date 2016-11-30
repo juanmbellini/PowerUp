@@ -42,15 +42,16 @@
                 <button type='submit' class='btn waves-effect'>Search <i class="material-icons right">search</i></button>
             </form>
             <br />
-            <div class="col s12 divider"></div>
-            <h5 style="margin-bottom:0;">Create a Shelf</h5>
-            <form action="<c:url value="/create-shelf" />" method="POST">
-                <div class="input-field center col s12">
-                    <input type="text" name="name" required />
-                </div>
-                <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
-            </form>
-
+            <c:if test="${isLoggedIn && currentUsername == user.username}">
+                <div class="col s12 divider"></div>
+                <h5 style="margin-bottom:0;">Create a Shelf</h5>
+                <form action="<c:url value="/create-shelf" />" method="POST">
+                    <div class="input-field center col s12">
+                        <input type="text" name="name" required />
+                    </div>
+                    <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
+                </form>
+            </c:if>
         </div>
         <div class="col s9">
 
@@ -66,6 +67,16 @@
                             <h5 class="center">No results</h5>
                         </c:when>
                         <c:otherwise>
+                            <%--Games list header--%>
+                            <div class="col s12 center" id="games-list-header">
+                                <p class="col s2">Cover Picture</p>
+                                <p class="col s3 ">Title</p>
+                                <p class="col s1 ">Play Status</p>
+                                <p class="col s2 ">Shelves</p>
+                                <p class="col s1 ">Avg. Rating</p>
+                                <p class="col s2 ">Own score</p>
+                                <p class="col s1"></p>
+                            </div>
                             <ul class="collection games-list">
                                 <%--TODO limit number of shown games, create link to show more--%>
                                 <c:forEach items="${games}" var="game">
@@ -137,7 +148,8 @@
 
                                         <div class="col s1">
                                             <div class="secondary-content">
-                                                <button class="btn delete-button waves-effect waves-light" data-user-id="${user.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
+                                                <%--<a href="#!" class="delete material-icons red-text text-lighten-1" style="vertical-align: middle;" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>">delete</a>--%>
+                                                <a href="#!" class="material-icons red-text text-lighten-1 delete-button" data-user-id="${user.id}" data-game-id="${game.id}"><i class="material-icons right">delete</i></a>
                                             </div>
                                         </div>
                                     </li>

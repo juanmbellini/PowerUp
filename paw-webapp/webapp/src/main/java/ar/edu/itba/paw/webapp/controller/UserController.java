@@ -298,10 +298,12 @@ public class UserController extends BaseController {
             user = userService.findByEmail(email);
         } catch (NoSuchEntityException e) {
             LOG.warn("No user found associated to that email");
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/login");
         }
+        if(user==null) return new ModelAndView("redirect:/login");
         String password = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(password);
+        if(hashedPassword==null) return new ModelAndView("redirect:/login");
         userService.changePassword(user.getId(), hashedPassword);
         mailService.sendEmailResetPassword(user,password);
         LOG.info("Password has been reseted. Your new password has been sent to your email.");

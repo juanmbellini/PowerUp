@@ -382,6 +382,16 @@ public class GameController extends BaseController {
         }
         return mav;
     }
+    @RequestMapping(value = "/delete-review", method = RequestMethod.POST)
+    public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
+        Review review = reviewService.findById(reviewId);
+        if(!review.getUser().equals(getCurrentUser())){
+            return new ModelAndView("error400");
+        }
+        long gameId = review.getGame().getId();
+        reviewService.delete(reviewId);
+        return new ModelAndView("redirect:/game?id=" + gameId);
+    }
 
     @RequestMapping(value = "/write-review", method = RequestMethod.POST)
     public ModelAndView submitReview(@RequestParam(name = "id") long gameId,
