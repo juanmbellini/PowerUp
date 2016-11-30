@@ -46,11 +46,6 @@ public class ShelfController extends BaseController {
                 LOG.warn("User {} attempted to create a, unauthorized", getCurrentUsername());
                 return new ModelAndView("error404");
             }
-            if(!shelfService.findByName(name).isEmpty()) {
-                LOG.info("User {} attempted to create Shelf with duplicate name (\"{}\")", getCurrentUsername(), name);
-                //TODO show the error to the user
-                return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
-            }
             shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
             LOG.info("Created Shelf \"{}\" for user {}", name, getCurrentUsername());
         } catch (Exception e) {
