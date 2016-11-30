@@ -39,8 +39,6 @@
                                 </div>
                             </div>
                             <div class="col s3">
-                                <c:set var="criteria" value="${['story', 'graphics', 'audio', 'controls', 'fun']}" />
-                                <c:set var="scores" value="${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}" />
                                 <c:forEach items="${criteria}" var="criterium">
                                     <p style="text-transform: capitalize;">${criterium}</p>
                                     <form:select path="${criterium}Score">

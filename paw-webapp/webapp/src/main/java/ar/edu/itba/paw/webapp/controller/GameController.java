@@ -380,6 +380,7 @@ public class GameController extends BaseController {
             LOG.error("Error rendering Write Review page", e);
             mav = new ModelAndView("error500");
         }
+        mav.addObject("criteria", new String[] {"story", "graphics", "audio", "controls", "fun"});
         return mav;
     }
     @RequestMapping(value = "/delete-review", method = RequestMethod.POST)
