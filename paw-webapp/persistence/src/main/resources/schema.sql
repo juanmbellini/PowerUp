@@ -26,6 +26,17 @@ CREATE TABLE IF NOT EXISTS keywords (
   id   SERIAL  NOT NULL PRIMARY KEY,
   name VARCHAR NOT NULL
 );
+CREATE TABLE IF NOT EXISTS users (
+  id              SERIAL  NOT NULL PRIMARY KEY,
+  email           VARCHAR NOT NULL,
+  username        VARCHAR          DEFAULT NULL,
+  hashed_password VARCHAR NOT NULL,
+  enabled         BOOLEAN NOT NULL DEFAULT TRUE,
+  profile_picture bytea, --ALTER TABLE users ADD profile_picture bytea
+
+  UNIQUE (email),
+  UNIQUE (username)
+);
 CREATE TABLE IF NOT EXISTS reviews (
   id             SERIAL  NOT NULL PRIMARY KEY,
   game_id        INTEGER NOT NULL,
@@ -41,17 +52,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (user_id, game_id)
-);
-CREATE TABLE IF NOT EXISTS users (
-  id              SERIAL  NOT NULL PRIMARY KEY,
-  email           VARCHAR NOT NULL,
-  username        VARCHAR          DEFAULT NULL,
-  hashed_password VARCHAR NOT NULL,
-  enabled         BOOLEAN NOT NULL DEFAULT TRUE,
-  profile_picture bytea, --ALTER TABLE users ADD profile_picture bytea
-
-  UNIQUE (email),
-  UNIQUE (username)
 );
 CREATE TABLE IF NOT EXISTS shelves (
   id         SERIAL      NOT NULL PRIMARY KEY,

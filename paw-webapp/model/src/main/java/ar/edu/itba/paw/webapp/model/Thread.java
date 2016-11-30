@@ -16,7 +16,6 @@ import java.util.*;
  */
 @Entity
 @Table(name = "threads")
-//@FilterDef(name = "onlyTopLevelComments", parameters = @ParamDef(name = "parentComment", type = ""))
 public class Thread {
 
     @Id
@@ -36,7 +35,6 @@ public class Thread {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
     @OrderBy("createdAt ASC")
-//    @org.hibernate.annotations.Filter(name = "onlyTopLevelComments")
     private Set<Comment> allComments;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
