@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GenreDao;
+import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,13 @@ public class UserHibernateDao implements UserDao {
 
     private final GameDao gameDao;
     private final GenreDao genreDao;
+//    private final ShelfDao shelfDao;
 
     @Autowired
     public UserHibernateDao(GameDao gameDao, GenreDao genreDao) {
         this.gameDao = gameDao;
         this.genreDao = genreDao;
+//        this.shelfDao = shelfDao;
     }
 
     @Override
@@ -120,28 +123,44 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public Collection<Game> recommendGames(long userId) {
-        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap();
+
+        User user = findById(userId);
+        if(user==null) return new HashSet<>();
+
+
+        return recommendGames(user.getPlayStatuses().keySet(), userId);
+
+
+    }
+
+    public Collection<Game> recommendGames(Set<Long> relatedGamesId, long userId) {
 
         User user = findById(userId);
         Map<Long, Integer> scoredGames = user.getScoredGames();
 
-        if (scoredGames == null || scoredGames.size() == 0) return new LinkedHashSet<>();
+        Map<FilterCategory, Map<String, Double>> filtersScoresMap = new HashMap();
+
+        if (relatedGamesId == null || relatedGamesId.size() == 0) return new LinkedHashSet<>();
 
         //Genres
         Map<Genre, Integer> countGenre = new HashMap<>();
         Map<Genre, Long> sumGenre = new HashMap<>();
-        for (long gameId : scoredGames.keySet()) {
-           Game scoredGame = gameDao.findById(gameId);
-           for(Genre genre: scoredGame.getGenres()) {
-               if(!countGenre.containsKey(genre)) {
-                   countGenre.put(genre,0);
-               }
-               if(!sumGenre.containsKey(genre)){
-                   sumGenre.put(genre,0l);
-               }
-               countGenre.put(genre,countGenre.get(genre)+1);
-               sumGenre.put(genre,sumGenre.get(genre)+scoredGames.get(gameId));
-           }
+        for (long gameId : relatedGamesId) {
+            Game scoredGame = gameDao.findById(gameId);
+            for(Genre genre: scoredGame.getGenres()) {
+                if(!countGenre.containsKey(genre)) {
+                    countGenre.put(genre,0);
+                }
+                if(!sumGenre.containsKey(genre)){
+                    sumGenre.put(genre,0l);
+                }
+                countGenre.put(genre,countGenre.get(genre)+1);
+                if(scoredGames.keySet().contains(gameId)){
+                    sumGenre.put(genre,sumGenre.get(genre)+scoredGames.get(gameId));
+                }else{
+                    sumGenre.put(genre,sumGenre.get(genre)+5);
+                }
+            }
         }
         Map<String, Double> mapFilterToFilterScoreGenre = new HashMap<>();
         for(Genre genre: countGenre.keySet()){
@@ -152,7 +171,7 @@ public class UserHibernateDao implements UserDao {
         //Keywords
         Map<Keyword, Integer> countKeyword = new HashMap<>();
         Map<Keyword, Long> sumKeyword = new HashMap<>();
-        for (long gameId : scoredGames.keySet()) {
+        for (long gameId : relatedGamesId) {
             Game scoredGame = gameDao.findById(gameId);
             for(Keyword keyword: scoredGame.getKeywords()) {
                 if(!countKeyword.containsKey(keyword)) {
@@ -162,7 +181,11 @@ public class UserHibernateDao implements UserDao {
                     sumKeyword.put(keyword,0l);
                 }
                 countKeyword.put(keyword,countKeyword.get(keyword)+1);
-                sumKeyword.put(keyword,sumKeyword.get(keyword)+scoredGames.get(gameId));
+                if(scoredGames.keySet().contains(gameId)){
+                    sumKeyword.put(keyword,sumKeyword.get(keyword)+scoredGames.get(gameId));
+                }else{
+                    sumKeyword.put(keyword,sumKeyword.get(keyword)+5);
+                }
             }
         }
         Map<String, Double> mapFilterToFilterScoreKeyword = new HashMap<>();
@@ -173,10 +196,23 @@ public class UserHibernateDao implements UserDao {
 
         //Get all games with each of X filter with higher weight and give each a weight based on avg_score we gave.
 
-        Collection<Game> finalResultList = gameDao.getRecommendedGames(scoredGames.keySet(), filtersScoresMap);
-
+        Collection<Game> finalResultList = gameDao.getRecommendedGames(relatedGamesId, filtersScoresMap);
         return finalResultList;
+    }
 
+    @Override
+    public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
+        if(shelves==null ||  shelves.isEmpty()) return  recommendGames(userId);
+
+        Set<Long> gameIds = new HashSet<>();
+
+        for(Shelf shelf: shelves){
+            for(Game game:  shelf.getGames()){
+                gameIds.add(game.getId());
+            }
+        }
+
+        return  recommendGames(gameIds,userId);
     }
 
     @Override

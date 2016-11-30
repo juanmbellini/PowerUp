@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
@@ -74,6 +75,11 @@ public interface UserDao {
      * @see UserService#recommendGames(long)
      */
     Collection<Game> recommendGames(long userId);
+
+    /**
+     *  @see UserService#recommendGames(long,Set)
+     */
+    Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
     /**
      * @see UserService#setProfilePicture(long, byte[])
