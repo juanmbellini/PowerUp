@@ -79,7 +79,7 @@
                                     <p class="title"><a href="<c:url value="/game?id=${game.id}" />">${game.name}</a></p>
                                 </div>
                                 <div class="col s1 center">
-                                    <p style="margin-top: 33px;">${game.releaseDate.year}</p>
+                                    <%--<p style="margin-top: 33px;">${game.releaseDate.year}</p>--%>
                                 </div>
                                 <div class="col s2">
                                     <div class="secondary-content">
