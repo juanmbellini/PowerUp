@@ -19,30 +19,36 @@
     <div class="row">
         <div class="col s2">
             <form id="shelfForm" action="<c:url value="/list"/>">
-                <c:forEach items="${playstatus}" var="playStatus">
-                    <p>
+                <h5>Filter by Status</h5>
+                <c:forEach var="playStatus" items="${playStatusEnumValues}" >
+                    <p class="checkbox-list">
                         <input type="checkbox" name="playStatusesCheckbox"  <c:if test="${playStatusesFilter.contains(playStatus.name())}">checked</c:if> id="<c:out value="${playStatus}"/>" value="<c:out value="${playStatus.name()}"/>" />
-                        <label for="<c:out value="${playStatus}"/>"><c:out value="${playStatus.name()}"/></label>
+                        <label class="wrap-text" for="<c:out value="${playStatus}"/>"><c:out value="${playStatus.pretty}"/></label>
                     </p>
                 </c:forEach>
+                <h5>Filter by Shelf</h5>
                 <c:forEach items="${shelves}" var="shelf">
-                     <p>
+                     <p class="checkbox-list">
                         <input type="checkbox" name="shelvesCheckbox" id="<c:out value="${shelf.id}"/>" <c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if> value="<c:out value="${shelf.name}"/>"/>
-                        <label for="<c:out value="${shelf.id}"/>"><c:out value="${shelf.name}"/><label>
+                        <label class="wrap-text" for="<c:out value="${shelf.id}"/>">
+                            <c:out value="${shelf.name}"/>
+                            <c:if test="${isLoggedIn && currentUsername == user.username}">
+                                <a href="#!" class="rename material-icons black-text" style="vertical-align: middle;" data-id="<c:out value='${shelf.id}'/>" data-name="<c:out value='${shelf.name}'/>">mode_edit</a>
+                                <a href="#!" class="delete material-icons red-text text-lighten-1" style="vertical-align: middle;" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>">delete</a>
+                            </c:if>
+                        </label>
                     </p>
-                    <c:if test="${isLoggedIn && currentUsername == user.username}">
-                        <span style="font-size: 0.45em;"><a href="#!" class="rename" data-id="<c:out value="${shelf.id}"/>"data-name="<c:out value="${shelf.name}"/>">rename</a> | <a href="#!" class="delete" data-id="<c:out value="${shelf.id}"/>" data-name="<c:out value="${shelf.name}"/>" >delete</a></span>
-                    </c:if>
                 </c:forEach>
-                <br/>
-                <input type="submit">
+                <button type='submit' class='btn waves-effect'>Search <i class="material-icons right">search</i></button>
             </form>
-            <span>Create a Shelf</span>
+            <br />
+            <div class="col s12 divider"></div>
+            <h5 style="margin-bottom:0;">Create a Shelf</h5>
             <form action="<c:url value="/create-shelf" />" method="POST">
                 <div class="input-field center col s12">
                     <input type="text" name="name" required />
                 </div>
-                <button type='submit' class='col s4 btn waves-effect light-blue'>Submit <i class="material-icons right">send</i></button>
+                <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
             </form>
 
         </div>
@@ -50,23 +56,18 @@
 
                 <div class="row">
                     <h1 class="center"><c:out value="${user.username}'s Game List"/></h1>
-                    <c:if test="${user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your list!</h5></c:if>
+                    <c:if test="${isLoggedIn && user.username == currentUsername}"><h5 class="center"><a href="<c:url value="/search" />">Search games</a> to add them to your list!</h5></c:if>
 
                     <div class="col s12 divider"></div>
                     <br/>
 
-                    <%--<h4>--%>
-                    <%--<c:out value="${shelf.name}"></c:out>--%>
-
-                    <%--</h4>--%>
                     <c:choose>
                         <c:when test="${fn:length(games) == 0}">
-                            <h5 class="center"><c:out value="Game list is empty"></c:out></h5>
+                            <h5 class="center">No results</h5>
                         </c:when>
                         <c:otherwise>
                             <ul class="collection games-list">
-                                    <%--TODO limit number of shown games, create link to show more--%>
-
+                                <%--TODO limit number of shown games, create link to show more--%>
                                 <c:forEach items="${games}" var="game">
                                     <li class="collection-item avatar col s12">
                                         <div class="col s2 cover-pic-container valign-wrapper">
@@ -168,31 +169,6 @@
 
 
     $(function() {
-
-        <%--$("#shelfForm").on("submit", function() {--%>
-            <%--debugger;--%>
-            <%--var url = "http://localhost:8080/list";--%>
-            <%--url+="?";--%>
-
-            <%--<c:forEach items="${playstatus}" var="playStatus">--%>
-                <%--if($("#${playStatus}").is(":checked")) {--%>
-                    <%--playStatuses.push("${playStatus}");--%>
-                <%--}--%>
-            <%--</c:forEach>--%>
-            <%--<c:forEach items="${shelves}" var="shelf">--%>
-                <%--if($("#${shelf.id}").is(":checked")) {--%>
-                    <%--shelves.push("${shelf.name}");--%>
-                <%--}--%>
-            <%--</c:forEach>--%>
-            <%--debugger;--%>
-            <%--url+="playStatuses="+JSON.stringify(playStatuses);--%>
-            <%--url+="&shelves="+JSON.stringify(shelves)--%>
-            <%--url=encodeURI(url);--%>
-            <%--window.location = url;--%>
-        <%--});--%>
-
-
-
         $(".delete-button").on('click', function (event) {
             var gameId = $(this).data('game-id');
             var userId = $(this).data('user-id');
@@ -236,7 +212,6 @@
             var $target = $(this);
             var name = $target.data('name');
             var id = $target.data('id');
-            debugger;
             swal({
                 title: "Rename \"" + name + "\" to...",
                 type: "input",
@@ -257,7 +232,6 @@
                 $(".confirm").attr('disabled', 'disabled');
                 <c:url value="/rename-shelf" var="renameUrl" />
                 //Create an inline form and submit it to redirect with POST
-                debugger;
                 $("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();
             });
         });

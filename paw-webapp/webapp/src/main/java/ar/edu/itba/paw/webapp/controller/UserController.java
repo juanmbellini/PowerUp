@@ -7,7 +7,6 @@ import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.*;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -185,7 +183,7 @@ public class UserController extends BaseController {
 
 
 
-        mav.addObject("playstatus",PlayStatus.values());
+        mav.addObject("playStatusEnumValues", PlayStatus.values());
         mav.addObject("playStatusesFilter",playStatusesFilter);
         mav.addObject("shelvesFilter",shelvesFilter);
         mav.addObject("games",games);

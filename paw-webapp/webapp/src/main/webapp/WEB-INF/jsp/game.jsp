@@ -11,7 +11,7 @@
     <link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>
     <link href="<c:url value="/css/lightbox.css" />" type="text/css" rel="stylesheet"/>
-    <title><c:out value="${game.name} - PowerUp"></c:out></title>
+    <title><c:out value="${game.name} - PowerUp" /></title>
 </head>
 <header>
     <%@include file="nav.jsp" %>
@@ -27,14 +27,10 @@
         <div class="section">
             <div class="row">
                 <c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>
-                <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post"
-                           class="center-align" id="rateAndStatusForm">
-
-                    <div class="col s3">
-                    </div>
+                <form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align" id="rateAndStatusForm">
+                    <div class="col s3"></div>
                     <div class="col s6 center-align">
                         <div class="row">
-
                             <div class="col s4 center-align">
                                 <form:select path="score" id="score">
                                     <form:option value="" label="Select score"/>
@@ -57,26 +53,21 @@
                             <c:choose>
                                 <c:when test="${isLoggedIn}">
                                     <div class="col s4 center">
-                                        <button id="submit" type="submit" class="btn waves-effect waves-light">Update
-                                            List!
-                                        </button>
+                                        <button id="submit" type="submit" class="btn waves-effect waves-light">Update List</button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="col s4 center">
-                                            <%--TODO redirect user back  here after login--%>
-                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log
-                                            in</a>
+                                        <%--TODO redirect user back here after login--%>
+                                        <a class="btn waves-effect waves-light" href="<c:url value="/login" />">Login</a>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                     </div>
-
                 </form:form>
-                <c:if test="${currentUser!=null && canUpdateShelves}">
-                    <button class="col s1 btn delete-button waves-effect waves-light" data-user-id="${currentUser.id}"
-                            data-game-id="${game.id}"><i class="material-icons right">delete</i></button>
+                <c:if test="${isLoggedIn && canUpdateShelves}">
+                    <button id="delete-button" class="btn waves-effect waves-light">Remove <i class="material-icons right">delete</i></button>
                 </c:if>
             </div>
         </div>
@@ -124,9 +115,7 @@
                                 <c:choose>
                                     <c:when test="${isLoggedIn}">
                                         <div class="col s4">
-                                            <button type="submit" class="btn waves-effect waves-light" disabled>Update
-                                                Shelves
-                                            </button>
+                                            <button type="submit" class="btn waves-effect waves-light">Update Shelves</button>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
@@ -374,18 +363,31 @@
 </footer>
 <script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/game.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
 <script type="text/javascript">
     $(function () {
-        $(".delete-button").on('click', function (event) {
-            debugger;
-            var gameId = $(this).data('game-id');
-            var userId = $(this).data('user-id');
-            //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
-                <input type='hidden' name='gameId' value='" + gameId + "' /> \
-                <input type='hidden' name='userId' value='" + userId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
-               </form>").submit();
+        $("#delete-button").on('click', function (event) {
+            swal({
+                title: "Are you sure?",
+                text: "This game will be removed from all your shelves.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Remove",
+                closeOnConfirm: false
+            },
+            function () {
+                //Disable submit button to prevent multiple submissions
+                $(".confirm").attr('disabled', 'disabled');
+                <c:url value="/delete-shelf" var="deleteUrl" />
+                //Create an inline form and submit it to redirect with POST
+                $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
+                    <input type='hidden' name='gameId' value='${game.id}' /> \
+                    <input type='hidden' name='userId' value='${currentUser.id}' /> \
+                    <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+                   </form>").submit();
+            });
         });
 
         $("#shelves").on("change", function (event) {
