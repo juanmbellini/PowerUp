@@ -175,7 +175,7 @@ public class UserController extends BaseController {
         return new ModelAndView("redirect:/");
     }
 
-
+    @RequestMapping(value = "/change-password", method = {RequestMethod.POST})
     public ModelAndView changePassword(@Valid @ModelAttribute("changePasswordForm") final ChangePasswordForm form,
                                        final BindingResult errors,
                                         @RequestParam (value = "username") final String username) {
@@ -184,14 +184,10 @@ public class UserController extends BaseController {
             return profile(username, form, errors);
         }
 
-        User user = getCurrentUser();
-        String hashedOldPassword = passwordEncoder.encode(form.getOldPassword());
+        User user = userService.findByUsername(username);
         String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
-        if(hashedOldPassword.equals(user.getHashedPassword())){
-            userService.changePassword(user.getId(),hashedNewPassword);
-        }else{
-            LOG.warn("old password did not match");
-        }
+        userService.changePassword(user.getId(),hashedNewPassword);
+
 
         return new ModelAndView("redirect:/profile");
     }

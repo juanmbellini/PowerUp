@@ -125,11 +125,6 @@
         <div class="modal-content">
             <h4 class="center">Change Your Password</h4>
             <div class='input-field'>
-                <form:input type="password" path="oldPassword" required="required" />
-                <form:errors path="" cssClass="formError" element="p" Style="size: 1px"/>
-                <form:label path="oldPassword">Old Password</form:label>
-            </div>
-            <div class='input-field'>
                 <form:input type="password" path="newPassword" required="required" />
                 <form:errors path="" cssClass="formError" element="p" Style="size: 1px"/>
                 <form:label path="newPassword">New Password</form:label>
