@@ -523,7 +523,7 @@
         var url = window.location.pathname;
 
         //Add name parameter
-        url += "?name=" + NAME;
+        url += "?name=" + encodeURIComponent(NAME);
 
         //Build filters, extracting the name of each value.
         var filters = {};
@@ -590,7 +590,7 @@
         //Discard page number parameter
 
         //Done, redirect
-        window.location = encodeURI(url);
+        window.location = url;
     }
 
     /* ******************************************
