@@ -345,7 +345,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/like-thread" />' method='POST'> \
                 <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />' /> \
                </form>").submit();
         });
 
@@ -354,7 +354,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
                 <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />' /> \
                </form>").submit();
         });
 
@@ -415,7 +415,7 @@
                 $form.css("margin-top", "10px");
 
                 $form.append("<input type='hidden' name='commentId' value='"+ commentId +"' />");
-                $form.append("<input type='hidden' name='returnUrl' value='"+ window.location.pathname + "?id=${thread.id}#" + commentId +"' />");
+                $form.append("<input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />#" + commentId +"' />");
 
                 //Text area
                 $form.append("<div class='row'> \
@@ -465,7 +465,7 @@
                 //Create an inline form and submit it to redirect with POST
                 $("<form action='<c:url value="/delete-comment" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}' /> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />' /> \
                </form>").submit();
             });
         });
@@ -475,7 +475,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/like-comment" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}#" + commentId + "' /> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />#" + commentId + "' /> \
                </form>").submit();
         });
 
@@ -484,7 +484,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/unlike-comment" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "?id=${thread.id}#" + commentId + "' /> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/thread?id=${thread.id}" />#" + commentId + "' /> \
                </form>").submit();
         });
     });
