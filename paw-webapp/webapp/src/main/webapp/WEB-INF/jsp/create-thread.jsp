@@ -23,7 +23,7 @@
         <form:form modelAttribute="createThreadForm" action="${postUrl}" method="POST">
             <div class='row'>
                 <div class='input-field col s12'>
-                    <form:input type="text" path="title" required="required" />
+                    <form:input type="text" path="title" required="required" length="50" />
                     <form:label path="title">Title</form:label>
                     <form:errors path="title" cssClass="formError" element="p"/>
                 </div>
