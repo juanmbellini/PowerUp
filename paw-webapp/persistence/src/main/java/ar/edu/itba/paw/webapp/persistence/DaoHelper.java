@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -128,6 +129,40 @@ import java.util.List;
             return query.getResultList();
         } catch (NoResultException e) {
             return Collections.emptyList();
+        }
+    }
+
+    /**
+     * Performs a basic search with parameters, returning a page of results.
+     *
+     * @param <T>           The return type.
+     * @param entityManager An entity manager with which to perform queries.
+     * @param klass         The class of the object type to return.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
+     *                      e.g. {@code "FROM User AS U WHERE U.username LIKE ?1}"
+     * @param parameters    Parameters for the query, in order of appearance in the query.
+     * @return              A list with the matching entities, or an empty list of nothing is found if not found.
+     */
+    /*package*/ static <T> Page<T> findPageWithConditions(EntityManager entityManager, Class<T> klass, int pageNumber, int pageSize, String baseQuery, Object... parameters) {
+        TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
+        for (int i = 0; i < parameters.length; i++) {
+            query.setParameter(i+1, parameters[i]);
+        }
+        query.setFirstResult((pageNumber-1)*pageSize);
+        query.setMaxResults(pageSize);
+        try {
+            Page<T> page = new Page<>();
+            List<T> data = findManyWithConditions(entityManager, klass, baseQuery, parameters);
+            page.setTotalPages(Math.max((int)Math.ceil(data.size()/pageSize), 1));
+            page.setPageSize(pageSize);
+            page.setPageNumber(pageNumber);
+            page.setOverAllAmountOfElements(data.size());
+            page.setData(query.getResultList());
+            return page;
+        } catch (NoResultException e) {
+            return Page.emptyPage();
         }
     }
 }

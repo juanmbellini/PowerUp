@@ -94,7 +94,7 @@
                                             <c:forEach var="entry" items="${shelves}">
                                                 <c:set var="shelf" value="${entry.key}" />
                                                 <c:set var="isInShelf" value="${entry.value}" />
-                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> ><c:out value="${shelf.name}"></c:out></option>
+                                                <option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if> ><c:out value="${shelf.name}" /></option>
                                             </c:forEach>
                                             <%--Forced to loop twice, the <input> element can't go inside the <select>--%>
                                             <c:forEach var="entry" items="${shelves}">
@@ -139,17 +139,17 @@
                         <img class="col s3" src="${game.coverPictureUrl}" alt="${game.name}">
                         <div class="col s5">
                             <p style="margin-top: 0;">
-                                <c:out value=" ${genre.name}"></c:out>
+                                <c:out value=" ${genre.name}" />
                                 <c:choose>
                                     <c:when test="${empty game.summary}">No summary =(</c:when>
-                                    <c:otherwise> <c:out value="${game.summary}"></c:out></c:otherwise>
+                                    <c:otherwise> <c:out value="${game.summary}" /></c:otherwise>
                                 </c:choose>
                             </p>
                         </div>
                         <div class="col s4">
                             <p><b>Rating</b></p>
                             <c:choose>
-                                <c:when test="${game.avgScore>0}">
+                                <c:when test="${game.avgScore > 0}">
                                     <p style="margin-top:0;"><fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" /></p>
                                 </c:when>
                                 <c:otherwise>
@@ -165,7 +165,7 @@
                                         <c:param name="filters" value='{"genre":["${genre.name}"]}'/>
                                        </c:url>
                                     ">
-                                        <c:out value=" ${genre.name}"></c:out>
+                                        <c:out value=" ${genre.name}" />
 
                                     </a>
                                     <c:if test="${!status.last}"><br /></c:if>
@@ -178,8 +178,8 @@
                                         <c:param name="filters" value='{"platform":["${platformEntry.key.name}"]}'/>
                                        </c:url>
                                     ">
-                                        <c:out value=" ${platformEntry.key.name}"></c:out>
-                                       </a><span style="font-size: small; float: right;"><c:out value="${platformEntry.value.releaseDate}"></c:out></span>
+                                        <c:out value=" ${platformEntry.key.name}" />
+                                       </a><span style="font-size: small; float: right;"><c:out value="${platformEntry.value.releaseDate}" /></span>
                                     <c:if test="${!status.last}"><div class="col s12 divider"></div><br /></c:if>
                                 </c:forEach>
                             <p><b>Developers</b></p>
@@ -190,7 +190,7 @@
                                        </c:url>
                                     ">
 
-                                            <c:out value="${developer.name}"></c:out>
+                                            <c:out value="${developer.name}" />
                                 </a>
                                 <c:if test="${!status.last}"><br /></c:if>
                             </c:forEach>
@@ -201,7 +201,7 @@
                                         <c:param name="filters" value='{"publisher":["${publisher.name}"]}'/>
                                        </c:url>
                                     ">
-                                        <c:out value="${publisher.name}"></c:out>
+                                        <c:out value="${publisher.name}" />
                                 </a>
 
                                 <c:if test="${!status.last}"><br /></c:if>
@@ -276,12 +276,12 @@
                                     <c:forEach items="${reviews}" var="review">
                                         <li class="collection-item avatar">
                                             <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
-                                            <span class="title">${review.user.username}</span>
+                                            <span class="title"><c:out value="${review.user.username}" /></span>
                                             <p class="secondary-content" style="color: black;">${review.date}</p>
-                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a></p>
+                                            <p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a></p>
                                             <br/>
                                             <div class="row">
-                                                <p class="col s10">${review.review}</p>
+                                                <p class="col s10 wrap-text preserve-newlines"><c:out value="${review.review}" /></p>
                                                 <div class="col s2">
                                                     <p style="color: #26a69a;">
                                                         Story: <span class="right">${review.storyScore}</span>

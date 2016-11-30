@@ -6,6 +6,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewService;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) throws NoSuchGameException {
+        return reviewDao.findPageByGameId(id, pageNumber, pageSize);
+    }
+
+    @Override
     public Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException {
         return reviewDao.findRecentByGameId(id, limit);
     }
@@ -40,6 +46,11 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Set<Review> findByUserId(long id) throws NoSuchUserException {
         return reviewDao.findByUserId(id);
+    }
+
+    @Override
+    public Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) throws NoSuchGameException {
+        return reviewDao.findPageByUserId(id, pageNumber, pageSize);
     }
 
     @Override
