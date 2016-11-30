@@ -379,7 +379,7 @@
                 $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
                     <input type='hidden' name='gameId' value='${game.id}' /> \
                     <input type='hidden' name='userId' value='${currentUser.id}' /> \
-                    <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+                    <input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \
                    </form>").submit();
             });
         });
@@ -389,7 +389,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/delete-review" />' method='POST'> \
                 <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+                <input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \
                </form>").submit();
         });
 

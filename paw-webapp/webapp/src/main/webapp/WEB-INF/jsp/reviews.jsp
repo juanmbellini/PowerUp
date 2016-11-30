@@ -235,7 +235,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/delete-review" />' method='POST'> \
                 <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+                <input type='hidden' name='returnUrl' value='/reviews" + window.location.search + "'/> \
                </form>").submit();
         });
     });

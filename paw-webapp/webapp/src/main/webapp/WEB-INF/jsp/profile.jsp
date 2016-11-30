@@ -45,7 +45,7 @@
                                         removingProfilePicture = true;
                                         //Create an inline form and submit it to redirect with POST
                                         $("<form action='<c:url value="/remove-profile-picture" />' method='POST'> \
-                                            <input type='hidden' name='returnUrl' value='<c:url value="/profile?username=${currentUsername}" />' /> \
+                                            <input type='hidden' name='returnUrl' value='/profile?username=${currentUsername}' /> \
                                            </form>").submit();
                                     }
                                 });

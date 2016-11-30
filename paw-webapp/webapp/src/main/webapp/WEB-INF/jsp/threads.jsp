@@ -96,7 +96,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/like-thread" />' method='POST'> \
                 <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "#" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='/threads#" + threadId + "' /> \
                </form>").submit();
         });
 
@@ -105,7 +105,7 @@
             //Create an inline form and submit it to redirect with POST
             $("<form action='<c:url value="/unlike-thread" />' method='POST'> \
                 <input type='hidden' name='threadId' value='" + threadId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + "#" + threadId + "' /> \
+                <input type='hidden' name='returnUrl' value='/threads#" + threadId + "' /> \
                </form>").submit();
         });
     });

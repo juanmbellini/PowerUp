@@ -261,7 +261,7 @@
                     $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
                         <input type='hidden' name='gameId' value='" + gameId + "' /> \
                         <input type='hidden' name='userId' value='" + userId + "' /> \
-                        <input type='hidden' name='returnUrl' value='<c:url value="/list?username=${user.username}" />'/> \
+                        <input type='hidden' name='returnUrl' value='/list?username=${user.username}'/> \
                        </form>").submit();
                 });
         });
