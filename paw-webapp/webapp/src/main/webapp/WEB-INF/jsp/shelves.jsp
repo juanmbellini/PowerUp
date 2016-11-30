@@ -39,15 +39,15 @@
                         </label>
                     </p>
                 </c:forEach>
-                <button type='submit' class='btn waves-effect'>Search <i class="material-icons right">search</i></button>
+                <button type='submit' class='btn waves-effect'>Filter <i class="material-icons right">filter_list</i></button>
             </form>
             <br />
             <c:if test="${isLoggedIn && currentUsername == user.username}">
                 <div class="col s12 divider"></div>
                 <h5 style="margin-bottom:0;">Create a Shelf</h5>
-                <form action="<c:url value="/create-shelf" />" method="POST">
-                    <div class="input-field center col s12">
-                        <input type="text" name="name" required />
+                <form id="new-shelf-form" action="<c:url value="/create-shelf" />" method="POST">
+                    <div class="input-field col s12" style="margin-top: 0; padding:0;">
+                        <input type="text" name="name" length="25" required />
                     </div>
                     <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i></button>
                 </form>
@@ -183,11 +183,8 @@
 <script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
 <script type="text/javascript">
-
     var shelves = [];
     var playStatuses = [];
-
-
 
     $(function() {
         $(".delete-button").on('click', function (event) {
@@ -197,7 +194,7 @@
             $("<form action='<c:url value="/remove-from-list" />' method='POST'> \
                 <input type='hidden' name='gameId' value='" + gameId + "' /> \
                 <input type='hidden' name='userId' value='" + userId + "' /> \
-                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+                <input type='hidden' name='returnUrl' value='<c:url value="/list?username=${user.username}" />'/> \
                </form>").submit();
         });
 
@@ -244,8 +241,8 @@
             function (inputValue) {
                 if (inputValue === false) return false;
 
-                if (inputValue === "") {
-                    swal.showInputError("You need to write something!");
+                if (inputValue === "" || inputValue.length > 25) {
+                    swal.showInputError("Please write between 1 and 25 characters");
                     return false;
                 }
 
@@ -255,6 +252,13 @@
                 //Create an inline form and submit it to redirect with POST
                 $("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();
             });
+        });
+
+        $("#new-shelf-form").on("submit", function(event) {
+            var name = $(this).find("input[type=text]").val();
+            if(name.length === 0 || name.length > 25) {
+                event.preventDefault();
+            }
         });
     });
 
