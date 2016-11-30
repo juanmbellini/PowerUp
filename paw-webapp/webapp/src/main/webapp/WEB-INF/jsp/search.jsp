@@ -590,7 +590,7 @@
         //Discard page number parameter
 
         //Done, redirect
-        window.location = url;
+        window.location = encodeURI(url);
     }
 
     /* ******************************************
