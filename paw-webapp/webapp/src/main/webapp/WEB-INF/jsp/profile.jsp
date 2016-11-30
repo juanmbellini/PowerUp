@@ -25,7 +25,7 @@
                     <div class="file-field input-field">
                         <div class="btn waves-effect waves-light">
                             <span>Upload picture</span>
-                            <input type="file" name="picture" accept=".jpeg, .jpg, .png, .gif">
+                            <input type="file" name="picture" accept=".jpeg, .jpg, .png, .gif" required>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path" type="text" />
