@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -18,8 +19,8 @@ public interface GameService {
      * (filter category, value) entries in {@code filters}. Results are ordered with field specified in {@code orderCategory}
      * and ascending if {@code ascending == true}.
      *
-     * @param name    Partial or complete name of the game. An empty name will match all games.
-     * @param filters Criteria for the games to match. May be empty, but not {@code null}.
+     * @param name     Partial or complete name of the game. An empty name will match all games.
+     * @param filters  Criteria for the games to match. May be empty, but not {@code null}.
      * @param pageSize is the size of the page. If it is 0, it will be considered to be the full page.
      * @return A {@link Page} of games matching the specified criteria.
      * @throws IllegalArgumentException if a list in the {@code filters} map is null.
@@ -30,8 +31,8 @@ public interface GameService {
     /**
      * Finds games related to a base game that match criteria specified in {@code filters}.
      *
-     * @param gameId The ID form the game to compare against.
-     * @param filters    Criteria under which to find related games.
+     * @param gameId  The ID form the game to compare against.
+     * @param filters Criteria under which to find related games.
      * @return The matching games. May be empty but not {@code null}.
      */
     Collection<Game> findRelatedGames(long gameId, Set<FilterCategory> filters);
@@ -135,4 +136,22 @@ public interface GameService {
      * @return The resulting map.
      */
     Map<Long, Integer> getScores(long gameId);
+
+    /**
+     * Gets all videos for a given game.
+     *
+     * @param gameId The ID of the game.
+     * @return A map whose keys are YouTube video IDs and whose values are video names.
+     * @throws NoSuchEntityException If the game doesn't exist.
+     */
+    Map<String, String> getVideos(long gameId) throws NoSuchEntityException;
+
+    /**
+     * Gets all picture URLs for a given game.
+     *
+     * @param gameId The ID of the game.
+     * @return A set of picture URLs for the game.
+     * @throws NoSuchEntityException If the game doesn't exist.
+     */
+    Set<String> getPictureUrls(long gameId) throws NoSuchEntityException;
 }

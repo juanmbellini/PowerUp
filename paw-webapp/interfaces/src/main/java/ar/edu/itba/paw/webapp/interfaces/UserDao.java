@@ -1,11 +1,14 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Data Access Object for users.
@@ -71,4 +74,24 @@ public interface UserDao {
      * @see UserService#recommendGames(long)
      */
     Collection<Game> recommendGames(long userId);
+
+    /**
+     * @see UserService#setProfilePicture(long, byte[])
+     */
+    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+
+    /**
+     * @see UserService#removeProfilePicture(long)
+     */
+    void removeProfilePicture(long userId);
+
+    /**
+     * @see UserService#changePassword(long, String)
+     */
+    void changePassword(long userId, String newHashedPassword);
+
+//    /**
+//     * @see UserService#getGameList(long,Set,Set)
+//     */
+//    Map<Game,PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter);
 }

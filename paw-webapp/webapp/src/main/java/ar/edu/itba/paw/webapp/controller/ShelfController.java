@@ -4,10 +4,9 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Controller for shelf operations.
  */
 @Controller
 public class ShelfController extends BaseController {
+
+
+
 
     /**
      * A game service used for listing games.
@@ -39,45 +39,12 @@ public class ShelfController extends BaseController {
         this.shelfService = shelfService;
     }
 
-    @RequestMapping(value = "/shelves")
-    public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
-        if (username == null) {
-            if (!isLoggedIn()) {
-                return new ModelAndView("redirect:error400");
-            }
-            return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
-        }
-        final ModelAndView mav = new ModelAndView("shelves");
-        User user = userService.findByUsername(username);
-        if (user == null) return new ModelAndView("error400");
-
-        //User found, populate data
-        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
-        Map<Game, PlayStatus> playStatuses = new HashMap<>();
-        for(Shelf shelf : shelves) {
-            for(Game game : shelf.getGames()) {
-                if(!playStatuses.containsKey(game)) {   //Avoid unnecessary DB lookups
-                    playStatuses.put(game, userService.hasPlayStatus(user.getId(), game.getId()) ? userService.getPlayStatus(user.getId(), game.getId()) : null);
-                }
-            }
-        }
-        mav.addObject("user", user);
-        mav.addObject("shelves", shelves);
-        mav.addObject("playStatuses", playStatuses);
-        return mav;
-    }
-
     @RequestMapping(value = "/create-shelf", method = RequestMethod.POST)
     public ModelAndView createShelf(@RequestParam(value = "name") String name, @RequestParam(value = "gameIds", required = false) long[] gameIds) {
         try {
             if(!isLoggedIn()) {
                 LOG.warn("User {} attempted to create a, unauthorized", getCurrentUsername());
                 return new ModelAndView("error404");
-            }
-            if(!shelfService.findByName(name).isEmpty()) {
-                LOG.info("User {} attempted to create Shelf with duplicate name (\"{}\")", getCurrentUsername(), name);
-                //TODO show the error to the user
-                return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
             }
             shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
             LOG.info("Created Shelf \"{}\" for user {}", name, getCurrentUsername());
@@ -86,7 +53,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/update-shelf", method = RequestMethod.POST)
@@ -106,7 +73,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/delete-shelf", method = RequestMethod.POST)
@@ -126,7 +93,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/rename-shelf", method = RequestMethod.POST)
@@ -147,7 +114,7 @@ public class ShelfController extends BaseController {
             return new ModelAndView("error500");
         }
 
-        return new ModelAndView("redirect:/shelves?username=" + getCurrentUsername());
+        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
     @RequestMapping(value = "/update-shelves-by-game", method = RequestMethod.POST)

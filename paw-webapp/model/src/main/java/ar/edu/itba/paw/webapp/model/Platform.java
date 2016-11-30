@@ -49,6 +49,10 @@ public class Platform {
         return games;
     }
 
+    public void setGames(Collection<Game> games) {
+        this.games = games;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -42,7 +42,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findById(long id) {
-        return em.find(User.class, id);
+        return DaoHelper.findSingle(em, User.class, id);
     }
 
     @Override
@@ -52,10 +52,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findByUsername(String username) {
-        final TypedQuery<User> query = em.createQuery("from User as u where u.username = :username", User.class);
-        query.setParameter("username", username);
-        final List<User> list = query.getResultList();
-        return list.isEmpty() ? null : list.get(0);
+        return DaoHelper.findSingleWithConditions(em, User.class, "FROM User as U WHERE U.username = ?1", username);
     }
 
     @Override
@@ -65,10 +62,7 @@ public class UserHibernateDao implements UserDao {
 
     @Override
     public User findByEmail(String email) {
-        final TypedQuery<User> query = em.createQuery("from User as u where u.email = :email", User.class);
-        query.setParameter("email", email);
-        final List<User> list = query.getResultList();
-        return list.isEmpty() ? null : list.get(0);
+        return DaoHelper.findSingleWithConditions(em, User.class, "FROM User as U WHERE U.email = ?1", email);
     }
 
     @Override
@@ -110,6 +104,7 @@ public class UserHibernateDao implements UserDao {
             throw new NoSuchUserException(userId);
         }
         user.getScoredGames().remove(gameId);
+        gameDao.updateAvgScore(gameId);
         em.persist(user);
     }
 
@@ -182,5 +177,27 @@ public class UserHibernateDao implements UserDao {
 
         return finalResultList;
 
+    }
+
+    @Override
+    public void setProfilePicture(long userId, byte[] picture) {
+        User user = DaoHelper.findSingleOrThrow(em, User.class, userId);
+        user.setProfilePicture(picture);
+        em.persist(user);
+    }
+
+    @Override
+    public void removeProfilePicture(long userId) {
+        setProfilePicture(userId, null);
+    }
+    
+    @Override
+    public void changePassword(long userId, String newHashedPassword) {
+        User user = findById(userId);
+        if(user == null) {
+            throw new NoSuchUserException(userId);
+        }
+        user.setHashedPassword(newHashedPassword);
+        em.persist(user);
     }
 }

@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Set;
 
@@ -23,6 +24,11 @@ public interface ReviewDao {
     Set<Review> findByGameId(long id) throws NoSuchGameException;
 
     /**
+     * @see ReviewService#findPageByGameId(long, int, int)
+     */
+    Page<Review> findPageByGameId(long id, int pageNumber, int pageSize);
+
+    /**
      * @see ReviewService#findRecentByGameId(long, int)
      */
     Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
@@ -31,6 +37,11 @@ public interface ReviewDao {
      * @see ReviewService#findByUserId(long)
      */
     Set<Review> findByUserId(long id) throws NoSuchUserException;
+
+    /**
+     * @see ReviewService#findPageByUserId(long, int, int)
+     */
+    Page<Review> findPageByUserId(long id, int pageNumber, int pageSize);
 
     /**
      * @see ReviewService#findRecentByUserId(long, int)
@@ -56,4 +67,9 @@ public interface ReviewDao {
      * @see ReviewService#find(long, long)
      */
     Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
+
+    /**
+     * @see ReviewService#delete(long)
+     */
+    void delete(long reviewId);
 }

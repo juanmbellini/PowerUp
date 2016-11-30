@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
@@ -106,7 +107,7 @@ public interface UserService {
      * @return An unmodifiable map containing the same information as {@link #getScoredGames(long)} but with reverse
      * indexing.
      */
-     Map<Integer, Set<Long>> getScoredGamesRev(long userId);
+    Map<Integer, Set<Long>> getScoredGamesRev(long userId);
 
     /**
      * Checks whether the specified user has scored the game with the specified ID.
@@ -187,4 +188,58 @@ public interface UserService {
      * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
      */
     Map<PlayStatus, Set<Game>> getGameList(long userId);
+
+    /**
+     *
+     *
+     * @param userId The ID of the user whose list to fetch.
+     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
+     */
+
+//    /**
+//     * Gets all games in this user's main game list (games they have marked as playing, played, etc.), using playStatusFilter and shelvesFilters.
+//     * @param id
+//     * @param playStatusesFilter
+//     * @param shelvesFilter
+//     * @return
+//     */
+//    Map<Game, PlayStatus>  getGameList(long id, Set<String> playStatusesFilter, Set<String> shelvesFilter);
+
+    /**
+     * Sets the profile picture for a user. Only authenticated users may set their own pictures.
+     *
+     * @param userId  The ID of the user whose profile picture to set.
+     * @param picture The picture's binary data.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+
+    /**
+     * Removes the profile picture for a user. Only authenticated users may remove their own pictures.
+     *
+     * @param userId  The ID of the user whose profile picture to remove.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void removeProfilePicture(long userId) throws NoSuchEntityException;
+
+    /**
+     * Changes the user's hashed password for the provided one.
+     * @param newHashedPassword new password. Must be hashed.
+     * @param userId  The ID of the user whose password to change.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException;
+
+    /**
+     * Returns a new randomly generated password.
+     * @return The generated password.
+     */
+    String generateNewPassword();
+
+    /**
+     * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
+     * @param userId
+     * @param gameId
+     */
+    void removeFromList(long userId, long gameId);
 }

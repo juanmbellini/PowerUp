@@ -1,6 +1,5 @@
 BEGIN;
 
-
 -- Creation of entity tables
 CREATE TABLE IF NOT EXISTS games (
   id                          SERIAL  NOT NULL PRIMARY KEY,
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS games (
   avg_score                   REAL,
   release                     DATE,
   cover_picture_cloudinary_id VARCHAR,
-  counter                     INTEGER NOT NULL
+  counter                     INTEGER NOT NULL DEFAULT 0
 );
 CREATE TABLE IF NOT EXISTS genres (
   id   SERIAL NOT NULL PRIMARY KEY,
@@ -28,20 +27,20 @@ CREATE TABLE IF NOT EXISTS keywords (
   name VARCHAR NOT NULL
 );
 CREATE TABLE IF NOT EXISTS reviews (
-  id                      SERIAL  NOT NULL PRIMARY KEY,
-  game_id                 INTEGER NOT NULL,
-  user_id                 INTEGER NOT NULL,
-  review                  TEXT    NOT NULL,
-  story_score             INTEGER,
-  graphics_score          INTEGER,
-  audio_score             INTEGER,
-  controls_score          INTEGER,
-  fun_score               INTEGER,
-  date                    DATE,
+  id             SERIAL  NOT NULL PRIMARY KEY,
+  game_id        INTEGER NOT NULL,
+  user_id        INTEGER NOT NULL,
+  review         TEXT    NOT NULL,
+  story_score    INTEGER,
+  graphics_score INTEGER,
+  audio_score    INTEGER,
+  controls_score INTEGER,
+  fun_score      INTEGER,
+  date           DATE,
 
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  UNIQUE(user_id, game_id)
+  UNIQUE (user_id, game_id)
 );
 CREATE TABLE IF NOT EXISTS users (
   id              SERIAL  NOT NULL PRIMARY KEY,
@@ -49,21 +48,50 @@ CREATE TABLE IF NOT EXISTS users (
   username        VARCHAR          DEFAULT NULL,
   hashed_password VARCHAR NOT NULL,
   enabled         BOOLEAN NOT NULL DEFAULT TRUE,
+  profile_picture bytea, --ALTER TABLE users ADD profile_picture bytea
 
   UNIQUE (email),
   UNIQUE (username)
 );
 CREATE TABLE IF NOT EXISTS shelves (
-  id            SERIAL NOT NULL PRIMARY KEY,
-  name          VARCHAR NOT NULL,
-  user_id       INTEGER NOT NULL,
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  id         SERIAL      NOT NULL PRIMARY KEY,
+  name       VARCHAR     NOT NULL,
+  user_id    INTEGER     NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   -- Other fields like whether this shelf is public?
+
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE SEQUENCE IF NOT EXISTS shelves_id_seq;
+
+CREATE TABLE IF NOT EXISTS threads(
+  id              SERIAL NOT NULL PRIMARY KEY,
+  title           VARCHAR NOT NULL,
+  user_id         INTEGER NOT NULL,
+  initial_comment VARCHAR NOT NULL DEFAULT '',
+  hot_value       REAL NOT NULL DEFAULT 0, -- alter table threads add hot_value REAL NOT NULL DEFAULT 0
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE SEQUENCE IF NOT EXISTS shelves_id_seq;
+CREATE SEQUENCE IF NOT EXISTS threads_id_seq;
+
+CREATE TABLE IF NOT EXISTS comments(
+  id                SERIAL NOT NULL PRIMARY KEY,
+  user_id           INTEGER NOT NULL,
+  comment           VARCHAR NOT NULL,
+  thread_id         INTEGER NOT NULL,
+  parent_comment_id INTEGER NULL,
+  created_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (thread_id) REFERENCES threads(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (parent_comment_id) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE SEQUENCE IF NOT EXISTS comments_id_seq;
 
 -- Creation of relationship tables
 CREATE TABLE IF NOT EXISTS game_genres (
@@ -121,6 +149,14 @@ CREATE TABLE IF NOT EXISTS game_pictures (
 
   FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE TABLE IF NOT EXISTS game_videos (
+  id            SERIAL  NOT NULL PRIMARY KEY,
+  name          VARCHAR NOT NULL,
+  video_id      VARCHAR NOT NULL,
+  game_id       INTEGER NOT NULL,
+
+  FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 CREATE TABLE IF NOT EXISTS game_scores (
   id      SERIAL  NOT NULL PRIMARY KEY,
   user_id INTEGER NOT NULL,
@@ -146,16 +182,38 @@ CREATE TABLE IF NOT EXISTS user_authorities (
   username  VARCHAR NOT NULL,
   authority VARCHAR NOT NULL,
 
-  FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE ,
+  FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE ON UPDATE CASCADE,
   UNIQUE (username, authority)
 );
 CREATE TABLE IF NOT EXISTS shelf_games (
-  id            SERIAL NOT NULL PRIMARY KEY,
-  shelf_id      INTEGER NOT NULL,
-  game_id       INTEGER NOT NULL,
+  id       SERIAL  NOT NULL PRIMARY KEY,
+  shelf_id INTEGER NOT NULL,
+  game_id  INTEGER NOT NULL,
 
-  FOREIGN KEY (shelf_id) REFERENCES shelves(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE ON UPDATE CASCADE,
-  UNIQUE(shelf_id, game_id)
+  FOREIGN KEY (shelf_id) REFERENCES shelves (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (game_id) REFERENCES games (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  UNIQUE (shelf_id, game_id)
 );
+
+CREATE TABLE IF NOT EXISTS thread_likes(
+  id          SERIAL NOT NULL PRIMARY KEY,
+  user_id     INTEGER NOT NULL,
+  thread_id   INTEGER NOT NULL,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (thread_id) REFERENCES threads(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE SEQUENCE IF NOT EXISTS thread_likes_id_seq;
+
+CREATE TABLE IF NOT EXISTS comment_likes(
+  id          SERIAL NOT NULL PRIMARY KEY,
+  user_id     INTEGER NOT NULL,
+  comment_id  INTEGER NOT NULL,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (comment_id) REFERENCES comments(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE SEQUENCE IF NOT EXISTS comment_likes_id_seq;
 COMMIT;

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
@@ -90,7 +91,9 @@ public class GameController extends BaseController {
     @RequestMapping("/search")
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersStr,
+                               //TODO change to orderBy
                                @RequestParam(value = "orderCategory", required = false) String orderParameter,
+                               //TODO change to order
                                @RequestParam(value = "orderBoolean", required = false) String orderBooleanStr,
                                @RequestParam(value = "pageSize", required = false) String pageSizeStr,
                                @RequestParam(value = "pageNumber", required = false) String pageNumberStr) {
@@ -138,6 +141,7 @@ public class GameController extends BaseController {
             filters = objectMapper.readValue(filtersStr, typeReference);
 
             pageSize = (pageSizeStr == null || pageSizeStr.equals("")) ? DEFAULT_PAGE_SIZE : new Integer(pageSizeStr);
+            if(pageSize>100) pageSize=100;
             pageNumber = (pageNumberStr == null || pageNumberStr.equals("")) ?
                     DEFAULT_PAGE_NUMBER : new Integer(pageNumberStr);
 
@@ -170,25 +174,25 @@ public class GameController extends BaseController {
         //Genres
         Set<Object[]> genres = new LinkedHashSet<>();
         for(Genre g : genreService.all()) {
-            genres.add(new Object[] {g.getName(), filters != null && filters.containsKey(FilterCategory.genre) && filters.get(FilterCategory.genre).contains(g.getName())});
+            genres.add(new Object[] {g, filters != null && filters.containsKey(FilterCategory.genre) && filters.get(FilterCategory.genre).contains(g.getName())});
         }
         mav.addObject("genres", genres);
         //Platforms
         Set<Object[]> platforms = new LinkedHashSet<>();
         for(Platform p : platformService.all()) {
-            platforms.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
+            platforms.add(new Object[] {p, filters != null && filters.containsKey(FilterCategory.platform) && filters.get(FilterCategory.platform).contains(p.getName())});
         }
         mav.addObject("platforms", platforms);
         //Developers
         Set<Object[]> developers = new LinkedHashSet<>();
         for(Company d : companyService.all()) {
-            developers.add(new Object[] {d.getName(), filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
+            developers.add(new Object[] {d, filters != null && filters.containsKey(FilterCategory.developer) && filters.get(FilterCategory.developer).contains(d.getName())});
         }
         mav.addObject("developers", developers);
         //Publishers
         Set<Object[]> publishers = new LinkedHashSet<>();
         for(Company p : companyService.all()) {
-            publishers.add(new Object[] {p.getName(), filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(p.getName())});
+            publishers.add(new Object[] {p, filters != null && filters.containsKey(FilterCategory.publisher) && filters.get(FilterCategory.publisher).contains(p.getName())});
         }
         mav.addObject("publishers", publishers);
 
@@ -245,13 +249,18 @@ public class GameController extends BaseController {
         mav.addObject("game", game);
         mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
         mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
         mav.addObject("publishers", gameService.getPublishers(gameId));
+        mav.addObject("pictures", gameService.getPictureUrls(gameId));
+        mav.addObject("videos", gameService.getVideos(gameId));
         mav.addObject("relatedGames", relatedGames);
         return mav;
     }
+
+
 
 
     @RequestMapping(value = "/rateAndUpdateStatus", method = {RequestMethod.POST})
@@ -285,13 +294,17 @@ public class GameController extends BaseController {
         if (playStatus != null) {
             userService.setPlayStatus(userId, id, playStatus);
         } else {
-            userService.removeStatus(userId, id);
+            return new ModelAndView("error400");
         }
         return mav;
     }
 
     @RequestMapping(value = "/reviews")
-    public ModelAndView reviews(@RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId, @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId) {
+    public ModelAndView reviews(HttpServletRequest request,
+                                @RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId,
+                                @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId,
+                                @RequestParam(name = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
         //Need at least one of the two
         if(gameId == -1 && userId == -1) {
             return new ModelAndView("error400");
@@ -302,22 +315,23 @@ public class GameController extends BaseController {
             if(gameId != -1) {
                 if(userId != -1) {
                     //Find by both
-                    Set<Review> singleReview = new LinkedHashSet<>(1);  //Add as set because view assumes it will be a collection
-                    singleReview.add(reviewService.find(userId, gameId));
-                    mav.addObject("reviews", singleReview);
+                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId)));
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
-                    mav.addObject("reviews", reviewService.findByGameId(gameId));
+                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
                 }
                 //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
                 mav.addObject("game", gameService.findById(gameId));
             } else {
                 //Find by user ID
-                mav.addObject("reviews", reviewService.findByUserId(userId));
+                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
                 mav.addObject("user", userService.findById(userId));
             }
             mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+        } catch(IllegalPageException e) {
+            LOG.warn("Invalid reviews page requested for game #{} by user #{}: {}", gameId, userId, e.getMessage());
+            mav = new ModelAndView("error400");
         } catch (NoSuchGameException e) {
             LOG.warn("Requested reviews for nonexistent game (ID={})", gameId);
             mav = new ModelAndView("error404");
@@ -328,6 +342,20 @@ public class GameController extends BaseController {
             LOG.error("Error rendering Reviews page", e);
             mav = new ModelAndView("error500");
         }
+        StringBuilder url = new StringBuilder(request.getContextPath());
+        url.append("/reviews?");
+        if(userId != -1) {
+            url.append("userId=").append(userId);
+        }
+        if(gameId != -1) {
+            if(userId != -1) url.append("&");
+            url.append("gameId=").append(gameId);
+        }
+        if(userId != -1 || gameId != -1) {
+            url.append("&");
+        }
+        mav.addObject("changePageUrl", url.toString());
+        mav.addObject("pageSizes", new int[] {10,25, 50});
         return mav;
     }
 
@@ -353,6 +381,16 @@ public class GameController extends BaseController {
             mav = new ModelAndView("error500");
         }
         return mav;
+    }
+    @RequestMapping(value = "/delete-review", method = RequestMethod.POST)
+    public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
+        Review review = reviewService.findById(reviewId);
+        if(!review.getUser().equals(getCurrentUser())){
+            return new ModelAndView("error400");
+        }
+        long gameId = review.getGame().getId();
+        reviewService.delete(reviewId);
+        return new ModelAndView("redirect:/game?id=" + gameId);
     }
 
     @RequestMapping(value = "/write-review", method = RequestMethod.POST)

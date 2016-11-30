@@ -8,11 +8,11 @@
 
         <ul class="right hide-on-med-and-down">
             <li><a href="<c:url value="/search" /> ">Search <i class="material-icons right">search</i></a></li>
+            <li><a href="<c:url value="/threads" /> ">Threads <i class="material-icons right">forum</i></a></li>
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/profile?username=${currentUsername}" />">${currentUsername} <i class="material-icons right">person</i></a></li>
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List <i class="material-icons right">menu</i></a></li>
-                    <li><a href="<c:url value="/shelves?username=${currentUsername}" /> ">Shelves <i class="material-icons right">menu</i></a></li>
                     <li><a href="<c:url value="/logout" /> ">Log Out <i class="material-icons right">exit_to_app</i></a></li>
                 </c:when>
                 <c:otherwise>
@@ -25,11 +25,11 @@
         <ul id="nav-mobile" class="side-nav black-text">
             <%--No icons on mobile because they don't work nicely, and there's not as much room--%>
             <li><a href="<c:url value="/search" /> ">Search</a></li>
+            <li><a href="<c:url value="/threads" /> ">Threads</a></li>
             <c:choose>
                 <c:when test="${isLoggedIn}">
                     <li><a href="<c:url value="/profile?username=${currentUsername}" />">${currentUsername}</a></li>
                     <li><a href="<c:url value="/list?username=${currentUsername}" /> ">Game List</a></li>
-                    <li><a href="<c:url value="/shelves?username=${currentUsername}" /> ">Shelves</a></li>
                     <li><a href="<c:url value="/logout" /> ">Log Out</a></li>
                 </c:when>
                 <c:otherwise>

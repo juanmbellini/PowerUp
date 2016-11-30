@@ -28,7 +28,8 @@ public class Company {
         this.id = id;
         this.name = name;
     }
-    /*package*/  Company() {
+
+    /*package*/ Company() {
         //for hibernate
     }
 

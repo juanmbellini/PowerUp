@@ -1,17 +1,22 @@
 package ar.edu.itba.paw.webapp.service;
 
+import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.*;
 
 /**
@@ -28,6 +33,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private ShelfService shelfService;
 
     public UserServiceImpl() {}
 
@@ -162,15 +170,42 @@ public class UserServiceImpl implements UserService {
     public Map<PlayStatus, Set<Game>> getGameList(long userId) {
         User user = getFreshUser(userId);
         Map<PlayStatus, Set<Game>> result = new HashMap<>();
-        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
-            Game game = gameService.findById(entry.getKey());
-            PlayStatus status = entry.getValue();
+        for(PlayStatus status: PlayStatus.values()){
             if(!result.containsKey(status)) {
                 result.put(status, new LinkedHashSet<>());
             }
+        }
+        for(Map.Entry<Long, PlayStatus> entry : user.getPlayStatuses().entrySet()) {
+            Game game = gameService.findById(entry.getKey());
+            PlayStatus status = entry.getValue();
             result.get(status).add(game);
         }
         return result;
+    }
+
+
+    @Override
+    public void setProfilePicture(long userId, byte[] picture) {
+        userDao.setProfilePicture(userId,picture);
+    }
+
+    @Override
+    public void removeProfilePicture(long userId) throws NoSuchEntityException {
+        userDao.removeProfilePicture(userId);
+    }
+
+    @Override
+    public void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException {
+        userDao.changePassword(userId, newHashedPassword);
+    }
+
+    @Override
+    public void removeFromList(long userId, long gameId) {
+        removeScore(userId,gameId);
+        removeStatus(userId,gameId);
+        for(Shelf shelf: shelfService.findByUserId(userId)){
+            shelfService.removeGame(shelf.getId(),gameId);
+        }
     }
 
     /**
@@ -187,5 +222,15 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchUserException(userId);
         }
         return result;
+    }
+
+    /**
+     * Returns a new randomly generated password.
+     * Credits to erickson, a StackOverflow user.
+     * @return The generated password.
+     */
+    public String generateNewPassword() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
     }
 }

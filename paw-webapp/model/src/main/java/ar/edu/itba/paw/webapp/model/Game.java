@@ -14,7 +14,7 @@ public class Game {
 
     final static private double INITIAL_AVG_SCORE = 0.0;
     final private static String CLOUDINARY_URL_FORMAT = "https://res.cloudinary.com/igdb/image/upload/t_%s_2x/%s.jpg";
-    final private static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
+    final public static String DEFAULT_COVER_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -60,12 +60,12 @@ public class Game {
             inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
     private Collection<Keyword> keywords;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "reviews",
-            joinColumns=@JoinColumn(name = "game_Id")
-    )
-    private Collection<Review> reviews;
+//    @ElementCollection
+//    @CollectionTable(
+//            name = "reviews",
+//            joinColumns=@JoinColumn(name = "game_id")
+//    )
+//    private Collection<Review> reviews;
 
     @ElementCollection
     @CollectionTable(
@@ -94,6 +94,14 @@ public class Game {
 
     @Transient
     private Set<String> pictureUrls;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "game_videos",
+            joinColumns=@JoinColumn(name = "game_id", nullable = false))
+    @MapKeyColumn(name = "video_id")
+    @Column(name = "name")
+    private Map<String, String> videos;
 
 
     /**
@@ -169,11 +177,17 @@ public class Game {
     /**
      * Gets this game's picture URLs.
      *
-     * @return An <b>unmodifiable</b> set containing this game's picture URLs.
+     * @return An set containing this game's picture URLs.
      * @see #addPicture(String)
      */
     public Set<String> getPictureUrls() {
-        return Collections.unmodifiableSet(pictureUrls);
+        Set<String> result = new LinkedHashSet<>();
+        for(String id : pictureIds) {
+            if(!id.equals(coverPictureId)) {
+                result.add(buildCloudinaryURL(id));
+            }
+        }
+        return result;
     }
 
     /**
@@ -183,6 +197,10 @@ public class Game {
      */
     public String getCoverPictureUrl() {
         return coverPictureId == null ? DEFAULT_COVER_PICTURE_URL : buildCloudinaryURL(coverPictureId);
+    }
+
+    public Map<String, String> getVideos() {
+        return videos;
     }
 
     // Setters
@@ -248,6 +266,12 @@ public class Game {
         if (cloudinaryId != null) {
             pictureIds.add(cloudinaryId);
             pictureUrls.add(buildCloudinaryURL(cloudinaryId));
+        }
+    }
+
+    public void addVideo(String videoId, String videoName) {
+        if(videoId != null && !videoId.isEmpty() && videoName != null && !videoName.isEmpty()) {
+            videos.put(videoId, videoName);
         }
     }
 
@@ -331,9 +355,9 @@ public class Game {
          * @return The game built.
          */
         public Game build() {
-            if (!idSet || !nameSet || !summarySet) {
-                throw new IllegalStateException();
-            }
+//            if (!idSet || !nameSet || !summarySet) {
+//                throw new IllegalStateException();
+//            }
             checkBuilt();
             built = true;
             startedBuilding = false;
@@ -449,6 +473,12 @@ public class Game {
             return this;
         }
 
+        public GameBuilder addVideo(String videoId, String videoName) {
+            checkBuilt();
+            game.addVideo(videoId, videoName);
+            startedBuilding = true;
+            return this;
+        }
 
         private void checkBuilt() {
             if (built) {

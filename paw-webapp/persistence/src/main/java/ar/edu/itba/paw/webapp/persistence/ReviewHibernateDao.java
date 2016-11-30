@@ -9,6 +9,7 @@ import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,7 +38,6 @@ public class ReviewHibernateDao implements ReviewDao {
 
     @Autowired
     private ReviewHibernateDao(GameDao gameDao, UserDao userDao) {
-        //For Hibernate
         this.gameDao = gameDao;
         this.userDao = userDao;
     }
@@ -62,13 +62,12 @@ public class ReviewHibernateDao implements ReviewDao {
         if(!gameDao.existsWithId(id)) {
             throw new NoSuchGameException(id);
         }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :id", Review.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1", id));
+    }
+
+    @Override
+    public Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) {
+        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, "FROM Review AS R WHERE R.game.id = ?1", id);
     }
 
     @Override
@@ -91,13 +90,12 @@ public class ReviewHibernateDao implements ReviewDao {
         if(!userDao.existsWithId(id)) {
             throw new NoSuchUserException(id);
         }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.id = :id", Review.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.user.id = ?1", id));
+    }
+
+    @Override
+    public Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) {
+        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, "FROM Review AS R WHERE R.user.id = ?1", id);
     }
 
     @Override
@@ -120,13 +118,7 @@ public class ReviewHibernateDao implements ReviewDao {
         if(!userDao.existsWithUsername(name)) {
             throw new NoSuchUserException(name);
         }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.username = :name", Review.class);
-        baseQuery.setParameter("name", name);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.user.username = ?1", name));
     }
 
     @Override
@@ -157,13 +149,14 @@ public class ReviewHibernateDao implements ReviewDao {
         if(!gameDao.existsWithId(gameId)) {
             throw new NoSuchGameException(gameId);
         }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :game_id AND R.user.id = :user_id", Review.class);
-        baseQuery.setParameter("game_id", gameId);
-        baseQuery.setParameter("user_id", userId);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return DaoHelper.findSingleWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1 AND R.user.id = ?2", gameId, userId);
+    }
+
+    @Override
+    public void delete(long reviewId) {
+        Review review = findById(reviewId);
+        if(review==null) return;
+        em.remove(review);
+
     }
 }

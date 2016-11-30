@@ -44,9 +44,9 @@
                                         <form:input type="password" path="password"/>
                                         <form:errors path="password" cssClass="formError" element="p"/>
                                     </div>
-                                    <%--<label style='float: right;'>--%>
-                                        <%--<a class='light-blue-text' href='#!'><b>Forgot Password?</b></a>--%>
-                                    <%--</label>--%>
+                                    <label style='float: right;'>
+                                        <a id="forgot-password" class='light-blue-text' href='#!'><b>Forgot Password?</b></a>
+                                    </label>
                                 </div>
 
                                 <c:if test="${error}" >
@@ -78,5 +78,34 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />
+<script type="text/javascript">
+    //Rename links
+    $("#forgot-password").on('click', function (event) {
+        swal({
+                title: "Enter your email",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                confirmButtonText: "Reset Password",
+                inputPlaceholder: "Email"
+            },
+            function (inputValue) {
+                if (inputValue === false) return false;
+
+                if (inputValue === "") {
+                    swal.showInputError("You need to write something!");
+                    return false;
+                }
+
+                //Disable submit button to prevent multiple submissions
+                $(".confirm").attr('disabled', 'disabled');
+                <c:url value="/reset-password" var="url" />
+                //Create an inline form and submit it to redirect with POST
+                $("<form action='${url}' method='POST'><input type='hidden' name='email' value='" + inputValue + "' /></form>").submit();
+            });
+    });
+</script>
 </body>
 </html>

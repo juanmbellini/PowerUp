@@ -15,8 +15,7 @@
         </c:if>
         Reviews
         <c:if test="${not empty user}">
-            <%--TODO link to profile--%>
-             by ${user.username}
+             by <c:out value="${user.username}" />
         </c:if>
         - PowerUp</title>
 </head>
@@ -26,62 +25,84 @@
 </header>
 
 <main>
-    <%--TODO link back to game--%>
     <div class="container">
-        <div class="section">
-            <h2 class="header center orange-text">
+        <div class="section no-pad-bot">
+        <%--TITLE--%>
+            <h2 class="header center orange-text wrap-text">
                 <c:if test="${not empty game}">
-                    ${game.name}
+                    <a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>
                 </c:if>
                 Reviews
                 <c:if test="${not empty user}">
-                    <%--TODO link to profile--%>
-                    by ${user.username}
+                    by <a href="<c:url value="/profile?username=${user.username}" />"><c:out value="${user.username}" /> <img class="circle" style="width:50px; height:50px; vertical-align: middle;" src="<c:url value="/profile-picture?username=${user.username}" />" /></a>
                 </c:if>
             </h2>
+            <%--PAGE SIZE--%>
+            <c:if test="${reviews.overAllAmountOfElements > 0}">
+                <div class="row">
+                    <div class="input-field col s2 offset-s5">
+                        <select id="pageSize">
+                            <c:forEach var="pageSize" items="${pageSizes}">
+                                <option ${reviews.pageSize == pageSize ? "selected" : ""}>${pageSize}</option>
+                            </c:forEach>
+                        </select>
+                        <label>Reviews per page</label>
+                    </div>
+                </div>
+            </c:if>
         </div>
         <%--REVIEWS--%>
-        <div class="section">
+        <div class="section no-pad-top">
             <div class="row">
                 <c:choose>
-                    <c:when test="${fn:length(reviews) > 0}">
+                    <c:when test="${reviews.overAllAmountOfElements > 0}">
                         <%--REVIEWS LIST--%>
                         <ul class="collection reviews-list">
-                            <c:forEach items="${reviews}" var="review">
+                            <c:forEach items="${reviews.data}" var="review">
                                 <li class="collection-item avatar">
-                                    <i class="material-icons circle blue">exit_to_app</i>
-                                    <span class="title">
-                                        <c:choose>
-                                            <c:when test="${empty user && not empty game}">
-                                                <%--TODO link--%>
-                                                <a href="#!">${review.user.username}</a>
-                                            </c:when>
-                                            <c:when test="${empty game && not empty user}">
+                                    <c:choose>
+                                        <c:when test="${empty user && not empty game}">
+                                            <%--Viewing reviews by game, variable is user--%>
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
+                                            <span class="title wrap-text">
+                                                <a href="<c:url value="/profile?username=${user.username}" />"><c:out value="${review.user.username}" /></a>
+                                            </span>
+                                        </c:when>
+                                        <c:when test="${empty game && not empty user}">
+                                            <%--Viewing reviews by user, variable is game--%>
+                                            <img src="<c:url value="${review.game.coverPictureUrl}" />" alt="<c:out value="${review.game.name}" />" class="circle">
+                                            <span class="title wrap-text">
                                                 <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <%--TODO link user--%>
-                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> - <a href="#!">${review.user.username}</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </span>
+                                            </span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <%--Viewing reviews by game and user, show user in picture but provide links to both game and user--%>
+                                            <img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">
+                                            <span class="title wrap-text">
+                                                <a href="<c:url value="/game?id=${review.game.id}" />">${review.game.name}</a> | <a href="<c:url value="/profile?username=${review.user.username}" />"><c:out value="${review.user.username}" /></a>
+                                            </span>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <p class="secondary-content" style="color: black;">${review.date}</p>
-                                    <p>
+                                    <c:if test="${review.user.username == currentUsername}">
+                                        <a href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="${review.id}"><i class="material-icons right">delete</i></a>
+                                    </c:if>
+                                    <p class="wrap-text">
                                         <c:choose>
                                             <c:when test="${empty user && not empty game}">
-                                                <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                                <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a>
                                             </c:when>
                                             <c:when test="${empty game && not empty user}">
                                                 <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a>
                                             </c:when>
                                             <c:otherwise>
-                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a> - <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by ${review.user.username}</a>
+                                                <a href="<c:url value="/reviews?gameId=${review.game.id}" />">Other ${review.game.name} reviews</a> | <a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a>
                                             </c:otherwise>
                                         </c:choose>
                                     </p>
                                     <br/>
                                     <div class="row">
-                                        <p class="col s10">${review.review}</p>
+                                        <p class="col s10 preserve-newlines wrap-texxt"><c:out value="${review.review}" /></p>
                                         <div class="col s2">
                                             <p style="color: #26a69a;">
                                                 Story: <span class="right">${review.storyScore}</span>
@@ -102,6 +123,79 @@
                             </c:forEach>
                         </ul>
                         <%--END REVIEWS LIST--%>
+                        <%--PAGINATION--%>
+                        <c:if test="${reviews.totalPages > 1}">
+                            <div class="row">
+                                <ul class="pagination center">
+                                        <%--Left chevron - only shown when there are > 1 pages --%>
+                                    <c:if test="${reviews.totalPages > 1}">
+                                        <c:choose>
+                                            <c:when test="${reviews.pageNumber > 1}">
+                                                <li class="waves-effect">
+                                                    <a href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">
+                                                        <i class="material-icons">chevron_left</i>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="disabled">
+                                                    <a href="#!">
+                                                        <i class="material-icons">chevron_left</i>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                        <%--Page numbers - always shown--%>
+                                    <c:set var="just_one"
+                                           value="${(reviews.pageNumber - 4) <= 0 || reviews.totalPages <= 10}"/>
+                                    <c:set var="no_more_prev"
+                                           value="${(reviews.pageNumber + 5) > reviews.totalPages}"/>
+                                    <c:set var="the_first_ones"
+                                           value="${(reviews.pageNumber + 5) < 10}"/>
+                                    <c:set var="no_more_next"
+                                           value="${reviews.totalPages < 10 || (reviews.pageNumber + 5) >= reviews.totalPages}"/>
+                                    <c:forEach var="pageIt"
+                                               begin="${just_one ? 1 : no_more_prev ? reviews.totalPages - 9 : reviews.pageNumber - 4}"
+                                               end="${no_more_next ? reviews.totalPages : the_first_ones ? 10 : reviews.pageNumber + 5}">
+                                        <li class=${pageIt == reviews.pageNumber ? "active" : "waves-effect"}>
+                                            <c:choose>
+                                                <c:when test="${pageIt == reviews.pageNumber}">
+                                                    <a>
+                                                            ${pageIt}
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="${changePageUrl}pageNumber=${pageIt}&pageSize=${reviews.pageSize}">
+                                                            ${pageIt}
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </li>
+                                    </c:forEach>
+                                        <%--Right chevron - only shown if there are > 1 pages--%>
+                                    <c:if test="${reviews.totalPages > 1}">
+                                        <c:choose>
+                                            <c:when test="${reviews.pageNumber == reviews.totalPages}">
+                                                <li class="disabled">
+                                                    <a href="#!">
+                                                        <i class="material-icons">chevron_right</i>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="waves-effect">
+                                                    <a href="${changePageUrl}pageNumber=${reviews.pageNumber + 1}&pageSize=${reviews.pageSize}">
+                                                        <i class="material-icons">chevron_right</i>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:if>
+                                </ul>
+                            </div>
+                        </c:if>
+                        <%--END PAGINATION--%>
                     </c:when>
                     <c:otherwise>
                         <%--NO REVIEWS--%>
@@ -130,5 +224,21 @@
 <footer class="page-footer orange">
     <%@include file="footer.jsp" %>
 </footer>
+<script type="text/javascript">
+    $(function() {
+        $("#pageSize").on("change", function() {
+            window.location = "${changePageUrl}pageSize=" + $(this).val();
+        });
+
+        $(".delete-button").on('click', function (event) {
+            var reviewId = $(this).data('reviewId');
+            //Create an inline form and submit it to redirect with POST
+            $("<form action='<c:url value="/delete-review" />' method='POST'> \
+                <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
+                <input type='hidden' name='returnUrl' value='" + window.location.pathname + window.location.search + "'/> \
+               </form>").submit();
+        });
+    });
+</script>
 </body>
 </html>
