@@ -6,10 +6,10 @@ import ar.edu.itba.paw.webapp.form.ChangePasswordForm;
 import ar.edu.itba.paw.webapp.form.UserForm;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.MailService;
+import ar.edu.itba.paw.webapp.interfaces.ShelfService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Juan Marcos Bellini on 19/10/16.
@@ -51,17 +47,31 @@ public class UserController extends BaseController {
      */
     private MailService mailService;
     /**
+     * A shelf service used for getting shelf information.
+     */
+    private final ShelfService shelfService;
+    /**
      * A password encoder used for hashing passwords when creating users.
      */
     private PasswordEncoder passwordEncoder; // TODO: move this to user service [JMB]
 
 
+    /**
+     * A TypeReference that references to a {@code Map<{@link FilterCategory }, List<String>>}, which represents
+     * filters that can be applied to game searches.
+     */
+    private final TypeReference<ArrayList<String>> typeReference;
+
+
     @Autowired
-    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder, MailService mailService) {
+    public UserController(UserService us, GameService gameService, PasswordEncoder passwordEncoder, ShelfService shelfService, MailService mailService) {
+
         super(us);
         this.mailService=mailService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
+        typeReference = new TypeReference<ArrayList<String>>() {};
+        this.shelfService = shelfService;
     }
 
     @RequestMapping("/profile")
@@ -106,40 +116,123 @@ public class UserController extends BaseController {
         return mav;
     }
 
-    @RequestMapping("/list")
-    public ModelAndView list(@RequestParam(value = "username", required = false) String username) {
-        // TODO: Check if we are really allowing anyone to check other's lists. [JMB]
+    @RequestMapping(value = "/list")
+    public ModelAndView list(@RequestParam(value = "username", required = false) String username,
+                             @RequestParam(value = "playStatusesCheckbox", required = false) String[] playStatusesCheckboxStr,
+                             @RequestParam(value = "shelvesCheckbox", required = false) String[] shelvesCheckboxStr) {
         if (username == null) {
             if (!isLoggedIn()) {
                 return new ModelAndView("redirect:error400");
             }
-            return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
+            return list(getCurrentUsername(),playStatusesCheckboxStr,shelvesCheckboxStr);
+        }
+        final ModelAndView mav = new ModelAndView("shelves");
+        User user = userService.findByUsername(username);
+        if (user == null) return new ModelAndView("error400");
+
+        Set<String> shelvesFilter = new HashSet<>();
+        if(shelvesCheckboxStr!=null){
+            for(String s: shelvesCheckboxStr){
+                shelvesFilter.add(s);
+            }
         }
 
-        final ModelAndView mav = new ModelAndView("list");
-        User u = userService.findByUsername(username);
-        if (u == null) return new ModelAndView("error400");
+        Set<String> playStatusesFilter = new HashSet<>();
+        if(playStatusesCheckboxStr!=null){
+            for(String s: playStatusesCheckboxStr){
+                playStatusesFilter.add(s);
+            }
+        }
 
-        //User found, populate their list
-        Map<PlayStatus, Map<Game, Integer>> gameListWithScores = new HashMap<>();
-        Map<Game, Integer> scores = userService.getScoredGames(u.getId());
-        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(u.getId()).entrySet()) {
+
+        Map<Game, Set<Shelf>> shelvesForGames = new HashMap();
+        Map<Game, PlayStatus> playStatuses = new HashMap<>();
+
+
+        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(user.getId()).entrySet()) {
             // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
             PlayStatus status = entry.getKey();
             Set<Game> games = entry.getValue();
-            if(!gameListWithScores.containsKey(status)) {
-                gameListWithScores.put(status, new LinkedHashMap<>());
-            }
-            Map<Game, Integer> gameCategory = gameListWithScores.get(status);
             for(Game game : games) {
-                gameCategory.put(game, scores.containsKey(game) ? scores.get(game) : -1);
+                if(!shelvesForGames.containsKey(game)){
+                    shelvesForGames.put(game,new HashSet<>());
+                }
+                if(!playStatuses.containsKey(game)) {
+                    playStatuses.put(game, status);
+                }
             }
-            gameListWithScores.put(status, gameCategory);
         }
-        mav.addObject("user", u);
-        mav.addObject("gameList", gameListWithScores);
+        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
+        for(Shelf shelf : shelves) {
+            for(Game game : shelf.getGames()) {
+                if(shelvesForGames.containsKey(game)){
+                    shelvesForGames.get(game).add(shelf);
+                }
+            }
+        }
+        //scores
+        Map<Game, Integer> scores = userService.getScoredGames(user.getId());
+
+
+        Set<Game> games = new HashSet<>();
+
+        for(Game game: playStatuses.keySet()){
+            boolean validShelf = false;
+            boolean validPlayStatus = false;
+            if(playStatusesFilter.isEmpty()) validPlayStatus =true;
+            for(String playStatusFilter: playStatusesFilter){
+                if(playStatuses.get(game).name().equals(playStatusFilter)){
+                    validPlayStatus = true;
+                }
+            }
+
+            if(shelvesFilter.isEmpty()) validShelf =true;
+            for(String shelfFilter: shelvesFilter){
+                for(Shelf shelf: shelvesForGames.get(game)){
+                    if(shelf.getName().equals(shelfFilter)){
+                        validShelf = true;
+                    }
+                }
+            }
+            if(validPlayStatus && validShelf) games.add(game);
+        }
+
+
+
+        mav.addObject("playStatusEnumValues", PlayStatus.values());
+        mav.addObject("playStatusesFilter",playStatusesFilter);
+        mav.addObject("shelvesFilter",shelvesFilter);
+        mav.addObject("games",games);
+        mav.addObject("user", user);
+        mav.addObject("scores",scores);
+        mav.addObject("shelves", shelves);
+        mav.addObject("shelvesForGamesMap",shelvesForGames);
+        mav.addObject("playStatuses", playStatuses);
         return mav;
     }
+
+    @RequestMapping(value = "/remove-from-list", method = RequestMethod.POST)
+    public ModelAndView removeFromList(@RequestParam(value = "gameId") long gameId,
+                                       @RequestParam(value = "userId") long userId,
+                                       @RequestParam(value = "returnUrl", required = false) String returnUrl) {
+        if (!isLoggedIn() || userId!= getCurrentUser().getId()) {
+            return new ModelAndView("redirect:error400");
+        }
+        User user = getCurrentUser();
+        if (user == null) return new ModelAndView("error400");
+
+        if(!gameService.existsWithId(gameId))return new ModelAndView("error400");
+
+        userService.removeFromList(userId,gameId);
+
+
+
+//        shelfService.findByGameId();
+//        shelfService.removeGame();
+
+        return new ModelAndView("redirect:" + returnUrl);
+    }
+
 
 
     @RequestMapping("/register")
@@ -187,6 +280,7 @@ public class UserController extends BaseController {
         User user = userService.findByUsername(username);
         String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
         userService.changePassword(user.getId(),hashedNewPassword);
+        LOG.info("Your password was changed");
 
 
         return new ModelAndView("redirect:/profile");

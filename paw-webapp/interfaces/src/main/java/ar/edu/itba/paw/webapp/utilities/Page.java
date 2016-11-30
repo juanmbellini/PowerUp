@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.utilities;
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Class representing a search result page.
@@ -11,9 +12,30 @@ import java.util.Collection;
  * must be set with values different than {@code 0} before setting data.
  * <p>
  * Created by Juan Marcos Bellini on 11/10/16.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
 public class Page<T> {
+
+    /**
+     * Contains an empty page, configured to have no elements, and only one page.
+     */
+    private static final Page EMPTY_PAGE = new Page();
+
+    /**
+     * Returns an empty page (i.e. with no data, but with page number and total pages equals to 1)
+     *
+     * @param <T> The type of data that the page would store
+     * @return An empty page.
+     */
+    public static <T> Page<T> emptyPage() {
+        EMPTY_PAGE.overAllAmountOfElements = 0;
+        EMPTY_PAGE.pageSize = 0;
+        EMPTY_PAGE.pageNumber = 1;
+        EMPTY_PAGE.totalPages = 1;
+        EMPTY_PAGE.data = Collections.emptyList();
+
+        return (Page<T>) EMPTY_PAGE;
+    }
+
 
     /**
      * The total amount of pages there are in the search done to obtain the data included in this page
@@ -35,6 +57,24 @@ public class Page<T> {
      * The data included in this page
      */
     private Collection<T> data = null;
+
+
+    /**
+     * Returns a single-element page. Convenience method.
+     *
+     * @param element The single element in the page.
+     * @param <T>     The element type.
+     * @return A page with 1 element.
+     */
+    public static <T> Page<T> singleElementPage(T element) {
+        Page<T> page = new Page<>();
+        page.setTotalPages(1);
+        page.setPageSize(1);
+        page.setPageNumber(1);
+        page.setOverAllAmountOfElements(1);
+        page.setData(Collections.singleton(element));
+        return page;
+    }
 
 
     /**
@@ -162,4 +202,6 @@ public class Page<T> {
         this.data = data;
 //        this.pageSize = data.size();
     }
+
+
 }

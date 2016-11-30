@@ -22,7 +22,12 @@ public class GameHibernateDao implements GameDao {
     private EntityManager em;
 
     @Override
-    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
+    public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters, OrderCategory orderCategory,
+                                  boolean ascending, int pageSize, int pageNumber) throws IllegalArgumentException {
+
+        if (name == null || filters == null || orderCategory == null || pageSize < 0 || pageNumber <= 0) {
+            throw new IllegalArgumentException();
+        }
 
         String selectString = "select g ";
         String countString = "select count(distinct g.id) ";
@@ -79,6 +84,9 @@ public class GameHibernateDao implements GameDao {
         }
 
         int count = ((Long) queryCount.getSingleResult()).intValue(); //TODO wat if more?
+        if (count == 0) {
+            return Page.emptyPage();
+        }
         int actualPageSize = pageSize == 0 ? count : pageSize;
 
         querySelect.setFirstResult(actualPageSize * (pageNumber - 1));
@@ -178,6 +186,7 @@ public class GameHibernateDao implements GameDao {
     public void updateAvgScore(long gameId) {
         Game game = findById(gameId);
         Double newAvg = DaoHelper.findSingleWithConditions(em, Double.class, "SELECT AVG(ELEMENTS(G.scores)) FROM Game AS G WHERE G.id = ?1", gameId);
+        if(newAvg==null) newAvg = 0d;
         game.setAvgScore(newAvg);
     }
 
