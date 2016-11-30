@@ -94,7 +94,7 @@
 
             <%--Filters collapsible--%>
             <button class="btn waves-effect waves-light right" id="submit-search" ${hasFilters ? "" : "disabled"}>Search <i class="material-icons right">send</i></button>
-            <button class="btn waves-effect waves-light right" id="clear-filters" ${hasFilters ? "" : "disabled"}>Clear filters <i class="material-icons right">close</i></button>
+            <button class="btn waves-effect waves-light right" id="clear-filters">Clear filters <i class="material-icons right">close</i></button>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <div class="collapsible-header ${hasFilters ? " active" : ""}"><i
