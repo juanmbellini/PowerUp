@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.utilities;
 import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Class representing a search result page.
@@ -35,6 +36,33 @@ public class Page<T> {
      * The data included in this page
      */
     private Collection<T> data = null;
+
+    public static final Page EMPTY_PAGE;
+    static {
+        EMPTY_PAGE = new Page();
+        EMPTY_PAGE.setOverAllAmountOfElements(0);
+        //TODO todo lo demás parece tirar exceptions, y u do dis Merca
+    }
+    public static <T> Page<T> emptyPage() {
+        return (Page<T>) EMPTY_PAGE;
+    }
+
+    /**
+     * Returns a single-element page. Convenience method.
+     *
+     * @param element The single element in the page.
+     * @param <T> The element type.
+     * @return A page with 1 element.
+     */
+    public static <T> Page<T> singleElementPage(T element) {
+        Page<T> page = new Page<>();
+        page.setTotalPages(1);
+        page.setPageSize(1);
+        page.setPageNumber(1);
+        page.setOverAllAmountOfElements(1);
+        page.setData(Collections.singleton(element));
+        return page;
+    }
 
 
     /**

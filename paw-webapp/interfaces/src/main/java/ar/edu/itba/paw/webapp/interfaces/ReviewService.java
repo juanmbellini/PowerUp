@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Set;
 
@@ -39,6 +40,17 @@ public interface ReviewService {
     Set<Review> findByGameId(long id) throws NoSuchGameException;
 
     /**
+     * Returns a page of reviews for a specified game.
+     *
+     * @param id The ID of the game whose reviews to fetch.
+     * @param pageNumber The page number.
+     * @param pageSize The page size.
+     * @return The resulting page of reviews.
+     * @throws NoSuchGameException When an invalid game ID is provided.
+     */
+    Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) throws NoSuchGameException;
+
+    /**
      * Returns a set of recent reviews, ordered by descending date, for a specified game, identified by ID.
      *
      * @param id The ID of the game whose reviews to fetch.
@@ -56,6 +68,17 @@ public interface ReviewService {
      * @throws NoSuchUserException When an invalid user ID is provided.
      */
     Set<Review> findByUserId(long id) throws NoSuchUserException;
+
+    /**
+     * Returns a page of reviews by a specified user.
+     *
+     * @param id The ID of the user whose reviews to fetch.
+     * @param pageNumber The page number.
+     * @param pageSize The page size.
+     * @return The resulting page of reviews.
+     * @throws NoSuchGameException When an invalid game ID is provided.
+     */
+    Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) throws NoSuchGameException;
 
     /**
      * Returns a set of recent reviews, ordered by descending date, created by a specified user, identified by ID.
