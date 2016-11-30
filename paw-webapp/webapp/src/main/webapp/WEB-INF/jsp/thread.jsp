@@ -64,7 +64,7 @@
             </ul>
         </div>
 
-        <div class="row col s12 divider"/>
+            <div class="row col s12 divider"></div>
 
         <%--COMMENTS--%>
         <div class="row">
