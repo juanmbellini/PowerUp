@@ -44,7 +44,7 @@
 
                             <div class="col s4 center-align">
                                 <form:select path="playStatus" id="status">
-                                    <form:option selected="true" value="" label="Select play status" disabled="true"/>
+                                    <%--<form:option selected="true" value="" label="Select play status" disabled="true"/>--%>
                                     <form:options items="${statuses}"/>
                                 </form:select>
                                 <form:label path="playStatus">PlayStatus: </form:label>
