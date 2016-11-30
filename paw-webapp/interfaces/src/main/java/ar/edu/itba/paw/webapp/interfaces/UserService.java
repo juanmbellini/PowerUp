@@ -223,6 +223,20 @@ public interface UserService {
     void removeProfilePicture(long userId) throws NoSuchEntityException;
 
     /**
+     * Changes the user's hashed password for the provided one.
+     * @param newHashedPassword new password. Must be hashed.
+     * @param userId  The ID of the user whose password to change.
+     * @throws NoSuchEntityException If no such user exists.
+     */
+    void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException;
+
+    /**
+     * Returns a new randomly generated password.
+     * @return The generated password.
+     */
+    String generateNewPassword();
+
+    /**
      * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
      * @param userId
      * @param gameId

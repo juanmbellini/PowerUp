@@ -190,5 +190,14 @@ public class UserHibernateDao implements UserDao {
     public void removeProfilePicture(long userId) {
         setProfilePicture(userId, null);
     }
-
+    
+    @Override
+    public void changePassword(long userId, String newHashedPassword) {
+        User user = findById(userId);
+        if(user == null) {
+            throw new NoSuchUserException(userId);
+        }
+        user.setHashedPassword(newHashedPassword);
+        em.persist(user);
+    }
 }
