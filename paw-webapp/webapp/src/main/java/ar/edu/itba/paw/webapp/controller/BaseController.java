@@ -5,6 +5,9 @@ import ar.edu.itba.paw.webapp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -14,15 +17,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by Juan Marcos Bellini on 19/10/16.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
- *
- * This is a base controller all controllers should extend, as it implements methods that all controllers will use.
- * Some examples are {@code getCurrentUser} or {@code isLoggedIn},
- * which are methods that are necessary in all the web app.
+ * This is the base controller all other controllers should extend, as it implements methods that all controllers will
+ * use. Some examples are {@code getCurrentUser} or {@code isLoggedIn}, which are methods that are necessary all across
+ * the web app.
  */
 public abstract class BaseController {
-
 
     /**
      * A user service to make user operations.
@@ -38,7 +37,6 @@ public abstract class BaseController {
      * Logger, each controller has their own.
      */
     protected final Logger LOG;
-
 
     /**
      * Constructor
@@ -61,13 +59,6 @@ public abstract class BaseController {
         return urlCreator;
     }
 
-
-
-
-
-    // TODO move current-user functions to UserService?
-
-
     /**
      * Checks whether there is a currently authenticated user.
      *
@@ -75,11 +66,10 @@ public abstract class BaseController {
      */
     @ModelAttribute("isLoggedIn")
     protected boolean isLoggedIn() {
-        String username = getCurrentUsername();
-        return !(username == null || username.contains("anonymous"));
+        //Thanks http://stackoverflow.com/a/12372555
+        Authentication auth = getAuthentication();
+        return auth != null && auth.isAuthenticated() && !(auth instanceof  AnonymousAuthenticationToken);
     }
-
-
 
     /**
      * Gets the currently authenticated user's username.
@@ -88,9 +78,9 @@ public abstract class BaseController {
      */
     @ModelAttribute("currentUsername")
     protected String getCurrentUsername() {
-        return SecurityContextHolder.getContext() == null ? null : SecurityContextHolder.getContext().getAuthentication() == null ? null : SecurityContextHolder.getContext().getAuthentication().getName();
+        //noinspection ConstantConditions, isLoggedIn => authentication is not null
+        return isLoggedIn() ? getAuthentication().getName() : null;
     }
-
 
     /**
      * Gets the current user. <b>NOTE: </b>To check whether a user is currently logged in, use the less costly (and more
@@ -101,11 +91,19 @@ public abstract class BaseController {
     @ModelAttribute("currentUser")
     protected User getCurrentUser() {
         String username = getCurrentUsername();
-        return (username == null || username.contains("anonymous")) ? null : userService.findByUsername(username);
+        return username == null ? null : userService.findByUsername(username);
     }
 
-
-
+    /**
+     * Gets the current Spring {@link Authentication}, to validate if a user is logged in, get the current user's
+     * username, etc.
+     *
+     * @return The current context's authentication.
+     */
+    private Authentication getAuthentication() {
+        SecurityContext sc = SecurityContextHolder.getContext();
+        return sc == null ? null : sc.getAuthentication();
+    }
 
     /**
      * Helper class that creates different types of complex URLs to be sent to the view
@@ -133,7 +131,6 @@ public abstract class BaseController {
             params.put("pageNumber", pageNumber);
             return createUrl("/search", params);
         }
-
 
         /**
          * Method to create an URL given a {@code baseUrl} and a map of query string parameters - values.
@@ -173,6 +170,5 @@ public abstract class BaseController {
             }
             return result + createUrl(params, keysIterator, questionMark);
         }
-
     }
 }
