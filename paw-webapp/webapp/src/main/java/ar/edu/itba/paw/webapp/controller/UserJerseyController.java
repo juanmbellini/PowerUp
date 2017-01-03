@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.UserDto;
+import ar.edu.itba.paw.webapp.dto.UserListDto;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserJerseyController {
     @Path("/")
     @Produces(value = { MediaType.APPLICATION_JSON, })
     public Response listUsers() {
-        return Response.ok(Collections.emptyList()).build();
+        return Response.ok(new UserListDto(userService.all())).build();
     }
 
 //    @POST

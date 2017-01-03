@@ -44,6 +44,11 @@ public class UserHibernateDao implements UserDao {
     }
 
     @Override
+    public List<User> all() {
+        return DaoHelper.findAll(em, User.class);
+    }
+
+    @Override
     public User findById(long id) {
         return DaoHelper.findSingle(em, User.class, id);
     }

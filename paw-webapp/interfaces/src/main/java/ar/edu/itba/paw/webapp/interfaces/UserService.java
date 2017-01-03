@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,6 +27,13 @@ public interface UserService {
      * @throws UserExistsException If a user with {@code email} or {@code username} already exists.
      */
     User create(String email, String password, String username) throws UserExistsException;
+
+    /**
+     * Gets all users.
+     *
+     * @return All registered users.
+     */
+    List<User> all();
 
     /**
      * Finds a user by username.

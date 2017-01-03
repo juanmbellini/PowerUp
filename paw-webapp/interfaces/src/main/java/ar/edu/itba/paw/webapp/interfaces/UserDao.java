@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,6 +21,11 @@ public interface UserDao {
      * @see UserService#create(String, String, String)
      */
     User create(String email, String password, String username) throws UserExistsException;
+
+    /**
+     * @see UserService#all()
+     */
+    List<User> all();
 
     /**
      * @see UserService#findByUsername(String)
