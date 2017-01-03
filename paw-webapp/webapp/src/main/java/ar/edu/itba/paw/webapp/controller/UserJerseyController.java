@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,31 +60,7 @@ public class UserJerseyController {
     public Response getById(@PathParam("id") @DefaultValue("-1") final long id) {
         final User user = userService.findById(id);
         if (user != null) {
-            return Response.ok(user).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-    }
-
-    @POST
-    @Path("/test")
-    @Consumes(value = { MediaType.APPLICATION_JSON, })
-    @Produces(value = { MediaType.APPLICATION_JSON, })
-    public Response test(String data) {
-        JsonReader jsonReader = Json.createReader(new StringReader(data));
-        JsonObject object = jsonReader.readObject();
-        jsonReader.close();
-
-//        if(!object.keySet().containsAll(Arrays.asList("email", "username", "password"))) {
-//            return Response.status(422).build();
-//        }
-        String username = object.getString("username"),
-                optional = object.getString("optional", null);
-        int opt2 = object.getInt("int", -2);
-
-        final User user = userService.findByUsername(object.getString("username", "lololol"));
-        if (user != null) {
-            return Response.ok(user).build();
+            return Response.ok(new UserDto(user)).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
