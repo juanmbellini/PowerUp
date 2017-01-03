@@ -102,6 +102,11 @@ public interface UserDao {
      */
     void changePassword(long userId, String newHashedPassword);
 
+    /**
+     * @see UserService#deleteById(long)
+     */
+    void deleteById(long userId);
+
 //    /**
 //     * @see UserService#getGameList(long,Set,Set)
 //     */

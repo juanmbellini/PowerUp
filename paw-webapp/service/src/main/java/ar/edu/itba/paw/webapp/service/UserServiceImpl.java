@@ -218,6 +218,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void deleteById(long userId) {
+        if(existsWithId(userId)) {
+            userDao.deleteById(userId);
+        }
+    }
+
     /**
      * Gets a user by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
      * and throws exception if not found. Helper method used to reduce code in other service methods.

@@ -7,16 +7,11 @@ import ar.edu.itba.paw.webapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.io.StringReader;
-import java.util.Collections;
 
 
 /**
@@ -46,8 +41,8 @@ public class UserJerseyController {
 //    @POST
 //    @Path("/")
 //    @Produces(value = { MediaType.APPLICATION_JSON, })
-//    public Response createUser(final UserDTO userDto) {
-//        final User user = us.register(userDto.getUsername
+//    public Response createUser(final UserDto userDto) {
+//        final User user = userService.register(userDto.getUsername
 //                (), userDto.getPassword());
 //        final URI uri = uriInfo.getAbsolutePathBuilder()
 //                .path(String.valueOf(user.getId()))
@@ -58,7 +53,7 @@ public class UserJerseyController {
     @GET
     @Path("/{id}")
     @Produces(value = { MediaType.APPLICATION_JSON })
-    public Response getById(@PathParam("id") @DefaultValue("-1") final long id) {
+    public Response getById(@PathParam("id") final long id) {
         final User user = userService.findById(id);
         if (user != null) {
             return Response.ok(new UserDto(user)).build();
@@ -67,11 +62,12 @@ public class UserJerseyController {
         }
     }
 
-//    @DELETE
-//    @Path("/{id}")
-//    @Produces(value = { MediaType.APPLICATION_JSON, })
-//    public Response deleteById(@PathParam("id") final long id) {
-//        userService.deleteById(id);
-//        return Response.noContent().build();
-//    }
+    @DELETE
+    @Path("/{id}")
+    @Produces(value = { MediaType.APPLICATION_JSON })
+    public Response deleteById(@PathParam("id") final long id) {
+        //TODO remove ID parameter, get current user and only allow current user to delete their own account
+        userService.deleteById(id);
+        return Response.noContent().build();
+    }
 }

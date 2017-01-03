@@ -260,4 +260,10 @@ public interface UserService {
      */
     void removeFromList(long userId, long gameId);
 
+    /**
+     * Deletes a user by ID.
+     *
+     * @param userId The user's ID.
+     */
+    void deleteById(long userId);
 }
