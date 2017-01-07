@@ -5,7 +5,6 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.GenreDao;
-import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.*;
 
 /**
@@ -41,6 +39,11 @@ public class UserHibernateDao implements UserDao {
         final User user = new User(email,username, hashedPassword, Authority.USER);
         em.persist(user);
         return user;
+    }
+
+    @Override
+    public List<User> all() {
+        return DaoHelper.findAll(em, User.class);
     }
 
     @Override
@@ -235,5 +238,20 @@ public class UserHibernateDao implements UserDao {
         }
         user.setHashedPassword(newHashedPassword);
         em.persist(user);
+    }
+
+    @Override
+    public void deleteById(long userId) {
+        /*
+            TODO implement, decide:
+            1) Is the user actually deleted or disabled? Does the user become something like <Deleted User>?
+            2) Are their shelves, etc. deleted? (Probably)
+            2) What happens to their reviews? If they are deleted, to they affect the game's average score?
+            3) What happens to their scored games? If their score is reverted, is the average game's score re-computed?
+            4) What happens to their threads? And their thread comments?
+            5) What happens to their likes?
+            etc.
+         */
+        System.err.printf("WARNING: User %d NOT deleted! As of now this method doesn't do anything\n", userId);
     }
 }

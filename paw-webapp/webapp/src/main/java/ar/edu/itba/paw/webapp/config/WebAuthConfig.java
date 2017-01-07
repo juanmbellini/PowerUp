@@ -39,7 +39,16 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement()
                 .invalidSessionUrl("/login")
             .and().authorizeRequests()
+                //Users
                 .antMatchers("/login").anonymous()
+                .antMatchers("/register").anonymous()
+                .antMatchers(HttpMethod.GET, "/users**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/users").authenticated()
+                .antMatchers(HttpMethod.POST, "/**profile-picture").authenticated()
+                .antMatchers("/change-password").authenticated()
+                .antMatchers("/reset-password").anonymous()
+                //Games
                 .antMatchers("/rateAndUpdateStatus").authenticated()
                 .antMatchers("/update-shelves-by-game").authenticated()
                 .antMatchers("/**-shelf").authenticated()
@@ -48,9 +57,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**-comment").authenticated()
                 .antMatchers("/comment").authenticated()
                 .antMatchers("/reply").authenticated()
-                .antMatchers(HttpMethod.POST, "/**profile-picture").authenticated()
-                .antMatchers("/change-password").authenticated()
-                .antMatchers("/reset-password").anonymous()
+                //All others
 //                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
             .and().formLogin()

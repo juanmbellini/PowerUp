@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> all() {
+        return userDao.all();
+    }
+
+    @Override
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
@@ -210,6 +215,13 @@ public class UserServiceImpl implements UserService {
         removeStatus(userId,gameId);
         for(Shelf shelf: shelfService.findByUserId(userId)){
             shelfService.removeGame(shelf.getId(),gameId);
+        }
+    }
+
+    @Override
+    public void deleteById(long userId) {
+        if(existsWithId(userId)) {
+            userDao.deleteById(userId);
         }
     }
 
