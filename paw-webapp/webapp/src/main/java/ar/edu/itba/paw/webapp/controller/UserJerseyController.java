@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.dto.UserListDto;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.User;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -12,8 +13,8 @@ import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -47,7 +48,7 @@ public class UserJerseyController {
     @Context
     private UriInfo uriInfo;
 
-    private Logger LOG = LoggerFactory.logger(getClass());
+    private Logger LOG =  LoggerFactory.getLogger(getClass());
 
     @GET
     //@PATH not needed, same as class annotation, and Jersey throws warning if included
@@ -120,61 +121,76 @@ public class UserJerseyController {
         if(!userService.existsWithId(id)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+        File picture;
         try {
-            String mimeType = getMimeType(uploadStream);
+            picture = inputStreamToTempFile(uploadStream);
+            String mimeType = getMimeType(picture);
             if(mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
                 return Response
                         .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
                         .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
             }
-        } catch (IOException e) {
+        } catch (IOException | TikaException | SAXException e) {
             LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", id, e);
             return Response.serverError().build();
         }
-        byte[] picture;
+        byte[] pictureBytes;
         try {
-            picture = IOUtils.toByteArray(uploadStream);
+            pictureBytes = FileUtils.readFileToByteArray(picture);
         } catch (IOException e) {
             LOG.error("Error saving uploaded profile picture for user #{}: {}", id, e);
             return Response.serverError().build();
         }
-        userService.setProfilePicture(id, picture);
+        userService.setProfilePicture(id, pictureBytes);
+        LOG.info("Updated profile picture for user #{}", id);
         return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/picture/{id}")
+    @Produces("text/html")
+    public Response deleteProfilePicture(@PathParam("id") final long id) {
+        if(!userService.existsWithId(id)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        userService.removeProfilePicture(id);
+        LOG.info("Deleted profile picture for user #{}", id);
+        return Response.ok().build();
+    }
+
+    /**
+     * Creates a temporary file from an input stream.
+     *
+     * @param is The data input stream.
+     * @return The generated temporary file.
+     * @throws IOException If an I/O error occurs.
+     */
+    private File inputStreamToTempFile(InputStream is) throws IOException {
+        File tempFile = File.createTempFile("is2f", ".tmp");
+        tempFile.deleteOnExit();
+        FileOutputStream out = new FileOutputStream(tempFile);
+        IOUtils.copy(is, out);
+        return tempFile;
     }
 
     /**
      * Browser-sent Content-Type headers of uploaded files can't always be trusted, so this method analyzes the file's
      * bytes to reliably get the data's MIME type.
      *
-     * @param upload InputStream of the uploaded file.
+     * @param upload The uploaded file.
      * @return The detected MIME type, or {@code null} if not recognized.
      * @throws IOException If an I/O error occurs.
      */
-    private String getMimeType(InputStream upload) throws IOException {
-        //TODO try to remove the overhead of creating a file and a separate inputStream
-
-        //1) Convert InputStream to temporary File
-        final File tempFile = File.createTempFile("is2f", ".tmp");
-        tempFile.deleteOnExit();
-        try (FileOutputStream out = new FileOutputStream(tempFile)) {
-            IOUtils.copy(upload, out);
-        }
-
+    private String getMimeType(File upload) throws IOException, TikaException, SAXException {
+        //TODO try to remove the overhead of creating a separate inputStream
         //Thanks http://stackoverflow.com/a/4583817/2333689
-        //2) Set up Tika variables with the temp file
         AutoDetectParser parser = new AutoDetectParser();
         parser.setParsers(new HashMap<>());
-
         Metadata metadata = new Metadata();
-        metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, tempFile.getName());
+        metadata.add(TikaMetadataKeys.RESOURCE_NAME_KEY, upload.getName());
 
-        //3) Create a NEW input stream for the generated file and parse it (parsing the original stream doesn't work)
-        InputStream stream = new FileInputStream(tempFile);
-        try {
-            parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
-        } catch (SAXException | TikaException e) {
-            e.printStackTrace();
-        }
+        InputStream stream = new FileInputStream(upload);   //NOTE: Using the original input stream that the user uploaded here does NOT work
+        parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
         stream.close();
 
         String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
