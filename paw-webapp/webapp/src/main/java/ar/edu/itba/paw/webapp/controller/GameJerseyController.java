@@ -3,16 +3,14 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Juan Marcos Bellini on 8/1/17.
@@ -30,6 +28,25 @@ public class GameJerseyController {
     @Autowired
     public GameJerseyController(GameService gameService) {
         this.gameService = gameService;
+    }
+
+    @GET
+    @Path("/")
+    public Response getAllGames(@QueryParam("orderCategory") final OrderCategory orderCategory,
+                                @QueryParam("ascending") final boolean ascending,
+                                @QueryParam("pageSize") final int pageSize,
+                                @QueryParam("pageNumber") final int pageNumber) {
+        Page<Game> games = gameService.searchGames("", new HashMap<>(), orderCategory, ascending, pageSize, pageNumber);
+        return Response
+                .ok(new GenericEntity<List<GameDto>>(GameDto.createList(games.getData())) {
+                })
+                .header("X-TotalPages", games.getTotalPages())
+                .header("X-AmountOfElements", games.getAmountOfElements())
+                .header("X-OverallAmountOfElements", games.getOverAllAmountOfElements())
+                .header("X-PageNumber", games.getPageNumber())
+                .header("X-PageSize", games.getPageSize())
+                .build();
+
     }
 
     @GET
