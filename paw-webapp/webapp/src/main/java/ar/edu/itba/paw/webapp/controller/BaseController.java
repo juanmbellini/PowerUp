@@ -20,6 +20,8 @@ import java.util.Map;
  * This is the base controller all other controllers should extend, as it implements methods that all controllers will
  * use. Some examples are {@code getCurrentUser} or {@code isLoggedIn}, which are methods that are necessary all across
  * the web app.
+ *
+ * @deprecated Use {@link ar.edu.itba.paw.webapp.interfaces.SessionService} for current-user methods.
  */
 public abstract class BaseController {
 

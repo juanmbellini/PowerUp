@@ -27,17 +27,18 @@ import java.util.*;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    //TODO consider making this a HibernateUserDao type so we can remove the bindToCurrentTransaction method from the interface, it doesn't belong there
-    private UserDao userDao;
+    private final UserDao userDao;
+
+    private final GameService gameService;
+
+    private final ShelfService shelfService;
 
     @Autowired
-    private GameService gameService;
-
-    @Autowired
-    private ShelfService shelfService;
-
-    public UserServiceImpl() {}
+    public UserServiceImpl(UserDao userDao, GameService gameService, ShelfService shelfService) {
+        this.userDao = userDao;
+        this.gameService = gameService;
+        this.shelfService = shelfService;
+    }
 
     @Override
     public User create(String email, String password, String username) throws UserExistsException {
