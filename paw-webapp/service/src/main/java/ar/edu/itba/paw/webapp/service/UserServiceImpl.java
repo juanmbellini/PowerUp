@@ -196,8 +196,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void setProfilePicture(long userId, byte[] picture) {
-        userDao.setProfilePicture(userId,picture);
+    public void setProfilePicture(long userId, byte[] picture, String mimeType) {
+        userDao.setProfilePicture(userId, picture, mimeType);
     }
 
     @Override

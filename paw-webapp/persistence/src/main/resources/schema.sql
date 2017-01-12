@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS users (
   hashed_password VARCHAR NOT NULL,
   enabled         BOOLEAN NOT NULL DEFAULT TRUE,
   profile_picture bytea, --ALTER TABLE users ADD profile_picture bytea
+  mime_type       VARCHAR, --ALTER TABLE users ADD mime_type VARCHAR
 
   UNIQUE (email),
   UNIQUE (username)

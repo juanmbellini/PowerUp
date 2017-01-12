@@ -34,7 +34,7 @@ public class ProfilePictureController extends BaseController {
     public ModelAndView uploadProfilePicture(@RequestParam(name = "picture") MultipartFile picture) {
         ModelAndView mav = null;
         try {
-            userService.setProfilePicture(getCurrentUser().getId(), picture.getBytes());
+            userService.setProfilePicture(getCurrentUser().getId(), picture.getBytes(), picture.getContentType());
             LOG.info("Updated profile picture for {}", getCurrentUsername());
             mav = new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
         } catch (NoSuchEntityException e) {

@@ -91,16 +91,9 @@ public class UserJerseyController {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         if (user.hasProfilePicture()) {
-            //Get image type
-            //TODO stop guessing content type, add an extra column in the DB saving the profile picture's MIME type and read it from there
-            InputStream is = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
-            try {
-                String mimeType = URLConnection.guessContentTypeFromStream(is);
-                return Response.ok(is, mimeType).build();
-            } catch (IOException e) {
-                LOG.error("Error serving profile picture for user #{}: {}", id, e);
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-            }
+            InputStream pictureStream = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
+            String mimeType = user.getProfilePictureMimeType();
+            return Response.ok(pictureStream, mimeType).build();
         } else {
             //Serve default profile picture
             try {
@@ -127,6 +120,7 @@ public class UserJerseyController {
         }
 
         byte[] pictureBytes;
+        String mimeType;
         try {
             pictureBytes = java.util.Base64.getMimeDecoder().decode(picture.getBase64Data());
         } catch (IllegalArgumentException e) {  //Not Base64
@@ -134,7 +128,7 @@ public class UserJerseyController {
         }
 
         try {
-            String mimeType = getMimeType(byteArrayToFile(pictureBytes));
+            mimeType = getMimeType(byteArrayToFile(pictureBytes));
             if (mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
                 return Response
                     .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
@@ -144,7 +138,7 @@ public class UserJerseyController {
             LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", id, e);
             return Response.serverError().build();
         }
-        userService.setProfilePicture(id, pictureBytes);
+        userService.setProfilePicture(id, pictureBytes, mimeType);
         LOG.info("Updated profile picture for user #{}", id);
         return Response.noContent().build();
     }
