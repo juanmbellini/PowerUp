@@ -1,5 +1,8 @@
 package ar.edu.itba.paw.webapp.config;
 
+import ar.edu.itba.paw.webapp.auth.JsonAuthenticationFilter;
+import ar.edu.itba.paw.webapp.auth.JsonFailureHandler;
+import ar.edu.itba.paw.webapp.auth.JsonSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
@@ -36,11 +41,12 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService)
+            .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class)
             .sessionManagement()
-                .invalidSessionUrl("/login")
+                .invalidSessionUrl("/auth/login")
             .and().authorizeRequests()
                 //Users
-                .antMatchers("/login").anonymous()
+                .antMatchers("/auth/login").anonymous()
                 .antMatchers("/register").anonymous()
                 .antMatchers(HttpMethod.GET, "/users**").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/users/**").authenticated()
@@ -60,13 +66,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 //All others
 //                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
-            .and().formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/", false)
             .and().logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/auth/logout")
                 .logoutSuccessUrl("/")
             .and().rememberMe()
                 .userDetailsService(userDetailsService)
@@ -119,5 +120,15 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
             .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/favicon.ico", "/403");
+    }
+
+    @Bean
+    public JsonAuthenticationFilter jsonAuthFilter() throws Exception {
+        JsonAuthenticationFilter filter = new JsonAuthenticationFilter();
+        filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/auth/login","POST"));
+        filter.setAuthenticationManager(authenticationManager());
+        filter.setAuthenticationSuccessHandler(new JsonSuccessHandler());
+        filter.setAuthenticationFailureHandler(new JsonFailureHandler());
+        return filter;
     }
 }
