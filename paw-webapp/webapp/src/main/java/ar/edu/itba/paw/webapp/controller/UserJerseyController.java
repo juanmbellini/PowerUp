@@ -1,18 +1,17 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.dto.ProfilePictureDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.dto.UserListDto;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.User;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.metadata.TikaMetadataKeys;
 import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,18 +47,18 @@ public class UserJerseyController {
     @Context
     private UriInfo uriInfo;
 
-    private Logger LOG =  LoggerFactory.getLogger(getClass());
+    private Logger LOG = LoggerFactory.getLogger(getClass());
 
     @GET
     //@PATH not needed, same as class annotation, and Jersey throws warning if included
-    @Produces(value = { MediaType.APPLICATION_JSON, })
+    @Produces(value = {MediaType.APPLICATION_JSON,})
     public Response listUsers() {
         return Response.ok(new UserListDto(userService.all())).build();
     }
 
     @GET
     @Path("/{id}")
-    @Produces(value = { MediaType.APPLICATION_JSON })
+    @Produces(value = {MediaType.APPLICATION_JSON})
     public Response getById(@PathParam("id") final long id) {
         final User user = userService.findById(id);
         if (user != null) {
@@ -71,7 +70,7 @@ public class UserJerseyController {
 
     @DELETE
     @Path("/{id}")
-    @Produces(value = { MediaType.APPLICATION_JSON })
+    @Produces(value = {MediaType.APPLICATION_JSON})
     public Response deleteById(@PathParam("id") final long id) {
         //TODO remove ID parameter, get current user and only allow current user to delete their own account
         userService.deleteById(id);
@@ -81,17 +80,17 @@ public class UserJerseyController {
     /* ************************************
      *          PROFILE PICTURES
      * ***********************************/
-    private static final List<String> SUPPORTED_PICTURE_TYPES = Arrays.asList("image/jpeg","image/jpg","image/png","image/gif");
+    private static final List<String> SUPPORTED_PICTURE_TYPES = Arrays.asList("image/jpeg", "image/jpg", "image/png", "image/gif");
 
     @GET
     @Path("/{id}/picture")
     @Produces("image/*")
     public Response getProfilePicture(@PathParam("id") final long id) {
         final User user = userService.findById(id);
-        if(user == null) {
+        if (user == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        if(user.hasProfilePicture()) {
+        if (user.hasProfilePicture()) {
             //Get image type
             //TODO stop guessing content type, add an extra column in the DB saving the profile picture's MIME type and read it from there
             InputStream is = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
@@ -115,30 +114,34 @@ public class UserJerseyController {
 
     @PUT
     @Path("/{id}/picture")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadProfilePicture(@PathParam("id") final long id,
-                                         @FormDataParam("picture") final InputStream uploadStream) {
-        if(!userService.existsWithId(id)) {
+                                         ProfilePictureDto picture) {
+        //TODO remove ID param and get current user
+        if (!userService.existsWithId(id)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        File picture;
+        if(picture.getBase64Data() == null || picture.getBase64Data().isEmpty()) {
+            LOG.info("No data for profile picture update for user #{}, returning HTTP 400 Bad Request", id);
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        byte[] pictureBytes;
         try {
-            picture = inputStreamToTempFile(uploadStream);
-            String mimeType = getMimeType(picture);
-            if(mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
+            pictureBytes = java.util.Base64.getMimeDecoder().decode(picture.getBase64Data());
+        } catch (IllegalArgumentException e) {  //Not Base64
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        try {
+            String mimeType = getMimeType(byteArrayToFile(pictureBytes));
+            if (mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
                 return Response
-                        .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
-                        .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
+                    .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
+                    .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
             }
         } catch (IOException | TikaException | SAXException e) {
             LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", id, e);
-            return Response.serverError().build();
-        }
-        byte[] pictureBytes;
-        try {
-            pictureBytes = FileUtils.readFileToByteArray(picture);
-        } catch (IOException e) {
-            LOG.error("Error saving uploaded profile picture for user #{}: {}", id, e);
             return Response.serverError().build();
         }
         userService.setProfilePicture(id, pictureBytes);
@@ -150,7 +153,7 @@ public class UserJerseyController {
     @Path("/{id}/picture")
     @Produces("text/html")
     public Response deleteProfilePicture(@PathParam("id") final long id) {
-        if(!userService.existsWithId(id)) {
+        if (!userService.existsWithId(id)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         userService.removeProfilePicture(id);
@@ -171,6 +174,10 @@ public class UserJerseyController {
         FileOutputStream out = new FileOutputStream(tempFile);
         IOUtils.copy(is, out);
         return tempFile;
+    }
+
+    private File byteArrayToFile(byte[] data) throws IOException {
+        return inputStreamToTempFile(new BufferedInputStream(new ByteArrayInputStream(data)));
     }
 
     /**
