@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.ProfilePictureDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.dto.UserListDto;
+import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.User;
@@ -24,7 +25,6 @@ import javax.ws.rs.core.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -38,11 +38,14 @@ import java.util.List;
 public class UserJerseyController {
 
     @Autowired
-    private UserJerseyController(UserService userService) {
+    private UserJerseyController(UserService userService, SessionService sessionService) {
         this.userService = userService;
+        this.sessionService = sessionService;
     }
 
     private final UserService userService;
+
+    private final SessionService sessionService;
 
     @Context
     private UriInfo uriInfo;
@@ -106,16 +109,16 @@ public class UserJerseyController {
     }
 
     @PUT
-    @Path("/{id}/picture")
+    @Path("/picture")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response uploadProfilePicture(@PathParam("id") final long id,
-                                         ProfilePictureDto picture) {
-        //TODO remove ID param and get current user
-        if (!userService.existsWithId(id)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public Response uploadProfilePicture(ProfilePictureDto picture) {
+        long userId = sessionService.getCurrentUserId();
+        if (userId == -1) {
+            LOG.error("Couldn't get current user on profile picture PUT");
+            return Response.serverError().build();
         }
         if(picture.getBase64Data() == null || picture.getBase64Data().isEmpty()) {
-            LOG.info("No data for profile picture update for user #{}, returning HTTP 400 Bad Request", id);
+            LOG.info("No data for profile picture update for user #{}, returning HTTP 400 Bad Request", userId);
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
@@ -128,35 +131,37 @@ public class UserJerseyController {
         }
 
         try {
-            mimeType = getMimeType(byteArrayToFile(pictureBytes));
+            mimeType = getMimeType(byteArrayToTempFile(pictureBytes));
             if (mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
                 return Response
                     .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
                     .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
             }
         } catch (IOException | TikaException | SAXException e) {
-            LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", id, e);
+            LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", userId, e);
             return Response.serverError().build();
         }
-        userService.setProfilePicture(id, pictureBytes, mimeType);
-        LOG.info("Updated profile picture for user #{}", id);
+        userService.setProfilePicture(userId, pictureBytes, mimeType);
+        LOG.info("Updated profile picture for user #{}", userId);
         return Response.noContent().build();
     }
 
     @DELETE
-    @Path("/{id}/picture")
+    @Path("/picture")
     @Produces("text/html")
-    public Response deleteProfilePicture(@PathParam("id") final long id) {
-        if (!userService.existsWithId(id)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    public Response deleteProfilePicture() {
+        long userId = sessionService.getCurrentUserId();
+        if (userId == -1) {
+            LOG.error("Couldn't get current user on profile picture DELETE");
+            return Response.serverError().build();
         }
-        userService.removeProfilePicture(id);
-        LOG.info("Deleted profile picture for user #{}", id);
+        userService.removeProfilePicture(userId);
+        LOG.info("Deleted profile picture for user #{}", userId);
         return Response.ok().build();
     }
 
     /**
-     * Creates a temporary file from an input stream.
+     * Creates a temporary File from an input stream.
      *
      * @param is The data input stream.
      * @return The generated temporary file.
@@ -170,7 +175,15 @@ public class UserJerseyController {
         return tempFile;
     }
 
-    private File byteArrayToFile(byte[] data) throws IOException {
+    /**
+     * Creates a temporary File from a byte array.
+     *
+     * @param data The data to convert to a file.
+     * @return The temporary File.
+     * @throws IOException If an I/O error occurs.
+     * @see #inputStreamToTempFile(InputStream)
+     */
+    private File byteArrayToTempFile(byte[] data) throws IOException {
         return inputStreamToTempFile(new BufferedInputStream(new ByteArrayInputStream(data)));
     }
 
