@@ -99,12 +99,7 @@ public class UserJerseyController {
             return Response.ok(pictureStream, mimeType).build();
         } else {
             //Serve default profile picture
-            try {
-                return Response.temporaryRedirect(new URI(Game.DEFAULT_COVER_PICTURE_URL)).build();
-            } catch (URISyntaxException e) {
-                LOG.error("Error serving default profile picture for user #{}: {}", id, e);
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-            }
+            return Response.temporaryRedirect(URI.create(Game.DEFAULT_COVER_PICTURE_URL)).build();
         }
     }
 

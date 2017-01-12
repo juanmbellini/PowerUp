@@ -1,9 +1,11 @@
 package ar.edu.itba.paw.webapp.auth;
 
+import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,6 +21,9 @@ import java.io.IOException;
 public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private Logger LOG = LoggerFactory.getLogger(getClass());
 
+    @Autowired
+    private SessionService sessionService;
+
     /**
      * Attempts authentication from a JSON payload. Additionally attaches the attempted login request to the HTTP request
      * (<b>not</b> the response, since we don't know what kind of response this attempt will result in) for either the
@@ -33,6 +38,9 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
          */
         LoginDto login;
         try {
+            if(sessionService.isLoggedIn()) {
+                throw new AlreadyLoggedInException(sessionService.getCurrentUsername() + " is already logged in");
+            }
             login = getLoginRequest(request);
             request.setAttribute("loginRequest", login);
         } catch (IOException e) {
@@ -62,6 +70,20 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
         }
 
         public InvalidLoginRequestException(String msg) {
+            super(msg);
+        }
+    }
+
+    /**
+     * Exception thrown when a user that is already logged attempts to log in again (TODO why won't Spring block this?)
+     */
+    public class AlreadyLoggedInException extends AuthenticationException {
+
+        public AlreadyLoggedInException(String msg, Throwable t) {
+            super(msg, t);
+        }
+
+        public AlreadyLoggedInException(String msg) {
             super(msg);
         }
     }
