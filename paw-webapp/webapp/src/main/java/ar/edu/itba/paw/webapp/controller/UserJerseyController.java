@@ -84,7 +84,7 @@ public class UserJerseyController {
     private static final List<String> SUPPORTED_PICTURE_TYPES = Arrays.asList("image/jpeg","image/jpg","image/png","image/gif");
 
     @GET
-    @Path("/picture/{id}")
+    @Path("/{id}/picture")
     @Produces("image/*")
     public Response getProfilePicture(@PathParam("id") final long id) {
         final User user = userService.findById(id);
@@ -114,7 +114,7 @@ public class UserJerseyController {
     }
 
     @PUT
-    @Path("/picture/{id}")
+    @Path("/{id}/picture")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response uploadProfilePicture(@PathParam("id") final long id,
                                          @FormDataParam("picture") final InputStream uploadStream) {
@@ -147,7 +147,7 @@ public class UserJerseyController {
     }
 
     @DELETE
-    @Path("/picture/{id}")
+    @Path("/{id}/picture")
     @Produces("text/html")
     public Response deleteProfilePicture(@PathParam("id") final long id) {
         if(!userService.existsWithId(id)) {

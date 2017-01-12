@@ -55,7 +55,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/change-password").authenticated()
                 .antMatchers("/reset-password").anonymous()
                     //API
-                    .antMatchers("/users/picture/**").authenticated()
+                    .antMatchers("/users/{\\d+}/picture").authenticated()
                 //Games
                 .antMatchers("/rateAndUpdateStatus").authenticated()
                 .antMatchers("/update-shelves-by-game").authenticated()
