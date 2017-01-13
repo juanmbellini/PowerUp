@@ -8,29 +8,29 @@ import java.util.Set;
  * <p>
  * Created by Juan Marcos Bellini on 21/12/16.
  */
-public class EntityNotPresentException extends RuntimeException {
+public class InvalidReferencedEntityException extends RuntimeException {
 
-    private static String MESSAGE = "One or more entities were not present";
+    private static String MESSAGE = "One or more referenced entities were not present";
 
     /**
      * Contains those entities (or field names) that were not present.
      */
     private Set<String> conflictingEntities;
 
-    public EntityNotPresentException() {
+    public InvalidReferencedEntityException() {
         this(MESSAGE);
     }
 
-    public EntityNotPresentException(String message) {
+    public InvalidReferencedEntityException(String message) {
         this(message, new HashSet<>());
     }
 
-    public EntityNotPresentException(Set<String> conflictingEntities) {
+    public InvalidReferencedEntityException(Set<String> conflictingEntities) {
         this(MESSAGE, conflictingEntities);
     }
 
 
-    public EntityNotPresentException(String message, Set<String> conflictingEntities) {
+    public InvalidReferencedEntityException(String message, Set<String> conflictingEntities) {
         super(message);
         this.conflictingEntities = conflictingEntities;
     }
