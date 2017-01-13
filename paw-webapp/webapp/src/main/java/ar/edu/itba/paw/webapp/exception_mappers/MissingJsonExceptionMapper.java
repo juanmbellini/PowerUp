@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.exception_mappers;
 
 
 import ar.edu.itba.paw.webapp.dto.ErrorDto;
-import ar.edu.itba.paw.webapp.errors.RepresentationError;
+import ar.edu.itba.paw.webapp.api_errors.RepresentationError;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 
 import javax.ws.rs.core.Response;

@@ -1,4 +1,4 @@
-package ar.edu.itba.paw.webapp.errors;
+package ar.edu.itba.paw.webapp.api_errors;
 
 import java.util.Set;
 

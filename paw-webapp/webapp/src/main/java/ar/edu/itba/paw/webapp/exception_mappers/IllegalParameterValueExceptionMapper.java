@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.exception_mappers;
 
 
 import ar.edu.itba.paw.webapp.dto.ErrorDto;
-import ar.edu.itba.paw.webapp.errors.IllegalParameterValueError;
+import ar.edu.itba.paw.webapp.api_errors.IllegalParameterValueError;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 
 import javax.ws.rs.core.Response;

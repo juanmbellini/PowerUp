@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.exception_mappers;
 
 
 import ar.edu.itba.paw.webapp.dto.ErrorDto;
-import ar.edu.itba.paw.webapp.errors.EntityNotPresentError;
+import ar.edu.itba.paw.webapp.api_errors.EntityNotPresentError;
 import ar.edu.itba.paw.webapp.exceptions.EntityNotPresentException;
 
 import javax.ws.rs.core.Response;

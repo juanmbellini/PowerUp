@@ -1,7 +1,7 @@
 package ar.edu.itba.paw.webapp.exception_mappers;
 
 import ar.edu.itba.paw.webapp.dto.ErrorDto;
-import ar.edu.itba.paw.webapp.errors.InvalidParameterValueError;
+import ar.edu.itba.paw.webapp.api_errors.InvalidParameterValueError;
 import org.glassfish.jersey.server.ParamException;
 
 import javax.ws.rs.core.Response;

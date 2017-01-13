@@ -1,8 +1,7 @@
 package ar.edu.itba.paw.webapp.dto;
 
 
-import ar.edu.itba.paw.webapp.errors.*;
-import ar.edu.itba.paw.webapp.errors.ApiError;
+import ar.edu.itba.paw.webapp.api_errors.*;
 import ar.edu.itba.paw.webapp.model.ValidationException;
 
 import javax.xml.bind.annotation.*;
