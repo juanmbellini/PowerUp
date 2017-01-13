@@ -8,7 +8,7 @@ package ar.edu.itba.paw.webapp.errors;
  * <p>
  * Created by Juan Marcos Bellini on 20/12/16.
  */
-public abstract class ClientSideError extends Error {
+public abstract class ClientSideError extends ApiError {
 
     private String message;
 

@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.dto;
 
 
 import ar.edu.itba.paw.webapp.errors.*;
-import ar.edu.itba.paw.webapp.errors.Error;
+import ar.edu.itba.paw.webapp.errors.ApiError;
 import ar.edu.itba.paw.webapp.model.ValidationException;
 
 import javax.xml.bind.annotation.*;
@@ -24,7 +24,7 @@ public class ErrorDto {
     private String errorKind;
 
 
-    public ErrorDto(Error error) {
+    public ErrorDto(ApiError error) {
         this.errorKind = error.getErrorKind();
     }
 
