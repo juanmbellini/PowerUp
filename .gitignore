@@ -1,3 +1,15 @@
+### NPM
+node_modules/
+
+### Bower
+bower_components/
+
+dist/
+.tmp/
+.sass-cache/
+.editorconfig
+
+
 ### Mac stuff
 .DS_Store
 
