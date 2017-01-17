@@ -4,7 +4,7 @@ define(['routes',
 	'i18n/i18nLoader!',
 	'angular',
 	'angular-route',
-	'bootstrap',
+	// 'bootstrap',
 	'angular-translate'],
 	function(config, dependencyResolverFor, i18n) {
 		var powerUp = angular.module('powerUp', [
