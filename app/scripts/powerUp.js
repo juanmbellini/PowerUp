@@ -14,12 +14,13 @@ define(['routes',
 		powerUp
 			.config(
 				['$routeProvider',
+                '$locationProvider',
 				'$controllerProvider',
 				'$compileProvider',
 				'$filterProvider',
 				'$provide',
 				'$translateProvider',
-				function($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
+				function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
 
 					powerUp.controller = $controllerProvider.register;
 					powerUp.directive = $compileProvider.directive;
@@ -35,6 +36,17 @@ define(['routes',
 					if (config.defaultRoutePath !== undefined) {
 						$routeProvider.otherwise({redirectTo: config.defaultRoutePath});
 					}
+
+          /*
+           * Enabling HTML5 mode removes the # from the URLs, but it doesn't work as you might expect:
+           * FROM HOME, vising /login for example works. But typing /login into the address bar will NOT work, since
+           * it's angular from home who does the redirection. For that to work, we would need to do some server-side
+           * configuration, which we can't do. For now this remains commented out.
+           *
+           * NOTE: If uncommenting this, remember to add <base href="/"> in index.html's <head> section. For production,
+           * this needs to be something like /paw-2016b-02.
+           */
+          // $locationProvider.html5Mode(true);
 
 					$translateProvider.translations('preferredLanguage', i18n);
 					$translateProvider.preferredLanguage('preferredLanguage');
