@@ -38,7 +38,22 @@ require.config({
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
         hammerjs: '../../bower_components/hammerjs/hammer',
-        velocity: '../../bower_components/velocity/velocity'
+        velocity: '../../bower_components/velocity/velocity',
+        bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap',
+        affix: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix',
+        alert: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert',
+        button: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button',
+        carousel: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel',
+        collapse: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse',
+        dropdown: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown',
+        tab: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab',
+        transition: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition',
+        scrollspy: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy',
+        modal: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal',
+        tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
+        popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover',
+        materialize: '../../bower_components/materialize/bin/materialize',
+        'velocity.ui': '../../bower_components/velocity/velocity.ui'
     },
     shim: {
         angular: {
@@ -81,76 +96,120 @@ require.config({
           ]
         },
         'materialize.animation': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.toasts': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.collapsible': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.dropdown': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.leanModal': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.materialbox': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.parallax': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.tabs': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.tooltip': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.sideNav': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.scrollspy': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.forms': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.slider': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.cards': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.pushpin': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.transitions': {
-          deps: [
-            'materialize.global',
-            'materialize.scrollFire'
-          ]
+            deps: [
+                'materialize.global',
+                'materialize.scrollFire'
+            ]
         },
         'materialize.scrollFire': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.waves': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.character_counter': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.picker': {
-          deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.picker.date': {
-          deps: ['materialize.picker']
+            deps: [
+                'materialize.picker'
+            ]
         },
-        'hammerjs': {
-          deps: ['jquery']
+        hammerjs: {
+            deps: [
+                'jquery'
+            ]
         },
-        'velocity': {
-          deps: ['jquery']
+        velocity: {
+            deps: [
+                'jquery'
+            ]
         }
     },
     packages: [
@@ -198,7 +257,7 @@ require([
         'angular',
         'powerUp',
         'materialize',
-        'controllers/IndexCtrl'
+        'controllers/MainCtrl'
     ],
     function() {
         angular.bootstrap(document, ['powerUp']);
