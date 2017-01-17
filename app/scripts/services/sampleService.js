@@ -1,7 +1,7 @@
 'use strict';
-define(['power-up'], function(power-up) {
+define(['powerUp'], function(powerUp) {
 
-	power-up.service('SampleService', function() {
+	powerUp.service('SampleService', function() {
 
 	});
 });

@@ -14,8 +14,11 @@ dist/
 .DS_Store
 
 
-### Dropbox template
-# Dropbox settings and caches
-.dropbox
-.dropbox.attr
-.dropbox.cache
+### Dropbox
+**.dropbox
+**.dropbox.attr
+**.dropbox.cache
+
+
+### IDEA
+**.idea/

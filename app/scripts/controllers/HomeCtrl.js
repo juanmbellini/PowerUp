@@ -1,7 +1,7 @@
 'use strict';
-define(['power-up'], function(power-up) {
+define(['powerUp'], function(powerUp) {
 
-	power-up.controller('HomeCtrl', function($scope) {
+	powerUp.controller('HomeCtrl', function($scope) {
 		$scope.homePageText = 'This is your homepage';
 	});
 });

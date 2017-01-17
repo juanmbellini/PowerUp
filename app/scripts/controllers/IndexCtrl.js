@@ -1,7 +1,7 @@
 'use strict';
-define(['power-up'], function(power-up) {
+define(['powerUp'], function(powerUp) {
 
-	power-up.controller('IndexCtrl', function($scope) {
-		$scope.welcomeText = 'Welcome to your power-up page';
+	powerUp.controller('IndexCtrl', function($scope) {
+		$scope.welcomeText = 'Welcome to your powerUp page';
 	});
 });

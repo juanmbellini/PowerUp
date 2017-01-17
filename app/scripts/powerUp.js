@@ -7,11 +7,11 @@ define(['routes',
 	'bootstrap',
 	'angular-translate'],
 	function(config, dependencyResolverFor, i18n) {
-		var power-up = angular.module('power-up', [
+		var powerUp = angular.module('powerUp', [
 			'ngRoute',
 			'pascalprecht.translate'
 		]);
-		power-up
+		powerUp
 			.config(
 				['$routeProvider',
 				'$controllerProvider',
@@ -21,11 +21,11 @@ define(['routes',
 				'$translateProvider',
 				function($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
 
-					power-up.controller = $controllerProvider.register;
-					power-up.directive = $compileProvider.directive;
-					power-up.filter = $filterProvider.register;
-					power-up.factory = $provide.factory;
-					power-up.service = $provide.service;
+					powerUp.controller = $controllerProvider.register;
+					powerUp.directive = $compileProvider.directive;
+					powerUp.filter = $filterProvider.register;
+					powerUp.factory = $provide.factory;
+					powerUp.service = $provide.service;
 
 					if (config.routes !== undefined) {
 						angular.forEach(config.routes, function(route, path) {
@@ -39,6 +39,6 @@ define(['routes',
 					$translateProvider.translations('preferredLanguage', i18n);
 					$translateProvider.preferredLanguage('preferredLanguage');
 				}]);
-		return power-up;
+		return powerUp;
 	}
 );

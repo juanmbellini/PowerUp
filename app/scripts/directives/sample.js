@@ -1,7 +1,7 @@
 'use strict';
-define(['power-up'], function(power-up) {
+define(['powerUp'], function(powerUp) {
 
-	power-up.directive('sample', function() {
+	powerUp.directive('sample', function() {
 		return {
 			restrict: 'E',
 			template: '<span>Sample</span>'
