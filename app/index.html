@@ -1,9 +1,10 @@
 <!doctype html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
   <title>PowerUp</title>
-  <meta name="description" content="">
 
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
@@ -14,35 +15,74 @@
   <!--[if lt IE 7]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-  <!-- Add your site or application content here -->
-  <div class="container">
-    <div class="header">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#/about">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
-      </ul>
-      <h3 class="text-muted">PowerUp</h3>
+
+  <!--NAV BAR-->
+  <header>
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+
+        <a id="logo-container" href="/" class="brand-logo">P<span class="material-icons">gamepad</span>werUp</a>
+
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/search">Search <i class="material-icons right">search</i></a></li>
+          <li><a href="/threads">Threads <i class="material-icons right">forum</i></a></li>
+          <!--TODO uncomment-->
+          <!--<c choose>
+            <c when test="${isLoggedIn}">
+              <li><a href="/profile?username=${currentUsername}">${currentUsername} <i class="material-icons right">person</i></a></li>
+              <li><a href="/list?username=${currentUsername}">Game List <i class="material-icons right">menu</i></a></li>
+              <li><a href="/logout">Log Out <i class="material-icons right">exit_to_app</i></a></li>
+            </c:when>
+            <c otherwise>-->
+          <li><a href="/login">Log In <i class="material-icons right">person_outline</i></a></li>
+          <li><a href="/register">Register <i class="material-icons right">assignment_ind</i></a></li>
+          <!--</c:otherwise>
+        </c:choose>-->
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav black-text">
+          <!--No icons on mobile because they don't work nicely, and there's not as much room-->
+          <li><a href="/search">Search</a></li>
+          <li><a href="/threads">Threads</a></li>
+          <!--TODO uncomment-->
+          <!--<c choose>-->
+          <!--<c when test="${isLoggedIn}">-->
+          <!--<li><a href="/profile?username=${currentUsername}">${currentUsername}</a></li>-->
+          <!--<li><a href="/list?username=${currentUsername}">Game List</a></li>-->
+          <!--<li><a href="/logout">Log Out</a></li>-->
+          <!--</c:when>-->
+          <!--<c otherwise>-->
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/register">Register</a></li>
+          <!--</c:otherwise>-->
+          <!--</c:choose>-->
+        </ul>
+
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      </div>
+    </nav>
+  </header>
+  <!--END NAV BAR-->
+
+  <main>
+    <div class="container"></div>
+    <ng-view></ng-view>
+  </main>
+
+  <!--FOOTER-->
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container">
+        <strong>
+          Game data freely provided by <a href="http://www.igdb.com" target="_blank">IGDB.com</a>.
+        </strong>
+      </div>
     </div>
-    <div ng-view=""></div>
+  </footer>
+  <!--END FOOTER-->
 
-    <div class="footer">
-      <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-    </div>
-  </div>
-
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-  <script>
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-   ga('create', 'UA-XXXXX-X');
-   ga('send', 'pageview');
- </script>
-
- <!-- build:js(.) scripts/oldieshim.js -->
+  <!-- build:js(.) scripts/oldieshim.js -->
   <!--[if lt IE 9]>
   <script src="bower_components/es5-shim/es5-shim.js"></script>
   <script src="bower_components/json3/lib/json3.js"></script>
