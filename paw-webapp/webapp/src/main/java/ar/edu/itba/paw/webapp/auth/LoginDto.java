@@ -32,8 +32,4 @@ public class LoginDto {
     public String getRedirect() {
         return redirect;
     }
-
-    public void setRedirect(String redirectUrl) {
-        this.redirect = redirectUrl;
-    }
 }

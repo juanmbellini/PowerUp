@@ -219,17 +219,21 @@ public class UserHibernateDao implements UserDao {
     }
 
     @Override
-    public void setProfilePicture(long userId, byte[] picture) {
+    public void setProfilePicture(long userId, byte[] picture, String mimeType) {
+        if((picture == null && mimeType != null) || (picture != null && mimeType == null)) {
+            throw new IllegalArgumentException("Both profile picture and MIME type must be either null or non-null");
+        }
         User user = DaoHelper.findSingleOrThrow(em, User.class, userId);
         user.setProfilePicture(picture);
+        user.setProfilePictureMimeType(mimeType);
         em.persist(user);
     }
 
     @Override
     public void removeProfilePicture(long userId) {
-        setProfilePicture(userId, null);
+        setProfilePicture(userId, null, null);
     }
-    
+
     @Override
     public void changePassword(long userId, String newHashedPassword) {
         User user = findById(userId);
