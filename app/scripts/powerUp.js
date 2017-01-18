@@ -54,7 +54,7 @@ define(['routes',
 					$translateProvider.translations('preferredLanguage', i18n);
 					$translateProvider.preferredLanguage('preferredLanguage');
 
-					RestangularProvider.setBaseUrl("http://localhost:8080/api");  // TODO change this on production
+					RestangularProvider.setBaseUrl('http://localhost:8080/api');  // TODO change this on production
 
 				}]);
 		return powerUp;

@@ -6,11 +6,11 @@ define(['powerUp'], function(powerUp) {
 
     Restangular.all('users').getList()  // GET: /users
       .then(function(users) {
-        console.log("All users: ", users);
+        console.log('All users: ', users);
       });
 
-		Restangular.one("users", 2).get().then(function(user) {
-		  console.log("User #2: ", user);
+		Restangular.one('users', 2).get().then(function(user) {
+      console.log('User #2: ', user);
     });
 	});
 });
