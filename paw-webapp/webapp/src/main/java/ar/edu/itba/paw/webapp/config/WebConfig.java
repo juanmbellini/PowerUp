@@ -124,10 +124,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-  @Override
-  public void addCorsMappings(CorsRegistry registry) {
-      registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").exposedHeaders("Link", "X-Supported-Media-Types" /*"*" is not allowed here =(*/);
-  }
+    //Disabled for now since an equivalent filter is added on Jersey
+//  @Override
+//  public void addCorsMappings(CorsRegistry registry) {
+//      registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").exposedHeaders("Link", "X-Supported-Media-Types" /*"*" is not allowed here =(*/);
+//  }
 
   @Bean
     public JavaMailSender getMailSender(){
