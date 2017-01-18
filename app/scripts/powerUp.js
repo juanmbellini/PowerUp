@@ -5,11 +5,13 @@ define(['routes',
 	'angular',
 	'angular-route',
 	'bootstrap',
-	'angular-translate'],
+	'angular-translate',
+    'restangular'],
 	function(config, dependencyResolverFor, i18n) {
 		var powerUp = angular.module('powerUp', [
 			'ngRoute',
-			'pascalprecht.translate'
+			'pascalprecht.translate',
+            'restangular'
 		]);
 		powerUp
 			.config(
@@ -20,7 +22,8 @@ define(['routes',
 				'$filterProvider',
 				'$provide',
 				'$translateProvider',
-				function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider) {
+                'RestangularProvider',
+				function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider) {
 
 					powerUp.controller = $controllerProvider.register;
 					powerUp.directive = $compileProvider.directive;
@@ -50,6 +53,9 @@ define(['routes',
 
 					$translateProvider.translations('preferredLanguage', i18n);
 					$translateProvider.preferredLanguage('preferredLanguage');
+
+					RestangularProvider.setBaseUrl("http://localhost:8080/api");  // TODO change this on production
+
 				}]);
 		return powerUp;
 	}
