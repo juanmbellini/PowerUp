@@ -134,12 +134,6 @@
                 <artifactId>jersey-media-jaxb</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
-            <!--Jersey multipart form data, for uploading images, etc.-->
-            <dependency>
-                <groupId>org.glassfish.jersey.media</groupId>
-                <artifactId>jersey-media-multipart</artifactId>
-                <version>${jersey.version}</version>
-            </dependency>
 
             <!--Spring security-->
             <dependency>
