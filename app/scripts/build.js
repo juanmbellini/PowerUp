@@ -11,10 +11,6 @@ require.config({
         json3: '../../bower_components/json3/lib/json3',
         moment: '../../bower_components/moment/moment',
         requirejs: '../../bower_components/requirejs/require',
-        /*
-         * The following are all the components for Materialize. Since it doesn't use AMD,
-         * we have to manually define all its components and load them with Require.js
-         */
         'materialize.global': '../../bower_components/materialize/js/global',
         'materialize.animation': '../../bower_components/materialize/js/animation',
         'materialize.toasts': '../../bower_components/materialize/js/toasts',
@@ -53,10 +49,14 @@ require.config({
         tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
         popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover',
         materialize: '../../bower_components/materialize/bin/materialize',
-        'velocity.ui': '../../bower_components/velocity/velocity.ui'
+        'velocity.ui': '../../bower_components/velocity/velocity.ui',
+        restangular: '../../bower_components/restangular/dist/restangular',
+        lodash: '../../bower_components/lodash/dist/lodash'
     },
     shim: {
         angular: {
+            // EXPORTS IS IMPORTANT! Libraries that depend on angular don't seem to see angular without this
+            exports: 'angular',
             deps: [
                 'jquery'
             ]
@@ -87,13 +87,12 @@ require.config({
                 'angular'
             ]
         },
-        // Materialize components
         'materialize.global': {
-          deps: [
-            'jquery',
-            'hammerjs',
-            'velocity'
-          ]
+            deps: [
+                'jquery',
+                'hammerjs',
+                'velocity'
+            ]
         },
         'materialize.animation': {
             deps: [
@@ -210,6 +209,13 @@ require.config({
             deps: [
                 'jquery'
             ]
+        },
+        restangular: {
+          exports: 'Restangular',
+          deps: [
+            'angular',
+            'lodash'
+          ]
         }
     },
     packages: [
