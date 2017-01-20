@@ -153,7 +153,15 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        return DaoHelper.findSingle(em, Game.class, id);
+        Game game = DaoHelper.findSingle(em, Game.class, id);
+        loadGenres(game);
+        loadPlatforms(game);
+        loadDevelopers(game);
+        loadPublishers(game);
+        loadKeywords(game);
+        loadPictures(game);
+        loadVideos(game);
+        return game;
     }
 
     @Override
@@ -294,5 +302,47 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Map<Long, Integer> getScores(long gameId) {
         return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
+    }
+
+    @Override
+    public GameDao loadGenres(Game game) {
+        game.getGenres().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadPlatforms(Game game) {
+        game.getPlatforms().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadDevelopers(Game game) {
+        game.getDevelopers().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadPublishers(Game game) {
+        game.getPublishers().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadKeywords(Game game) {
+        game.getKeywords().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadPictures(Game game) {
+        game.getPictureIds().size();
+        return this;
+    }
+
+    @Override
+    public GameDao loadVideos(Game game) {
+        game.getVideos().size();
+        return this;
     }
 }

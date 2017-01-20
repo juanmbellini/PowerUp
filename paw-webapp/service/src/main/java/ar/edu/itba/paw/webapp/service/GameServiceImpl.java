@@ -29,7 +29,9 @@ public class GameServiceImpl implements GameService {
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) {
         name = escapeUnsafeCharacters(name);
-        return gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
+        Page<Game> page = gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
+        page.getData().forEach(each -> gameDao.loadGenres(each).loadPlatforms(each));
+        return page;
     }
 
     @Override
@@ -118,4 +120,5 @@ public class GameServiceImpl implements GameService {
         }
         return nameEscaped.toString();
     }
+
 }

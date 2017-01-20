@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Genre;
 import ar.edu.itba.paw.webapp.model.Keyword;
+import org.hibernate.Hibernate;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -65,8 +66,6 @@ public class GameDto {
     private List<String> videoUrls;
 
 
-
-
     public GameDto() {
         // Default constructor
     }
@@ -80,21 +79,27 @@ public class GameDto {
         this.releaseDate = game.getReleaseDate();
         this.coverPictureUrl = game.getCoverPictureUrl();
 
-        this.genres = game.getGenres().stream().map(Genre::getName).collect(Collectors.toList());
-        this.platforms = game.getPlatforms().entrySet().stream()
-                .map(each -> new PlatformWrapper(each.getKey().getName(), each.getValue().getReleaseDate()))
-                .collect(Collectors.toList());
-        this.publishers = game.getPublishers().stream().map(Company::getName).collect(Collectors.toList());
-        this.developers = game.getDevelopers().stream().map(Company::getName).collect(Collectors.toList());
-        this.keywords = game.getKeywords().stream().map(Keyword::getName).collect(Collectors.toList());
+        this.genres = !Hibernate.isInitialized(game.getGenres()) ? null :
+                game.getGenres().stream().map(Genre::getName).collect(Collectors.toList());
+        this.platforms = !Hibernate.isInitialized(game.getPlatforms()) ? null :
+                game.getPlatforms().entrySet().stream()
+                        .map(each -> new PlatformWrapper(each.getKey().getName(), each.getValue().getReleaseDate()))
+                        .collect(Collectors.toList());
+        this.publishers = !Hibernate.isInitialized(game.getPublishers()) ? null :
+                game.getPublishers().stream().map(Company::getName).collect(Collectors.toList());
+        this.developers = !Hibernate.isInitialized(game.getDevelopers()) ? null :
+                game.getDevelopers().stream().map(Company::getName).collect(Collectors.toList());
+        this.keywords = !Hibernate.isInitialized(game.getKeywords()) ? null :
+                game.getKeywords().stream().map(Keyword::getName).collect(Collectors.toList());
 
-        this.pictureUrls = game.getPictureUrls().stream().collect(Collectors.toList());
-        this.videoUrls = game.getVideos().keySet().stream()
-                .map(each -> "https://www.youtube.com/embed/" + each)
-                .collect(Collectors.toList());
+        this.pictureUrls = !Hibernate.isInitialized(game.getPictureIds()) ? null :
+                game.getPictureUrls().stream().collect(Collectors.toList());
+        this.videoUrls = !Hibernate.isInitialized(game.getVideos()) ? null :
+                game.getVideos().keySet().stream().map(each -> "https://www.youtube.com/embed/" + each)
+                        .collect(Collectors.toList());
     }
 
-    
+
     /**
      * Returns a list of {@link GameDto} based on the given collection of {@link Game}.
      *
@@ -111,45 +116,54 @@ public class GameDto {
     public Long getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getSummary() {
         return summary;
     }
+
     public Double getAvgScore() {
         return avgScore;
     }
+
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
+
     public String getCoverPictureUrl() {
         return coverPictureUrl;
     }
+
     public List<String> getGenres() {
         return genres;
     }
+
     public List<String> getPublishers() {
         return publishers;
     }
+
     public List<String> getDevelopers() {
         return developers;
     }
+
     public List<String> getKeywords() {
         return keywords;
     }
+
     public List<PlatformWrapper> getPlatforms() {
         return platforms;
     }
+
     public List<String> getPictureUrls() {
         return pictureUrls;
     }
+
     public List<String> getVideoUrls() {
         return videoUrls;
     }
-
-
-
 
 
     /**
