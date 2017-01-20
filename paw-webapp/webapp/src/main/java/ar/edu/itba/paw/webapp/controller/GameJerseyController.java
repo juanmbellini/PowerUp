@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,9 +48,62 @@ public class GameJerseyController {
                                 @QueryParam("keyword") final List<String> keywords,
                                 @QueryParam("platform") final List<String> platforms) {
 
+        // TODO: Check params once chore/error-system is merged
+
         Page<Game> games = gameService.searchGames(name,
                 createFiltersMap(publishers, developers, genres, keywords, platforms),
                 orderCategory, ascending, pageSize, pageNumber);
+
+        URI prevPage = pageNumber == 1 ? null :
+                uriInfo.getAbsolutePathBuilder()
+                        .queryParam("orderCategory", orderCategory)
+                        .queryParam("ascending", ascending)
+                        .queryParam("pageSize", pageSize)
+                        .queryParam("pageNumber", pageNumber - 1)
+                        .queryParam("name", name)
+                        .queryParam("publisher", publishers.toArray())
+                        .queryParam("developer", developers.toArray())
+                        .queryParam("genre", genres.toArray())
+                        .queryParam("keyword", keywords.toArray())
+                        .queryParam("platform", platforms.toArray())
+                        .build();
+        URI nextPage = pageNumber == games.getTotalPages() ? null :
+                uriInfo.getAbsolutePathBuilder()
+                        .queryParam("orderCategory", orderCategory)
+                        .queryParam("ascending", ascending)
+                        .queryParam("pageSize", pageSize)
+                        .queryParam("pageNumber", pageNumber + 1)
+                        .queryParam("name", name)
+                        .queryParam("publisher", publishers.toArray())
+                        .queryParam("developer", developers.toArray())
+                        .queryParam("genre", genres.toArray())
+                        .queryParam("keyword", keywords.toArray())
+                        .queryParam("platform", platforms.toArray())
+                        .build();
+        URI firstPage = uriInfo.getAbsolutePathBuilder()
+                .queryParam("orderCategory", orderCategory)
+                .queryParam("ascending", ascending)
+                .queryParam("pageSize", pageSize)
+                .queryParam("pageNumber", 1)
+                .queryParam("name", name)
+                .queryParam("publisher", publishers.toArray())
+                .queryParam("developer", developers.toArray())
+                .queryParam("genre", genres.toArray())
+                .queryParam("keyword", keywords.toArray())
+                .queryParam("platform", platforms.toArray())
+                .build();
+        URI lastPage = uriInfo.getAbsolutePathBuilder()
+                .queryParam("orderCategory", orderCategory)
+                .queryParam("ascending", ascending)
+                .queryParam("pageSize", pageSize)
+                .queryParam("pageNumber", games.getTotalPages())
+                .queryParam("name", name)
+                .queryParam("publisher", publishers.toArray())
+                .queryParam("developer", developers.toArray())
+                .queryParam("genre", genres.toArray())
+                .queryParam("keyword", keywords.toArray())
+                .queryParam("platform", platforms.toArray())
+                .build();
         return Response
                 .ok(new GenericEntity<List<GameDto>>(GameDto.createList(games.getData())) {
                 })
@@ -58,6 +112,10 @@ public class GameJerseyController {
                 .header("X-Overall-Amount-Of-Elements", games.getOverAllAmountOfElements())
                 .header("X-Page-Number", games.getPageNumber())
                 .header("X-Page-Size", games.getPageSize())
+                .header("X-Prev-Page-Url", prevPage == null ? "" : prevPage.toString())
+                .header("X-Next-Page-Url", nextPage == null ? "" : nextPage.toString())
+                .header("X-First-Page-Url", firstPage.toString())
+                .header("X-Last-Page-Url", lastPage.toString())
                 .build();
 
     }
@@ -75,7 +133,7 @@ public class GameJerseyController {
                 Response.status(Response.Status.NOT_FOUND).build() : Response.ok(new GameDto(game)).build();
     }
 
-    
+
     /**
      * Create a filers map.
      *
