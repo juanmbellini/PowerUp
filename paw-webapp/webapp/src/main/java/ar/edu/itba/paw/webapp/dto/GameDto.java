@@ -1,14 +1,14 @@
 package ar.edu.itba.paw.webapp.dto;
 
-import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Game;
 
-import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -47,7 +47,7 @@ public class GameDto {
     private LocalDate releaseDate;
 
     @XmlElement
-    private String coverPictureId;
+    private String coverPictureUrl;
 
 //    private Set<String> pictureIds;
 
@@ -66,9 +66,8 @@ public class GameDto {
         this.avgScore = game.getAvgScore();
         this.releaseDate = game.getReleaseDate();
         this.releaseDate = game.getReleaseDate();
-        this.coverPictureId = game.getCoverPictureUrl();
+        this.coverPictureUrl = game.getCoverPictureUrl();
     }
-
 
 
     public Long getId() {
@@ -91,8 +90,8 @@ public class GameDto {
         return releaseDate;
     }
 
-    public String getCoverPictureId() {
-        return coverPictureId;
+    public String getCoverPictureUrl() {
+        return coverPictureUrl;
     }
 
     /**
