@@ -40,11 +40,11 @@ public class GameJerseyController {
         return Response
                 .ok(new GenericEntity<List<GameDto>>(GameDto.createList(games.getData())) {
                 })
-                .header("X-TotalPages", games.getTotalPages())
-                .header("X-AmountOfElements", games.getAmountOfElements())
-                .header("X-OverallAmountOfElements", games.getOverAllAmountOfElements())
-                .header("X-PageNumber", games.getPageNumber())
-                .header("X-PageSize", games.getPageSize())
+                .header("X-Total-Pages", games.getTotalPages())
+                .header("X-Amount-Of-Elements", games.getAmountOfElements())
+                .header("X-Overall-Amount-Of-Elements", games.getOverAllAmountOfElements())
+                .header("X-Page-Number", games.getPageNumber())
+                .header("X-Page-Size", games.getPageSize())
                 .build();
 
     }
