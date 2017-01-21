@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.dto.FilterDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
@@ -12,6 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ import java.util.Map;
  * Created by Juan Marcos Bellini on 8/1/17.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
-@Path("games")
+@Path("/games")
 @Produces(value = {MediaType.APPLICATION_JSON})
 public class GameJerseyController {
 
@@ -134,6 +136,16 @@ public class GameJerseyController {
     }
 
 
+
+    @GET
+    @Path("/filters")
+    public Response getFilters() {
+        // TODO: enable pagination
+        return Response.ok(new GenericEntity<List<FilterDto>>(FilterDto.createList(getAllfilters())){}).build();
+    }
+
+
+
     /**
      * Create a filers map.
      *
@@ -153,6 +165,16 @@ public class GameJerseyController {
         filters.put(FilterCategory.genre, genres);
         filters.put(FilterCategory.keyword, keywords);
         filters.put(FilterCategory.platform, platforms);
+        return filters;
+    }
+
+    private Map<FilterCategory, List<String>> getAllfilters() {
+        Map<FilterCategory, List<String>> filters = new HashMap<>();
+        filters.put(FilterCategory.genre, new LinkedList<>(gameService.getFiltersByType(FilterCategory.genre)));
+        filters.put(FilterCategory.platform, new LinkedList<>(gameService.getFiltersByType(FilterCategory.platform)));
+        filters.put(FilterCategory.developer, new LinkedList<>(gameService.getFiltersByType(FilterCategory.developer)));
+        filters.put(FilterCategory.publisher, new LinkedList<>(gameService.getFiltersByType(FilterCategory.publisher)));
+        filters.put(FilterCategory.keyword, new LinkedList<>(gameService.getFiltersByType(FilterCategory.keyword)));
         return filters;
     }
 }
