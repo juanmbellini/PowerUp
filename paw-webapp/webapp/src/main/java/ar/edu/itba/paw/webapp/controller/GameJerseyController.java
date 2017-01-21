@@ -136,14 +136,21 @@ public class GameJerseyController {
     }
 
 
-
     @GET
     @Path("/filters")
     public Response getFilters() {
-        // TODO: enable pagination
-        return Response.ok(new GenericEntity<List<FilterDto>>(FilterDto.createList(getAllfilters())){}).build();
+        return Response.ok(new GenericEntity<List<FilterDto>>(FilterDto.createList(getAllfilters())) {
+        }).build();
     }
 
+    @GET
+    @Path("/filters/{type}")
+    public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory,
+                                     @QueryParam("pageNumber") @DefaultValue("25") final long pageNumber) {
+        // TODO: enable pagination
+        return Response.ok(new FilterDto(filterCategory,
+                new LinkedList<>(gameService.getFiltersByType(filterCategory)))).build();
+    }
 
 
     /**
