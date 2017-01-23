@@ -51,11 +51,11 @@ require.config({
         materialize: '../../bower_components/materialize/bin/materialize',
         'velocity.ui': '../../bower_components/velocity/velocity.ui',
         restangular: '../../bower_components/restangular/dist/restangular',
-        lodash: '../../bower_components/lodash/dist/lodash'
+        lodash: '../../bower_components/lodash/dist/lodash',
+        'bootstrap-sass': '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap'
     },
     shim: {
         angular: {
-            // EXPORTS IS IMPORTANT! Libraries that depend on angular don't seem to see angular without this
             exports: 'angular',
             deps: [
                 'jquery'
@@ -211,11 +211,11 @@ require.config({
             ]
         },
         restangular: {
-          exports: 'Restangular',
-          deps: [
-            'angular',
-            'lodash'
-          ]
+            exports: 'Restangular',
+            deps: [
+                'angular',
+                'lodash'
+            ]
         }
     },
     packages: [
