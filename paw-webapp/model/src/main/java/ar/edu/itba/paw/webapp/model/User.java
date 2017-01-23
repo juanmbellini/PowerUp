@@ -27,6 +27,9 @@ public class User implements Serializable {
     @Column(name = "profile_picture")
     private byte[] profilePicture;
 
+    @Column(name = "mime_type")
+    private String profilePictureMimeType;
+
     @ElementCollection
     @CollectionTable(
             name = "game_scores",
@@ -273,6 +276,14 @@ public class User implements Serializable {
 
     public boolean hasProfilePicture() {
         return profilePicture != null && profilePicture.length > 0;
+    }
+
+    public String getProfilePictureMimeType() {
+        return profilePictureMimeType;
+    }
+
+    public void setProfilePictureMimeType(String profilePictureMimeType) {
+        this.profilePictureMimeType = profilePictureMimeType;
     }
 
     @Override

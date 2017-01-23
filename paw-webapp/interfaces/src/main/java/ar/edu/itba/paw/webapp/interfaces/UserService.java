@@ -227,9 +227,10 @@ public interface UserService {
      *
      * @param userId  The ID of the user whose profile picture to set.
      * @param picture The picture's binary data.
+     * @param mimeType The picture's MIME type.
      * @throws NoSuchEntityException If no such user exists.
      */
-    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+    void setProfilePicture(long userId, byte[] picture, String mimeType) throws NoSuchEntityException;
 
     /**
      * Removes the profile picture for a user. Only authenticated users may remove their own pictures.

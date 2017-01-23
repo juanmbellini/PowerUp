@@ -9,7 +9,6 @@ import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -88,9 +87,9 @@ public interface UserDao {
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
     /**
-     * @see UserService#setProfilePicture(long, byte[])
+     * @see UserService#setProfilePicture(long, byte[], String)
      */
-    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
+    void setProfilePicture(long userId, byte[] picture, String mimeType) throws NoSuchEntityException;
 
     /**
      * @see UserService#removeProfilePicture(long)
