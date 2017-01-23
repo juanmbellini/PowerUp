@@ -128,7 +128,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JsonAuthenticationFilter jsonAuthFilter() throws Exception {
         JsonAuthenticationFilter filter = new JsonAuthenticationFilter();
-        filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/auth/login","POST"));
+        filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/login","POST"));
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JsonSuccessHandler());
         filter.setAuthenticationFailureHandler(new JsonFailureHandler());
