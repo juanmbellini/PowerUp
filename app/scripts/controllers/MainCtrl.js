@@ -4,6 +4,10 @@ define(['powerUp'], function(powerUp) {
 	powerUp.controller('MainCtrl', function($scope, Restangular) {
 		$scope.welcomeText = 'Welcome to your powerUp page';
 
+        // Restangular.setDefaultHeaders({"Access-Control-Allow-Headers": "*"});
+        Restangular.setDefaultHeaders({'Access-Control-Allow-Origin': "*"});
+        Restangular.setDefaultHeaders({'Access-Control-Expose-Headers': "*"});
+
         powerUp.factory('Data', function(){
             return {message:"I'm data from a service"};
         });

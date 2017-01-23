@@ -65,6 +65,8 @@ public class UserJerseyController {
     public Response getById(@PathParam("id") final long id) {
         final User user = userService.findById(id);
         if (user != null) {
+            //TODO borrar esto de agregar headers a mano
+           // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
             return Response.ok(new UserDto(user)).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
