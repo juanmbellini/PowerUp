@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.interfaces.PlatformDao;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.GamePlatformReleaseDate;
+import ar.edu.itba.paw.webapp.model.Genre;
 import ar.edu.itba.paw.webapp.model.Platform;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -26,28 +28,18 @@ public class PlatformHibernateDao implements PlatformDao {
     private PlatformHibernateDao() {}
 
     @Override
-    public Set<Platform> all() {
-        TypedQuery<Platform> query = em.createQuery("FROM Platform", Platform.class);
-        try {
-            return Collections.unmodifiableSet(new LinkedHashSet<>(query.getResultList()));
-        } catch(NoResultException e) {
-            return Collections.EMPTY_SET;
-        }
+    public Collection<Platform> all() {
+        return DaoHelper.findAll(em, Platform.class);
     }
 
     @Override
     public Platform findById(long id) {
-        TypedQuery<Platform> baseQuery = em.createQuery("FROM Platform AS P where P.id = :id", Platform.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
+        return id <= 0 ? null : em.find(Platform.class, id);
     }
 
     @Override
     public Platform findByName(String name) {
+        // TODO: What if more than one platform has the same name?
         TypedQuery<Platform> baseQuery = em.createQuery("FROM Platform AS P where P.name = :name", Platform.class);
         baseQuery.setParameter("name", name);
         try {

@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.Game;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -13,7 +14,7 @@ public interface CompanyDao {
     /**
      * @see CompanyService#all()
      */
-    Set<Company> all();
+    Collection<Company> all();
 
     /**
      * @see CompanyService#findById(long)

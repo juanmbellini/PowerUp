@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Platform;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ public interface PlatformDao {
     /**
      * @see PlatformService#all()
      */
-    Set<Platform> all();
+    Collection<Platform> all();
 
     /**
      * @see PlatformService#findById(long)

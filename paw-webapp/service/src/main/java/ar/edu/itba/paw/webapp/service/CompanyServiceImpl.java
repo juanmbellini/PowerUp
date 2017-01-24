@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -19,7 +20,7 @@ public class CompanyServiceImpl implements CompanyService {
     private CompanyDao companyDao;
 
     @Override
-    public Set<Company> all() {
+    public Collection<Company> all() {
         return companyDao.all();
     }
 
@@ -39,5 +40,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Set<Game> gamesPublishedBy(Company p) { return companyDao.gamesPublishedBy(p); }
+    public Set<Game> gamesPublishedBy(Company p) {
+        return companyDao.gamesPublishedBy(p);
+    }
 }

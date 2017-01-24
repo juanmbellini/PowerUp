@@ -2,10 +2,12 @@ package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 
+import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -53,4 +55,5 @@ public class FilterDto {
     public static List<FilterDto> createList(Map<FilterCategory, List<String>> filters) {
         return filters.entrySet().stream().map(each -> new FilterDto(each.getKey(), each.getValue())).collect(Collectors.toList());
     }
+
 }

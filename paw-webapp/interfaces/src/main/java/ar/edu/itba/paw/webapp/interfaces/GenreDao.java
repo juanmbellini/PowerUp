@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Genre;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ public interface GenreDao {
     /**
      * @see GenreService#all()
      */
-    Set<Genre> all();
+    Collection<Genre> all();
 
     /**
      * @see GenreService#findById(long)

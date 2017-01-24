@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class GameServiceImpl implements GameService {
 
-    //    @Autowired
+    private static List<String> KEYWORDS_EMPTY_LIST = new LinkedList<>();
+
     private GameDao gameDao;
 
     private GenreDao genreDao;
@@ -26,6 +27,8 @@ public class GameServiceImpl implements GameService {
     private CompanyDao companyDao;
 
 //    private KeywordDao keywordDao; TODO: implement keyword dao
+
+
 
     @Autowired
     public GameServiceImpl(GameDao gameDao, GenreDao genreDao,
@@ -67,14 +70,11 @@ public class GameServiceImpl implements GameService {
     }
 
     public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-//        return gameDao.getFiltersByType(filterCategory);
-        //Genres
-
         switch (filterCategory) {
             case genre:
                 return genreDao.all().stream().map(Genre::getName).collect(Collectors.toList());
             case keyword:
-                return new LinkedList<>();
+                return KEYWORDS_EMPTY_LIST;
             case platform:
                 return platformDao.all().stream().map(Platform::getName).collect(Collectors.toList());
             case developer:
@@ -83,9 +83,11 @@ public class GameServiceImpl implements GameService {
             case publisher:
                 return companyDao.all().stream().filter(each -> !each.getGamesPublished().isEmpty())
                         .map(Company::getName).collect(Collectors.toList());
+            default:
+                throw new RuntimeException("Something went wrong");
         }
-        throw new RuntimeException("Something went wrong");
     }
+
 
     @Override
     public Collection<Genre> getGenres(long gameId) {

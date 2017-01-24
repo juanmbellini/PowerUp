@@ -75,7 +75,8 @@ public interface GameService {
      * Returns a collection with all the filters that can be applied to a specified {@link FilterCategory}.
      *
      * @param filterCategory The filter category.
-     * @return A collection with all the filters that can be applied with the given filter category.
+     * @return A collection of strings in which each element is a value that can be applied
+     * as a filter of the given category
      */
     Collection<String> getFiltersByType(FilterCategory filterCategory);
 
