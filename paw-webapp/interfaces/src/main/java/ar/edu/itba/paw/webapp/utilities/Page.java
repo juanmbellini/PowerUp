@@ -18,23 +18,7 @@ public class Page<T> {
     /**
      * Contains an empty page, configured to have no elements, and only one page.
      */
-    private static final Page EMPTY_PAGE = new Page();
-
-    /**
-     * Returns an empty page (i.e. with no data, but with page number and total pages equals to 1)
-     *
-     * @param <T> The type of data that the page would store
-     * @return An empty page.
-     */
-    public static <T> Page<T> emptyPage() {
-        EMPTY_PAGE.overAllAmountOfElements = 0;
-        EMPTY_PAGE.pageSize = 0;
-        EMPTY_PAGE.pageNumber = 1;
-        EMPTY_PAGE.totalPages = 1;
-        EMPTY_PAGE.data = Collections.emptyList();
-
-        return (Page<T>) EMPTY_PAGE;
-    }
+    private static final Page EMPTY_PAGE = new Page<>();
 
 
     /**
@@ -57,24 +41,6 @@ public class Page<T> {
      * The data included in this page
      */
     private Collection<T> data = null;
-
-
-    /**
-     * Returns a single-element page. Convenience method.
-     *
-     * @param element The single element in the page.
-     * @param <T>     The element type.
-     * @return A page with 1 element.
-     */
-    public static <T> Page<T> singleElementPage(T element) {
-        Page<T> page = new Page<>();
-        page.setTotalPages(1);
-        page.setPageSize(1);
-        page.setPageNumber(1);
-        page.setOverAllAmountOfElements(1);
-        page.setData(Collections.singleton(element));
-        return page;
-    }
 
 
     /**
@@ -130,6 +96,10 @@ public class Page<T> {
     public Collection<T> getData() {
         return data;
     }
+
+
+    // TODO: remove setters moving their logic to the builder
+
 
     /**
      * Total pages setter.
@@ -203,5 +173,134 @@ public class Page<T> {
 //        this.pageSize = data.size();
     }
 
+    public boolean isEmpty() {
+        return pageSize == 0;
+    }
+
+    /**
+     * Returns an empty page (i.e. with no data, but with page number and total pages equals to 1)
+     *
+     * @param <T> The type of data that the page would store
+     * @return An empty page.
+     */
+    public static <T> Page<T> emptyPage() {
+        EMPTY_PAGE.overAllAmountOfElements = 0;
+        EMPTY_PAGE.pageSize = 0;
+        EMPTY_PAGE.pageNumber = 1;
+        EMPTY_PAGE.totalPages = 1;
+        EMPTY_PAGE.data = Collections.emptyList();
+
+        return (Page<T>) EMPTY_PAGE;
+    }
+
+    /**
+     * Returns a single-element page. Convenience method.
+     *
+     * @param element The single element in the page.
+     * @param <T>     The element type.
+     * @return A page with 1 element.
+     */
+    public static <T> Page<T> singleElementPage(T element) {
+        Page<T> page = new Page<>();
+        page.setTotalPages(1);
+        page.setPageSize(1);
+        page.setPageNumber(1);
+        page.setOverAllAmountOfElements(1);
+        page.setData(Collections.singleton(element));
+        return page;
+    }
+
+    /**
+     * Page builder.
+     *
+     * @param <T> The type of data the page will store.
+     */
+    public static class Builder<T> {
+
+
+        private int totalPages = 0;
+        private int pageNumber = 0;
+        private int pageSize = 0;
+        private long overAllAmountOfElements = 0;
+        private Collection<T> data = null;
+
+        private Page<T> page;
+
+
+        /**
+         * Sets the total amount of pages.
+         *
+         * @param totalPages The total amount of pages.
+         * @return This builder.
+         */
+        public Builder<T> setTotalPages(int totalPages) {
+            this.totalPages = totalPages;
+            return this;
+        }
+
+        /**
+         * Sets the page number.
+         *
+         * @param pageNumber The page number.
+         * @return This builder.
+         */
+        public Builder<T> setPageNumber(int pageNumber) {
+            this.pageNumber = pageNumber;
+            return this;
+        }
+
+        /**
+         * Sets the page size (how many elements the future built page will have).
+         *
+         * @param pageSize The page size.
+         * @return This builder.
+         */
+        public Builder<T> setPageSize(int pageSize) {
+            this.pageSize = pageSize;
+            return this;
+        }
+
+        /**
+         * Sets the overall amount of elements (all elements all pages will have)
+         *
+         * @param overAllAmountOfElements The overall amount of elements.
+         * @return This builder.
+         */
+        public Builder<T> setOverAllAmountOfElements(long overAllAmountOfElements) {
+            this.overAllAmountOfElements = overAllAmountOfElements;
+            return this;
+        }
+
+        /**
+         * Sets the data of this page.
+         *
+         * @param data The data of this page.
+         * @return This builder.
+         */
+        public Builder<T> setData(Collection<T> data) {
+            this.data = data;
+            return this;
+        }
+
+
+        /**
+         * Builds the page using the configured values,
+         * without throwing an exception because of not setting those values in the correct order.
+         *
+         * @return The built page.
+         * @throws IllegalPageException If some value is wrong or inconsistent.
+         */
+        public Page<T> build() throws IllegalPageException {
+            Page<T> page = new Page<>();
+            page.setTotalPages(totalPages);
+            page.setPageNumber(pageNumber);
+            page.setPageSize(pageSize);
+            page.setOverAllAmountOfElements(overAllAmountOfElements);
+            page.setData(data);
+            return page;
+        }
+
+
+    }
 
 }
