@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.webapp.dto.FilterDto;
+import ar.edu.itba.paw.webapp.dto.FilterCategoryDto;
+import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
@@ -13,9 +14,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Juan Marcos Bellini on 8/1/17.
@@ -139,17 +140,20 @@ public class GameJerseyController {
     @GET
     @Path("/filters")
     public Response getFilters() {
-        return Response.ok(new GenericEntity<List<FilterDto>>(FilterDto.createList(getAllfilters())) {
-        }).build();
+        return Response
+                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
+                }).build();
     }
 
     @GET
     @Path("/filters/{type}")
-    public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory,
-                                     @QueryParam("pageNumber") @DefaultValue("25") final long pageNumber) {
-        // TODO: enable pagination
-        return Response.ok(new FilterDto(filterCategory,
-                new LinkedList<>(gameService.getFiltersByType(filterCategory)))).build();
+    public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory) {
+        return Response
+                .ok(new GenericEntity<List<FilterValueDto>>(FilterValueDto
+                        .createList(gameService
+                                .getFiltersByType(filterCategory).stream().collect(Collectors.toList()))) {
+                })
+                .build();
     }
 
 
@@ -175,13 +179,4 @@ public class GameJerseyController {
         return filters;
     }
 
-    private Map<FilterCategory, List<String>> getAllfilters() {
-        Map<FilterCategory, List<String>> filters = new HashMap<>();
-        filters.put(FilterCategory.genre, new LinkedList<>(gameService.getFiltersByType(FilterCategory.genre)));
-        filters.put(FilterCategory.platform, new LinkedList<>(gameService.getFiltersByType(FilterCategory.platform)));
-        filters.put(FilterCategory.developer, new LinkedList<>(gameService.getFiltersByType(FilterCategory.developer)));
-        filters.put(FilterCategory.publisher, new LinkedList<>(gameService.getFiltersByType(FilterCategory.publisher)));
-        filters.put(FilterCategory.keyword, new LinkedList<>(gameService.getFiltersByType(FilterCategory.keyword)));
-        return filters;
-    }
 }
