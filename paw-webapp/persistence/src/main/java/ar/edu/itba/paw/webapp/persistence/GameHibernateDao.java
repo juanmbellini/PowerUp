@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -306,43 +307,43 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public GameDao loadGenres(Game game) {
-        game.getGenres().size();
+        Hibernate.initialize(game.getGenres());
         return this;
     }
 
     @Override
     public GameDao loadPlatforms(Game game) {
-        game.getPlatforms().size();
+        Hibernate.initialize(game.getPlatforms());
         return this;
     }
 
     @Override
     public GameDao loadDevelopers(Game game) {
-        game.getDevelopers().size();
+        Hibernate.initialize(game.getDevelopers());
         return this;
     }
 
     @Override
     public GameDao loadPublishers(Game game) {
-        game.getPublishers().size();
+        Hibernate.initialize(game.getPublishers());
         return this;
     }
 
     @Override
     public GameDao loadKeywords(Game game) {
-        game.getKeywords().size();
+        Hibernate.initialize(game.getKeywords());
         return this;
     }
 
     @Override
     public GameDao loadPictures(Game game) {
-        game.getPictureIds().size();
+        Hibernate.initialize(game.getPictureIds());
         return this;
     }
 
     @Override
     public GameDao loadVideos(Game game) {
-        game.getVideos().size();
+        Hibernate.initialize(game.getVideos());
         return this;
     }
 }
