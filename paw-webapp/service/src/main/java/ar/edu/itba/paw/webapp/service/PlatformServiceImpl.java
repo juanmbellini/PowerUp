@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -17,13 +17,15 @@ import java.util.Set;
 @Transactional
 public class PlatformServiceImpl implements PlatformService {
 
-    @Autowired
-    private PlatformDao platformDao;
+    private final PlatformDao platformDao;
 
-    public PlatformServiceImpl() {}
+    @Autowired
+    public PlatformServiceImpl(PlatformDao platformDao) {
+        this.platformDao = platformDao;
+    }
 
     @Override
-    public Collection<Platform> all() {
+    public List<Platform> all() {
         return platformDao.all();
     }
 

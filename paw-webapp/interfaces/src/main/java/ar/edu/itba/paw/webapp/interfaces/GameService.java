@@ -78,7 +78,7 @@ public interface GameService {
      * @return A collection of strings in which each element is a value that can be applied
      * as a filter of the given category
      */
-    Collection<String> getFiltersByType(FilterCategory filterCategory);
+    List<String> getFiltersByType(FilterCategory filterCategory);
 
     /**
      * Gets all genres associated with a game.

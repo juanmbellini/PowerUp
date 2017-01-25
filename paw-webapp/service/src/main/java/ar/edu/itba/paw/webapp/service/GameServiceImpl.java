@@ -29,7 +29,6 @@ public class GameServiceImpl implements GameService {
 //    private KeywordDao keywordDao; TODO: implement keyword dao
 
 
-
     @Autowired
     public GameServiceImpl(GameDao gameDao, GenreDao genreDao,
                            PlatformDao platformDao, CompanyDao companyDao/*, KeywordDao keywordDao*/) {
@@ -69,7 +68,7 @@ public class GameServiceImpl implements GameService {
         return gameDao.existsWithTitle(title);
     }
 
-    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
+    public List<String> getFiltersByType(FilterCategory filterCategory) {
         switch (filterCategory) {
             case genre:
                 return genreDao.all().stream().map(Genre::getName).collect(Collectors.toList());

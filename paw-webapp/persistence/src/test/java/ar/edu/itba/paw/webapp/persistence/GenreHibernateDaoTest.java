@@ -77,7 +77,7 @@ public class GenreHibernateDaoTest {
     @Test
     public void testAllGenresAreReturned() {
         String message = "Get all genres didn't return as expected";
-        java.util.Collection<Genre> returnedGenres = genreDao.all();
+        List<Genre> returnedGenres = genreDao.all();
 
         Assert.assertNotNull(message, returnedGenres);
         Assert.assertEquals(message, genres.size(), returnedGenres.size());

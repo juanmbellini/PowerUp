@@ -9,9 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,7 +25,7 @@ public class GenreHibernateDao implements GenreDao {
     private EntityManager em;
 
     @Override
-    public Collection<Genre> all() {
+    public List<Genre> all() {
         return DaoHelper.findAll(em, Genre.class);
     }
 

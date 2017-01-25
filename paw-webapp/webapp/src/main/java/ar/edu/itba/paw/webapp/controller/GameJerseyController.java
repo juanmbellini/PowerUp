@@ -150,9 +150,7 @@ public class GameJerseyController {
     public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory) {
         return Response
                 .ok(new GenericEntity<List<FilterValueDto>>(FilterValueDto
-                        .createList(gameService
-                                .getFiltersByType(filterCategory).stream().collect(Collectors.toList()))) {
-                })
+                        .createList(gameService.getFiltersByType(filterCategory))){})
                 .build();
     }
 

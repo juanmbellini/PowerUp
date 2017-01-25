@@ -9,9 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,7 +23,7 @@ public class CompanyHibernateDao implements CompanyDao {
     private EntityManager em;
 
     @Override
-    public Collection<Company> all() {
+    public List<Company> all() {
         return DaoHelper.findAll(em, Company.class);
     }
 
@@ -44,9 +44,6 @@ public class CompanyHibernateDao implements CompanyDao {
         }
     }
 
-
-
-    
 
     // TODO: Check these two methods bellow --> They aren't needed here
 

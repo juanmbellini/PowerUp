@@ -81,7 +81,7 @@ public class PlatformHibernateDaoTest {
     @Test
     public void testAllPlatformsAreReturned() {
         String message = "Get all platforms didn't return as expected.";
-        java.util.Collection<Platform> returnedGenres = platformDao.all();
+        List<Platform> returnedGenres = platformDao.all();
 
         Assert.assertNotNull(message, returnedGenres);
         Assert.assertEquals(message, platforms.size(), returnedGenres.size());

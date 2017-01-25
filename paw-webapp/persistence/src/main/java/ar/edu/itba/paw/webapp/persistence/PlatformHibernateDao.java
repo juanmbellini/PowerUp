@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.interfaces.PlatformDao;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.GamePlatformReleaseDate;
-import ar.edu.itba.paw.webapp.model.Genre;
 import ar.edu.itba.paw.webapp.model.Platform;
 import org.springframework.stereotype.Repository;
 
@@ -12,9 +11,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,10 +24,9 @@ public class PlatformHibernateDao implements PlatformDao {
     @PersistenceContext
     private EntityManager em;
 
-    private PlatformHibernateDao() {}
 
     @Override
-    public Collection<Platform> all() {
+    public List<Platform> all() {
         return DaoHelper.findAll(em, Platform.class);
     }
 
@@ -44,7 +42,7 @@ public class PlatformHibernateDao implements PlatformDao {
         baseQuery.setParameter("name", name);
         try {
             return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
