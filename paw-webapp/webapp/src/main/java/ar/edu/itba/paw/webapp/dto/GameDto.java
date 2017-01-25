@@ -174,7 +174,7 @@ public class GameDto {
     /* package */ static class PlatformWrapper {
 
         @XmlElement
-        private String platform;
+        private String name;
 
         @XmlElement
         private LocalDate releaseDate;
@@ -184,13 +184,13 @@ public class GameDto {
         }
 
         public PlatformWrapper(String name, LocalDate releaseDate) {
-            this.platform = name;
+            this.name = name;
             this.releaseDate = releaseDate;
         }
 
 
-        public String getPlatform() {
-            return platform;
+        public String getName() {
+            return name;
         }
 
         public LocalDate getReleaseDate() {
