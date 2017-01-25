@@ -47,9 +47,6 @@ public class GameDto {
     @XmlElement
     private List<String> keywords;
 
-
-//    private Map<Long, Integer> scores = new HashMap<>();
-
     @XmlElement
     private Double avgScore;
 
