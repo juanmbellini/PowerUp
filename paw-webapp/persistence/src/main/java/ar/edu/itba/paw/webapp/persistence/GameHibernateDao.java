@@ -155,6 +155,9 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Game findById(long id) {
         Game game = DaoHelper.findSingle(em, Game.class, id);
+        if (game == null) {
+            return null;
+        }
         loadGenres(game);
         loadPlatforms(game);
         loadDevelopers(game);
