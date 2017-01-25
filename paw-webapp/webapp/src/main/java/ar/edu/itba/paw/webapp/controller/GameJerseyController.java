@@ -56,57 +56,16 @@ public class GameJerseyController {
         Page<Game> games = gameService.searchGames(name,
                 createFiltersMap(publishers, developers, genres, keywords, platforms),
                 orderCategory, ascending, pageSize, pageNumber);
-
         URI prevPage = pageNumber == 1 ? null :
-                uriInfo.getAbsolutePathBuilder()
-                        .queryParam("orderCategory", orderCategory)
-                        .queryParam("ascending", ascending)
-                        .queryParam("pageSize", pageSize)
-                        .queryParam("pageNumber", pageNumber - 1)
-                        .queryParam("name", name)
-                        .queryParam("publisher", publishers.toArray())
-                        .queryParam("developer", developers.toArray())
-                        .queryParam("genre", genres.toArray())
-                        .queryParam("keyword", keywords.toArray())
-                        .queryParam("platform", platforms.toArray())
-                        .build();
+                createGetAllGamesUri(uriInfo, orderCategory, ascending, pageSize, pageNumber - 1,
+                        name, publishers, developers, genres, keywords, platforms);
         URI nextPage = pageNumber == games.getTotalPages() ? null :
-                uriInfo.getAbsolutePathBuilder()
-                        .queryParam("orderCategory", orderCategory)
-                        .queryParam("ascending", ascending)
-                        .queryParam("pageSize", pageSize)
-                        .queryParam("pageNumber", pageNumber + 1)
-                        .queryParam("name", name)
-                        .queryParam("publisher", publishers.toArray())
-                        .queryParam("developer", developers.toArray())
-                        .queryParam("genre", genres.toArray())
-                        .queryParam("keyword", keywords.toArray())
-                        .queryParam("platform", platforms.toArray())
-                        .build();
-        URI firstPage = uriInfo.getAbsolutePathBuilder()
-                .queryParam("orderCategory", orderCategory)
-                .queryParam("ascending", ascending)
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", 1)
-                .queryParam("name", name)
-                .queryParam("publisher", publishers.toArray())
-                .queryParam("developer", developers.toArray())
-                .queryParam("genre", genres.toArray())
-                .queryParam("keyword", keywords.toArray())
-                .queryParam("platform", platforms.toArray())
-                .build();
-        URI lastPage = uriInfo.getAbsolutePathBuilder()
-                .queryParam("orderCategory", orderCategory)
-                .queryParam("ascending", ascending)
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", games.getTotalPages())
-                .queryParam("name", name)
-                .queryParam("publisher", publishers.toArray())
-                .queryParam("developer", developers.toArray())
-                .queryParam("genre", genres.toArray())
-                .queryParam("keyword", keywords.toArray())
-                .queryParam("platform", platforms.toArray())
-                .build();
+                createGetAllGamesUri(uriInfo, orderCategory, ascending, pageSize, pageNumber + 1,
+                        name, publishers, developers, genres, keywords, platforms);
+        URI firstPage = createGetAllGamesUri(uriInfo, orderCategory, ascending, pageSize, 1,
+                name, publishers, developers, genres, keywords, platforms);
+        URI lastPage = createGetAllGamesUri(uriInfo, orderCategory, ascending, pageSize, games.getTotalPages(),
+                name, publishers, developers, genres, keywords, platforms);
         return Response
                 .ok(new GenericEntity<List<GameDto>>(GameDto.createList(games.getData())) {
                 })
@@ -150,7 +109,8 @@ public class GameJerseyController {
     public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory) {
         return Response
                 .ok(new GenericEntity<List<FilterValueDto>>(FilterValueDto
-                        .createList(gameService.getFiltersByType(filterCategory))){})
+                        .createList(gameService.getFiltersByType(filterCategory))) {
+                })
                 .build();
     }
 
@@ -175,6 +135,49 @@ public class GameJerseyController {
         filters.put(FilterCategory.keyword, keywords);
         filters.put(FilterCategory.platform, platforms);
         return filters;
+    }
+
+    /**
+     * Creates an {@link URI} based on the given {@link UriInfo}, including 'orderCategory', 'ascending', 'pageSize',
+     * 'pageNumber', 'name', 'publisher', 'developer', 'genre', 'keyword' and 'platform' as query params.
+     * For 'publisher', 'developer', 'genre', 'keyword' and 'platform', they can appear more than once.
+     * Values for these params are based on the given arguments of this method.
+     *
+     * @param uriInfo       The {@link UriInfo} from which the absolute path is taken.
+     * @param orderCategory The order category for the query param.
+     * @param ascending     The ascending condition for the 'ascending' query param.
+     * @param pageSize      The page size for the query param.
+     * @param pageNumber    The page number for the query param.
+     * @param name          The name for the query param.
+     * @param publishers    The List of publishers for the query params
+     *                      (if it has more than one element, the query param is repeated).
+     * @param developers    The List of developers for the query params
+     *                      (if it has more than one element, the query param is repeated).
+     * @param genres        The List of genres for the query params
+     *                      (if it has more than one element, the query param is repeated).
+     * @param keywords      The List of keywords for the query params
+     *                      (if it has more than one element, the query param is repeated).
+     * @param platforms     The List of platforms for the query params
+     *                      (if it has more than one element, the query param is repeated).
+     * @return The created {@link URI}.
+     */
+    private static URI createGetAllGamesUri(final UriInfo uriInfo, final OrderCategory orderCategory,
+                                            final boolean ascending, final int pageSize, final int pageNumber,
+                                            final String name, final List<String> publishers,
+                                            final List<String> developers, final List<String> genres,
+                                            final List<String> keywords, final List<String> platforms) {
+        return uriInfo.getAbsolutePathBuilder()
+                .queryParam("orderCategory", orderCategory)
+                .queryParam("ascending", ascending)
+                .queryParam("pageSize", pageSize)
+                .queryParam("pageNumber", pageNumber)
+                .queryParam("name", name)
+                .queryParam("publisher", publishers.toArray())
+                .queryParam("developer", developers.toArray())
+                .queryParam("genre", genres.toArray())
+                .queryParam("keyword", keywords.toArray())
+                .queryParam("platform", platforms.toArray())
+                .build();
     }
 
 }
