@@ -1,16 +1,30 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp'], function (powerUp) {
 
-	powerUp.controller('MainCtrl', function($scope, Restangular) {
-		$scope.welcomeText = 'Welcome to your powerUp page';
+  // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
+  powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
+    $scope.welcomeText = 'Welcome to your powerUp page';
 
-    Restangular.all('users').getList()  // GET: /users
-      .then(function(users) {
-        console.log('All users: ', users);
-      });
+    // Log in if not logged in
+    if ($cookies.hasOwnProperty('JSESSIONID') && $cookies.JSESSIONID) {
+      console.log('Already logged in as PAW');
+      console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
+    } else {
+      console.log("Logging in as PAW...");
+      var auth = Restangular.all('auth/login');
+      auth.post({'username': 'paw', 'password': 'paw'})
+        .then(function (data) {
+          console.log('Logged in as PAW, session cookie saved, future requests will be sent as PAW');
+          console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
+        });
+      // auth.customPOST({"username": "paw", "password": "paw"}, undefined, undefined, {"Content-Type": "application/json"});
+    }
 
-		Restangular.one('users', 2).get().then(function(user) {
-      console.log('User #2: ', user);
-    });
-	});
+    // Get all users TODO change backend to return array instead of object
+    // Restangular.all('users').getList()  // GET: /users
+    // .then(function(users) {
+    //   console.log('All users: ', users);
+    // });
+
+  }]);
 });

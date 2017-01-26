@@ -6,6 +6,7 @@ require.config({
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-translate': '../../bower_components/angular-translate/angular-translate',
+        'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         jquery: '../../bower_components/jquery/dist/jquery',
         json3: '../../bower_components/json3/lib/json3',
@@ -65,6 +66,11 @@ require.config({
             deps: [
                 'angular'
             ]
+        },
+        'angular-cookies': {
+          deps: [
+            'angular'
+          ]
         },
         bootstrap: {
             deps: [
@@ -211,11 +217,11 @@ require.config({
             ]
         },
         restangular: {
-          exports: 'Restangular',
-          deps: [
-            'angular',
-            'lodash'
-          ]
+            exports: 'Restangular',
+            deps: [
+                'angular',
+                'lodash'
+            ]
         }
     },
     packages: [
