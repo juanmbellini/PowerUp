@@ -6,6 +6,7 @@ require.config({
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-translate': '../../bower_components/angular-translate/angular-translate',
+        'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         jquery: '../../bower_components/jquery/dist/jquery',
         json3: '../../bower_components/json3/lib/json3',
@@ -51,11 +52,11 @@ require.config({
         materialize: '../../bower_components/materialize/bin/materialize',
         'velocity.ui': '../../bower_components/velocity/velocity.ui',
         restangular: '../../bower_components/restangular/dist/restangular',
-        lodash: '../../bower_components/lodash/dist/lodash',
-        'bootstrap-sass': '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap'
+        lodash: '../../bower_components/lodash/dist/lodash'
     },
     shim: {
         angular: {
+            // EXPORTS IS IMPORTANT! Libraries that depend on angular don't seem to see angular without this
             exports: 'angular',
             deps: [
                 'jquery'
@@ -65,6 +66,11 @@ require.config({
             deps: [
                 'angular'
             ]
+        },
+        'angular-cookies': {
+          deps: [
+            'angular'
+          ]
         },
         bootstrap: {
             deps: [

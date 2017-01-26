@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,11 +16,15 @@ import java.util.Set;
 @Transactional
 public class CompanyServiceImpl implements CompanyService {
 
+    private final CompanyDao companyDao;
+
     @Autowired
-    private CompanyDao companyDao;
+    public CompanyServiceImpl(CompanyDao companyDao) {
+        this.companyDao = companyDao;
+    }
 
     @Override
-    public Set<Company> all() {
+    public List<Company> all() {
         return companyDao.all();
     }
 
@@ -39,5 +44,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Set<Game> gamesPublishedBy(Company p) { return companyDao.gamesPublishedBy(p); }
+    public Set<Game> gamesPublishedBy(Company p) {
+        return companyDao.gamesPublishedBy(p);
+    }
 }

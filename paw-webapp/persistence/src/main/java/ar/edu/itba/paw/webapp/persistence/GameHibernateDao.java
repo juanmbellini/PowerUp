@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -153,7 +154,18 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        return DaoHelper.findSingle(em, Game.class, id);
+        Game game = DaoHelper.findSingle(em, Game.class, id);
+        if (game == null) {
+            return null;
+        }
+        loadGenres(game);
+        loadPlatforms(game);
+        loadDevelopers(game);
+        loadPublishers(game);
+        loadKeywords(game);
+        loadPictures(game);
+        loadVideos(game);
+        return game;
     }
 
     @Override
@@ -294,5 +306,47 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Map<Long, Integer> getScores(long gameId) {
         return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
+    }
+
+    @Override
+    public GameDao loadGenres(Game game) {
+        Hibernate.initialize(game.getGenres());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPlatforms(Game game) {
+        Hibernate.initialize(game.getPlatforms());
+        return this;
+    }
+
+    @Override
+    public GameDao loadDevelopers(Game game) {
+        Hibernate.initialize(game.getDevelopers());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPublishers(Game game) {
+        Hibernate.initialize(game.getPublishers());
+        return this;
+    }
+
+    @Override
+    public GameDao loadKeywords(Game game) {
+        Hibernate.initialize(game.getKeywords());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPictures(Game game) {
+        Hibernate.initialize(game.getPictureIds());
+        return this;
+    }
+
+    @Override
+    public GameDao loadVideos(Game game) {
+        Hibernate.initialize(game.getVideos());
+        return this;
     }
 }

@@ -104,7 +104,7 @@ public interface GameDao {
     /**
      * Return the recommended games, giving different importance to different filters.
      *
-     * @param excludedGameIds A set of games that must no be in the result set.
+     * @param excludedGameIds  A set of games that must no be in the result set.
      * @param filtersScoresMap A map with the score given for each filter. The higher the score, the more likely that a
      *                         different game that matches the same filter will be included in the result.
      * @return The recommended games.
@@ -114,10 +114,66 @@ public interface GameDao {
     /**
      * @see GameService#getVideos(long)
      */
-    Map<String,String> getVideos(long gameId);
+    Map<String, String> getVideos(long gameId);
 
     /**
      * @see GameService#getPictureUrls(long)
      */
     Set<String> getPictureUrls(long gameId);
+
+    /**
+     * Loads genres into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadGenres(Game game);
+
+    /**
+     * Loads platforms into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadPlatforms(Game game);
+
+    /**
+     * Loads developers into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadDevelopers(Game game);
+
+    /**
+     * Loads publishers into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadPublishers(Game game);
+
+    /**
+     * Loads keywords into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadKeywords(Game game);
+
+    /**
+     * Loads pictures into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadPictures(Game game);
+
+    /**
+     * Loads videos into the given game.
+     *
+     * @param game The game whose genres must be loaded
+     * @return This dao.
+     */
+    GameDao loadVideos(Game game);
 }

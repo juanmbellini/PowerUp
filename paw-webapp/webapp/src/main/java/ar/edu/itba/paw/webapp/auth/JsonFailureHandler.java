@@ -1,9 +1,9 @@
 package ar.edu.itba.paw.webapp.auth;
 
+import ar.edu.itba.paw.webapp.config.CorsFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Failure handler for JSON-based authentication.
@@ -21,16 +22,13 @@ public class JsonFailureHandler implements AuthenticationFailureHandler {
 
     private Logger LOG = LoggerFactory.getLogger(getClass());
 
-    /**
-     * Redirect the user to the URL they were originally attempting to access, or to wherever was specified in
-     * {@link JsonAuthenticationFilter}.
-     */
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        response.sendRedirect(request.getAttribute("redirect").toString());
-    }
-
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        //CorsFilter does not apply here, add headers manually, required by CORS
+        for (Map.Entry<String, String> header : CorsFilter.CORS_HEADERS.entrySet()) {
+            response.setHeader(header.getKey(), header.getValue());
+        }
+
         LoginDto loginRequest = (LoginDto) request.getAttribute("loginRequest");
 
         if(exception instanceof JsonAuthenticationFilter.AlreadyLoggedInException) {

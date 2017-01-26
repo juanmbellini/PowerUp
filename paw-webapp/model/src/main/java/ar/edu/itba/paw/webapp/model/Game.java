@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Stores basic information about a game as well as its reviews and ratings.
@@ -28,36 +29,36 @@ public class Game {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name="game_genres",
-            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="genre_id", referencedColumnName="id"))
+            name = "game_genres",
+            joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private Collection<Genre> genres;
 
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name="game_platforms",
-                    joinColumns=@JoinColumn(name="game_id"))
-    @MapKeyJoinColumn(name="platform_id")
+    @CollectionTable(name = "game_platforms",
+            joinColumns = @JoinColumn(name = "game_id"))
+    @MapKeyJoinColumn(name = "platform_id")
     private Map<Platform, GamePlatformReleaseDate> platforms;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name="game_publishers",
-            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="publisher_id", referencedColumnName="id"))
+            name = "game_publishers",
+            joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id", referencedColumnName = "id"))
     private Collection<Company> publishers;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name="game_developers",
-            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="developer_id", referencedColumnName="id"))
+            name = "game_developers",
+            joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "developer_id", referencedColumnName = "id"))
     private Collection<Company> developers;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name="game_keywords",
-            joinColumns=@JoinColumn(name="game_id", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="keyword_id", referencedColumnName="id"))
+            name = "game_keywords",
+            joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "keyword_id", referencedColumnName = "id"))
     private Collection<Keyword> keywords;
 
 //    @ElementCollection
@@ -70,26 +71,26 @@ public class Game {
     @ElementCollection
     @CollectionTable(
             name = "game_scores",
-            joinColumns=@JoinColumn(name = "game_id")
+            joinColumns = @JoinColumn(name = "game_id")
     )
-    @MapKeyColumn (name="user_id")
-    @Column(name="score")
+    @MapKeyColumn(name = "user_id")
+    @Column(name = "score")
     private Map<Long, Integer> scores = new HashMap<>();
 
-    @Column(name="avg_score")
+    @Column(name = "avg_score")
     private double avgScore;
 
-    @Column(name="release")
+    @Column(name = "release")
     private LocalDate releaseDate;
 
-    @Column(name="cover_picture_cloudinary_id")
+    @Column(name = "cover_picture_cloudinary_id")
     private String coverPictureId;
 
     @ElementCollection
     @CollectionTable(
-                    name = "game_pictures",
-                    joinColumns=@JoinColumn(name = "game_id", nullable = false))
-    @Column(name="cloudinary_id", nullable = false)
+            name = "game_pictures",
+            joinColumns = @JoinColumn(name = "game_id", nullable = false))
+    @Column(name = "cloudinary_id", nullable = false)
     private Set<String> pictureIds;
 
     @Transient
@@ -98,7 +99,7 @@ public class Game {
     @ElementCollection
     @CollectionTable(
             name = "game_videos",
-            joinColumns=@JoinColumn(name = "game_id", nullable = false))
+            joinColumns = @JoinColumn(name = "game_id", nullable = false))
     @MapKeyColumn(name = "video_id")
     @Column(name = "name")
     private Map<String, String> videos;
@@ -122,6 +123,8 @@ public class Game {
         coverPictureId = null;
         pictureIds = new LinkedHashSet<>();
         pictureUrls = new LinkedHashSet<>();
+        videos = new HashMap<>();
+
     }
 
     // Getters
@@ -138,28 +141,23 @@ public class Game {
     }
 
     public Collection<Genre> getGenres() {
-        return cloneCollection(genres);
+        return genres;
     }
 
     public Map<Platform, GamePlatformReleaseDate> getPlatforms() {
-        HashMap<Platform, GamePlatformReleaseDate> newPlatformMap = new HashMap<Platform, GamePlatformReleaseDate>();
-
-        for (Platform key : platforms.keySet()) {
-            newPlatformMap.put(key, platforms.get(key)); //TODO check clone for LocalDate.
-        }
-        return newPlatformMap;
+        return platforms;
     }
 
     public Collection<Company> getPublishers() {
-        return cloneCollection(publishers);
+        return publishers;
     }
 
     public Collection<Company> getDevelopers() {
-        return cloneCollection(developers);
+        return developers;
     }
 
     public Collection<Keyword> getKeywords() {
-        return cloneCollection(keywords);
+        return keywords;
     }
 
 //    public Collection<Review> getReviews() {
@@ -181,13 +179,14 @@ public class Game {
      * @see #addPicture(String)
      */
     public Set<String> getPictureUrls() {
-        Set<String> result = new LinkedHashSet<>();
-        for(String id : pictureIds) {
-            if(!id.equals(coverPictureId)) {
-                result.add(buildCloudinaryURL(id));
-            }
-        }
-        return result;
+        return pictureIds.stream()
+                .filter(id -> !id.equals(coverPictureId))
+                .map(Game::buildCloudinaryURL)
+                .collect(Collectors.toCollection(LinkedHashSet::new)); // TODO: why linked hash set?
+    }
+
+    public Set<String> getPictureIds() {
+        return pictureIds;
     }
 
     /**
@@ -270,7 +269,7 @@ public class Game {
     }
 
     public void addVideo(String videoId, String videoName) {
-        if(videoId != null && !videoId.isEmpty() && videoName != null && !videoName.isEmpty()) {
+        if (videoId != null && !videoId.isEmpty() && videoName != null && !videoName.isEmpty()) {
             videos.put(videoId, videoName);
         }
     }
@@ -284,6 +283,7 @@ public class Game {
         return id == game.id;
 
     }
+
 
     @Override
     public int hashCode() {
