@@ -69,7 +69,7 @@ public class CompanyHibernateDaoTest {
     @Test
     public void testAllCompaniesAreReturned() {
         String message = "Get all companies didn't return as expected.";
-        Set<Company> returnedCompanies = companyDao.all();
+        List<Company> returnedCompanies = companyDao.all();
 
         Assert.assertNotNull(message, returnedCompanies);
         Assert.assertEquals(message, this.companies.size(), returnedCompanies.size());

@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Platform;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ public interface PlatformService {
      *
      * @return An <b>unmodifiable</b> set containing all platforms.
      */
-    Set<Platform> all();
+    List<Platform> all();
 
     /**
      * Finds a platform by ID.

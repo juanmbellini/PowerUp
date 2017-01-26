@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.Game;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public interface CompanyService {
      *
      * @return An <b>unmodifiable</b> set containing all companies.
      */
-    Set<Company> all();
+    List<Company> all();
 
     /**
      * Finds a company by ID.

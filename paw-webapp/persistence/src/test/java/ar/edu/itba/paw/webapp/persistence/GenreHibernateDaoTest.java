@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Genre;
+import org.hibernate.mapping.Collection;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -76,7 +77,7 @@ public class GenreHibernateDaoTest {
     @Test
     public void testAllGenresAreReturned() {
         String message = "Get all genres didn't return as expected";
-        Set<Genre> returnedGenres = genreDao.all();
+        List<Genre> returnedGenres = genreDao.all();
 
         Assert.assertNotNull(message, returnedGenres);
         Assert.assertEquals(message, genres.size(), returnedGenres.size());

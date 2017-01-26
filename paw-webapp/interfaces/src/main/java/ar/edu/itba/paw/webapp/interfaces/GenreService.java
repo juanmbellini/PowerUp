@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Genre;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public interface GenreService {
      *
      * @return An <b>unmodifiable</b> set containing all genres.
      */
-    Set<Genre> all();
+    List<Genre> all();
 
     /**
      * Finds a genre by ID.

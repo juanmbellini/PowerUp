@@ -1,35 +1,51 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.interfaces.GameService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
 @Transactional
 public class GameServiceImpl implements GameService {
 
-    @Autowired
-    GameDao gameDao;
+    private static List<String> KEYWORDS_EMPTY_LIST = new LinkedList<>();
 
-    public GameServiceImpl() {
+    private GameDao gameDao;
+
+    private GenreDao genreDao;
+
+    private PlatformDao platformDao;
+
+    private CompanyDao companyDao;
+
+//    private KeywordDao keywordDao; TODO: implement keyword dao
+
+
+    @Autowired
+    public GameServiceImpl(GameDao gameDao, GenreDao genreDao,
+                           PlatformDao platformDao, CompanyDao companyDao/*, KeywordDao keywordDao*/) {
+        this.gameDao = gameDao;
+        this.genreDao = genreDao;
+        this.platformDao = platformDao;
+        this.companyDao = companyDao;
+//        this.keywordDao = keywordDao;
     }
 
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) {
         name = escapeUnsafeCharacters(name);
-        return gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
+        Page<Game> page = gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
+        page.getData().forEach(each -> gameDao.loadGenres(each).loadPlatforms(each));
+        return page;
     }
 
     @Override
@@ -52,9 +68,25 @@ public class GameServiceImpl implements GameService {
         return gameDao.existsWithTitle(title);
     }
 
-    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        return gameDao.getFiltersByType(filterCategory);
+    public List<String> getFiltersByType(FilterCategory filterCategory) {
+        switch (filterCategory) {
+            case genre:
+                return genreDao.all().stream().map(Genre::getName).collect(Collectors.toList());
+            case keyword:
+                return KEYWORDS_EMPTY_LIST;
+            case platform:
+                return platformDao.all().stream().map(Platform::getName).collect(Collectors.toList());
+            case developer:
+                return companyDao.all().stream().filter(each -> !each.getGamesDeveloped().isEmpty())
+                        .map(Company::getName).collect(Collectors.toList());
+            case publisher:
+                return companyDao.all().stream().filter(each -> !each.getGamesPublished().isEmpty())
+                        .map(Company::getName).collect(Collectors.toList());
+            default:
+                throw new RuntimeException("Something went wrong");
+        }
     }
+
 
     @Override
     public Collection<Genre> getGenres(long gameId) {
@@ -107,15 +139,16 @@ public class GameServiceImpl implements GameService {
     }
 
     // TODO: Move to controller as this is a controller's task
-    public String escapeUnsafeCharacters(String name){
+    public String escapeUnsafeCharacters(String name) {
         char[] escape = new char[1];
         StringBuilder nameEscaped = new StringBuilder();
-        for(int i = 0; i < name.length(); i++){
-            if(name.charAt(i) == '%' || name.charAt(i) == '_' || name.charAt(i) == '\\'){
+        for (int i = 0; i < name.length(); i++) {
+            if (name.charAt(i) == '%' || name.charAt(i) == '_' || name.charAt(i) == '\\') {
                 nameEscaped.append('\\');
             }
             nameEscaped.append(name.charAt(i));
         }
         return nameEscaped.toString();
     }
+
 }
