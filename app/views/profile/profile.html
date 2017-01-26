@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    Profile Page
     <div ng-controller="ProfileCtrl">
-        {{username}}
-        <title>{{username}} - PowerUp</title>
+        <title>{{user.username}} - PowerUp</title>
     </div>
 </head>
 <body>
 
 <main class="section container" >
-    <h1 class="center orange-text">{{username}}'s Profile</h1>
-
+    <h1 class="center orange-text">{{user.username}}'s Profile</h1>
     <div class="row">
         <div class="col s4">
-            <img ng-src="{{profilePicture}}" style="max-width: 100%; height:auto;"/>
+            <img ng-src="{{apiLocation}}/users/{{userId}}/picture" style="max-width: 100%; height:auto;"/>
             <!--<c:if test="${isLoggedIn && user.username == currentUsername}">-->
                 <!--<c:url value="/profile-picture" var="uploadFileUrl" />-->
                 <!--<form method="POST" action="${uploadFileUrl}" enctype="multipart/form-data">-->

@@ -5,21 +5,29 @@ define(['powerUp'], function(powerUp) {
 
 
 
+
         $scope.userId = $location.search().userId;
-
-        // $scope.profilePicture = Restangular.one('users',$scope.userId)
-
+        console.log('User id: ', $scope.userId);
         Restangular.one('users',$scope.userId).get().then(function(user) {
-            if (user !== null){
-                console.log('User id: ', $scope.userId);
-                $scope.user = user;
-                console.log(user);
+            $scope.user = user;
+            console.log('User: ', user);
+            if ($scope.userId > 0 && $scope.user != null){
+                console.log("todo OK!");
             } else {
                 // TODO check log-in
+                $location.search({});
                 $location.path("");
             }
+        }, function(response) {
+            console.log("Error with status code", response.status); // TODO handle error
+            $location.search({});
+            $location.path("");
         });
 
+
+        $scope.profilePicture = Restangular.one('users',$scope.userId).customGET("picture",{},{Accept: "image/png"}).get();
+        console.log($scope.profilePicture);
+        console.log("isLogIn: ", $scope.isLogIn);
     });
 
 });

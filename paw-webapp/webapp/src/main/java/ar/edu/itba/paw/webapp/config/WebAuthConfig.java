@@ -46,6 +46,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .invalidSessionUrl("/auth/login")
             .and().authorizeRequests()
                 //Users
+                .antMatchers(HttpMethod.OPTIONS, "**").anonymous()
+                .antMatchers(HttpMethod.OPTIONS, "**").authenticated()
                 .antMatchers(HttpMethod.POST, "/auth/login").anonymous()
                 .antMatchers(HttpMethod.POST, "/auth/logout").authenticated()
                 .antMatchers("/register").anonymous()

@@ -10,5 +10,8 @@ define(['powerUp'], function(powerUp) {
 			searchedTitleService.setTitle($scope.gameTitle);
 			$location.path("search");
       	};
+      	console.log("isLogIn: ", $scope.isLogIn);
+      	$scope.isLogIn = true;
+		console.log("isLogIn: ", $scope.isLogIn);
 	});
 });
