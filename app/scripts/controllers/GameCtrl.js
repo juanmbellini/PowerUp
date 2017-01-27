@@ -3,7 +3,7 @@ define(['powerUp'], function(powerUp) {
 
     powerUp.controller('GameCtrl', function($scope, $location, Restangular) {
 
-        $scope.gameId = $location.search().gameId;
+        $scope.gameId = $location.search().id;
 
         Restangular.one('games',$scope.gameId).get().then(function(game) {
             $scope.game = game;
