@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,88 +48,97 @@
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <!--<div class="collapsible-header ${hasFilters ? " active" : ""}"><i-->
-                        <!--class="material-icons">filter_list</i>Filters-->
-        <!--</div>-->
-        <div class="collapsible-body">
-            <%--Filter categories--%>
-            <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s3"><a href="#platforms" class="active">Platforms</a></li>
-                        <li class="tab col s3"><a href="#genres">Genres</a></li>
-                        <li class="tab col s3"><a href="#developers">Developers</a></li>
-                        <li class="tab col s3"><a href="#publishers">Publishers</a></li>
-                    </ul>
-                </div>
-                <%--Filter values--%>
-                <div id="platforms" class="col s12 filter">
-                    <div class="input-field">
-                        <div class="autocomplete">
-                            <div class="ac-input col s6">
-                                <input type="text" id="platforms-ac-input" placeholder="Platform name" data-activates="platforms-ac-dropdown" data-beloworigin="true" autocomplete="off">
+                    <!--class="material-icons">filter_list</i>Filters-->
+                    <!--</div>-->
+                    <div class="collapsible-body">
+                        <%--Filter categories--%>
+                        <div class="row">
+                            <div class="col s12">
+                                <ul class="tabs">
+                                    <li class="tab col s3"><a href="#platforms" class="active">Platforms</a></li>
+                                    <li class="tab col s3"><a href="#genres">Genres</a></li>
+                                    <li class="tab col s3"><a href="#developers">Developers</a></li>
+                                    <li class="tab col s3"><a href="#publishers">Publishers</a></li>
+                                </ul>
                             </div>
-                            <div id="platforms-ac-appender" class="ac-appender col"></div>
-                            <ul id="platforms-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                            <%--Filter values--%>
+                            <div id="platforms" class="col s12 filter">
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="platforms-ac-input" placeholder="Platform name"
+                                                   data-activates="platforms-ac-dropdown" data-beloworigin="true"
+                                                   autocomplete="off">
+                                        </div>
+                                        <div id="platforms-ac-appender" class="ac-appender col"></div>
+                                        <ul id="platforms-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="genres" class="col s12 filter">
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="genres-ac-input" placeholder="Genre name"
+                                                   data-activates="genres-ac-dropdown" data-beloworigin="true"
+                                                   autocomplete="off">
+                                        </div>
+                                        <div id="genres-ac-appender" class="ac-appender col"></div>
+                                        <ul id="genres-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="developers" class="col s12 filter">
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="developers-ac-input" placeholder="Developer name"
+                                                   data-activates="developers-ac-dropdown" data-beloworigin="true"
+                                                   autocomplete="off">
+                                        </div>
+                                        <div id="developers-ac-appender" class="ac-appender col"></div>
+                                        <ul id="developers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="publishers" class="col s12 filter">
+                                <div class="input-field">
+                                    <div class="autocomplete">
+                                        <div class="ac-input col s6">
+                                            <input type="text" id="publishers-ac-input" placeholder="Publisher name"
+                                                   data-activates="publishers-ac-dropdown" data-beloworigin="true"
+                                                   autocomplete="off">
+                                        </div>
+                                        <div id="publishers-ac-appender" class="ac-appender col"></div>
+                                        <ul id="publishers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div id="genres" class="col s12 filter">
-                    <div class="input-field">
-                        <div class="autocomplete">
-                            <div class="ac-input col s6">
-                                <input type="text" id="genres-ac-input" placeholder="Genre name" data-activates="genres-ac-dropdown" data-beloworigin="true" autocomplete="off">
-                            </div>
-                            <div id="genres-ac-appender" class="ac-appender col"></div>
-                            <ul id="genres-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="developers" class="col s12 filter">
-                    <div class="input-field">
-                        <div class="autocomplete">
-                            <div class="ac-input col s6">
-                                <input type="text" id="developers-ac-input" placeholder="Developer name" data-activates="developers-ac-dropdown" data-beloworigin="true" autocomplete="off">
-                            </div>
-                            <div id="developers-ac-appender" class="ac-appender col"></div>
-                            <ul id="developers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="publishers" class="col s12 filter">
-                    <div class="input-field">
-                        <div class="autocomplete">
-                            <div class="ac-input col s6">
-                                <input type="text" id="publishers-ac-input" placeholder="Publisher name" data-activates="publishers-ac-dropdown" data-beloworigin="true" autocomplete="off">
-                            </div>
-                            <div id="publishers-ac-appender" class="ac-appender col"></div>
-                            <ul id="publishers-ac-dropdown" class="dropdown-content ac-dropdown"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </li>
-        </ul>
+                </li>
+            </ul>
 
-        <!--Results, if any-->
-            <div ng-if = "games.length > 0">
+            <!--Results, if any-->
+            <div ng-if="games.length > 0">
                 <!--Sorting-->
-                <div ng-if = "games.length > 1">
+                <div ng-if="games.length > 1">
                     <div class="right-align" id="sorting">
                         <!--SORT BY NAME-->
                         <!--{{(orderCategory == null || orderCategory == 'name')? '' : 'inactive'}}-->
                         <button class="btn waves-effect waves-light inactive" data-category="name">
-                        Name
-                        <i class="material-icons right">
-                            <div ng-switch="(orderCategory == null || orderCategory == 'name') && orderBoolean == 'descending'">
-                                <div ng-switch-when="true">arrow_drop_down</div>
-                                <div ng-switch-default>arrow_drop_up</div>
-                            </div>
-                        </i>
+                            Name
+                            <i class="material-icons right">
+                                <div ng-switch="(orderCategory == null || orderCategory == 'name') && orderBoolean == 'descending'">
+                                    <div ng-switch-when="true">arrow_drop_down</div>
+                                    <div ng-switch-default>arrow_drop_up</div>
+                                </div>
+                            </i>
                         </button>
 
                         <!--SORT BY RELEASE DATE-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == 'release')? '' : 'inactive'}}" data-category="releaseSort">
+                        <button class="btn waves-effect waves-light {{(orderCategory == 'release')? '' : 'inactive'}}"
+                                data-category="releaseSort">
                             Release
                             <i class="material-icons right">
                                 <div ng-switch="(orderCategory == 'release') && orderBoolean == 'ascending'">
@@ -142,7 +149,8 @@
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == 'rating')? '' : 'inactive'}}" data-category="ratingSort">
+                        <button class="btn waves-effect waves-light {{(orderCategory == 'rating')? '' : 'inactive'}}"
+                                data-category="ratingSort">
                             Rating
                             <i class="material-icons right">
                                 <div ng-switch="(orderCategory == 'ratingSort') && orderBoolean == 'ascending'">
@@ -154,66 +162,68 @@
                     </div>
                 </div>
             </div>
+            <!--End sorting-->
 
+            <!--TODO pagination-->
+            <!--Games list header-->
+            <div class="col s12 center" id="games-list-header">
+                <p class="col s2">Cover Picture</p>
+                <p class="col s7 left-align">Title and Summary</p>
+                <p class="col s1">Release</p>
+                <p class="col s2 right-align">Avg. Rating</p>
+            </div>
 
+            <!--Games list-->
+            <ul class="collection games-list">
+                <div ng-repeat="game in games">
 
-    <!--</c:if>-->
-    <!--<%&#45;&#45;End sorting&#45;&#45;%>-->
-    <!--<%&#45;&#45;TODO pagination&#45;&#45;%>-->
-    <!--<%&#45;&#45;Games list header&#45;&#45;%>-->
-    <!--<div class="col s12 center" id="games-list-header">-->
-        <!--<p class="col s2">Cover Picture</p>-->
-        <!--<p class="col s7 left-align">Title and Summary</p>-->
-        <!--<p class="col s1">Release</p>-->
-        <!--<p class="col s2 right-align">Avg. Rating</p>-->
-    <!--</div>-->
-    <!--<%&#45;&#45;Games list&#45;&#45;%>-->
-    <!--<ul class="collection games-list">-->
-        <!--<c:forEach var="game" items="${page.data}">-->
-            <!--<li class="collection-item avatar col s12">-->
-                <!--<div class="col s2 cover-pic-container valign-wrapper">-->
-                    <!--<img class="cover-picture valign" src="${game.coverPictureUrl}" alt="${game.name}">-->
-                <!--</div>-->
-                <!--<div class="col primary-content s7">-->
-                    <!--<p class="title">-->
-                        <!--<a href="<c:url value="/game?id=${game.id}" />">${game.name}</a>-->
-                    <!--</p>-->
-                    <!--<p class="summary">${game.summary}</p>-->
-                <!--</div>-->
-                <!--<div class="col s1 center">-->
-                    <!--<p style="margin-top: 33px;">${empty game.releaseDate.year ? "Unknown" : game.releaseDate.year}</p>-->
-                <!--</div>-->
-                <!--<div class="col s2">-->
-                    <!--<div class="secondary-content">-->
-                        <!--<c:choose>-->
-                            <!--<c:when test="${game.avgScore <= 10 && game.avgScore > 0}">-->
-                                <!--<p class="rating-number center"><b><fmt:formatNumber value="${game.avgScore}" maxFractionDigits="2" /></b></p>-->
-                                <!--<p class="rating-stars hide-on-small-and-down">-->
-                                    <!--<c:forEach begin="0" end="4" var="i">-->
-                                        <!--<c:choose>-->
-                                            <!--<c:when test="${game.avgScore - (i * 2) - 1 < 0}">-->
-                                                <!--<i class="material-icons">star_border</i>-->
-                                            <!--</c:when>-->
-                                            <!--<c:when test="${game.avgScore - (i * 2) - 1 == 0}">-->
-                                                <!--<i class="material-icons">star_half</i>-->
-                                            <!--</c:when>-->
-                                            <!--<c:otherwise>-->
-                                                <!--<i class="material-icons">star</i>-->
-                                            <!--</c:otherwise>-->
-                                        <!--</c:choose>-->
-                                    <!--</c:forEach>-->
-                                <!--</p>-->
-                            <!--</c:when>-->
-                            <!--<c:otherwise>-->
-                                <!--<p class="rating-number center"><b>Unrated</b></p>-->
-                            <!--</c:otherwise>-->
-                        <!--</c:choose>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-        <!--</c:forEach>-->
-    <!--</ul>-->
-
+                    <li class="collection-item avatar col s12">
+                        <div class="col s2 cover-pic-container valign-wrapper">
+                            <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                        </div>
+                        <div class="col primary-content s7">
+                            <p class="title">
+                                <a href='#/game?id={{game.id}}'>
+                                    {{game.name}}
+                                </a>
+                                <i class="material-icons">star</i>
+                            </p>
+                            <p class="summary">{{game.summary}}</p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;">{{game.releaseDate.year != null ? game.releaseDate.year :
+                                "Unknown" }}</p>
+                        </div>
+                        <div class="col s2">
+                            <div class="secondary-content">
+                                <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
+                                    <div ng-switch-when="true">
+                                        <p class="rating-number center"><b><span>{{game.avgScore | number:2}}</span></b>
+                                        </p>
+                                        <p class="rating-stars hide-on-small-and-down">
+                                            <!--range(0,4)-->
+                                        <div ng-repeat="i in [0,1,2,3,4]">
+                                            <div ng-if="(game.avgScore - (i * 2) - 1 ) < 0">
+                                                <i class="material-icons">star_border</i>
+                                            </div>
+                                            <div ng-if="(game.avgScore - (i * 2) - 1 ) == 0">
+                                                <i class="material-icons">star_half</i>
+                                            </div>
+                                            <div ng-if="(game.avgScore - (i * 2) - 1) > 0">
+                                                <i class="material-icons">star</i>
+                                            </div>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div ng-switch-default>
+                                        <p class="rating-number center"><b>Unrated</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
     <!--<%&#45;&#45;Another total games count&#45;&#45;%>-->
     <!--<ul class="row games-count">-->
         <!--<div class="col s6">-->
@@ -294,8 +304,8 @@
         <!--</ul>-->
     <!--</div>-->
     <!--</c:if>-->
-    </div>
-    <!--END RESULTS-->
+        </div>
+        <!--END RESULTS-->
     </div>
 </main>
 

@@ -79,6 +79,15 @@ define(['powerUp'], function (powerUp) {
         // Restangular.setDefaultHeaders({'Access-Control-Expose-Headers': "*"});
 
 
+        $scope.range = function(min, max, step) {
+            step = step || 1;
+            var input = [];
+            for (var i = min; i <= max; i += step) {
+                input.push(i);
+            }
+            return input;
+        };
+
         $scope.apiLocation = 'http://localhost:8080/api';
 
         $scope.isLoggedIn = LogInService.isLoggedIn;
