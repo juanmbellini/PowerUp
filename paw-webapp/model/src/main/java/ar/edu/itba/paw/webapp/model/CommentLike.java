@@ -1,19 +1,26 @@
 package ar.edu.itba.paw.webapp.model;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Models a {@link Comment} like. Used to track likes and to avoid users from liking comments multiple times.
  */
 @Entity
 @Table(name = "comment_likes",
-       uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
 public class CommentLike {
+
+    private static final ValidationException.ValueError MISSING_COMMENT_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "comment", "A comment must be set.");
+    private static final ValidationException.ValueError MISSING_USER_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "user", "An user must be set.");
 
     @Id
     @SequenceGenerator(name = "comment_likes_seq", sequenceName = "comment_likes_id_seq", allocationSize = 1)
@@ -36,7 +43,18 @@ public class CommentLike {
         //For Hibernate
     }
 
+
     public CommentLike(User user, Comment comment) {
+        List<ValidationException.ValueError> errors = new LinkedList<>();
+        if (comment == null) {
+            errors.add(MISSING_COMMENT_ERROR);
+        }
+        if (user == null) {
+            errors.add(MISSING_USER_ERROR);
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
+        }
         this.user = user;
         this.comment = comment;
     }

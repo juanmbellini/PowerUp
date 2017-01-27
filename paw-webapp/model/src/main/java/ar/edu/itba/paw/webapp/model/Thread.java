@@ -1,15 +1,13 @@
 package ar.edu.itba.paw.webapp.model;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
@@ -17,6 +15,19 @@ import java.util.*;
 @Entity
 @Table(name = "threads")
 public class Thread {
+
+    private static final ValidationException.ValueError MISSING_CREATOR_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "creator", "A creator must be set.");
+
+    private static final ValidationException.ValueError MISSING_TITLE_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "title", "A title must be set.");
+
+    private static final ValidationException.ValueError ILLEGAL_EMPTY_TITLE_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
+                    "title", "The title must have at least one character.");
+
 
     @Id
     @SequenceGenerator(name = "threads_seq", sequenceName = "threads_id_seq", allocationSize = 1)
@@ -51,7 +62,7 @@ public class Thread {
     private Calendar updatedAt;
 
     @Column(name = "hot_value")
-    private double hotValue;
+    private double hotValue; // TODO: check how this is updated
 
     /*package*/  Thread() {
         //for hibernate
@@ -65,26 +76,36 @@ public class Thread {
      * @param initialComment The thread's initial comment. May be empty, but not null.
      */
     public Thread(User creator, String title, String initialComment) {
+        update(creator, title, initialComment == null ? "" : initialComment);
+        allComments = new HashSet<>();
+        likes = new HashSet<>();
+        updateHotValue();
+    }
+
+
+    public void update(User creator, String title, String initialComment) {
+        List<ValidationException.ValueError> errors = new LinkedList<>();
+        if (creator == null) {
+            errors.add(MISSING_CREATOR_ERROR);
+        }
+        if (title == null) {
+            errors.add(MISSING_TITLE_ERROR);
+        } else if (title.isEmpty()) {
+            errors.add(ILLEGAL_EMPTY_TITLE_ERROR);
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
+        }
         this.creator = creator;
         this.title = title;
         this.initialComment = initialComment;
-        allComments = new HashSet();
-        likes = new HashSet<>();
-        LocalDate ldt = LocalDate.parse("2016-01-01");
-        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
-        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
-        setHotValue((Math.log10(1)+(System.currentTimeMillis())/1000 - epoch)/45000);
-
     }
 
-    /**
-     * Creates a new thread with an empty initial comment.
-     *
-     * @param creator The thread's creator.
-     * @param title   The thread's title.
-     */
-    public Thread(User creator, String title) {
-        this(creator, title, "");
+    public void updateHotValue() {
+        long epoch = LocalDate.parse("2016-01-01").atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+        int likeSize = (likes == null ? 0 : likes.size()) + 1;
+        long millis = updatedAt == null ? System.currentTimeMillis() : updatedAt.getTimeInMillis();
+        hotValue = (Math.log10(likeSize) + (millis / 1000 - epoch) / 45000.0);
     }
 
     public long getId() {
@@ -99,17 +120,10 @@ public class Thread {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public double getHotValue() {
+        return hotValue;
     }
 
-    public String getInitialComment() {
-        return initialComment;
-    }
-
-    public void setInitialComment(String initialComment) {
-        this.initialComment = initialComment;
-    }
 
     public Collection<Comment> getAllComments() {
         return allComments;
@@ -117,15 +131,11 @@ public class Thread {
 
     @Transient
     public Collection<Comment> getTopLevelComments() {
-        //Not caching this into a variable since allComments may change and we have no way of tracking when this happens
-        //to recompute all top-level comments.
-        Set<Comment> result = new LinkedHashSet<>();
-        for(Comment c : allComments) {
-            if(c.getParentComment() == null) {
-                result.add(c);
-            }
-        }
-        return result;
+        // Not caching into a variable since allComments may change and we have no way of tracking when this happens
+        // to recompute all top-level comments.
+        return allComments.stream()
+                .filter(c -> c.getParentComment() == null)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public int getLikeCount() {
@@ -133,12 +143,10 @@ public class Thread {
     }
 
     public boolean isLikedBy(User user) {
-        for(ThreadLike like : likes) {
-            if(like.getUser().equals(user)) {
-                return true;
-            }
-        }
-        return false;
+        // TODO: what if one thread has 3M of likes and the given user's like is the last one?
+        // TODO: what if the user didn't like the thread, and it has 40M likes?
+        // TODO: I think it's better to do this using a query
+        return likes.parallelStream().map(ThreadLike::getUser).collect(Collectors.toSet()).contains(user);
     }
 
     public Calendar getCreatedAt() {
@@ -166,14 +174,8 @@ public class Thread {
 
     @Override
     public String toString() {
-        return "Thread #" +
-                id +
-                ", creator=" + creator.getUsername() +
-                ", title='" + title + '\'' +
-                ", initialComment='" + initialComment + '\'';
+        return "Thread #" + id + ", creator=" + creator.getUsername()
+                + ", title='" + title + "', initialComment='" + initialComment + "'";
     }
 
-    public void setHotValue(double hotValue) {
-        this.hotValue = hotValue;
-    }
 }

@@ -4,14 +4,23 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Models a {@link Thread} like. Used to track likes and to avoid users from liking threads multiple times.
  */
 @Entity
 @Table(name = "thread_likes",
-       uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "thread_id"}))
-    public class ThreadLike {
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "thread_id"}))
+public class ThreadLike {
+
+    private static final ValidationException.ValueError MISSING_THREAD_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "thread", "A thread must be set.");
+    private static final ValidationException.ValueError MISSING_USER_ERROR =
+            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
+                    "user", "An user must be set.");
 
     @Id
     @SequenceGenerator(name = "thread_likes_seq", sequenceName = "thread_likes_id_seq", allocationSize = 1)
@@ -35,6 +44,16 @@ import java.util.Calendar;
     }
 
     public ThreadLike(User user, Thread thread) {
+        List<ValidationException.ValueError> errors = new LinkedList<>();
+        if (thread == null) {
+            errors.add(MISSING_THREAD_ERROR);
+        }
+        if (user == null) {
+            errors.add(MISSING_USER_ERROR);
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
+        }
         this.user = user;
         this.thread = thread;
     }
@@ -50,7 +69,7 @@ import java.util.Calendar;
     public Thread getThread() {
         return thread;
     }
-    
+
     public Calendar getCreatedAt() {
         return createdAt;
     }
