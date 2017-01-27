@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
@@ -65,6 +66,8 @@ public class Thread {
     private double hotValue; // TODO: check how this is updated
 
     /*package*/  Thread() {
+        this.allComments = new HashSet<>();
+        this.likes = new HashSet<>();
         //for hibernate
     }
 
@@ -74,33 +77,37 @@ public class Thread {
      * @param creator        The thread's creator.
      * @param title          The thread's title.
      * @param initialComment The thread's initial comment. May be empty, but not null.
+     * @throws ValidationException If any value is wrong.
      */
-    public Thread(User creator, String title, String initialComment) {
-        update(creator, title, initialComment == null ? "" : initialComment);
-        allComments = new HashSet<>();
-        likes = new HashSet<>();
+    public Thread(User creator, String title, String initialComment) throws ValidationException {
+        this();
+        if (creator == null) {
+            throw new ValidationException(Stream.of(MISSING_CREATOR_ERROR).collect(Collectors.toList()));
+        }
+        this.creator = creator;
+        update(title, initialComment == null ? "" : initialComment);
         updateHotValue();
     }
 
-
-    public void update(User creator, String title, String initialComment) {
-        List<ValidationException.ValueError> errors = new LinkedList<>();
-        if (creator == null) {
-            errors.add(MISSING_CREATOR_ERROR);
-        }
+    /**
+     * Updates the thread.
+     *
+     * @param title          The new title.
+     * @param initialComment The initial comment (i.e. body of the thread).
+     * @throws ValidationException If any value is wrong.
+     */
+    public void update(String title, String initialComment) throws ValidationException {
         if (title == null) {
-            errors.add(MISSING_TITLE_ERROR);
+            throw new ValidationException(Stream.of(MISSING_TITLE_ERROR).collect(Collectors.toList()));
         } else if (title.isEmpty()) {
-            errors.add(ILLEGAL_EMPTY_TITLE_ERROR);
+            throw new ValidationException(Stream.of(ILLEGAL_EMPTY_TITLE_ERROR).collect(Collectors.toList()));
         }
-        if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
-        }
-        this.creator = creator;
         this.title = title;
         this.initialComment = initialComment;
     }
 
+
+    // TODO: javadoc, diego?
     public void updateHotValue() {
         long epoch = LocalDate.parse("2016-01-01").atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
         int likeSize = (likes == null ? 0 : likes.size()) + 1;

@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
+import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.ThreadLike;
+import ar.edu.itba.paw.webapp.model.User;
 
 /**
  * Data Access Object for {@link ar.edu.itba.paw.webapp.model.ThreadLike Thread likes}.
@@ -23,23 +25,10 @@ public interface ThreadLikeDao {
      * @param userId The user ID.
      * @return Whether the user has liked the specified thread.
      */
-    boolean exists(long threadId, long userId);
+    boolean exists(long threadId, long userId); // TODO: difference with find(threadId, userId) != null ??
 
-    /**
-     * Creates a like for a given thread by a a given user, if it doesn't already exist.
-     *
-     * @param threadId The thread ID.
-     * @param userId The ID of the user liking the thread.
-     * @return The new like count fo the given thread.
-     */
-    int create(long threadId, long userId);
+    ThreadLike create(Thread thread, User user);
 
-    /**
-     * Removes a like from a given thread by a a given user, if it find.
-     *
-     * @param threadId The thread ID.
-     * @param userId The ID of the user unliking the thread.
-     * @return The new like count fo the given thread.
-     */
-    int delete(long threadId, long userId);
+    void delete(ThreadLike threadLike);
+
 }

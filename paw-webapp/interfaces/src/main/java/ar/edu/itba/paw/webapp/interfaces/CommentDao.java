@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Comment;
+import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -10,15 +12,18 @@ import java.util.LinkedList;
  */
 public interface CommentDao {
 
-    /**
-     * @see ThreadService#comment(long, long, String)
-     */
-    Comment comment(long threadId, long commenterId, String comment);
 
-    /**
-     * @see ThreadService#replyToComment(long, long, String)
-     */
-    Comment reply(long commentId, long replierId, String reply);
+    // TODO: javadoc
+    Comment comment(Thread thread, User commenter, String commentMessage);
+
+    // TODO: javadoc
+    Comment reply(Comment comment, User commenter, String commentMessage);
+
+    // TODO: javadoc
+    void update(Comment comment, String newComment);
+
+    // TODO: javadoc
+    void delete(Comment comment);
 
     /**
      * Finds a comment or a reply by ID.
@@ -74,34 +79,4 @@ public interface CommentDao {
         return null;
     }
 
-    /**
-     * Creates a like for a given comment or reply by a a given user.
-     *
-     * @param id     The comment or reply ID.
-     * @param userId The ID of the user liking the comment or reply.
-     */
-    int like(long id, long userId);
-
-    /**
-     * Removes a like from a given comment or reply by a a given user.
-     *
-     * @param id     The comment or reply ID.
-     * @param userId The ID of the user unliking the comment or reply.
-     */
-    int unlike(long id, long userId);
-
-    /**
-     * Changes a comment's content.
-     *
-     * @param id         The comment ID.
-     * @param newComment The new comment content.
-     */
-    void edit(long id, String newComment);
-
-    /**
-     * Deletes a comment or reply.
-     *
-     * @param id The ID of the comment or reply.
-     */
-    void delete(long id);
 }

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.validation.Valid;
 import java.util.Set;
 
 @Controller
+@Deprecated
 public class ThreadController extends BaseController {
 
     private final ThreadService threadService;
@@ -87,7 +89,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             String title = form.getTitle().trim(),
-                initialComment = form.getInitialComment().trim();
+                    initialComment = form.getInitialComment().trim();
             Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
             LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
             mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
@@ -109,7 +111,7 @@ public class ThreadController extends BaseController {
         try {
             String commentContent = form.getComment().trim();
             Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
-            threadService.updateHotValue(form.getThreadId());
+//            threadService.updateHotValue(form.getThreadId());
             LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), commentContent);
             mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
         } catch (Exception e) {
@@ -130,7 +132,7 @@ public class ThreadController extends BaseController {
         try {
             reply = reply.trim();
             Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
-            threadService.updateHotValue(createdReply.getThread().getId());
+//            threadService.updateHotValue(createdReply.getThread().getId());
             LOG.info("{} replied to comment #{} with \"{}\"", getCurrentUsername(), parentCommentId, reply);
             return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
         } catch (Exception e) {
@@ -145,7 +147,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.likeThread(threadId, getCurrentUser().getId());
-            threadService.updateHotValue(threadId);
+//            threadService.updateHotValue(threadId);
             LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -164,7 +166,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             threadService.unlikeThread(threadId, getCurrentUser().getId());
-            threadService.updateHotValue(threadId);
+//            threadService.updateHotValue(threadId);
             LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -179,19 +181,19 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/edit-thread-title", method = RequestMethod.POST)
     public ModelAndView editThread(@RequestParam(name = "threadId") final long threadId,
-                                    @RequestParam(name = "newTitle") String newTitle,
-                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                   @RequestParam(name = "newTitle") String newTitle,
+                                   @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             newTitle = newTitle.trim();
-            threadService.changeTitle(threadId, getCurrentUser().getId(), newTitle);
+//            threadService.changeTitle(threadId, getCurrentUser().getId(), newTitle);
             LOG.info("{} changed thread #{}'s title to \"{}\"", getCurrentUsername(), threadId, newTitle);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
-            LOG.warn("{} attempted to edit title of thread thread #{} which is not theirs, denied", getCurrentUsername(), threadId);
+            LOG.warn("{} attempted to update title of thread thread #{} which is not theirs, denied", getCurrentUsername(), threadId);
             mav = new ModelAndView("error400"); //TODO make 403 page
         } catch (NoSuchEntityException e) {
-            LOG.warn("{} attempted to edit title of nonexistent thread #{}, denied", getCurrentUsername(), threadId);
+            LOG.warn("{} attempted to update title of nonexistent thread #{}, denied", getCurrentUsername(), threadId);
             mav = new ModelAndView("error404");
         } catch (Exception e) {
             LOG.error("Error editing title of thread #{} for {}: {}", threadId, getCurrentUsername(), e);
@@ -206,7 +208,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.changeInitialComment(threadId, getCurrentUser().getId(), newInitialComment.trim());
+//            threadService.changeInitialComment(threadId, getCurrentUser().getId(), newInitialComment.trim());
             LOG.info("{} changed initial comment of thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
@@ -224,7 +226,7 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/delete-thread", method = RequestMethod.POST)
     public ModelAndView deleteThread(@RequestParam(name = "threadId") final long threadId,
-                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             threadService.deleteThread(threadId, getCurrentUser().getId());
@@ -290,10 +292,10 @@ public class ThreadController extends BaseController {
             LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
-            LOG.warn("{} attempted to edit comment #{} which is not theirs, denied", getCurrentUsername(), commentId);
+            LOG.warn("{} attempted to update comment #{} which is not theirs, denied", getCurrentUsername(), commentId);
             mav = new ModelAndView("error400"); //TODO make 403 page
         } catch (NoSuchEntityException e) {
-            LOG.warn("{} attempted to edit nonexistent comment #{}, denied", getCurrentUsername(), commentId);
+            LOG.warn("{} attempted to update nonexistent comment #{}, denied", getCurrentUsername(), commentId);
             mav = new ModelAndView("error404");
         } catch (Exception e) {
             LOG.error("Error editing comment #{} for {}: {}", commentId, getCurrentUsername(), e);
@@ -304,7 +306,7 @@ public class ThreadController extends BaseController {
 
     @RequestMapping(value = "/delete-comment", method = RequestMethod.POST)
     public ModelAndView deleteComment(@RequestParam(name = "commentId") final long commentId,
-                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
+                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
             threadService.deleteComment(commentId, getCurrentUser().getId());
