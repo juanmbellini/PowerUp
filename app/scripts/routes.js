@@ -27,6 +27,10 @@ define([], function() {
             '/search': {
                 templateUrl: '/views/search/search.html',
                 controller: 'SearchCtrl'
+            },
+            '/game': {
+                templateUrl: '/views/games/game.html',
+                controller: 'GameCtrl'
             }
             /* ===== yeoman hook ===== */
             /* Do not remove these commented lines! Needed for auto-generation */

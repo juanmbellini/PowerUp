@@ -3,15 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--<%@include file="header.jsp" %>-->
     <title>Search - PowerUp</title>
 
 </head>
 <body>
-<header>
-    <!--<%@include file="nav.jsp" %>-->
-</header>
-
 <main>
     <div class="container">
         <div class="row filters-row">
@@ -23,34 +18,31 @@
                 <form id="name-form">
                     <div class="input-field col s6 offset-s3 ">
                         <div class="ng-scope" ng-controller="SearchCtrl">
-                            <!--<input placeholder="Title" type="text" name="name" value="${fn:length(searchedName) > 0 ? searchedName : ""}">-->
-                            <input placeholder="Title" type="text" name="searchedTitle" ng-model="searchedTitle">
+                            <input placeholder="Title" type="text" name="searchedName" ng-model="searchedName">
                         </div>
                     </div>
                 </form>
             </div>
-
-
         </div>
 
-        <!--<%&#45;&#45;RESULTS&#45;&#45;%>-->
-        <!--<div class="row">-->
-            <!--<c:choose>-->
-                <!--<%&#45;&#45;"No results" notice&#45;&#45;%>-->
-                <!--<c:when test="${ page.overAllAmountOfElements == 0 }">-->
-                    <!--<h3 class="center">No results</h3>-->
-                <!--</c:when>-->
-                <!--<c:otherwise>-->
-                    <!--<%&#45;&#45;Total games count&#45;&#45;%>-->
-                    <!--<ul class="row games-count">-->
-                        <!--<div class="col s6">-->
-                            <!--Games ${(page.pageNumber - 1) * page.pageSize + 1 } - -->
-                            <!--${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}-->
-                            <!--of ${page.overAllAmountOfElements}-->
-                        <!--</div>-->
-                    <!--</ul>-->
-                <!--</c:otherwise>-->
-            <!--</c:choose>-->
+        <!--RESULTS-->
+        <div class="row">
+            <div ng-if="games.length <= 0">
+                <!--"No results" notice-->
+                <h3 class="center">No results</h3>
+            </div>
+            <div ng-if="games.length > 0">
+                <!--Total games count-->
+                <ul class="row games-count">
+                    <div class="col s6">
+
+                        <!--Games ${(page.pageNumber - 1) * page.pageSize + 1 } - -->
+                        <!--${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}-->
+                        <!--of ${page.overAllAmountOfElements}-->
+                    </div>
+                </ul>
+            </div>
+
 
             <!--<%&#45;&#45;Filters collapsible&#45;&#45;%>-->
             <!--<button class="btn waves-effect waves-light right" id="submit-search" ${hasFilters ? "" : "disabled"}>Search <i class="material-icons right">send</i></button>-->
@@ -121,48 +113,50 @@
         </li>
         </ul>
 
-        <!--<%&#45;&#45;Results, if any&#45;&#45;%>-->
-        <!--<c:if test="${ fn:length(page.data) > 0 }">-->
-            <!--<%&#45;&#45;Sorting&#45;&#45;%>-->
-            <!--<c:if test="${ fn:length(page.data) > 1 }">-->
-                <!--<div class="right-align" id="sorting">-->
-                    <!--<%&#45;&#45;SORT BY NAME&#45;&#45;%>-->
-                    <!--<c:choose>-->
-                        <!--<c:when test="${empty orderCategory || orderCategory == 'name'}">-->
-                            <!--<c:set var="nameSort" value="${empty orderBoolean ? 'ascending' : orderBoolean}" />-->
-                        <!--</c:when>-->
-                        <!--<c:otherwise>-->
-                            <!--<c:set var="nameSort" value="ascending" />-->
-                        <!--</c:otherwise>-->
-                    <!--</c:choose>-->
-                    <!--<button class="btn waves-effect waves-light<c:if test="${not empty orderCategory && orderCategory != 'name'}"> inactive</c:if>" data-category="name" data-sort="${nameSort}">-->
-            <!--Name <i class="material-icons right">arrow_drop_${nameSort == "ascending" ? "up" : "down"}</i>-->
-            <!--</button>-->
-            <!--<%&#45;&#45;SORT BY RELEASE DATE&#45;&#45;%>-->
-            <!--<c:choose>-->
-                <!--<c:when test="${orderCategory == 'release'}">-->
-                    <!--<c:set var="releaseSort" value="${orderBoolean}" />-->
-                <!--</c:when>-->
-                <!--<c:otherwise>-->
-                    <!--<c:set var="releaseSort" value="descending" />-->
-                <!--</c:otherwise>-->
-            <!--</c:choose>-->
-            <!--<button class="btn waves-effect waves-light<c:if test="${orderCategory != 'release'}"> inactive</c:if>" data-category="release" data-sort="${releaseSort}">-->
-        <!--Release <i class="material-icons right">arrow_drop_${releaseSort == "ascending" ? "up" : "down"}</i>-->
-        <!--</button>-->
-        <!--<%&#45;&#45;SORT BY AVERAGE RATING&#45;&#45;%>-->
-        <!--<c:choose>-->
-            <!--<c:when test="${orderCategory == 'rating'}">-->
-                <!--<c:set var="ratingSort" value="${orderBoolean}" />-->
-            <!--</c:when>-->
-            <!--<c:otherwise>-->
-                <!--<c:set var="ratingSort" value="descending" />-->
-            <!--</c:otherwise>-->
-        <!--</c:choose>-->
-        <!--<button class="btn waves-effect waves-light<c:if test="${orderCategory != 'rating'}"> inactive</c:if>" data-category="rating" data-sort="${ratingSort}">-->
-        <!--Rating <i class="material-icons right">arrow_drop_${ratingSort == "ascending" ? "up" : "down"}</i>-->
-        <!--</button>-->
-    <!--</div>-->
+        <!--Results, if any-->
+            <div ng-if = "games.length > 0">
+                <!--Sorting-->
+                <div ng-if = "games.length > 1">
+                    <div class="right-align" id="sorting">
+                        <!--SORT BY NAME-->
+                        <!--{{(orderCategory == null || orderCategory == 'name')? '' : 'inactive'}}-->
+                        <button class="btn waves-effect waves-light inactive" data-category="name">
+                        Name
+                        <i class="material-icons right">
+                            <div ng-switch="(orderCategory == null || orderCategory == 'name') && orderBoolean == 'descending'">
+                                <div ng-switch-when="true">arrow_drop_down</div>
+                                <div ng-switch-default>arrow_drop_up</div>
+                            </div>
+                        </i>
+                        </button>
+
+                        <!--SORT BY RELEASE DATE-->
+                        <button class="btn waves-effect waves-light {{(orderCategory == 'release')? '' : 'inactive'}}" data-category="releaseSort">
+                            Release
+                            <i class="material-icons right">
+                                <div ng-switch="(orderCategory == 'release') && orderBoolean == 'ascending'">
+                                    <div ng-switch-when="true">arrow_drop_up</div>
+                                    <div ng-switch-default>arrow_drop_down</div>
+                                </div>
+                            </i>
+                        </button>
+
+                        <!--SORT BY AVERAGE RATING-->
+                        <button class="btn waves-effect waves-light {{(orderCategory == 'rating')? '' : 'inactive'}}" data-category="ratingSort">
+                            Rating
+                            <i class="material-icons right">
+                                <div ng-switch="(orderCategory == 'ratingSort') && orderBoolean == 'ascending'">
+                                    <div ng-switch-when="true">arrow_drop_up</div>
+                                    <div ng-switch-default>arrow_drop_down</div>
+                                </div>
+                            </i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
     <!--</c:if>-->
     <!--<%&#45;&#45;End sorting&#45;&#45;%>-->
     <!--<%&#45;&#45;TODO pagination&#45;&#45;%>-->
@@ -300,8 +294,8 @@
         <!--</ul>-->
     <!--</div>-->
     <!--</c:if>-->
-    <!--</div>-->
-    <!--<%&#45;&#45;END RESULTS&#45;&#45;%>-->
+    </div>
+    <!--END RESULTS-->
     </div>
 </main>
 
