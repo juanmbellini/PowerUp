@@ -6,6 +6,8 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Jersey filter to allow for cross-origin requests on local deploys (grunt serve by default deploys on port 9000
@@ -14,11 +16,17 @@ import java.io.IOException;
 @Provider
 public class CorsFilter implements ContainerResponseFilter {
 
-  public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-    MultivaluedMap<String, Object> headers = responseContext.getHeaders();
+    public static final Map<String, String> CORS_HEADERS = new HashMap<>();
 
-    headers.add("Access-Control-Allow-Origin", "*");
-    headers.add("Access-Control-Expose-Headers", "*");
-  }
+    static {
+        CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");   //TODO remove in production
+        CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");                   //Allow sending cookies for authentication for cross-origin requests
+    }
 
+    public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+        MultivaluedMap<String, Object> headers = responseContext.getHeaders();
+        for (Map.Entry<String, String> header : CORS_HEADERS.entrySet()) {
+            headers.add(header.getKey(), header.getValue());
+        }
+    }
 }

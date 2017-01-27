@@ -33,7 +33,7 @@
         "no-array-constructor": 2,
         "no-constant-condition": 1,
         "no-control-regex": 2,
-        "no-debugger": 2,
+        "no-debugger": 1, // TODO change this to 2 on production
         "no-dupe-keys": 1,
         "no-empty": 2,
         "no-eval": 2,
