@@ -13,13 +13,18 @@
             </h3>
 
             <div class="col s12">
-                <form id="name-form">
-                    <div class="input-field col s6 offset-s3 ">
-                        <div class="ng-scope" ng-controller="SearchCtrl">
-                            <input placeholder="Title" type="text" name="searchedName" ng-model="searchedName">
+                <div class="col s6 offset-s3 ">
+                    <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
+                        <div class="input-field">
+                            <input placeholder="Title" type="search" ng-model="searchedName" name="name"/>
+                            <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
-                    </div>
-                </form>
+                    </form>
+
+                    <!--<div class="ng-scope" ng-controller="SearchCtrl">-->
+                        <!--<input placeholder="Title" type="text" name="searchedName" ng-model="searchedName">-->
+                    <!--</div>-->
+                </div>
             </div>
         </div>
 

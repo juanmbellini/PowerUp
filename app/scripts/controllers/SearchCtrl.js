@@ -17,11 +17,21 @@ define(['powerUp'], function(powerUp) {
         $scope.platforms = $location.search().platform;
         // $scope.keywords = $location.search().keyword;
 
-        //
+        $scope.submitSearch = function() {
+            console.log($scope.searchedName);
+            console.log("HOLA!");
+            $location.search({'name':$scope.searchedName});
+            $location.path("search");
+        };
+
+
+        // TODO MAKE FUNCTION THAT RETURN PATH OR GO TO PATH WITH ALL INFORMATION.
 
         var baseGames = Restangular.all('games');
 
-        baseGames.getList({orderCategory: $scope.orderCategory, Ascending:$scope.orderBoolean, name:$scope.searchedName}).then(function(games) {
+        baseGames.getList({orderCategory: $scope.orderCategory, Ascending:$scope.orderBoolean, name:$scope.searchedName,
+            publisher:$scope.publishers, genres:$scope.genres, platform:$scope.platforms, developer:$scope.developers})
+            .then(function(games) {
             $scope.games = games;
             console.log("All ok2");
             console.log(games);

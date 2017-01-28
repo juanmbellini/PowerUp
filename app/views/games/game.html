@@ -146,14 +146,14 @@
 							</div>
 							<p><b>Genres</b></p>
 							<div ng-repeat="genre in game.genres">
-								<a href='#/search?filters={"genre":["{{genre}}"]}'>
+								<a href='#/search?genre={{genre}}'>
 									{{genre}}
 								</a>
 							</div>
 							<br/>
 							<p><b>Platforms</b></p>
 							<div ng-repeat="platform in game.platforms">
-								<a href='#/search?filters={"platform":[{{platform.name}}"]}'>
+								<a href='#/search?platform={{platform.name}}'>
 									{{platform.name}}
 								</a>
 								<span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
@@ -161,14 +161,14 @@
 							<br/>
 							<p><b>Developers</b></p>
 							<div ng-repeat="developer in game.developers">
-								<a href='#/search?filters={"developer":[{{developer}}"]}'>
+								<a href='#/search?developer={{developer}}'>
 									{{developer}}
 								</a>
 							</div>
 							<br/>
 							<p><b>Publishers</b></p>
 							<div ng-repeat="publisher in game.publishers">
-								<a href='#/search?filters={"publisher":[{{publisher}}"]}'>
+								<a href='#/search?publisher={{publisher}}'>
 									{{publisher}}
 								</a>
 							</div>
