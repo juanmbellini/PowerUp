@@ -20,10 +20,6 @@
                             <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
                     </form>
-
-                    <!--<div class="ng-scope" ng-controller="SearchCtrl">-->
-                        <!--<input placeholder="Title" type="text" name="searchedName" ng-model="searchedName">-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -38,25 +34,22 @@
                 <!--Total games count-->
                 <ul class="row games-count">
                     <div class="col s6">
-
-                        <!--Games ${(page.pageNumber - 1) * page.pageSize + 1 } - -->
-                        <!--${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}-->
-                        <!--of ${page.overAllAmountOfElements}-->
+                        Games {{(pageNumber - 1) * pageSize + 1 }} -
+                        {{(pageNumber - 1) * pageSize + games.length}}
+                        of {{overAllAmountOfElements}}
                     </div>
                 </ul>
             </div>
-
-
-            <!--<%&#45;&#45;Filters collapsible&#45;&#45;%>-->
-            <!--<button class="btn waves-effect waves-light right" id="submit-search" ${hasFilters ? "" : "disabled"}>Search <i class="material-icons right">send</i></button>-->
-            <!--<button class="btn waves-effect waves-light right" id="clear-filters">Clear filters <i class="material-icons right">close</i></button>-->
+            <!--Filters collapsible-->
+            <button class="btn waves-effect waves-light right" id="submit-search" {{hasFilters()? '' : 'disabled'}}>Search <i class="material-icons right">send</i></button>
+            <button class="btn waves-effect waves-light right" id="clear-filters">Clear filters <i class="material-icons right">close</i></button>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
-                    <!--<div class="collapsible-header ${hasFilters ? " active" : ""}"><i-->
-                    <!--class="material-icons">filter_list</i>Filters-->
-                    <!--</div>-->
+                    <div class="collapsible-header {{hasFilters()? ' active' : ''}}">
+                    <i class="material-icons">filter_list</i>Filters
+                    </div>
                     <div class="collapsible-body">
-                        <%--Filter categories--%>
+                        <!--Filter categories-->
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
@@ -66,7 +59,7 @@
                                     <li class="tab col s3"><a href="#publishers">Publishers</a></li>
                                 </ul>
                             </div>
-                            <%--Filter values--%>
+                            <!--Filter values-->
                             <div id="platforms" class="col s12 filter">
                                 <div class="input-field">
                                     <div class="autocomplete">
@@ -123,19 +116,18 @@
                     </div>
                 </li>
             </ul>
-
             <!--Results, if any-->
             <div ng-if="games.length > 0">
                 <!--Sorting-->
                 <div ng-if="games.length > 1">
                     <div class="right-align" id="sorting">
                         <!--SORT BY NAME-->
-                        <!--{{(orderCategory == null || orderCategory == 'name')? '' : 'inactive'}}-->
-                        <button class="btn waves-effect waves-light inactive" data-category="name">
+                        <button class="btn waves-effect waves-light {{(orderCategory == null || orderCategory == 'name')? '' : 'inactive'}}" data-category="name" ng-click="sortNameButton()">
                             Name
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == null || orderCategory == 'name') && orderBoolean == 'descending'">
+                                <div ng-switch="(orderCategory == null || orderCategory == 'name') && ascending == false">
                                     <div ng-switch-when="true">arrow_drop_down</div>
+                                    <!--TODO sacar flechas cuando inactivo? --Diego 03/02/2017-->
                                     <div ng-switch-default>arrow_drop_up</div>
                                 </div>
                             </i>
@@ -143,10 +135,10 @@
 
                         <!--SORT BY RELEASE DATE-->
                         <button class="btn waves-effect waves-light {{(orderCategory == 'release')? '' : 'inactive'}}"
-                                data-category="releaseSort">
+                                ng-click="sortReleaseButton()" data-category="releaseSort">
                             Release
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == 'release') && orderBoolean == 'ascending'">
+                                <div ng-switch="(orderCategory == 'release') && ascending == true">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
@@ -154,11 +146,11 @@
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == 'rating')? '' : 'inactive'}}"
-                                data-category="ratingSort">
+                        <button class="btn waves-effect waves-light {{(orderCategory == 'avg_score')? '' : 'inactive'}}"
+                                ng-click="sortRatingButton()" data-category="ratingSort">
                             Rating
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == 'ratingSort') && orderBoolean == 'ascending'">
+                                <div ng-switch="(orderCategory == 'avg_score') && ascending == true">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
@@ -195,8 +187,10 @@
                             <p class="summary">{{game.summary}}</p>
                         </div>
                         <div class="col s1 center">
-                            <p style="margin-top: 33px;">{{game.releaseDate.year != null ? game.releaseDate.year :
-                                "Unknown" }}</p>
+                            <p style="margin-top: 33px;">
+                                {{game.releaseDate != null ? game.releaseDate : "Unknown" }}
+                                 <!--TODO get year -->
+                            </p>
                         </div>
                         <div class="col s2">
                             <div class="secondary-content">
@@ -228,38 +222,36 @@
                     </li>
                 </div>
             </ul>
-    <!--<%&#45;&#45;Another total games count&#45;&#45;%>-->
-    <!--<ul class="row games-count">-->
-        <!--<div class="col s6">-->
-            <!--Games ${(page.pageNumber - 1) * page.pageSize + 1 } - -->
-            <!--${(page.pageNumber - 1) * page.pageSize + page.amountOfElements}-->
-            <!--of ${page.overAllAmountOfElements}-->
-        <!--</div>-->
-    <!--</ul>-->
+        </div>
+    </div>
+    <!--Another total games count-->
+    <ul class="row games-count">
+        <div class="col s6">
+            Games {{(pageNumber - 1) * pageSize + 1 }} -
+            {{(pageNumber - 1) * pageSize + games.length}}
+            of {{overAllAmountOfElements}}
+        </div>
+    </ul>
 
-    <!--<%&#45;&#45;Pagination&#45;&#45;%>-->
-    <!--<div class="row">-->
-        <!--<ul class="pagination center">-->
-            <!--<%&#45;&#45;Left chevron - only shown when there are > 1 pages &#45;&#45;%>-->
-            <!--<c:if test="${page.totalPages > 1}">-->
-                <!--<c:choose>-->
-                    <!--<c:when test="${page.pageNumber > 1}">-->
-                        <!--<li class="waves-effect">-->
-                            <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">-->
-                            <!--<i class="material-icons">chevron_left</i>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</c:when>-->
-                    <!--<c:otherwise>-->
-                        <!--<li class="disabled">-->
-                            <!--<a href="#!">-->
-                                <!--<i class="material-icons">chevron_left</i>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</c:otherwise>-->
-                <!--</c:choose>-->
-            <!--</c:if>-->
-            <!--<%&#45;&#45;Page numbers - always shown&#45;&#45;%>-->
+    <!--Pagination-->
+    <div class="row">
+        <ul class="pagination center">
+            <!--Left chevron - only shown when there are > 1 pages -->
+            <li ng-if="totalPages > 1 && pageNumber > 1" class="waves-effect">
+                <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">-->
+                <a>
+                <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+
+
+            <li ng-if="totalPages > 1 && pageNumber <= 1" class="disabled">
+                <a href="#!">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+
+            <!--Page numbers - always shown-->
             <!--<c:set var="just_one"-->
                    <!--value="${(page.pageNumber - 4) <= 0 || page.totalPages <= 10}"/>-->
             <!--<c:set var="no_more_prev"-->
@@ -268,49 +260,30 @@
                    <!--value="${(page.pageNumber + 5) < 10}"/>-->
             <!--<c:set var="no_more_next"-->
                    <!--value="${page.totalPages < 10 || (page.pageNumber + 5) >= page.totalPages}"/>-->
-            <!--<c:forEach var="pageIt"-->
-                       <!--begin="${just_one ? 1 : no_more_prev ? page.totalPages - 9 : page.pageNumber - 4}"-->
-                       <!--end="${no_more_next ? page.totalPages : the_first_ones ? 10 : page.pageNumber + 5}">-->
-                <!--<li class=${pageIt == page.pageNumber ? "active" : "waves-effect"}>-->
-                <!--<c:choose>-->
-                    <!--<c:when test="${pageIt == page.pageNumber}">-->
-                        <!--<a>-->
-                            <!--${pageIt}-->
-                        <!--</a>-->
-                    <!--</c:when>-->
-                    <!--<c:otherwise>-->
-                        <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${pageIt}"/> </c:url>">-->
-                        <!--${pageIt}-->
-                        <!--</a>-->
-                    <!--</c:otherwise>-->
-                <!--</c:choose>-->
-                <!--</li>-->
-            <!--</c:forEach>-->
-            <!--<%&#45;&#45;Right chevron - only shown if there are > 1 pages&#45;&#45;%>-->
-            <!--<c:if test="${page.totalPages > 1}">-->
-                <!--<c:choose>-->
-                    <!--<c:when test="${page.pageNumber == page.totalPages}">-->
-                        <!--<li class="disabled">-->
-                            <!--<a href="#!">-->
-                                <!--<i class="material-icons">chevron_right</i>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</c:when>-->
-                    <!--<c:otherwise>-->
-                        <!--<li class="waves-effect">-->
-                            <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">-->
-                            <!--<i class="material-icons">chevron_right</i>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</c:otherwise>-->
-                <!--</c:choose>-->
-            <!--</c:if>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--</c:if>-->
-        </div>
-        <!--END RESULTS-->
+            <li ng-repeat="pageIndex in getPagesNumbers()" class='{{pageIndex == pageNumber ? "active" : "waves-effect"}}'>
+                <span>
+                    <a ng-href="{{changePageUrl(pageIndex)}}">
+                        {{pageIndex}}
+                    </a>
+                </span>
+            </li>
+
+            <!--Right chevron - only shown if there are > 1 pages-->
+            <li  ng-if="totalPages > 1 && pageNumber == totalPages" class="disabled">
+                <a href="#!">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+
+            <li ng-if="totalPages > 1 && pageNumber != totalPages" class="waves-effect">
+                <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">-->
+                <a>
+                <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        </ul>
     </div>
+    <!--END RESULTS-->
 </main>
 
 <!--<footer class="page-footer orange">-->
@@ -369,7 +342,7 @@
 ///**
 // * Tracks whether order should be performed ascending or descendingly.
 // */
-//var ORDER = "${orderBoolean}" || null;
+//var ORDER = "${ascending}" || null;
 //
 ///**
 // * Tracks whether the ordering has changed. If so, searching will reset page number.
@@ -403,8 +376,8 @@
 //$(function () {
 //    $("#orderSelectId").val("${orderCategory == null ? "name" : orderCategory}");
 //    $("#orderSelectId").material_select();
-//    $("#orderBooleanId").val("${orderBoolean == null ? "ascending" : orderBoolean}");
-//    $("#orderBooleanId").material_select();
+//    $("#ascendingId").val("${ascending == null ? "ascending" : ascending}");
+//    $("#ascendingId").material_select();
 //    $("#pageSizeSelectId").val("${page.pageSize}");
 //    $("#pageSizeSelectId").material_select();
 //
@@ -552,7 +525,7 @@
 //        url += "&orderCategory=" + ORDER_BY;
 //    }
 //    if(ORDER !== null) {
-//        url += "&orderBoolean=" + ORDER;
+//        url += "&ascending=" + ORDER;
 //    }
 //
 //    //Discard page number parameter

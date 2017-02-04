@@ -1,8 +1,8 @@
 'use strict';
 define(['powerUp'], function (powerUp) {
 
-    powerUp.factory('Data', function(){
-        return {message:"I'm data from a service"};
+    powerUp.factory('Data', function() {
+        return {message: "I'm data from a service"};
     });
 
     powerUp.service('LogInService', function () {
@@ -19,11 +19,11 @@ define(['powerUp'], function (powerUp) {
             userLoggedIn = newLoggedInUser;
         };
 
-        var getLoggedUser = function(){
+        var getLoggedUser = function() {
             return userLoggedIn;
         };
 
-        var isLoggedIn = function(){
+        var isLoggedIn = function() {
             return isLoggedInStatus;
         };
 
@@ -43,7 +43,7 @@ define(['powerUp'], function (powerUp) {
             searchedTitle = newTitle;
         };
 
-        var getTitle = function(){
+        var getTitle = function() {
             return searchedTitle;
         };
 
@@ -64,19 +64,19 @@ define(['powerUp'], function (powerUp) {
         //     console.log('Already logged in as PAW');
         //     console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
         // } else {
-        //     console.log("Logging in as PAW...");
+        //     console.log('Logging in as PAW...');
         //     var auth = Restangular.all('auth/login');
         //     auth.post({'username': 'paw', 'password': 'paw'})
         //         .then(function (data) {
         //             console.log('Logged in as PAW, session cookie saved, future requests will be sent as PAW');
         //             console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
         //         });
-        //     // auth.customPOST({"username": "paw", "password": "paw"}, undefined, undefined, {"Content-Type": "application/json"});
+        //     // auth.customPOST({'username': 'paw', 'password': 'paw'}, undefined, undefined, {'Content-Type': 'application/json'});
         // }
 
-        // Restangular.setDefaultHeaders({"Access-Control-Allow-Headers": "*"});
-        // Restangular.setDefaultHeaders({'Access-Control-Allow-Origin': "*"});
-        // Restangular.setDefaultHeaders({'Access-Control-Expose-Headers': "*"});
+        // Restangular.setDefaultHeaders({'Access-Control-Allow-Headers': '*'});
+        // Restangular.setDefaultHeaders({'Access-Control-Allow-Origin': '*'});
+        // Restangular.setDefaultHeaders({'Access-Control-Expose-Headers': '*'});
 
 
         $scope.range = function(min, max, step) {
@@ -102,6 +102,6 @@ define(['powerUp'], function (powerUp) {
         // });
 		console.log($scope); //	TODO borrar
 		// var scope = angular.element('[ng-controller=myController]').scope();
-        console.log("isLogIn: ", $scope.isLogIn);
+        console.log('isLogIn: ', $scope.isLogIn);
 	});
 });

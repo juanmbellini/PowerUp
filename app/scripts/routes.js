@@ -12,6 +12,10 @@ define([], function() {
                 templateUrl: '/views/login/login.html',
                 controller: 'LoginCtrl'
             },
+            '/register': {
+                templateUrl: '/views/login/register.html',
+                controller: 'RegisterCtrl'
+            },
             '/profile': {
                 templateUrl: '/views/profile/profile.html',
                 controller: 'ProfileCtrl'

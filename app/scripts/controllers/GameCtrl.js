@@ -8,17 +8,17 @@ define(['powerUp'], function(powerUp) {
         Restangular.one('games',$scope.gameId).get().then(function(game) {
             $scope.game = game;
             console.log('Game: ', game);
-            if ($scope.gameId > 0 && $scope.game != null){
-                console.log("todo OK!");
+            if ($scope.gameId > 0 && $scope.game !== null) {
+                console.log('todo OK!');
             } else {
-                // TODO check log-in
+                // TODO show 'game not found'
                 $location.search({});
-                $location.path("");
+                $location.path('');
             }
         }, function(response) {
-            console.log("Error with status code", response.status); // TODO handle error
+            console.log('Error with status code', response.status); // TODO handle error
             $location.search({});
-            $location.path("");
+            $location.path('');
         });
 
     });
