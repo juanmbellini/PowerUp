@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp'], function(powerUp) {
 
-    powerUp.controller('LoginCtrl', function($scope, Restangular, LogInService) {
+    powerUp.controller('LoginCtrl', function($scope, Restangular, LogInService, $location) {
 
 
         $scope.logIn = function(form) {
@@ -9,6 +9,8 @@ define(['powerUp'], function(powerUp) {
             console.log(logInAccount);
             Restangular.all('auth/login').post(logInAccount).then(function (data) {
                 LogInService.setLoggedInStatus(true);
+                $location.search();
+                $location.path('');
                 // LogInService.setLoggedUser
             }, function() {
                 console.log('There was an error in logIn');

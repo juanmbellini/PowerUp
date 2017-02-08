@@ -1,6 +1,7 @@
 'use strict';
 define(['powerUp'], function(powerUp) {
 
+
 	powerUp.controller('HomeCtrl', function($scope, $location, Data, searchedTitleService, Restangular) {
 		$scope.homePageText = 'This is your homepage';
 		$scope.data = Data;

@@ -17,7 +17,7 @@
                     <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
                         <div class="input-field">
                             <input placeholder="Title" type="search" ng-model="searchedName" name="name"/>
-                            <i class="material-icons" style="color:black;" id="search-icon">search</i>
+                            <i class="material-icons" ng-click="submitSearch()" style="color:black;" id="search-icon">search</i>
                         </div>
                     </form>
                 </div>
@@ -234,82 +234,48 @@
     </ul>
 
     <!--Pagination-->
-    <div class="row">
-        <ul class="pagination center">
-            <!--Left chevron - only shown when there are > 1 pages -->
-            <li ng-if="totalPages > 1 && pageNumber > 1" class="waves-effect">
-                <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">-->
-                <a>
-                <i class="material-icons">chevron_left</i>
-                </a>
-            </li>
+    <!--<div class="row">-->
+        <!--<ul class="pagination center">-->
+            <!--&lt;!&ndash;Left chevron - only shown when there are > 1 pages &ndash;&gt;-->
+            <!--<li ng-if="totalPages > 1 && pageNumber > 1" class="waves-effect">-->
+                <!--&lt;!&ndash;<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber - 1}"/> </c:url>">&ndash;&gt;-->
+                <!--<a>-->
+                <!--<i class="material-icons">chevron_left</i>-->
+                <!--</a>-->
+            <!--</li>-->
 
+            <!--<li ng-if="totalPages > 1 && pageNumber <= 1" class="disabled">-->
+                <!--<a href="#!">-->
+                    <!--<i class="material-icons">chevron_left</i>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!---->
+            <!--<li ng-repeat="pageIndex in getPagesNumbers()" class='{{pageIndex == pageNumber ? "active" : "waves-effect"}}'>-->
+                <!--<span>-->
+                    <!--<a ng-href="{{changePageUrl(pageIndex)}}">-->
+                        <!--{{pageIndex}}-->
+                    <!--</a>-->
+                <!--</span>-->
+            <!--</li>-->
 
-            <li ng-if="totalPages > 1 && pageNumber <= 1" class="disabled">
-                <a href="#!">
-                    <i class="material-icons">chevron_left</i>
-                </a>
-            </li>
+            <!--&lt;!&ndash;Right chevron - only shown if there are > 1 pages&ndash;&gt;-->
+            <!--<li  ng-if="totalPages > 1 && pageNumber == totalPages" class="disabled">-->
+                <!--<a href="#!">-->
+                    <!--<i class="material-icons">chevron_right</i>-->
+                <!--</a>-->
+            <!--</li>-->
 
-            <!--Page numbers - always shown-->
-            <!--<c:set var="just_one"-->
-                   <!--value="${(page.pageNumber - 4) <= 0 || page.totalPages <= 10}"/>-->
-            <!--<c:set var="no_more_prev"-->
-                   <!--value="${(page.pageNumber + 5) > page.totalPages}"/>-->
-            <!--<c:set var="the_first_ones"-->
-                   <!--value="${(page.pageNumber + 5) < 10}"/>-->
-            <!--<c:set var="no_more_next"-->
-                   <!--value="${page.totalPages < 10 || (page.pageNumber + 5) >= page.totalPages}"/>-->
-            <li ng-repeat="pageIndex in getPagesNumbers()" class='{{pageIndex == pageNumber ? "active" : "waves-effect"}}'>
-                <span>
-                    <a ng-href="{{changePageUrl(pageIndex)}}">
-                        {{pageIndex}}
-                    </a>
-                </span>
-            </li>
-
-            <!--Right chevron - only shown if there are > 1 pages-->
-            <li  ng-if="totalPages > 1 && pageNumber == totalPages" class="disabled">
-                <a href="#!">
-                    <i class="material-icons">chevron_right</i>
-                </a>
-            </li>
-
-            <li ng-if="totalPages > 1 && pageNumber != totalPages" class="waves-effect">
-                <!--<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">-->
-                <a>
-                <i class="material-icons">chevron_right</i>
-                </a>
-            </li>
-        </ul>
-    </div>
+            <!--<li ng-if="totalPages > 1 && pageNumber != totalPages" class="waves-effect">-->
+                <!--&lt;!&ndash;<a href="<c:url value="${changePageUrl}"> <c:param name="pageNumber" value="${page.pageNumber + 1}"/> </c:url>">&ndash;&gt;-->
+                <!--<a>-->
+                <!--<i class="material-icons">chevron_right</i>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
     <!--END RESULTS-->
 </main>
 
-<!--<footer class="page-footer orange">-->
-    <!--<%@include file="footer.jsp" %>-->
-<!--</footer>-->
-<!--<style type="text/css">-->
-    <!--<c:set var="fontSizeStr" value="16px" /> /*TODO porque aca css???*/-->
-    <!--<c:set var="fontSizeInt" value="16" />-->
-    <!--<c:set var="lineHeight" value="1.5" />-->
-    <!--<c:set var="maxLines" value="3" />-->
-
-    <!--/* Multi-line clamping adapted from http://codepen.io/martinwolf/pen/qlFdp */-->
-    <!--.summary {-->
-        <!--margin: 5px auto 0 auto !important;-->
-        <!--display: block; /* Fallback for non-webkit */-->
-        <!--display: -webkit-box;-->
-        <!--max-width: 100%;-->
-        <!--font-size: ${fontSizeStr};-->
-        <!--line-height: ${lineHeight};-->
-        <!-- -webkit-line-clamp: ${maxLines};-->
-        <!--height: ${fontSizeInt * lineHeight * maxLines}; /* Fallback for non-webkit */-->
-        <!-- -webkit-box-orient: vertical;-->
-        <!--overflow: hidden;-->
-        <!--text-overflow: ellipsis;-->
-    <!--}-->
-<!--</style>-->
 
 <!--<script type="text/javascript" src="<c:url value="/js/jquery.materialize-autocomplete.js" />"></script>-->
 <script type="text/javascript">

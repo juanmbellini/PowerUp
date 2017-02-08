@@ -2,8 +2,8 @@
 define(['powerUp'], function(powerUp) {
 
 
-    powerUp.controller('SearchCtrl', function($scope, searchedTitleService, $location, Restangular, $httpParamSerializer) {
-
+    powerUp.controller('SearchCtrl', function($scope, searchedTitleService, $location, Restangular) {
+        // $httpParamSerializer
         Restangular.setFullResponse(true);
 
         // TODO borrar, viejo.
@@ -30,12 +30,12 @@ define(['powerUp'], function(powerUp) {
         }
         // $scope.keywords = $location.search().keyword;
 
-        $scope.changePageUrl = function(pageNumber) {
-            return $httpParamSerializer({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
-                publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
-                pageNumber: pageNumber});
-
-        };
+        // $scope.changePageUrl = function(pageNumber) {
+        //     return $httpParamSerializer({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
+        //         publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
+        //         pageNumber: pageNumber});
+        //
+        // };
 
         $scope.submitSearch = function() {
             console.log($scope.searchedName);

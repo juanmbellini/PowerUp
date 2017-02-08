@@ -3,7 +3,7 @@ define(['powerUp'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', function($scope, $location, Restangular) {
 
-
+        Restangular.setFullResponse(false);
 
 
         $scope.userId = $location.search().userId;

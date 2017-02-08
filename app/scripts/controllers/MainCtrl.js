@@ -27,13 +27,20 @@ define(['powerUp'], function (powerUp) {
             return isLoggedInStatus;
         };
 
+        var logOut = function() {
+            setLoggedUser(null);
+            setLoggedInStatus(false);
+        };
+
         return {
             isLoggedIn: isLoggedIn,
             setLoggedInStatus: setLoggedInStatus,
             setLoggedUser: setLoggedUser,
-            getLoggedUser: getLoggedUser
+            getLoggedUser: getLoggedUser,
+            logOut: logOut
         };
     });
+
 
     powerUp.service('searchedTitleService', function () {
 
@@ -56,6 +63,7 @@ define(['powerUp'], function (powerUp) {
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
     powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService) {
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
+
 
             $scope.welcomeText = 'Welcome to your powerUp page';
 
@@ -87,6 +95,8 @@ define(['powerUp'], function (powerUp) {
             }
             return input;
         };
+
+        $scope.logOut = LogInService.logOut;
 
         $scope.apiLocation = 'http://localhost:8080/api';
 
