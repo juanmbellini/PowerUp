@@ -21,44 +21,39 @@
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container">
 
-        <a id="logo-container" href="#/" class="brand-logo">P<span class="material-icons">gamepad</span>werUp</a>
+        <a id="logo-container" ng-href="#/" class="brand-logo">P<span class="material-icons">gamepad</span>werUp</a>
 
         <ul class="right hide-on-med-and-down">
-          <li><a href="#search">Search <i class="material-icons right">search</i></a></li>
-          <li><a href="#threads">Threads <i class="material-icons right">forum</i></a></li>
-          <!--TODO uncomment-->
-          <!--<c choose>
-            <c when test="${isLoggedIn}">
-              <li><a href="/profile?username=${currentUsername}">${currentUsername} <i class="material-icons right">person</i></a></li>
-              <li><a href="/list?username=${currentUsername}">Game List <i class="material-icons right">menu</i></a></li>
-              <li><a href="/logout">Log Out <i class="material-icons right">exit_to_app</i></a></li>
-            </c:when>
-            <c otherwise>-->
-          <li><a href="#login">Log In <i class="material-icons right">person_outline</i></a></li>
-          <li><a href="#register">Register <i class="material-icons right">assignment_ind</i></a></li>
-          <!--</c:otherwise>
-        </c:choose>-->
+          <li><a ng-href="#search">Search <i class="material-icons right">search</i></a></li>
+          <li><a ng-href="#threads">Threads <i class="material-icons right">forum</i></a></li>
+
+          <li ng-if="isLoggedIn()"><a ng-href="#profile?username={{loggedUser.username}}">{{loggedUser.username}} <i class="material-icons right">person</i></a></li>
+          <li ng-if="isLoggedIn()"><a ng-href='#list?username={{loggedUser.username}}'>Game List <i class="material-icons right">menu</i></a></li>
+          <li ng-if="isLoggedIn()" ng-click="logOut()"><a ng-href="#/">Log Out <i class="material-icons right">exit_to_app</i></a></li>
+
+          <li ng-if="!isLoggedIn()"><a ng-href="#login">Log In <i class="material-icons right">person_outline</i></a></li>
+          <li ng-if="!isLoggedIn()"><a ng-href="#register">Register <i class="material-icons right">assignment_ind</i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav black-text">
           <!--No icons on mobile because they don't work nicely, and there's not as much room-->
-          <li><a href="#search">Search</a></li>
-          <li><a href="#threads">Threads</a></li>
+          <li><a ng-href="#search">Search</a></li>
+          <li><a ng-href="#threads">Threads</a></li>
           <!--TODO uncomment-->
           <!--<c choose>-->
           <!--<c when test="${isLoggedIn}">-->
-          <!--<li><a href="/profile?username=${currentUsername}">${currentUsername}</a></li>-->
-          <!--<li><a href="/list?username=${currentUsername}">Game List</a></li>-->
-          <!--<li><a href="/logout">Log Out</a></li>-->
+          <!--<li><a ng-href="/profile?username=${currentUsername}">${currentUsername}</a></li>-->
+          <!--<li><a ng-href="/list?username=${currentUsername}">Game List</a></li>-->
+          <!--<li><a ng-href="/logout">Log Out</a></li>-->
           <!--</c:when>-->
           <!--<c otherwise>-->
-          <li><a href="#login">Log In</a></li>
-          <li><a href="#register">Register</a></li>
+          <li><a ng-href="#login">Log In</a></li>
+          <li><a ng-href="#register">Register</a></li>
           <!--</c:otherwise>-->
           <!--</c:choose>-->
         </ul>
 
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a ng-href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 
       </div>
     </nav>

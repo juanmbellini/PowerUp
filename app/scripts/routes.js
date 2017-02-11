@@ -12,6 +12,10 @@ define([], function() {
                 templateUrl: '/views/login/login.html',
                 controller: 'LoginCtrl'
             },
+            '/register': {
+                templateUrl: '/views/login/register.html',
+                controller: 'RegisterCtrl'
+            },
             '/profile': {
                 templateUrl: '/views/profile/profile.html',
                 controller: 'ProfileCtrl'
@@ -27,6 +31,10 @@ define([], function() {
             '/search': {
                 templateUrl: '/views/search/search.html',
                 controller: 'SearchCtrl'
+            },
+            '/game': {
+                templateUrl: '/views/games/game.html',
+                controller: 'GameCtrl'
             }
             /* ===== yeoman hook ===== */
             /* Do not remove these commented lines! Needed for auto-generation */

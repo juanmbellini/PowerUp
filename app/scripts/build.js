@@ -56,7 +56,6 @@ require.config({
     },
     shim: {
         angular: {
-            // EXPORTS IS IMPORTANT! Libraries that depend on angular don't seem to see angular without this
             exports: 'angular',
             deps: [
                 'jquery'
@@ -68,9 +67,9 @@ require.config({
             ]
         },
         'angular-cookies': {
-          deps: [
-            'angular'
-          ]
+            deps: [
+                'angular'
+            ]
         },
         bootstrap: {
             deps: [
