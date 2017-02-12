@@ -318,12 +318,13 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, {
+        }, /* {
+          TODO remove this Bootstrap configuration if Bootstrap isn't used
           expand: true,
           cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/!*',
           dest: '<%= yeoman.dist %>'
-        }, {
+        } */ {
           expand: true,
           cwd: '.',
           src: 'bower_components/requirejs/require.js',

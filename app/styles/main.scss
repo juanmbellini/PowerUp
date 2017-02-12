@@ -1,18 +1,17 @@
 $roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
 
-//@import "../../bower_components/materialize/sass/materialize";
+//@import "materialize/sass/materialize";
 // bower:scss
-@import "../../bower_components/materialize/sass/materialize";
-@import 'bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
 // endbower
 
+@import 'materialize/sass/materialize';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import 'partials/home';
 @import 'style';
 
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
