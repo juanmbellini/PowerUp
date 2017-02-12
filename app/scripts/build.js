@@ -22,7 +22,8 @@ require.config({
         sweetalert: '../../bower_components/sweetalert/dist/sweetalert.min',
         'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert.min',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
-        'slick-carousel': '../../bower_components/slick-carousel/slick/slick'
+        'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
+        lightbox2: '../../bower_components/lightbox2/dist/js/lightbox'
     },
     shim: {
         jquery: {
@@ -75,6 +76,13 @@ require.config({
             ]
         },
         'slick-carousel': {
+            exports: 'slick',
+            deps: [
+                'jquery'
+            ]
+        },
+        lightbox2: {
+            exports: 'lightbox',
             deps: [
                 'jquery'
             ]

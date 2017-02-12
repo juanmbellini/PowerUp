@@ -17,6 +17,7 @@
     "hammerjs": "^2.0.8",
     "sweetalert": "^1.1.3",
     "ngSweetAlert": "angular-sweetalert#^1.1.2",
-    "slick-carousel": "^1.6.0"
+    "slick-carousel": "^1.6.0",
+    "lightbox2": "^2.9.0"
   }
 }
