@@ -1,11 +1,12 @@
-$roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
-
 //@import "materialize/sass/materialize";
 // bower:scss
 // endbower
 
+// Materialize
+$roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
 @import 'materialize/sass/materialize';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 @import 'partials/home';
 @import 'style';
 

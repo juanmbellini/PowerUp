@@ -12,12 +12,18 @@ require.config({
         'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         moment: '../../bower_components/moment/moment',
-        materialize: '../../bower_components/materialize-amdified/materialize.amd',
         restangular: '../../bower_components/restangular/dist/restangular',
         lodash: '../../bower_components/lodash/dist/lodash',
-        hammerjs: '../../bower_components/hammerjs/hammer'
+        materialize: '../../bower_components/materialize/bin/materialize',
+        'materialize-amdified': '../../bower_components/materialize-amdified/materialize.amd',
+        hammerjs: '../../bower_components/hammerjs/hammer',
+        velocity: '../../bower_components/velocity/velocity',
+        'velocity.ui': '../../bower_components/velocity/velocity.ui'
     },
     shim: {
+        jquery: {
+            exports: 'jQuery'
+        },
         angular: {
             exports: 'angular',
             deps: [
@@ -39,9 +45,11 @@ require.config({
                 'angular'
             ]
         },
-        materialize: {
+        'materialize-amdified': {
             deps: [
-                'jquery'
+                'jquery',
+                'hammerjs',
+                'velocity'
             ]
         },
         restangular: {
@@ -67,7 +75,7 @@ if (paths) {
 require([
         'angular',
         'powerUp',
-        'materialize',
+        'materialize-amdified',
         'restangular',
         'controllers/MainCtrl'
     ],
