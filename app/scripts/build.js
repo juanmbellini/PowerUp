@@ -18,7 +18,9 @@ require.config({
         'materialize-amdified': '../../bower_components/materialize-amdified/materialize.amd',
         hammerjs: '../../bower_components/hammerjs/hammer',
         velocity: '../../bower_components/velocity/velocity',
-        'velocity.ui': '../../bower_components/velocity/velocity.ui'
+        'velocity.ui': '../../bower_components/velocity/velocity.ui',
+        sweetalert: '../../bower_components/sweetalert/dist/sweetalert.min',
+        'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert.min'
     },
     shim: {
         jquery: {
@@ -58,6 +60,17 @@ require.config({
                 'angular',
                 'lodash'
             ]
+        },
+        sweetalert: {
+            deps: [
+                'jquery'
+            ]
+        },
+        'sweetalert.angular': {
+            deps: [
+                'angular',
+                'sweetalert'
+            ]
         }
     },
     packages: [
@@ -77,6 +90,7 @@ require([
         'powerUp',
         'materialize-amdified',
         'restangular',
+        'sweetalert',
         'controllers/MainCtrl'
     ],
     function() {

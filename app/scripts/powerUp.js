@@ -6,13 +6,15 @@ define(['routes',
     'angular-route',
     'angular-translate',
     'angular-cookies',
-    'restangular'],
+    'restangular',
+    'sweetalert.angular'],
   function (config, dependencyResolverFor, i18n) {
     var powerUp = angular.module('powerUp', [
       'ngRoute',
       'pascalprecht.translate',
       'restangular',
-      'ngCookies'
+      'ngCookies',
+      'oitozero.ngSweetAlert'
     ]);
     powerUp
       .config(

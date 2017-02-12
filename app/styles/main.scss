@@ -7,6 +7,8 @@ $roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
 @import 'materialize/sass/materialize';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
+@import '../../bower_components/sweetalert/dist/sweetalert.css';
+
 @import 'partials/home';
 @import 'style';
 
