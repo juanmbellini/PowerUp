@@ -7,7 +7,8 @@ define(['routes',
     'angular-translate',
     'angular-cookies',
     'restangular',
-    'sweetalert.angular'],
+    'sweetalert.angular'
+    ],
   function (config, dependencyResolverFor, i18n) {
     var powerUp = angular.module('powerUp', [
       'ngRoute',
@@ -26,7 +27,8 @@ define(['routes',
           '$provide',
           '$translateProvider',
           'RestangularProvider',
-          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider) {
+          '$sceDelegateProvider',
+          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider) {
 
             powerUp.controller = $controllerProvider.register;
             powerUp.directive = $compileProvider.directive;
@@ -47,6 +49,12 @@ define(['routes',
             if (config.defaultRoutePath !== undefined) {
               $routeProvider.otherwise({redirectTo: config.defaultRoutePath});
             }
+
+            // Whitelist URLs for interpolations ('self' = the application's domain, i.e. localhost or pawserver.itba.edu.ar, etc.)
+            $sceDelegateProvider.resourceUrlWhitelist([
+                'self',
+                'https://www.youtube.com/**'
+            ]);
 
             /*
              * Enabling HTML5 mode removes the # from the URLs, but it doesn't work as you might expect:

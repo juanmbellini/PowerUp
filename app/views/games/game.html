@@ -178,51 +178,40 @@
 					</div>
 
 					<!--SCREENSHOTS AND VIDEOS-->
-					<!--<c:set var="videosLength" value="${fn:length(videos)}" />-->
-					<!--<c:set var="picturesLength" value="${fn:length(pictures)}" />-->
-					<!--<c:if test="${videosLength > 0 || picturesLength > 0}">-->
-						<!--<div class="row">-->
-							<!--<div class="col s12 divider"></div>-->
-						<!--</div>-->
-						<!--<c:if test="${videosLength > 0}">-->
-							<!--<div class="row">-->
-								<!--<h4 class="center">Videos</h4>-->
-								<!--<div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": ${paw:min(videosLength, 4)}, "slidesToScroll": ${paw:min(videosLength, 4)}}'>-->
-									<!--<c:forEach var="entry" items="${videos}">-->
-										<!--<c:set var="videoId" value="${entry.key}" />-->
-										<!--<c:set var="videoName" value="${entry.value}" />-->
-										<!--<div class="slide-container">-->
-											<!--<iframe type="text/html" width="${videosLength > 1 ? '90%' : '640'}" height="360"-->
-													<!--src="https://www.youtube.com/embed/${videoId}"-->
-											<!--<%&#45;&#45;?autoplay=1&origin=http://example.com&#45;&#45;%>-->
-											<!--frameborder="0"></iframe>-->
-										<!--</div>-->
-									<!--</c:forEach>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</c:if>-->
-						<!--<c:if test="${picturesLength > 0}">-->
-							<!--<c:if test="${videosLength > 0}">-->
-								<!--<div class="row">-->
-									<!--<div class="col s12 divider"></div>-->
-								<!--</div>-->
-							<!--</c:if>-->
-							<!--<div class="row">-->
-								<!--<h4 class="center">Screenshots</h4>-->
-								<!--<div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": ${paw:min(picturesLength, 4)}, "slidesToScroll": ${paw:min(picturesLength, 4)}}'>-->
-									<!--<c:forEach var="url" items="${pictures}">-->
-										<!--<div class="slide-container">-->
-											<!--<div class="valign-wrapper slide-image">-->
-												<!--<a href="${url}" data-lightbox="screenshot-${status.index}">-->
-													<!--<img data-lazy="${url}" class="valign"/>-->
-												<!--</a>-->
-											<!--</div>-->
-										<!--</div>-->
-									<!--</c:forEach>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</c:if>-->
-					<!--</c:if>-->
+                    <div class="row" ng-if="game.videoUrls || game.pictureUrls">
+                        <div class="col s12 divider"></div>
+
+                        <div class="row" ng-if="game.videoUrls">
+                            <h4 class="center">Videos</h4>
+                            <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
+                                <div class="slide-container" ng-repeat="video in game.videoUrls">
+                                    <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
+                                            height="360" ng-src="{{video}}" frameborder="0">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="game.pictureUrls">
+                        <div class="row" ng-if="game.videoUrls">
+                            <div class="col s12 divider"></div>
+                        </div>
+
+                        <div class="row" >
+                            <h4 class="center">Screenshots</h4>
+                            <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
+                                <div class="slide-container" ng-repeat="picture in game.pictureUrls">
+                                    <div class="valign-wrapper slide-image">
+                                        <!--<a href="{{picture}}" data-lightbox="screenshot-{{$index}}">-->
+                                            <!--<img data-lazy="{{picture}}" class="valign"/>-->
+                                        <!--</a>-->
+                                        <img data-lazy="{{picture}}" class="valign"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 					<!--END SCREENSHOTS AND VIDEOS-->
 
 					<!--REVIEWS-->
@@ -319,6 +308,25 @@
 	</div>
 </main>
 
+<script type="text/javascript">
+    require(['slick-carousel']);
+
+    //TODO consider only doing this if there are picture or videos
+    $(function() {
+        $('#videos-carousel').slick({
+            infinite: false,
+            arrows: true
+        });
+
+        $('#screenshots-carousel').slick({
+            infinite: false,
+            arrows: true,
+            lazyload: 'ondemand'
+        });
+    });
+
+    //TODO initialize Slick for related games
+</script>
 <!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
