@@ -9,14 +9,9 @@ define(['powerUp'], function(powerUp) {
 		$scope.data = Data;
 		$scope.gameTitle = '';
 		$scope.submitSearch = function() {
-			console.log($scope.gameTitle);
-			console.log($scope.data);
 			searchedTitleService.setTitle($scope.gameTitle);
 			$location.search({'name': $scope.gameTitle});
 			$location.path('search');
       	};
-      	console.log('isLogIn: ', $scope.isLogIn);
-      	$scope.isLogIn = true;
-		console.log('isLogIn: ', $scope.isLogIn);
 	});
 });

@@ -24,7 +24,11 @@ define([], function() {
                 templateUrl: '/views/threads/threads.html',
                 controller: 'ThreadsCtrl'
             },
-            '/lists': {
+            '/thread': {
+                templateUrl: '/views/threads/thread.html',
+                controller: 'ThreadCtrl'
+            },
+            '/list': {
                 templateUrl: '/views/lists/lists.html',
                 controller: 'ListsCtrl'
             },

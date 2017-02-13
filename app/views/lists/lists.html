@@ -1,1 +1,293 @@
-<h1 class="center">Lists</h1>
+<main class="section" ng-controller="ListsCtrl">
+    <div class="row">
+        <div class="col s1"></div> <!-- TODO borrar esto y reparar offset -->
+        <div class="col s2">
+            <form name="shelfForm" class="css-form" novalidate>
+                <h5>Filter by Status</h5>
+                <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
+                    <input type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"/>
+                    <!--{{((containsPlayStatusesFilter(playStatus))? 'checked' : '')}} TODO droche-->
+                    <label class="wrap-text" for="{{playStatus}}">{{playStatus}}</label>
+                </p>
+                <h5>Filter by Shelf</h5>
+                <p ng-repeat="shelf in shelves" class="checkbox-list">
+                    <input type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}"/>
+                    <!--<c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if>-->
+                    <label class="wrap-text" for="{{shelf.id}}">
+                        {{shelf.name}}
+                        <a ng-if="isCurrentUserLogged()" ng-click="editShelf(shelf)"
+                           class="rename material-icons black-text" style="vertical-align: middle;">mode_edit</a>
+                        <a ng-if="isCurrentUserLogged()" ng-click="deleteShelf(shelf)"
+                           class="delete-shelf material-icons red-text text-lighten-1" style="vertical-align: middle;">delete</a>
+                    </label>
+                </p>
+                <button type='submit' class='btn waves-effect'>Filter <i class="material-icons right">filter_list</i></button>
+            </form>
+            <br/>
+            <!--<%&#45;&#45;<c:if test="${fn:length(shelves) == 0}">&#45;&#45;%>-->
+            <!--<%&#45;&#45;<h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>&#45;&#45;%>-->
+            <!--<%&#45;&#45;</c:if>&#45;&#45;%>-->
+            <div ng-if="isCurrentUserLogged()" class="col s12 divider"></div>
+            <h5 ng-if="isCurrentUserLogged()" style="margin-bottom:0;">Create a Shelf</h5>
+            <form ng-if="isCurrentUserLogged()" class="css-form" novalidate id="new-shelf-form">
+                <div class="input-field col s12" style="margin-top: 0; padding:0;">
+                    <input type="text" name="name"/>
+                    <!--length="25" required-->
+                </div>
+                <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i>
+                </button>
+            </form>
+        </div>
+        <div class="col s9">
+
+            <div class="row">
+                <h1 class="center">{{user.username}}'s Game List"</h1>
+                <h5 ng-if="isCurrentUserLogged()" class="center"><a ng-href="#search">Search games</a> to add them to
+                    your list!</h5>
+                <div class="col s12 divider"></div>
+                <br/>
+                <h5 ng-if="games.length == 0" class="center">No results</h5>
+                <!--Games list header-->
+                <div ng-if="games.length != 0" class="col s12 center" id="games-list-header">
+                    <p class="col s2">Cover Picture</p>
+                    <p class="col s3 ">Title</p>
+                    <p class="col s1 ">Play Status</p>
+                    <p class="col s2 ">Shelves</p>
+                    <p class="col s1 ">Avg. Rating</p>
+                    <p class="col s2 ">Own score</p>
+                    <p class="col s1"></p>
+                </div>
+                <ul ng-if="games.length != 0" class="collection games-list">
+                    <!--TODO limit number of shown games, create link to show more-->
+                    <li ng-repeat="game in games" class="collection-item avatar col s12">
+                        <div class="col s2 cover-pic-container valign-wrapper">
+                            <img class="cover-picture valign" src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                        </div>
+                        <div class="col primary-content s3">
+                            <p class="title wrap-text"><a ng-href="#game?id={{game.id}}">{{game.name}}</a></p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;"><b>
+                                <!-- TODO {{empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}-->
+                                TODO STATUS
+                            </b></p>
+                        </div>
+                        <div class="col s2 center">
+                            <p style="margin-top: 33px;"><b>
+                                <!--TODO SHELVES-->
+                                TODO SHELVES
+                                <!--<c:choose>-->
+                                <!--<c:when test="${ empty shelvesForGamesMap.get(game)}">No shelves</c:when>-->
+                                <!--<c:otherwise>-->
+                                <!--<c:forEach items="${shelvesForGamesMap.get(game)}" var="shelf">-->
+                                <!--<c:out value="${shelf.name}"/>-->
+                                <!--</c:forEach>-->
+                                <!--</c:otherwise>-->
+                                <!--</c:choose>-->
+                            </b></p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;"><b>
+                                {{(game.avgScore === null || game.avgScore == 0)?'No avg rating':(game.avgScore |
+                                number:2)}}
+                            </b>
+                            </p>
+                        </div>
+                        <div class="col s2 center">
+                            <!--
+                            <div class="secondary-content">-->
+                                <!--<c:set var="score" value="${scores.get(game)}"/> TODO game.userScore-->
+                                <p ng-if="game.userScore <= 10 && game.userScore>=0" style="margin-top: 27px;"
+                                   class="rating-number center"><b>{{game.userScore}}</b></p>
+                                <p ng-if="game.userScore <= 10 && game.userScore>=0"
+                                   class="rating-stars hide-on-small-and-down">
+                                <div ng-repeat="i in [0,1,2,3,4]">
+                                    <div ng-if="(game.userScore - (i * 2) - 1 ) < 0">
+                                        <i class="material-icons">star_border</i>
+                                    </div>
+                                    <div ng-if="(game.userScore - (i * 2) - 1 ) == 0">
+                                        <i class="material-icons">star_half</i>
+                                    </div>
+                                    <div ng-if="(game.userScore - (i * 2) - 1) > 0">
+                                        <i class="material-icons">star</i>
+                                    </div>
+                                </div>
+                                </p>
+                                <p ng-if="game.userScore > 10 || game.userScore<0" style="margin-top: 33px;"
+                                   class="rating-number center"><b>Unrated</b></p>
+                                <!--
+                            </div>
+                            -->
+                        </div>
+                        <div class="col s1">
+                            <div class="secondary-content">
+                                <a ng-click="deleteGame(game)"
+                                   class="material-icons red-text text-lighten-1 delete-game"><i
+                                        class="material-icons right">delete</i></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!--<c:if test="${user.username == currentUsername}">-->
+                <!--<div class="col s12 divider"></div>-->
+                <!--<div class="row">-->
+                    <!--<div class="col s6">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</c:if>-->
+
+            <div class="row col s12 divider"></div>
+
+            <!--<div class="container">-->
+                <!--<div class="section">-->
+                    <!--<c:if test="${ fn:length( recommendedGames) > 0 }">-->
+                        <!--<div class="row">-->
+                            <!--<h5 class="center">Recommended Games for you <c:if test="${! empty shelvesFilter}">for this shelves</c:if>!</h5>-->
+                            <!--<div class="slick-carousel">-->
+                                <!--<c:forEach var="game" items="${recommendedGames}">-->
+                                    <!--<div class="slide-container">-->
+                                        <!--<div class="valign-wrapper slide-image">-->
+                                            <!--<a href="<c:url value="/game?id=${game.id}"/>">-->
+                                            <!--<img data-lazy="${game.coverPictureUrl}" class="valign"/>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<h5 class="center slide-text">-->
+                                            <!--<a href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>-->
+                                        <!--</h5>-->
+                                    <!--</div>-->
+                                <!--</c:forEach>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</c:if>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="col s1">
+
+        </div>
+    </div>
+</main>
+<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
+<!--<script type="text/javascript">-->
+<!--var shelves = [];-->
+<!--var playStatuses = [];-->
+
+<!--$(function() {-->
+
+    <!--/* ***********************-->
+     <!--*      SWEET ALERTS-->
+     <!--* **********************/-->
+
+    <!--//Delete links-->
+    <!--$(".delete-shelf").on('click', function (event) {-->
+        <!--var $target = $(this);-->
+        <!--var name = $target.data('name');-->
+        <!--var id = $target.data('id');-->
+        <!--swal({-->
+                    <!--title: "Are you sure?",-->
+                    <!--text: "You are about to permanently delete shelf \"" + name + "\"",-->
+                    <!--type: "warning",-->
+                    <!--showCancelButton: true,-->
+                    <!--confirmButtonColor: "#DD6B55",-->
+                    <!--confirmButtonText: "Delete",-->
+                    <!--closeOnConfirm: false-->
+                <!--},-->
+                <!--function () {-->
+                    <!--//Disable submit button to prevent multiple submissions-->
+                    <!--$(".confirm").attr('disabled', 'disabled');-->
+                    <!--<c:url value="/delete-shelf" var="deleteUrl" />-->
+                    <!--//Create an inline form and submit it to redirect with POST-->
+                    <!--$("<form action='${deleteUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /></form>").submit();-->
+                <!--});-->
+    <!--});-->
+
+    <!--$(".delete-game").on('click', function (event) {-->
+        <!--var $target = $(this);-->
+        <!--var gameId = $target.data('game-id');-->
+        <!--var gameName = $target.data('game-name');-->
+        <!--var userId = $target.data('user-id');-->
+        <!--swal({-->
+                    <!--title: "Are you sure?",-->
+                    <!--text: "You are about to delete " + gameName + " from all your shelves.",-->
+                    <!--type: "warning",-->
+                    <!--showCancelButton: true,-->
+                    <!--confirmButtonColor: "#DD6B55",-->
+                    <!--confirmButtonText: "Delete",-->
+                    <!--closeOnConfirm: false-->
+                <!--},-->
+                <!--function () {-->
+                    <!--//Create an inline form and submit it to redirect with POST-->
+                    <!--$("<form action='<c:url value="/remove-from-list" />' method='POST'> \-->
+                        <!--<input type='hidden' name='gameId' value='" + gameId + "' /> \-->
+                        <!--<input type='hidden' name='userId' value='" + userId + "' /> \-->
+                        <!--<input type='hidden' name='returnUrl' value='/list?username=${user.username}'/> \-->
+                       <!--</form>").submit();-->
+                <!--});-->
+    <!--});-->
+
+    <!--//Rename links-->
+    <!--$(".rename").on('click', function (event) {-->
+        <!--var $target = $(this);-->
+        <!--var name = $target.data('name');-->
+        <!--var id = $target.data('id');-->
+        <!--swal({-->
+                    <!--title: "Rename \"" + name + "\" to...",-->
+                    <!--type: "input",-->
+                    <!--showCancelButton: true,-->
+                    <!--closeOnConfirm: false,-->
+                    <!--confirmButtonText: "Rename",-->
+                    <!--inputPlaceholder: "New name"-->
+                <!--},-->
+                <!--function (inputValue) {-->
+                    <!--if (inputValue === false) return false;-->
+
+                    <!--inputValue = inputValue.replace(/,/g, ";");-->
+
+                    <!--if (inputValue === "" || inputValue.length > 25) {-->
+                        <!--swal.showInputError("Please write between 1 and 25 characters");-->
+                        <!--return false;-->
+                    <!--}-->
+
+                    <!--//Disable submit button to prevent multiple submissions-->
+                    <!--$(".confirm").attr('disabled', 'disabled');-->
+                    <!--<c:url value="/rename-shelf" var="renameUrl" />-->
+                    <!--//Create an inline form and submit it to redirect with POST-->
+                    <!--$("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();-->
+                <!--});-->
+    <!--})-->
+
+    <!--$('.slick-carousel').slick({-->
+        <!--infinite: false,-->
+        <!--slidesToShow: 4,-->
+        <!--slidesToScroll: 4,-->
+        <!--arrows: true,-->
+        <!--lazyload: 'ondemand'-->
+    <!--});-->
+
+    <!--$("#new-shelf-form").on("submit", function(event) {-->
+        <!--var name = $(this).find("input[type=text]").val();-->
+        <!--if(name.length === 0 || name.length > 25) {-->
+            <!--event.preventDefault();-->
+        <!--}-->
+    <!--});-->
+<!--});-->
+
+<!--var entityMap = {-->
+    <!--"&": "&amp;",-->
+    <!--"<": "&lt;",-->
+    <!--">": "&gt;",-->
+    <!--'"': '&quot;',-->
+    <!--"'": '&#39;',-->
+    <!--"/": '&#x2F;'-->
+<!--};-->
+
+<!--function escapeHtml(string) {-->
+    <!--return String(string).replace(/[&<>"'\/]/g, function (s) {-->
+        <!--return entityMap[s];-->
+    <!--});-->
+<!--}-->
+
+<!--</script>-->

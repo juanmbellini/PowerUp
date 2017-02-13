@@ -3,6 +3,7 @@ define(['powerUp'], function(powerUp) {
 
     powerUp.controller('GameCtrl', function($scope, $location, Restangular) {
 
+        Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
 
         Restangular.one('games',$scope.gameId).get().then(function(game) {
@@ -10,7 +11,6 @@ define(['powerUp'], function(powerUp) {
 
             console.log('Game: ', game);
             if ($scope.gameId > 0 && $scope.game !== null) {
-                console.log('todo OK!');
                 $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
                 $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
             } else {

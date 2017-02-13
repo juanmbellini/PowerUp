@@ -59,9 +59,8 @@ define(['powerUp'], function(powerUp) {
                 $scope.orderCategory = 'name';
                 $scope.ascending = true;
             }
-            console.log('orderCategory: ', $scope.orderCategory);
-            console.log('ascending: ', $scope.ascending);
-            $scope.reload();
+            $location.search('orderCategory', $scope.orderCategory);
+            $location.search('ascending', $scope.ascending);
         };
 
         $scope.sortRatingButton = function() {
@@ -71,9 +70,8 @@ define(['powerUp'], function(powerUp) {
                 $scope.orderCategory = 'avg_score';
                 $scope.ascending = false;
             }
-            console.log('orderCategory: ', $scope.orderCategory);
-            console.log('ascending: ', $scope.ascending);
-            $scope.reload();
+            $location.search('orderCategory', $scope.orderCategory);
+            $location.search('ascending', $scope.ascending);
         };
 
         $scope.sortReleaseButton = function() {
@@ -83,17 +81,17 @@ define(['powerUp'], function(powerUp) {
                 $scope.orderCategory = 'release';
                 $scope.ascending = false;
             }
-            console.log('orderCategory: ', $scope.orderCategory);
-            console.log('ascending: ', $scope.ascending);
-            $scope.reload();
+            $location.search('orderCategory', $scope.orderCategory);
+            $location.search('ascending', $scope.ascending);
         };
 
-        $scope.reload = function() {
-            $location.search({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
-                publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
-                pageNumber: $scope.pageNumber});
-            $location.path('search');
-        };
+        // TODO Deprecated
+        // $scope.reload = function() {
+        //     $location.search({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
+        //         publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
+        //         pageNumber: $scope.pageNumber});
+        //     $location.path('search');
+        // };
 
         var baseGames = Restangular.all('games');
 
@@ -102,7 +100,6 @@ define(['powerUp'], function(powerUp) {
             pageNumber: $scope.pageNumber})
             .then(function(response) {
                 $scope.games = response.data;
-                console.log('All ok2');
                 console.log(response.data);
                 console.log(response.headers());
         }, function(response) {

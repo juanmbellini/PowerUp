@@ -62,6 +62,7 @@ define(['powerUp'], function (powerUp) {
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
     powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService) {
+        Restangular.setFullResponse(false);
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
 
@@ -110,8 +111,6 @@ define(['powerUp'], function (powerUp) {
         //     Restangular.one('users', 1).get().then(function(user) {
         //   console.log('User #2: ', user);
         // });
-		console.log($scope); //	TODO borrar
 		// var scope = angular.element('[ng-controller=myController]').scope();
-        console.log('isLogIn: ', $scope.isLogIn);
 	});
 });

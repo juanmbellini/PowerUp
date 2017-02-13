@@ -1,0 +1,351 @@
+<main class="section">
+	<div class="container row">
+		<!--Title-->
+		<h1 class="center wrap-text"> {{thread.title}} </h1>
+
+		<!--Original comment-->
+		<div class="row">
+			<ul class="collection">
+				<li class="collection-item avatar">
+					<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture"
+						 alt="{{thread.creator.username}}" class="circle">
+					<span class="title wrap-text">Submitted {{thread.createdAt}} by <a ng-href="#profile?username={{thread.creator.id}}"> {{thread.creator.username}} </a></span>
+					<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
+					<!--<p>Submitted {{thread.createdAt}}&lt;!&ndash;createdAt.Time&ndash;&gt; by {{thread.creator.username}}</p>-->
+					<br>
+					<p class="preserve-newlines wrap-text">{{thread.initialComment}}</p>
+
+					<!--Thread action links-->
+					<div ng-if="isLoggedIn()" class="action-links"> <!--&& getCurrentUser != null && thread.creator.id == getCurrentUser().id-->
+						<!--Rename link-->
+						<a ng-click="changeTitle()" class="edit-thread-title-link"
+						   data-thread-title="{{thread.title}}">Change Title</a>
+						<!--Edit link-->
+						| <a ng-click="editComment()" class="edit-thread-initial-comment-link"
+							 data-thread-initial-comment="{{thread.initialComment}}" data-form-shown="false">Edit
+						Comment</a>
+						<!--Delete link-->
+						| <a ng-click="deleteThread()" class="delete-thread-link">Delete</a>
+					</div>
+
+					<div class="action-form"></div>
+
+					<!--Un/like section-->
+					<span href="#!" class="secondary-content"><b>{{thread.likeCount}}</b>
+						<!--&nbsp;&nbsp; wwwwaaaaattttt TODO-->
+                                <i ng-if="!isLoggedIn()" class="material-icons black-text">thumb_up</i>
+                                <a ng-if="isLoggedIn() && isLikedByCurrentUser(thread)"
+								   class="unlike-thread" ng-click="unlikeThread()"><i
+										class="material-icons green-text">thumb_up</i></a>
+                                <a ng-if="isLoggedIn() &&  !isLikedByCurrentUser(thread)" href="#!"
+								   class="like-thread" ng-click="likeThread()"><i
+										class="material-icons black-text">thumb_up</i></a>
+                            </span>
+					<!--End un/like section-->
+				</li>
+			</ul>
+		</div>
+
+		<div class="row col s12 divider"></div>
+
+		<!--COMMENTS-->
+		<div class="row">
+			<h5 ng-if="thread.comments.length == 0" class="center">No comments</h5>
+
+			<h5 ng-if="thread.comments.length > 0" class="center">All {{thread.allComments.length}} comments</h5>
+
+			<!--Print entire comment tree recursively-->
+			<!--TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/-->
+			<!--<c:url value="/" var="baseUrl" />-->
+			<!--${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}-->
+		</div>
+		<!--END COMMENTS-->
+		<!--Add a comment form-->
+		<div ng-if="isLoggedIn()" class="row">
+
+			<form name="commentForm" class="css-form" novalidate>
+				<div class='row'>
+					<div class='input-field col s12'>
+						<textarea type="text" ng-model="newComment" name="newComment" required="required" cssClass="materialize-textarea"/>
+						<label path="newComment">New comment</label>
+					</div>
+				</div>
+				<div class='row'>
+					<div class="col s4 offset-s5">
+						<button type='submit' ng-click="createComment(form)" name='btn_comment'
+								class='col s6 btn btn-large waves-effect light-blue'>
+							Submit <i class="material-icons right">send</i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--End comment form-->
+		<!--FAB-->
+		<div ng-if="isLoggedIn()" class="fixed-action-btn" style="bottom:10%;">
+			<!--href="<c:url value="/create-thread" />"-->
+			<a id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red">
+				<!--TODO do create threads-->
+				<i class="large material-icons">mode_edit</i>
+			</a>
+		</div>
+		<!--END FAB-->
+	</div>
+</main>
+
+<!--Sweet Alert-->
+<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
+<!--&lt;!&ndash;End Sweet Alert&ndash;&gt;-->
+<!--<script type="text/javascript">-->
+		<!--$(function () {-->
+
+			<!--/* ************************-->
+			 <!--*      Thread actions-->
+			 <!--* ***********************/-->
+			<!--$(".edit-thread-initial-comment-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--if (!$me.data("form-shown")) {-->
+					<!--var initialComment = $me.data("thread-initial-comment");-->
+					<!--var $form = $("<form></form>");-->
+					<!--$form.attr("action", "<c:url value="/edit-thread-initial-comment" />");-->
+					<!--$form.attr("method", "POST");-->
+					<!--$form.css("margin-top", "10px");-->
+
+					<!--$form.append("<input type='hidden' name='threadId' value='${thread.id}' />");-->
+					<!--$form.append("<input type='hidden' name='returnUrl' value='/thread?id=${thread.id} />");-->
+
+					<!--//Text area-->
+					<!--$form.append("<div class='row'> \-->
+                        <!--<div class='input-field col s12'> \-->
+                            <!--<textarea name='newComment' class='materialize-textarea' required='required'>"+ initialComment +"</textarea> \-->
+                            <!--<label for='newComment'>New initial comment</label> \-->
+                        <!--</div> \-->
+                    <!--</div>");-->
+
+					<!--//Submit button-->
+					<!--$form.append("<div class='row'>	\-->
+                        <!--<div class='col s4 offset-s5'>	\-->
+                            <!--<button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\-->
+                                <!--Submit <i class='material-icons right'>send</i>	\-->
+                            <!--</button>	\-->
+                        <!--</div>	\-->
+                    <!--</div>");-->
+
+					<!--$me.parent().parent().find(".action-form").html($form);-->
+					<!--$me.data("form-shown", true);-->
+					<!--$form.find("textarea").trigger('autoresize');-->
+					<!--$form.find("textarea").focus();-->
+				<!--} else {-->
+					<!--$me.parent().parent().find(".action-form form textarea").focus();-->
+				<!--}-->
+			<!--});-->
+
+			<!--$(".edit-thread-title-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--var threadId = $me.data("thread-id");-->
+				<!--var threadTitle = $me.data("thread-title");-->
+				<!--swal({-->
+							<!--title: "Change thread title",-->
+							<!--text: "Change from \""+ threadTitle +"\" to",-->
+							<!--type: "input",-->
+							<!--showCancelButton: true,-->
+							<!--closeOnConfirm: false,-->
+							<!--inputPlaceholder: "New title"-->
+						<!--},-->
+						<!--function(inputValue){-->
+							<!--if(inputValue === false) {-->
+								<!--return false-->
+							<!--}-->
+
+							<!--if (inputValue === "" || inputValue.length > 50) {-->
+								<!--swal.showInputError("Please write between 1 and 50 characters");-->
+								<!--return false-->
+							<!--}-->
+
+							<!--//Disable submit button to prevent multiple submissions-->
+							<!--$(".confirm").attr('disabled', 'disabled');-->
+
+							<!--//Create an inline form and submit it to redirect with POST-->
+							<!--$("<form action='<c:url value="/edit-thread-title" />' method='POST'> \-->
+                        <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
+                        <!--<input type='hidden' name='newTitle' value='"+ inputValue +"' /> \-->
+                        <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \-->
+                        <!--</form>").submit();-->
+						<!--});-->
+			<!--});-->
+
+			<!--$(".delete-thread-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--var threadId = $me.data("thread-id");-->
+				<!--swal({-->
+							<!--title: "Are you sure?",-->
+							<!--text: "This thread and all its comments will be permanently lost",-->
+							<!--type: "warning",-->
+							<!--showCancelButton: true,-->
+							<!--confirmButtonColor: "#DD6B55",-->
+							<!--confirmButtonText: "Yes",-->
+							<!--cancelButtonText: "No",-->
+							<!--closeOnConfirm: false-->
+						<!--},-->
+						<!--function(){-->
+							<!--//Disable submit button to prevent multiple submissions-->
+							<!--$(".confirm").attr('disabled', 'disabled');-->
+
+							<!--//Create an inline form and submit it to redirect with POST-->
+							<!--$("<form action='<c:url value="/delete-thread" />' method='POST'> \-->
+                        <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
+                        <!--<input type='hidden' name='returnUrl' value='/threads' /> \-->
+                        <!--</form>").submit();-->
+						<!--});-->
+			<!--});-->
+
+			<!--$(".like-thread").on("click", function(event) {-->
+				<!--var threadId = $(this).data("thread-id");-->
+				<!--//Create an inline form and submit it to redirect with POST-->
+				<!--$("<form action='<c:url value="/like-thread" />' method='POST'> \-->
+                <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
+                <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \-->
+               <!--</form>").submit();-->
+			<!--});-->
+
+			<!--$(".unlike-thread").on("click", function(event) {-->
+				<!--var threadId = $(this).data("thread-id");-->
+				<!--//Create an inline form and submit it to redirect with POST-->
+				<!--$("<form action='<c:url value="/unlike-thread" />' method='POST'> \-->
+                <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
+                <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \-->
+               <!--</form>").submit();-->
+			<!--});-->
+
+			<!--/* ************************-->
+			 <!--*      Comment actions-->
+			 <!--* ***********************/-->
+
+			<!--//Comment replies-->
+			<!--$(".reply-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--if (!$me.data("form-shown")) {-->
+					<!--var parentCommentId = $me.data("comment-id");-->
+					<!--var $form = $("<form></form>");-->
+					<!--$form.attr("action", "<c:url value="/reply" />");-->
+					<!--$form.attr("method", "POST");-->
+					<!--$form.css("margin-top", "10px");-->
+
+					<!--//Thread and parent comment IDs-->
+					<!--$form.append("<input type='hidden' name='threadId' value='${thread.id}' />");-->
+					<!--$form.append("<input type='hidden' name='parentCommentId' value='" + parentCommentId + "' />");-->
+
+					<!--//Text area-->
+					<!--$form.append("<div class='row'> \-->
+                        <!--<div class='input-field col s12'> \-->
+                            <!--<textarea name='reply' class='materialize-textarea' required='required' /> \-->
+                            <!--<label for='reply'>Your reply</label> \-->
+                        <!--</div> \-->
+                    <!--</div>");-->
+
+					<!--//Submit button-->
+					<!--$form.append("<div class='row'>	\-->
+                        <!--<div class='col s4 offset-s5'>	\-->
+                            <!--<button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\-->
+                                <!--Submit <i class='material-icons right'>send</i>	\-->
+                            <!--</button>	\-->
+                        <!--</div>	\-->
+                    <!--</div>");-->
+
+					<!--$me.parent().parent().find(".action-form:first").html($form);-->
+					<!--$me.data("form-shown", true);-->
+					<!--$me.siblings(".edit-comment-link").data("form-shown", false);-->
+					<!--$form.find("textarea").trigger('autoresize');-->
+					<!--$form.find("textarea").focus();-->
+				<!--} else {-->
+					<!--$me.parent().parent().find(".action-form:first form textarea").focus();-->
+				<!--}-->
+			<!--});-->
+
+			<!--//Comment edits-->
+			<!--$(".edit-comment-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--if (!$me.data("form-shown")) {-->
+					<!--var commentId = $me.data("comment-id");-->
+					<!--var comment = $me.data("comment").trim();-->
+					<!--var $form = $("<form></form>");-->
+					<!--$form.attr("action", "<c:url value="/edit-comment" />");-->
+					<!--$form.attr("method", "POST");-->
+					<!--$form.css("margin-top", "10px");-->
+
+					<!--$form.append("<input type='hidden' name='commentId' value='"+ commentId +"' />");-->
+					<!--$form.append("<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}#" + commentId +"' />");-->
+
+					<!--//Text area-->
+					<!--$form.append("<div class='row'> \-->
+                        <!--<div class='input-field col s12'> \-->
+                            <!--<textarea name='newComment' class='materialize-textarea' required='required'>"+comment+"</textarea> \-->
+                            <!--<label for='newComment'>Comment</label> \-->
+                        <!--</div> \-->
+                    <!--</div>");-->
+
+					<!--//Submit button-->
+					<!--$form.append("<div class='row'>	\-->
+                        <!--<div class='col s4 offset-s5'>	\-->
+                            <!--<button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\-->
+                                <!--Submit <i class='material-icons right'>send</i>	\-->
+                            <!--</button>	\-->
+                        <!--</div>	\-->
+                    <!--</div>");-->
+
+					<!--$me.parent().parent().find(".action-form:first").html($form);-->
+					<!--$me.data("form-shown", true);-->
+					<!--$me.siblings(".reply-link").data("form-shown", false);-->
+					<!--$form.find("textarea").trigger('autoresize');-->
+					<!--$form.find("textarea").focus();-->
+				<!--} else {-->
+					<!--$me.parent().parent().find(".action-form:first form textarea").focus();-->
+				<!--}-->
+			<!--});-->
+
+			<!--//Comment deletions-->
+			<!--$(".delete-comment-link").on("click", function (event) {-->
+				<!--var $me = $(this);-->
+				<!--var commentId = $me.data("comment-id");-->
+				<!--swal({-->
+							<!--title: "Are you sure?",-->
+							<!--text: "This comment and all replies will be permanently lost",-->
+							<!--type: "warning",-->
+							<!--showCancelButton: true,-->
+							<!--confirmButtonColor: "#DD6B55",-->
+							<!--confirmButtonText: "Yes",-->
+							<!--cancelButtonText: "No",-->
+							<!--closeOnConfirm: false-->
+						<!--},-->
+						<!--function(){-->
+							<!--//Disable submit button to prevent multiple submissions-->
+							<!--$(".confirm").attr('disabled', 'disabled');-->
+
+							<!--//Create an inline form and submit it to redirect with POST-->
+							<!--$("<form action='<c:url value="/delete-comment" />' method='POST'> \-->
+                <!--<input type='hidden' name='commentId' value='" + commentId + "' /> \-->
+                <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \-->
+               <!--</form>").submit();-->
+						<!--});-->
+			<!--});-->
+
+			<!--$(".like-comment").on("click", function(event) {-->
+				<!--var commentId = $(this).data("comment-id");-->
+				<!--//Create an inline form and submit it to redirect with POST-->
+				<!--$("<form action='<c:url value="/like-comment" />' method='POST'> \-->
+                <!--<input type='hidden' name='commentId' value='" + commentId + "' /> \-->
+                <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}#" + commentId + "' /> \-->
+               <!--</form>").submit();-->
+			<!--});-->
+
+			<!--$(".unlike-comment").on("click", function(event) {-->
+				<!--var commentId = $(this).data("comment-id");-->
+				<!--//Create an inline form and submit it to redirect with POST-->
+				<!--$("<form action='<c:url value="/unlike-comment" />' method='POST'> \-->
+                <!--<input type='hidden' name='commentId' value='" + commentId + "' /> \-->
+                <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}#" + commentId + "' /> \-->
+               <!--</form>").submit();-->
+			<!--});-->
+		<!--});-->
+<!--</script>-->
