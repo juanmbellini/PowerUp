@@ -4,10 +4,9 @@ define(['routes',
     'i18n/i18nLoader!',
     'angular',
     'angular-route',
-    'bootstrap',
     'angular-translate',
-    'restangular',
-    'angular-cookies'],
+    'angular-cookies',
+    'restangular'],
   function (config, dependencyResolverFor, i18n) {
     var powerUp = angular.module('powerUp', [
       'ngRoute',
