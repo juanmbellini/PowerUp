@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s1"></div> <!-- TODO borrar esto y reparar offset -->
         <div class="col s2">
-            <form name="shelfForm" class="css-form" novalidate>
+            <form name="shelfForm" class="css-form"  ng-submit="submitSearch()" novalidate>
                 <h5>Filter by Status</h5>
                 <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
                     <input type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"/>
@@ -122,172 +122,59 @@
                         <div class="col s1">
                             <div class="secondary-content">
                                 <a ng-click="deleteGame(game)"
-                                   class="material-icons red-text text-lighten-1 delete-game"><i
-                                        class="material-icons right">delete</i></a>
+                                   class=" delete-game material-icons red-text text-lighten-1" style="vertical-align: middle;">delete</a>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <!--<c:if test="${user.username == currentUsername}">-->
-                <!--<div class="col s12 divider"></div>-->
-                <!--<div class="row">-->
-                    <!--<div class="col s6">-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</c:if>-->
-
             <div class="row col s12 divider"></div>
 
-            <!--<div class="container">-->
-                <!--<div class="section">-->
-                    <!--<c:if test="${ fn:length( recommendedGames) > 0 }">-->
-                        <!--<div class="row">-->
-                            <!--<h5 class="center">Recommended Games for you <c:if test="${! empty shelvesFilter}">for this shelves</c:if>!</h5>-->
-                            <!--<div class="slick-carousel">-->
-                                <!--<c:forEach var="game" items="${recommendedGames}">-->
-                                    <!--<div class="slide-container">-->
-                                        <!--<div class="valign-wrapper slide-image">-->
-                                            <!--<a href="<c:url value="/game?id=${game.id}"/>">-->
-                                            <!--<img data-lazy="${game.coverPictureUrl}" class="valign"/>-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                        <!--<h5 class="center slide-text">-->
-                                            <!--<a href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>-->
-                                        <!--</h5>-->
-                                    <!--</div>-->
-                                <!--</c:forEach>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</c:if>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="container">
+                <div class="section">
+                        <div ng-if="recommendedGames.length > 0" class="row">
+                            <h5 class="center">Recommended Games for you
+                                <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
+                            </h5>
+
+                            <div class="slick-carousel">
+                                    <div ng-repeat="game in recommendedGames" class="slide-container">
+                                        <div class="valign-wrapper slide-image">
+                                            <a ng-href="#game?id={{game.id}}">
+                                                <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
+                                                <!--data-lazy-->
+                                            </a>
+                                        </div>
+                                        <h5 class="center slide-text">
+                                            <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                                        </h5>
+                                    </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
         </div>
         <div class="col s1">
 
         </div>
     </div>
 </main>
-<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
-<!--<script type="text/javascript">-->
-<!--var shelves = [];-->
-<!--var playStatuses = [];-->
 
-<!--$(function() {-->
+<script type="text/javascript">
+    require(['slick-carousel'], function() {
+        //TODO consider only doing this if there are picture or videos
+        $(function() {
+            $('.slick-carousel').slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: true,
+                lazyload: 'ondemand'
+            });
+        });
 
-    <!--/* ***********************-->
-     <!--*      SWEET ALERTS-->
-     <!--* **********************/-->
-
-    <!--//Delete links-->
-    <!--$(".delete-shelf").on('click', function (event) {-->
-        <!--var $target = $(this);-->
-        <!--var name = $target.data('name');-->
-        <!--var id = $target.data('id');-->
-        <!--swal({-->
-                    <!--title: "Are you sure?",-->
-                    <!--text: "You are about to permanently delete shelf \"" + name + "\"",-->
-                    <!--type: "warning",-->
-                    <!--showCancelButton: true,-->
-                    <!--confirmButtonColor: "#DD6B55",-->
-                    <!--confirmButtonText: "Delete",-->
-                    <!--closeOnConfirm: false-->
-                <!--},-->
-                <!--function () {-->
-                    <!--//Disable submit button to prevent multiple submissions-->
-                    <!--$(".confirm").attr('disabled', 'disabled');-->
-                    <!--<c:url value="/delete-shelf" var="deleteUrl" />-->
-                    <!--//Create an inline form and submit it to redirect with POST-->
-                    <!--$("<form action='${deleteUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /></form>").submit();-->
-                <!--});-->
-    <!--});-->
-
-    <!--$(".delete-game").on('click', function (event) {-->
-        <!--var $target = $(this);-->
-        <!--var gameId = $target.data('game-id');-->
-        <!--var gameName = $target.data('game-name');-->
-        <!--var userId = $target.data('user-id');-->
-        <!--swal({-->
-                    <!--title: "Are you sure?",-->
-                    <!--text: "You are about to delete " + gameName + " from all your shelves.",-->
-                    <!--type: "warning",-->
-                    <!--showCancelButton: true,-->
-                    <!--confirmButtonColor: "#DD6B55",-->
-                    <!--confirmButtonText: "Delete",-->
-                    <!--closeOnConfirm: false-->
-                <!--},-->
-                <!--function () {-->
-                    <!--//Create an inline form and submit it to redirect with POST-->
-                    <!--$("<form action='<c:url value="/remove-from-list" />' method='POST'> \-->
-                        <!--<input type='hidden' name='gameId' value='" + gameId + "' /> \-->
-                        <!--<input type='hidden' name='userId' value='" + userId + "' /> \-->
-                        <!--<input type='hidden' name='returnUrl' value='/list?username=${user.username}'/> \-->
-                       <!--</form>").submit();-->
-                <!--});-->
-    <!--});-->
-
-    <!--//Rename links-->
-    <!--$(".rename").on('click', function (event) {-->
-        <!--var $target = $(this);-->
-        <!--var name = $target.data('name');-->
-        <!--var id = $target.data('id');-->
-        <!--swal({-->
-                    <!--title: "Rename \"" + name + "\" to...",-->
-                    <!--type: "input",-->
-                    <!--showCancelButton: true,-->
-                    <!--closeOnConfirm: false,-->
-                    <!--confirmButtonText: "Rename",-->
-                    <!--inputPlaceholder: "New name"-->
-                <!--},-->
-                <!--function (inputValue) {-->
-                    <!--if (inputValue === false) return false;-->
-
-                    <!--inputValue = inputValue.replace(/,/g, ";");-->
-
-                    <!--if (inputValue === "" || inputValue.length > 25) {-->
-                        <!--swal.showInputError("Please write between 1 and 25 characters");-->
-                        <!--return false;-->
-                    <!--}-->
-
-                    <!--//Disable submit button to prevent multiple submissions-->
-                    <!--$(".confirm").attr('disabled', 'disabled');-->
-                    <!--<c:url value="/rename-shelf" var="renameUrl" />-->
-                    <!--//Create an inline form and submit it to redirect with POST-->
-                    <!--$("<form action='${renameUrl}' method='POST'><input type='hidden' name='shelfId' value='" + id + "' /><input type='hidden' name='name' value='" + escapeHtml(inputValue) + "' /></form>").submit();-->
-                <!--});-->
-    <!--})-->
-
-    <!--$('.slick-carousel').slick({-->
-        <!--infinite: false,-->
-        <!--slidesToShow: 4,-->
-        <!--slidesToScroll: 4,-->
-        <!--arrows: true,-->
-        <!--lazyload: 'ondemand'-->
-    <!--});-->
-
-    <!--$("#new-shelf-form").on("submit", function(event) {-->
-        <!--var name = $(this).find("input[type=text]").val();-->
-        <!--if(name.length === 0 || name.length > 25) {-->
-            <!--event.preventDefault();-->
-        <!--}-->
-    <!--});-->
-<!--});-->
-
-<!--var entityMap = {-->
-    <!--"&": "&amp;",-->
-    <!--"<": "&lt;",-->
-    <!--">": "&gt;",-->
-    <!--'"': '&quot;',-->
-    <!--"'": '&#39;',-->
-    <!--"/": '&#x2F;'-->
-<!--};-->
-
-<!--function escapeHtml(string) {-->
-    <!--return String(string).replace(/[&<>"'\/]/g, function (s) {-->
-        <!--return entityMap[s];-->
-    <!--});-->
-<!--}-->
-
-<!--</script>-->
+        //TODO initialize Slick for related games
+    });
+</script>
