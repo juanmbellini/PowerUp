@@ -23,20 +23,7 @@ require.config({
         'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert.min',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
-        lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
-        bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap',
-        affix: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix',
-        alert: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert',
-        button: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button',
-        carousel: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel',
-        collapse: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse',
-        dropdown: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown',
-        tab: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab',
-        transition: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition',
-        scrollspy: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy',
-        modal: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal',
-        tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
-        popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover'
+        lightbox2: '../../bower_components/lightbox2/dist/js/lightbox'
     },
     shim: {
         jquery: {
