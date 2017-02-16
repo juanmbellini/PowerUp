@@ -3,6 +3,7 @@ define(['powerUp'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert) {
 
+        // TODO replace this values with api calls. -- Droche 15/02/2017
         $scope.playStatuses = ['planToPlay','playing','played'];
         $scope.shelves = [{name: 'RPG',id: 1},{name: 'Racing',id: 2}];
         $scope.games = [];
@@ -58,7 +59,8 @@ define(['powerUp'], function(powerUp) {
                         return false;
                     }
 
-                    inputValue = inputValue.replace(/,/g, ';');
+                    // TODO delete if no errors later.
+                    // inputValue = inputValue.replace(/,/g, ';');
 
                     if (inputValue === '' || inputValue.length > 25) {
                         swal.showInputError('Please write between 1 and 25 characters');
