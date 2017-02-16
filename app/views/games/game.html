@@ -313,16 +313,19 @@
     require(['slick-carousel', 'lightbox2'], function() {
         //TODO consider only doing this if there are picture or videos
         $(function() {
-            $('#videos-carousel').slick({
-                infinite: false,
-                arrows: true
-            });
+            setTimeout(function() {
+                $('#videos-carousel').slick({
+                    infinite: false,
+                    arrows: true
+                });
 
-            $('#screenshots-carousel').slick({
-                infinite: false,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
+                $('#screenshots-carousel').slick({
+                    infinite: false,
+                    arrows: true,
+                    lazyload: 'ondemand'
+                });
+			}, 1000);	// TODO change this horrible monkey-patch with an angular directive to run these functions when the ng-repeat finishes
+						// see http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
         });
 
         //TODO initialize Slick for related games
