@@ -8,6 +8,7 @@ define(['powerUp'], function(powerUp) {
 
         $scope.userId = $location.search().userId;
         console.log('User id: ', $scope.userId);
+
         Restangular.one('users',$scope.userId).get().then(function(user) {
             $scope.user = user;
             console.log('User: ', user);
@@ -24,10 +25,7 @@ define(['powerUp'], function(powerUp) {
             $location.path('');
         });
 
-
         $scope.profilePicture = Restangular.one('users',$scope.userId).customGET('picture',{},{Accept: 'image/png'}).get();
-        console.log($scope.profilePicture);
-        console.log('isLogIn: ', $scope.isLogIn);
     });
 
 });
