@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', function($scope, $location, Restangular) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
@@ -24,6 +24,23 @@ define(['powerUp'], function(powerUp) {
             $location.path('');
         });
 
-    });
+        // Event receivers for ng-repeats, see http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
+        $scope.$on('picturesRendered', function(event) {
+            angular.element('#screenshots-carousel').slick({
+                infinite: false,
+                arrows: true,
+                lazyload: 'ondemand'
+            });
+            require(['lightbox2']);
+        });
 
+        $scope.$on('videosRendered', function(event) {
+            angular.element("#videos-carousel").slick({
+                infinite: false,
+                arrows: true
+            });
+            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+        });
+
+    }]);
 });

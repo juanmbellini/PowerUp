@@ -184,7 +184,7 @@
                         <div class="row" ng-if="game.videoUrls">
                             <h4 class="center">Videos</h4>
                             <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
-                                <div class="slide-container" ng-repeat="video in game.videoUrls">
+                                <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
                                     <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
                                             height="360" ng-src="{{video}}" frameborder="0">
                                     </iframe>
@@ -201,7 +201,7 @@
                         <div class="row" >
                             <h4 class="center">Screenshots</h4>
                             <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
-                                <div class="slide-container" ng-repeat="picture in game.pictureUrls">
+                                <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
                                     <div class="valign-wrapper slide-image">
                                         <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
                                             <img ng-src="{{picture}}" class="valign"/>
@@ -309,26 +309,6 @@
 	</div>
 </main>
 
-<script type="text/javascript">
-    require(['slick-carousel', 'lightbox2'], function() {
-        //TODO consider only doing this if there are picture or videos
-        $(function() {
-            $('#videos-carousel').slick({
-                infinite: false,
-                arrows: true
-            });
-
-            $('#screenshots-carousel').slick({
-                infinite: false,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-        });
-
-        //TODO initialize Slick for related games
-    });
-
-</script>
 <!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
