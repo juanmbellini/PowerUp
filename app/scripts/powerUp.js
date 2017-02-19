@@ -74,7 +74,6 @@ define(['routes',
             RestangularProvider.setDefaultHttpFields({
               withCredentials: true                                       // To allow authentication via CORS
             });
-
           }]);
     return powerUp;
   }
