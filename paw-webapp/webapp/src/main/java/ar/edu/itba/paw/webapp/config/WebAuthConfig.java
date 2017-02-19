@@ -107,7 +107,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             .and().exceptionHandling()
                 .accessDeniedPage("/403")
             .and().csrf()
-                .ignoringAntMatchers("/api/auth/login"); //TODO make an endpoint to get a CSRF token before actually logging in
+                .ignoringAntMatchers("/api/auth/csrf");
     }
 
     @Autowired

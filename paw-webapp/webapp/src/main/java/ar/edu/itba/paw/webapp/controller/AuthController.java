@@ -2,9 +2,11 @@ package ar.edu.itba.paw.webapp.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -42,5 +44,14 @@ public class AuthController {
             .type(MediaType.TEXT_HTML)                                //Required by CORS
             .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
         return result.build();
+    }
+
+    @POST
+    @Path("/csrf")
+    public Response getCsrfToken(CsrfToken token) {
+        if(token != null) {
+            LOG.warn("Attempted to get new CSRF token");    //TODO what to do in this case?
+        }
+        return Response.noContent().build();
     }
 }
