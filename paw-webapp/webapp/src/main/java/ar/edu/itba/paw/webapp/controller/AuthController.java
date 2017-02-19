@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -46,7 +46,7 @@ public class AuthController {
         return result.build();
     }
 
-    @POST
+    @GET
     @Path("/csrf")
     public Response getCsrfToken(CsrfToken token) {
         if(token != null) {
