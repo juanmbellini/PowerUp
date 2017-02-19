@@ -43,7 +43,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         http.userDetailsService(userDetailsService)
             .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class)
             .sessionManagement()
-                .invalidSessionUrl("/auth/login")
+                .invalidSessionUrl("/api/auth/login")
             .and().authorizeRequests()
                 //Users
                 .antMatchers(HttpMethod.POST, "/auth/login").anonymous()
@@ -70,7 +70,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
             .and().logout()
-                .logoutUrl("/auth/logout")
+                .logoutUrl("/api/auth/logout")
                 .logoutSuccessUrl("/")
             .and().rememberMe()
                 .userDetailsService(userDetailsService)
