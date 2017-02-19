@@ -1,25 +1,28 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'csrf-service'], function(powerUp) {
 
-    powerUp.controller('LoginCtrl', function($scope, Restangular, LogInService, $location) {
-
+    powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'LogInService', 'CsrfService', function($scope, $location, $log, Restangular, LogInService, CsrfService) {
 
         $scope.logIn = function(form) {
-            var logInAccount = {username: $scope.username, password: $scope.password};
-            console.log(logInAccount);
-            Restangular.all('auth/login').post(logInAccount).then(function (data) {
-                LogInService.setLoggedInStatus(true);
-                $location.search();
-                $location.path('');
-                // LogInService.setLoggedUser
-            }, function() {
-                console.log('There was an error in logIn');
-            });
-
-
-
+            if (CsrfService.isTokenSet()) {
+                var logInAccount = {username: $scope.username, password: $scope.password};
+                var csrfHeaders = {};
+                csrfHeaders[CsrfService.getTokenHeader()] = CsrfService.getToken(); // Dynamically set CSRF header since the header name is a variable
+                $log.debug('Logging in with', logInAccount, 'and CSRF token');
+                Restangular.all('auth/login').post(logInAccount, undefined, csrfHeaders).then(function (data) {
+                    LogInService.setLoggedInStatus(true);
+                    $location.search();
+                    $location.path('');
+                    // LogInService.setLoggedUser
+                }, function(error) {
+                    $log.error('There was an error in logIn:', error);
+                });
+            } else {
+                $log.debug('No CSRF token set, retrieving and retrying with token');
+                CsrfService.requestToken(function() {
+                    $scope.logIn(form); // Try again with the CSRF token set
+                });
+            }
         };
-
-    });
-
+    }]);
 });

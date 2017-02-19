@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'csrf-service'], function (powerUp, CsrfService) {
+define(['powerUp', 'csrf-service'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
@@ -61,28 +61,14 @@ define(['powerUp', 'csrf-service'], function (powerUp, CsrfService) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService) {
+    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService, CsrfService) {
         Restangular.setFullResponse(false);
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
-        // Keep track of the CSRF token if present
-        Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            if (['GET', /* 'GETLIST',*/ 'HEAD', 'TRACE', 'OPTIONS'].indexOf(operation.toUpperCase()) === -1) { // Response from a CSRF-protected method
-                var csrfHeaderName = response.headers('X-CSRF-HEADER');
-                if (csrfHeaderName !== null) {
-                    CsrfService.setTokenHeader(csrfHeaderName);
-                    CsrfService.setToken(response.headers(csrfHeaderName));
-                    CsrfService.setTokenParam(response.headers('X-CSRF-PARAM'));
-                    console.log('Set new token to', CsrfService.getToken());
-                } else {
-                    console.log('No token');
-                }
-            }
-            return data;
-        });
+        CsrfService.trackToken();
 
 
-            $scope.welcomeText = 'Welcome to your powerUp page';
+        $scope.welcomeText = 'Welcome to your powerUp page';
 
         // // Log in if not logged in
         // if ($cookies.hasOwnProperty('JSESSIONID') && $cookies.JSESSIONID) {
