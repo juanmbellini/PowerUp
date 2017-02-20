@@ -70,6 +70,14 @@ define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
         $scope.isLoggedIn = SessionService.isLoggedIn;
         $scope.currentUser = SessionService.getCurrentUser();
 
+        // Watch the current user to always keep it updated
+        $scope.$watch(
+            function() {
+                return SessionService.getCurrentUser();
+            }, function(newVal) {
+                $scope.currentUser = newVal;
+            });
+
         // Restangular.all('users').getList()  // GET: /users
         //   .then(function(users) {
         //     console.log('All users: ', users);
