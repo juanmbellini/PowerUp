@@ -20,12 +20,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.session.MapSessionRepository;
+import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+import org.springframework.session.web.http.HeaderHttpSessionStrategy;
+import org.springframework.session.web.http.HttpSessionStrategy;
 
 import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableWebSecurity
+@EnableSpringHttpSession    // TODO handle expired sessions (and/or set token validity period?) as per the annotation's documentation
 @ComponentScan({"ar.edu.itba.paw.webapp.auth", "ar.edu.itba.paw.webapp.config"})
 public class WebAuthConfig extends WebSecurityConfigurerAdapter {
 
@@ -75,6 +80,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             .and().logout()
                 .logoutUrl("/api/auth/logout")
                 .logoutSuccessUrl("/")
+            // TODO decide whether the RememberMe service is left or deleted
             .and().rememberMe()
                 .userDetailsService(userDetailsService)
                 .rememberMeParameter("rememberMe")
@@ -138,6 +144,31 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationFailureHandler(new JsonFailureHandler());
         return filter;
     }
+
+    // Token-based session management
+
+    /**
+     * Bean for storing status of all sessions. Used by the springSessionRepositoryFilter bean.
+     *
+     * @return The session repository.
+     */
+    @Bean
+    public MapSessionRepository sessionRepository() {
+        return new MapSessionRepository();  //TODO migrate to JdbcOperationSessionRepository to persist on DB rather than on memory
+    }
+
+    /**
+     * Bean establishing the strategy for session management. This one returns HTTP header-based token strategy,
+     * overriding the default cookie-based strategy.
+     *
+     * @return The HTTP header session strategy.
+     */
+    @Bean
+    public HttpSessionStrategy tokenBasedSessionStrategy() {
+        return new HeaderHttpSessionStrategy();
+    }
+
+    // CSRF protection
 
     @Bean
     public CsrfTokenResponseHeaderBindingFilter csrfTokenFilter() {
