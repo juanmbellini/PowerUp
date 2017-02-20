@@ -1,46 +1,9 @@
 'use strict';
-define(['powerUp', 'csrf-service'], function (powerUp) {
+define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
     });
-
-    powerUp.service('LogInService', function () {
-
-        var userLoggedIn = null;
-
-        var isLoggedInStatus = false;
-
-        var setLoggedInStatus = function(newLoggedInStatus) {
-            isLoggedInStatus = newLoggedInStatus;
-        };
-
-        var setLoggedUser = function(newLoggedInUser) {
-            userLoggedIn = newLoggedInUser;
-        };
-
-        var getLoggedUser = function() {
-            return userLoggedIn;
-        };
-
-        var isLoggedIn = function() {
-            return isLoggedInStatus;
-        };
-
-        var logOut = function() {
-            setLoggedUser(null);
-            setLoggedInStatus(false);
-        };
-
-        return {
-            isLoggedIn: isLoggedIn,
-            setLoggedInStatus: setLoggedInStatus,
-            setLoggedUser: setLoggedUser,
-            getLoggedUser: getLoggedUser,
-            logOut: logOut
-        };
-    });
-
 
     powerUp.service('searchedTitleService', function () {
 
@@ -61,10 +24,11 @@ define(['powerUp', 'csrf-service'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService, CsrfService) {
+    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, SessionService, CsrfService) {
         Restangular.setFullResponse(false);
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
+        SessionService.trackToken();
         CsrfService.trackToken();
 
 
@@ -99,12 +63,13 @@ define(['powerUp', 'csrf-service'], function (powerUp) {
             return input;
         };
 
-        $scope.logOut = LogInService.logOut;
+        $scope.logOut = SessionService.logOut;
 
         $scope.apiLocation = 'http://localhost:8080/api';
 
-        $scope.isLoggedIn = LogInService.isLoggedIn;
-        $scope.loggedUser = LogInService.getLoggedUser;
+        $scope.isLoggedIn = SessionService.isLoggedIn;
+        $scope.currentUser = SessionService.getCurrentUser();
+
         // Restangular.all('users').getList()  // GET: /users
         //   .then(function(users) {
         //     console.log('All users: ', users);

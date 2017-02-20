@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'csrf-service'], function(powerUp) {
+define(['powerUp', 'sessionService', 'csrf-service'], function(powerUp) {
 
-    powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'LogInService', 'CsrfService', function($scope, $location, $log, Restangular, LogInService, CsrfService) {
+    powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'SessionService', 'CsrfService', function($scope, $location, $log, Restangular, SessionService, CsrfService) {
 
         $scope.logIn = function(form) {
             if (CsrfService.isTokenSet()) {
@@ -10,10 +10,9 @@ define(['powerUp', 'csrf-service'], function(powerUp) {
                 csrfHeaders[CsrfService.getTokenHeader()] = CsrfService.getToken(); // Dynamically set CSRF header since the header name is a variable
                 $log.debug('Logging in with', logInAccount, 'and CSRF token');
                 Restangular.all('auth/login').post(logInAccount, undefined, csrfHeaders).then(function (data) {
-                    LogInService.setLoggedInStatus(true);
+                    SessionService.setCurrentUser({username: $scope.username}); // TODO use actual user, or retrieve from API
                     $location.search();
                     $location.path('');
-                    // LogInService.setLoggedUser
                 }, function(error) {
                     $log.error('There was an error in logIn:', error);
                 });
