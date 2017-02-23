@@ -105,4 +105,9 @@
             </taglib-location>
         </taglib>
     </jsp-config>
+
+    <session-config>
+        <!-- 30 days -->
+        <session-timeout>43200</session-timeout>
+    </session-config>
 </web-app>
