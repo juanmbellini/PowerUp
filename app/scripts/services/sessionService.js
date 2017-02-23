@@ -38,8 +38,9 @@ define(['powerUp'], function(powerUp) {
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
                 if (sessionToken !== null) {
                     // $log.debug('Adding session token to request headers');
+                    headers['X-AUTH-TOKEN'] = sessionToken;
                     return {
-                        headers: {'X-AUTH-TOKEN': sessionToken}
+                        headers: headers
                     };
                 } else {
                     // $log.debug('No saved session token, not adding to request headers');
