@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.config;
 import ar.edu.itba.paw.webapp.auth.JsonAuthenticationFilter;
 import ar.edu.itba.paw.webapp.auth.JsonFailureHandler;
 import ar.edu.itba.paw.webapp.auth.JsonSuccessHandler;
+import com.allanditzel.springframework.security.web.csrf.CsrfTokenResponseHeaderBindingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -41,7 +43,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService)
-            .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class)  //Enable JSON login
+            .addFilterAfter(csrfTokenFilter(), CsrfFilter.class)                            //Send CSRF tokens in HTTP headers
             .sessionManagement()
                 .invalidSessionUrl("/api/auth/login")
             .and().authorizeRequests()
@@ -104,7 +107,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             .and().exceptionHandling()
                 .accessDeniedPage("/403")
             .and().csrf()
-                .disable();
+                .ignoringAntMatchers("/api/auth/csrf");
     }
 
     @Autowired
@@ -134,5 +137,10 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationSuccessHandler(new JsonSuccessHandler());
         filter.setAuthenticationFailureHandler(new JsonFailureHandler());
         return filter;
+    }
+
+    @Bean
+    public CsrfTokenResponseHeaderBindingFilter csrfTokenFilter() {
+        return new CsrfTokenResponseHeaderBindingFilter();
     }
 }

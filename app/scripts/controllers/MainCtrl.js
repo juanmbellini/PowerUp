@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp'], function (powerUp) {
+define(['powerUp', 'csrf-service'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
@@ -61,12 +61,14 @@ define(['powerUp'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService) {
+    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, LogInService, CsrfService) {
         Restangular.setFullResponse(false);
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
+        CsrfService.trackToken();
 
-            $scope.welcomeText = 'Welcome to your powerUp page';
+
+        $scope.welcomeText = 'Welcome to your powerUp page';
 
         // // Log in if not logged in
         // if ($cookies.hasOwnProperty('JSESSIONID') && $cookies.JSESSIONID) {

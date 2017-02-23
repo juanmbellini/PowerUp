@@ -25,6 +25,7 @@ require.config({
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         'onComplete': 'directives/on-complete'
+        'csrf-service': 'services/csrfService'
     },
     shim: {
         jquery: {
@@ -89,6 +90,11 @@ require.config({
             ]
         },
         'onComplete': {
+            deps: [
+                'angular'
+            ]
+        },
+        'csrf-service': {
             deps: [
                 'angular'
             ]
