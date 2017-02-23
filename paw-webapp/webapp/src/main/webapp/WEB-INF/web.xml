@@ -75,7 +75,7 @@
         <filter-name>encoding-filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!-- Bean exposed by the @EnableSpringHttpSession annotation in WebAuthConfig, allows HTTP header token-based auth -->
+    <!-- Bean exposed by the @EnableJdbcHttpSession annotation in WebAuthConfig, allows HTTP header token-based auth -->
     <filter>
         <filter-name>springSessionRepositoryFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
