@@ -20,12 +20,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
+import org.springframework.session.web.http.HeaderHttpSessionStrategy;
+import org.springframework.session.web.http.HttpSessionStrategy;
 
 import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableWebSecurity
+@EnableJdbcHttpSession
 @ComponentScan({"ar.edu.itba.paw.webapp.auth", "ar.edu.itba.paw.webapp.config"})
 public class WebAuthConfig extends WebSecurityConfigurerAdapter {
 
@@ -75,6 +79,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             .and().logout()
                 .logoutUrl("/api/auth/logout")
                 .logoutSuccessUrl("/")
+            // TODO decide whether the RememberMe service is left or deleted
             .and().rememberMe()
                 .userDetailsService(userDetailsService)
                 .rememberMeParameter("rememberMe")
@@ -138,6 +143,21 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationFailureHandler(new JsonFailureHandler());
         return filter;
     }
+
+    // Token-based session management
+
+    /**
+     * Bean establishing the strategy for session management. This one returns HTTP header-based token strategy,
+     * overriding the default cookie-based strategy.
+     *
+     * @return The HTTP header session strategy.
+     */
+    @Bean
+    public HttpSessionStrategy tokenBasedSessionStrategy() {
+        return new HeaderHttpSessionStrategy();
+    }
+
+    // CSRF protection
 
     @Bean
     public CsrfTokenResponseHeaderBindingFilter csrfTokenFilter() {

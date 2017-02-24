@@ -19,10 +19,10 @@ public class CorsFilter implements ContainerResponseFilter {
     public static final Map<String, String> CORS_HEADERS = new HashMap<>();
 
     static {
-        CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");   //TODO remove in production
-        CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");               //Allow sending cookies for authentication for cross-origin requests
-        CORS_HEADERS.put("Access-Control-Allow-Headers", "X-CSRF-TOKEN");           //TODO remove in production? I think we need this and the next line
-        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-CSRF-HEADER, X-CSRF-PARAM, X-CSRF-TOKEN");
+        CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");                                       //TODO remove in production
+        CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");                                                   //Allow sending cookies for authentication for cross-origin requests
+        CORS_HEADERS.put("Access-Control-Allow-Headers", "X-AUTH-TOKEN, X-CSRF-TOKEN");                                 //TODO remove in production? I think we need this and the next line
+        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-AUTH-TOKEN, X-CSRF-HEADER, X-CSRF-PARAM, X-CSRF-TOKEN");
     }
 
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {

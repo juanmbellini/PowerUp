@@ -14,8 +14,7 @@ define(['powerUp'], function(powerUp) {
             // var logInAccount = {username: $scope.username, password: $scope.password};
             // console.log(logInAccount);
             // Restangular.all('auth/login').post(logInAccount).then(function (data) {
-            //     LogInService.setLoggedInStatus(true);
-            //     // LogInService.setLoggedUser
+            //     // SessionService.setCurrentUser
             // }, function() {
             //     console.log('There was an error in logIn');
             // });

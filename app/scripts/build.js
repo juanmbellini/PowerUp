@@ -24,8 +24,10 @@ require.config({
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
-        'onComplete': 'directives/on-complete'
-        'csrf-service': 'services/csrfService'
+        onComplete: 'directives/on-complete',
+        sessionService: 'services/sessionService',
+        'csrf-service': 'services/csrfService',
+        'angular-slick': '../../bower_components/angular-slick/dist/slick'
     },
     shim: {
         jquery: {
@@ -89,7 +91,12 @@ require.config({
                 'jquery'
             ]
         },
-        'onComplete': {
+        onComplete: {
+            deps: [
+                'angular'
+            ]
+        },
+        sessionService: {
             deps: [
                 'angular'
             ]
