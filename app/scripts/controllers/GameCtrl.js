@@ -35,7 +35,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         });
 
         $scope.$on('videosRendered', function(event) {
-            angular.element("#videos-carousel").slick({
+            angular.element('#videos-carousel').slick({
                 infinite: false,
                 arrows: true
             });

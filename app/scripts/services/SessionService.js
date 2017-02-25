@@ -1,11 +1,27 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'angular-local-storage'], function(powerUp) {
 
-    powerUp.service('SessionService', ['$log', 'Restangular', function ($log, Restangular) {
-        var currentUser = null;
+    powerUp.service('SessionService', ['$log', 'Restangular', 'localStorageService', 'CsrfService', function ($log, Restangular, LocalStorage, CsrfService) {
         var trackingToken = false;
-        var sessionToken = null;
 
+        /* ********************************************
+         *              Private functions
+         * *******************************************/
+        function setToken(newToken) {
+            if (newToken === null) {
+                LocalStorage.remove('sessionToken');
+            } else {
+                LocalStorage.set('sessionToken', newToken);
+            }
+        }
+
+        function getToken() {
+            return LocalStorage.get('sessionToken');
+        }
+
+        /* ********************************************
+         *              Public functions
+         * *******************************************/
 
         /**
          * Adds a Restangular response interceptor to keep track of the X-AUTH-TOKEN header on all responses. Also adds
@@ -20,14 +36,15 @@ define(['powerUp'], function(powerUp) {
             // Response
             $log.debug('Adding session token RESPONSE interceptor');
             Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+                var oldToken = getToken();
                 var newToken = response.headers('x-auth-token');
                 if (newToken !== null) {
-                    if (newToken !== sessionToken) {
-                        $log.debug(sessionToken === null ? 'Setting' : 'Updating', 'session token');
+                    if (newToken !== oldToken) {
+                        $log.debug(oldToken === null ? 'Setting' : 'Updating', 'session token');
                     } else {
                         // $log.debug('No change in session token, overwriting anyway');
                     }
-                    sessionToken = newToken;
+                    setToken(newToken);
                 } else {
                     // $log.debug('No session token header present');
                 }
@@ -36,9 +53,10 @@ define(['powerUp'], function(powerUp) {
             // Request
             $log.debug('Adding session token REQUEST interceptor');
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
-                if (sessionToken !== null) {
+                var token = getToken();
+                if (token !== null) {
                     // $log.debug('Adding session token to request headers');
-                    headers['X-AUTH-TOKEN'] = sessionToken;
+                    headers['X-AUTH-TOKEN'] = token;
                     return {
                         headers: headers
                     };
@@ -49,22 +67,28 @@ define(['powerUp'], function(powerUp) {
         }
 
         function setCurrentUser(newUser) {
-            currentUser = newUser;
+            if (newUser === null) {
+                LocalStorage.remove('currentUser');
+            } else {
+                LocalStorage.set('currentUser', newUser);
+            }
         }
 
         function getCurrentUser() {
-            return currentUser;
+            return LocalStorage.get('currentUser');
         }
 
         function isLoggedIn() {
-            return currentUser !== null;
+            return getCurrentUser() !== null;
         }
 
         function logOut() {
-            setCurrentUser(null);
             // TODO actually hit API
+            setCurrentUser(null);
+            setToken(null);         // TODO decide whether the token needs to be erased or not
         }
 
+        // Public exported functions
         return {
             trackToken: trackToken,
             isLoggedIn: isLoggedIn,

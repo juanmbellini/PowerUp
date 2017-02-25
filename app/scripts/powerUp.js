@@ -7,7 +7,8 @@ define(['routes',
     'angular-translate',
     'angular-cookies',
     'restangular',
-    'sweetalert.angular'
+    'sweetalert.angular',
+    'angular-local-storage'
     ],
   function (config, dependencyResolverFor, i18n) {
     var powerUp = angular.module('powerUp', [
@@ -15,7 +16,8 @@ define(['routes',
       'pascalprecht.translate',
       'restangular',
       'ngCookies',
-      'oitozero.ngSweetAlert'
+      'oitozero.ngSweetAlert',
+      'LocalStorageModule'
     ]);
     powerUp
       .config(
@@ -28,7 +30,8 @@ define(['routes',
           '$translateProvider',
           'RestangularProvider',
           '$sceDelegateProvider',
-          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider) {
+          'localStorageServiceProvider',
+          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider, localStorageServiceProvider) {
 
             powerUp.controller = $controllerProvider.register;
             powerUp.directive = $compileProvider.directive;
@@ -74,6 +77,14 @@ define(['routes',
             RestangularProvider.setDefaultHttpFields({
               withCredentials: true                                       // To allow authentication via CORS
             });
+
+
+            localStorageServiceProvider
+                .setPrefix('paw')
+                .setStorageType('localStorage')     // Use local storage (no expiration)
+                .setDefaultToCookie(true)           // Fall back to cookies (shouldn't need this)
+                .setNotify(false, false);           // Don't broadcast setItem and removeItem events
+
           }]);
     return powerUp;
   }
