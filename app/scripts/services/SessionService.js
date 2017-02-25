@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'angular-local-storage'], function(powerUp) {
 
-    powerUp.service('SessionService', ['$log', 'Restangular', 'localStorageService', 'CsrfService', function ($log, Restangular, LocalStorage, CsrfService) {
+    powerUp.service('SessionService', ['$log', '$location', 'Restangular', 'localStorageService', 'CsrfService', function ($log, $location, Restangular, LocalStorage, CsrfService) {
         var trackingToken = false;
 
         /* ********************************************
@@ -83,9 +83,25 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         }
 
         function logOut() {
-            // TODO actually hit API
-            setCurrentUser(null);
-            setToken(null);         // TODO decide whether the token needs to be erased or not
+            if (CsrfService.isTokenSet()) { // This should always be set, but just in case
+                var csrfHeaders = {};
+                csrfHeaders[CsrfService.getTokenHeader()] = CsrfService.getToken();
+                Restangular.all('auth/logout').post(undefined, undefined, csrfHeaders).then(function (data) {
+                    setCurrentUser(null);
+                    setToken(null);
+                    CsrfService.setToken(null);
+                    CsrfService.setTokenHeader(null);
+                    $location.search();
+                    $location.path('');
+                }, function(error) {
+                    $log.error('There was an error logging out:', error);
+                });
+            } else {
+                $log.debug('No CSRF token set, retrieving and retrying with token');
+                CsrfService.requestToken(function() {
+                    logOut(); // Try again with the CSRF token set
+                });
+            }
         }
 
         // Public exported functions
