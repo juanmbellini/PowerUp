@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.config;
 import ar.edu.itba.paw.webapp.auth.JsonAuthenticationFilter;
 import ar.edu.itba.paw.webapp.auth.JsonFailureHandler;
 import ar.edu.itba.paw.webapp.auth.JsonSuccessHandler;
+import ar.edu.itba.paw.webapp.auth.LogoutSuccessHandler;
 import com.allanditzel.springframework.security.web.csrf.CsrfTokenResponseHeaderBindingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -78,7 +79,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll()
             .and().logout()
                 .logoutUrl("/api/auth/logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessHandler((new LogoutSuccessHandler()))
             // TODO decide whether the RememberMe service is left or deleted
             .and().rememberMe()
                 .userDetailsService(userDetailsService)
