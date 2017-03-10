@@ -5,10 +5,10 @@ CREATE TABLE IF NOT EXISTS games (
   id                          SERIAL  NOT NULL PRIMARY KEY,
   name                        VARCHAR,
   summary                     TEXT,
-  avg_score                   REAL,
+  avg_score                   REAL DEFAULT 0, -- ALTER TABLE games ALTER avg_score SET DEFAULT 0
   release                     DATE,
   cover_picture_cloudinary_id VARCHAR,
-  counter                     INTEGER NOT NULL DEFAULT 0
+  counter                     INTEGER DEFAULT 0 -- ALTER TABLE games ALTER counter drop not null, alter counter SET DEFAULT 0
 );
 CREATE TABLE IF NOT EXISTS genres (
   id   SERIAL NOT NULL PRIMARY KEY,
