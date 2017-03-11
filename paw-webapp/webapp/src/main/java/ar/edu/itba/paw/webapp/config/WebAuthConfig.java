@@ -99,7 +99,6 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Override
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        //TODO delete default PAW user this in production from bottom of initial-data.sql
         auth.userDetailsService(userDetailsService)
             .and().jdbcAuthentication()
                 .dataSource(dataSource)

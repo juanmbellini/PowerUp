@@ -34,6 +34,7 @@
         <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
         <maven-war-plugin.version>2.6</maven-war-plugin.version>
         <javax.mail.version>1.4.7</javax.mail.version>
+        <org.flywaydb.version>4.1.2</org.flywaydb.version>
     </properties>
 
     <modules>
@@ -206,7 +207,6 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.3.1</version>
             </dependency>
-
             <!-- Apache Commons IO -->
             <dependency>
                 <groupId>commons-io</groupId>
@@ -255,6 +255,13 @@
                 <artifactId>validation</artifactId>
                 <version>${se.malkusch.validation.version}</version>
             </dependency>
+            <!--Flyway - database migration management and versioning-->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${org.flywaydb.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -282,6 +289,26 @@
                 <configuration>
                     <packagingExcludes>**/logback-test.xml</packagingExcludes>
                 </configuration>
+            </plugin>
+            <!--Flyway maven plugin for running migrations from the command line in development-->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${org.flywaydb.version}</version>
+                <configuration>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost/paw-2016b-02</url>
+                    <user>paw-2016b-02</user>
+                    <password>Zae0lohT</password>
+                    <locations>filesystem:persistence/src/main/resources/migration</locations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${org.postgresql.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
