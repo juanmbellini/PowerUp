@@ -29,6 +29,7 @@ public class IgdbDownloader {
     private static final DateTimeFormatter ISO8601Formatter = DateTimeFormatter.ISO_LOCAL_DATE;
 
     private FileWriter gamesFile, genresFile, platformsFile, companiesFile, keywordsFile, gameGenresFile, gamePlatformsFile, gameKeywordsFile, gameDevelopersFile, gamePublishersFile, gameVideosFile;
+    private FileWriter megaFile;
 
     private IgdbDownloader() {
         try {
@@ -38,11 +39,12 @@ public class IgdbDownloader {
             gameKeywordsFile = new FileWriter(new File("..//dataBase/gameKeywords.sql"));
             gameDevelopersFile = new FileWriter(new File("..//dataBase/gameDevelopers.sql"));
             gamePublishersFile = new FileWriter(new File("..//dataBase/gamePublishers.sql"));
+            megaFile = new FileWriter("persistence/src/main/resources/migration/V1_201703121329__add_more_games_ascending.sql");
 //            gameVideosFile = new FileWriter(new File("../dataBase/gameVideos.sql"));
 
 //            genresFile = new FileWriter(new File("..//dataBase/genres.sql"));
 //            platformsFile = new FileWriter(new File("..//dataBase/platforms.sql"));
-            companiesFile = new FileWriter(new File("..//dataBase/companies.sql"));
+//            companiesFile = new FileWriter(new File("..//dataBase/companies.sql"));
 //            keywordsFile = new FileWriter(new File("..//dataBase/keywords.sql"));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
@@ -60,8 +62,8 @@ public class IgdbDownloader {
         IgdbDownloader me = getInstance();
 //        me.downloadAllGenres();
 //        System.out.println("------------------------------------------------------");
-        me.downloadAllCompanies();
-        System.out.println("------------------------------------------------------");
+//        me.downloadAllCompanies();
+//        System.out.println("------------------------------------------------------");
 //        me.downloadAllPlatforms();
 //        System.out.println("------------------------------------------------------");
 //        me.downloadAllKeywords();
@@ -159,7 +161,7 @@ public class IgdbDownloader {
             gamePublishersFile.write("BEGIN;\nINSERT INTO game_publishers (\"game_id\", \"publisher_id\")\nSELECT val.game_id, val.id\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
-            gamePlatformsFile.write("BEGIN;\nINSERT INTO game_platforms (\"game_id\", \"platform_id\", \"release_date\")\nSELECT val.game_id, val.id, val.release_date\n" +
+            gamePlatformsFile.write("BEGIN;\nSET DATESTYLE TO ISO, YMD;\nINSERT INTO game_platforms (\"game_id\", \"platform_id\", \"release_date\")\nSELECT val.game_id, val.id, val.release_date\n" +
                     "FROM (\n" +
                     "\tVALUES\n");
             gameKeywordsFile.write("BEGIN;\nINSERT INTO game_keywords (\"game_id\", \"keyword_id\")\nSELECT val.game_id, val.id\n" +
@@ -168,10 +170,13 @@ public class IgdbDownloader {
             gamesFile.write("BEGIN;\n");
             gamesFile.write("SET DATESTYLE TO ISO, YMD;\n");
             gamesFile.write("\\encoding utf8;\n");
-            paginate("games/?fields=*&order=name%3Adesc", new SqlConsumer() {
+            megaFile.write("SET DATESTYLE TO ISO, YMD;\n");
+            megaFile.write("SET CLIENT_ENCODING TO 'utf8';\n");
+            paginate("games/?fields=*&order=name%3Aasc", new SqlConsumer() {
                 @Override
                 public void accept(JSONObject game) {
                     //Game
+                    long id = game.getInt("id");
                     String name = "'" + escapeQuotesToPostgres(game.getString("name")) + "'",
                             summary = "null",
                             dateStr = "null";
@@ -179,70 +184,96 @@ public class IgdbDownloader {
                         summary = "'" + escapeQuotesToPostgres(game.getString("summary")) + "'";
                     }
                     if (game.has("first_release_date")) {
-                        dateStr = "'" + getISODateString(game.getLong("first_release_date")) + "'";
+                        dateStr = "DATE('" + getISODateString(game.getLong("first_release_date")) + "')";
                     }
-                    String gameQuery = "INSERT INTO games (id, name, summary, release) VALUES (" + game.getInt("id") + ", " + name + ", " + summary + ", " + dateStr + ") ON CONFLICT DO NOTHING;\n";
+                    String gameQuery = "INSERT INTO games (id, name, summary, release) VALUES (" + id + ", " + name + ", " + summary + ", " + dateStr + ") ON CONFLICT DO NOTHING;\n";
                     StringBuilder genreQueries = new StringBuilder(),
                             developerQueries = new StringBuilder(),
                             publisherQueries = new StringBuilder(),
                             platformQueries = new StringBuilder(),
                             keywordQueries = new StringBuilder();
-                    //Genres
-                    if (game.has("genres")) {
-                        JSONArray genres = game.getJSONArray("genres");
-                        for (int i = 0; i < genres.length(); i++) {
-                            genreQueries.append("(").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append("),\n");
-                        }
-                    }
+                    StringBuilder megaQuery = new StringBuilder(gameQuery);
                     //Developers
                     if (game.has("developers")) {
                         JSONArray developers = game.getJSONArray("developers");
+                        megaQuery.append("INSERT INTO game_developers (game_id, developer_id) SELECT val.game_id, val.id FROM (VALUES\n");    // We may not have all companies, do a special select to ignore companies we don't have
                         for (int i = 0; i < developers.length(); i++) {
                             developerQueries.append("(").append(game.getInt("id")).append(", ").append(developers.getInt(i)).append("),\n");
+                            megaQuery.append("\t(").append(id).append(", ").append(developers.getInt(i)).append(")").append(i < developers.length()-1 ? ",\n" : "\n");
                         }
+                        megaQuery.append(") AS val (game_id, id) JOIN companies ON companies.id = val.id ON CONFLICT DO NOTHING;\n");
                     }
                     //Publishers
                     if (game.has("publishers")) {
                         JSONArray publishers = game.getJSONArray("publishers");
+                        megaQuery.append("INSERT INTO game_publishers (game_id, publisher_id) SELECT val.game_id, val.id FROM (VALUES\n");
                         for (int i = 0; i < publishers.length(); i++) {
                             publisherQueries.append("(").append(game.getInt("id")).append(", ").append(publishers.getInt(i)).append("),\n");
+                            megaQuery.append("\t(").append(id).append(", ").append(publishers.getInt(i)).append(")").append(i < publishers.length()-1 ? ",\n" : "\n");
                         }
+                        megaQuery.append(") AS val (game_id, id) JOIN companies ON companies.id = val.id ON CONFLICT DO NOTHING;\n");
+                    }
+                    //Genres
+                    if (game.has("genres")) {
+                        JSONArray genres = game.getJSONArray("genres");
+                        megaQuery.append("INSERT INTO game_genres (game_id, genre_id) SELECT val.game_id, val.id FROM (VALUES\n");
+                        for (int i = 0; i < genres.length(); i++) {
+                            genreQueries.append("(").append(game.getInt("id")).append(", ").append(genres.getInt(i)).append("),\n");
+                            megaQuery.append("\t(").append(id).append(", ").append(genres.getInt(i)).append(")").append(i < genres.length()-1 ? ",\n" : "\n");
+                        }
+                        megaQuery.append(") AS val (game_id, id) JOIN genres ON genres.id = val.id ON CONFLICT DO NOTHING;\n");
                     }
                     //Platforms
                     if(game.has("release_dates")) {
                         JSONArray releaseDates = game.getJSONArray("release_dates");
+                        StringBuilder tempQuery = new StringBuilder();
                         for (int i = 0; i < releaseDates.length(); i++) {
                             JSONObject release = releaseDates.getJSONObject(i);
                             if(release.has("platform") && release.has("date")) {
                                 platformQueries.append("(").append(game.getInt("id")).append(", ").append(release.getInt("platform")).append(", DATE('").append(getISODateString(release.getLong("date"))).append("')),\n");
+                                tempQuery.append("\t(").append(game.getInt("id")).append(", ").append(release.getInt("platform")).append(", DATE('").append(getISODateString(release.getLong("date"))).append("'))").append(",\n");
                             }
+                        }
+                        if(tempQuery.length() > 0) {
+                            tempQuery.deleteCharAt(tempQuery.length() -2);  //Remove trailing comma
+                            megaQuery
+                                .append("INSERT INTO game_platforms (game_id, platform_id, release_date) SELECT val.game_id, val.id, val.release_date FROM(VALUES\n")
+                                .append(tempQuery.toString())
+                                .append(") AS val (game_id, id, release_date) JOIN platforms ON platforms.id = val.id ON CONFLICT DO NOTHING;\n");
                         }
                     }
                     //Keywords
                     if(game.has("keywords")) {
                         JSONArray keywords = game.getJSONArray("keywords");
+                        megaQuery.append("INSERT INTO game_keywords (game_id, keyword_id) SELECT val.game_id, val.id FROM(VALUES\n");
                         for (int i = 0; i < keywords.length(); i++) {
                             keywordQueries.append("(").append(game.getInt("id")).append(", ").append(keywords.getInt(i)).append("),\n");
+                            megaQuery.append("\t(").append(id).append(", ").append(keywords.getInt(i)).append(")").append(i < keywords.length()-1 ? ",\n" : "\n");
                         }
+                        megaQuery.append(") AS val (game_id, id) JOIN keywords ON keywords.id = val.id ON CONFLICT DO NOTHING;\n");
                     }
+                    megaQuery.append("\n");
                     try {
+                        IgdbDownloader.this.megaFile.write(megaQuery.toString());
+                        System.out.println(megaQuery);
                         IgdbDownloader.this.gamesFile.write(gameQuery);
-                        System.out.println(gameQuery);
+//                        System.out.println(gameQuery);
                         IgdbDownloader.this.gameGenresFile.write(genreQueries.toString());
-                        System.out.println(genreQueries.toString());
+//                        System.out.println(genreQueries.toString());
                         IgdbDownloader.this.gameDevelopersFile.write(developerQueries.toString());
-                        System.out.println(developerQueries.toString());
+//                        System.out.println(developerQueries.toString());
                         IgdbDownloader.this.gamePublishersFile.write(publisherQueries.toString());
-                        System.out.println(publisherQueries.toString());
+//                        System.out.println(publisherQueries.toString());
                         IgdbDownloader.this.gameKeywordsFile.write(keywordQueries.toString());
-                        System.out.println(keywordQueries.toString());
+//                        System.out.println(keywordQueries.toString());
                         IgdbDownloader.this.gamePlatformsFile.write(platformQueries.toString());
-                        System.out.println(platformQueries.toString());
+//                        System.out.println(platformQueries.toString());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             });
+            megaFile.close();
             gamesFile.write("COMMIT;\n");
             gamesFile.close();
             gameKeywordsFile.write(") AS val (game_id, id)\n" +
