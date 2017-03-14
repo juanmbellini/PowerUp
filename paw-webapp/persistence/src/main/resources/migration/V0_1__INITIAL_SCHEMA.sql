@@ -3,32 +3,10 @@
 --
 
 -- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.6rc1
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET row_security = off;
-
-DROP DATABASE "paw-2016b-02";
---
--- Name: paw-2016b-02; Type: DATABASE; Schema: -; Owner: paw-2016b-02
---
-
-CREATE DATABASE "paw-2016b-02" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
-
-
-ALTER DATABASE "paw-2016b-02" OWNER TO "paw-2016b-02";
-
-\connect -reuse-previous=on "dbname='paw-2016b-02'"
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -36,14 +14,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -74,11 +52,11 @@ ALTER TABLE comment_likes OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE comment_likes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE comment_likes_id_seq OWNER TO "paw-2016b-02";
@@ -112,11 +90,11 @@ ALTER TABLE comments OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE comments_id_seq OWNER TO "paw-2016b-02";
@@ -145,11 +123,11 @@ ALTER TABLE companies OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE companies_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE companies_id_seq OWNER TO "paw-2016b-02";
@@ -179,11 +157,11 @@ ALTER TABLE game_developers OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_developers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_developers_id_seq OWNER TO "paw-2016b-02";
@@ -213,11 +191,11 @@ ALTER TABLE game_genres OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_genres_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_genres_id_seq OWNER TO "paw-2016b-02";
@@ -247,11 +225,11 @@ ALTER TABLE game_keywords OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_keywords_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_keywords_id_seq OWNER TO "paw-2016b-02";
@@ -283,11 +261,11 @@ ALTER TABLE game_pictures OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_pictures_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_pictures_id_seq OWNER TO "paw-2016b-02";
@@ -318,11 +296,11 @@ ALTER TABLE game_platforms OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_platforms_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_platforms_id_seq OWNER TO "paw-2016b-02";
@@ -353,11 +331,11 @@ ALTER TABLE game_play_statuses OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_play_statuses_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_play_statuses_id_seq OWNER TO "paw-2016b-02";
@@ -387,11 +365,11 @@ ALTER TABLE game_publishers OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_publishers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_publishers_id_seq OWNER TO "paw-2016b-02";
@@ -422,11 +400,11 @@ ALTER TABLE game_scores OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_scores_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_scores_id_seq OWNER TO "paw-2016b-02";
@@ -457,11 +435,11 @@ ALTER TABLE game_videos OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE game_videos_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE game_videos_id_seq OWNER TO "paw-2016b-02";
@@ -495,11 +473,11 @@ ALTER TABLE games OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE games_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE games_id_seq OWNER TO "paw-2016b-02";
@@ -528,11 +506,11 @@ ALTER TABLE genres OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE genres_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE genres_id_seq OWNER TO "paw-2016b-02";
@@ -561,11 +539,11 @@ ALTER TABLE keywords OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE keywords_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE keywords_id_seq OWNER TO "paw-2016b-02";
@@ -594,11 +572,11 @@ ALTER TABLE platforms OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE platforms_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE platforms_id_seq OWNER TO "paw-2016b-02";
@@ -635,11 +613,11 @@ ALTER TABLE reviews OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE reviews_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE reviews_id_seq OWNER TO "paw-2016b-02";
@@ -669,11 +647,11 @@ ALTER TABLE shelf_games OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE shelf_games_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE shelf_games_id_seq OWNER TO "paw-2016b-02";
@@ -705,11 +683,11 @@ ALTER TABLE shelves OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE shelves_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE shelves_id_seq OWNER TO "paw-2016b-02";
@@ -768,11 +746,11 @@ ALTER TABLE thread_likes OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE thread_likes_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE thread_likes_id_seq OWNER TO "paw-2016b-02";
@@ -806,11 +784,11 @@ ALTER TABLE threads OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE threads_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE threads_id_seq OWNER TO "paw-2016b-02";
@@ -840,11 +818,11 @@ ALTER TABLE user_authorities OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE user_authorities_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE user_authorities_id_seq OWNER TO "paw-2016b-02";
@@ -878,11 +856,11 @@ ALTER TABLE users OWNER TO "paw-2016b-02";
 --
 
 CREATE SEQUENCE users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE users_id_seq OWNER TO "paw-2016b-02";
@@ -895,168 +873,168 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: comment_likes id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comment_likes ALTER COLUMN id SET DEFAULT nextval('comment_likes_id_seq'::regclass);
 
 
 --
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
 --
--- Name: companies id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY companies ALTER COLUMN id SET DEFAULT nextval('companies_id_seq'::regclass);
 
 
 --
--- Name: game_developers id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_developers ALTER COLUMN id SET DEFAULT nextval('game_developers_id_seq'::regclass);
 
 
 --
--- Name: game_genres id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_genres ALTER COLUMN id SET DEFAULT nextval('game_genres_id_seq'::regclass);
 
 
 --
--- Name: game_keywords id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_keywords ALTER COLUMN id SET DEFAULT nextval('game_keywords_id_seq'::regclass);
 
 
 --
--- Name: game_pictures id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_pictures ALTER COLUMN id SET DEFAULT nextval('game_pictures_id_seq'::regclass);
 
 
 --
--- Name: game_platforms id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_platforms ALTER COLUMN id SET DEFAULT nextval('game_platforms_id_seq'::regclass);
 
 
 --
--- Name: game_play_statuses id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_play_statuses ALTER COLUMN id SET DEFAULT nextval('game_play_statuses_id_seq'::regclass);
 
 
 --
--- Name: game_publishers id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_publishers ALTER COLUMN id SET DEFAULT nextval('game_publishers_id_seq'::regclass);
 
 
 --
--- Name: game_scores id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_scores ALTER COLUMN id SET DEFAULT nextval('game_scores_id_seq'::regclass);
 
 
 --
--- Name: game_videos id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_videos ALTER COLUMN id SET DEFAULT nextval('game_videos_id_seq'::regclass);
 
 
 --
--- Name: games id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regclass);
 
 
 --
--- Name: genres id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY genres ALTER COLUMN id SET DEFAULT nextval('genres_id_seq'::regclass);
 
 
 --
--- Name: keywords id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY keywords ALTER COLUMN id SET DEFAULT nextval('keywords_id_seq'::regclass);
 
 
 --
--- Name: platforms id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY platforms ALTER COLUMN id SET DEFAULT nextval('platforms_id_seq'::regclass);
 
 
 --
--- Name: reviews id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY reviews ALTER COLUMN id SET DEFAULT nextval('reviews_id_seq'::regclass);
 
 
 --
--- Name: shelf_games id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelf_games ALTER COLUMN id SET DEFAULT nextval('shelf_games_id_seq'::regclass);
 
 
 --
--- Name: shelves id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelves ALTER COLUMN id SET DEFAULT nextval('shelves_id_seq'::regclass);
 
 
 --
--- Name: thread_likes id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY thread_likes ALTER COLUMN id SET DEFAULT nextval('thread_likes_id_seq'::regclass);
 
 
 --
--- Name: threads id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY threads ALTER COLUMN id SET DEFAULT nextval('threads_id_seq'::regclass);
 
 
 --
--- Name: user_authorities id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY user_authorities ALTER COLUMN id SET DEFAULT nextval('user_authorities_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
+-- Name: id; Type: DEFAULT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: comment_likes comment_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comment_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comment_likes
@@ -1064,7 +1042,7 @@ ALTER TABLE ONLY comment_likes
 
 
 --
--- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comments
@@ -1072,7 +1050,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: companies_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY companies
@@ -1080,7 +1058,7 @@ ALTER TABLE ONLY companies
 
 
 --
--- Name: game_developers game_developers_game_id_developer_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_developers_game_id_developer_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_developers
@@ -1088,7 +1066,7 @@ ALTER TABLE ONLY game_developers
 
 
 --
--- Name: game_developers game_developers_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_developers_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_developers
@@ -1096,7 +1074,7 @@ ALTER TABLE ONLY game_developers
 
 
 --
--- Name: game_genres game_genres_game_id_genre_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_genres_game_id_genre_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_genres
@@ -1104,7 +1082,7 @@ ALTER TABLE ONLY game_genres
 
 
 --
--- Name: game_genres game_genres_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_genres_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_genres
@@ -1112,7 +1090,7 @@ ALTER TABLE ONLY game_genres
 
 
 --
--- Name: game_keywords game_keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_keywords
@@ -1120,7 +1098,7 @@ ALTER TABLE ONLY game_keywords
 
 
 --
--- Name: game_pictures game_pictures_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_pictures_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_pictures
@@ -1128,7 +1106,7 @@ ALTER TABLE ONLY game_pictures
 
 
 --
--- Name: game_platforms game_platforms_game_id_platform_id_release_date_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_platforms_game_id_platform_id_release_date_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_platforms
@@ -1136,7 +1114,7 @@ ALTER TABLE ONLY game_platforms
 
 
 --
--- Name: game_platforms game_platforms_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_platforms_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_platforms
@@ -1144,7 +1122,7 @@ ALTER TABLE ONLY game_platforms
 
 
 --
--- Name: game_play_statuses game_play_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_play_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_play_statuses
@@ -1152,7 +1130,7 @@ ALTER TABLE ONLY game_play_statuses
 
 
 --
--- Name: game_play_statuses game_play_statuses_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_play_statuses_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_play_statuses
@@ -1160,7 +1138,7 @@ ALTER TABLE ONLY game_play_statuses
 
 
 --
--- Name: game_publishers game_publishers_game_id_publisher_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_publishers_game_id_publisher_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_publishers
@@ -1168,7 +1146,7 @@ ALTER TABLE ONLY game_publishers
 
 
 --
--- Name: game_publishers game_publishers_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_publishers_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_publishers
@@ -1176,7 +1154,7 @@ ALTER TABLE ONLY game_publishers
 
 
 --
--- Name: game_scores game_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_scores
@@ -1184,7 +1162,7 @@ ALTER TABLE ONLY game_scores
 
 
 --
--- Name: game_scores game_scores_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_scores_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_scores
@@ -1192,7 +1170,7 @@ ALTER TABLE ONLY game_scores
 
 
 --
--- Name: game_videos game_videos_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_videos_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_videos
@@ -1200,7 +1178,7 @@ ALTER TABLE ONLY game_videos
 
 
 --
--- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY games
@@ -1208,7 +1186,7 @@ ALTER TABLE ONLY games
 
 
 --
--- Name: genres genres_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: genres_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY genres
@@ -1216,7 +1194,7 @@ ALTER TABLE ONLY genres
 
 
 --
--- Name: keywords keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: keywords_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY keywords
@@ -1224,7 +1202,7 @@ ALTER TABLE ONLY keywords
 
 
 --
--- Name: platforms platforms_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: platforms_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY platforms
@@ -1232,7 +1210,7 @@ ALTER TABLE ONLY platforms
 
 
 --
--- Name: reviews reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY reviews
@@ -1240,7 +1218,7 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: reviews reviews_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: reviews_user_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY reviews
@@ -1248,7 +1226,7 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: shelf_games shelf_games_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelf_games_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelf_games
@@ -1256,7 +1234,7 @@ ALTER TABLE ONLY shelf_games
 
 
 --
--- Name: shelf_games shelf_games_shelf_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelf_games_shelf_id_game_id_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelf_games
@@ -1264,7 +1242,7 @@ ALTER TABLE ONLY shelf_games
 
 
 --
--- Name: shelves shelves_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelves_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelves
@@ -1272,7 +1250,7 @@ ALTER TABLE ONLY shelves
 
 
 --
--- Name: spring_session_attributes spring_session_attributes_pk; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: spring_session_attributes_pk; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY spring_session_attributes
@@ -1280,7 +1258,7 @@ ALTER TABLE ONLY spring_session_attributes
 
 
 --
--- Name: spring_session spring_session_pk; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: spring_session_pk; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY spring_session
@@ -1288,7 +1266,7 @@ ALTER TABLE ONLY spring_session
 
 
 --
--- Name: thread_likes thread_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: thread_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY thread_likes
@@ -1296,7 +1274,7 @@ ALTER TABLE ONLY thread_likes
 
 
 --
--- Name: threads threads_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: threads_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY threads
@@ -1304,7 +1282,7 @@ ALTER TABLE ONLY threads
 
 
 --
--- Name: user_authorities user_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: user_authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY user_authorities
@@ -1312,7 +1290,7 @@ ALTER TABLE ONLY user_authorities
 
 
 --
--- Name: user_authorities user_authorities_username_authority_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: user_authorities_username_authority_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY user_authorities
@@ -1320,7 +1298,7 @@ ALTER TABLE ONLY user_authorities
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: users_email_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY users
@@ -1328,7 +1306,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY users
@@ -1336,7 +1314,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: users_username_key; Type: CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY users
@@ -1358,7 +1336,7 @@ CREATE INDEX spring_session_ix1 ON spring_session USING btree (last_access_time)
 
 
 --
--- Name: comment_likes comment_likes_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comment_likes_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comment_likes
@@ -1366,7 +1344,7 @@ ALTER TABLE ONLY comment_likes
 
 
 --
--- Name: comment_likes comment_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comment_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comment_likes
@@ -1374,7 +1352,7 @@ ALTER TABLE ONLY comment_likes
 
 
 --
--- Name: comments comments_parent_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comments_parent_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comments
@@ -1382,7 +1360,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: comments comments_thread_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comments_thread_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comments
@@ -1390,7 +1368,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: comments comments_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: comments_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY comments
@@ -1398,7 +1376,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: game_developers game_developers_developer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_developers_developer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_developers
@@ -1406,7 +1384,7 @@ ALTER TABLE ONLY game_developers
 
 
 --
--- Name: game_developers game_developers_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_developers_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_developers
@@ -1414,7 +1392,7 @@ ALTER TABLE ONLY game_developers
 
 
 --
--- Name: game_genres game_genres_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_genres_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_genres
@@ -1422,7 +1400,7 @@ ALTER TABLE ONLY game_genres
 
 
 --
--- Name: game_genres game_genres_genre_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_genres_genre_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_genres
@@ -1430,7 +1408,7 @@ ALTER TABLE ONLY game_genres
 
 
 --
--- Name: game_keywords game_keywords_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_keywords_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_keywords
@@ -1438,7 +1416,7 @@ ALTER TABLE ONLY game_keywords
 
 
 --
--- Name: game_keywords game_keywords_keyword_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_keywords_keyword_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_keywords
@@ -1446,7 +1424,7 @@ ALTER TABLE ONLY game_keywords
 
 
 --
--- Name: game_pictures game_pictures_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_pictures_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_pictures
@@ -1454,7 +1432,7 @@ ALTER TABLE ONLY game_pictures
 
 
 --
--- Name: game_platforms game_platforms_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_platforms_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_platforms
@@ -1462,7 +1440,7 @@ ALTER TABLE ONLY game_platforms
 
 
 --
--- Name: game_platforms game_platforms_platform_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_platforms_platform_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_platforms
@@ -1470,7 +1448,7 @@ ALTER TABLE ONLY game_platforms
 
 
 --
--- Name: game_play_statuses game_play_statuses_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_play_statuses_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_play_statuses
@@ -1478,7 +1456,7 @@ ALTER TABLE ONLY game_play_statuses
 
 
 --
--- Name: game_play_statuses game_play_statuses_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_play_statuses_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_play_statuses
@@ -1486,7 +1464,7 @@ ALTER TABLE ONLY game_play_statuses
 
 
 --
--- Name: game_publishers game_publishers_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_publishers_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_publishers
@@ -1494,7 +1472,7 @@ ALTER TABLE ONLY game_publishers
 
 
 --
--- Name: game_publishers game_publishers_publisher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_publishers_publisher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_publishers
@@ -1502,7 +1480,7 @@ ALTER TABLE ONLY game_publishers
 
 
 --
--- Name: game_scores game_scores_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_scores_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_scores
@@ -1510,7 +1488,7 @@ ALTER TABLE ONLY game_scores
 
 
 --
--- Name: game_scores game_scores_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_scores_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_scores
@@ -1518,7 +1496,7 @@ ALTER TABLE ONLY game_scores
 
 
 --
--- Name: game_videos game_videos_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: game_videos_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY game_videos
@@ -1526,7 +1504,7 @@ ALTER TABLE ONLY game_videos
 
 
 --
--- Name: reviews reviews_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: reviews_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY reviews
@@ -1534,7 +1512,7 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: reviews reviews_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: reviews_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY reviews
@@ -1542,7 +1520,7 @@ ALTER TABLE ONLY reviews
 
 
 --
--- Name: shelf_games shelf_games_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelf_games_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelf_games
@@ -1550,7 +1528,7 @@ ALTER TABLE ONLY shelf_games
 
 
 --
--- Name: shelf_games shelf_games_shelf_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelf_games_shelf_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelf_games
@@ -1558,7 +1536,7 @@ ALTER TABLE ONLY shelf_games
 
 
 --
--- Name: shelves shelves_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: shelves_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY shelves
@@ -1566,7 +1544,7 @@ ALTER TABLE ONLY shelves
 
 
 --
--- Name: spring_session_attributes spring_session_attributes_fk; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: spring_session_attributes_fk; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY spring_session_attributes
@@ -1574,7 +1552,7 @@ ALTER TABLE ONLY spring_session_attributes
 
 
 --
--- Name: thread_likes thread_likes_thread_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: thread_likes_thread_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY thread_likes
@@ -1582,7 +1560,7 @@ ALTER TABLE ONLY thread_likes
 
 
 --
--- Name: thread_likes thread_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: thread_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY thread_likes
@@ -1590,7 +1568,7 @@ ALTER TABLE ONLY thread_likes
 
 
 --
--- Name: threads threads_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: threads_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY threads
@@ -1598,7 +1576,7 @@ ALTER TABLE ONLY threads
 
 
 --
--- Name: user_authorities user_authorities_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
+-- Name: user_authorities_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: paw-2016b-02
 --
 
 ALTER TABLE ONLY user_authorities

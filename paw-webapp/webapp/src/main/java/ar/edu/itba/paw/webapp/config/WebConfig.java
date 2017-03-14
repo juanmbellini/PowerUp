@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.config;
 
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.MigrationVersion;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -98,10 +99,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean(initMethod = "migrate")   // Migrate DB on app start
     Flyway flyway() {
         Flyway flyway = new Flyway();
-        flyway.setBaselineOnMigrate(true);
-        flyway.setLocations("classpath:migration");
         flyway.setDataSource(dataSource());
-        flyway.setAllowMixedMigrations(true);
+        flyway.setLocations("classpath:migration");
+        flyway.setBaselineOnMigrate(true);
+        flyway.setBaselineVersion(MigrationVersion.fromVersion("0.2"));
         return flyway;
     }
 
