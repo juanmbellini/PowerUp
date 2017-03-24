@@ -3,15 +3,18 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
-import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
-import ar.edu.itba.paw.webapp.interfaces.ReviewService;
+import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
+import ar.edu.itba.paw.webapp.interfaces.*;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Implementation of the review service.
@@ -20,52 +23,27 @@ import java.util.Set;
 @Transactional
 public class ReviewServiceImpl implements ReviewService {
 
+    private final ReviewDao reviewDao;
+
+    private final UserDao userDao;
+
+    private final GameDao gameDao;
+
+
     @Autowired
-    private ReviewDao reviewDao;
-
-    @Override
-    public Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException {
-        return reviewDao.create(reviewerId, gameId, review, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+    public ReviewServiceImpl(ReviewDao reviewDao, UserDao userDao, GameDao gameDao) {
+        this.reviewDao = reviewDao;
+        this.userDao = userDao;
+        this.gameDao = gameDao;
     }
 
-    @Override
-    public Set<Review> findByGameId(long id) throws NoSuchGameException{
-        return reviewDao.findByGameId(id);
-    }
 
     @Override
-    public Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) throws NoSuchGameException {
-        return reviewDao.findPageByGameId(id, pageNumber, pageSize);
-    }
-
-    @Override
-    public Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException {
-        return reviewDao.findRecentByGameId(id, limit);
-    }
-
-    @Override
-    public Set<Review> findByUserId(long id) throws NoSuchUserException {
-        return reviewDao.findByUserId(id);
-    }
-
-    @Override
-    public Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) throws NoSuchGameException {
-        return reviewDao.findPageByUserId(id, pageNumber, pageSize);
-    }
-
-    @Override
-    public Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException {
-        return reviewDao.findRecentByUserId(id, limit);
-    }
-
-    @Override
-    public Set<Review> findByUsername(String username) throws NoSuchUserException {
-        return reviewDao.findByUsername(username);
-    }
-
-    @Override
-    public Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException {
-        return reviewDao.findRecentByUsername(username, limit);
+    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+                                   int pageNumber, int pageSize,
+                                   ReviewDao.SortingType sortingType, SortDirection sortDirection) {
+        return reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, userNameFilter,
+                pageNumber, pageSize, sortingType, sortDirection);
     }
 
     @Override
@@ -74,12 +52,78 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public Review create(long reviewerId, long gameId,
+                         String reviewBody, int storyScore, int graphicsScore, int audioScore,
+                         int controlsScore, int funScore) throws NoSuchEntityException {
+        return reviewDao.create(userDao.findById(reviewerId), gameDao.findById(gameId),
+                reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+    }
+
+    @Override
+    public void update(long reviewId, long updaterUserId,
+                       String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                       Integer controlsScore, Integer funScore) {
+        reviewDao.update(checkReviewValuesAndAuthoring(reviewId, updaterUserId),
+                reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+    }
+
+    @Override
+    public void delete(long reviewId, long deleterUserId) {
+        reviewDao.delete(checkReviewValuesAndAuthoring(reviewId, deleterUserId));
+    }
+
+
+    @Override
+    @Deprecated
     public Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException {
         return reviewDao.find(userId, gameId);
     }
 
-    @Override
-    public void delete(long reviewId) {
-        reviewDao.delete(reviewId);
+
+
+
+
+    /*
+     * Helpers
+     */
+
+    /**
+     * Checks if the values are correct (including authoring).
+     * Upon success,  it returns the {@link Review} with the given {@code reviewId}. Otherwise, an exception is thrown.
+     *
+     * @param reviewId The review id.
+     * @param userId   The user id.
+     * @return The review with the given {@code reviewId}.
+     */
+    private Review checkReviewValuesAndAuthoring(long reviewId, long userId) {
+        Review review = checkReviewValues(reviewId, userId);
+        if (userId != review.getUser().getId()) {
+            throw new UnauthorizedException("Review #" + reviewId + " does not belong to user #" + userId);
+        }
+        return review;
+    }
+
+
+    /**
+     * Checks if the values are correct (without authoring).
+     * Upon success, it returns the {@link Review} with the given {@code reviewId}. Otherwise, an exception is thrown.
+     *
+     * @param reviewId The review id.
+     * @param userId   The user id.
+     * @return The review with the given {@code reviewId}
+     */
+    private Review checkReviewValues(long reviewId, long userId) {
+        Review review = reviewDao.findById(reviewId);
+        List<String> missings = new LinkedList<>();
+        if (review == null) {
+            missings.add("reviewId");
+        }
+        if (userDao.findById(userId) == null) {
+            missings.add("userId");
+        }
+        if (!missings.isEmpty()) {
+            throw new NoSuchEntityException(missings);
+        }
+        return review;
     }
 }

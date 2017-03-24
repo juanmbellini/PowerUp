@@ -1,10 +1,10 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
@@ -14,12 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by juanlipuma on Nov/7/16.
@@ -42,98 +39,77 @@ public class ReviewHibernateDao implements ReviewDao {
         this.userDao = userDao;
     }
 
+
     @Override
-    public Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException {
-        User user = userDao.findById(reviewerId);
-        if(user == null) {
-            throw new NoSuchUserException(reviewerId);
+    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+                                   int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
+        if ((gameIdFilter != null && gameIdFilter <= 0) || (userIdFilter != null && userIdFilter <= 0)
+                || userNameFilter != null && userNameFilter.isEmpty()) {
+            throw new IllegalArgumentException();
         }
-        Game game = gameDao.findById(gameId);
-        if(game == null) {
-            throw new NoSuchGameException(gameId);
+        // Game id filter
+        String gameIdFilterString = "";
+        if (gameIdFilter == null) {
+            gameIdFilterString = "true = true";
+        } else {
+            gameIdFilterString = "game.id = :gameId";
         }
-        final Review reviewObj = new Review(user, game, review, storyScore, graphicsScore, audioScore, controlsScore, funScore);
-        em.persist(reviewObj);
-        return reviewObj;
+        // Game name filter
+        String gameNameFilterString = "";
+        if (gameNameFilter == null) {
+            gameNameFilterString = "true = true";
+        } else {
+            gameNameFilterString = "game.name = :gameName";
+        }
+        // User id filter
+        String userIdFilterString = "";
+        if (userIdFilter == null) {
+            userIdFilterString = "true = true";
+        } else {
+            userIdFilterString = "user.id = :userId";
+        }
+        // User name filter
+        String userNameFilterString = "";
+        if (userNameFilter == null) {
+            userNameFilterString = "true = true";
+        } else {
+            userNameFilterString = "user.username = :userName";
+        }
+
+        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize,
+                "FROM Review WHERE " + gameIdFilterString + " AND " + gameNameFilterString +
+                        " AND " + userIdFilterString + " AND " + userNameFilterString +
+                        " ORDER BY " + sortingType.getFieldName() + " " + sortDirection.getQLKeyword(),
+                parameters(gameIdFilter, gameNameFilter, userIdFilter, userNameFilter));
     }
 
     @Override
-    public Set<Review> findByGameId(long id) {
-        if(!gameDao.existsWithId(id)) {
-            throw new NoSuchGameException(id);
-        }
-        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1", id));
+    public Review create(User reviewer, Game game,
+                         String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                         Integer controlsScore, Integer funScore) {
+        final Review review =
+                new Review(reviewer, game, reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        em.persist(review);
+        return review;
     }
 
     @Override
-    public Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) {
-        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, "FROM Review AS R WHERE R.game.id = ?1", id);
+    public void update(Review review,
+                       String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                       Integer controlsScore, Integer funScore) {
+        if (review == null) {
+            throw new IllegalArgumentException();
+        }
+        review.update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        em.merge(review);
     }
 
     @Override
-    public Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException {
-        if(!gameDao.existsWithId(id)) {
-            throw new NoSuchGameException(id);
+    public void delete(Review review) {
+        if (review == null) {
+            throw new IllegalArgumentException();
         }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.game.id = :id ORDER BY R.date DESC", Review.class);
-        baseQuery.setParameter("id", id);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Review> findByUserId(long id) {
-        if(!userDao.existsWithId(id)) {
-            throw new NoSuchUserException(id);
-        }
-        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.user.id = ?1", id));
-    }
-
-    @Override
-    public Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) {
-        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, "FROM Review AS R WHERE R.user.id = ?1", id);
-    }
-
-    @Override
-    public Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException {
-        if(!userDao.existsWithId(id)) {
-            throw new NoSuchUserException(id);
-        }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.id = :id ORDER BY R.date DESC", Review.class);
-        baseQuery.setParameter("id", id);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Review> findByUsername(String name) {
-        if(!userDao.existsWithUsername(name)) {
-            throw new NoSuchUserException(name);
-        }
-        return new LinkedHashSet<>(DaoHelper.findManyWithConditions(em, Review.class, "FROM Review AS R WHERE R.user.username = ?1", name));
-    }
-
-    @Override
-    public Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException {
-        if(!userDao.existsWithUsername(username)) {
-            throw new NoSuchUserException(username);
-        }
-        TypedQuery<Review> baseQuery = em.createQuery("FROM Review AS R where R.user.username = :username ORDER BY R.date DESC", Review.class);
-        baseQuery.setParameter("username", username);
-        baseQuery.setMaxResults(limit);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
+        em.remove(review);
     }
 
     @Override
@@ -142,21 +118,44 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
+    @Deprecated
     public Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException {
-        if(!userDao.existsWithId(userId)) {
+        if (!userDao.existsWithId(userId)) {
             throw new NoSuchUserException(userId);
         }
-        if(!gameDao.existsWithId(gameId)) {
+        if (!gameDao.existsWithId(gameId)) {
             throw new NoSuchGameException(gameId);
         }
         return DaoHelper.findSingleWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1 AND R.user.id = ?2", gameId, userId);
     }
 
-    @Override
-    public void delete(long reviewId) {
-        Review review = findById(reviewId);
-        if(review==null) return;
-        em.remove(review);
 
+    /**
+     * Creates the array of parameters to be used in the
+     * {@link #getReviews(Long, String, Long, String, int, int, SortingType, SortDirection)} method.
+     *
+     * @param gameIdFilter   The game id filter.
+     * @param gameNameFilter The game name filter.
+     * @param userIdFilter   The user id filter.
+     * @param userNameFilter The username filter.
+     * @return The array of parameters.
+     */
+    private Object[] parameters(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter) {
+        List<Object> parameters = new LinkedList<>();
+        if (gameIdFilter != null) {
+            parameters.add(gameIdFilter);
+        }
+        if (gameNameFilter != null) {
+            parameters.add("%" + gameNameFilter + "%");
+        }
+        if (userIdFilter != null) {
+            parameters.add(userIdFilter);
+        }
+        if (userNameFilter != null) {
+            parameters.add("%" + userNameFilter + "%");
+        }
+        return parameters.toArray();
     }
+
+
 }

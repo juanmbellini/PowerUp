@@ -35,6 +35,7 @@ import java.util.*;
  */
 @Controller
 //@Transactional  //TODO die die die die die die die die
+@Deprecated
 public class GameController extends BaseController {
 
 
@@ -247,7 +248,7 @@ public class GameController extends BaseController {
         }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
-        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
+//        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
         mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
         mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
@@ -319,13 +320,13 @@ public class GameController extends BaseController {
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
-                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
+//                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
                 }
                 //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
                 mav.addObject("game", gameService.findById(gameId));
             } else {
                 //Find by user ID
-                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
+//                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
                 mav.addObject("user", userService.findById(userId));
             }
             mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
@@ -390,7 +391,7 @@ public class GameController extends BaseController {
             return new ModelAndView("error400");
         }
         long gameId = review.getGame().getId();
-        reviewService.delete(reviewId);
+        reviewService.delete(reviewId, null);
         return new ModelAndView("redirect:/game?id=" + gameId);
     }
 
