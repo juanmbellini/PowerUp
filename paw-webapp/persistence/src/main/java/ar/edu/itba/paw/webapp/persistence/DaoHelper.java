@@ -165,4 +165,35 @@ import java.util.List;
             return Page.emptyPage();
         }
     }
-}
+
+    /***
+     * Checks for existence of an entity using COUNT with the entity's ID.
+     *
+     * @param em The entity manager
+     * @param klass The entity's class
+     * @param id The entity's ID
+     * @param <T> The entity class as a type parameter
+     * @return Whether such entity exists.
+     */
+    /*package*/ static <T> boolean exists(EntityManager em, Class<T> klass, long id) {
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM " + klass.getName() + " WHERE id = ?1", Long.class);
+        query.setParameter(1, id);
+        return query.getSingleResult() > 0;
+    }
+
+    /***
+     * Checks for existence of an entity using COUNT with conditions.  For ID-based search, see {@link #exists(EntityManager, Class, long)}.
+     *
+     * @param em The entity manager
+     * @param query The query to execute. Can be prefixed with {@code "SELECT COUNT(*)"} or not.
+     * @param params The query parameters.
+     * @return Whether such entity exists.
+     */
+    /*package*/ static boolean exists(EntityManager em, String query, Object... params) {
+        if(!query.toUpperCase().startsWith("SELECT COUNT")) {
+            query = "SELECT COUNT(*) " + query;
+        }
+        //noinspection ConstantConditions - The count should never return null
+        return findSingleWithConditions(em, Long.class, query, params) > 0;
+    }
+ }
