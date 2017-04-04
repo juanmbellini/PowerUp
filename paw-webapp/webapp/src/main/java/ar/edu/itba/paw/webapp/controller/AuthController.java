@@ -37,7 +37,21 @@ public class AuthController {
      */
     @OPTIONS
     @Path("/login")
-    public Response options() {
+    public Response loginOptions() {
+        Response.ResponseBuilder result = Response
+            .ok()
+            .allow("HEAD", "OPTIONS", "POST")
+            .type(MediaType.TEXT_HTML)                                //Required by CORS
+            .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    /**
+     * @see #loginOptions()
+     */
+    @OPTIONS
+    @Path("/logout")
+    public Response logoutOptions() {
         Response.ResponseBuilder result = Response
             .ok()
             .allow("HEAD", "OPTIONS", "POST")
