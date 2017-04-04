@@ -1,16 +1,15 @@
 package ar.edu.itba.paw.webapp.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.MigrationVersion;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.DatabasePopulator;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -40,12 +39,6 @@ import java.util.Properties;
 @ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Value("classpath:schema.sql")
-    private Resource schemaSql;
-
-    @Value("classpath:initial-data.sql")
-    private Resource initialDataSql;
-
     @Bean
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -67,6 +60,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
+    @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPackagesToScan("ar.edu.itba.paw.webapp.model");
@@ -83,8 +77,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return factoryBean;
     }
     @Bean
-    public PlatformTransactionManager transactionManager(
-            final EntityManagerFactory emf) {
+    public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
 
@@ -101,6 +94,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         final DataSourceInitializer dsi = new DataSourceInitializer();
         dsi.setDataSource(ds);
         return dsi;
+    }
+
+    @Bean(initMethod = "migrate")   // Migrate DB on app start
+    Flyway flyway() {
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(dataSource());
+        flyway.setLocations("classpath:migration");
+        flyway.setBaselineOnMigrate(true);
+        flyway.setBaselineVersion(MigrationVersion.fromVersion("0.2"));
+        return flyway;
     }
 
     @Override
@@ -150,14 +153,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;
-    }
-
-    @Bean
-    /*package*/ DatabasePopulator databasePopulator() {
-        final ResourceDatabasePopulator dbp = new ResourceDatabasePopulator();
-        dbp.addScript(schemaSql); //TODO esto sirve de algo?
-//        dbp.addScript(initialDataSql);
-        return dbp;
     }
 
 //    @Bean
