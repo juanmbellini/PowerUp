@@ -68,15 +68,16 @@ define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
         $scope.apiLocation = 'http://localhost:8080/api';
 
         $scope.isLoggedIn = SessionService.isLoggedIn;
-        $scope.currentUser = SessionService.getCurrentUser();
 
+        $scope.currentUser = SessionService.getCurrentUser();
         // Watch the current user to always keep it updated
         $scope.$watch(
-            function() {
-                return SessionService.getCurrentUser();
-            }, function(newVal) {
+            SessionService.getCurrentUser,
+            function(newVal) {
                 $scope.currentUser = newVal;
-            });
+            },
+            true    // This is necessary because getCurrentUser returns a different object instance every time. With this as true, we check for value equality rather than instance equality
+        );
 
         // Restangular.all('users').getList()  // GET: /users
         //   .then(function(users) {

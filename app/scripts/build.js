@@ -25,9 +25,10 @@ require.config({
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
-        sessionService: 'services/sessionService',
-        'csrf-service': 'services/csrfService',
-        'angular-slick': '../../bower_components/angular-slick/dist/slick'
+        sessionService: 'services/SessionService',
+        'csrf-service': 'services/CsrfService',
+        'angular-slick': '../../bower_components/angular-slick/dist/slick',
+        'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage'
     },
     shim: {
         jquery: {
@@ -102,6 +103,11 @@ require.config({
             ]
         },
         'csrf-service': {
+            deps: [
+                'angular'
+            ]
+        },
+        'angular-local-storage': {
             deps: [
                 'angular'
             ]

@@ -1,12 +1,8 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'angular-local-storage'], function(powerUp) {
 
-	powerUp.service('CsrfService', ['$log', 'Restangular', function($log, Restangular) {
-        var token = null;
-        var tokenHeader = null;
-        var tokenParam = null;
+	powerUp.service('CsrfService', ['$log', 'Restangular', 'localStorageService', function($log, Restangular, LocalStorage) {
         var trackingToken = false;
-
 
 
         /**
@@ -18,7 +14,7 @@ define(['powerUp'], function(powerUp) {
          */
         function trackToken() {
             if (trackingToken) {
-                $log.warn('CsrfService is already tracking the CSRF token. Ignoring second call to trackToken().');
+                $log.warn('CsrfService is already tracking the CSRF token. Ignoring call to trackToken().');
                 return;
             }
             trackingToken = true;
@@ -34,14 +30,14 @@ define(['powerUp'], function(powerUp) {
                     var csrfHeaderName = response.headers('X-CSRF-HEADER');
                     if (csrfHeaderName !== null) {
                         var newToken = response.headers(csrfHeaderName);
-                        if (newToken !== getToken()) {
-                            $log.debug(getToken() === null ? 'Setting' : 'Updating', 'CSRF token');
+                        var oldToken = getToken();
+                        if (newToken !== oldToken) {
+                            $log.debug(oldToken === null ? 'Setting' : 'Updating', 'CSRF token');
                         } else {
                             $log.debug('No change in CSRF token, overwriting anyway');
                         }
                         setTokenHeader(csrfHeaderName);
                         setToken(newToken);
-                        setTokenParam(response.headers('X-CSRF-PARAM'));
                     } else {
                         $log.warn('No CSRF header present on a CSRF-protected endpoint, make sure this is not a bug!');
                     }
@@ -54,7 +50,7 @@ define(['powerUp'], function(powerUp) {
          * @returns {String|null} The saved CSRF token, or null if not set.
          */
         function getToken() {
-            return token;
+            return LocalStorage.get('csrfToken');
         }
 
         /**
@@ -63,20 +59,24 @@ define(['powerUp'], function(powerUp) {
          * @param newToken The new token.
          */
         function setToken(newToken) {
-            token = newToken;
+            if (newToken === null) {
+                LocalStorage.remove('csrfToken');
+            } else {
+                LocalStorage.set('csrfToken', newToken);
+            }
         }
 
         /**
          * @returns {boolean} Whether a token is registered in the CsrfService.
          */
         function isTokenSet() {
-            return token !== null;
+            return getToken() !== null;
         }
 
         /**
          * Requests a CSRF token from the API and registers it in the CsrfService.
          *
-         * @param callback Callback to run on success.
+         * @param callback (Optional) Callback to run on success.
          */
         function requestToken(callback) {
             Restangular.all('auth/csrf').getList().then(function() {
@@ -94,34 +94,19 @@ define(['powerUp'], function(powerUp) {
          * 'X-CSRF-TOKEN', or null if not set.
          */
         function getTokenHeader() {
-            return tokenHeader;
+            return LocalStorage.get('csrfTokenHeader');
         }
 
         function setTokenHeader(newTokenHeader) {
-            tokenHeader = newTokenHeader;
+            if (newTokenHeader === null) {
+                LocalStorage.remove('csrfTokenHeader');
+            } else {
+                LocalStorage.set('csrfTokenHeader', newTokenHeader);
+            }
         }
 
         function isTokenHeaderSet() {
-            return tokenHeader !== null;
-        }
-
-
-
-        // TODO I think we will just use HTTP headers for CSRF, no need for request params. Confirm and delete this section.
-        /**
-         * @returns {String|null} The HTTP request parameter name under which the server accepts the CSRF token for
-         * state-changing requests, e.g. '_csrf'
-         */
-        function getTokenParam() {
-            return tokenParam;
-        }
-
-        function setTokenParam(newTokenParam) {
-            tokenParam = newTokenParam;
-        }
-
-        function isTokenParamSet() {
-            return tokenParam !== null;
+            return getTokenHeader() !== null;
         }
 
 
@@ -135,11 +120,7 @@ define(['powerUp'], function(powerUp) {
 
             getTokenHeader: getTokenHeader,
             setTokenHeader: setTokenHeader,
-            isTokenHeaderSet: isTokenHeaderSet,
-
-            getTokenParam: getTokenParam,
-            setTokenParam: setTokenParam,
-            isTokenParamSet: isTokenParamSet
+            isTokenHeaderSet: isTokenHeaderSet
         };
 	}]);
 });
