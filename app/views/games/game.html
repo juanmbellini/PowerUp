@@ -124,58 +124,58 @@
 					<!--</div>-->
 				<!--</c:when>-->
 				<!--<c:otherwise>-->
-					<div class="row">
-						<img class="col s3" ng-src="{{game.coverPictureUrl}}"  alt="{{game.name}}">
-						<div class="col s5">
-							<p style="margin-top: 0;">
-								<!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
-							<div ng-switch="game.summary">
-								<div ng-switch-when="null">No summary =(</div>
-								<div ng-switch-default>{{game.summary}}</div>
-							</div>
-
-							</p>
-						</div>
-						<div class="col s4">
-							<p><b>Rating</b></p>
-							<div ng-if="game.avgScore > 0">
-								<p style="margin-top:0;"><span>{{game.avgScore | number:2}}</span></p>
-							</div>
-							<div ng-if="game.avgScore <= 0">
-								<p style="margin-top:0;">unrated</p>
-							</div>
-							<p><b>Genres</b></p>
-							<div ng-repeat="genre in game.genres">
-								<a href='#/search?genre={{genre}}'>
-									{{genre}}
-								</a>
-							</div>
-							<br/>
-							<p><b>Platforms</b></p>
-							<div ng-repeat="platform in game.platforms">
-								<a href='#/search?platform={{platform.name}}'>
-									{{platform.name}}
-								</a>
-								<span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
-							</div>
-							<br/>
-							<p><b>Developers</b></p>
-							<div ng-repeat="developer in game.developers">
-								<a href='#/search?developer={{developer}}'>
-									{{developer}}
-								</a>
-							</div>
-							<br/>
-							<p><b>Publishers</b></p>
-							<div ng-repeat="publisher in game.publishers">
-								<a href='#/search?publisher={{publisher}}'>
-									{{publisher}}
-								</a>
-							</div>
-							<div class="col s12 divider"></div>
-							<br/>
-						</div>
+			<div class="row">
+				<img class="col s3" ng-src="{{game.coverPictureUrl}}"  alt="{{game.name}}">
+				<div class="col s5">
+					<p style="margin-top: 0;">
+						<!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
+					<div ng-switch="game.summary">
+						<div ng-switch-when="null">No summary =(</div>
+						<div ng-switch-default>{{game.summary}}</div>
 					</div>
+
+					</p>
+				</div>
+				<div class="col s4">
+					<p><b>Rating</b></p>
+					<div ng-if="game.avgScore > 0">
+						<p style="margin-top:0;"><span>{{game.avgScore | number:2}}</span></p>
+					</div>
+					<div ng-if="game.avgScore <= 0">
+						<p style="margin-top:0;">unrated</p>
+					</div>
+					<p><b>Genres</b></p>
+					<div ng-repeat="genre in game.genres">
+						<a href='#/search?genre={{genre}}'>
+							{{genre}}
+						</a>
+					</div>
+					<br/>
+					<p><b>Platforms</b></p>
+					<div ng-repeat="platform in game.platforms">
+						<a href='#/search?platform={{platform.name}}'>
+							{{platform.name}}
+						</a>
+						<span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
+					</div>
+					<br/>
+					<p><b>Developers</b></p>
+					<div ng-repeat="developer in game.developers">
+						<a href='#/search?developer={{developer}}'>
+							{{developer}}
+						</a>
+					</div>
+					<br/>
+					<p><b>Publishers</b></p>
+					<div ng-repeat="publisher in game.publishers">
+						<a href='#/search?publisher={{publisher}}'>
+							{{publisher}}
+						</a>
+					</div>
+					<div class="col s12 divider"></div>
+					<br/>
+				</div>
+			</div>
 
 					<!--SCREENSHOTS AND VIDEOS-->
                     <div class="row" ng-if="game.videoUrls || game.pictureUrls">
@@ -215,71 +215,114 @@
                     </div>
 					<!--END SCREENSHOTS AND VIDEOS-->
 
-					<!--REVIEWS-->
-					<!--<div class="row">-->
-						<!--<div class="col s12 divider"></div>-->
-					<!--</div>-->
-					<!--<div class="row">-->
-						<!--<c:choose>-->
-							<!--<%&#45;&#45;No Reviews&#45;&#45;%>-->
-							<!--<c:when test="${fn:length(reviews) == 0}">-->
-								<!--<h5 class="center">Recent Reviews</h5>-->
-								<!--<p class="center">No reviews</p>-->
-							<!--</c:when>-->
-							<!--<%&#45;&#45;End No Reviews&#45;&#45;%>-->
-							<!--<%&#45;&#45;Review list&#45;&#45;%>-->
-							<!--<c:otherwise>-->
-								<!--<h5 class="center">Recent Reviews - <a-->
-										<!--href="<c:url value="/reviews?gameId=${game.id}" />">See All</a></h5>-->
-								<!--<ul class="collection">-->
-									<!--<c:forEach items="${reviews}" var="review">-->
-										<!--<li class="collection-item avatar">-->
-											<!--<img src="<c:url value="/profile-picture?username=${review.user.username}" />" alt="<c:out value="${review.user.username}" />" class="circle">-->
-											<!--<span class="title"><c:out value="${review.user.username}" /></span>-->
-											<!--<p class="secondary-content" style="color: black;">${review.date}</p>-->
-											<!--<c:if test="${review.user.username == currentUsername}">-->
-												<!--<a href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="${review.id}"><i class="material-icons right">delete</i></a>-->
-											<!--</c:if>-->
-											<!--<p><a href="<c:url value="/reviews?userId=${review.user.id}" />">Other reviews by <c:out value="${review.user.username}" /></a></p>-->
-											<!--<br/>-->
-											<!--<div class="row">-->
-												<!--<p class="col s10 wrap-text preserve-newlines"><c:out value="${review.review}" /></p>-->
-												<!--<div class="col s2">-->
-													<!--<p style="color: #26a69a;">-->
-														<!--Story: <span class="right">${review.storyScore}</span>-->
-														<!--<br/>-->
-														<!--Graphics: <span class="right">${review.graphicsScore}</span>-->
-														<!--<br/>-->
-														<!--Audio: <span class="right">${review.audioScore}</span>-->
-														<!--<br/>-->
-														<!--Controls: <span class="right">${review.controlsScore}</span>-->
-														<!--<br/>-->
-														<!--Fun: <span class="right">${review.funScore}</span>-->
-														<!--<br/>-->
-														<!--<b>Overall: <span class="right"><fmt:formatNumber-->
-																<!--value="${review.overallScore}"-->
-																<!--maxFractionDigits="2"/></span></b>-->
-													<!--</p>-->
-												<!--</div>-->
-											<!--</div>-->
-										<!--</li>-->
-									<!--</c:forEach>-->
-								<!--</ul>-->
-							<!--</c:otherwise>-->
-							<!--<%&#45;&#45;End Review List&#45;&#45;%>-->
-						<!--</c:choose>-->
+			<!--REVIEWS-->
+			<div class="row">
+				<div class="col s12 divider"></div>
+			</div>
+			<div class="row">
+				<div ng-if="reviews === null" class="center">
+					<h5 class="center">Loading Reviews...</h5>
 
-						<!--<c:if test="${canSubmitReview}">-->
-							<!--<div class="row">-->
-								<!--<div class="col s12 center">-->
-									<!--<a href="<c:url value="/write-review?id=${game.id}" />"-->
-									<!--class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i-->
-										<!--class="material-icons right">send</i></a>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</c:if>-->
-					<!--</div>-->
-					<!--END REVIEWS-->
+					<div class="preloader-wrapper big active">
+						<div class="spinner-layer spinner-blue">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+						<div class="spinner-layer spinner-red">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+						<div class="spinner-layer spinner-yellow">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+
+						<div class="spinner-layer spinner-green">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--No reviews-->
+				<div ng-if="reviews !== null && reviews.length === 0">
+					<h5 class="center">Recent Reviews</h5>
+					<p class="center">No reviews</p>
+				</div>
+				<!--End no reviews-->
+
+				<!--Review list-->
+				<div ng-if="reviews !== null && reviews.length > 0">
+					<h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
+					<ul class="collection">
+						<li class="collection-item avatar" ng-repeat="review in reviews">
+							<img src="#profile-picture?username={{review.user.username}}" alt="{{review.user.username}}" class="circle">
+							<span class="title">{{review.user.username}}</span>
+							<p class="secondary-content" style="color: black;">{{review.date}}</p>
+							<a ng-if="review.user.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
+							<p><a href="#reviews?userId={{review.user.id}}">Other reviews by {{review.user.username}}"</a></p>
+							<br/>
+							<div class="row">
+								<p class="col s10 wrap-text preserve-newlines">{{review.review}}</p>
+								<div class="col s2">
+									<p style="color: #26a69a;">
+										Story: <span class="right">{{review.storyScore}}</span>
+										<br/>
+										Graphics: <span class="right">{{review.graphicsScore}}</span>
+										<br/>
+										Audio: <span class="right">{{review.audioScore}}</span>
+										<br/>
+										Controls: <span class="right">{{review.controlsScore}}</span>
+										<br/>
+										Fun: <span class="right">{{review.funScore}}</span>
+										<br/>
+										<b>Overall: <span class="right">{{review.overallScore | number : 2}}</span></b>
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--End review list-->
+
+				<!--TODO add "write review" button-->
+				<!--<c___if test="${canSubmitReview}">-->
+				<!--<div class="row">-->
+				<!--<div class="col s12 center">-->
+				<!--<a href="<c___url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--</c___if>-->
+			</div>
+			<!--END REVIEWS-->
 
 					<!--RELATED GAMES-->
 					<!--<c:if test="${ fn:length( relatedGames) > 0 }">-->

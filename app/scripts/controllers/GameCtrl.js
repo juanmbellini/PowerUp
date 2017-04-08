@@ -1,16 +1,18 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle'], function(powerUp) {
 
     powerUp.controller('GameCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
+        $scope.reviews = null;
 
         Restangular.one('games',$scope.gameId).get().then(function(game) {
             $scope.game = game;
 
             console.log('Game: ', game);
             if ($scope.gameId > 0 && $scope.game !== null) {
+                // TODO fire review search
                 $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
                 $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
             } else {
@@ -41,6 +43,11 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             });
             require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
         });
+
+
+        /* *****************************************
+         *                 REVIEWS
+         * ****************************************/
 
     }]);
 });

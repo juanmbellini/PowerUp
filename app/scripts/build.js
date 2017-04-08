@@ -26,6 +26,7 @@ require.config({
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
         authService: 'services/AuthService',
+        loadingCircle: 'directives/loading-circle',
         'csrf-service': 'services/CsrfService',
         'angular-slick': '../../bower_components/angular-slick/dist/slick',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
@@ -95,6 +96,11 @@ require.config({
             ]
         },
         onComplete: {
+            deps: [
+                'angular'
+            ]
+        },
+        loadingCircle: {
             deps: [
                 'angular'
             ]
