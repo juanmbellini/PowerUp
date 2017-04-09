@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="section">
+		<h2 class="header center orange-text">Write a review for <a href="#game?id={{game.id}}" target="_blank">{{game.name}} <i class="material-icons">open_in_new</i></a></h2>
+	</div>
+	<!--REVIEW FORM-->
+	<div class="section">
+		<div class="row">
+			<div class="col s12">
+				<form ng-submit="submitReview()">
+					<div class="row">
+						<div class="col s9">
+							<div class="input-field">
+								<div class="input-field col s12">
+									<i class="material-icons prefix">mode_edit</i>
+									<textarea id="review" ng-model="review" class="materialize-textarea" data-length="10000" required="true"></textarea>
+                                    <!--TODO consider using placeholder instead of label-->
+									<label for="review">Review</label>
+								</div>
+							</div>
+						</div>
+						<div class="col s3">
+							<div ng-repeat="criterium in criteria">
+								<div class="input-field">
+									<p style="text-transform: capitalize;">{{criterium}}</p>
+									<select ng-model="{{criterium}}-score">
+										<option ng-repeat="score in range(1, 10)" value="{{score}}" ng-selected="score === 5">{{score}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row center">
+						<button class="btn-large waves-effect waves-light" type="submit">
+							Submit <i class="material-icons right">send</i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--END REVIEW FORM-->
+</div>
