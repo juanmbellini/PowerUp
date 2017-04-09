@@ -5,10 +5,9 @@
 	<!--<link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>-->
 	<!--<link href="<c:url value="/css/lightbox.css" />" type="text/css" rel="stylesheet"/>-->
 	<title ng-controller="GameCtrl">{{game.name}} - PowerUp</title>
-	<!--<title><c:out value="${game.name} - PowerUp" /></title>-->
 </head>
-<main ng-controller="GameCtrl">
-	<div class="container" >
+<main ng-controller="GameCtrl" ng-init="findGame(gameId)">
+    <div class="container" >
 		<div class="section no-pad-bot">
 			<h1 class="header center orange-text">{{game.name}}</h1>
 			<h5 class="center orange-text">{{game.releaseDate}}</h5>
@@ -216,112 +215,64 @@
 					<!--END SCREENSHOTS AND VIDEOS-->
 
 			<!--REVIEWS-->
-			<div class="row">
-				<div class="col s12 divider"></div>
-			</div>
-			<div class="row">
-				<div ng-if="reviews === null" class="center">
-					<h5 class="center">Loading Reviews...</h5>
+            <div ng-if="game">
+                <div class="row">
+                    <div class="col s12 divider"></div>
+                </div>
+                <div class="row">
+                    <div ng-if="reviews === null" class="center">
+                        <h5 class="center">Loading Reviews...</h5>
+                        <loadingcircle></loadingcircle>
+                    </div>
 
-					<div class="preloader-wrapper big active">
-						<div class="spinner-layer spinner-blue">
-							<div class="circle-clipper left">
-								<div class="circle"></div>
-							</div>
-							<div class="gap-patch">
-								<div class="circle"></div>
-							</div>
-							<div class="circle-clipper right">
-								<div class="circle"></div>
-							</div>
-						</div>
-						<div class="spinner-layer spinner-red">
-							<div class="circle-clipper left">
-								<div class="circle"></div>
-							</div>
-							<div class="gap-patch">
-								<div class="circle"></div>
-							</div>
-							<div class="circle-clipper right">
-								<div class="circle"></div>
-							</div>
-						</div>
-						<div class="spinner-layer spinner-yellow">
-							<div class="circle-clipper left">
-								<div class="circle"></div>
-							</div>
-							<div class="gap-patch">
-								<div class="circle"></div>
-							</div>
-							<div class="circle-clipper right">
-								<div class="circle"></div>
-							</div>
-						</div>
+                    <!--No reviews-->
+                    <div ng-if="reviews !== null && reviews.length === 0">
+                        <h5 class="center">Recent Reviews</h5>
+                        <p class="center">No reviews</p>
+                    </div>
+                    <!--End no reviews-->
 
-						<div class="spinner-layer spinner-green">
-							<div class="circle-clipper left">
-								<div class="circle"></div>
-							</div>
-							<div class="gap-patch">
-								<div class="circle"></div>
-							</div>
-							<div class="circle-clipper right">
-								<div class="circle"></div>
-							</div>
-						</div>
-					</div>
-				</div>
+                    <!--Review list-->
+                    <div ng-if="reviews !== null && reviews.length > 0">
+                        <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
+                        <ul class="collection">
+                            <li class="collection-item avatar" ng-repeat="review in reviews">
+                                <img src="#profile-picture?username={{review.user.username}}" alt="{{review.user.username}}" class="circle">
+                                <span class="title">{{review.user.username}}</span>
+                                <p class="secondary-content" style="color: black;">{{review.date}}</p>
+                                <a ng-if="review.user.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
+                                <p><a href="#reviews?userId={{review.user.id}}">Other reviews by {{review.user.username}}"</a></p>
+                                <br/>
+                                <div class="row">
+                                    <p class="col s10 wrap-text preserve-newlines">{{review.review}}</p>
+                                    <div class="col s2">
+                                        <p style="color: #26a69a;">
+                                            Story: <span class="right">{{review.storyScore}}</span>
+                                            <br/>
+                                            Graphics: <span class="right">{{review.graphicsScore}}</span>
+                                            <br/>
+                                            Audio: <span class="right">{{review.audioScore}}</span>
+                                            <br/>
+                                            Controls: <span class="right">{{review.controlsScore}}</span>
+                                            <br/>
+                                            Fun: <span class="right">{{review.funScore}}</span>
+                                            <br/>
+                                            <b>Overall: <span class="right">{{review.overallScore | number : 2}}</span></b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--End review list-->
 
-				<!--No reviews-->
-				<div ng-if="reviews !== null && reviews.length === 0">
-					<h5 class="center">Recent Reviews</h5>
-					<p class="center">No reviews</p>
-				</div>
-				<!--End no reviews-->
-
-				<!--Review list-->
-				<div ng-if="reviews !== null && reviews.length > 0">
-					<h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
-					<ul class="collection">
-						<li class="collection-item avatar" ng-repeat="review in reviews">
-							<img src="#profile-picture?username={{review.user.username}}" alt="{{review.user.username}}" class="circle">
-							<span class="title">{{review.user.username}}</span>
-							<p class="secondary-content" style="color: black;">{{review.date}}</p>
-							<a ng-if="review.user.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
-							<p><a href="#reviews?userId={{review.user.id}}">Other reviews by {{review.user.username}}"</a></p>
-							<br/>
-							<div class="row">
-								<p class="col s10 wrap-text preserve-newlines">{{review.review}}</p>
-								<div class="col s2">
-									<p style="color: #26a69a;">
-										Story: <span class="right">{{review.storyScore}}</span>
-										<br/>
-										Graphics: <span class="right">{{review.graphicsScore}}</span>
-										<br/>
-										Audio: <span class="right">{{review.audioScore}}</span>
-										<br/>
-										Controls: <span class="right">{{review.controlsScore}}</span>
-										<br/>
-										Fun: <span class="right">{{review.funScore}}</span>
-										<br/>
-										<b>Overall: <span class="right">{{review.overallScore | number : 2}}</span></b>
-									</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<!--End review list-->
-
-				<!--TODO add "write review" button-->
-				<!--<c___if test="${canSubmitReview}">-->
-				<!--<div class="row">-->
-				<!--<div class="col s12 center">-->
-				<!--<a href="<c___url value="/write-review?id=${game.id}" />" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>-->
-				<!--</div>-->
-				<!--</div>-->
-				<!--</c___if>-->
-			</div>
+                    <div class="row" ng-if="canSubmitReview()">
+                        <div class="col s12 center">
+                            <a href="#write-review?id={{game.id}}" class="center btn waves-effect waves-light offset-s4">Write a Review <i class="material-icons right">send</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<!--END REVIEWS-->
 
 					<!--RELATED GAMES-->
