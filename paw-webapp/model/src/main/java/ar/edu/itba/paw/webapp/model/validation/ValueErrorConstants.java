@@ -13,7 +13,6 @@ import static ar.edu.itba.paw.webapp.model.validation.ValueError.ErrorCause.MISS
 public class ValueErrorConstants {
 
 
-
     public static final ValueError MISSING_CREATOR = new ValueError(MISSING_VALUE, "creator",
             "The creator is missing.");
 
@@ -26,7 +25,15 @@ public class ValueErrorConstants {
             "The title is too long.");
 
 
-    public static final ValueError THREAD_BODY_TOO_SHORT= new ValueError(ILLEGAL_VALUE, "initialComment",
+    public static final ValueError MISSING_NAME = new ValueError(MISSING_VALUE, "name", "The name is missing.");
+
+    public static final ValueError NAME_TOO_SHORT = new ValueError(ILLEGAL_VALUE, "name",
+            "The name is too short.");
+    public static final ValueError NAME_TOO_LONG = new ValueError(ILLEGAL_VALUE, "name",
+            "The name is too long.");
+
+
+    public static final ValueError THREAD_BODY_TOO_SHORT = new ValueError(ILLEGAL_VALUE, "initialComment",
             "The initial comment is too short.");
 
     public static final ValueError THREAD_BODY_TOO_LONG = new ValueError(ILLEGAL_VALUE, "initialComment",

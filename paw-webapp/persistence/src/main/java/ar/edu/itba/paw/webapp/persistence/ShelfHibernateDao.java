@@ -16,9 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class ShelfHibernateDao implements ShelfDao {
@@ -56,7 +54,7 @@ public class ShelfHibernateDao implements ShelfDao {
             }
             games.add(g);
         }
-        Shelf result = new Shelf(name, creator, games);
+        Shelf result = new Shelf(name, creator);
         em.persist(result);
         return result;
     }
@@ -128,7 +126,8 @@ public class ShelfHibernateDao implements ShelfDao {
                 return;
             }
         }
-        shelf.setName(newName);
+//        shelf.setName(newName);
+        shelf.update(newName);
         em.persist(shelf);
     }
 
