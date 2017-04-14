@@ -2,57 +2,94 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Thread;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Data Access Object for {@link Thread Threads}.
  */
 public interface ThreadDao {
 
+
+    /**
+     * @see ThreadService#getThreads(String, Long, String, int, int, SortingType, SortDirection) .
+     */
+    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter,
+                            int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
+
+
     /**
      * @see ThreadService#create(String, long, String)
      */
     Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException;
 
-    // TODO: javadoc
+
+    /**
+     * Updates the given {@link Thread}.
+     *
+     * @param thread         The thread to be updated.
+     * @param title          The new title for the thread.
+     * @param initialComment The new initial comment.
+     */
     void update(Thread thread, String title, String initialComment);
 
-    // TODO: javadoc
+
+    /**
+     * Updates the given {@link Thread}'s hot value.
+     *
+     * @param thread The thread to be udpated.
+     */
     void updateHotValue(Thread thread);
 
-    // TODO: javadoc
-    void deleteThread(Thread thread) throws NoSuchEntityException;
 
     /**
-     * @see ThreadService#findRecent(int)
+     * Removes the given {@link Thread} from the database.
+     *
+     * @param thread The thread to be removed.
      */
-    Set<Thread> findRecent(int limit);
-
-    /**
-     * @see ThreadService#findBestPointed(int)
-     */
-    Set<Thread> findBestPointed(int limit);
-
-    /**
-     * @see ThreadService#findHottest(int)
-     */
-    Set<Thread> findHottest(int limit);
-
-    /**
-     * @see ThreadService#findByUserId(long id)
-     */
-    Set<Thread> findByUserId(long id);
-
-    /**
-     * @see ThreadService#findByTitle(String title)
-     */
-    Set<Thread> findByTitle(String title);
+    void delete(Thread thread);
 
     /**
      * @see ThreadService#findById(long threadId)
      */
     Thread findById(long threadId);
+
+
+    /**
+     * Enum indicating the sorting type for the "get reviews" method.
+     */
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return "id";
+            }
+        },
+        HOT {
+            @Override
+            public String getFieldName() {
+                return "hotValue";
+            }
+        },
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(likes)";
+            }
+        },
+        NEWEST {
+            @Override
+            public String getFieldName() {
+                return "createdAt";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+    }
 
 
 }

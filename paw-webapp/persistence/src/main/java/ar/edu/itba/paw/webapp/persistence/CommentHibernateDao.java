@@ -35,7 +35,7 @@ public class CommentHibernateDao implements CommentDao {
         if (comment == null) {
             throw new IllegalArgumentException("The comment must not be null.");
         }
-        comment.update(comment.getThread(), comment.getParentComment(), comment.getCommenter(), newComment);
+        comment.update(newComment);
         em.merge(comment);
     }
 
@@ -55,28 +55,16 @@ public class CommentHibernateDao implements CommentDao {
 
     @Override
     public Comment findComment(long threadId, long userId) {
-        try {
-            return em.createQuery("FROM Comment AS C where C.thread.id = :threadId AND L.user.id = :userId",
-                    Comment.class)
-                    .setParameter("threadId", threadId)
-                    .setParameter("userId", userId)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        return DaoHelper.findSingleWithConditions(em, Comment.class,
+                "FROM Comment AS c where c.parentComment IS NULL AND c.thread.id = ?1 AND c.commenter.id = ?2",
+                threadId, userId);
     }
 
     @Override
     public Comment findReply(long commentId, long userId) {
-        try {
-            return em.createQuery("FROM Comment AS C where C.parentComment.id = :commentId AND L.user.id = :userId",
-                    Comment.class)
-                    .setParameter("commentId", commentId)
-                    .setParameter("userId", userId)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        return DaoHelper.findSingleWithConditions(em, Comment.class,
+                "FROM Comment AS c where c.parentComment.id = ?1 AND c.commenter.id = ?2",
+                commentId, userId);
     }
 
 

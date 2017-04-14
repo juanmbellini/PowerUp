@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,23 +13,7 @@ import java.util.stream.Collectors;
  */
 @Entity
 @Table(name = "comments")
-public class Comment {
-
-    private static final ValidationException.ValueError MISSING_THREAD_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "thread", "A creator must be set.");
-    private static final ValidationException.ValueError MISSING_COMMENTER_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "commenter", "A title must be set.");
-    private static final ValidationException.ValueError MISSING_COMMENT_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "comment", "A title must be set.");
-    private static final ValidationException.ValueError ILLEGAL_EMPTY_COMMENT_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "comment", "The comment must have at least one character.");
-    private static ValidationException.ValueError CYCLE_IN_PARENTS_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "parent", "A cycle was detected when updating the parent");
+public class Comment implements ValidationExceptionThrower {
 
 
     @Id
@@ -68,79 +53,117 @@ public class Comment {
     private Calendar updatedAt;
 
     /*package*/ Comment() {
-        //For Hibernate
+        // For Hibernate
     }
 
     /**
      * Creates a new top-level comment.
+     * This constructor is meant to be used for first comment.
      *
      * @param thread    The thread this comment belongs to.
      * @param commenter The user who is commenting.
      * @param comment   The comment content.
+     * @throws ValidationException If any value is wrong.
      */
-    public Comment(Thread thread, User commenter, String comment) {
-        update(thread, null, commenter, comment);
+    public Comment(Thread thread, User commenter, String comment) throws ValidationException {
+        final List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(thread, errors, ValueErrorConstants.MISSING_THREAD);
+        ValidationHelper.objectNotNull(commenter, errors, ValueErrorConstants.MISSING_COMMENTER);
+
+        update(comment, errors);
+        this.thread = thread;
+        this.parentComment = null;
+        this.commenter = commenter;
     }
 
     /**
      * Creates a new reply to a previous comment.
+     * This constructor is meant to be used for replies.
      *
      * @param parent  The parent comment that this comment is replying to.
      * @param replier The user who is replying.
      * @param comment The comment content.
+     * @throws ValidationException If any value is wrong.
      */
-    public Comment(Comment parent, User replier, String comment) {
-        update(parent.getThread(), parent, replier, comment);
+    public Comment(Comment parent, User replier, String comment) throws ValidationException {
+        final List<ValueError> errors = new LinkedList<>();
+        if (parent == null) {
+            errors.add(ValueErrorConstants.MISSING_PARENT); // This constructor is used for replies
+        } else if (!validParent(parent)) {
+            errors.add(ValueErrorConstants.CYCLE_IN_PARENTS);
+        }
+        ValidationHelper.objectNotNull(replier, errors, ValueErrorConstants.MISSING_COMMENTER);
+
+        update(comment, errors);
+        this.parentComment = parent;
+        this.commenter = replier;
     }
 
+    /**
+     * Updates the comment.
+     *
+     * @param comment The new comment.
+     * @throws ValidationException If any value is wrong.
+     */
+    public void update(String comment) throws ValidationException {
+        update(comment, new LinkedList<>());
+    }
 
-    public void update(Thread thread, Comment parent, User commenter, String comment) {
-        List<ValidationException.ValueError> errors = new LinkedList<>();
-        if (thread == null) {
-            errors.add(MISSING_THREAD_ERROR);
-        }
-        if (!validParent(parent)) {
-            errors.add(CYCLE_IN_PARENTS_ERROR);
-        }
-        if (commenter == null) {
-            errors.add(MISSING_COMMENTER_ERROR);
-        }
-        if (comment == null) {
-            errors.add(MISSING_COMMENT_ERROR);
-        } else if (comment.isEmpty()) {
-            errors.add(ILLEGAL_EMPTY_COMMENT_ERROR);
-        }
-
-        if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
-        }
-        this.thread = thread;
-        this.parentComment = parent;
-        this.commenter = commenter;
+    /**
+     * Updates the comment, receiving a list of detected errors before executing this method.
+     *
+     * @param comment   The new comment.
+     * @param errorList The list containing possible errors detected before executing the method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void update(String comment, List<ValueError> errorList) throws ValidationException {
+        checkValues(comment, errorList);
         this.comment = comment;
     }
 
 
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Commenter getter.
+     *
+     * @return The comment.
+     */
     public User getCommenter() {
         return commenter;
     }
 
+    /**
+     * Comment getter.
+     *
+     * @return The comment (i.e body of comment).
+     */
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
+    /**
+     * Likes count getter.
+     *
+     * @return The amount of likes.
+     */
     public int getLikeCount() {
         return likes.size();
     }
 
+    /**
+     * Indicates whether this comment is liked by the given {@link User}.
+     *
+     * @param user The {@link User} to be checked whether they liked the comment.
+     * @return {@code true} if the given {@link User} liked the comment, or {@code false} otherwise.
+     */
     public boolean isLikedBy(User user) {
         // TODO: what if one comment has 3M of likes and the given user's like is the last one?
         // TODO: what if the user didn't like the comment, and it has 40M likes?
@@ -148,26 +171,58 @@ public class Comment {
         return likes.parallelStream().map(CommentLike::getUser).collect(Collectors.toSet()).contains(user);
     }
 
+    /**
+     * Replies getter.
+     *
+     * @return A collection containing the replies to this comment.
+     */
     public Collection<Comment> getReplies() {
         return replies;
     }
 
+    /**
+     * Thread getter.
+     *
+     * @return The thread.
+     */
     public Thread getThread() {
         return thread;
     }
 
+    /**
+     * Parent comment getter.
+     *
+     * @return The parent comment.
+     */
     public Comment getParentComment() {
         return parentComment;
     }
 
+    /**
+     * Created at getter.
+     *
+     * @return The moment at which this comment was created.
+     */
     public Calendar getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Updated at getter.
+     *
+     * @return The moment at which this comment was updated.
+     */
     public Calendar getUpdatedAt() {
         return updatedAt;
     }
 
+
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,11 +233,31 @@ public class Comment {
         return id == comment.id;
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
 
+
+    /**
+     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
+     *
+     * @param comment   The comment to be checked.
+     * @param errorList A list containing possible detected errors before calling this method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void checkValues(String comment, List<ValueError> errorList) throws ValidationException {
+        errorList = errorList == null ? new LinkedList<>() : errorList;
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(comment, NumericConstants.COMMENT_BODY_MIN_LENGTH,
+                NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_COMMENT,
+                ValueErrorConstants.COMMENT_TOO_SHORT, ValueErrorConstants.COMMENT_TOO_LONG);
+        throwValidationException(errorList);
+    }
 
     /**
      * Checks if the parent is valid.

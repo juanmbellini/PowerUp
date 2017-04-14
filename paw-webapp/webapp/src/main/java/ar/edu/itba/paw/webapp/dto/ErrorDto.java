@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.dto;
 
 
 import ar.edu.itba.paw.webapp.api_errors.*;
-import ar.edu.itba.paw.webapp.model.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 
 import javax.xml.bind.annotation.*;
 import java.util.LinkedList;
@@ -175,7 +175,7 @@ public class ErrorDto {
                     // Default constructor
                 }
 
-                public SpecificValidationErrorDto(ValidationException.ValueError error) {
+                public SpecificValidationErrorDto(ValueError error) {
                     this.errorCode = error.getErrorCode().name();
                     this.conflictingField = error.getFieldName();
                     ;

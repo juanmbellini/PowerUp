@@ -4,7 +4,7 @@ package ar.edu.itba.paw.webapp.exception_mappers;
 import ar.edu.itba.paw.webapp.dto.ErrorDto;
 import ar.edu.itba.paw.webapp.api_errors.ValidationError;
 import ar.edu.itba.paw.webapp.missing_statuses.UnprocessableEntityStatus;
-import ar.edu.itba.paw.webapp.model.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

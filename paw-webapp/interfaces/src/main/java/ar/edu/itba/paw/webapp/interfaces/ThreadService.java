@@ -5,13 +5,28 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Service layer for {@link ar.edu.itba.paw.webapp.model.Thread Threads}. Exposes functionality available to threads.
  */
 public interface ThreadService {
+
+
+    /**
+     * Returns a {@link Page} with the threads, applying filters, pagination and sorting.
+     *
+     * @param titleFilter
+     * @param userIdFilter   Filter for user id.
+     * @param userNameFilter Filter for user name.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type (id, game id, or creation date).
+     * @param sortDirection  The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
+     */
+    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter, int pageNumber, int pageSize,
+                            ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
      * Creates a {@link Thread} with the given {@code title}, created by the {@link User} with the given {@code creatorUserId},
@@ -31,7 +46,7 @@ public interface ThreadService {
      * @param threadId   The thread's id.
      * @param title      The new title.
      * @param threadBody The body of the thread.
-     * @param userId
+     * @param userId     The id of the user performing the operation.
      */
     void update(long threadId, String title, String threadBody, long userId);
 
@@ -43,48 +58,8 @@ public interface ThreadService {
      * @throws NoSuchEntityException If the thread doesn't exist.
      * @throws UnauthorizedException If the user isn't allowed to delete the thread.
      */
-    void deleteThread(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
+    void delete(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
 
-
-    /**
-     * Finds up to a specified amount of recently updated threads.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findRecent(int limit);
-
-    /**
-     * Finds up to a specified amount of best pointed threads.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findBestPointed(int limit);
-
-    /**
-     * Finds up to a specified amount of the most relevant thread in the relation point/lastUpdated.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findHottest(int limit);
-
-    /**
-     * Returns a set of shelves created by a specified user, identified by ID.
-     *
-     * @param id The ID of the user whose shelves to fetch.
-     * @return The resulting set of shelves.
-     */
-    Set<Thread> findByUserId(long id);
-
-    /**
-     * Finds threads by title.
-     *
-     * @param title The thread title. Case <b>in</b>sensitive.
-     * @return The matching threads.
-     */
-    Set<Thread> findByTitle(String title);
 
     /**
      * Finds a thread by ID.
@@ -99,18 +74,16 @@ public interface ThreadService {
      *
      * @param threadId The ID of the thread to like.
      * @param userId   The ID of the user liking the thread.
-     * @return The new like count.
      */
-    int likeThread(long threadId, long userId);
+    void likeThread(long threadId, long userId);
 
     /**
      * Removes a like from a given thread by a given user, if liked.
      *
      * @param threadId The ID of the thread to unlike.
      * @param userId   The ID of the user unliking the thread.
-     * @return The new like count.
      */
-    int unlikeThread(long threadId, long userId);
+    void unlikeThread(long threadId, long userId);
 
 
     /*
@@ -140,20 +113,18 @@ public interface ThreadService {
     /**
      * Marks a like for a given comment or reply by a given user, if not already liked.
      *
-     * @param id     The ID of the comment or reply to like.
-     * @param userId The ID of the user liking the comment.
-     * @return The new like count.
+     * @param commentId The ID of the comment to be liked.
+     * @param userId    The ID of the user liking the comment.
      */
-    int likeComment(long id, long userId);
+    void likeComment(long commentId, long userId);
 
     /**
      * Removes a like from a given comment or reply by a given user, if liked.
      *
-     * @param id     The ID of the comment or reply to unlike.
-     * @param userId The ID of the user unliking the comment.
-     * @return The new like count.
+     * @param commentId The ID of the comment to be unliked.
+     * @param userId    The ID of the user unliking the comment.
      */
-    int unlikeComment(long id, long userId);
+    void unlikeComment(long commentId, long userId);
 
     /**
      * Edits a comment. Only the original commenter may update their comment.

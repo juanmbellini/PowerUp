@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,14 +14,8 @@ import java.util.List;
 @Entity
 @Table(name = "comment_likes",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
-public class CommentLike {
+public class CommentLike implements ValidationExceptionThrower {
 
-    private static final ValidationException.ValueError MISSING_COMMENT_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "comment", "A comment must be set.");
-    private static final ValidationException.ValueError MISSING_USER_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "user", "An user must be set.");
 
     @Id
     @SequenceGenerator(name = "comment_likes_seq", sequenceName = "comment_likes_id_seq", allocationSize = 1)
@@ -40,41 +35,69 @@ public class CommentLike {
     private Calendar createdAt;
 
     /*package*/ CommentLike() {
-        //For Hibernate
+        // For Hibernate
     }
 
 
-    public CommentLike(User user, Comment comment) {
-        List<ValidationException.ValueError> errors = new LinkedList<>();
-        if (comment == null) {
-            errors.add(MISSING_COMMENT_ERROR);
-        }
-        if (user == null) {
-            errors.add(MISSING_USER_ERROR);
-        }
-        if (!errors.isEmpty()) {
-            throw new ValidationException(errors);
-        }
+    /**
+     * Constructor.
+     *
+     * @param user    The {@link User} liking the comment.
+     * @param comment The liked {@link Comment}.
+     * @throws ValidationException If any value is wrong.
+     */
+    public CommentLike(User user, Comment comment) throws ValidationException {
+        List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(comment, errors, ValueErrorConstants.MISSING_COMMENT);
+        ValidationHelper.objectNotNull(user, errors, ValueErrorConstants.MISSING_USER);
+        throwValidationException(errors);
+
         this.user = user;
         this.comment = comment;
     }
 
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * User getter.
+     *
+     * @return The user.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Comment getter.
+     *
+     * @return The comment.
+     */
     public Comment getComment() {
         return comment;
     }
 
+    /**
+     * Created at getter.
+     *
+     * @return The moment this object is created.
+     */
     public Calendar getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,6 +108,11 @@ public class CommentLike {
         return id == comment.id;
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));

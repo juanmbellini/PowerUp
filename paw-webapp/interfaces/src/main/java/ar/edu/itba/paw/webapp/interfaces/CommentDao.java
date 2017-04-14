@@ -13,16 +13,42 @@ import java.util.LinkedList;
 public interface CommentDao {
 
 
-    // TODO: javadoc
+    /**
+     * Creates a comment in a {@link Thread}.
+     *
+     * @param thread         The commented {@link Thread}.
+     * @param commenter      The {@link User} commenting.
+     * @param commentMessage The comment content.
+     * @return
+     */
     Comment comment(Thread thread, User commenter, String commentMessage);
 
-    // TODO: javadoc
+
+    /**
+     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
+     *
+     * @param comment        The {@link Comment} to be replied.
+     * @param commenter      The {@link User} replying
+     * @param commentMessage The comment content.
+     * @return
+     */
     Comment reply(Comment comment, User commenter, String commentMessage);
 
-    // TODO: javadoc
+
+    /**
+     * Changes the given {@link Comment}.
+     *
+     * @param comment    The comment to be changed.
+     * @param newComment The new content of the message.
+     */
     void update(Comment comment, String newComment);
 
-    // TODO: javadoc
+
+    /**
+     * Removes the given {@link Comment} from the database.
+     *
+     * @param comment The comment to be removed.
+     */
     void delete(Comment comment);
 
     /**

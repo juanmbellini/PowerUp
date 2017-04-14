@@ -5,9 +5,10 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Implementation of the review service.
@@ -54,7 +57,11 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review create(long reviewerId, long gameId,
                          String reviewBody, int storyScore, int graphicsScore, int audioScore,
-                         int controlsScore, int funScore) throws NoSuchEntityException {
+                         int controlsScore, int funScore) throws NoSuchEntityException, ValidationException {
+        if (!reviewDao.getReviews(gameId, null, reviewerId, null, 1, 1, ReviewDao.SortingType.GAME_ID,
+                SortDirection.ASC).getData().isEmpty()) {
+            throw new ValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
+        }
         return reviewDao.create(userDao.findById(reviewerId), gameDao.findById(gameId),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
@@ -94,8 +101,13 @@ public class ReviewServiceImpl implements ReviewService {
      * @param reviewId The review id.
      * @param userId   The user id.
      * @return The review with the given {@code reviewId}.
+     * @throws NoSuchEntityException If no {@link Review} exists with the given {@code reviewId},
+     *                               or if no {@link User} exists with the given {@code userId}.
+     * @throws UnauthorizedException If the {@link User} with the given {@code userId} is not the creator
+     *                               of the {@link Review} with the given {@code reviewId}.
      */
-    private Review checkReviewValuesAndAuthoring(long reviewId, long userId) {
+    private Review checkReviewValuesAndAuthoring(long reviewId, long userId) throws NoSuchEntityException,
+            UnauthorizedException {
         Review review = checkReviewValues(reviewId, userId);
         if (userId != review.getUser().getId()) {
             throw new UnauthorizedException("Review #" + reviewId + " does not belong to user #" + userId);
@@ -111,19 +123,25 @@ public class ReviewServiceImpl implements ReviewService {
      * @param reviewId The review id.
      * @param userId   The user id.
      * @return The review with the given {@code reviewId}
+     * @throws NoSuchEntityException If no {@link Review} exists with the given {@code reviewId},
+     *                               or if no {@link User} exists with the given {@code userId}.
      */
-    private Review checkReviewValues(long reviewId, long userId) {
+    private Review checkReviewValues(long reviewId, long userId) throws NoSuchEntityException {
         Review review = reviewDao.findById(reviewId);
-        List<String> missings = new LinkedList<>();
+        List<String> missing = new LinkedList<>();
         if (review == null) {
-            missings.add("reviewId");
+            missing.add("reviewId");
         }
         if (userDao.findById(userId) == null) {
-            missings.add("userId");
+            missing.add("userId");
         }
-        if (!missings.isEmpty()) {
-            throw new NoSuchEntityException(missings);
+        if (!missing.isEmpty()) {
+            throw new NoSuchEntityException(missing);
         }
         return review;
     }
+
+    private static final ValueError GAME_ALREADY_REVIEWED_BY_USER =
+            new ValueError(ValueError.ErrorCause.ALREADY_EXISTS,
+                    "(reviewerId, gameId)", "That user already reviewed that game");
 }

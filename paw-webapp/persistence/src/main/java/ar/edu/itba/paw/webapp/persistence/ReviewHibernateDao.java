@@ -47,40 +47,32 @@ public class ReviewHibernateDao implements ReviewDao {
                 || userNameFilter != null && userNameFilter.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        // Game id filter
-        String gameIdFilterString = "";
-        if (gameIdFilter == null) {
-            gameIdFilterString = "true = true";
-        } else {
-            gameIdFilterString = "game.id = :gameId";
-        }
-        // Game name filter
-        String gameNameFilterString = "";
-        if (gameNameFilter == null) {
-            gameNameFilterString = "true = true";
-        } else {
-            gameNameFilterString = "game.name = :gameName";
-        }
-        // User id filter
-        String userIdFilterString = "";
-        if (userIdFilter == null) {
-            userIdFilterString = "true = true";
-        } else {
-            userIdFilterString = "user.id = :userId";
-        }
-        // User name filter
-        String userNameFilterString = "";
-        if (userNameFilter == null) {
-            userNameFilterString = "true = true";
-        } else {
-            userNameFilterString = "user.username = :userName";
-        }
 
-        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize,
-                "FROM Review WHERE " + gameIdFilterString + " AND " + gameNameFilterString +
-                        " AND " + userIdFilterString + " AND " + userNameFilterString +
-                        " ORDER BY " + sortingType.getFieldName() + " " + sortDirection.getQLKeyword(),
-                parameters(gameIdFilter, gameNameFilter, userIdFilter, userNameFilter));
+        final StringBuilder query = new StringBuilder().append("FROM Review");
+
+        // Conditions
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        if (gameIdFilter != null) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.id = :gameId", gameIdFilter));
+        }
+        if (gameNameFilter != null && !gameNameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.name = :gameName",
+                    "%" + gameNameFilter + "%"));
+        }
+        if (userIdFilter != null) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.id = :userId", userIdFilter));
+        }
+        if (userNameFilter != null && !userNameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.username = :userName",
+                    "%" + userNameFilter + "%"));
+        }
+        DaoHelper.appendConditions(query, conditions);
+
+        // Sorting
+        query.append(" ORDER BY ").append(sortingType.getFieldName()).append(" ").append(sortDirection.getQLKeyword());
+
+        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, query.toString(),
+                conditions.stream().map(DaoHelper.ConditionAndParameterWrapper::getParameter).toArray());
     }
 
     @Override
@@ -127,34 +119,6 @@ public class ReviewHibernateDao implements ReviewDao {
             throw new NoSuchGameException(gameId);
         }
         return DaoHelper.findSingleWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1 AND R.user.id = ?2", gameId, userId);
-    }
-
-
-    /**
-     * Creates the array of parameters to be used in the
-     * {@link #getReviews(Long, String, Long, String, int, int, SortingType, SortDirection)} method.
-     *
-     * @param gameIdFilter   The game id filter.
-     * @param gameNameFilter The game name filter.
-     * @param userIdFilter   The user id filter.
-     * @param userNameFilter The username filter.
-     * @return The array of parameters.
-     */
-    private Object[] parameters(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter) {
-        List<Object> parameters = new LinkedList<>();
-        if (gameIdFilter != null) {
-            parameters.add(gameIdFilter);
-        }
-        if (gameNameFilter != null) {
-            parameters.add("%" + gameNameFilter + "%");
-        }
-        if (userIdFilter != null) {
-            parameters.add(userIdFilter);
-        }
-        if (userNameFilter != null) {
-            parameters.add("%" + userNameFilter + "%");
-        }
-        return parameters.toArray();
     }
 
 

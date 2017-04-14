@@ -21,9 +21,10 @@ import java.util.List;
      * @param entityManager An entity manager with which to perform queries.
      * @param klass         The class of the entity to find.
      * @param id            The ID of the entity to find.
-     * @return              The found entity, or {@code null} if not found.
+     * @return The found entity, or {@code null} if not found.
      */
-    /*package*/ static <T> T findSingle(EntityManager entityManager, Class<T> klass, long id) {
+    /*package*/
+    static <T> T findSingle(EntityManager entityManager, Class<T> klass, long id) {
         return entityManager.find(klass, id);
     }
 
@@ -33,10 +34,11 @@ import java.util.List;
      * @param entityManager An entity manager with which to perform queries.
      * @param klass         The class of the entity to find.
      * @param id            The ID of the entity to find.
-     * @return              The found entity.
+     * @return The found entity.
      * @throws NoSuchEntityException If no such entity exists.
      */
-    /*package*/ static <T> T findSingleOrThrow(EntityManager entityManager, Class<T> klass, long id) throws NoSuchEntityException {
+    /*package*/
+    static <T> T findSingleOrThrow(EntityManager entityManager, Class<T> klass, long id) throws NoSuchEntityException {
         T result = findSingle(entityManager, klass, id);
         if (result == null) {
             throw new NoSuchEntityException(klass, id);
@@ -56,10 +58,11 @@ import java.util.List;
      * @return The found entity, or {@code null} if not found.
      * @throws javax.persistence.NonUniqueResultException If more than one result is found.
      */
-    /*package*/ static <T> T findSingleWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) throws NonUniqueResultException {
+    /*package*/
+    static <T> T findSingleWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) throws NonUniqueResultException {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
         for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i+1, parameters[i]);
+            query.setParameter(i + 1, parameters[i]);
         }
         try {
             return query.getSingleResult();
@@ -73,9 +76,10 @@ import java.util.List;
      *
      * @param entityManager An entity manager with which to perform queries.
      * @param klass         The class of the entities to find.
-     * @return              The found entities.
+     * @return The found entities.
      */
-    /*package*/ static <T> List<T> findAll(EntityManager entityManager, Class<T> klass) {
+    /*package*/
+    static <T> List<T> findAll(EntityManager entityManager, Class<T> klass) {
         TypedQuery<T> query = entityManager.createQuery("FROM " + klass.getName(), klass);
         try {
             return query.getResultList();
@@ -93,12 +97,13 @@ import java.util.List;
      * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
      *                      e.g. {@code "FROM User AS U WHERE U.username LIKE ?1}"
      * @param parameters    Parameters for the query, in order of appearance in the query.
-     * @return              A list with the matching entities, or an empty list of nothing is found if not found.
+     * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
-    /*package*/ static <T> List<T> findManyWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) {
+    /*package*/
+    static <T> List<T> findManyWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
         for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i+1, parameters[i]);
+            query.setParameter(i + 1, parameters[i]);
         }
         try {
             return query.getResultList();
@@ -117,12 +122,13 @@ import java.util.List;
      * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
      *                      e.g. {@code "FROM User AS U WHERE U.username LIKE ?1}"
      * @param parameters    Parameters for the query, in order of appearance in the query.
-     * @return              A list with the matching entities, or an empty list of nothing is found if not found.
+     * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
-    /*package*/ static <T> List<T> findManyWithConditionsAndLimit(EntityManager entityManager, Class<T> klass, int limit, String baseQuery, Object... parameters) {
+    /*package*/
+    static <T> List<T> findManyWithConditionsAndLimit(EntityManager entityManager, Class<T> klass, int limit, String baseQuery, Object... parameters) {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
         for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i+1, parameters[i]);
+            query.setParameter(i + 1, parameters[i]);
         }
         query.setMaxResults(limit);
         try {
@@ -143,19 +149,20 @@ import java.util.List;
      * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
      *                      e.g. {@code "FROM User AS U WHERE U.username LIKE ?1}"
      * @param parameters    Parameters for the query, in order of appearance in the query.
-     * @return              A list with the matching entities, or an empty list of nothing is found if not found.
+     * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
-    /*package*/ static <T> Page<T> findPageWithConditions(EntityManager entityManager, Class<T> klass, int pageNumber, int pageSize, String baseQuery, Object... parameters) {
+    /*package*/
+    static <T> Page<T> findPageWithConditions(EntityManager entityManager, Class<T> klass, int pageNumber, int pageSize, String baseQuery, Object... parameters) {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
         for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i+1, parameters[i]);
+            query.setParameter(i + 1, parameters[i]);
         }
-        query.setFirstResult((pageNumber-1)*pageSize);
+        query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
         try {
             Page<T> page = new Page<>();
             List<T> data = findManyWithConditions(entityManager, klass, baseQuery, parameters);
-            page.setTotalPages(Math.max((int)Math.ceil(data.size()/pageSize), 1));
+            page.setTotalPages(Math.max((int) Math.ceil(data.size() / pageSize), 1));
             page.setPageSize(pageSize);
             page.setPageNumber(pageNumber);
             page.setOverAllAmountOfElements(data.size());
@@ -166,6 +173,7 @@ import java.util.List;
         }
     }
 
+
     /***
      * Checks for existence of an entity using COUNT with the entity's ID.
      *
@@ -175,7 +183,8 @@ import java.util.List;
      * @param <T> The entity class as a type parameter
      * @return Whether such entity exists.
      */
-    /*package*/ static <T> boolean exists(EntityManager em, Class<T> klass, long id) {
+    /*package*/
+    static <T> boolean exists(EntityManager em, Class<T> klass, long id) {
         TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM " + klass.getName() + " WHERE id = ?1", Long.class);
         query.setParameter(1, id);
         return query.getSingleResult() > 0;
@@ -189,11 +198,75 @@ import java.util.List;
      * @param params The query parameters.
      * @return Whether such entity exists.
      */
-    /*package*/ static boolean exists(EntityManager em, String query, Object... params) {
-        if(!query.toUpperCase().startsWith("SELECT COUNT")) {
+    /*package*/
+    static boolean exists(EntityManager em, String query, Object... params) {
+        if (!query.toUpperCase().startsWith("SELECT COUNT")) {
             query = "SELECT COUNT(*) " + query;
         }
         //noinspection ConstantConditions - The count should never return null
         return findSingleWithConditions(em, Long.class, query, params) > 0;
     }
- }
+
+
+    /**
+     * Appends the given {@code conditions} to the given {@code query}.
+     *
+     * @param query      The query.
+     * @param conditions The conditions.
+     */
+    /* package */
+    static void appendConditions(StringBuilder query, List<ConditionAndParameterWrapper> conditions) {
+        if (!conditions.isEmpty()) {
+            int i = 0;
+            query.append(" WHERE ").append(conditions.get(i++));
+            while (i < conditions.size()) {
+                query.append(" AND ").append(conditions.get(i++));
+            }
+        }
+    }
+
+
+    /**
+     * Encapsulates a condition in HQL, and a parameter to be used in the condition.
+     */
+    /* package */ final static class ConditionAndParameterWrapper {
+        /**
+         * Contains the condition in HQL.
+         */
+        private final String condition;
+        /**
+         * Object to be used as parameter.
+         */
+        private final Object parameter;
+
+        /**
+         * Constructor.
+         *
+         * @param condition The condition in HQL.
+         * @param parameter The object to be used as parameter.
+         */
+        /* package */ ConditionAndParameterWrapper(String condition, Object parameter) {
+            this.condition = condition;
+            this.parameter = parameter;
+        }
+
+        /**
+         * Condition getter.
+         *
+         * @return The condition in HQL.
+         */
+        public String getCondition() {
+            return condition;
+        }
+
+        /**
+         * Parameter getter.
+         *
+         * @return The object to be used as parameter.
+         */
+        public Object getParameter() {
+            return parameter;
+        }
+    }
+}
+

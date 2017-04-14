@@ -5,11 +5,13 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Service
@@ -49,80 +51,50 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
+    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter,
+                                   int pageNumber, int pageSize,
+                                   ThreadDao.SortingType sortingType, SortDirection sortDirection) {
+        return threadDao.getThreads(titleFilter, userIdFilter, userNameFilter,
+                pageNumber, pageSize, sortingType, sortDirection);
+    }
+
+    @Override
     public Thread create(String title, long creatorUserId, String threadBody) throws NoSuchEntityException {
         return threadDao.create(title, creatorUserId, threadBody);
     }
 
     @Override
     public void update(long threadId, String title, String threadBody, long userId) {
-        Thread thread = checkThreadValuesAndAuthoring(threadId, userId);
-        threadDao.update(thread, title, threadBody);
+        threadDao.update(getThreadAndUserCheckingAuthoring(threadId, userId).getThread(), title, threadBody);
     }
 
     @Override
-    public void deleteThread(long threadId, long userId) throws NoSuchEntityException {
-        threadDao.deleteThread(checkThreadValuesAndAuthoring(threadId, userId));
+    public void delete(long threadId, long userId) throws NoSuchEntityException {
+        threadDao.delete(getThreadAndUserCheckingAuthoring(threadId, userId).getThread());
     }
 
-
-    @Override
-    public Set<Thread> findRecent(int limit) {
-        return threadDao.findRecent(limit);
-    }
-
-    @Override
-    public Set<Thread> findBestPointed(int limit) {
-        return threadDao.findBestPointed(limit);
-    }
-
-    @Override
-    public Set<Thread> findHottest(int limit) {
-        return threadDao.findHottest(limit);
-    }
-
-    @Override
-    public Set<Thread> findByUserId(long id) {
-        return threadDao.findByUserId(id);
-    }
-
-    @Override
-    public Set<Thread> findByTitle(String title) {
-        return threadDao.findByTitle(title);
-    }
 
     @Override
     public Thread findById(long threadId) {
         return threadDao.findById(threadId);
     }
 
-    /*
-     * Likes
-     */
 
     @Override
-    public int likeThread(long threadId, long userId) {
-        ThreadLike threadLike = checkThreadLikeValues(threadId, userId);
-        Thread thread = threadDao.findById(threadId); // Not null, as the checker would have thrown exception
-        int count = thread.getLikeCount();
-        if (threadLike == null) {
-            // When null, the user with the given userId didn't like the thread with the given id
-            User user = userDao.findById(userId); // Not null, as the checker would have thrown exception
-            threadLikeDao.create(thread, user);
-            ++count;
+    public void likeThread(long threadId, long userId) {
+        final ThreadAndUserWrapper wrapper = getThreadAndUser(threadId, userId); // Checks if thread or user exist.
+        if (threadLikeDao.find(threadId, userId) != null) {
+            threadLikeDao.create(wrapper.getThread(), wrapper.getUser());
         }
-        return count;
     }
 
     @Override
-    public int unlikeThread(long threadId, long userId) {
-        ThreadLike threadLike = checkThreadLikeValues(threadId, userId);
-        int count = threadDao.findById(threadId).getLikeCount(); // Not null, as the checker would have thrown exception
-        if (threadLike != null) {
-            // When not null, the user with the given userId has liked the thread with the given id
-            threadLikeDao.delete(threadLike);
-            --count;
+    public void unlikeThread(long threadId, long userId) {
+        validateExistenceOfThreadAndUser(threadDao.findById(threadId), userDao.findById(userId));
+        final ThreadLike like = threadLikeDao.find(threadId, userId);
+        if (like != null) {
+            threadLikeDao.delete(like);
         }
-        return count;
     }
 
 
@@ -133,57 +105,46 @@ public class ThreadServiceImpl implements ThreadService {
 
     @Override
     public Comment comment(long threadId, long commenterId, String comment) {
-        Thread thread = checkThreadValues(threadId, commenterId);
-        threadDao.updateHotValue(thread);
-        return commentDao.comment(thread, thread.getCreator(), comment);
+        final ThreadAndUserWrapper wrapper = getThreadAndUser(threadId, commenterId); // Checks existence
+        threadDao.updateHotValue(wrapper.getThread());
+        return commentDao.comment(wrapper.getThread(), wrapper.getUser(), comment);
     }
 
     @Override
     public Comment replyToComment(long commentId, long replierId, String reply) {
-        Comment comment = checkCommentValues(commentId, replierId);
-        // TODO: check cycle?
-        threadDao.updateHotValue(comment.getThread());
-        return commentDao.reply(comment, comment.getCommenter(), reply); // TODO: modificar para que reciba los objetos
+        final CommentAndUserWrapper wrapper = getCommentAndUser(commentId, replierId); // Checks existence
+        threadDao.updateHotValue(wrapper.getComment().getThread());
+        return commentDao.reply(wrapper.getComment(), wrapper.getUser(), reply);
     }
 
     @Override
-    public int likeComment(long id, long userId) {
-        CommentLike commentLike = checkCommentLikeValues(id, userId);
-        Comment comment = commentDao.findById(id); // Not null, as the checker would have thrown exception
-        int count = comment.getLikeCount();
-        if (commentLike == null) {
-            // When null, the user with the given userId didn't like the comment with the given id
-            User user = userDao.findById(userId); // Not null, as the checker would have thrown exception
-            commentLikeDao.create(comment, user);
-            ++count;
+    public void likeComment(long commentId, long userId) {
+        final CommentAndUserWrapper wrapper = getCommentAndUser(commentId, userId); // Checks existence
+        if (commentLikeDao.find(commentId, userId) != null) {
+            commentLikeDao.create(wrapper.getComment(), wrapper.getUser());
         }
-        return count;
     }
 
     @Override
-    public int unlikeComment(long id, long userId) {
-        CommentLike commentLike = checkCommentLikeValues(id, userId);
-        int count = commentDao.findById(id).getLikeCount(); // Not null, as the checker would have thrown exception
-        if (commentLike != null) {
-            // When not null, the user with the given userId has liked the comment with the given id
-            commentLikeDao.delete(commentLike);
-            --count;
+    public void unlikeComment(long commentId, long userId) {
+        validateExistenceOfCommentAndUser(commentDao.findById(commentId), userDao.findById(userId));
+        CommentLike like = commentLikeDao.find(commentId, userId);
+        if (like != null) {
+            commentLikeDao.delete(like);
         }
-        return count;
     }
 
 
     @Override
     public void editComment(long commentId, long userId, String newComment) {
-        Comment comment = checkCommentValuesAndAuthoring(commentId, userId);
-        commentDao.update(comment, newComment);
+        commentDao.update(getCommentAndUserCheckingAuthoring(commentId, userId).getComment(), newComment);
     }
 
     @Override
     public void deleteComment(long commentId, long userId) throws NoSuchEntityException {
-        Comment comment = checkCommentValuesAndAuthoring(commentId, userId);
-        commentDao.delete(comment);
+        commentDao.delete(getCommentAndUserCheckingAuthoring(commentId, userId).getComment());
     }
+
 
 
 
@@ -191,124 +152,249 @@ public class ThreadServiceImpl implements ThreadService {
      * Helpers
      */
 
-    /**
-     * Checks if the values are correct (including authoring).
-     * Upon success,  it returns the {@link Thread} with the given {@code threadId}. Otherwise, an exception is thrown.
-     *
-     * @param threadId The thread id.
-     * @param userId   The user id.
-     * @return The thread with the given {@code threadId}
-     */
-    private Thread checkThreadValuesAndAuthoring(long threadId, long userId) {
-        Thread thread = checkThreadValues(threadId, userId);
-        if (userId != thread.getCreator().getId()) {
-            throw new UnauthorizedException("Thread #" + threadId + " does not belong to user #" + userId
-                    + ", can't delete");
-        }
-        return thread;
-    }
 
     /**
-     * Checks if the values are correct (without authoring).
-     * Upon success,  it returns the {@link Thread} with the given {@code threadId}. Otherwise, an exception is thrown.
-     *
-     * @param threadId The thread id.
-     * @param userId   The user id.
-     * @return The thread with the given {@code threadId}
-     */
-    private Thread checkThreadValues(long threadId, long userId) {
-        Thread thread = threadDao.findById(threadId);
-        User user = userDao.findById(userId);
-        // TODO: Use a collection to save which ones are conflicting
-        if (thread == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
-        }
-        if (user == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
-        }
-        return thread;
-    }
-
-    /**
-     * Checks if the values are correct.
-     * Upon success,  it returns the {@link ThreadLike} with the given {@code threadId}.
+     * Creates a {@link ThreadAndUserWrapper} using the given {@code threadId} and {@code userId},
+     * checking existence and authoring.
+     * Upon success, it returns a {@link ThreadAndUserWrapper} containing the {@link Thread}
+     * with the given {@code threadId}, and the {@link User} with the given {@code userId}.
      * Otherwise, an exception is thrown.
      *
      * @param threadId The thread id.
      * @param userId   The user id.
-     * @return The {@link ThreadLike} done to the {@link Thread} with the given {@code threadId}.
+     * @return The wrapper object.
+     * @throws NoSuchEntityException If no {@link Thread} exists with the given {@code threadId},
+     *                               or if no {@link User} exists with the given {@code userId}.
+     * @throws UnauthorizedException If the {@link User} with the given {@code userId} is not the creator
+     *                               of the {@link Thread} with the given {@code threadId}
      */
-    private ThreadLike checkThreadLikeValues(long threadId, long userId) {
-        Thread thread = threadDao.findById(threadId);
-        User user = userDao.findById(userId);
-        // TODO: Use a collection to save which ones are conflicting
+    private ThreadAndUserWrapper getThreadAndUserCheckingAuthoring(long threadId, long userId)
+            throws NoSuchEntityException, UnauthorizedException {
+        return getThreadAndUser(threadId, userId).validateAuthoring(); // Checks existence and authoring
+    }
+
+    /**
+     * Creates a {@link ThreadAndUserWrapper} using the given {@code threadId} and {@code userId}, checking existence.
+     *
+     * @param threadId The thread id.
+     * @param userId   The user id.
+     * @return The wrapper object.
+     * @throws NoSuchEntityException If no {@link Thread} exists with the given {@code threadId},
+     *                               or if no {@link User} exists with the given {@code userId}.
+     */
+    private ThreadAndUserWrapper getThreadAndUser(long threadId, long userId) throws NoSuchEntityException {
+        final Thread thread = threadDao.findById(threadId);
+        final User user = userDao.findById(userId);
+        validateExistenceOfThreadAndUser(thread, user);
+
+        return new ThreadAndUserWrapper(thread, user);
+    }
+
+    /**
+     * Checks that the given {@link Thread} or the given {@link User} are not {@code null},
+     * throwing a {@link NoSuchEntityException} containing those {@code null} fields in it.
+     *
+     * @param thread The {@link Thread} to be checked.
+     * @param user   The {@link User} to be checked.
+     * @throws NoSuchEntityException If the given {@link Thread} or the given {@link User} are null.
+     */
+    private void validateExistenceOfThreadAndUser(Thread thread, User user) throws NoSuchEntityException {
+        List<String> missing = new LinkedList<>();
         if (thread == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+            missing.add("threadId");
         }
         if (user == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+            missing.add("userId");
         }
-        return threadLikeDao.find(threadId, userId);
+        if (!missing.isEmpty()) {
+            throw new NoSuchEntityException(missing);
+        }
     }
 
 
     /**
-     * Checks if the values are correct.
-     * Upon success,  it returns the {@link Comment} with the given {@code commentId}. Otherwise, an exception is thrown.
+     * Creates a {@link CommentAndUserWrapper} using the given {@code commentId} and {@code userId},
+     * checking existence and authoring.
+     * Upon success, it returns a {@link CommentAndUserWrapper} containing the {@link Comment}
+     * with the given {@code commentId}, and the {@link User} with the given {@code userId}.
+     * Otherwise, an exception is thrown.
      *
-     * @param commentId The thread id.
+     * @param commentId The comment id.
      * @param userId    The user id.
-     * @return The comment with the given {@code commentId}
+     * @return The wrapper object.
+     * @throws NoSuchEntityException If no {@link Comment} exists with the given {@code commentId},
+     *                               or if no {@link User} exists with the given {@code userId}.
+     * @throws UnauthorizedException If the {@link User} with the given {@code userId} is not the commenter
+     *                               of the {@link Comment} with the given {@code commentId}
      */
-    private Comment checkCommentValuesAndAuthoring(long commentId, long userId) {
-        Comment comment = checkCommentValues(commentId, userId);
-        if (userId != comment.getCommenter().getId()) {
-            throw new UnauthorizedException("Comment #" + commentId + " does not belong to user #" + userId);
-        }
-        return comment;
+    private CommentAndUserWrapper getCommentAndUserCheckingAuthoring(long commentId, long userId)
+            throws NoSuchEntityException, UnauthorizedException {
+        return getCommentAndUser(commentId, userId).validateAuthoring();
     }
 
     /**
-     * Checks if the values are correct.
-     * Upon success,  it returns the {@link Comment} with the given {@code commentId}. Otherwise, an exception is thrown.
+     * Creates a {@link CommentAndUserWrapper} using the given {@code commentId} and {@code userId}, checking existence.
      *
-     * @param commentId The thread id.
+     * @param commentId The comment id.
      * @param userId    The user id.
-     * @return The comment with the given {@code commentId}
+     * @return The wrapper object.
+     * @throws NoSuchEntityException If no {@link Comment} exists with the given {@code commentId},
+     *                               or if no {@link User} exists with the given {@code userId}.
      */
-    private Comment checkCommentValues(long commentId, long userId) {
-        Comment comment = commentDao.findById(commentId);
-        User user = userDao.findById(userId);
-        // TODO: Use a collection to save which ones are conflicting
+    private CommentAndUserWrapper getCommentAndUser(long commentId, long userId) throws NoSuchEntityException {
+        final Comment comment = commentDao.findById(commentId);
+        final User user = userDao.findById(userId);
+        validateExistenceOfCommentAndUser(comment, user);
+
+        return new CommentAndUserWrapper(comment, user);
+    }
+
+    /**
+     * Checks that the given {@link Comment} or the given {@link User} are not {@code null},
+     * throwing a {@link NoSuchEntityException} containing those {@code null} fields in it.
+     *
+     * @param comment The {@link Comment} to be checked.
+     * @param user    The {@link User} to be checked.
+     * @throws NoSuchEntityException If the given {@link Comment} or the given {@link User} are null.
+     */
+    private void validateExistenceOfCommentAndUser(Comment comment, User user) throws NoSuchEntityException {
+        List<String> missing = new LinkedList<>();
         if (comment == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+            missing.add("commentId");
         }
         if (user == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+            missing.add("userId");
         }
-        return comment;
+        if (!missing.isEmpty()) {
+            throw new NoSuchEntityException(missing);
+        }
     }
 
 
     /**
-     * Checks if the values are correct.
-     * Upon success,  it returns the {@link CommentLike} with the given {@code commentId}. Otherwise, an exception is thrown.
-     *
-     * @param commentId The thread id.
-     * @param userId    The user id.
-     * @return The {@link CommentLike} done to the {@link Comment} with the given {@code commentId}.
+     * Class encapsulating a thread and a user.
      */
-    private CommentLike checkCommentLikeValues(long commentId, long userId) {
-        Comment comment = commentDao.findById(commentId);
-        User user = userDao.findById(userId);
-        // TODO: Use a collection to save which ones are conflicting
-        if (comment == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+    private final static class ThreadAndUserWrapper {
+
+        /**
+         * The wrapped thread.
+         */
+        private final Thread thread;
+
+        /**
+         * The wrapper user.
+         */
+        private final User user;
+
+        /**
+         * Constructor.
+         *
+         * @param thread The thread to be wrapped.
+         * @param user   The user to be wrapped.
+         */
+        private ThreadAndUserWrapper(Thread thread, User user) {
+            this.thread = thread;
+            this.user = user;
         }
-        if (user == null) {
-            throw new NoSuchEntityException(); // TODO: avisar que objeto está faltando
+
+        /**
+         * Thread getter.
+         *
+         * @return The wrapped thread.
+         */
+        private Thread getThread() {
+            return thread;
         }
-        return commentLikeDao.find(commentId, userId);
+
+        /**
+         * User getter.
+         *
+         * @return The wrapped user.
+         */
+        private User getUser() {
+            return user;
+        }
+
+
+        /**
+         * Checks whether the wrapped {@link User} is the creator of the wrapped {@link Thread}.
+         * If not, an {@link UnauthorizedException} is thrown.
+         * Note that there is nothing wrong in wrapping a {@link Thread} and a {@link User} that is not the creator,
+         * but this method just checks this for authoring purposes.
+         *
+         * @return this (for method chaining).
+         * @throws UnauthorizedException If the wrapped {@link User} is not the creator of the wrapped {@link Thread}.
+         */
+        private ThreadAndUserWrapper validateAuthoring() throws UnauthorizedException {
+            if (!user.equals(thread.getCreator())) {
+                throw new UnauthorizedException("Thread #" + thread.getId() +
+                        " does not belong to user #" + user.getId());
+            }
+            return this;
+        }
+    }
+
+    /**
+     * Class encapsulating a comment and a user.
+     */
+    private final static class CommentAndUserWrapper {
+
+        /**
+         * The wrapped comment.
+         */
+        private final Comment comment;
+
+        /**
+         * The wrapper user.
+         */
+        private final User user;
+
+        /**
+         * Constructor.
+         *
+         * @param comment The comment to be wrapped.
+         * @param user    The user to be wrapped.
+         */
+        private CommentAndUserWrapper(Comment comment, User user) {
+            this.comment = comment;
+            this.user = user;
+        }
+
+        /**
+         * Comment getter.
+         *
+         * @return The wrapped comment.
+         */
+        private Comment getComment() {
+            return comment;
+        }
+
+        /**
+         * User getter.
+         *
+         * @return The wrapped user.
+         */
+        private User getUser() {
+            return user;
+        }
+
+        /**
+         * Checks whether the wrapped {@link User} is the commenter of the wrapped {@link Comment}.
+         * If not, an {@link UnauthorizedException} is thrown.
+         * Note that there is nothing wrong in wrapping a {@link Comment} and a {@link User} that is not the commenter,
+         * but this method just checks this for authoring purposes.
+         *
+         * @return this (for method chaining).
+         * @throws UnauthorizedException If the wrapped {@link User} is not the commenter
+         *                               of the wrapped {@link Comment}.
+         */
+        private CommentAndUserWrapper validateAuthoring() throws UnauthorizedException {
+            if (!user.equals(comment.getCommenter())) {
+                throw new UnauthorizedException("Comment #" + comment.getId() +
+                        " does not belong to user #" + user.getId());
+            }
+            return this;
+        }
     }
 
 

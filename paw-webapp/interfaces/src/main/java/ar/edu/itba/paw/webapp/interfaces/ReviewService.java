@@ -4,7 +4,10 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.Game;
 
 /**
  * Service layer for game reviews. Exposes functionality available to reviews.
@@ -50,11 +53,12 @@ public interface ReviewService {
      * @param funScore      The fun score.
      * @return The created review.
      * @throws NoSuchEntityException If no such user or game exists.
-     *                               //TODO throw exception if said review already exists. <-- Un usuario no puede escribir dos reviews para un mismo juego? [JMB]
+     * @throws ValidationException   If the {@link User} with the given {@code reviewerId}
+     *                               has already reviewed the {@link Game} with the given {@code gameId}.
      */
     Review create(long reviewerId, long gameId, String reviewBody,
                   int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore)
-            throws NoSuchEntityException;
+            throws NoSuchEntityException, ValidationException;
 
 
     /**

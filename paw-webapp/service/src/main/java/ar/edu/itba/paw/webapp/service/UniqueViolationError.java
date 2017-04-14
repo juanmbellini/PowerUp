@@ -1,6 +1,6 @@
 package ar.edu.itba.paw.webapp.service;
 
-import ar.edu.itba.paw.webapp.model.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 
 /**
  * This class represents an unique violation error.
@@ -8,7 +8,7 @@ import ar.edu.itba.paw.webapp.model.ValidationException;
  *
  * Created by Juan Marcos Bellini on 20/1/17.
  */
-public class UniqueViolationError extends ValidationException.ValueError {
+public class UniqueViolationError extends ValueError {
     public UniqueViolationError(String fieldName) {
         super(ErrorCause.ALREADY_EXISTS, fieldName, "The " + fieldName + " field violates a unique constraint");
     }

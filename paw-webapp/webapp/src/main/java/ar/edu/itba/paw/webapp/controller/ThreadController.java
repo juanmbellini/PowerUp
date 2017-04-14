@@ -44,20 +44,20 @@ public class ThreadController extends BaseController {
         }
         switch (enumOrder) {
             case BEST:
-                threads = threadService.findBestPointed(50);
+//                threads = threadService.findBestPointed(50);
                 break;
             case NEWEST:
-                threads = threadService.findRecent(50);
+//                threads = threadService.findRecent(50);
                 break;
             case HOT:
             default:
-                threads = threadService.findHottest(50);
+//                threads = threadService.findHottest(50);
                 break;
         }
 
         ModelAndView mav = new ModelAndView("threads");
         mav.addObject("order", enumOrder.name().toLowerCase());
-        mav.addObject("threads", threads);
+//        mav.addObject("threads", threads);
         return mav;
     }
 
@@ -229,7 +229,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.deleteThread(threadId, getCurrentUser().getId());
+            threadService.delete(threadId, getCurrentUser().getId());
             LOG.info("{} deleted thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {

@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,27 +9,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
  */
 @Entity
 @Table(name = "threads")
-public class Thread {
-
-    private static final ValidationException.ValueError MISSING_CREATOR_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "creator", "A creator must be set.");
-
-    private static final ValidationException.ValueError MISSING_TITLE_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "title", "A title must be set.");
-
-    private static final ValidationException.ValueError ILLEGAL_EMPTY_TITLE_ERROR =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "title", "The title must have at least one character.");
-
+public class Thread implements ValidationExceptionThrower {
 
     @Id
     @SequenceGenerator(name = "threads_seq", sequenceName = "threads_id_seq", allocationSize = 1)
@@ -63,12 +50,12 @@ public class Thread {
     private Calendar updatedAt;
 
     @Column(name = "hot_value")
-    private double hotValue; // TODO: check how this is updated
+    private double hotValue;
 
     /*package*/  Thread() {
         this.allComments = new HashSet<>();
         this.likes = new HashSet<>();
-        //for hibernate
+        // For Hibernate
     }
 
     /**
@@ -81,11 +68,11 @@ public class Thread {
      */
     public Thread(User creator, String title, String initialComment) throws ValidationException {
         this();
-        if (creator == null) {
-            throw new ValidationException(Stream.of(MISSING_CREATOR_ERROR).collect(Collectors.toList()));
-        }
+        final List<ValueError> errorList = new LinkedList<>();
+        ValidationHelper.objectNotNull(creator, errorList, ValueErrorConstants.MISSING_CREATOR);
+
+        update(title, initialComment, errorList);
         this.creator = creator;
-        update(title, initialComment == null ? "" : initialComment);
         updateHotValue();
     }
 
@@ -97,11 +84,18 @@ public class Thread {
      * @throws ValidationException If any value is wrong.
      */
     public void update(String title, String initialComment) throws ValidationException {
-        if (title == null) {
-            throw new ValidationException(Stream.of(MISSING_TITLE_ERROR).collect(Collectors.toList()));
-        } else if (title.isEmpty()) {
-            throw new ValidationException(Stream.of(ILLEGAL_EMPTY_TITLE_ERROR).collect(Collectors.toList()));
-        }
+        update(title, initialComment, new LinkedList<>());
+    }
+
+    /**
+     * Updates the thread, receiving a list of detected errors before executing this method.
+     *
+     * @param title          The new title.
+     * @param initialComment The initial comment (i.e. body of the thread).
+     * @throws ValidationException If any value is wrong.
+     */
+    private void update(String title, String initialComment, List<ValueError> errorList) throws ValidationException {
+        checkValues(title, initialComment, errorList);
         this.title = title;
         this.initialComment = initialComment;
     }
@@ -115,27 +109,57 @@ public class Thread {
         hotValue = (Math.log10(likeSize) + (millis / 1000 - epoch) / 45000.0);
     }
 
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Creator getter.
+     *
+     * @return The creator.
+     */
     public User getCreator() {
         return creator;
     }
 
+    /**
+     * Title getter.
+     *
+     * @return The title.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Hot value getter.
+     *
+     * @return The hot value.
+     */
     public double getHotValue() {
         return hotValue;
     }
 
 
+    /**
+     * All comments getter.
+     *
+     * @return A collection containing all the comments of this thread.
+     */
     public Collection<Comment> getAllComments() {
         return allComments;
     }
 
+    /**
+     * Top level comments getter.
+     *
+     * @return A collection containing top level comments of this thread.
+     */
     @Transient
     public Collection<Comment> getTopLevelComments() {
         // Not caching into a variable since allComments may change and we have no way of tracking when this happens
@@ -145,10 +169,21 @@ public class Thread {
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
+    /**
+     * Likes count getter.
+     *
+     * @return The amount of likes.
+     */
     public int getLikeCount() {
         return likes.size();
     }
 
+    /**
+     * Indicates whether this thread is liked by the given {@link User}.
+     *
+     * @param user The {@link User} to be checked whether they liked the thread.
+     * @return {@code true} if the given {@link User} liked the thread, or {@code false} otherwise.
+     */
     public boolean isLikedBy(User user) {
         // TODO: what if one thread has 3M of likes and the given user's like is the last one?
         // TODO: what if the user didn't like the thread, and it has 40M likes?
@@ -156,14 +191,30 @@ public class Thread {
         return likes.parallelStream().map(ThreadLike::getUser).collect(Collectors.toSet()).contains(user);
     }
 
+    /**
+     * Created at getter.
+     *
+     * @return The moment at which this comment was created.
+     */
     public Calendar getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Updated at getter.
+     *
+     * @return The moment at which this comment was updated.
+     */
     public Calendar getUpdatedAt() {
         return updatedAt;
     }
 
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -174,6 +225,11 @@ public class Thread {
         return id == thread.id;
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
@@ -183,6 +239,27 @@ public class Thread {
     public String toString() {
         return "Thread #" + id + ", creator=" + creator.getUsername()
                 + ", title='" + title + "', initialComment='" + initialComment + "'";
+    }
+
+
+    /**
+     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
+     *
+     * @param title          The title to be checked.
+     * @param initialComment The initial comment to be checked.
+     * @param errorList      A list containing possible detected errors before calling this method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void checkValues(String title, String initialComment, List<ValueError> errorList)
+            throws ValidationException {
+        errorList = errorList == null ? new LinkedList<>() : errorList;
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(title, NumericConstants.TITLE_MIN_LENGTH,
+                NumericConstants.TITLE_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_TITLE,
+                ValueErrorConstants.TITLE_TOO_SHORT, ValueErrorConstants.TITLE_TOO_LONG);
+        ValidationHelper.stringNullOrLengthBetweenTwoValues(initialComment, NumericConstants.THREAD_BODY_MIN_LENGTH,
+                NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.THREAD_BODY_TOO_SHORT,
+                ValueErrorConstants.THREAD_BODY_TOO_LONG);
+        throwValidationException(errorList);
     }
 
 }

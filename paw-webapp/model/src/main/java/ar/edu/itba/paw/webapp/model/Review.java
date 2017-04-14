@@ -1,5 +1,7 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -10,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "reviews")
-public class Review {
+public class Review implements ValidationExceptionThrower {
 
     @Id
     @SequenceGenerator(name = "reviews_seq", sequenceName = "reviews_id_seq", allocationSize = 1)
@@ -47,7 +49,7 @@ public class Review {
     private int funScore;
 
     /*package*/  Review() {
-        //for hibernate
+        // For Hibernate
     }
 
 
@@ -64,16 +66,13 @@ public class Review {
      * @param funScore      The fun score.
      * @throws ValidationException If any value is wrong.
      */
-    public Review(User user, Game game, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                  Integer controlsScore, Integer funScore)
+    public Review(User user, Game game, String reviewBody, Integer storyScore, Integer graphicsScore,
+                  Integer audioScore, Integer controlsScore, Integer funScore)
             throws ValidationException {
-        List<ValidationException.ValueError> errorList = new LinkedList<>();
-        if (user == null) {
-            errorList.add(MISSING_USER);
-        }
-        if (game == null) {
-            errorList.add(MISSING_GAME);
-        }
+        List<ValueError> errorList = new LinkedList<>();
+        ValidationHelper.objectNotNull(user, errorList, ValueErrorConstants.MISSING_USER);
+        ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
+
         update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.user = user;
         this.game = game;
@@ -111,7 +110,7 @@ public class Review {
      * @throws ValidationException If any value is wrong.
      */
     private void update(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                        Integer controlsScore, Integer funScore, List<ValidationException.ValueError> errorList)
+                        Integer controlsScore, Integer funScore, List<ValueError> errorList)
             throws ValidationException {
         checkValues(review, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.review = review;
@@ -123,55 +122,122 @@ public class Review {
     }
 
 
-    public double getRating() {
-        return (double) (this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore) / 5;
-    }
-
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Game getter.
+     *
+     * @return The game.
+     */
     public Game getGame() {
         return game;
     }
 
+    /**
+     * Story score getter.
+     *
+     * @return The story score.
+     */
     public int getStoryScore() {
         return storyScore;
     }
 
+    /**
+     * Graphic score getter
+     *
+     * @return The graphic score.
+     */
     public int getGraphicsScore() {
         return graphicsScore;
     }
 
+    /**
+     * Audio score getter.
+     *
+     * @return The audio score.
+     */
     public int getAudioScore() {
         return audioScore;
     }
 
+    /**
+     * Control score getter.
+     *
+     * @return The control score.
+     */
     public int getControlsScore() {
         return controlsScore;
     }
 
+    /**
+     * Fun score getter.
+     *
+     * @return The fun score.
+     */
     public int getFunScore() {
         return funScore;
     }
 
+    /**
+     * Review getter.
+     *
+     * @return The review (i.e The body of the review).
+     */
     public String getReview() {
         return review;
     }
 
+    /**
+     * User getter.
+     *
+     * @return The user.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Date getter.
+     *
+     * @return The date (i.e. Date at which the review was created).
+     */
     public LocalDate getDate() {
         return date;
     }
 
+
+    /**
+     * Overall score getter.
+     *
+     * @return The overall score (i.e average of scores).
+     */
     @Transient
     public double getOverallScore() {
         return (storyScore + graphicsScore + audioScore + controlsScore + funScore) / 5.0;
     }
 
+    /**
+     * Rating getter.
+     *
+     * @return The rating (i.e average of scores)
+     */
+    public double getRating() {
+        return (double) (this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore) / 5;
+    }
+
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -183,6 +249,11 @@ public class Review {
 
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
@@ -190,7 +261,7 @@ public class Review {
 
 
     /**
-     * Checks the given value, throwing a {@link ValidationException} if any is wrong.
+     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
      *
      * @param review        The review to be checked.
      * @param storyScore    The story score to be checked.
@@ -202,23 +273,26 @@ public class Review {
      * @throws ValidationException If any value is wrong.
      */
     private void checkValues(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                             Integer controlsScore, Integer funScore, List<ValidationException.ValueError> errorList)
+                             Integer controlsScore, Integer funScore, List<ValueError> errorList)
             throws ValidationException {
         errorList = errorList == null ? new LinkedList<>() : errorList;
-        if (review == null) {
-            errorList.add(MISSING_REVIEW_BODY);
-        } else if (review.isEmpty()) {
-            errorList.add(REVIEW_BODY_TOO_SHORT);
-        }
-        checkScore(storyScore, MISSING_STORY_SCORE, STORY_SCORE_BELOW_0, STORY_SCORE_BELOW_0, errorList);
-        checkScore(graphicsScore, MISSING_GRAPHICS_SCORE, GRAPHICS_SCORE_BELOW_0, GRAPHICS_SCORE_BELOW_0, errorList);
-        checkScore(audioScore, MISSING_AUDIO_SCORE, AUDIO_SCORE_BELOW_0, AUDIO_SCORE_BELOW_0, errorList);
-        checkScore(controlsScore, MISSING_CONTROLS_SCORE, CONTROLS_SCORE_BELOW_0, CONTROLS_SCORE_BELOW_0, errorList);
-        checkScore(funScore, MISSING_FUN_SCORE, FUN_SCORE_BELOW_0, FUN_SCORE_BELOW_0, errorList);
 
-        if (!errorList.isEmpty()) {
-            throw new ValidationException(errorList);
-        }
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(review, NumericConstants.REVIEW_BODY_MIN_LENGTH,
+                NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_REVIEW_BODY,
+                ValueErrorConstants.REVIEW_BODY_TOO_SHORT, ValueErrorConstants.REVIEW_BODY_TOO_LONG);
+
+        checkScore(storyScore, ValueErrorConstants.MISSING_STORY_SCORE,
+                ValueErrorConstants.STORY_SCORE_BELOW_MIN, ValueErrorConstants.STORY_SCORE_ABOVE_MAX, errorList);
+        checkScore(graphicsScore, ValueErrorConstants.MISSING_GRAPHICS_SCORE,
+                ValueErrorConstants.GRAPHICS_SCORE_BELOW_MIN, ValueErrorConstants.GRAPHICS_SCORE_ABOVE_MAX, errorList);
+        checkScore(audioScore, ValueErrorConstants.MISSING_AUDIO_SCORE,
+                ValueErrorConstants.AUDIO_SCORE_BELOW_MIN, ValueErrorConstants.AUDIO_SCORE_ABOVE_MAX, errorList);
+        checkScore(controlsScore, ValueErrorConstants.MISSING_CONTROLS_SCORE,
+                ValueErrorConstants.CONTROLS_SCORE_BELOW_MIN, ValueErrorConstants.CONTROLS_SCORE_ABOVE_MAX, errorList);
+        checkScore(funScore, ValueErrorConstants.MISSING_FUN_SCORE,
+                ValueErrorConstants.FUN_SCORE_BELOW_MIN, ValueErrorConstants.FUN_SCORE_ABOVE_MAX, errorList);
+
+        throwValidationException(errorList);
     }
 
 
@@ -226,96 +300,17 @@ public class Review {
      * Checks if the given {@code score} is valid.
      *
      * @param score        The score to be checked.
-     * @param missingError The {@link ValidationException.ValueError} representing the missing value error.
-     * @param belowError   The {@link ValidationException.ValueError} representing a below 0 error.
-     * @param aboveError   The {@link ValidationException.ValueError} representing an above 10 error.
+     * @param missingError The {@link ValueError} representing the missing value error.
+     * @param belowError   The {@link ValueError} representing a below 0 error.
+     * @param aboveError   The {@link ValueError} representing an above 10 error.
      * @param errorList    The list containing errors.
      */
-    private void checkScore(Integer score, ValidationException.ValueError missingError,
-                            ValidationException.ValueError belowError, ValidationException.ValueError aboveError,
-                            List<ValidationException.ValueError> errorList) {
-        if (score == null) {
-            errorList.add(missingError);
-        } else if (score < 0) {
-            errorList.add(belowError);
-        } else if (score > 10) {
-            errorList.add(aboveError);
-        }
+    private static void checkScore(Integer score, ValueError missingError,
+                                   ValueError belowError, ValueError aboveError,
+                                   List<ValueError> errorList) {
+        ValidationHelper.intNotNullAndLengthBetweenTwoValues(score, NumericConstants.MIN_SCORE, NumericConstants.MAX_SCORE,
+                errorList, missingError, belowError, aboveError);
+
     }
-
-
-    private static final ValidationException.ValueError MISSING_USER =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "user", "The user is missing.");
-
-    private static final ValidationException.ValueError MISSING_GAME =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "game", "The game is missing.");
-
-    private static final ValidationException.ValueError MISSING_REVIEW_BODY =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "review", "The review body is missing.");
-    private static final ValidationException.ValueError REVIEW_BODY_TOO_SHORT =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "review", "The review body is too short.");
-
-
-    private static final String ILLEGAL_SCORE_ERROR_MESSAGE = "The score must be between 0 and 10";
-
-    // Story
-    private static final ValidationException.ValueError MISSING_STORY_SCORE =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "storyScore", "The story score is missing");
-    private static final ValidationException.ValueError STORY_SCORE_BELOW_0 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "storyScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-    private static final ValidationException.ValueError STORY_SCORE_ABOVE_10 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "storyScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    // Graphics
-    private static final ValidationException.ValueError MISSING_GRAPHICS_SCORE =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "graphicsScore", "The graphics score is missing");
-    private static final ValidationException.ValueError GRAPHICS_SCORE_BELOW_0 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "graphicsScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-    private static final ValidationException.ValueError GRAPHICS_SCORE_ABOVE_10 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "graphicsScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    // Audio
-    private static final ValidationException.ValueError MISSING_AUDIO_SCORE =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "audioScore", "The audio score is missing");
-    private static final ValidationException.ValueError AUDIO_SCORE_BELOW_0 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "audioScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-    private static final ValidationException.ValueError AUDIO_SCORE_ABOVE_10 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "audioScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    // Controls
-    private static final ValidationException.ValueError MISSING_CONTROLS_SCORE =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "controlsScore", "The controls score is missing");
-    private static final ValidationException.ValueError CONTROLS_SCORE_BELOW_0 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "controlsScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-    private static final ValidationException.ValueError CONTROLS_SCORE_ABOVE_10 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "controlsScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    // Fun
-    private static final ValidationException.ValueError MISSING_FUN_SCORE =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.MISSING_VALUE,
-                    "funScore", "The fun score is missing");
-    private static final ValidationException.ValueError FUN_SCORE_BELOW_0 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "funScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-    private static final ValidationException.ValueError FUN_SCORE_ABOVE_10 =
-            new ValidationException.ValueError(ValidationException.ValueError.ErrorCause.ILLEGAL_VALUE,
-                    "funScore", ILLEGAL_SCORE_ERROR_MESSAGE);
-
 
 }
