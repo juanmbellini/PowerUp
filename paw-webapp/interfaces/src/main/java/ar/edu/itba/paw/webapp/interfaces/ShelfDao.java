@@ -1,39 +1,22 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Shelf;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Data Access Object for game reviews.
  */
 public interface ShelfDao {
 
-    /**
-     * @see ShelfService#create(String, long, long...)
-     */
-    Shelf create(String name, long creatorUserId, long... initialGameIds) throws NoSuchEntityException;
 
     /**
-     * @see ShelfService#findByGameId(long)
+     * @see ShelfService#getShelves(String, Long, String, Long, String, int, int, SortingType, SortDirection)
      */
-    Set<Shelf> findByGameId(long id);
-
-    /**
-     * @see ShelfService#findByGameName(String)
-     */
-    Set<Shelf> findByGameName(String name);
-
-    /**
-     * @see ShelfService#findByUserId(long)
-     */
-    Set<Shelf> findByUserId(long id);
-
-    /**
-     * @see ShelfService#findByUsername(String)
-     */
-    Set<Shelf> findByUsername(String name);
+    Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
+                           Long userIdFilter, String userNameFilter,
+                           int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
      * @see ShelfService#findById(long)
@@ -41,39 +24,67 @@ public interface ShelfDao {
     Shelf findById(long shelfId);
 
     /**
-     * @see ShelfService#belongsTo(long, long)
+     * @see ShelfService#create(String, long)
      */
-    boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
+    Shelf create(String name, User creator);
 
     /**
-     * @see ShelfService#rename(long, String)
+     * @see ShelfService#update(long, String, long)
      */
-    void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException;
+    void update(Shelf shelf, String name);
 
     /**
-     * @see ShelfService#update(long, long...)
+     * @see ShelfService#delete(long, long)
      */
-    void update(long shelfId, long... newGameIds) throws NoSuchEntityException;
+    void delete(Shelf shelf);
+
 
     /**
-     * @see ShelfService#findByName(String)
+     * @see ShelfService#addGameToShelf(long, long, long)
      */
-    Set<Shelf> findByName(String shelfName);
-
-    void addGame(long shelfId, long gameId) throws NoSuchEntityException;
+    void addGameToShelf(Shelf shelf, Game game);
 
     /**
-     * @see ShelfService#removeGame(long, long)
+     * @see ShelfService#removeGameFromShelf(long, long, long)
      */
-    void removeGame(long shelfId, long gameId) throws NoSuchEntityException;
+    void removeGameFromShelf(Shelf shelf, Game game);
 
     /**
-     * @see ShelfService#clear(long)
+     * @see ShelfService#clearShelf(long, long)
      */
-    void clear(long shelfId) throws NoSuchEntityException;
+    void clearShelf(Shelf shelf);
+
 
     /**
-     * @see ShelfService#delete(long)
+     * Enum indicating the sorting type for the "get shelves" method.
      */
-    void delete(long shelfId) throws NoSuchEntityException;
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return null;
+            }
+        },
+        NAME {
+            @Override
+            public String getFieldName() {
+                return null;
+            }
+        },
+        UPDATED {
+            @Override
+            public String getFieldName() {
+                return null;
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+    }
+
+
 }

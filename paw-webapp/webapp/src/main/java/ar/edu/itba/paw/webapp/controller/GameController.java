@@ -221,9 +221,9 @@ public class GameController extends BaseController {
                     rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
                 }
                 Map<Shelf, Boolean> shelves = new LinkedHashMap<>();
-                for(Shelf shelf : shelfService.findByUserId(userId)) {
-                    shelves.put(shelf, shelf.getGames().contains(game));
-                }
+//                for(Shelf shelf : shelfService.findByUserId(userId)) {
+//                    shelves.put(shelf, shelf.getGames().contains(game));
+//                }
                 mav.addObject("shelves", shelves);
             }
 
@@ -391,7 +391,7 @@ public class GameController extends BaseController {
             return new ModelAndView("error400");
         }
         long gameId = review.getGame().getId();
-        reviewService.delete(reviewId, null);
+//        reviewService.delete(reviewId, null);
         return new ModelAndView("redirect:/game?id=" + gameId);
     }
 

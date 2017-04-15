@@ -254,12 +254,12 @@ public interface UserService {
      */
     String generateNewPassword();
 
-    /**
-     * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
-     * @param userId
-     * @param gameId
-     */
-    void removeFromList(long userId, long gameId);
+//    /**
+//     * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
+//     * @param userId
+//     * @param gameId
+//     */
+//    void removeFromList(long userId, long gameId);
 
     /**
      * Deletes a user by ID.

@@ -1,56 +1,33 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Shelf;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Service layer for game shelves. Exposes functionality available to shelves.
  */
 public interface ShelfService {
 
-    /**
-     * Creates a shelf with a given name, created by a specified user, and with an optional number of initial games.
-     *
-     * @param creatorUserId The user ID of the creator of the shelf.
-     * @param initialGameIds (Optional) list of game IDs to add to the shelf upon creation.
-     * @return The created shelf.
-     * @throws NoSuchEntityException If the creator or at least one of the games don't exist.
-     */
-    Shelf create(String name, long creatorUserId, long... initialGameIds) throws NoSuchEntityException;
 
     /**
-     * Returns a set of shelves for a specified game, identified by ID.
+     * Returns a {@link Page} with the shelves, applying filters, pagination and sorting.
      *
-     * @param id The ID of the game whose shelves to fetch.
-     * @return The resulting set of shelves.
+     * @param nameFilter     Filter for the name.
+     * @param gameIdFilter   Filter for game id.
+     * @param gameNameFilter Filter for game name.
+     * @param userIdFilter   Filter for user id.
+     * @param userNameFilter Filter for user name.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type (id, game id, or creation date).
+     * @param sortDirection  The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
      */
-    Set<Shelf> findByGameId(long id);
-
-    /**
-     * Returns a set of shelves for a specified game, identified by name.
-     *
-     * @param name The name of the game whose shelves to fetch. Case <b>in</b>sensitive.
-     * @return The resulting set of shelves.
-     */
-    Set<Shelf> findByGameName(String name);
-
-    /**
-     * Returns a set of shelves created by a specified user, identified by ID.
-     *
-     * @param id The ID of the user whose shelves to fetch.
-     * @return The resulting set of shelves.
-     */
-    Set<Shelf> findByUserId(long id);
-
-    /**
-     * Returns a set of shelves created by a specified user, identified by username.
-     *
-     * @param name The name of the user whose shelves to fetch. Case <b>in</b>sensitive.
-     * @return The resulting set of shelves.
-     */
-    Set<Shelf> findByUsername(String name);
+    Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
+                           Long userIdFilter, String userNameFilter,
+                           int pageNumber, int pageSize, ShelfDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
      * Finds a shelf by ID.
@@ -61,73 +38,59 @@ public interface ShelfService {
     Shelf findById(long shelfId);
 
     /**
-     * Finds shelves by name.
+     * Creates a new {@link Shelf} using the specified data.
      *
-     * @param shelfName The name to match. Case <b>in</b>sensitive.
-     * @return The matching shelves.
+     * @param name      The name for the shelf.
+     * @param creatorId The id of the {@link User} creating the shelf.
+     * @return The created shelf.
      */
-    Set<Shelf> findByName(String shelfName);
+    Shelf create(String name, long creatorId);
+
 
     /**
-     * Checks whether a specified shelf belongs to a specified user.
+     * Updates the {@link Shelf} with the given {@code shelfId}.
      *
-     * @param shelfId The shelf ID.
-     * @param userId The user ID.
-     * @return Whether the shelf belongs to the user.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
+     * @param shelfId   The shelf id.
+     * @param name      The new name.
+     * @param updaterId The user performing the operation.
      */
-    boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
+    void update(long shelfId, String name, long updaterId);
+
 
     /**
-     * Renames a shelf.
+     * Deletes {@link Shelf} with the given {@code shelfId}.
      *
-     * @param shelfId The ID of the shelf to rename.
-     * @param newName The shelf's new name.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
-     * @throws IllegalArgumentException If the name is null or invalid (e.g. empty).
+     * @param shelfId   The shelf id.
+     * @param deleterId The user performing the operation.
      */
-    void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException;
+    void delete(long shelfId, long deleterId);
+
 
     /**
-     * Updates the contents of the specified shelf, overwriting previous content.
+     * Adds the {@link Game} with the given {@code gameId} to the {@link Shelf} with the given {@code shelfId}.
      *
-     * @param shelfId The ID of the shelf to update.
-     * @param newGameIds The new game IDs. Note that the previous game IDs will be overwritten with these.
-     * @throws NoSuchEntityException If the shelf or at least one of the games don't exist.
+     * @param shelfId   The shelf id.
+     * @param gameId    The game id.
+     * @param updaterId The user performing the operation.
      */
-    void update(long shelfId, long... newGameIds) throws NoSuchEntityException;
+    void addGameToShelf(long shelfId, long gameId, long updaterId);
 
     /**
-     * Adds a specified game to a specified shelf.
+     * Removes the {@link Game} with the given {@code gameId} from the {@link Shelf} with the given {@code shelfId}.
      *
-     * @param shelfId The ID of the shelf that the game is being added to.
-     * @param gameId The ID of the game being added.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
+     * @param shelfId   The shelf id.
+     * @param gameId    The game id.
+     * @param updaterId The user performing the operation.
      */
-    void addGame(long shelfId, long gameId) throws NoSuchEntityException;
+    void removeGameFromShelf(long shelfId, long gameId, long updaterId);
 
     /**
-     * Removes a specified game to a specified shelf.
+     * Removes all {@link Game}s from the {@link Shelf} with the given {@code shelfId}.
      *
-     * @param shelfId The ID of the shelf that the game is being removed from.
-     * @param gameId The ID of the game being removed.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
+     * @param shelfId   The shelf id.
+     * @param updaterId The user performing the operation.
      */
-    void removeGame(long shelfId, long gameId) throws NoSuchEntityException;
+    void clearShelf(long shelfId, long updaterId);
 
-    /**
-     * Clears a shelf from all its games.
-     *
-     * @param shelfId The ID of the shelf to clear.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
-     */
-    void clear(long shelfId) throws NoSuchEntityException;
 
-    /**
-     * Deletes a shelf.
-     *
-     * @param shelfId The ID of the shelf to delete.
-     * @throws NoSuchEntityException If the shelf doesn't exist.
-     */
-    void delete(long shelfId) throws NoSuchEntityException;
 }

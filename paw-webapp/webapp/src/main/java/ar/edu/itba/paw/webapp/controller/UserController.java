@@ -162,14 +162,14 @@ public class UserController extends BaseController {
                 }
             }
         }
-        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
-        for(Shelf shelf : shelves) {
-            for(Game game : shelf.getGames()) {
-                if(shelvesForGames.containsKey(game)){
-                    shelvesForGames.get(game).add(shelf);
-                }
-            }
-        }
+//        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
+//        for(Shelf shelf : shelves) {
+//            for(Game game : shelf.getGames()) {
+//                if(shelvesForGames.containsKey(game)){
+//                    shelvesForGames.get(game).add(shelf);
+//                }
+//            }
+//        }
         //scores
         Map<Game, Integer> scores = userService.getScoredGames(user.getId());
 
@@ -200,11 +200,11 @@ public class UserController extends BaseController {
         Collection<Game> recommendedGames = new LinkedHashSet<>();
         if (isLoggedIn()) {
             Set<Shelf> shelfFilter = new HashSet<>();
-            for(Shelf shelf: shelves){
-                if(shelvesFilter.contains(shelf.getName())){
-                    shelfFilter.add(shelf);
-                }
-            }
+//            for(Shelf shelf: shelves){
+//                if(shelvesFilter.contains(shelf.getName())){
+//                    shelfFilter.add(shelf);
+//                }
+//            }
             recommendedGames = userService.recommendGames(getCurrentUser().getId(), shelfFilter);
         }
         mav.addObject("recommendedGames", recommendedGames);
@@ -214,7 +214,7 @@ public class UserController extends BaseController {
         mav.addObject("games",games);
         mav.addObject("user", user);
         mav.addObject("scores",scores);
-        mav.addObject("shelves", shelves);
+//        mav.addObject("shelves", shelves);
         mav.addObject("shelvesForGamesMap",shelvesForGames);
         mav.addObject("playStatuses", playStatuses);
         return mav;
@@ -232,7 +232,7 @@ public class UserController extends BaseController {
 
         if(!gameService.existsWithId(gameId))return new ModelAndView("error400");
 
-        userService.removeFromList(userId,gameId);
+//        userService.removeFromList(userId,gameId);
 
 
 

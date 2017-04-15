@@ -46,7 +46,8 @@ public class ShelfController extends BaseController {
                 LOG.warn("User {} attempted to create a, unauthorized", getCurrentUsername());
                 return new ModelAndView("error404");
             }
-            shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
+//            shelfService.create(name, getCurrentUser().getId(), gameIds == null ? new long[0] : gameIds);
+            shelfService.create(name, getCurrentUser().getId());
             LOG.info("Created Shelf \"{}\" for user {}", name, getCurrentUsername());
         } catch (Exception e) {
             LOG.error("Error creating shelf \"{}\" for user {}:", name, getCurrentUsername(), e);
@@ -56,34 +57,35 @@ public class ShelfController extends BaseController {
         return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
     }
 
-    @RequestMapping(value = "/update-shelf", method = RequestMethod.POST)
-    public ModelAndView updateShelf(@RequestParam(value = "shelfId") long shelfId, @RequestParam(value = "newIds") long[] newGameIds) {
-        try {
-            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
-                LOG.warn("User {} attempted to update Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
-                return new ModelAndView("error404");
-            }
-            shelfService.update(shelfId, newGameIds);
-            LOG.info("Updated Shelf #{} with the following game IDs: {}", shelfId, newGameIds);
-        } catch (NoSuchEntityException e) {
-            LOG.info("User {} attempted to update nonexistent Shelf #{}", getCurrentUsername(), shelfId);
-            return new ModelAndView("error404");
-        } catch (Exception e) {
-            LOG.error("Error updating shelf #{}:", shelfId, e);
-            return new ModelAndView("error500");
-        }
-
-        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
-    }
+//    @RequestMapping(value = "/update-shelf", method = RequestMethod.POST)
+//    public ModelAndView updateShelf(@RequestParam(value = "shelfId") long shelfId, @RequestParam(value = "newIds") long[] newGameIds) {
+//        try {
+//            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+//                LOG.warn("User {} attempted to update Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
+//                return new ModelAndView("error404");
+//            }
+////            shelfService.update(shelfId, newGameIds);
+//            LOG.info("Updated Shelf #{} with the following game IDs: {}", shelfId, newGameIds);
+//        } catch (NoSuchEntityException e) {
+//            LOG.info("User {} attempted to update nonexistent Shelf #{}", getCurrentUsername(), shelfId);
+//            return new ModelAndView("error404");
+//        } catch (Exception e) {
+//            LOG.error("Error updating shelf #{}:", shelfId, e);
+//            return new ModelAndView("error500");
+//        }
+//
+//        return new ModelAndView("redirect:/list?username=" + getCurrentUsername());
+//    }
 
     @RequestMapping(value = "/delete-shelf", method = RequestMethod.POST)
     public ModelAndView deleteShelf(@RequestParam(value = "shelfId") long shelfId) {
         try {
-            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
-                LOG.warn("User {} attempted to delete Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
-                return new ModelAndView("error404");
-            }
-            shelfService.delete(shelfId);
+//            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+//                LOG.warn("User {} attempted to delete Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
+//                return new ModelAndView("error404");
+//            }
+//            shelfService.delete(shelfId);
+            shelfService.delete(shelfId, getCurrentUser().getId());
             LOG.info("Deleted Shelf #{}", shelfId);
         } catch (NoSuchEntityException e) {
             LOG.info("User {} attempted to delete nonexistent Shelf #{}", getCurrentUsername(), shelfId);
@@ -99,12 +101,12 @@ public class ShelfController extends BaseController {
     @RequestMapping(value = "/rename-shelf", method = RequestMethod.POST)
     public ModelAndView renameShelf(@RequestParam(value = "shelfId") long shelfId, @RequestParam(value = "name") String newName) {
         try {
-            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
-                LOG.warn("User {} attempted to rename Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
-                return new ModelAndView("error404");
-            }
+//            if(!isLoggedIn() || !shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+//                LOG.warn("User {} attempted to rename Shelf #{}, unauthorized", getCurrentUsername(), shelfId);
+//                return new ModelAndView("error404");
+//            }
             String oldName = shelfService.findById(shelfId).getName();
-            shelfService.rename(shelfId, newName);
+            shelfService.update(shelfId, newName, getCurrentUser().getId());
             LOG.info("Renamed Shelf \"{}\" (#{}) to \"{}\"", oldName, shelfId, newName);
         } catch (NoSuchEntityException e) {
             LOG.info("User {} attempted to rename nonexistent Shelf #{}", getCurrentUsername(), shelfId);
@@ -130,16 +132,27 @@ public class ShelfController extends BaseController {
                     long shelfId = Long.valueOf(entry.getKey());
                     boolean add = Boolean.valueOf(entry.getValue());
                     try {
-                        if(shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
-                            if(add) {
-                                shelfService.addGame(shelfId, gameId);
-                            } else {
-                                shelfService.removeGame(shelfId, gameId);
-                            }
-                            LOG.info("{} Game #{} {} {}'s Shelf #{}", add ? "Added" : "Removed", gameId, add ? "to" : "from", getCurrentUsername(), shelfId);
+                        if(add) {
+//                                shelfService.addGame(shelfId, gameId);
+                            shelfService.addGameToShelf(shelfId, gameId, getCurrentUser().getId());
                         } else {
-                            LOG.info("User {} attempted to modify Shelf #{} that doesn't belong to them, skipping", getCurrentUsername(), shelfId);
+//                                shelfService.removeGame(shelfId, gameId);
+                            shelfService.removeGameFromShelf(shelfId, gameId, getCurrentUser().getId());
                         }
+                        LOG.info("{} Game #{} {} {}'s Shelf #{}", add ? "Added" : "Removed", gameId, add ? "to" : "from", getCurrentUsername(), shelfId);
+
+//                        if(shelfService.belongsTo(shelfId, getCurrentUser().getId())) {
+//                            if(add) {
+////                                shelfService.addGame(shelfId, gameId);
+//                                shelfService.addGameToShelf(shelfId, gameId, getCurrentUser().getId());
+//                            } else {
+////                                shelfService.removeGame(shelfId, gameId);
+//                                shelfService.removeGameFromShelf(shelfId, gameId, getCurrentUser().getId());
+//                            }
+//                            LOG.info("{} Game #{} {} {}'s Shelf #{}", add ? "Added" : "Removed", gameId, add ? "to" : "from", getCurrentUsername(), shelfId);
+//                        } else {
+//                            LOG.info("User {} attempted to modify Shelf #{} that doesn't belong to them, skipping", getCurrentUsername(), shelfId);
+//                        }
                     } catch(NoSuchEntityException e) {
                         LOG.info("User {} attempted to {} Game #{} {} nonexistent Shelf #{}", getCurrentUsername(), add ? "add" : "remove", gameId, add ? "to" : "from", shelfId);
                     }

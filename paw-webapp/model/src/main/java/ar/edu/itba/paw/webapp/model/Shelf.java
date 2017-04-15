@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Shelves are custom-named game lists created by users to organize their games. Users might create a Shelf for the
@@ -28,12 +30,8 @@ public class Shelf implements ValidationExceptionThrower {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "shelf_games",
-            joinColumns = @JoinColumn(name = "shelf_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"))
-    private Set<Game> games = new LinkedHashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shelf", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<ShelfGame> games = new LinkedHashSet<>();
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -46,7 +44,7 @@ public class Shelf implements ValidationExceptionThrower {
     private Calendar updatedAt;
 
 
-    /*package*/  Shelf() {
+    /* package */  Shelf() {
         // For Hibernate
         this.games = new HashSet<>();
     }
@@ -116,7 +114,7 @@ public class Shelf implements ValidationExceptionThrower {
      * @return The list of games.
      */
     public Set<Game> getGames() {
-        return Collections.unmodifiableSet(games);
+        return games.stream().map(ShelfGame::getGame).collect(Collectors.toSet());
     }
 
     /**
@@ -143,7 +141,8 @@ public class Shelf implements ValidationExceptionThrower {
      * @param game The game to be added.
      */
     public void addGame(Game game) {
-        games.add(game);
+        checkGame(game);
+        games.add(new ShelfGame(game, this));
     }
 
     /**
@@ -151,9 +150,16 @@ public class Shelf implements ValidationExceptionThrower {
      *
      * @param game The game to be removed.
      */
-    public void removeGame(Game game) {
-        games.remove(game);
+    public ShelfGame removeGame(Game game) {
+        checkGame(game);
+        ShelfGame shelfGame = findShelfGame(game);
+        if (shelfGame == null) {
+            return null;
+        }
+        this.games.remove(shelfGame);
+        return shelfGame;
     }
+
 
     /**
      * Removes all {@link Game}s from this shelf.
@@ -191,6 +197,22 @@ public class Shelf implements ValidationExceptionThrower {
 
 
     /**
+     * Returns the association object for the given {@code game}, if this shelf contains it,
+     * or {@code null} otherwise.
+     *
+     * @param game The {@link Game}
+     * @return The association object for the given {@code game}, if this shelf contains,
+     * or {@code null} otherwise.
+     */
+    private ShelfGame findShelfGame(Game game) {
+        List<ShelfGame> list = games.stream()
+                .filter(each -> each.getGame().equals(game) && each.getShelf().equals(this))
+                .collect(Collectors.toList());
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+
+    /**
      * Checks the given values, throwing a {@link ValidationException} if any is wrong.
      *
      * @param name      The name to be checked.
@@ -204,5 +226,17 @@ public class Shelf implements ValidationExceptionThrower {
                 ValueErrorConstants.NAME_TOO_SHORT, ValueErrorConstants.NAME_TOO_LONG);
 
         throwValidationException(errorList);
+    }
+
+    /**
+     * Checks that the given {@code game} is valid.
+     *
+     * @param game The game to be checked.
+     * @throws ValidationException If the game is not valid.
+     */
+    private void checkGame(Game game) throws ValidationException {
+        if (game == null) {
+            throwValidationException(Stream.of(ValueErrorConstants.MISSING_GAME).collect(Collectors.toList()));
+        }
     }
 }

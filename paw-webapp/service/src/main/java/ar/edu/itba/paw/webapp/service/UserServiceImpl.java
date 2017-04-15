@@ -210,14 +210,14 @@ public class UserServiceImpl implements UserService {
         userDao.changePassword(userId, newHashedPassword);
     }
 
-    @Override
-    public void removeFromList(long userId, long gameId) {
-        removeScore(userId,gameId);
-        removeStatus(userId,gameId);
-        for(Shelf shelf: shelfService.findByUserId(userId)){
-            shelfService.removeGame(shelf.getId(),gameId);
-        }
-    }
+//    @Override
+//    public void removeFromList(long userId, long gameId) {
+//        removeScore(userId,gameId);
+//        removeStatus(userId,gameId);
+//        for(Shelf shelf: shelfService.findByUserId(userId)){
+//            shelfService.removeGame(shelf.getId(),gameId);
+//        }
+//    }
 
     @Override
     public void deleteById(long userId) {
