@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.model.Thread;
@@ -57,8 +56,7 @@ public class ThreadHibernateDao implements ThreadDao {
     }
 
     @Override
-    public Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException {
-        User creator = DaoHelper.findSingleOrThrow(em, User.class, creatorUserId);
+    public Thread create(String title, User creator, String creatorComment) {
         Thread thread = new Thread(creator, title, creatorComment);
         em.persist(thread);
         return thread;

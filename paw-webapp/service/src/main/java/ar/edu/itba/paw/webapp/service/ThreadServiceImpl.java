@@ -60,7 +60,7 @@ public class ThreadServiceImpl implements ThreadService {
 
     @Override
     public Thread create(String title, long creatorUserId, String threadBody) throws NoSuchEntityException {
-        return threadDao.create(title, creatorUserId, threadBody);
+        return threadDao.create(title, userDao.findById(creatorUserId), threadBody);
     }
 
     @Override

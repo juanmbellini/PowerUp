@@ -1,7 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -20,7 +20,7 @@ public interface ThreadDao {
     /**
      * @see ThreadService#create(String, long, String)
      */
-    Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException;
+    Thread create(String title, User creator, String creatorComment);
 
 
     /**
@@ -36,7 +36,7 @@ public interface ThreadDao {
     /**
      * Updates the given {@link Thread}'s hot value.
      *
-     * @param thread The thread to be udpated.
+     * @param thread The thread to be updated.
      */
     void updateHotValue(Thread thread);
 
