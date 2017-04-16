@@ -8,6 +8,7 @@ import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import java.util.stream.Stream;
  */
 @Service
 @Transactional
-public class ReviewServiceImpl implements ReviewService {
+public class ReviewServiceImpl implements ReviewService, ValidationExceptionThrower {
 
     private final ReviewDao reviewDao;
 
@@ -60,16 +61,15 @@ public class ReviewServiceImpl implements ReviewService {
                          int controlsScore, int funScore) throws NoSuchEntityException, ValidationException {
         if (!reviewDao.getReviews(gameId, null, reviewerId, null, 1, 1, ReviewDao.SortingType.GAME_ID,
                 SortDirection.ASC).getData().isEmpty()) {
-            throw new ValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
+            throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
         }
         return reviewDao.create(userDao.findById(reviewerId), gameDao.findById(gameId),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
 
     @Override
-    public void update(long reviewId, long updaterUserId,
-                       String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                       Integer controlsScore, Integer funScore) {
+    public void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                       Integer controlsScore, Integer funScore, long updaterUserId) {
         reviewDao.update(checkReviewValuesAndAuthoring(reviewId, updaterUserId),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }

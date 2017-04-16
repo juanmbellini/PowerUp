@@ -26,7 +26,7 @@ public interface ReviewDao {
                   Integer controlsScore, Integer funScore);
 
     /**
-     * @see ReviewService#update(long, long, String, Integer, Integer, Integer, Integer, Integer) .
+     * @see ReviewService#update(long, String, Integer, Integer, Integer, Integer, Integer, long) .
      */
     void update(Review review, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                 Integer controlsScore, Integer funScore);
