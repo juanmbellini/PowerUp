@@ -4,7 +4,6 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -16,7 +15,7 @@ public interface ThreadService {
     /**
      * Returns a {@link Page} with the threads, applying filters, pagination and sorting.
      *
-     * @param titleFilter
+     * @param titleFilter    Filter for the title.
      * @param userIdFilter   Filter for user id.
      * @param userNameFilter Filter for user name.
      * @param pageNumber     The page number.
@@ -29,8 +28,7 @@ public interface ThreadService {
                             ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * Creates a {@link Thread} with the given {@code title}, created by the {@link User} with the given {@code creatorUserId},
-     * with an initial comment.
+     * Creates a new {@link Thread} with the specified data.
      *
      * @param title         The thread's title.
      * @param creatorUserId The user's id.
