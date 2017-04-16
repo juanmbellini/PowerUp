@@ -249,7 +249,7 @@ public class GameController extends BaseController {
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
 //        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
-        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
+//        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
         mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
@@ -316,7 +316,7 @@ public class GameController extends BaseController {
             if(gameId != -1) {
                 if(userId != -1) {
                     //Find by both
-                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId)));
+//                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId))); // TODO: ReviewService#find
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
@@ -329,7 +329,7 @@ public class GameController extends BaseController {
 //                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
                 mav.addObject("user", userService.findById(userId));
             }
-            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+//            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
         } catch(IllegalPageException e) {
             LOG.warn("Invalid reviews page requested for game #{} by user #{}: {}", gameId, userId, e.getMessage());
             mav = new ModelAndView("error400");
@@ -371,10 +371,10 @@ public class GameController extends BaseController {
                 return new ModelAndView("error404");
             }
             //No need to check if logged in - spring security restricts access to this page to authenticated users
-            if(reviewService.find(getCurrentUser().getId(), gameId) != null) {
-                LOG.info("User #{} attempted to write a review for Game #{} when they already have a review, access denied", getCurrentUser().getId(), gameId);
-                return new ModelAndView("error400");
-            }
+//            if(reviewService.find(getCurrentUser().getId(), gameId) != null) {
+//                LOG.info("User #{} attempted to write a review for Game #{} when they already have a review, access denied", getCurrentUser().getId(), gameId);
+//                return new ModelAndView("error400");
+//            } // TODO: ReviewService#find
             mav = new ModelAndView("write-review");
             mav.addObject("game", game);
         } catch (Exception e) {

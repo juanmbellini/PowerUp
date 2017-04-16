@@ -1,7 +1,5 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
@@ -40,12 +38,6 @@ public interface ReviewDao {
      * @see ReviewService#findById(long)
      */
     Review findById(long reviewId);
-
-    /**
-     * @see ReviewService#find(long, long)
-     */
-    @Deprecated
-    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
 
 
     /**

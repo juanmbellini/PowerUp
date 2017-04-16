@@ -1,8 +1,6 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Review;
@@ -78,14 +76,6 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     public void delete(long reviewId, long deleterUserId) {
         reviewDao.delete(checkReviewValuesAndAuthoring(reviewId, deleterUserId));
     }
-
-
-    @Override
-    @Deprecated
-    public Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException {
-        return reviewDao.find(userId, gameId);
-    }
-
 
 
 

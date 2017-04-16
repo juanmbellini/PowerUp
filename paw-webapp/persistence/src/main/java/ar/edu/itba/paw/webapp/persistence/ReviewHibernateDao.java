@@ -1,7 +1,5 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
@@ -77,6 +75,11 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
+    public Review findById(long reviewId) {
+        return em.find(Review.class, reviewId);
+    }
+
+    @Override
     public Review create(User reviewer, Game game,
                          String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                          Integer controlsScore, Integer funScore) {
@@ -103,23 +106,6 @@ public class ReviewHibernateDao implements ReviewDao {
             throw new IllegalArgumentException("The review can not be null.");
         }
         em.remove(review);
-    }
-
-    @Override
-    public Review findById(long reviewId) {
-        return em.find(Review.class, reviewId);
-    }
-
-    @Override
-    @Deprecated
-    public Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException {
-        if (!userDao.existsWithId(userId)) {
-            throw new NoSuchUserException(userId);
-        }
-        if (!gameDao.existsWithId(gameId)) {
-            throw new NoSuchGameException(gameId);
-        }
-        return DaoHelper.findSingleWithConditions(em, Review.class, "FROM Review AS R WHERE R.game.id = ?1 AND R.user.id = ?2", gameId, userId);
     }
 
 

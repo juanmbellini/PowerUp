@@ -1,13 +1,11 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.utilities.Page;
-import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.model.Game;
 
 /**
  * Service layer for game reviews. Exposes functionality available to reviews.
@@ -84,19 +82,5 @@ public interface ReviewService {
      */
     void delete(long reviewId, long deleterUserId);
 
-
-    /**
-     * Finds a review given a user ID and user ID.
-     *
-     * @param userId The user ID.
-     * @param gameId The game ID.
-     * @return The matching review, or {@code null} if not found.
-     * @throws NoSuchUserException If an invalid user ID is provided.
-     * @throws NoSuchUserException If an invalid game ID is provided.
-     * @deprecated #getReviews includes this feature and, apart from that, this method returns a single Review,
-     * but a given user can create several reviews for a given game, so a collection should be returned instead.
-     */
-    @Deprecated
-    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
 
 }
