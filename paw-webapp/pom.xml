@@ -39,6 +39,8 @@
         <org.springframework.session.version>1.3.0.RELEASE</org.springframework.session.version>
         <spring-security-csrf-token-filter.version>1.1</spring-security-csrf-token-filter.version>
         <org.flywaydb.version>4.1.2</org.flywaydb.version>
+        <commons-validator.version>1.6</commons-validator.version>
+
     </properties>
 
     <modules>
@@ -325,12 +327,23 @@
                 <artifactId>validation</artifactId>
                 <version>${se.malkusch.validation.version}</version>
             </dependency>
+
             <!--Flyway - database migration management and versioning-->
             <dependency>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-core</artifactId>
                 <version>${org.flywaydb.version}</version>
             </dependency>
+
+
+            <!-- Commons -->
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${commons-validator.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

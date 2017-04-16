@@ -1,5 +1,7 @@
 package ar.edu.itba.paw.webapp.model.validation;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +14,19 @@ import java.util.stream.Collectors;
  */
 public class ValidationHelper {
 
+
+    /**
+     * Checks that the given {@code object} is null.
+     *
+     * @param object            The object to be checked.
+     * @param errorList         The list containing the errors, in which new possible errors will be added.
+     * @param notNullFieldError The error to be added on not null value.
+     */
+    public static void objectNull(Object object, List<ValueError> errorList, ValueError notNullFieldError) {
+        if (object != null) {
+            errorList.add(notNullFieldError);
+        }
+    }
 
     /**
      * Checks that the given {@code object} is not null.
@@ -122,9 +137,9 @@ public class ValidationHelper {
      */
     public static void intIsBetweenTwoValues(int number, int min, int max, List<ValueError> errorList,
                                              ValueError tooShortError, ValueError tooLongError) {
-        if (number < min) {
+        if (number <= min) {
             errorList.add(tooShortError);
-        } else if (number > max) {
+        } else if (number >= max) {
             errorList.add(tooLongError);
         }
     }
@@ -156,5 +171,119 @@ public class ValidationHelper {
         maxAmountOfNulls(0, errorList, anyNullError, values);
     }
 
+
+    /**
+     * Checks that the given array is not {@code null}
+     * and that its length is between the given {@code minLength} and {@code maxLength}
+     *
+     * @param array          The array to be checked.
+     * @param minLength      The min length.
+     * @param maxLength      The max length.
+     * @param errorList      The list containing the errors, in which new possible errors will be added.
+     * @param nullFieldError The error to be added on null value.
+     * @param tooShortError  The error to be added on "below min" situation.
+     * @param tooLongError   The error to be added on "above max" situation.
+     * @param <T>            The array type.
+     */
+    public static <T> void arrayNotNullAndLengthBetweenTwoNumbers(T[] array, int minLength, int maxLength,
+                                                                  List<ValueError> errorList,
+                                                                  ValueError nullFieldError,
+                                                                  ValueError tooShortError,
+                                                                  ValueError tooLongError) {
+        if (array == null) {
+            errorList.add(nullFieldError);
+        } else {
+            intIsBetweenTwoValues(array.length, minLength, maxLength, errorList, tooShortError, tooLongError);
+        }
+    }
+
+
+    /**
+     * Checks that the given array is {@code null}
+     * or that its length is between the given {@code minLength} and {@code maxLength}
+     *
+     * @param array         The array to be checked.
+     * @param minLength     The min length.
+     * @param maxLength     The max length.
+     * @param errorList     The list containing the errors, in which new possible errors will be added.
+     * @param tooShortError The error to be added on "below min" situation.
+     * @param tooLongError  The error to be added on "above max" situation.
+     * @param <T>           The array type.
+     */
+    public static <T> void arrayNullOrLengthBetweenTwoNumbers(T[] array, int minLength, int maxLength,
+                                                              List<ValueError> errorList, ValueError tooShortError,
+                                                              ValueError tooLongError) {
+        if (array != null) {
+            intIsBetweenTwoValues(array.length, minLength, maxLength, errorList, tooShortError, tooLongError);
+        }
+    }
+
+    /**
+     * Checks that the given array is not {@code null}
+     * and that its length is between the given {@code minLength} and {@code maxLength}
+     *
+     * @param array          The array to be checked.
+     * @param minLength      The min length.
+     * @param maxLength      The max length.
+     * @param errorList      The list containing the errors, in which new possible errors will be added.
+     * @param nullFieldError The error to be added on null value.
+     * @param tooShortError  The error to be added on "below min" situation.
+     * @param tooLongError   The error to be added on "above max" situation.
+     */
+    public static void arrayNotNullAndLengthBetweenTwoNumbers(byte[] array, int minLength, int maxLength,
+                                                              List<ValueError> errorList, ValueError nullFieldError,
+                                                              ValueError tooShortError, ValueError tooLongError) {
+        if (array == null) {
+            errorList.add(nullFieldError);
+        } else {
+            intIsBetweenTwoValues(array.length, minLength, maxLength, errorList, tooShortError, tooLongError);
+        }
+    }
+
+
+    /**
+     * Checks that the given array is {@code null}
+     * or that its length is between the given {@code minLength} and {@code maxLength}
+     *
+     * @param array         The array to be checked.
+     * @param minLength     The min length.
+     * @param maxLength     The max length.
+     * @param errorList     The list containing the errors, in which new possible errors will be added.
+     * @param tooShortError The error to be added on "below min" situation.
+     * @param tooLongError  The error to be added on "above max" situation.
+     */
+    public static void arrayNullOrLengthBetweenTwoNumbers(byte[] array, int minLength, int maxLength,
+                                                          List<ValueError> errorList, ValueError tooShortError,
+                                                          ValueError tooLongError) {
+        if (array != null) {
+            intIsBetweenTwoValues(array.length, minLength, maxLength, errorList, tooShortError, tooLongError);
+        }
+    }
+
+
+    /**
+     * Checks that the given {@code eMail} is valid and between the given lengths.
+     *
+     * @param eMail             The eMail to be checked
+     * @param minLength         The eMail's min. length.
+     * @param maxLength         The eMail's max. length.
+     * @param errorList         The list containing the errors, in which new possible errors will be added.
+     * @param nullFieldError    The error to be added on null value.
+     * @param tooShortError     The error to be added on below {@code min} number.
+     * @param tooLongError      The error to be added on above {@code max} number.
+     * @param invalidEMailError The error to be added on invalid eMail.
+     */
+    public static void checkEmailNotNullAndValid(String eMail, int minLength, int maxLength, List<ValueError> errorList,
+                                                 ValueError nullFieldError, ValueError tooShortError,
+                                                 ValueError tooLongError, ValueError invalidEMailError) {
+
+        int listLength = errorList.size();
+        stringNotNullAndLengthBetweenTwoValues(eMail, minLength, maxLength, errorList,
+                nullFieldError, tooShortError, tooLongError);
+        // if listLength is equal to the size of the error list, the email's length is between min and max length.
+        if (listLength == errorList.size() && !EmailValidator.getInstance().isValid(eMail)) {
+            errorList.add(invalidEMailError);
+        }
+    }
 
 }
