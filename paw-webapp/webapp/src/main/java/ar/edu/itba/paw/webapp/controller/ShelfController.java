@@ -20,6 +20,7 @@ import java.util.*;
  * Controller for shelf operations.
  */
 @Controller
+@Deprecated
 public class ShelfController extends BaseController {
 
 

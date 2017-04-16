@@ -34,6 +34,7 @@ import java.util.*;
  * This controller is in charge of handling users' operations request.
  */
 @Controller
+@Deprecated
 public class UserController extends BaseController {
 
 
