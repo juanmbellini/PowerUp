@@ -44,7 +44,8 @@ public class ReviewHibernateDao implements ReviewDao {
     public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
                                    int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
         if ((gameIdFilter != null && gameIdFilter <= 0) || (userIdFilter != null && userIdFilter <= 0)
-                || userNameFilter != null && userNameFilter.isEmpty()) {
+                || (gameNameFilter != null && gameNameFilter.isEmpty())
+                || (userNameFilter != null && userNameFilter.isEmpty())) {
             throw new IllegalArgumentException();
         }
 
@@ -90,7 +91,7 @@ public class ReviewHibernateDao implements ReviewDao {
                        String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                        Integer controlsScore, Integer funScore) {
         if (review == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("The review can not be null.");
         }
         review.update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
         em.merge(review);
@@ -99,7 +100,7 @@ public class ReviewHibernateDao implements ReviewDao {
     @Override
     public void delete(Review review) {
         if (review == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("The review can not be null.");
         }
         em.remove(review);
     }
