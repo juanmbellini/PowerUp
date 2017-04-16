@@ -14,17 +14,17 @@ public class ValidationException extends RuntimeException {
 
     private List<ValueError> errors;
 
-    public ValidationException() {
+    /* package */ ValidationException() {
         super();
         errors = new LinkedList<>();
     }
 
-    public ValidationException(String message) {
+    /* package */ ValidationException(String message) {
         super(message);
         this.errors = new LinkedList<>();
     }
 
-    public ValidationException(String message, List<ValueError> errors) {
+    /* package */ ValidationException(String message, List<ValueError> errors) {
         super(message);
         if (errors == null || errors.isEmpty()) {
             throw new IllegalArgumentException();
@@ -32,7 +32,7 @@ public class ValidationException extends RuntimeException {
         this.errors = errors;
     }
 
-    public ValidationException(List<ValueError> errors) {
+    /* package */ ValidationException(List<ValueError> errors) {
         super();
         if (errors == null || errors.isEmpty()) {
             throw new IllegalArgumentException();
