@@ -1,12 +1,14 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -208,6 +210,69 @@ import java.util.List;
     }
 
 
+    static <T> Page<T> findPageWithConditions(EntityManager em, Class<T> klass,
+                                              StringBuilder baseQuery, String baseAlias, String countField,
+                                              List<ConditionAndParameterWrapper> conditions,
+                                              int pageNumber, int pageSize, String sortByField,
+                                              SortDirection sortDirection) {
+        // Conditions
+        appendConditions(baseQuery, conditions);
+
+        StringBuilder countQueryStr = new StringBuilder()
+                .append("SELECT COUNT(DISTINCT ").append(countField).append(") ")
+                .append(baseQuery);
+
+        TypedQuery<Long> countQuery = em.createQuery(countQueryStr.toString(), Long.class);
+        conditions.forEach(wrapper -> countQuery.setParameter(wrapper.getPosition(), wrapper.getParameter()));
+        long count = countQuery.getSingleResult();
+        if (count == 0) {
+            return Page.emptyPage();
+        }
+
+        StringBuilder dataQueryStr = new StringBuilder()
+                .append("SELECT DISTINCT ").append(baseAlias).append(" ")
+                .append(baseQuery)
+                .append(" ORDER BY ").append(sortByField).append(" ").append(sortDirection.getQLKeyword());
+
+        TypedQuery<T> dataQuery = em.createQuery(dataQueryStr.toString(), klass)
+                .setFirstResult((pageNumber - 1) * pageSize)
+                .setMaxResults(pageSize);
+        conditions.forEach(wrapper -> dataQuery.setParameter(wrapper.getPosition(), wrapper.getParameter()));
+
+        return createPage(dataQuery.getResultList(), pageSize, pageNumber, count);
+
+    }
+
+
+    /**
+     * Creates a page.
+     *
+     * @param data                    Data in the page.
+     * @param pageSize                Size of the page.
+     * @param pageNumber              Number of page.
+     * @param overAllAmountOfElements Amount of elements in all pages.
+     * @param <T>                     Type of data.
+     * @return A page built from the given params.
+     */
+    private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber,
+                                          long overAllAmountOfElements) {
+        Page<T> page = new Page<T>();
+        page.setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1));
+        page.setPageNumber(pageNumber);
+        page.setPageSize(pageSize);
+        page.setOverAllAmountOfElements(overAllAmountOfElements);
+        page.setData(data);
+        return page;
+
+        // TODO: use page builder when merging
+//        return new Page.Builder<T>()
+//                .setPageSize(pageSize)
+//                .setPageNumber(pageNumber)
+//                .setOverAllAmountOfElements(overAllAmountOfElements)
+//                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
+//                .setData(data).build();
+    }
+
     /**
      * Appends the given {@code conditions} to the given {@code query}.
      *
@@ -218,9 +283,9 @@ import java.util.List;
     static void appendConditions(StringBuilder query, List<ConditionAndParameterWrapper> conditions) {
         if (!conditions.isEmpty()) {
             int i = 0;
-            query.append(" WHERE ").append(conditions.get(i++));
+            query.append(" WHERE ").append(conditions.get(i++).getCondition());
             while (i < conditions.size()) {
-                query.append(" AND ").append(conditions.get(i++));
+                query.append(" AND ").append(conditions.get(i++).getCondition());
             }
         }
     }
@@ -239,16 +304,26 @@ import java.util.List;
          */
         private final Object parameter;
 
+        private int position;
+
+
         /**
          * Constructor.
          *
          * @param condition The condition in HQL.
          * @param parameter The object to be used as parameter.
          */
+        @Deprecated
         /* package */ ConditionAndParameterWrapper(String condition, Object parameter) {
             this.condition = condition;
             this.parameter = parameter;
         }
+
+        /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
+            this(condition, parameter);
+            this.position = position;
+        }
+
 
         /**
          * Condition getter.
@@ -266,6 +341,10 @@ import java.util.List;
          */
         public Object getParameter() {
             return parameter;
+        }
+
+        public int getPosition() {
+            return position;
         }
     }
 }
