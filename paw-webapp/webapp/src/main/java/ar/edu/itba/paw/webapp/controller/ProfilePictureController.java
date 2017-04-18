@@ -34,7 +34,9 @@ public class ProfilePictureController extends BaseController {
     public ModelAndView uploadProfilePicture(@RequestParam(name = "picture") MultipartFile picture) {
         ModelAndView mav = null;
         try {
-            userService.setProfilePicture(getCurrentUser().getId(), picture.getBytes(), picture.getContentType());
+            userService.changeProfilePicture(getCurrentUser().getId(), picture.getBytes(), picture.getContentType(),
+                    getCurrentUser().getId());
+//            userService.setProfilePicture(getCurrentUser().getId(), picture.getBytes(), picture.getContentType());
             LOG.info("Updated profile picture for {}", getCurrentUsername());
             mav = new ModelAndView("redirect:/profile?username=" + getCurrentUsername());
         } catch (NoSuchEntityException e) {
@@ -74,7 +76,7 @@ public class ProfilePictureController extends BaseController {
     public ModelAndView removeProfilePicture(@RequestParam(name = "returnUrl", required = false, defaultValue = "/profile") String returnUrl) {
         ModelAndView mav = null;
         try {
-            userService.removeProfilePicture(getCurrentUser().getId());
+            userService.removeProfilePicture(getCurrentUser().getId(), getCurrentUser().getId());
             LOG.info("Removed profile picture for {}", getCurrentUsername());
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (Exception e) {

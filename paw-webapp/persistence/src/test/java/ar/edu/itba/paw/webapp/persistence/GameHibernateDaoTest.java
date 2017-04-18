@@ -68,7 +68,8 @@ public class GameHibernateDaoTest {
 
     public GameHibernateDaoTest() {
         games = new LinkedList<>();
-        dummyUser = new User("paw@paw.com", "paw", "encrypted-password", Authority.USER);
+        dummyUser = new User("paw@paw.com", "paw", "password");
+        dummyUser.addAuthority(Authority.USER);
         superNintendo = new Platform(1, "Super Nintendo");
         Platform nintendo64 = new Platform(2, "Nintendo 64");
         rpg = new Genre(1, "Role Playing Game");

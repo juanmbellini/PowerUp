@@ -214,12 +214,13 @@ public class GameController extends BaseController {
             }
             if (currentUser != null) {
                 long userId = currentUser.getId();
-                if (userService.hasScoredGame(userId, gameId)) {
-                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
-                }
-                if (userService.hasPlayStatus(userId, gameId)) {
-                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
-                }
+//                if (userService.hasScoredGame(userId, gameId)) {
+//                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
+//                } // TODO: fix
+//                if (userService.hasPlayStatus(userId, gameId)) {
+////                    rateAndStatusForm.setPlayStatus(userService.getScore(userId, gameId));
+//                }
+                // TODO: fix
                 Map<Shelf, Boolean> shelves = new LinkedHashMap<>();
 //                for(Shelf shelf : shelfService.findByUserId(userId)) {
 //                    shelves.put(shelf, shelf.getGames().contains(game));
@@ -250,7 +251,7 @@ public class GameController extends BaseController {
         mav.addObject("game", game);
 //        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
 //        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
-        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
+//        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
@@ -286,14 +287,16 @@ public class GameController extends BaseController {
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) {
-            userService.scoreGame(userId, id, score);
+//            userService.scoreGame(userId, id, score);
+            userService.setGameScore(userId, id, score, userId);
         } else {
-            userService.removeScore(userId, id);
+//            userService.removeScore(userId, id);
+            userService.removeGameScore(userId, id, userId);
         }
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) {
-            userService.setPlayStatus(userId, id, playStatus);
+            userService.setPlayStatus(userId, id, playStatus, userId);
         } else {
             return new ModelAndView("error400");
         }

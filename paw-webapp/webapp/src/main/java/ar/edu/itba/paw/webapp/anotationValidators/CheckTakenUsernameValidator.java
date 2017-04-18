@@ -26,6 +26,7 @@ public class CheckTakenUsernameValidator implements ConstraintValidator<CheckTak
             return true;
         }
 
-        return ! userService.existsWithUsername(object);
+        return userService.findByUsername(object) == null;
+//        return ! userService.existsWithUsername(object);
     }
 }
