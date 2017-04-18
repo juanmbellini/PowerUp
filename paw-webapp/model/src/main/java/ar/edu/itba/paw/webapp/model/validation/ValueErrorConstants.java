@@ -1,8 +1,7 @@
 package ar.edu.itba.paw.webapp.model.validation;
 
 
-import static ar.edu.itba.paw.webapp.model.validation.ValueError.ErrorCause.ILLEGAL_VALUE;
-import static ar.edu.itba.paw.webapp.model.validation.ValueError.ErrorCause.MISSING_VALUE;
+import static ar.edu.itba.paw.webapp.model.validation.ValueError.ErrorCause.*;
 
 /**
  * Class containing {@link ValueError} constants to be reused.
@@ -72,6 +71,10 @@ public class ValueErrorConstants {
 
     public static final ValueError MISSING_PLAY_STATUS = new ValueError(MISSING_VALUE, "playStatus",
             "The play status is missing");
+
+    public static final ValueError PLAY_STATUS_ALREADY_SET = new ValueError(ALREADY_EXISTS, "(userId, gameId)",
+            "The given user already set a play status for the given game. Remove first.");
+
 
     public static final ValueError MISSING_SCORE = new ValueError(MISSING_VALUE, "score",
             "The score is missing");

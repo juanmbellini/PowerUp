@@ -73,6 +73,7 @@ public class UserController extends BaseController {
         this.passwordEncoder = passwordEncoder;
         typeReference = new TypeReference<ArrayList<String>>() {};
         this.shelfService = shelfService;
+
     }
 
     @RequestMapping("/profile")
@@ -101,17 +102,17 @@ public class UserController extends BaseController {
 
         //Add up to 10 games in descending rank order
         Map<Game, Integer> topGames = new LinkedHashMap<>();
-        Map<Integer, Set<Long>> reverseScoredGames = userService.getScoredGamesRev(user.getId());
-        for (int score = 10; score > 0 && topGames.size() < 10; score--) {
-            if(reverseScoredGames.containsKey(score)) {
-                for(long gameId : reverseScoredGames.get(score)) {
-                    topGames.put(gameService.findById(gameId), score);
-                    if(topGames.size() >= 10) {
-                        break;
-                    }
-                }
-            }
-        }
+//        Map<Integer, Set<Long>> reverseScoredGames = userService.getScoredGamesRev(user.getId());
+//        for (int score = 10; score > 0 && topGames.size() < 10; score--) {
+//            if(reverseScoredGames.containsKey(score)) {
+//                for(long gameId : reverseScoredGames.get(score)) {
+//                    topGames.put(gameService.findById(gameId), score);
+//                    if(topGames.size() >= 10) {
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         mav.addObject("topGames", topGames);
 
         return mav;
@@ -172,7 +173,7 @@ public class UserController extends BaseController {
 //            }
 //        }
         //scores
-        Map<Game, Integer> scores = userService.getScoredGames(user.getId());
+//        Map<Game, Integer> scores = userService.getScoredGames(user.getId()); // TODO: fix
 
 
         Set<Game> games = new HashSet<>();
@@ -214,7 +215,7 @@ public class UserController extends BaseController {
         mav.addObject("shelvesFilter",shelvesFilter);
         mav.addObject("games",games);
         mav.addObject("user", user);
-        mav.addObject("scores",scores);
+//        mav.addObject("scores",scores);
 //        mav.addObject("shelves", shelves);
         mav.addObject("shelvesForGamesMap",shelvesForGames);
         mav.addObject("playStatuses", playStatuses);
@@ -260,12 +261,14 @@ public class UserController extends BaseController {
         }
         final String email = form.getEmail(),
                 // TODO: Move encryption to UserService [JMB]
-                hashedPassword = passwordEncoder.encode(form.getPassword()),
+//                hashedPassword = passwordEncoder.encode(form.getPassword()),
+                password = form.getPassword(),
                 username = form.getUsername();
 
         User user;
         try {
-            user = userService.create(email, hashedPassword, username);
+//            user = userService.create(email, hashedPassword, username);
+            user = userService.create(username, email, password);
         } catch (UserExistsException e) {
             LOG.warn("Registration form validated but UserExists exception still thrown during registration of {} / {}: {}", username, email, e);
             return registerGet(form);
@@ -274,7 +277,8 @@ public class UserController extends BaseController {
         LOG.info("Registered user {} with email {}, logging them in and redirecting to home", user.getUsername(), user.getEmail());
 
         //Log the new user in
-        Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
+        Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getHashedPassword());
+//        Authentication auth = new UsernamePasswordAuthenticationToken(username, hashedPassword);
         SecurityContextHolder.getContext().setAuthentication(auth);
         return new ModelAndView("redirect:/");
     }
@@ -290,7 +294,7 @@ public class UserController extends BaseController {
 
         User user = userService.findByUsername(username);
         String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
-        userService.changePassword(user.getId(),hashedNewPassword);
+//        userService.changePassword(user.getId(),hashedNewPassword);
         mailService.sendEmailChangePassword(user);
         LOG.info("Your password was changed");
 
@@ -314,7 +318,7 @@ public class UserController extends BaseController {
         String password = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(password);
         if(hashedPassword==null) return new ModelAndView("redirect:/login");
-        userService.changePassword(user.getId(), hashedPassword);
+//        userService.changePassword(user.getId(), hashedPassword);
         mailService.sendEmailResetPassword(user,password);
         LOG.info("Password has been reseted. Your new password has been sent to your email.");
         return new ModelAndView("redirect:/");
