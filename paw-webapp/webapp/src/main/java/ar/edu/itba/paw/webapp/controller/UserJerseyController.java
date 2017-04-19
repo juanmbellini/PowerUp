@@ -32,6 +32,7 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -76,49 +77,35 @@ public class UserJerseyController implements UpdateParamsChecker {
         Page<User> users = userService.getUsers(name, email, authority,
                 pageNumber, pageSize, sortingType, sortDirection);
 
-        URI prevPage = pageNumber == 1 ? null :
-                createGetAllUsersUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber - 1,
-                        name, email, authority);
-        URI nextPage = pageNumber == users.getTotalPages() ? null :
-                createGetAllUsersUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber + 1,
-                        name, email, authority);
-        URI firstPage = createGetAllUsersUri(uriInfo, sortingType, sortDirection, pageSize, 1,
-                name, email, authority);
-        URI lastPage = createGetAllUsersUri(uriInfo, sortingType, sortDirection, pageSize, users.getTotalPages(),
-                name, email, authority);
-        return Response
-                .ok(new GenericEntity<List<UserDto>>(UserDto.createList(users.getData())) {
-                })
-                .header("X-Total-Pages", users.getTotalPages())
-                .header("X-Amount-Of-Elements", users.getAmountOfElements())
-                .header("X-Overall-Amount-Of-Elements", users.getOverAllAmountOfElements())
-                .header("X-Page-Number", users.getPageNumber())
-                .header("X-Page-Size", users.getPageSize())
-                .header("X-Prev-Page-Url", prevPage == null ? "" : prevPage.toString())
-                .header("X-Next-Page-Url", nextPage == null ? "" : nextPage.toString())
-                .header("X-First-Page-Url", firstPage.toString())
-                .header("X-Last-Page-Url", lastPage.toString())
-                .build();
+
+        return JerseyControllerHelper
+                .createCollectionGetResponse(new GenericEntity<List<UserDto>>(UserDto
+                                                     .createList(users.getData())) {
+                                             },
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, users,
+                        JerseyControllerHelper.getParameterMapBuilder().clear()
+                                .addParameter("name", name)
+                                .addParameter("email", email)
+                                .addParameter("authority", authority)
+                                .build());
     }
 
 
     @GET
     @Path("/{id : \\d+}")
-    @Produces(value = {MediaType.APPLICATION_JSON})
     public Response getById(@PathParam("id") final long id) {
         if (id <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
         final User user = userService.findById(id);
-            //TODO borrar esto de agregar headers a mano
-           // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
+        //TODO borrar esto de agregar headers a mano
+        // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
         return user == null ? Response.status(Response.Status.NOT_FOUND).build()
                 : Response.ok(new UserDto(user)).build();
     }
 
     @GET
     @Path("/username={username : .+}")
-    @Produces(value = {MediaType.APPLICATION_JSON})
     public Response getByUsername(@PathParam("username") final String username) {
         if (username == null) {
             throw new IllegalParameterValueException(PathParam.class, "username", "");
@@ -130,7 +117,6 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     @GET
     @Path("/email={email : .+}")
-    @Produces(value = {MediaType.APPLICATION_JSON})
     public Response getByEMail(@PathParam("email") final String email) {
         if (email == null) {
             throw new IllegalParameterValueException(PathParam.class, "email", "");
@@ -179,38 +165,20 @@ public class UserJerseyController implements UpdateParamsChecker {
                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                                     // Filters
-                                    @QueryParam("game-id") Long gameIdFilter,
-                                    @QueryParam("game-name") String gameNameFilter) {
+                                    @QueryParam("gameId") Long gameIdFilter,
+                                    @QueryParam("gameName") String gameNameFilter) {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
         Page<UserGameStatus> statuses = userService.getPlayStatuses(userId, gameIdFilter, gameNameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
 
-        URI prevPage = pageNumber == 1 ? null :
-                createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber - 1,
-                        gameIdFilter, gameNameFilter);
-        URI nextPage = pageNumber == statuses.getTotalPages() ? null :
-                createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber + 1,
-                        gameIdFilter, gameNameFilter);
-        URI firstPage = createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, 1,
-                gameIdFilter, gameNameFilter);
-        URI lastPage = createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, statuses.getTotalPages(),
-                gameIdFilter, gameNameFilter);
-
-        return Response
-                .ok(new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto.createList(statuses.getData())) {
-                })
-                .header("X-Total-Pages", statuses.getTotalPages())
-                .header("X-Amount-Of-Elements", statuses.getAmountOfElements())
-                .header("X-Overall-Amount-Of-Elements", statuses.getOverAllAmountOfElements())
-                .header("X-Page-Number", statuses.getPageNumber())
-                .header("X-Page-Size", statuses.getPageSize())
-                .header("X-Prev-Page-Url", prevPage == null ? "" : prevPage.toString())
-                .header("X-Next-Page-Url", nextPage == null ? "" : nextPage.toString())
-                .header("X-First-Page-Url", firstPage.toString())
-                .header("X-Last-Page-Url", lastPage.toString())
-                .build();
+        return JerseyControllerHelper
+                .createCollectionGetResponse(new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
+                                                     .createList(statuses.getData())) {
+                                             },
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, statuses,
+                        scoreAndStatusMap(gameIdFilter, gameNameFilter));
 
     }
 
@@ -226,14 +194,14 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/{id : \\d+}/play-statuses/{game-id : \\d+}")
+    @Path("/{id : \\d+}/play-statuses/{gameId : \\d+}")
     public Response removePlayStatus(@PathParam("id") final long userId,
-                                     @PathParam("game-id") final long gameId) {
+                                     @PathParam("gameId") final long gameId) {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
         if (gameId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "game-id", "");
+            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
         }
         userService.removePlayStatus(userId, gameId, userId); // TODO: updater
         return Response.noContent().build();
@@ -254,38 +222,20 @@ public class UserJerseyController implements UpdateParamsChecker {
                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                                   // Filters
-                                  @QueryParam("game-id") @DefaultValue("") Long gameIdFilter,
-                                  @QueryParam("game-name") @DefaultValue("") String gameNameFilter) {
+                                  @QueryParam("gameId") @DefaultValue("") Long gameIdFilter,
+                                  @QueryParam("gameName") @DefaultValue("") String gameNameFilter) {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
         Page<UserGameScore> scores = userService.getGameScores(userId, gameIdFilter, gameNameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
 
-        URI prevPage = pageNumber == 1 ? null :
-                createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber - 1,
-                        gameIdFilter, gameNameFilter);
-        URI nextPage = pageNumber == scores.getTotalPages() ? null :
-                createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber + 1,
-                        gameIdFilter, gameNameFilter);
-        URI firstPage = createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, 1,
-                gameIdFilter, gameNameFilter);
-        URI lastPage = createStatusAndScoreUri(uriInfo, sortingType, sortDirection, pageSize, scores.getTotalPages(),
-                gameIdFilter, gameNameFilter);
-
-        return Response
-                .ok(new GenericEntity<List<UserGameScoreDto>>(UserGameScoreDto.createList(scores.getData())) {
-                })
-                .header("X-Total-Pages", scores.getTotalPages())
-                .header("X-Amount-Of-Elements", scores.getAmountOfElements())
-                .header("X-Overall-Amount-Of-Elements", scores.getOverAllAmountOfElements())
-                .header("X-Page-Number", scores.getPageNumber())
-                .header("X-Page-Size", scores.getPageSize())
-                .header("X-Prev-Page-Url", prevPage == null ? "" : prevPage.toString())
-                .header("X-Next-Page-Url", nextPage == null ? "" : nextPage.toString())
-                .header("X-First-Page-Url", firstPage.toString())
-                .header("X-Last-Page-Url", lastPage.toString())
-                .build();
+        return JerseyControllerHelper
+                .createCollectionGetResponse(new GenericEntity<List<UserGameScoreDto>>(UserGameScoreDto
+                                                     .createList(scores.getData())) {
+                                             },
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, scores,
+                        scoreAndStatusMap(gameIdFilter, gameNameFilter));
 
     }
 
@@ -301,14 +251,14 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/{id : \\d+}/game-scores/{game-id : \\d+}")
+    @Path("/{id : \\d+}/game-scores/{gameId : \\d+}")
     public Response removeGameScore(@PathParam("id") final long userId,
-                                    @PathParam("game-id") final long gameId) {
+                                    @PathParam("gameId") final long gameId) {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
         if (gameId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "game-id", "");
+            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
         return Response.noContent().build();
@@ -327,60 +277,27 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     // ================ Helper methods ================
 
+
     /**
-     * TODO: javadoc
+     * Creates a map to be used in the
+     * {@link #getGameScores(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
+     * or the
+     * {@link #getPlayStatuses(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
+     * methods.
      *
-     * @param uriInfo
-     * @param sortingType
-     * @param sortDirection
-     * @param pageSize
-     * @param pageNumber
-     * @param name
-     * @param email
-     * @param authority
-     * @return
+     * @param gameIdFilter   Filter for game id.
+     * @param gameNameFilter Filter for game name.
+     * @return The resulting map.
      */
-    private static URI createGetAllUsersUri(final UriInfo uriInfo, final UserDao.SortingType sortingType,
-                                            final SortDirection sortDirection, final int pageSize, final int pageNumber,
-                                            final String name, final String email, final Authority authority) {
-        return uriInfo.getAbsolutePathBuilder()
-                .queryParam("orderBy", sortingType.toString().toLowerCase())
-                .queryParam("sortDirection", sortDirection.toString().toLowerCase())
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", pageNumber)
-                .queryParam("name", name == null ? "" : name)
-                .queryParam("email", email == null ? "" : email)
-                .queryParam("authority", authority == null ? "" : authority)
+    private static Map<String, String> scoreAndStatusMap(final Long gameIdFilter, final String gameNameFilter) {
+        return JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("gameId", gameIdFilter)
+                .addParameter("gameName", gameNameFilter)
                 .build();
     }
 
-    /**
-     * TODO: javadoc
-     *
-     * @param uriInfo
-     * @param sortingType
-     * @param sortDirection
-     * @param pageSize
-     * @param pageNumber
-     * @param gameIdFilter
-     * @param gameNameFilter
-     * @return
-     */
-    private static URI createStatusAndScoreUri(final UriInfo uriInfo,
-                                               final UserDao.PlayStatusAndGameScoresSortingType sortingType,
-                                               final SortDirection sortDirection,
-                                               final int pageSize,
-                                               final int pageNumber,
-                                               final Long gameIdFilter, final String gameNameFilter) {
-        return uriInfo.getAbsolutePathBuilder()
-                .queryParam("orderBy", sortingType.toString().toLowerCase())
-                .queryParam("sortDirection", sortDirection.toString().toLowerCase())
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", pageNumber)
-                .queryParam("game-id", gameIdFilter == null ? "" : gameIdFilter)
-                .queryParam("game-name", gameNameFilter == null ? "" : gameNameFilter)
-                .build();
-    }
+
+    // ================ Un-migrated methods ================
 
 
     /* ************************************
