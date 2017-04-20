@@ -12,6 +12,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Class implementing methods to build a {@link URI} that can be used for further information in a {@link Response}.
@@ -25,7 +26,32 @@ import java.util.Map;
     /**
      * Returns a {@link Response} to be used in a get collection resource method.
      *
-     * @param genericEntityList A {@link GenericEntity} of {@link List} containing the objects of type {@code T}
+     * @param uriInfo           The object that provides access to the requests information.
+     * @param sortingTypeString A string that will be included as value for the "orderBy" parameter
+     *                          in the {@link URI}s that may be included in the final {@link Response}.
+     * @param sortDirection     A {@link SortDirection} value that will be included as a value for the
+     *                          "sortDirection" parameter in the {@link URI}s that may be included
+     *                          in the final {@link Response}.
+     * @param page              The page containing pagination information.
+     * @param otherQueryParams  A map containing more parameters (with the given value) to add to the final
+     *                          {@link URI}s that may be included in the final {@link Response}.
+     * @param <T>               The type of entity that will be included in the body of the {@link Response}.
+     * @return The final {@link Response}.
+     */
+    static /* package */ <T, R> Response createCollectionGetResponse(UriInfo uriInfo, String sortingTypeString,
+                                                                     SortDirection sortDirection, Page<T> page,
+                                                                     Function<Page<T>, GenericEntity<List<R>>>
+                                                                             pageToListFunction,
+                                                                     Map<String, Object> otherQueryParams) {
+        return createCollectionGetResponse(pageToListFunction.apply(page),
+                uriInfo, sortingTypeString, sortDirection, page, otherQueryParams);
+    }
+
+
+    /**
+     * Returns a {@link Response} to be used in a get collection resource method.
+     *
+     * @param listGenericEntity A {@link GenericEntity} of {@link List} containing the objects of type {@code T}
      *                          to be included in the response body.
      * @param uriInfo           The object that provides access to the requests information.
      * @param sortingTypeString A string that will be included as value for the "orderBy" parameter
@@ -39,11 +65,11 @@ import java.util.Map;
      * @param <T>               The type of entity that will be included in the body of the {@link Response}.
      * @return The final {@link Response}.
      */
-    static /* package */ <T> Response createCollectionGetResponse(GenericEntity<List<T>> genericEntityList,
+    static /* package */ <T> Response createCollectionGetResponse(GenericEntity<List<T>> listGenericEntity,
                                                                   UriInfo uriInfo, String sortingTypeString,
                                                                   SortDirection sortDirection, Page page,
-                                                                  Map<String, String> otherQueryParams) {
-        return createCollectionGetResponse(genericEntityList, uriInfo, sortingTypeString, sortDirection,
+                                                                  Map<String, Object> otherQueryParams) {
+        return createCollectionGetResponse(listGenericEntity, uriInfo, sortingTypeString, sortDirection,
                 page.getTotalPages(), page.getAmountOfElements(), page.getOverAllAmountOfElements(),
                 page.getPageNumber(), page.getPageSize(), otherQueryParams);
     }
@@ -77,14 +103,33 @@ import java.util.Map;
                                                                   SortDirection sortDirection, int totalPages,
                                                                   int amountOfElements, long overallAmountOfElements,
                                                                   int pageNumber, int pageSize,
-                                                                  Map<String, String> otherQueryParams) {
-
-        final PaginationUriContainer container = new PaginationUriContainer(uriInfo, sortingTypeString, sortDirection,
-                pageSize, pageNumber, totalPages, otherQueryParams);
-        return addPaginationHeaders(Response.ok(genericEntityList),
-                totalPages, amountOfElements, overallAmountOfElements, pageNumber, pageSize,
-                container.prevPage, container.nextPage, container.firstPage, container.lastPage)
+                                                                  Map<String, Object> otherQueryParams) {
+        return addPaginationHeaders(Response.ok(genericEntityList), totalPages, amountOfElements,
+                overallAmountOfElements, pageNumber, pageSize, new PaginationUriContainer(uriInfo,
+                        sortingTypeString, sortDirection, pageSize, pageNumber, totalPages, otherQueryParams))
                 .build();
+    }
+
+
+    /**
+     * Getters a {@link ResponseBuilder} and adds pagination headers to it.
+     *
+     * @param builder                 The {@link ResponseBuilder}
+     * @param totalPages              The amount of pages.
+     * @param amountOfElements        The amount of elements in the actual page.
+     * @param overallAmountOfElements The amount of elements in all pages.
+     * @param pageNumber              The page number (i.e actual page)
+     * @param pageSize                The page size.
+     * @param container               The container class with all {@link URI}s.
+     * @return The {@link ResponseBuilder} with the added headers.
+     */
+    static /* package */ ResponseBuilder addPaginationHeaders(ResponseBuilder builder, int totalPages,
+                                                              int amountOfElements, long overallAmountOfElements,
+                                                              int pageNumber, int pageSize,
+                                                              PaginationUriContainer container) {
+        return addPaginationHeaders(builder, totalPages, amountOfElements, overallAmountOfElements,
+                pageNumber, pageSize, container.getPrevPage(), container.getNextPage(), container.getFirstPage(),
+                container.getLastPage());
     }
 
 
@@ -134,7 +179,7 @@ import java.util.Map;
     static /* package */ URI createCollectionResponseUri(final UriInfo uriInfo, final String sortingTypeString,
                                                          final SortDirection sortDirection,
                                                          final Integer pageSize, final Integer pageNumber,
-                                                         Map<String, String> otherQueryParams)
+                                                         Map<String, Object> otherQueryParams)
             throws IllegalArgumentException {
         final UriBuilder uriBuilder = createCollectionResponseUri(uriInfo, sortingTypeString,
                 sortDirection, pageSize, pageNumber);
@@ -233,7 +278,7 @@ import java.util.Map;
          */
         PaginationUriContainer(UriInfo uriInfo, String sortingType, SortDirection sortDirection,
                                int pageSize, int pageNumber, int totalPages,
-                               Map<String, String> otherQueryParams) {
+                               Map<String, Object> otherQueryParams) {
 
             prevPage = pageNumber == 1 ? null :
                     createCollectionResponseUri(uriInfo, sortingType, sortDirection, pageSize, pageNumber - 1,
@@ -297,7 +342,7 @@ import java.util.Map;
      */
     /* package */ static final class ParameterMapBuilder {
 
-        private final Map<String, String> parameters;
+        private final Map<String, Object> parameters;
 
 
         /**
@@ -433,7 +478,7 @@ import java.util.Map;
             if (parameter == null) {
                 throw new IllegalArgumentException();
             }
-            parameters.put(parameter, value == null ? "" : value.toString());
+            parameters.put(parameter, value == null ? "" : value);
             return this;
         }
 
@@ -443,7 +488,7 @@ import java.util.Map;
          *
          * @return The map containing the parameters and the values.
          */
-        /* package */ Map<String, String> build() {
+        /* package */ Map<String, Object> build() {
             return parameters;
         }
 

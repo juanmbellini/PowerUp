@@ -10,8 +10,9 @@ import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
-import ar.edu.itba.paw.webapp.model.*;
-import ar.edu.itba.paw.webapp.utilities.Page;
+import ar.edu.itba.paw.webapp.model.Authority;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -73,16 +74,11 @@ public class UserJerseyController implements UpdateParamsChecker {
                              @QueryParam("username") @DefaultValue("") final String name,
                              @QueryParam("email") @DefaultValue("") final String email,
                              @QueryParam("authority") @DefaultValue("") final Authority authority) {
-
-        Page<User> users = userService.getUsers(name, email, authority,
-                pageNumber, pageSize, sortingType, sortDirection);
-
-
         return JerseyControllerHelper
-                .createCollectionGetResponse(new GenericEntity<List<UserDto>>(UserDto
-                                                     .createList(users.getData())) {
-                                             },
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, users,
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getUsers(name, email, authority, pageNumber, pageSize, sortingType, sortDirection),
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("name", name)
                                 .addParameter("email", email)
@@ -170,14 +166,14 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
-        Page<UserGameStatus> statuses = userService.getPlayStatuses(userId, gameIdFilter, gameNameFilter,
-                pageNumber, pageSize, sortingType, sortDirection);
-
         return JerseyControllerHelper
-                .createCollectionGetResponse(new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
-                                                     .createList(statuses.getData())) {
-                                             },
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, statuses,
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getPlayStatuses(userId, gameIdFilter, gameNameFilter,
+                                pageNumber, pageSize, sortingType, sortDirection),
+                        (statusesPage) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
+                                .createList(statusesPage.getData())) {
+                        },
                         scoreAndStatusMap(gameIdFilter, gameNameFilter));
 
     }
@@ -227,16 +223,15 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (userId <= 0) {
             throw new IllegalParameterValueException(PathParam.class, "id", "");
         }
-        Page<UserGameScore> scores = userService.getGameScores(userId, gameIdFilter, gameNameFilter,
-                pageNumber, pageSize, sortingType, sortDirection);
-
         return JerseyControllerHelper
-                .createCollectionGetResponse(new GenericEntity<List<UserGameScoreDto>>(UserGameScoreDto
-                                                     .createList(scores.getData())) {
-                                             },
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection, scores,
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getGameScores(userId, gameIdFilter, gameNameFilter,
+                                pageNumber, pageSize, sortingType, sortDirection),
+                        (scoresPage) -> new GenericEntity<List<UserGameScoreDto>>(UserGameScoreDto
+                                .createList(scoresPage.getData())) {
+                        },
                         scoreAndStatusMap(gameIdFilter, gameNameFilter));
-
     }
 
     @POST
@@ -289,7 +284,7 @@ public class UserJerseyController implements UpdateParamsChecker {
      * @param gameNameFilter Filter for game name.
      * @return The resulting map.
      */
-    private static Map<String, String> scoreAndStatusMap(final Long gameIdFilter, final String gameNameFilter) {
+    private static Map<String, Object> scoreAndStatusMap(final Long gameIdFilter, final String gameNameFilter) {
         return JerseyControllerHelper.getParameterMapBuilder().clear()
                 .addParameter("gameId", gameIdFilter)
                 .addParameter("gameName", gameNameFilter)
