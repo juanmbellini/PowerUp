@@ -1,14 +1,11 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -22,56 +19,45 @@ import java.util.List;
 @Repository
 public class ReviewHibernateDao implements ReviewDao {
 
-    //TODO fix repeated code, extract some finding functionality to a generalized method if possible
 
     @PersistenceContext
     private EntityManager em;
-
-    private final GameDao gameDao;
-
-    private final UserDao userDao;
-
-    @Autowired
-    private ReviewHibernateDao(GameDao gameDao, UserDao userDao) {
-        this.gameDao = gameDao;
-        this.userDao = userDao;
-    }
 
 
     @Override
     public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
                                    int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
-        if ((gameIdFilter != null && gameIdFilter <= 0) || (userIdFilter != null && userIdFilter <= 0)
-                || (gameNameFilter != null && gameNameFilter.isEmpty())
-                || (userNameFilter != null && userNameFilter.isEmpty())) {
-            throw new IllegalArgumentException();
-        }
 
-        final StringBuilder query = new StringBuilder().append("FROM Review");
+
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Review review");
 
         // Conditions
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        int conditionNumber = 0;
         if (gameIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.id = :gameId", gameIdFilter));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.id = ?" + conditionNumber,
+                    gameIdFilter, conditionNumber));
+            conditionNumber++;
         }
         if (gameNameFilter != null && !gameNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.name = :gameName",
-                    "%" + gameNameFilter + "%"));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(game.name) LIKE ?" + conditionNumber,
+                    "%" + gameNameFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
         if (userIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.id = :userId", userIdFilter));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.id = ?" + conditionNumber,
+                    userIdFilter, conditionNumber));
+            conditionNumber++;
         }
         if (userNameFilter != null && !userNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.username = :userName",
-                    "%" + userNameFilter + "%"));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(user.username) LIKE ?" + conditionNumber,
+                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
         }
-        DaoHelper.appendConditions(query, conditions);
 
-        // Sorting
-        query.append(" ORDER BY ").append(sortingType.getFieldName()).append(" ").append(sortDirection.getQLKeyword());
+        return DaoHelper.findPageWithConditions(em, Review.class, query, "review", "review.id", conditions,
+                pageNumber, pageSize, "review." + sortingType.getFieldName(), sortDirection);
 
-        return DaoHelper.findPageWithConditions(em, Review.class, pageNumber, pageSize, query.toString(),
-                conditions.stream().map(DaoHelper.ConditionAndParameterWrapper::getParameter).toArray());
     }
 
     @Override

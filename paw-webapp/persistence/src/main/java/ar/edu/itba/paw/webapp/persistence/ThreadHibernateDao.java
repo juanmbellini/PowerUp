@@ -25,35 +25,32 @@ public class ThreadHibernateDao implements ThreadDao {
                                    int pageNumber, int pageSize,
                                    SortingType sortingType, SortDirection sortDirection) {
 
-        if ((titleFilter != null && titleFilter.isEmpty()) || (userIdFilter != null && userIdFilter <= 0)
-                || userNameFilter != null && userNameFilter.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
 
-        final StringBuilder query = new StringBuilder().append("FROM Thread");
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Thread thread");
 
         // Conditions
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
-        if (titleFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("title = :threadTitle",
-                    "%" + titleFilter + "%"));
+        int conditionNumber = 0;
+        if (titleFilter != null && !titleFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(title) LIKE ?" + conditionNumber,
+                    "%" + titleFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
-
         if (userIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.id = :userId", userIdFilter));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("creator.id = ?" + conditionNumber,
+                    userIdFilter, conditionNumber));
+            conditionNumber++;
         }
         if (userNameFilter != null && !userNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.username = :userName",
-                    "%" + userNameFilter + "%"));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(creator.username) LIKE ?" + conditionNumber,
+                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
         }
-        DaoHelper.appendConditions(query, conditions);
 
-        // Sorting
-        query.append(" ORDER BY ").append(sortingType.getFieldName()).append(" ").append(sortDirection.getQLKeyword());
-
-        return DaoHelper.findPageWithConditions(em, Thread.class, pageNumber, pageSize, query.toString(),
-                conditions.stream().map(DaoHelper.ConditionAndParameterWrapper::getParameter).toArray());
+        return DaoHelper.findPageWithConditions(em, Thread.class, query, "thread", "thread.id", conditions,
+                pageNumber, pageSize, "thread." + sortingType.getFieldName(), sortDirection);
     }
+
 
     @Override
     public Thread create(String title, User creator, String creatorComment) {

@@ -137,6 +137,15 @@ public class Thread implements ValidationExceptionThrower {
     }
 
     /**
+     * Initial comment getter.
+     *
+     * @return The initial comment (i.e the thread's body).
+     */
+    public String getInitialComment() {
+        return initialComment;
+    }
+
+    /**
      * Hot value getter.
      *
      * @return The hot value.

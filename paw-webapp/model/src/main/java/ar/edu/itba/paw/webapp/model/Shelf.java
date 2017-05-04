@@ -117,6 +117,12 @@ public class Shelf implements ValidationExceptionThrower {
         return games.stream().map(ShelfGame::getGame).collect(Collectors.toSet());
     }
 
+
+    public Set<ShelfGame> getShelfGames() {
+        return games;
+    }
+
+
     /**
      * Created at getter.
      *

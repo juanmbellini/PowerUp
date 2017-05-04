@@ -27,42 +27,39 @@ public class ShelfHibernateDao implements ShelfDao {
                                   int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
 
 
-        if ((nameFilter != null && nameFilter.isEmpty()) || (userIdFilter != null && userIdFilter <= 0)
-                || (userNameFilter != null && userNameFilter.isEmpty())
-                || (gameIdFilter != null && gameIdFilter <= 0)
-                || (gameNameFilter != null && gameNameFilter.isEmpty())) {
-            throw new IllegalArgumentException();
-        }
-
-        final StringBuilder query = new StringBuilder().append("FROM Shelf shelf LEFT JOIN games game");
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Shelf shelf LEFT JOIN shelf.games game");
 
         // Conditions
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
-        if (nameFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("name = :shelfName",
-                    "%" + nameFilter + "%"));
+        int conditionNumber = 0;
+        if (nameFilter != null && !nameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.name) LIKE ? " + conditionNumber,
+                    "%" + nameFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
         if (gameIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.id = :gameId", gameIdFilter));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelf.game.id = ?" + conditionNumber,
+                    gameIdFilter, conditionNumber));
+            conditionNumber++;
         }
         if (gameNameFilter != null && !gameNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("game.name = :gameName",
-                    "%" + gameNameFilter + "%"));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.game.name) LIKE ?" + conditionNumber,
+                    "%" + gameNameFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
         if (userIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.id = :userId", userIdFilter));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelf.user.id = ?" + conditionNumber,
+                    userIdFilter, conditionNumber));
+            conditionNumber++;
         }
         if (userNameFilter != null && !userNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("user.username = :userName",
-                    "%" + userNameFilter + "%"));
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.user.username) LIKE ?" + conditionNumber,
+                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
         }
-        DaoHelper.appendConditions(query, conditions);
 
-        // Sorting
-        query.append(" ORDER BY ").append(sortingType.getFieldName()).append(" ").append(sortDirection.getQLKeyword());
-
-        return DaoHelper.findPageWithConditions(em, Shelf.class, pageNumber, pageSize, query.toString(),
-                conditions.stream().map(DaoHelper.ConditionAndParameterWrapper::getParameter).toArray());
+        return DaoHelper.findPageWithConditions(em, Shelf.class, query, "shelf", "shelf.id", conditions,
+                pageNumber, pageSize, "shelf." + sortingType.getFieldName(), sortDirection);
     }
 
 

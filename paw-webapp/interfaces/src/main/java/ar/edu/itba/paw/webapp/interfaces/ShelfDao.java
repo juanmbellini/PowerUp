@@ -62,19 +62,19 @@ public interface ShelfDao {
         ID {
             @Override
             public String getFieldName() {
-                return null;
+                return toString();
             }
         },
         NAME {
             @Override
             public String getFieldName() {
-                return null;
+                return toString();
             }
         },
         UPDATED {
             @Override
             public String getFieldName() {
-                return null;
+                return "updated_at";
             }
         };
 
@@ -84,6 +84,21 @@ public interface ShelfDao {
          * @return The name.
          */
         abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.toUpperCase());
+        }
     }
 
 
