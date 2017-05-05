@@ -51,7 +51,7 @@ public class GameDto {
     private Double avgScore;
 
     @XmlElement
-    private LocalDate releaseDate;
+    private String releaseDate; // TODO: check how to format output using LocalDate
 
     @XmlElement
     private String coverPictureUrl;
@@ -72,8 +72,7 @@ public class GameDto {
         this.name = game.getName();
         this.summary = game.getSummary();
         this.avgScore = game.getAvgScore();
-        this.releaseDate = game.getReleaseDate();
-        this.releaseDate = game.getReleaseDate();
+        this.releaseDate = game.getReleaseDate().toString();
         this.coverPictureUrl = game.getCoverPictureUrl();
 
         this.genres = !Hibernate.isInitialized(game.getGenres()) ? null :
@@ -126,7 +125,7 @@ public class GameDto {
         return avgScore;
     }
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
@@ -168,13 +167,13 @@ public class GameDto {
      */
     @XmlRootElement(name = "")
     @XmlAccessorType(XmlAccessType.FIELD)
-    /* package */ static class PlatformWrapper {
+    public static class PlatformWrapper {
 
         @XmlElement
         private String name;
 
         @XmlElement
-        private LocalDate releaseDate;
+        private String releaseDate; // TODO: check how to format output using LocalDate
 
         public PlatformWrapper() {
             // Default constructor
@@ -182,7 +181,7 @@ public class GameDto {
 
         public PlatformWrapper(String name, LocalDate releaseDate) {
             this.name = name;
-            this.releaseDate = releaseDate;
+            this.releaseDate = releaseDate.toString();
         }
 
 
@@ -190,7 +189,7 @@ public class GameDto {
             return name;
         }
 
-        public LocalDate getReleaseDate() {
+        public String getReleaseDate() {
             return releaseDate;
         }
     }
