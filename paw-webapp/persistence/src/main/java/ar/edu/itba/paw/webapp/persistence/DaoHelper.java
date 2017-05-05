@@ -9,8 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * DAO helper class. Provides package-private static methods useful to all DAOs.
@@ -40,7 +40,9 @@ import java.util.List;
      * @throws NoSuchEntityException If no such entity exists.
      */
     /*package*/
-    static <T> T findSingleOrThrow(EntityManager entityManager, Class<T> klass, long id) throws NoSuchEntityException {
+    // TODO: what's the purpose of throwing an exception when not finding the entity. Null can be checked and is better
+    static <T> T findSingleOrThrow(EntityManager entityManager, Class<T> klass, long id)
+            throws NoSuchEntityException {
         T result = findSingle(entityManager, klass, id);
         if (result == null) {
             throw new NoSuchEntityException(klass, id);
@@ -61,11 +63,10 @@ import java.util.List;
      * @throws javax.persistence.NonUniqueResultException If more than one result is found.
      */
     /*package*/
-    static <T> T findSingleWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) throws NonUniqueResultException {
+    static <T> T findSingleWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery,
+                                          Object... parameters) throws NonUniqueResultException {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i + 1, parameters[i]);
-        }
+        IntStream.range(0, parameters.length).forEach(each -> query.setParameter(each + 1, parameters[each]));
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
@@ -82,12 +83,7 @@ import java.util.List;
      */
     /*package*/
     static <T> List<T> findAll(EntityManager entityManager, Class<T> klass) {
-        TypedQuery<T> query = entityManager.createQuery("FROM " + klass.getName(), klass);
-        try {
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return Collections.emptyList();
-        }
+        return entityManager.createQuery("FROM " + klass.getName(), klass).getResultList();
     }
 
     /**
@@ -102,16 +98,11 @@ import java.util.List;
      * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
     /*package*/
-    static <T> List<T> findManyWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery, Object... parameters) {
+    static <T> List<T> findManyWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery,
+                                              Object... parameters) {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i + 1, parameters[i]);
-        }
-        try {
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return Collections.emptyList();
-        }
+        IntStream.range(0, parameters.length).forEach(each -> query.setParameter(each + 1, parameters[each]));
+        return query.getResultList();
     }
 
     /**
@@ -127,17 +118,11 @@ import java.util.List;
      * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
     /*package*/
-    static <T> List<T> findManyWithConditionsAndLimit(EntityManager entityManager, Class<T> klass, int limit, String baseQuery, Object... parameters) {
-        TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i + 1, parameters[i]);
-        }
-        query.setMaxResults(limit);
-        try {
-            return query.getResultList();
-        } catch (NoResultException e) {
-            return Collections.emptyList();
-        }
+    static <T> List<T> findManyWithConditionsAndLimit(EntityManager entityManager, Class<T> klass,
+                                                      int limit, String baseQuery, Object... parameters) {
+        TypedQuery<T> query = entityManager.createQuery(baseQuery, klass).setMaxResults(limit);
+        IntStream.range(0, parameters.length).forEach(each -> query.setParameter(each + 1, parameters[each]));
+        return query.getResultList();
     }
 
     /**
@@ -154,25 +139,21 @@ import java.util.List;
      * @return A list with the matching entities, or an empty list of nothing is found if not found.
      */
     /*package*/
-    static <T> Page<T> findPageWithConditions(EntityManager entityManager, Class<T> klass, int pageNumber, int pageSize, String baseQuery, Object... parameters) {
+    static <T> Page<T> findPageWithConditions(EntityManager entityManager, Class<T> klass, int pageNumber,
+                                              int pageSize, String baseQuery, Object... parameters) {
         TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
-        for (int i = 0; i < parameters.length; i++) {
-            query.setParameter(i + 1, parameters[i]);
-        }
-        query.setFirstResult((pageNumber - 1) * pageSize);
-        query.setMaxResults(pageSize);
-        try {
-            Page<T> page = new Page<>();
-            List<T> data = findManyWithConditions(entityManager, klass, baseQuery, parameters);
-            page.setTotalPages(Math.max((int) Math.ceil(data.size() / pageSize), 1));
-            page.setPageSize(pageSize);
-            page.setPageNumber(pageNumber);
-            page.setOverAllAmountOfElements(data.size());
-            page.setData(query.getResultList());
-            return page;
-        } catch (NoResultException e) {
-            return Page.emptyPage();
-        }
+        IntStream.range(0, parameters.length).forEach(each -> query.setParameter(each + 1, parameters[each]));
+        List<T> allData = query.getResultList(); // Returns all results without limiting
+        return allData.isEmpty() ? Page.emptyPage() : new Page.Builder<T>()
+                .setPageNumber(pageNumber)
+                .setOverAllAmountOfElements(allData.size())
+                .setTotalPages(Math.max((int) Math.ceil(allData.size() / pageSize), 1))
+                .setPageSize(pageSize)
+                .setData(query
+                        .setFirstResult((pageNumber - 1) * pageSize)
+                        .setMaxResults(pageSize)
+                        .getResultList()) // Returns data applying limits
+                .build();
     }
 
 
@@ -256,21 +237,13 @@ import java.util.List;
      */
     private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber,
                                           long overAllAmountOfElements) {
-        Page<T> page = new Page<T>();
-        page.setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1));
-        page.setPageNumber(pageNumber);
-        page.setPageSize(pageSize);
-        page.setOverAllAmountOfElements(overAllAmountOfElements);
-        page.setData(data);
-        return page;
-
-        // TODO: use page builder when merging
-//        return new Page.Builder<T>()
-//                .setPageSize(pageSize)
-//                .setPageNumber(pageNumber)
-//                .setOverAllAmountOfElements(overAllAmountOfElements)
-//                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
-//                .setData(data).build();
+        return new Page.Builder<T>()
+                .setPageSize(pageSize)
+                .setPageNumber(pageNumber)
+                .setOverAllAmountOfElements(overAllAmountOfElements)
+                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
+                .setData(data)
+                .build();
     }
 
     /**
