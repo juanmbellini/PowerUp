@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Table(name = "users")
@@ -39,8 +38,8 @@ public class User implements Serializable, ValidationExceptionThrower {
     @Column(name = "profile_picture")
     private byte[] profilePicture;
 
-//    @Column(name = "mime_type")
-//    private String profilePictureMimeType;
+    @Column(name = "mime_type")
+    private String profilePictureMimeType;
 
 
     // ==== Collections ===
@@ -115,7 +114,7 @@ public class User implements Serializable, ValidationExceptionThrower {
     public void changeProfilePicture(byte[] picture, String mimeType) throws ValidationException {
         checkProfilePicture(picture, mimeType);
         this.profilePicture = picture;
-//        this.profilePictureMimeType = mimeType;
+        this.profilePictureMimeType = mimeType;
     }
 
 
@@ -256,8 +255,7 @@ public class User implements Serializable, ValidationExceptionThrower {
      * @return The profile picture mime type.
      */
     public String getProfilePictureMimeType() {
-//        return profilePictureMimeType;
-        return "";
+        return profilePictureMimeType;
     }
 
 
