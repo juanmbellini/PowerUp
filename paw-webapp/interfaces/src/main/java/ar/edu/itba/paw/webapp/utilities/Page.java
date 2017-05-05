@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 /**
  * Class representing a search result page.
  * <p>
- * It implements the Builder pattern in order to create consistent Pages.
+ * Implements the Builder pattern in order to create consistent and well formed Pages.
  * <p>
  * Created by Juan Marcos Bellini on 11/10/16.
  */
@@ -20,7 +20,7 @@ public class Page<T> {
     /**
      * Contains an empty page, configured to have no elements, and only one page.
      */
-    private static final Page EMPTY_PAGE = new Page<>(0, 0, 1, 1, Collections.unmodifiableList(new LinkedList<>()));
+    private static final Page EMPTY_PAGE = new Page<>(1, 1, 0, 0, Collections.unmodifiableList(new LinkedList<>()));
 
 
     /**
@@ -174,8 +174,6 @@ public class Page<T> {
         private int pageSize = 0;
         private long overAllAmountOfElements = 0;
         private Collection<T> data = null;
-
-        private Page<T> page;
 
 
         /**
