@@ -237,21 +237,13 @@ import java.util.stream.IntStream;
      */
     private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber,
                                           long overAllAmountOfElements) {
-        Page<T> page = new Page<T>();
-        page.setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1));
-        page.setPageNumber(pageNumber);
-        page.setPageSize(pageSize);
-        page.setOverAllAmountOfElements(overAllAmountOfElements);
-        page.setData(data);
-        return page;
-
-        // TODO: use page builder when merging
-//        return new Page.Builder<T>()
-//                .setPageSize(pageSize)
-//                .setPageNumber(pageNumber)
-//                .setOverAllAmountOfElements(overAllAmountOfElements)
-//                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
-//                .setData(data).build();
+        return new Page.Builder<T>()
+                .setPageSize(pageSize)
+                .setPageNumber(pageNumber)
+                .setOverAllAmountOfElements(overAllAmountOfElements)
+                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
+                .setData(data)
+                .build();
     }
 
     /**

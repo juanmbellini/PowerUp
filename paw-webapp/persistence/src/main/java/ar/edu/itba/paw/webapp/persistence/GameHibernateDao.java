@@ -89,18 +89,16 @@ public class GameHibernateDao implements GameDao {
             return Page.emptyPage();
         }
         int actualPageSize = pageSize == 0 ? count : pageSize;
-
-        querySelect.setFirstResult(actualPageSize * (pageNumber - 1));
-        querySelect.setMaxResults(actualPageSize);
-        Page<Game> pageResult = new Page<>();
-        pageResult.setTotalPages(Math.max((int) Math.ceil((double) count / actualPageSize), 1));
-        pageResult.setPageNumber(pageNumber);
-        pageResult.setPageSize(actualPageSize);
-        pageResult.setOverAllAmountOfElements(count);
-
-        List<Game> list = querySelect.getResultList();
-        pageResult.setData(list);
-        return pageResult;
+        return new Page.Builder<Game>()
+                .setTotalPages(Math.max((int) Math.ceil((double) count / actualPageSize), 1))
+                .setPageNumber(pageNumber)
+                .setPageSize(actualPageSize)
+                .setOverAllAmountOfElements(count)
+                .setData(querySelect
+                        .setFirstResult(actualPageSize * (pageNumber - 1))
+                        .setMaxResults(actualPageSize)
+                        .getResultList())
+                .build();
     }
 
     @Override

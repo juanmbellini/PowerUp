@@ -4,12 +4,14 @@ import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Class representing a search result page.
  * <p>
- * In order to use this class, {@code totalPages}, {@code pageNumber}, and {@code pageSize}
- * must be set with values different than {@code 0} before setting data.
+ * It implements the Builder pattern in order to create consistent Pages.
  * <p>
  * Created by Juan Marcos Bellini on 11/10/16.
  */
@@ -18,7 +20,7 @@ public class Page<T> {
     /**
      * Contains an empty page, configured to have no elements, and only one page.
      */
-    private static final Page EMPTY_PAGE = new Page<>();
+    private static final Page EMPTY_PAGE = new Page<>(0, 0, 1, 1, Collections.unmodifiableList(new LinkedList<>()));
 
 
     /**
@@ -41,6 +43,41 @@ public class Page<T> {
      * The data included in this page
      */
     private Collection<T> data = null;
+
+
+    /**
+     * Private constructor used for the {@link Builder}.
+     *
+     * @param totalPages              The total amount of pages.
+     * @param pageNumber              The page number.
+     * @param pageSize                The page size.
+     * @param overAllAmountOfElements The total amount of elements in all pages.
+     * @param data                    The data in this page.
+     */
+    public Page(int totalPages, int pageNumber, int pageSize, long overAllAmountOfElements, Collection<T> data) {
+
+        if (totalPages <= 0) {
+            throw new IllegalPageException("The total amount of pages must be a positive number.");
+        }
+        if (pageNumber <= 0 || pageNumber > totalPages) {
+            throw new IllegalPageException("The page number is bigger than the total amount of pages.");
+        }
+        if (pageSize < 0) {
+            throw new IllegalPageException("The page size can't be negative.");
+        }
+        if (overAllAmountOfElements > pageSize * totalPages) {
+            throw new IllegalPageException("The overall amount of data can't be greater than the overall space.");
+        }
+        if (data.size() > pageSize) {
+            throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
+        }
+
+        this.totalPages = totalPages;
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
+        this.overAllAmountOfElements = overAllAmountOfElements;
+        this.data = data;
+    }
 
 
     /**
@@ -98,81 +135,6 @@ public class Page<T> {
     }
 
 
-    // TODO: remove setters moving their logic to the builder
-
-
-    /**
-     * Total pages setter.
-     *
-     * @param totalPages The total amount of pages there are in the search done to obtain the data of in this page.
-     */
-    public void setTotalPages(int totalPages) {
-        if (totalPages < 0) {
-            throw new IllegalPageException();
-        }
-        this.totalPages = totalPages;
-    }
-
-    /**
-     * Page number setter.
-     * <p>
-     * If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
-     * Note: {@code totalPages} is set to {@code 0} initially.
-     * </p>
-     *
-     * @param pageNumber This page's number.
-     */
-    public void setPageNumber(int pageNumber) {
-        if (pageNumber <= 0 || pageNumber > totalPages) {
-            throw new IllegalPageException("The page number is bigger than the total amount of pages.");
-        }
-        this.pageNumber = pageNumber;
-    }
-
-    /**
-     * Page size setter.
-     *
-     * @param pageSize This page's size.
-     */
-    public void setPageSize(int pageSize) {
-        if (pageSize <= 0) {
-            throw new IllegalPageException();
-        }
-        this.pageSize = pageSize;
-    }
-
-    /**
-     * Overall amount of elements setter
-     *
-     * @param overAllAmountOfElements The number of elements in all the pages
-     */
-    public void setOverAllAmountOfElements(long overAllAmountOfElements) {
-        if (overAllAmountOfElements > pageSize * totalPages) {
-            throw new IllegalPageException();
-        }
-        this.overAllAmountOfElements = overAllAmountOfElements;
-    }
-
-    /**
-     * Data setter.
-     * <p>
-     * Note: If the total amount of data in the collection is smaller than {@code pageSize},
-     * then this field is overwritten.
-     * </p>
-     *
-     * @param data The data to be added into this page.
-     */
-    public void setData(Collection<T> data) {
-        if (pageSize == 0 || pageNumber == 0 || totalPages == 0) {
-            throw new IllegalPageException("Illegal state.");
-        }
-        if (data.size() > pageSize) {
-            throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
-        }
-        this.data = data;
-//        this.pageSize = data.size();
-    }
-
     public boolean isEmpty() {
         return pageSize == 0;
     }
@@ -184,12 +146,7 @@ public class Page<T> {
      * @return An empty page.
      */
     public static <T> Page<T> emptyPage() {
-        EMPTY_PAGE.overAllAmountOfElements = 0;
-        EMPTY_PAGE.pageSize = 0;
-        EMPTY_PAGE.pageNumber = 1;
-        EMPTY_PAGE.totalPages = 1;
-        EMPTY_PAGE.data = Collections.emptyList();
-
+        //noinspection unchecked
         return (Page<T>) EMPTY_PAGE;
     }
 
@@ -201,13 +158,7 @@ public class Page<T> {
      * @return A page with 1 element.
      */
     public static <T> Page<T> singleElementPage(T element) {
-        Page<T> page = new Page<>();
-        page.setTotalPages(1);
-        page.setPageSize(1);
-        page.setPageNumber(1);
-        page.setOverAllAmountOfElements(1);
-        page.setData(Collections.singleton(element));
-        return page;
+        return new Page<>(1, 1, 1, 1, Stream.of(element).collect(Collectors.toList()));
     }
 
     /**
@@ -291,16 +242,11 @@ public class Page<T> {
          * @throws IllegalPageException If some value is wrong or inconsistent.
          */
         public Page<T> build() throws IllegalPageException {
-            Page<T> page = new Page<>();
-            page.setTotalPages(totalPages);
-            page.setPageNumber(pageNumber);
-            page.setPageSize(pageSize);
-            page.setOverAllAmountOfElements(overAllAmountOfElements);
-            page.setData(data);
-            return page;
+            return new Page<>(totalPages, pageNumber, pageSize, overAllAmountOfElements, data);
         }
 
 
     }
+
 
 }
