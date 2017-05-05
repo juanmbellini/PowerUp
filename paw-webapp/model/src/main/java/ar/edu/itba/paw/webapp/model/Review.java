@@ -1,14 +1,18 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Models a review made by a specific user for a specific game.
  */
 @Entity
 @Table(name = "reviews")
-public class Review {
+public class Review implements ValidationExceptionThrower {
 
     @Id
     @SequenceGenerator(name = "reviews_seq", sequenceName = "reviews_id_seq", allocationSize = 1)
@@ -20,14 +24,14 @@ public class Review {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "game_id",referencedColumnName = "id",nullable = false)
+    @JoinColumn(name = "game_id", referencedColumnName = "id", nullable = false)
     private Game game;
 
     @Column(nullable = false)
-    private String review;
+    private LocalDate date;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private String review;
 
     @Column(nullable = false, name = "story_score")
     private int storyScore;
@@ -45,14 +49,71 @@ public class Review {
     private int funScore;
 
     /*package*/  Review() {
-        //for hibernate
+        // For Hibernate
     }
 
-    public Review(User user, Game game, String review, LocalDate date, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) {
+
+    /**
+     * Creates a review.
+     *
+     * @param user          The user creating the review.
+     * @param game          The reviewed game.
+     * @param reviewBody    THe body of the review.
+     * @param storyScore    The new story score.
+     * @param graphicsScore The graphics score.
+     * @param audioScore    The audio score.
+     * @param controlsScore The control score.
+     * @param funScore      The fun score.
+     * @throws ValidationException If any value is wrong.
+     */
+    public Review(User user, Game game, String reviewBody, Integer storyScore, Integer graphicsScore,
+                  Integer audioScore, Integer controlsScore, Integer funScore)
+            throws ValidationException {
+        List<ValueError> errorList = new LinkedList<>();
+        ValidationHelper.objectNotNull(user, errorList, ValueErrorConstants.MISSING_USER);
+        ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
+
+        update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.user = user;
         this.game = game;
+        this.date = LocalDate.now();
+    }
+
+
+    /**
+     * Updates the review.
+     *
+     * @param review        The new body of the review.
+     * @param storyScore    The new story score.
+     * @param graphicsScore The new graphics score.
+     * @param audioScore    The new audio score.
+     * @param controlsScore The new control score.
+     * @param funScore      The new fun score.
+     * @throws ValidationException If any value is wrong.
+     */
+    public void update(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                       Integer controlsScore, Integer funScore)
+            throws ValidationException {
+        update(review, storyScore, graphicsScore, audioScore, controlsScore, funScore, new LinkedList<>());
+    }
+
+    /**
+     * Updates the review, receiving a list of detected errors before executing this method.
+     *
+     * @param review        The new body of the review.
+     * @param storyScore    The new story score.
+     * @param graphicsScore The new graphics score.
+     * @param audioScore    The new audio score.
+     * @param controlsScore The new control score.
+     * @param funScore      The new fun score.
+     * @param errorList     The list containing possible errors detected before executing the method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void update(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                        Integer controlsScore, Integer funScore, List<ValueError> errorList)
+            throws ValidationException {
+        checkValues(review, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.review = review;
-        this.date = date;
         this.storyScore = storyScore;
         this.graphicsScore = graphicsScore;
         this.audioScore = audioScore;
@@ -60,106 +121,123 @@ public class Review {
         this.funScore = funScore;
     }
 
-    public Review(User user, Game game, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) {
-        this(user, game, review, LocalDate.now(), storyScore, graphicsScore, audioScore, controlsScore, funScore);
-    }
 
-    public Review(User user, String review, LocalDate date) {
-        this.user = user;
-        this.review = review;
-        this.date = date;
-    }
-
-
-    public double getRating() {
-        return (double)(this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore)/5;
-    }
-
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    /**
+     * Game getter.
+     *
+     * @return The game.
+     */
     public Game getGame() {
         return game;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
+    /**
+     * Story score getter.
+     *
+     * @return The story score.
+     */
     public int getStoryScore() {
         return storyScore;
     }
 
-    public void setStoryScore(int storyScore) {
-        this.storyScore = storyScore;
-    }
-
+    /**
+     * Graphic score getter
+     *
+     * @return The graphic score.
+     */
     public int getGraphicsScore() {
         return graphicsScore;
     }
 
-    public void setGraphicsScore(int graphicsScore) {
-        this.graphicsScore = graphicsScore;
-    }
-
+    /**
+     * Audio score getter.
+     *
+     * @return The audio score.
+     */
     public int getAudioScore() {
         return audioScore;
     }
 
-    public void setAudioScore(int audioScore) {
-        this.audioScore = audioScore;
-    }
-
+    /**
+     * Control score getter.
+     *
+     * @return The control score.
+     */
     public int getControlsScore() {
         return controlsScore;
     }
 
-    public void setControlsScore(int controlsScore) {
-        this.controlsScore = controlsScore;
-    }
-
+    /**
+     * Fun score getter.
+     *
+     * @return The fun score.
+     */
     public int getFunScore() {
         return funScore;
     }
 
-    public void setFunScore(int funScore) {
-        this.funScore = funScore;
-    }
-
+    /**
+     * Review getter.
+     *
+     * @return The review (i.e The body of the review).
+     */
     public String getReview() {
         return review;
     }
 
+    /**
+     * User getter.
+     *
+     * @return The user.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Date getter.
+     *
+     * @return The date (i.e. Date at which the review was created).
+     */
     public LocalDate getDate() {
         return date;
     }
 
-    public void setReview(String review) {
-        this.review = review;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
+    /**
+     * Overall score getter.
+     *
+     * @return The overall score (i.e average of scores).
+     */
     @Transient
     public double getOverallScore() {
         return (storyScore + graphicsScore + audioScore + controlsScore + funScore) / 5.0;
     }
 
+    /**
+     * Rating getter.
+     *
+     * @return The rating (i.e average of scores)
+     */
+    public double getRating() {
+        return (double) (this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore) / 5;
+    }
+
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,8 +249,68 @@ public class Review {
 
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
+
+
+    /**
+     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
+     *
+     * @param review        The review to be checked.
+     * @param storyScore    The story score to be checked.
+     * @param graphicsScore The graphics score to be checked.
+     * @param audioScore    The audio score to be checked.
+     * @param controlsScore The control score to be checked.
+     * @param funScore      The fun score to be checked.
+     * @param errorList     A list containing possible detected errors before calling this method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void checkValues(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                             Integer controlsScore, Integer funScore, List<ValueError> errorList)
+            throws ValidationException {
+        errorList = errorList == null ? new LinkedList<>() : errorList;
+
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(review, NumericConstants.REVIEW_BODY_MIN_LENGTH,
+                NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_REVIEW_BODY,
+                ValueErrorConstants.REVIEW_BODY_TOO_SHORT, ValueErrorConstants.REVIEW_BODY_TOO_LONG);
+
+        checkScore(storyScore, ValueErrorConstants.MISSING_STORY_SCORE,
+                ValueErrorConstants.STORY_SCORE_BELOW_MIN, ValueErrorConstants.STORY_SCORE_ABOVE_MAX, errorList);
+        checkScore(graphicsScore, ValueErrorConstants.MISSING_GRAPHICS_SCORE,
+                ValueErrorConstants.GRAPHICS_SCORE_BELOW_MIN, ValueErrorConstants.GRAPHICS_SCORE_ABOVE_MAX, errorList);
+        checkScore(audioScore, ValueErrorConstants.MISSING_AUDIO_SCORE,
+                ValueErrorConstants.AUDIO_SCORE_BELOW_MIN, ValueErrorConstants.AUDIO_SCORE_ABOVE_MAX, errorList);
+        checkScore(controlsScore, ValueErrorConstants.MISSING_CONTROLS_SCORE,
+                ValueErrorConstants.CONTROLS_SCORE_BELOW_MIN, ValueErrorConstants.CONTROLS_SCORE_ABOVE_MAX, errorList);
+        checkScore(funScore, ValueErrorConstants.MISSING_FUN_SCORE,
+                ValueErrorConstants.FUN_SCORE_BELOW_MIN, ValueErrorConstants.FUN_SCORE_ABOVE_MAX, errorList);
+
+        throwValidationException(errorList);
+    }
+
+
+    /**
+     * Checks if the given {@code score} is valid.
+     *
+     * @param score        The score to be checked.
+     * @param missingError The {@link ValueError} representing the missing value error.
+     * @param belowError   The {@link ValueError} representing a below 0 error.
+     * @param aboveError   The {@link ValueError} representing an above 10 error.
+     * @param errorList    The list containing errors.
+     */
+    private static void checkScore(Integer score, ValueError missingError,
+                                   ValueError belowError, ValueError aboveError,
+                                   List<ValueError> errorList) {
+        ValidationHelper.intNotNullAndLengthBetweenTwoValues(score, NumericConstants.MIN_SCORE, NumericConstants.MAX_SCORE,
+                errorList, missingError, belowError, aboveError);
+
+    }
+
 }

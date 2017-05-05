@@ -28,7 +28,7 @@ public enum PlayStatus {
         String preProcessed = (name().substring(0, 1) + name().substring(1).toLowerCase()).replaceAll("_", " ");
         Matcher m = p.matcher(preProcessed);
         StringBuffer buffer = new StringBuffer();
-        while(m.find()) {
+        while (m.find()) {
             m.appendReplacement(buffer, " " + m.group(1).toUpperCase() + m.group(2));
         }
         return buffer.toString().isEmpty() ? preProcessed : buffer.toString();
@@ -41,5 +41,14 @@ public enum PlayStatus {
             result[i] = uglyValues[i].getPretty();
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().replace("_", " ").toLowerCase();
+    }
+
+    public static PlayStatus fromString(String value) {
+        return valueOf(value.replace(" ", "_").toUpperCase());
     }
 }

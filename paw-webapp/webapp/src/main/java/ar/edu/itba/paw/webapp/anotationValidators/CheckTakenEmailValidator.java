@@ -26,6 +26,7 @@ public class CheckTakenEmailValidator implements ConstraintValidator<CheckTakenE
             return true;
         }
 
-        return ! userService.existsWithEmail(object);
+        return userService.findByEmail(object) == null;
+//        return ! userService.existsWithEmail(object);
     }
 }

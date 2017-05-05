@@ -1,8 +1,5 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
-import ar.edu.itba.paw.webapp.interfaces.CommentDao;
 import ar.edu.itba.paw.webapp.interfaces.CommentLikeDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Comment;
@@ -12,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class CommentLikeHibernateDao implements CommentLikeDao {
@@ -30,41 +27,28 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
 
     @Override
     public CommentLike find(long commentId, long userId) {
-        TypedQuery<CommentLike> baseQuery = em.createQuery("FROM CommentLike AS L where L.comment.id = :commentId AND L.user.id = :userId", CommentLike.class);
+        TypedQuery<CommentLike> baseQuery = em.createQuery("FROM CommentLike AS L " +
+                        "where L.comment.id = :commentId AND L.user.id = :userId",
+                CommentLike.class);
         baseQuery.setParameter("commentId", commentId);
         baseQuery.setParameter("userId", userId);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
-    }
-    @Override
-    public int create(long commentId, long userId) {
-        User user = userDao.findById(userId);
-        if(user == null) {
-            throw new NoSuchUserException(userId);
-        }
-        Comment comment = em.find(Comment.class, commentId);
-        if(comment == null) {
-            throw new NoSuchEntityException(Comment.class, commentId);
-        }
-        if(find(commentId, userId) == null) {
-            //TODO is this check necessary? What happens with the @Table annotation?
-//            LoggerFactory.logger(this.getClass()).errorf("{} couldn't like comment {}: {}", user.getUsername(), comment.getId(), e);
-            em.persist(new CommentLike(user, comment));
-        }
-        return comment.getLikeCount();
+        List<CommentLike> result = baseQuery.getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
-    @Override
-    public int delete(long commentId, long userId) {
-        int result = -1;
-        CommentLike like = find(commentId, userId);
-        if(like != null) {
-            result = like.getComment().getLikeCount() - 1;
-            em.remove(like);
+    public CommentLike create(Comment comment, User user) {
+        if (comment == null || user == null) {
+            throw new IllegalArgumentException("Comment and/or user must not be null");
         }
-        return result;
+        CommentLike commentLike = new CommentLike(user, comment);
+        em.persist(commentLike);
+        return commentLike;
+    }
+
+    public void delete(CommentLike commentLike) {
+        if (commentLike == null) {
+            throw new IllegalArgumentException("The commentLike must not be null");
+        }
+        em.remove(commentLike);
     }
 }

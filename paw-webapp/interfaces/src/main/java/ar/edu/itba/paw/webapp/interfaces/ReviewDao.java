@@ -1,12 +1,9 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
-
-import java.util.Set;
 
 /**
  * Data Access Object for game reviews.
@@ -14,62 +11,78 @@ import java.util.Set;
 public interface ReviewDao {
 
     /**
-     * @see ReviewService#create(long, long, String, int, int, int, int, int) 
+     * @see ReviewService#getReviews(Long, String, Long, String, int, int, SortingType, SortDirection).
      */
-    Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException;
+    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+                            int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * @see ReviewService#findByGameId(long)
+     * @see ReviewService#create(long, long, String, int, int, int, int, int)
      */
-    Set<Review> findByGameId(long id) throws NoSuchGameException;
+    Review create(User reviewer, Game game,
+                  String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                  Integer controlsScore, Integer funScore);
 
     /**
-     * @see ReviewService#findPageByGameId(long, int, int)
+     * @see ReviewService#update(long, String, Integer, Integer, Integer, Integer, Integer, long) .
      */
-    Page<Review> findPageByGameId(long id, int pageNumber, int pageSize);
+    void update(Review review, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                Integer controlsScore, Integer funScore);
 
     /**
-     * @see ReviewService#findRecentByGameId(long, int)
+     * @see ReviewService#delete(long, long)
      */
-    Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
-
-    /**
-     * @see ReviewService#findByUserId(long)
-     */
-    Set<Review> findByUserId(long id) throws NoSuchUserException;
-
-    /**
-     * @see ReviewService#findPageByUserId(long, int, int)
-     */
-    Page<Review> findPageByUserId(long id, int pageNumber, int pageSize);
-
-    /**
-     * @see ReviewService#findRecentByUserId(long, int)
-     */
-    Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException;
-
-    /**
-     * @see ReviewService#findByUsername(String)
-     */
-    Set<Review> findByUsername(String username) throws NoSuchUserException;
-
-    /**
-     * @see ReviewService#findRecentByUsername(String, int)
-     */
-    Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException;
+    void delete(Review review);
 
     /**
      * @see ReviewService#findById(long)
      */
     Review findById(long reviewId);
 
-    /**
-     * @see ReviewService#find(long, long)
-     */
-    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
 
     /**
-     * @see ReviewService#delete(long)
+     * Enum indicating the sorting type for the "get reviews" method.
      */
-    void delete(long reviewId);
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return "id";
+            }
+        },
+        GAME_ID {
+            @Override
+            public String getFieldName() {
+                return "game.id";
+            }
+        },
+        DATE {
+            @Override
+            public String getFieldName() {
+                return "date";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
 }

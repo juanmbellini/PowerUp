@@ -1,30 +1,22 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Data Access Object for users.
  */
-public interface UserDao {
+public interface UserDao extends FindByIdDao<User> {
+
 
     /**
-     * @see UserService#create(String, String, String)
+     * @see UserService#getUsers(String, String, Authority, int, int, SortingType, SortDirection) .
      */
-    User create(String email, String password, String username) throws UserExistsException;
-
-    /**
-     * @see UserService#all()
-     */
-    List<User> all();
+    Page<User> getUsers(String userNameFilter, String emailFilter, Authority authorityFilter,
+                        int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
      * @see UserService#findByUsername(String)
@@ -36,78 +28,188 @@ public interface UserDao {
      */
     User findByEmail(String email);
 
-    /**
-     * @see UserService#findById(long)
-     */
-    User findById(long id);
 
     /**
-     * @see UserService#existsWithId(long)
+     * @see UserService#create(String, String, String)
      */
-    boolean existsWithId(long id);
+    User create(String username, String email, String password);
 
     /**
-     * @see UserService#existsWithUsername(String)
+     * @see UserService#changePassword(long, String, long)
      */
-    boolean existsWithUsername(String username);
+    void changePassword(User user, String newPassword);
 
     /**
-     * @see UserService#existsWithEmail(String)
+     * @see UserService#changeProfilePicture(long, byte[], String, long)
      */
-    boolean existsWithEmail(String email);
+    void changeProfilePicture(User user, byte[] picture, String mimeType);
 
     /**
-     * @see UserService#scoreGame(long, long, int)
+     * @see UserService#getPlayStatuses(long, Long, String, int, int, PlayStatusAndGameScoresSortingType, SortDirection)
      */
-    void scoreGame(long userId, long gameId, int score);
+    Page<UserGameStatus> getPlayStatuses(User user, Long gameIdFilter, String gameNameFilter,
+                                         int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType,
+                                         SortDirection sortDirection);
+
 
     /**
-     * @see UserService#setPlayStatus(long, long, PlayStatus)
+     * @see UserService#setPlayStatus(long, Long, PlayStatus, long)
      */
-    void setPlayStatus(long userId, long gameId, PlayStatus status);
+    void setPlayStatus(User user, Game game, PlayStatus playStatus);
 
     /**
-     * @see UserService#removeScore(long, long)
+     * @see UserService#removePlayStatus(long, Long, long)
      */
-    void removeScore(long userId, long id);
+    void removePlayStatus(User user, Game game);
+
 
     /**
-     * @see UserService#removeStatus(long, long)
+     * @see UserService#getGameScores(long, Long, String, int, int, PlayStatusAndGameScoresSortingType, SortDirection)
      */
-    void removeStatus(long userId, long id);
+    Page<UserGameScore> getGameScores(User user, Long gameIdFilter, String gameNameFilter,
+                                      int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType,
+                                      SortDirection sortDirection);
+
+
+    /**
+     * @see UserService#setGameScore(long, long, Integer, long)
+     */
+    void setGameScore(User user, Game game, Integer score);
+
+    /**
+     * @see UserService#removeGameScore(long, long, long)
+     */
+    void removeGameScore(User user, Game game);
+
+
+    /**
+     * @see UserService#addAuthority(long, Authority, long)
+     */
+    void addAuthority(User user, Authority authority);
+
+    /**
+     * @see UserService#removeAuthority(long, Authority, long)
+     */
+    void removeAuthority(User user, Authority authority);
+
+
+    /**
+     * @see UserService#delete(long, long)
+     */
+    void delete(User user);
+
+
+    /**
+     * @see UserService#recommendedGames(long, int, int, SortDirection)
+     */
+    Page<Game> recommendedGames(User user, int pageNumber, int pageSize, SortDirection sortDirection);
+
+    /**
+     * @see UserService#recommendedGames(long, Set, int, int, SortDirection)
+     */
+    Page<Game> recommendedGames(User user, Set<Shelf> shelves,
+                                int pageNumber, int pageSize, SortDirection sortDirection);
+
 
     /**
      * @see UserService#recommendGames(long)
      */
+    @Deprecated
     Collection<Game> recommendGames(long userId);
 
     /**
-     *  @see UserService#recommendGames(long,Set)
+     * @see UserService#recommendGames(long, Set)
      */
+    @Deprecated
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
-    /**
-     * @see UserService#setProfilePicture(long, byte[], String)
-     */
-    void setProfilePicture(long userId, byte[] picture, String mimeType) throws NoSuchEntityException;
+
 
     /**
-     * @see UserService#removeProfilePicture(long)
+     * Enum indicating the sorting type for the "get reviews" method.
      */
-    void removeProfilePicture(long userId);
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return "id";
+            }
+        },
+        USERNAME {
+            @Override
+            public String getFieldName() {
+                return "username";
+            }
+        },
+        EMAIL {
+            @Override
+            public String getFieldName() {
+                return "email";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
 
     /**
-     * @see UserService#changePassword(long, String)
+     * Enum indicating the sorting type for the get play statuses / get scored games methods.
      */
-    void changePassword(long userId, String newHashedPassword);
+    enum PlayStatusAndGameScoresSortingType {
+        GAME_ID {
+            @Override
+            public String getFieldName() {
+                return "game.id";
+            }
+        },
+        GAME_NAME {
+            @Override
+            public String getFieldName() {
+                return "game.name";
+            }
+        };
 
-    /**
-     * @see UserService#deleteById(long)
-     */
-    void deleteById(long userId);
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
 
-//    /**
-//     * @see UserService#getGameList(long,Set,Set)
-//     */
-//    Map<Game,PlayStatus> getGameList(long userId, Set<String> playStatusesFilter, Set<String> shelvesFilter);
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static PlayStatusAndGameScoresSortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Comment;
+import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.User;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -10,15 +12,44 @@ import java.util.LinkedList;
  */
 public interface CommentDao {
 
-    /**
-     * @see ThreadService#comment(long, long, String)
-     */
-    Comment comment(long threadId, long commenterId, String comment);
 
     /**
-     * @see ThreadService#replyToComment(long, long, String)
+     * Creates a comment in a {@link Thread}.
+     *
+     * @param thread         The commented {@link Thread}.
+     * @param commenter      The {@link User} commenting.
+     * @param commentMessage The comment content.
+     * @return
      */
-    Comment reply(long commentId, long replierId, String reply);
+    Comment comment(Thread thread, User commenter, String commentMessage);
+
+
+    /**
+     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
+     *
+     * @param comment        The {@link Comment} to be replied.
+     * @param commenter      The {@link User} replying
+     * @param commentMessage The comment content.
+     * @return
+     */
+    Comment reply(Comment comment, User commenter, String commentMessage);
+
+
+    /**
+     * Changes the given {@link Comment}.
+     *
+     * @param comment    The comment to be changed.
+     * @param newComment The new content of the message.
+     */
+    void update(Comment comment, String newComment);
+
+
+    /**
+     * Removes the given {@link Comment} from the database.
+     *
+     * @param comment The comment to be removed.
+     */
+    void delete(Comment comment);
 
     /**
      * Finds a comment or a reply by ID.
@@ -74,34 +105,4 @@ public interface CommentDao {
         return null;
     }
 
-    /**
-     * Creates a like for a given comment or reply by a a given user.
-     *
-     * @param id     The comment or reply ID.
-     * @param userId The ID of the user liking the comment or reply.
-     */
-    int like(long id, long userId);
-
-    /**
-     * Removes a like from a given comment or reply by a a given user.
-     *
-     * @param id     The comment or reply ID.
-     * @param userId The ID of the user unliking the comment or reply.
-     */
-    int unlike(long id, long userId);
-
-    /**
-     * Changes a comment's content.
-     *
-     * @param id         The comment ID.
-     * @param newComment The new comment content.
-     */
-    void edit(long id, String newComment);
-
-    /**
-     * Deletes a comment or reply.
-     *
-     * @param id The ID of the comment or reply.
-     */
-    void delete(long id);
 }

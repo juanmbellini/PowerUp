@@ -35,6 +35,7 @@ import java.util.*;
  */
 @Controller
 //@Transactional  //TODO die die die die die die die die
+@Deprecated
 public class GameController extends BaseController {
 
 
@@ -213,16 +214,17 @@ public class GameController extends BaseController {
             }
             if (currentUser != null) {
                 long userId = currentUser.getId();
-                if (userService.hasScoredGame(userId, gameId)) {
-                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
-                }
-                if (userService.hasPlayStatus(userId, gameId)) {
-                    rateAndStatusForm.setPlayStatus(userService.getPlayStatus(userId, gameId));
-                }
+//                if (userService.hasScoredGame(userId, gameId)) {
+//                    rateAndStatusForm.setScore(userService.getGameScore(userId, gameId));
+//                } // TODO: fix
+//                if (userService.hasPlayStatus(userId, gameId)) {
+////                    rateAndStatusForm.setPlayStatus(userService.getScore(userId, gameId));
+//                }
+                // TODO: fix
                 Map<Shelf, Boolean> shelves = new LinkedHashMap<>();
-                for(Shelf shelf : shelfService.findByUserId(userId)) {
-                    shelves.put(shelf, shelf.getGames().contains(game));
-                }
+//                for(Shelf shelf : shelfService.findByUserId(userId)) {
+//                    shelves.put(shelf, shelf.getGames().contains(game));
+//                }
                 mav.addObject("shelves", shelves);
             }
 
@@ -247,9 +249,9 @@ public class GameController extends BaseController {
         }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
-        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
-        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null);
-        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
+//        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers
+//        mav.addObject("canSubmitReview", isLoggedIn() && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
+//        mav.addObject("canUpdateShelves", isLoggedIn() && getCurrentUser()!=null && userService.hasPlayStatus(getCurrentUser().getId(),gameId));
         mav.addObject("genres", gameService.getGenres(gameId));
         mav.addObject("platforms", gameService.getPlatforms(gameId));
         mav.addObject("developers", gameService.getDevelopers(gameId));
@@ -285,14 +287,16 @@ public class GameController extends BaseController {
 
         Integer score = rateAndStatusForm.getScore();
         if (score != null) {
-            userService.scoreGame(userId, id, score);
+//            userService.scoreGame(userId, id, score);
+            userService.setGameScore(userId, id, score, userId);
         } else {
-            userService.removeScore(userId, id);
+//            userService.removeScore(userId, id);
+            userService.removeGameScore(userId, id, userId);
         }
 
         PlayStatus playStatus = rateAndStatusForm.getPlayStatus();
         if (playStatus != null) {
-            userService.setPlayStatus(userId, id, playStatus);
+            userService.setPlayStatus(userId, id, playStatus, userId);
         } else {
             return new ModelAndView("error400");
         }
@@ -315,20 +319,20 @@ public class GameController extends BaseController {
             if(gameId != -1) {
                 if(userId != -1) {
                     //Find by both
-                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId)));
+//                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId))); // TODO: ReviewService#find
                     mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
-                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
+//                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
                 }
                 //Need this in both cases to populate title - not getting the game from the reviews set as it might be empty
                 mav.addObject("game", gameService.findById(gameId));
             } else {
                 //Find by user ID
-                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
+//                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
                 mav.addObject("user", userService.findById(userId));
             }
-            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null);
+//            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
         } catch(IllegalPageException e) {
             LOG.warn("Invalid reviews page requested for game #{} by user #{}: {}", gameId, userId, e.getMessage());
             mav = new ModelAndView("error400");
@@ -370,10 +374,10 @@ public class GameController extends BaseController {
                 return new ModelAndView("error404");
             }
             //No need to check if logged in - spring security restricts access to this page to authenticated users
-            if(reviewService.find(getCurrentUser().getId(), gameId) != null) {
-                LOG.info("User #{} attempted to write a review for Game #{} when they already have a review, access denied", getCurrentUser().getId(), gameId);
-                return new ModelAndView("error400");
-            }
+//            if(reviewService.find(getCurrentUser().getId(), gameId) != null) {
+//                LOG.info("User #{} attempted to write a review for Game #{} when they already have a review, access denied", getCurrentUser().getId(), gameId);
+//                return new ModelAndView("error400");
+//            } // TODO: ReviewService#find
             mav = new ModelAndView("write-review");
             mav.addObject("game", game);
         } catch (Exception e) {
@@ -390,7 +394,7 @@ public class GameController extends BaseController {
             return new ModelAndView("error400");
         }
         long gameId = review.getGame().getId();
-        reviewService.delete(reviewId);
+//        reviewService.delete(reviewId, null);
         return new ModelAndView("redirect:/game?id=" + gameId);
     }
 

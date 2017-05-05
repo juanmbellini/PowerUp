@@ -2,9 +2,15 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.ProfilePictureDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
-import ar.edu.itba.paw.webapp.dto.UserListDto;
+import ar.edu.itba.paw.webapp.dto.UserGameScoreDto;
+import ar.edu.itba.paw.webapp.dto.UserGameStatusDto;
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
+import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.User;
 import org.apache.commons.io.IOUtils;
@@ -24,10 +30,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.io.*;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -35,7 +41,8 @@ import java.util.List;
  */
 @Path("users")
 @Component
-public class UserJerseyController {
+@Produces(value = {MediaType.APPLICATION_JSON,})
+public class UserJerseyController implements UpdateParamsChecker {
 
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService) {
@@ -52,35 +59,241 @@ public class UserJerseyController {
 
     private Logger LOG = LoggerFactory.getLogger(getClass());
 
+
+    // ================ API methods ================
+
+
+    // ======== Basic user operation ========
+
     @GET
-    //@PATH not needed, same as class annotation, and Jersey throws warning if included
-    @Produces(value = {MediaType.APPLICATION_JSON,})
-    public Response listUsers() {
-        return Response.ok(new UserListDto(userService.all())).build();
+    public Response getUsers(@QueryParam("orderBy") @DefaultValue("username") final UserDao.SortingType sortingType,
+                             @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                             @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                             @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                             // Filters
+                             @QueryParam("username") @DefaultValue("") final String name,
+                             @QueryParam("email") @DefaultValue("") final String email,
+                             @QueryParam("authority") @DefaultValue("") final Authority authority) {
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getUsers(name, email, authority, pageNumber, pageSize, sortingType, sortDirection),
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear()
+                                .addParameter("name", name)
+                                .addParameter("email", email)
+                                .addParameter("authority", authority)
+                                .build());
+    }
+
+
+    @GET
+    @Path("/{id : \\d+}")
+    public Response getById(@PathParam("id") final long id) {
+        if (id <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "id", "");
+        }
+        final User user = userService.findById(id);
+        //TODO borrar esto de agregar headers a mano
+        // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
+        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
+                : Response.ok(new UserDto(user)).build();
     }
 
     @GET
-    @Path("/{id}")
-    @Produces(value = {MediaType.APPLICATION_JSON})
-    public Response getById(@PathParam("id") final long id) {
-        final User user = userService.findById(id);
-        if (user != null) {
-            //TODO borrar esto de agregar headers a mano
-           // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
-            return Response.ok(new UserDto(user)).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
+    @Path("/username={username : .+}")
+    public Response getByUsername(@PathParam("username") final String username) {
+        if (username == null) {
+            throw new IllegalParameterValueException(PathParam.class, "username", "");
         }
+        final User user = userService.findByUsername(username);
+        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
+                : Response.ok(new UserDto(user)).build();
+    }
+
+    @GET
+    @Path("/email={email : .+}")
+    public Response getByEMail(@PathParam("email") final String email) {
+        if (email == null) {
+            throw new IllegalParameterValueException(PathParam.class, "email", "");
+        }
+        final User user = userService.findByEmail(email);
+        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
+                : Response.ok(new UserDto(user)).build();
+    }
+
+
+    @POST
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response createUser(final UserDto userDto) {
+        if (userDto == null) {
+            throw new MissingJsonException();
+        }
+        final User user = userService.create(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(user.getId())).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+
+    @PUT
+    @Path("/{id : \\d+}/password")
+    public Response changePassword(@PathParam("id") final long userId,
+                                   final UserDto userDto) {
+        checkUpdateValues(userId, "id", userDto);
+        userService.changePassword(userId, userDto.getPassword(), userId); // TODO: updater
+        return Response.noContent().build();
+    }
+
+
+    // ======== Collections ========
+
+
+    // ==== Play status ====
+
+    @GET
+    @Path("/{id : \\d+}/play-statuses")
+    public Response getPlayStatuses(@PathParam("id") final long userId,
+                                    // Pagination and Sorting
+                                    @QueryParam("orderBy") @DefaultValue("game-id")
+                                    final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                    @QueryParam("sortDirection") @DefaultValue("asc")
+                                    final SortDirection sortDirection,
+                                    @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                    @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                    // Filters
+                                    @QueryParam("gameId") Long gameIdFilter,
+                                    @QueryParam("gameName") String gameNameFilter) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "id", "");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getPlayStatuses(userId, gameIdFilter, gameNameFilter,
+                                pageNumber, pageSize, sortingType, sortDirection),
+                        (statusesPage) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
+                                .createList(statusesPage.getData())) {
+                        },
+                        scoreAndStatusMap(gameIdFilter, gameNameFilter));
+
+    }
+
+    @POST
+    @Path("/{id : \\d+}/play-statuses")
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response addPlayStatus(@PathParam("id") final long userId,
+                                  final UserGameStatusDto userGameStatusDto) {
+        checkUpdateValues(userId, "id", userGameStatusDto);
+        userService.setPlayStatus(userId, userGameStatusDto.getGameId(), userGameStatusDto.getStatus(), userId); // TODO: updater
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameStatusDto.getGameId())).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
     @DELETE
-    @Path("/{id}")
-    @Produces(value = {MediaType.APPLICATION_JSON})
-    public Response deleteById(@PathParam("id") final long id) {
-        //TODO remove ID parameter, get current user and only allow current user to delete their own account
-        userService.deleteById(id);
+    @Path("/{id : \\d+}/play-statuses/{gameId : \\d+}")
+    public Response removePlayStatus(@PathParam("id") final long userId,
+                                     @PathParam("gameId") final long gameId) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "id", "");
+        }
+        if (gameId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
+        }
+        userService.removePlayStatus(userId, gameId, userId); // TODO: updater
         return Response.noContent().build();
     }
+
+
+    // ==== Game scores ====
+
+
+    @GET
+    @Path("/{id : \\d+}/game-scores")
+    public Response getGameScores(@PathParam("id") final long userId,
+                                  // Pagination and Sorting
+                                  @QueryParam("orderBy") @DefaultValue("game-id")
+                                  final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                  @QueryParam("sortDirection") @DefaultValue("asc")
+                                  final SortDirection sortDirection,
+                                  @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                  @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                  // Filters
+                                  @QueryParam("gameId") @DefaultValue("") Long gameIdFilter,
+                                  @QueryParam("gameName") @DefaultValue("") String gameNameFilter) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "id", "");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getGameScores(userId, gameIdFilter, gameNameFilter,
+                                pageNumber, pageSize, sortingType, sortDirection),
+                        (scoresPage) -> new GenericEntity<List<UserGameScoreDto>>(UserGameScoreDto
+                                .createList(scoresPage.getData())) {
+                        },
+                        scoreAndStatusMap(gameIdFilter, gameNameFilter));
+    }
+
+    @POST
+    @Path("/{id : \\d+}/game-scores")
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response addGameScore(@PathParam("id") final long userId,
+                                 final UserGameScoreDto userGameScoreDto) {
+        checkUpdateValues(userId, "id", userGameScoreDto);
+        userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+    @DELETE
+    @Path("/{id : \\d+}/game-scores/{gameId : \\d+}")
+    public Response removeGameScore(@PathParam("id") final long userId,
+                                    @PathParam("gameId") final long gameId) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "id", "");
+        }
+        if (gameId <= 0) {
+            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
+        }
+        userService.removeGameScore(userId, gameId, userId); // TODO: updater
+        return Response.noContent().build();
+    }
+
+
+//    @DELETE
+//    @Path("/{id}")
+//    @Produces(value = {MediaType.APPLICATION_JSON})
+//    public Response deleteById(@PathParam("id") final long id) {
+//        //TODO remove ID parameter, get current user and only allow current user to delete their own account
+//        userService.deleteById(id);
+//        return Response.noContent().build();
+//    } TODO: redo this method
+
+
+    // ================ Helper methods ================
+
+
+    /**
+     * Creates a map to be used in the
+     * {@link #getGameScores(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
+     * or the
+     * {@link #getPlayStatuses(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
+     * methods.
+     *
+     * @param gameIdFilter   Filter for game id.
+     * @param gameNameFilter Filter for game name.
+     * @return The resulting map.
+     */
+    private static Map<String, Object> scoreAndStatusMap(final Long gameIdFilter, final String gameNameFilter) {
+        return JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("gameId", gameIdFilter)
+                .addParameter("gameName", gameNameFilter)
+                .build();
+    }
+
+
+    // ================ Un-migrated methods ================
+
 
     /* ************************************
      *          PROFILE PICTURES
@@ -114,7 +327,7 @@ public class UserJerseyController {
             LOG.error("Couldn't get current user on profile picture PUT");
             return Response.serverError().build();
         }
-        if(picture.getBase64Data() == null || picture.getBase64Data().isEmpty()) {
+        if (picture.getBase64Data() == null || picture.getBase64Data().isEmpty()) {
             LOG.info("No data for profile picture update for user #{}, returning HTTP 400 Bad Request", userId);
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -131,14 +344,15 @@ public class UserJerseyController {
             mimeType = getMimeType(byteArrayToTempFile(pictureBytes));
             if (mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
                 return Response
-                    .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
-                    .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
+                        .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
+                        .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
             }
         } catch (IOException | TikaException | SAXException e) {
             LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", userId, e);
             return Response.serverError().build();
         }
-        userService.setProfilePicture(userId, pictureBytes, mimeType);
+        userService.changeProfilePicture(userId, pictureBytes, mimeType, userId);
+//        userService.setProfilePicture(userId, pictureBytes, mimeType);
         LOG.info("Updated profile picture for user #{}", userId);
         return Response.noContent().build();
     }
@@ -152,7 +366,7 @@ public class UserJerseyController {
             LOG.error("Couldn't get current user on profile picture DELETE");
             return Response.serverError().build();
         }
-        userService.removeProfilePicture(userId);
+        userService.removeProfilePicture(userId, userId);// TODO: user performing the operation?
         LOG.info("Deleted profile picture for user #{}", userId);
         return Response.ok().build();
     }

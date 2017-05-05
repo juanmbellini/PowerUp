@@ -1,7 +1,5 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.interfaces.ThreadLikeDao;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Thread;
@@ -34,7 +32,7 @@ public class ThreadLikeHibernateDao implements ThreadLikeDao {
         baseQuery.setParameter("userId", userId);
         try {
             return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -44,32 +42,22 @@ public class ThreadLikeHibernateDao implements ThreadLikeDao {
         return find(threadId, userId) != null;
     }
 
+
     @Override
-    public int create(long threadId, long userId) {
-        User user = userDao.findById(userId);
-        if(user == null) {
-            throw new NoSuchUserException(userId);
+    public ThreadLike create(Thread thread, User user) {
+        if (thread == null || user == null) {
+            throw new IllegalArgumentException("Thread and user must not be null");
         }
-        Thread thread = em.find(Thread.class, threadId);
-        if(thread == null) {
-            throw new NoSuchEntityException(Thread.class, threadId);
-        }
-        if(!exists(threadId, userId)) {
-            //TODO is this check necessary? What happens with the @Table annotation?
-//            LoggerFactory.logger(this.getClass()).errorf("{} couldn't like thread {}: {}", user.getUsername(), thread.getId(), e);
-            em.persist(new ThreadLike(user, thread));
-        }
-        return thread.getLikeCount();
+        ThreadLike threadLike = new ThreadLike(user, thread);
+        em.persist(threadLike);
+        return threadLike;
     }
 
     @Override
-    public int delete(long threadId, long userId) {
-        int result = -1;
-        ThreadLike like = find(threadId, userId);
-        if(like != null) {
-            result = like.getThread().getLikeCount() - 1;
-            em.remove(like);
+    public void delete(ThreadLike threadLike) {
+        if (threadLike == null) {
+            throw new IllegalArgumentException("The threadLike must not be null");
         }
-        return result;
+        em.remove(threadLike);
     }
 }
