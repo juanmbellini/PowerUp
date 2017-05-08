@@ -1,12 +1,13 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -24,11 +25,10 @@ public class AuthController {
     @Context
     private UriInfo uriInfo;
 
-    private Logger LOG = LoggerFactory.getLogger(getClass());
+    @Autowired
+    private SessionService sessionService;
 
-    /*
-     * NOTE: Login methods are not specified here since that is configured through Spring. See JsonAuthenticationFilter.
-     */
+    private Logger LOG = LoggerFactory.getLogger(getClass());
 
     /**
      * An OPTIONS endpoint, required by CORS for local development, previous to actually POSTing to the login endpoint.
@@ -47,6 +47,22 @@ public class AuthController {
     }
 
     /**
+     * Log-in endpoint. If user is successfully authenticated, a JWT is generated and given to the user to use as
+     * authentication for all future requests.
+     */
+    @POST
+    @Path("/login")
+    public Response login() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .allow("HEAD", "OPTIONS", "POST")
+                .type(MediaType.TEXT_HTML)                                //Required by CORS
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        //TODO send authenticated user data here?
+        return result.build();
+    }
+
+    /**
      * @see #loginOptions()
      */
     @OPTIONS
@@ -56,16 +72,18 @@ public class AuthController {
             .ok()
             .allow("HEAD", "OPTIONS", "POST")
             .type(MediaType.TEXT_HTML)                                //Required by CORS
-            .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+            .header("Access-Control-Allow-Headers", "Content-Type,Authorization");  //Required by CORS
         return result.build();
     }
 
-    @GET
-    @Path("/csrf")
-    public Response getCsrfToken(CsrfToken token) {
-        if(token != null) {
-            LOG.warn("Attempted to get new CSRF token");    //TODO what to do in this case?
-        }
+    /**
+     * Invalidates the authentication of the authenticated user. If the user wishes to access protected endpoints, they
+     * must authenticate again.
+     */
+    @POST
+    @Path("/logout")
+    public Response logout() {
+        LOG.info("{} logged out, JWT invalidated", sessionService.getCurrentUsername());
         return Response.noContent().build();
     }
 }

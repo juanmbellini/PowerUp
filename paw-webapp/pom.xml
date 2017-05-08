@@ -40,7 +40,7 @@
         <spring-security-csrf-token-filter.version>1.1</spring-security-csrf-token-filter.version>
         <org.flywaydb.version>4.1.2</org.flywaydb.version>
         <commons-validator.version>1.6</commons-validator.version>
-
+        <io.jsonwebtoken.jjwt.version>0.7.0</io.jsonwebtoken.jjwt.version>
     </properties>
 
     <modules>
@@ -329,6 +329,12 @@
                 <artifactId>flyway-core</artifactId>
                 <version>${org.flywaydb.version}</version>
             </dependency>
+            <!--JJWT - Java JWT implementation-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${io.jsonwebtoken.jjwt.version}</version>
+            </dependency>
 
 
             <!-- Commons -->
@@ -358,13 +364,13 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--Logging configuration - exclude development logging configuration when packaging WAR-->
+            <!--Packaging configuration - exclude development configuration when packaging WAR-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven-war-plugin.version}</version>
                 <configuration>
-                    <packagingExcludes>**/logback-test.xml</packagingExcludes>
+                    <packagingExcludes>**/logback-test.xml, **/development.properties</packagingExcludes>
                 </configuration>
             </plugin>
             <!--Flyway maven plugin for running migrations from the command line in development-->

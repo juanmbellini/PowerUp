@@ -66,17 +66,7 @@
         <filter-name>encoding-filter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!-- Bean exposed by the @EnableJdbcHttpSession annotation in WebAuthConfig, allows HTTP header token-based auth -->
-    <filter>
-        <filter-name>springSessionRepositoryFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>springSessionRepositoryFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <!-- Spring security filter chain, it's important that the springSessionRepositoryFilter run first so it authenticates -->
-    <!-- users before passing the security context to the filter chain -->
+    <!-- Spring security filter chain -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -96,9 +86,4 @@
             </taglib-location>
         </taglib>
     </jsp-config>
-
-    <session-config>
-        <!-- 30 days -->
-        <session-timeout>43200</session-timeout>
-    </session-config>
 </web-app>

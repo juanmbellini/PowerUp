@@ -25,7 +25,7 @@ require.config({
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
-        sessionService: 'services/SessionService',
+        authService: 'services/AuthService',
         'csrf-service': 'services/CsrfService',
         'angular-slick': '../../bower_components/angular-slick/dist/slick',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage'
@@ -97,7 +97,7 @@ require.config({
                 'angular'
             ]
         },
-        sessionService: {
+        authService: {
             deps: [
                 'angular'
             ]

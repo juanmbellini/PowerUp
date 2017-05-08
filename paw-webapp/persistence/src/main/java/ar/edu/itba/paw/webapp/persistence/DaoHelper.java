@@ -186,6 +186,7 @@ import java.util.stream.IntStream;
         if (!query.toUpperCase().startsWith("SELECT COUNT")) {
             query = "SELECT COUNT(*) " + query;
         }
+        //TODO suffix with LIMIT 1 if necessary or use findPage with limit 1
         //noinspection ConstantConditions - The count should never return null
         return findSingleWithConditions(em, Long.class, query, params) > 0;
     }

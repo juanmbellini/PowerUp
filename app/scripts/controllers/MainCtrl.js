@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
+define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
@@ -24,12 +24,11 @@ define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, SessionService, CsrfService) {
+    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, AuthService, CsrfService) {
         Restangular.setFullResponse(false);
         // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
-        SessionService.trackToken();
-        CsrfService.trackToken();
+        AuthService.trackToken();
 
 
         $scope.welcomeText = 'Welcome to your powerUp page';
@@ -63,16 +62,16 @@ define(['powerUp', 'sessionService', 'csrf-service'], function (powerUp) {
             return input;
         };
 
-        $scope.logOut = SessionService.logOut;
+        $scope.logOut = AuthService.logOut;
 
         $scope.apiLocation = 'http://localhost:8080/api';
 
-        $scope.isLoggedIn = SessionService.isLoggedIn;
+        $scope.isLoggedIn = AuthService.isLoggedIn;
 
-        $scope.currentUser = SessionService.getCurrentUser();
+        $scope.currentUser = AuthService.getCurrentUser();
         // Watch the current user to always keep it updated
         $scope.$watch(
-            SessionService.getCurrentUser,
+            AuthService.getCurrentUser,
             function(newVal) {
                 $scope.currentUser = newVal;
             },

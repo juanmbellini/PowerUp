@@ -1,4 +1,4 @@
-package ar.edu.itba.paw.webapp.auth;
+package ar.edu.itba.paw.webapp.auth.json;
 
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * JSON-based username-password authentication filter.
+ * JSON-based username-password authentication filter. Used for initial authentication.
  */
 public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private Logger LOG = LoggerFactory.getLogger(getClass());
@@ -33,7 +33,7 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
          * Saving username and password as instance variables here is not thread-safe (this class will later be used as
          * a bean), so instead we're taking the approach suggested by http://stackoverflow.com/a/20353336/2333689
          */
-        LoginDto login;
+        JsonLoginDto login;
         try {
             if(sessionService.isLoggedIn()) {
                 throw new AlreadyLoggedInException(sessionService.getCurrentUsername() + " is already logged in");
@@ -52,15 +52,15 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
    * Parses the JSON payload from a login request and attempts to build a POJO with the appropriate data.
    *
    * @param request The HTTP request.
-   * @return The login credentials as a {@link LoginDto}
+   * @return The login credentials as a {@link JsonLoginDto}
    * @throws IOException If an I/O or JSON error occurs.
    */
-    private LoginDto getLoginRequest(HttpServletRequest request) throws IOException {
+    private JsonLoginDto getLoginRequest(HttpServletRequest request) throws IOException {
         //Get JSON
         String body = IOUtils.toString(request.getInputStream(), request.getCharacterEncoding());
         //Parse JSON
         ObjectMapper mapper = new ObjectMapper();
-        LoginDto loginRequest = mapper.readValue(body, LoginDto.class);
+        JsonLoginDto loginRequest = mapper.readValue(body, JsonLoginDto.class);
         return loginRequest;
     }
 

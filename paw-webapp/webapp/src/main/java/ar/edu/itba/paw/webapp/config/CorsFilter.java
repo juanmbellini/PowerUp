@@ -1,5 +1,8 @@
 package ar.edu.itba.paw.webapp.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
@@ -16,19 +19,27 @@ import java.util.Map;
 @Provider
 public class CorsFilter implements ContainerResponseFilter {
 
-    public static final Map<String, String> CORS_HEADERS = new HashMap<>();
+    public static boolean isEnabled;
 
+    @Autowired
+    public CorsFilter(Environment environment) {
+        isEnabled = environment.getProperty("cors.enabled", Boolean.class, false);
+    }
+
+    public static final Map<String, String> CORS_HEADERS = new HashMap<>();
     static {
-        CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");                                       //TODO remove in production
-        CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");                                                   //Allow sending cookies for authentication for cross-origin requests
-        CORS_HEADERS.put("Access-Control-Allow-Headers", "X-AUTH-TOKEN, X-CSRF-TOKEN");                                 //TODO remove in production? I think we need this and the next line
-        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-AUTH-TOKEN, X-CSRF-HEADER, X-CSRF-PARAM, X-CSRF-TOKEN");
+        CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");   //Allow access from grunt server
+        CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");               //Allow sending credentials in CORS
+        CORS_HEADERS.put("Access-Control-Allow-Headers", "Authorization");          //Allow sending Authorization header for protected endpoints
+        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-TOKEN");               //Allow reading X-TOKEN header when logging in
     }
 
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-        MultivaluedMap<String, Object> headers = responseContext.getHeaders();
-        for (Map.Entry<String, String> header : CORS_HEADERS.entrySet()) {
-            headers.add(header.getKey(), header.getValue());
+        if(isEnabled) {
+            MultivaluedMap<String, Object> headers = responseContext.getHeaders();
+            for (Map.Entry<String, String> header : CORS_HEADERS.entrySet()) {
+                headers.add(header.getKey(), header.getValue());
+            }
         }
     }
 }

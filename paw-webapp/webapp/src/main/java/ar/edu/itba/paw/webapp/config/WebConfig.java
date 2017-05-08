@@ -3,10 +3,7 @@ package ar.edu.itba.paw.webapp.config;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.MigrationVersion;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
@@ -37,6 +34,12 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config"})
+@PropertySources({
+    @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
+    @PropertySource(value = "classpath:config/production.properties", ignoreResourceNotFound = true),
+    @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
+    //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
+})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

@@ -1,27 +1,21 @@
 'use strict';
-define(['powerUp', 'sessionService', 'csrf-service'], function(powerUp) {
+define(['powerUp', 'authService'], function(powerUp) {
 
-    powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'SessionService', 'CsrfService', function($scope, $location, $log, Restangular, SessionService, CsrfService) {
+    powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
         $scope.logIn = function(form) {
-            if (CsrfService.isTokenSet()) {
-                var logInAccount = {username: $scope.username, password: $scope.password};
-                var csrfHeaders = {};
-                csrfHeaders[CsrfService.getTokenHeader()] = CsrfService.getToken(); // Dynamically set CSRF header since the header name is a variable
-                $log.debug('Logging in with', logInAccount, 'and CSRF token');
-                Restangular.all('auth/login').post(logInAccount, undefined, csrfHeaders).then(function (data) {
-                    SessionService.setCurrentUser({username: $scope.username}); // TODO use actual user, or retrieve from API
+            var logInAccount = {username: $scope.username, password: $scope.password};
+            // $log.debug('Logging in with', logInAccount);
+            AuthService.authenticate($scope.username, $scope.password,
+                function() {
                     $location.search();
                     $location.path('');
-                }, function(error) {
-                    $log.error('There was an error in logIn:', error);
-                });
-            } else {
-                $log.debug('No CSRF token set, retrieving and retrying with token');
-                CsrfService.requestToken(function() {
-                    $scope.logIn(form); // Try again with the CSRF token set
-                });
-            }
+                },
+                function(error) {
+                    // TODO do something more useful, e.g. show the error
+                    $log.error('There was an error logging in: ', error);
+                }
+            );
         };
     }]);
 });

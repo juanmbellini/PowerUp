@@ -17,7 +17,6 @@
     </properties>
 
     <dependencies>
-
         <!-- Project modules -->
         <dependency>
             <groupId>ar.edu.itba</groupId>
