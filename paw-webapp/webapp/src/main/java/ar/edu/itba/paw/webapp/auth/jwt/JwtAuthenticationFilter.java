@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.auth.jwt;
 
 import ar.edu.itba.paw.webapp.interfaces.JwtService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.HttpMethod;
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * JWT authentication filter. Applied on all pages for stateless API traversing (i.e. JWT token must be provided for
@@ -27,6 +29,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private JwtHelper jwtHelper;
 
     public JwtAuthenticationFilter() {
         super("/**");
@@ -48,8 +53,11 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
         //Successfully authenticated against logout endpoint. Invalidate JWT.
         if(logOutRequestMatcher.matches(request)) {
-            JwtAuthenticationToken token = extractToken(request);
-            jwtService.blacklist(token.getToken(), null);   //TODO set expiration date on JWTs and use it here
+            String tokenString = extractToken(request).getToken();
+            Claims tokenClaims = extractTokenClaims(request);
+            Calendar expiry = Calendar.getInstance();
+            expiry.setTime(tokenClaims.getExpiration());
+            jwtService.blacklist(tokenString, expiry);
         }
 
         // As this authentication is in HTTP header, after success we need to continue the request normally
@@ -57,6 +65,12 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
         chain.doFilter(request, response);
     }
 
+    /**
+     * Extracts a JWT received in a particular request as a string, just as the user sent it.
+     *
+     * @param request The request to process.
+     * @return The received JWT, or {@code null} if not present.
+     */
     private JwtAuthenticationToken extractToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         if (header == null || !header.startsWith("Bearer ")) {
@@ -64,5 +78,19 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
         }
         String authToken = header.substring(7);
         return new JwtAuthenticationToken(authToken);
+    }
+
+    /**
+     * Extracts the claims from a JWT received in a particular request as a string, just as the user sent it.
+     *
+     * @param request The request to process.
+     * @return The received JWT's claims, or {@code null} if not present.
+     */
+    private Claims extractTokenClaims(HttpServletRequest request) {
+        JwtAuthenticationToken token = extractToken(request);
+        if(token == null) {
+            return null;
+        }
+        return jwtHelper.parseToken(token.getToken());
     }
 }
