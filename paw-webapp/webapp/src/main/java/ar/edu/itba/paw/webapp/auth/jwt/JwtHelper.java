@@ -21,6 +21,8 @@ public class JwtHelper {
 
     private final String secret;
 
+    private final long tokenDuration;
+
     private final SecureRandom saltGenerator = new SecureRandom();
 
     private Logger LOG = LoggerFactory.getLogger(getClass());
@@ -28,6 +30,7 @@ public class JwtHelper {
     @Autowired
     public JwtHelper(Environment environment) {
         this.secret = environment.getRequiredProperty("jwt.secret");
+        this.tokenDuration = environment.getRequiredProperty("jwt.duration", Long.class);
     }
 
     /**
@@ -39,11 +42,10 @@ public class JwtHelper {
     public String generateToken(User u) {
         Claims claims = Jwts.claims().setSubject(u.getUsername());
         Date now = new Date();
-        long thirty_days = 1000L * 3600L * 24L * 30L;
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + thirty_days))
+                .setExpiration(new Date(now.getTime() + tokenDuration))
                 .setHeaderParam("salt", saltGenerator.nextLong())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
