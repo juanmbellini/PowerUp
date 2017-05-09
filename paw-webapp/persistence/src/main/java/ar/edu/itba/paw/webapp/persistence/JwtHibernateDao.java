@@ -8,12 +8,18 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Calendar;
+import java.util.List;
 
 @Repository
 public class JwtHibernateDao implements JwtDao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Override
+    public List<Jwt> all() {
+        return DaoHelper.findAll(em, Jwt.class);
+    }
 
     @Override
     public Jwt findById(long id) {
@@ -44,5 +50,13 @@ public class JwtHibernateDao implements JwtDao {
             throw new NoSuchEntityException(Jwt.class, tokenString);
         }
         return token.getValidUntil().before(Calendar.getInstance());
+    }
+
+    @Override
+    public void delete(Jwt token) {
+        if (token == null) {
+            throw new IllegalArgumentException("The token can not be null.");
+        }
+        em.remove(token);
     }
 }

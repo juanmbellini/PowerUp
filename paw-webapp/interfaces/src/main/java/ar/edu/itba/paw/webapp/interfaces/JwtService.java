@@ -4,11 +4,17 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Jwt;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Service layer for {@link ar.edu.itba.paw.webapp.model.Jwt JWTs}.
  */
 public interface JwtService {
+
+    /**
+     * @return All JWTs.
+     */
+    List<Jwt> all();
 
     /**
      * Finds a JWT by ID.
@@ -51,4 +57,11 @@ public interface JwtService {
      * @throws NoSuchEntityException If the token isn't blacklisted.
      */
     boolean isExpired(String token) throws NoSuchEntityException;
+
+    /**
+     * Deletes a JWT.
+     *
+     * @param token The token to delete.
+     */
+    void delete(Jwt token);
 }
