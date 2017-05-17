@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,6 +19,11 @@ public class JwtServiceImpl implements JwtService {
     @Autowired
     public JwtServiceImpl(JwtDao jwtDao) {
         this.jwtDao = jwtDao;
+    }
+
+    @Override
+    public List<Jwt> all() {
+        return jwtDao.all();
     }
 
     @Override
@@ -43,5 +49,10 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public boolean isExpired(String token) {
         return jwtDao.isExpired(token);
+    }
+
+    @Override
+    public void delete(Jwt token) {
+        jwtDao.delete(token);
     }
 }

@@ -21,6 +21,8 @@ public class JwtHelper {
 
     private final String secret;
 
+    private final long tokenDuration;
+
     private final SecureRandom saltGenerator = new SecureRandom();
 
     private Logger LOG = LoggerFactory.getLogger(getClass());
@@ -28,6 +30,7 @@ public class JwtHelper {
     @Autowired
     public JwtHelper(Environment environment) {
         this.secret = environment.getRequiredProperty("jwt.secret");
+        this.tokenDuration = environment.getRequiredProperty("jwt.duration", Long.class);
     }
 
     /**
@@ -38,38 +41,43 @@ public class JwtHelper {
      */
     public String generateToken(User u) {
         Claims claims = Jwts.claims().setSubject(u.getUsername());
-
+        Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuedAt(new Date())
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + tokenDuration))
                 .setHeaderParam("salt", saltGenerator.nextLong())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
     /**
-     * Tries to parse specified String as a JWT. If successful, returns the username this JWT belongs to.
+     * Tries to parse specified String as a JWT. If successful, returns the data extracted from this JWT.
      * If unsuccessful (token is invalid or does not contain all required user properties), returns {@code null}.
      *
      * @param tokenString the JWT to parse.
      * @return The data extracted from the specified token or {@code null} if the token is invalid.
      */
-    public String parseToken(String tokenString) {
+    public Claims parseToken(String tokenString) {
         try {
             Jwt token = Jwts.parser().setSigningKey(secret).parse(tokenString);
             Claims body = (Claims) token.getBody();
             Header header = token.getHeader();
+            Date now = new Date();
 
-            if(body.getIssuedAt() == null || body.getIssuedAt().after(new Date())) {
+            if(body.getIssuedAt() == null || body.getIssuedAt().after(now)) {
                 throw new JwtException("Invalid or nonexistent issued_at date, rejecting");
+            }
+            if(body.getExpiration() == null || body.getExpiration().before(now)) {
+                throw new JwtException("Expired or nonexistent expiration date, rejecting");
             }
             if(header.get("salt") == null) {
                 throw new JwtException("No salt present in JWT, rejecting");
             }
 
-            return body.getSubject();
+            return body;
         } catch (JwtException | ClassCastException e) {
-            LOG.warn("Error validating JWT: {}", e);
+            LOG.warn("Error validating JWT: {}", e.getMessage());
             return null;
         }
     }
