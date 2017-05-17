@@ -54,7 +54,7 @@ public class ReviewJerseyController {
                                // Filters
                                @QueryParam("gameId") @DefaultValue("") final Long gameId,
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
-                               @QueryParam("gameId") @DefaultValue("") final Long userId,
+                               @QueryParam("userId") @DefaultValue("") final Long userId,
                                @QueryParam("gameName") @DefaultValue("") final String userName) {
 
         return JerseyControllerHelper
