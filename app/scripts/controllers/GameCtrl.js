@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', 'Restangular', 'AuthService', function($scope, $location, Restangular, AuthService) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
@@ -93,6 +93,21 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         $scope.getReviewUserProfilePictureUrl = function(review) {
             return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
-        }
+        };
+
+        $scope.canDeleteReview = function(review) {
+          return AuthService.isLoggedIn() && AuthService.getCurrentUser().username === review.username;
+        };
+
+        $scope.deleteReview = function(review) {
+            // TODO implement
+            $log.info("TODO: Delete review on click");
+            // Restangular.one("reviews", review.id).remove().then(function(data) {
+            //     $log.info("Success: ", data);
+            // },
+            // function(error) {
+            //     $log.error("Error: ", error)
+            // });
+        };
     }]);
 });

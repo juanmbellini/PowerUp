@@ -239,8 +239,8 @@
                             <li class="collection-item avatar" ng-repeat="review in reviews">
                                 <img src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
                                 <span class="title">{{review.username}}</span>
-                                <p class="secondary-content" style="color: black;">{{review.date}}</p>
-                                <a ng-if="review.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
+                                <p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+                                <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
                                 <p><a href="#reviews?userId={{review.id}}">Other reviews by {{review.username}}</a></p>
                                 <br/>
                                 <div class="row">
