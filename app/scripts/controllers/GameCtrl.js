@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'sessionService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', 'Restangular', 'SessionService', function($scope, $location, Restangular, SessionService) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', 'Restangular', 'AuthService', function($scope, $location, Restangular, AuthService) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
@@ -58,20 +58,20 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'sessionServ
         $scope.reviews = null;
 
         $scope.$on('gameFound', function() {
-            // Restangular.all('reviews').getList({gameId: $scope.game.id}).then(function (reviews) {
-            //     $scope.reviews = reviews;
-            // }, function() {
-            //     console.log('There was an error getting reviews');
-            // });
+            Restangular.all('reviews').getList({gameId: $scope.game.id}).then(function (reviews) {
+                $scope.reviews = reviews;
+            }, function() {
+                console.log('There was an error getting reviews');
+            });
         });
 
         $scope.canWriteReview = function() {
-            if ($scope.reviews === null || !SessionService.isLoggedIn()) {
+            if ($scope.reviews === null || !AuthService.isLoggedIn()) {
                 return false;
             } else {
                 // Can submit review if user hasn't made one already. For now we just check that the retrieved reviews don't have the current user as author.
                 // TODO consider hitting API for this since reviews may be paginated
-                var currentUserId = SessionService.getCurrentUser().id;
+                var currentUserId = AuthService.getCurrentUser().id;
                 $scope.reviews.forEach(function(review) {
                     if (currentUserId === review.user.id) {
                         return false;
@@ -80,5 +80,19 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'sessionServ
                 return true;
             }
         };
+
+        $scope.overallReviewScore = function(review) {
+            var fields = ['storyScore', 'graphicsScore', 'audioScore', 'controlsScore', 'funScore'];
+            var result = 0;
+
+            fields.forEach(function(field) {
+                result += review[field] / fields.length;
+            });
+            return result;
+        };
+
+        $scope.getReviewUserProfilePictureUrl = function(review) {
+            return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
+        }
     }]);
 });

@@ -237,14 +237,14 @@
                         <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
                         <ul class="collection">
                             <li class="collection-item avatar" ng-repeat="review in reviews">
-                                <img src="#profile-picture?username={{review.user.username}}" alt="{{review.user.username}}" class="circle">
-                                <span class="title">{{review.user.username}}</span>
+                                <img src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
+                                <span class="title">{{review.username}}</span>
                                 <p class="secondary-content" style="color: black;">{{review.date}}</p>
-                                <a ng-if="review.user.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
-                                <p><a href="#reviews?userId={{review.user.id}}">Other reviews by {{review.user.username}}"</a></p>
+                                <a ng-if="review.username == currentUsername" href="#!" class="material-icons red-text text-lighten-1 delete-button" data-review-id="{{review.id}}"><i class="material-icons right">delete</i></a>
+                                <p><a href="#reviews?userId={{review.id}}">Other reviews by {{review.username}}</a></p>
                                 <br/>
                                 <div class="row">
-                                    <p class="col s10 wrap-text preserve-newlines">{{review.review}}</p>
+                                    <p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
                                     <div class="col s2">
                                         <p style="color: #26a69a;">
                                             Story: <span class="right">{{review.storyScore}}</span>
@@ -257,7 +257,7 @@
                                             <br/>
                                             Fun: <span class="right">{{review.funScore}}</span>
                                             <br/>
-                                            <b>Overall: <span class="right">{{review.overallScore | number : 2}}</span></b>
+                                            <b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>
                                         </p>
                                     </div>
                                 </div>
