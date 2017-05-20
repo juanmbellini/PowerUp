@@ -103,23 +103,23 @@ public class ReviewDto extends EntityDto {
         return body;
     }
 
-    public int getStoryScore() {
+    public Integer getStoryScore() {
         return storyScore;
     }
 
-    public int getGraphicsScore() {
+    public Integer getGraphicsScore() {
         return graphicsScore;
     }
 
-    public int getAudioScore() {
+    public Integer getAudioScore() {
         return audioScore;
     }
 
-    public int getControlsScore() {
+    public Integer getControlsScore() {
         return controlsScore;
     }
 
-    public int getFunScore() {
+    public Integer getFunScore() {
         return funScore;
     }
 
