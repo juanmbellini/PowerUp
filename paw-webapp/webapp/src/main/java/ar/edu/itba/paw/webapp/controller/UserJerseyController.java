@@ -91,7 +91,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}")
     public Response getById(@PathParam("id") final long id) {
         if (id <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         final User user = userService.findById(id);
         //TODO borrar esto de agregar headers a mano
@@ -104,7 +104,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/username={username : .+}")
     public Response getByUsername(@PathParam("username") final String username) {
         if (username == null) {
-            throw new IllegalParameterValueException(PathParam.class, "username", "");
+            throw new IllegalParameterValueException("username");
         }
         final User user = userService.findByUsername(username);
         return user == null ? Response.status(Response.Status.NOT_FOUND).build()
@@ -115,7 +115,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/email={email : .+}")
     public Response getByEMail(@PathParam("email") final String email) {
         if (email == null) {
-            throw new IllegalParameterValueException(PathParam.class, "email", "");
+            throw new IllegalParameterValueException("email");
         }
         final User user = userService.findByEmail(email);
         return user == null ? Response.status(Response.Status.NOT_FOUND).build()
@@ -164,7 +164,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                                     @QueryParam("gameId") Long gameIdFilter,
                                     @QueryParam("gameName") String gameNameFilter) {
         if (userId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         return JerseyControllerHelper
                 .createCollectionGetResponse(
@@ -194,10 +194,10 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response removePlayStatus(@PathParam("id") final long userId,
                                      @PathParam("gameId") final long gameId) {
         if (userId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         if (gameId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
+            throw new IllegalParameterValueException("gameId");
         }
         userService.removePlayStatus(userId, gameId, userId); // TODO: updater
         return Response.noContent().build();
@@ -221,7 +221,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                                   @QueryParam("gameId") @DefaultValue("") Long gameIdFilter,
                                   @QueryParam("gameName") @DefaultValue("") String gameNameFilter) {
         if (userId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         return JerseyControllerHelper
                 .createCollectionGetResponse(
@@ -250,10 +250,10 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response removeGameScore(@PathParam("id") final long userId,
                                     @PathParam("gameId") final long gameId) {
         if (userId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         if (gameId <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "gameId", "");
+            throw new IllegalParameterValueException("gameId");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
         return Response.noContent().build();

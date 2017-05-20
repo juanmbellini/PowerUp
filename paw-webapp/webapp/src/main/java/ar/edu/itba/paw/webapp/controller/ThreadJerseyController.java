@@ -77,7 +77,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}")
     public Response getById(@PathParam("id") final long id) {
         if (id <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
+            throw new IllegalParameterValueException("id");
         }
         final Thread thread = threadService.findById(id);
         return thread == null ? Response.status(Response.Status.NOT_FOUND).build()

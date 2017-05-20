@@ -55,7 +55,7 @@ public class ReviewJerseyController {
                                @QueryParam("gameId") @DefaultValue("") final Long gameId,
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
                                @QueryParam("userId") @DefaultValue("") final Long userId,
-                               @QueryParam("gameName") @DefaultValue("") final String userName) {
+                               @QueryParam("userName") @DefaultValue("") final String userName) {
 
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
@@ -66,8 +66,8 @@ public class ReviewJerseyController {
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("gameId", gameId)
                                 .addParameter("gameName", gameName)
-                                .addParameter("gameId", userId)
-                                .addParameter("gameName", userName)
+                                .addParameter("userId", userId)
+                                .addParameter("userName", userName)
                                 .build());
     }
 

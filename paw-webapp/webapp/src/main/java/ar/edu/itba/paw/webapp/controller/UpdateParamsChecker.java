@@ -29,7 +29,7 @@ import java.util.stream.Stream;
     default void checkUpdateValues(long id, String idFieldName, EntityDto dto) {
         // Check if id is positive
         if (id <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, idFieldName, "");
+            throw new IllegalParameterValueException(idFieldName);
         }
         if (dto == null) {
             throw new MissingJsonException();
