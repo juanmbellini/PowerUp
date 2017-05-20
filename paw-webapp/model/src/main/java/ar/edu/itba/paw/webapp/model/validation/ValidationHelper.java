@@ -137,9 +137,9 @@ public class ValidationHelper {
      */
     public static void intIsBetweenTwoValues(int number, int min, int max, List<ValueError> errorList,
                                              ValueError tooShortError, ValueError tooLongError) {
-        if (number <= min) {
+        if (number < min) {
             errorList.add(tooShortError);
-        } else if (number >= max) {
+        } else if (number > max) {
             errorList.add(tooLongError);
         }
     }
