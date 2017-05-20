@@ -17,13 +17,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ar.edu.itba.paw.webapp.controller.GameJerseyController.END_POINT;
+
 /**
  * Created by Juan Marcos Bellini on 8/1/17.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
-@Path("/games")
+@Path(END_POINT)
 @Produces(value = {MediaType.APPLICATION_JSON})
 public class GameJerseyController {
+
+    public static final String END_POINT = "games";
 
     private GameService gameService;
 

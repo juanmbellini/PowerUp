@@ -19,13 +19,17 @@ import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 
+import static ar.edu.itba.paw.webapp.controller.ReviewJerseyController.END_POINT;
+
 /**
  * API endpoint for user management.
  */
-@Path("reviews")
+@Path(END_POINT)
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
 public class ReviewJerseyController implements UpdateParamsChecker {
+
+    public static final String END_POINT = "reviews";
 
 
     @Autowired
@@ -66,7 +70,8 @@ public class ReviewJerseyController implements UpdateParamsChecker {
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         reviewService.getReviews(gameId, gameName, userId, userName, pageNumber, pageSize,
                                 sortingType, sortDirection),
-                        (reviewPage) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(reviewPage.getData())) {
+                        (reviewPage) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(reviewPage.getData(),
+                                uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("gameId", gameId)
@@ -84,7 +89,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         }
         final Review review = reviewService.findById(id);
         return review == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new ReviewDto(review)).build();
+                : Response.ok(new ReviewDto(review, uriInfo.getBaseUriBuilder())).build();
     }
 
     @POST
