@@ -2,7 +2,10 @@ package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
-import ar.edu.itba.paw.webapp.interfaces.*;
+import ar.edu.itba.paw.webapp.interfaces.GameDao;
+import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
+import ar.edu.itba.paw.webapp.interfaces.ReviewService;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
@@ -26,15 +29,12 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
 
     private final ReviewDao reviewDao;
 
-    private final UserDao userDao;
-
     private final GameDao gameDao;
 
 
     @Autowired
-    public ReviewServiceImpl(ReviewDao reviewDao, UserDao userDao, GameDao gameDao) {
+    public ReviewServiceImpl(ReviewDao reviewDao, GameDao gameDao) {
         this.reviewDao = reviewDao;
-        this.userDao = userDao;
         this.gameDao = gameDao;
     }
 
