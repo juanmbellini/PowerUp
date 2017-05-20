@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -211,6 +212,12 @@ import java.util.stream.IntStream;
             return Page.emptyPage();
         }
 
+        int totalAmountOfPages = Math.max((int) Math.ceil((double) count / pageSize), 1);
+        // Avoid making the query if pageSize is wrong
+        if (pageNumber > totalAmountOfPages) {
+            throw new NumberOfPageBiggerThanTotalAmountException();
+        }
+
         StringBuilder dataQueryStr = new StringBuilder()
                 .append("SELECT DISTINCT ").append(baseAlias).append(" ")
                 .append(baseQuery)
@@ -221,7 +228,7 @@ import java.util.stream.IntStream;
                 .setMaxResults(pageSize);
         conditions.forEach(wrapper -> dataQuery.setParameter(wrapper.getPosition(), wrapper.getParameter()));
 
-        return createPage(dataQuery.getResultList(), pageSize, pageNumber, count);
+        return createPage(dataQuery.getResultList(), pageSize, pageNumber, totalAmountOfPages, count);
 
     }
 
@@ -238,14 +245,32 @@ import java.util.stream.IntStream;
      */
     private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber,
                                           long overAllAmountOfElements) {
+        return createPage(data, pageSize, pageNumber,
+                Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1), overAllAmountOfElements);
+    }
+
+
+    /**
+     * Creates a page.
+     *
+     * @param data                    Data in the page.
+     * @param pageSize                Size of the page.
+     * @param pageNumber              Number of page.
+     * @param overAllAmountOfElements Amount of elements in all pages.
+     * @param <T>                     Type of data.
+     * @return A page built from the given params.
+     */
+    private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber, int totalPages,
+                                          long overAllAmountOfElements) {
         return new Page.Builder<T>()
                 .setPageSize(pageSize)
                 .setPageNumber(pageNumber)
                 .setOverAllAmountOfElements(overAllAmountOfElements)
-                .setTotalPages(Math.max((int) Math.ceil((double) overAllAmountOfElements / pageSize), 1))
+                .setTotalPages(totalPages)
                 .setData(data)
                 .build();
     }
+
 
     /**
      * Appends the given {@code conditions} to the given {@code query}.
