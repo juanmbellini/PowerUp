@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.FilterCategoryDto;
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
@@ -49,7 +48,7 @@ public class GameJerseyController {
     @GET
     @Path("/")
     public Response getGames(@QueryParam("orderBy") @DefaultValue("name") final OrderCategory orderCategory,
-                             @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                             @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                              @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                              @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                              // Filters
@@ -59,6 +58,9 @@ public class GameJerseyController {
                              @QueryParam("genre") final List<String> genres,
                              @QueryParam("keyword") final List<String> keywords,
                              @QueryParam("platform") final List<String> platforms) {
+
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection,
                         gameService.searchGames(name,
@@ -80,22 +82,20 @@ public class GameJerseyController {
     @GET
     @Path("/{id : \\d+}")
     public Response findById(@PathParam("id") final long id) {
-        if (id <= 0) {
-            throw new IllegalParameterValueException(PathParam.class, "id", "");
-        }
+        JerseyControllerHelper.checkParameter("id", id, value -> value <= 0);
         final Game game = gameService.findById(id);
         return game == null ?
                 Response.status(Response.Status.NOT_FOUND).build() : Response.ok(new GameDto(game)).build();
     }
 
 
-    @GET
-    @Path("/filters")
-    public Response getFilters() {
-        return Response
-                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
-                }).build();
-    }
+//    @GET
+//    @Path("/filters")
+//    public Response getFilters() {
+//        return Response
+//                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
+//                }).build();
+//    }
 
     @GET
     @Path("/filters/{type}")
@@ -111,7 +111,7 @@ public class GameJerseyController {
     // ================ Helper methods ================
 
     /**
-     * Create a filers map.
+     * Create a filters map.
      *
      * @param publishers The list with the publishers values.
      * @param developers The list with the developers values.

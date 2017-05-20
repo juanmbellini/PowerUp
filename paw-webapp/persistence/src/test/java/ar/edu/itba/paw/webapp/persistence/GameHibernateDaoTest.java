@@ -192,7 +192,7 @@ public class GameHibernateDaoTest {
     public void testEmptySearch() {
         String message = "Search without filters didn't return as expected.";
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, games.size(), result.size());
         for (Game each : games) {
@@ -207,7 +207,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByName = new LinkedList<>(games);
         gamesOrderedByName.sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByName.size(), result.size());
         Iterator listIterator = gamesOrderedByName.iterator();
@@ -224,7 +224,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByName = new LinkedList<>(games);
         gamesOrderedByName.sort((o1, o2) -> o2.getName().compareTo(o1.getName()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, false);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, false);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByName.size(), result.size());
         Iterator listIterator = gamesOrderedByName.iterator();
@@ -241,7 +241,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByReleaseDate = new LinkedList<>(games);
         gamesOrderedByReleaseDate.sort((o1, o2) -> o1.getReleaseDate().compareTo(o2.getReleaseDate()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.release, true);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.RELEASE, true);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByReleaseDate.size(), result.size());
         Iterator listIterator = gamesOrderedByReleaseDate.iterator();
@@ -258,7 +258,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByReleaseDate = new LinkedList<>(games);
         gamesOrderedByReleaseDate.sort((o1, o2) -> o2.getReleaseDate().compareTo(o1.getReleaseDate()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.release, false);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.RELEASE, false);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByReleaseDate.size(), result.size());
         Iterator listIterator = gamesOrderedByReleaseDate.iterator();
@@ -275,7 +275,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByAvgScore = new LinkedList<>(games);
         gamesOrderedByAvgScore.sort((o1, o2) -> Double.compare(o1.getAvgScore(), o2.getAvgScore()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.avg_score, true);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.AVG_SCORE, true);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByAvgScore.size(), result.size());
         Iterator listIterator = gamesOrderedByAvgScore.iterator();
@@ -292,7 +292,7 @@ public class GameHibernateDaoTest {
         List<Game> gamesOrderedByAvgScore = new LinkedList<>(games);
         gamesOrderedByAvgScore.sort((o1, o2) -> Double.compare(o2.getAvgScore(), o1.getAvgScore()));
 
-        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.avg_score, false);
+        final Collection<Game> result = gameDao.searchGames("", new HashMap<>(), OrderCategory.AVG_SCORE, false);
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, gamesOrderedByAvgScore.size(), result.size());
         Iterator listIterator = gamesOrderedByAvgScore.iterator();
@@ -315,7 +315,7 @@ public class GameHibernateDaoTest {
                 gamesOrderedByName.size() / pageSize
                 : (gamesOrderedByName.size() / pageSize) + 1;
 
-        Page<Game> firstPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, pageSize, 1);
+        Page<Game> firstPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, pageSize, 1);
         Assert.assertNotNull(message, firstPage);
         Assert.assertEquals(message, pageSize, firstPage.getPageSize());
         Assert.assertEquals(message, 3, firstPage.getAmountOfElements());
@@ -323,7 +323,7 @@ public class GameHibernateDaoTest {
         Assert.assertEquals(message, (long) gamesOrderedByName.size(), firstPage.getOverAllAmountOfElements());
         firstPage.getData().forEach(game -> Assert.assertEquals(message, listIterator.next(), game));
 
-        Page<Game> secondPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, pageSize, 2);
+        Page<Game> secondPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, pageSize, 2);
         Assert.assertNotNull(message, secondPage);
         Assert.assertEquals(message, pageSize, secondPage.getPageSize());
         Assert.assertEquals(message, 3, secondPage.getAmountOfElements());
@@ -331,7 +331,7 @@ public class GameHibernateDaoTest {
         Assert.assertEquals(message, (long) gamesOrderedByName.size(), secondPage.getOverAllAmountOfElements());
         secondPage.getData().forEach(game -> Assert.assertEquals(message, listIterator.next(), game));
 
-        Page<Game> thirdPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, pageSize, 3);
+        Page<Game> thirdPage = gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, pageSize, 3);
         Assert.assertNotNull(message, thirdPage);
         Assert.assertEquals(message, pageSize, thirdPage.getPageSize());
         Assert.assertEquals(message, 2, thirdPage.getAmountOfElements());
@@ -350,7 +350,7 @@ public class GameHibernateDaoTest {
         filters.put(FilterCategory.platform, platforms);
         long count = games.stream().filter(each -> each.getPlatforms().containsKey(superNintendo)).count();
 
-        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, count, result.size());
@@ -371,7 +371,7 @@ public class GameHibernateDaoTest {
         long count = games.stream()
                 .filter(each -> each.getGenres().contains(rpg) || each.getGenres().contains(platformer)).count();
 
-        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, count, result.size());
@@ -398,7 +398,7 @@ public class GameHibernateDaoTest {
                         && each.getPlatforms().containsKey(superNintendo))
                 .count();
 
-        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        Collection<Game> result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, count, result.size());
@@ -419,7 +419,7 @@ public class GameHibernateDaoTest {
         // Test just publishers
         companies.addAll(chronoTrigger.getPublishers().stream().map(Company::getName).collect(Collectors.toList()));
         filters.put(FilterCategory.publisher, companies);
-        result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, 1, result.size());
@@ -430,7 +430,7 @@ public class GameHibernateDaoTest {
         filters.clear();
         companies.addAll(chronoTrigger.getDevelopers().stream().map(Company::getName).collect(Collectors.toList()));
         filters.put(FilterCategory.developer, companies);
-        result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, 1, result.size());
@@ -439,7 +439,7 @@ public class GameHibernateDaoTest {
         // Test with both developers and publishers
         companies.addAll(chronoTrigger.getPublishers().stream().map(Company::getName).collect(Collectors.toList()));
         filters.put(FilterCategory.publisher, companies);
-        result = gameDao.searchGames("", filters, OrderCategory.name, true);
+        result = gameDao.searchGames("", filters, OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertEquals(message, 1, result.size());
@@ -451,7 +451,7 @@ public class GameHibernateDaoTest {
     public void testEmptyResult() {
         String message = "Search using a name that doesn't exist didn't return as expected";
         Collection<Game> result = gameDao.searchGames("This name doesn't exists",
-                new HashMap<>(), OrderCategory.name, true);
+                new HashMap<>(), OrderCategory.NAME, true);
 
         Assert.assertNotNull(message, result);
         Assert.assertTrue(message, result.isEmpty());
@@ -464,7 +464,7 @@ public class GameHibernateDaoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullAsAMapForFiltersThrowsException() {
-        gameDao.searchGames("", null, OrderCategory.name, true);
+        gameDao.searchGames("", null, OrderCategory.NAME, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -474,17 +474,17 @@ public class GameHibernateDaoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeValueForPageSizeThrowsException() {
-        gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, -1, 1);
+        gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, -1, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testZeroForPageNumberThrowsException() {
-        gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 1, 0);
+        gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, 1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeValueForPageNumberThrowsException() {
-        gameDao.searchGames("", new HashMap<>(), OrderCategory.name, true, 1, -1);
+        gameDao.searchGames("", new HashMap<>(), OrderCategory.NAME, true, 1, -1);
     }
 
     @Test
