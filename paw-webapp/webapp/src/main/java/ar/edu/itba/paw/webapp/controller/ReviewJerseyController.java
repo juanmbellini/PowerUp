@@ -60,7 +60,8 @@ public class ReviewJerseyController {
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
                                @QueryParam("userId") @DefaultValue("") final Long userId,
                                @QueryParam("userName") @DefaultValue("") final String userName) {
-
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         reviewService.getReviews(gameId, gameName, userId, userName, pageNumber, pageSize,
