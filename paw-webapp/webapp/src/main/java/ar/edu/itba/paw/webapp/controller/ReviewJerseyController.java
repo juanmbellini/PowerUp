@@ -2,10 +2,13 @@ package ar.edu.itba.paw.webapp.controller;
 
 
 import ar.edu.itba.paw.webapp.dto.ReviewDto;
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
+import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewService;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -69,6 +73,30 @@ public class ReviewJerseyController {
                                 .addParameter("userId", userId)
                                 .addParameter("userName", userName)
                                 .build());
+    }
+
+    @GET
+    @Path("/{id : \\d+}")
+    public Response getById(@PathParam("id") final long id) {
+        if (id <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        final Review review = reviewService.findById(id);
+        return review == null ? Response.status(Response.Status.NOT_FOUND).build()
+                : Response.ok(new ReviewDto(review)).build();
+    }
+
+    @POST
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response createReview(final ReviewDto reviewDto) {
+        if (reviewDto == null) {
+            throw new MissingJsonException();
+        }
+        Review review = reviewService.create(reviewDto.getGameId(), reviewDto.getBody(),
+                reviewDto.getStoryScore(), reviewDto.getGraphicsScore(), reviewDto.getAudioScore(),
+                reviewDto.getControlsScore(), reviewDto.getFunScore(), sessionService.getCurrentUser());
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(review.getId())).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
 

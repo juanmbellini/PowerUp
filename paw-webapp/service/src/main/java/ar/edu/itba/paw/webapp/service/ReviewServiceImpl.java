@@ -54,14 +54,19 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     }
 
     @Override
-    public Review create(long reviewerId, long gameId,
-                         String reviewBody, int storyScore, int graphicsScore, int audioScore,
-                         int controlsScore, int funScore) throws NoSuchEntityException, ValidationException {
-        if (!reviewDao.getReviews(gameId, null, reviewerId, null, 1, 1, ReviewDao.SortingType.GAME_ID,
-                SortDirection.ASC).getData().isEmpty()) {
-            throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
+    public Review create(Long gameId, String reviewBody, int storyScore, int graphicsScore, int audioScore,
+                         int controlsScore, int funScore, User reviewer)
+            throws NoSuchEntityException, ValidationException {
+
+        // If no game id is sent, just call create, which will throw a ValidationException with all errors.
+        if (gameId != null) {
+            // TODO: create method for checking existence
+            if (!reviewDao.getReviews(gameId, null, reviewer.getId(), null, 1, 1, ReviewDao.SortingType.GAME_ID,
+                    SortDirection.ASC).getData().isEmpty()) {
+                throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
+            }
         }
-        return reviewDao.create(userDao.findById(reviewerId), gameDao.findById(gameId),
+        return reviewDao.create(reviewer, gameId == null ? null : gameDao.findById(gameId),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
 

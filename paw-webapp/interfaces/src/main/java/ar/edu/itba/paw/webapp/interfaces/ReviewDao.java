@@ -17,7 +17,7 @@ public interface ReviewDao {
                             int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * @see ReviewService#create(long, long, String, int, int, int, int, int)
+     * @see ReviewService#create(Long, String, int, int, int, int, int, User)
      */
     Review create(User reviewer, Game game,
                   String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,

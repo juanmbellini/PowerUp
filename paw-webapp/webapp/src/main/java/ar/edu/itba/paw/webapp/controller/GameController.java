@@ -89,7 +89,7 @@ public class GameController extends BaseController {
     }
 
 
-    @RequestMapping("/search")
+    @RequestMapping("/search") // DONE
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersStr,
                                //TODO change to orderBy
@@ -200,7 +200,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping("/game")
+    @RequestMapping("/game") // DONE
     public ModelAndView game(@RequestParam(name = "id") long gameId,
                              @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm) {
         final ModelAndView mav = new ModelAndView("game");
@@ -407,7 +407,7 @@ public class GameController extends BaseController {
         }
         //Valid review, create
         try {
-            reviewService.create(getCurrentUser().getId(), gameId, reviewForm.getReview(), reviewForm.getStoryScore(), reviewForm.getGraphicsScore(), reviewForm.getAudioScore(), reviewForm.getControlsScore(), reviewForm.getStoryScore());
+//            reviewService.create(gameId, reviewForm.getReview(), reviewForm.getStoryScore(), reviewForm.getGraphicsScore(), reviewForm.getAudioScore(), reviewForm.getControlsScore(), reviewForm.getStoryScore(), );
         } catch (NoSuchEntityException e) {
             LOG.warn("Attempted to create a review with an invalid user or game ID {}", e);
             return new ModelAndView("error404");
