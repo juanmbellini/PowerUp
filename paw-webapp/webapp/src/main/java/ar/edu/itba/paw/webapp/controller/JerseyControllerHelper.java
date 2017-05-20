@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -12,15 +13,63 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
- * Class implementing methods to build a {@link URI} that can be used for further information in a {@link Response}.
+ * Class implementing methods to getParameters a {@link URI} that can be used for further information in a {@link Response}.
  * <p>
  * Created by Juan Marcos Bellini on 19/4/17.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
 /* package */ class JerseyControllerHelper {
+
+
+    private static final int SMALL_PAGE = 25;
+    private static final int MEDIUM_PAGE = 50;
+    private static final int LARGE_PAGE = 100;
+
+
+    /**
+     * Checks the parameter with the given {@code name}, whose value is the given {@code value}, tested
+     * with the given {@link Predicate}.
+     *
+     * @param name      The parameter name.
+     * @param value     The value.
+     * @param predicate The predicated used to test the value. Note that it must return {@code true}
+     *                  if the parameter is wrong, or {@code false} otherwise.
+     * @param <T>       The type of the value.
+     * @throws IllegalParameterValueException If the parameter is wrong.
+     */
+    static /* package */ <T> void checkParameter(String name, T value, Predicate<T> predicate)
+            throws IllegalParameterValueException {
+        if (predicate.test(value)) {
+            throw new IllegalParameterValueException(name);
+        }
+    }
+
+    /**
+     * Checks the parameters in the given map, using the {@link Predicate} assigned to each parameter.
+     * Note that the {@link Predicate} must return {@code true} when the parameter is correct.
+     *
+     * @param builder A {@link ParametersWrapper} configured with the parameters,
+     *                values and predicates to be used by this method.
+     *                Note that the predicates must return {@code true} if the parameter is wrong,
+     *                or {@code false} otherwise.
+     * @throws IllegalParameterValueException If any parameter is wrong.
+     */
+    static /* package */ void checkParameters(ParametersWrapper builder)
+            throws IllegalParameterValueException {
+        Map<String, ValueAndPredicateWrapper> parameters = builder.getParameters();
+        Set<String> wrongParameters = parameters.keySet().stream()
+                .filter(parameter -> parameters.get(parameter).test())
+                .collect(Collectors.toSet());
+        if (!wrongParameters.isEmpty()) {
+            throw new IllegalParameterValueException(wrongParameters);
+        }
+    }
 
 
     /**
@@ -237,6 +286,23 @@ import java.util.function.Function;
         return new ParameterMapBuilder();
     }
 
+    /**
+     * Returns a {@link ParametersWrapper}.
+     *
+     * @return A new {@link ParametersWrapper}.
+     */
+    static /* package */ ParametersWrapper getParametersWrapper() {
+        return new ParametersWrapper();
+    }
+
+
+    static /* package */ ParametersWrapper getPaginationReadyParametersWrapper(int pageSize, int pageNumber) {
+        return JerseyControllerHelper.getParametersWrapper()
+                .addParameter("pageSize", pageSize,
+                        size -> size != SMALL_PAGE && size != MEDIUM_PAGE && size != LARGE_PAGE)
+                .addParameter("pageNumber", pageNumber, number -> number <= 0);
+    }
+
 
     /**
      * Class encapsulating the four links used for pagination (i.e previous page, next page, first page and last page).
@@ -331,6 +397,127 @@ import java.util.function.Function;
         public URI getLastPage() {
             return lastPage;
         }
+    }
+
+
+    /**
+     * Class wrapping a value and a {@link Predicate} to be applied to it.
+     *
+     * @param <T> The type of the value.
+     */
+    private static class ValueAndPredicateWrapper<T> {
+
+        /**
+         * The value to be tested.
+         */
+        private T value;
+
+        /**
+         * The predicate used to test.
+         */
+        private Predicate<T> predicate;
+
+
+        /**
+         * Private constructor.
+         *
+         * @param value     The value
+         * @param predicate The predicate.
+         */
+        private ValueAndPredicateWrapper(T value, Predicate<T> predicate) {
+            this.value = value;
+            this.predicate = predicate;
+        }
+
+        /**
+         * Returns the value.
+         *
+         * @return The value.
+         */
+        private T getValue() {
+            return value;
+        }
+
+        /**
+         * Returns the predicate.
+         *
+         * @return The predicate.
+         */
+        private Predicate<T> getPredicate() {
+            return predicate;
+        }
+
+
+        /**
+         * Tests the value using the predicate.
+         *
+         * @return The value returned by {@link Predicate#test(Object)}.
+         */
+        private boolean test() {
+            return predicate.test(value);
+        }
+
+        /**
+         * Tests the value using the negated predicate.
+         *
+         * @return The value returned by {@link Predicate#negate#test(Object)}.
+         */
+        private boolean testNegated() {
+            return predicate.negate().test(value);
+        }
+    }
+
+
+    /**
+     * Class wrapping a set of parameters names, associated with the value and {@link Predicate} to evaluate it.
+     */
+    /* package */ static class ParametersWrapper {
+
+        Map<String, ValueAndPredicateWrapper> parameters;
+
+
+        /**
+         * Private constructor.
+         */
+        private ParametersWrapper() {
+            this.parameters = new HashMap<>();
+        }
+
+
+        /**
+         * Clears the builder.
+         *
+         * @return this (for method chaining).
+         */
+        /* package */ ParametersWrapper clear() {
+            parameters.clear();
+            return this;
+        }
+
+        /**
+         * Adds the given {@code parameter}, associating the given {@code predicate} to it.
+         *
+         * @param parameter The parameter.
+         * @param predicate The {@link Predicate}. Must return true if the value is illegal or invalid.
+         * @return this (for method chaining).
+         */
+        /* package */<T> ParametersWrapper addParameter(String parameter, T value, Predicate<T> predicate) {
+            //noinspection unchecked
+            this.parameters.put(parameter, new ValueAndPredicateWrapper(value, predicate));
+            return this;
+        }
+
+
+        /**
+         * Builds the map.
+         *
+         * @return The map containing the parameters and the predicates.
+         */
+        private Map<String, ValueAndPredicateWrapper> getParameters() {
+            return parameters;
+        }
+
+
     }
 
 
