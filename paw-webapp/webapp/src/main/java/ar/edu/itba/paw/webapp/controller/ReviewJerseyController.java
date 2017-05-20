@@ -25,7 +25,7 @@ import java.util.List;
 @Path("reviews")
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
-public class ReviewJerseyController {
+public class ReviewJerseyController implements UpdateParamsChecker {
 
 
     @Autowired
@@ -98,6 +98,17 @@ public class ReviewJerseyController {
                 reviewDto.getControlsScore(), reviewDto.getFunScore(), sessionService.getCurrentUser());
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(review.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+    @PUT
+    @Path("/{id : \\d+}")
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response updateReview(@PathParam("id") final long reviewId, final ReviewDto reviewDto) {
+        checkUpdateValues(reviewId, "id", reviewDto);
+        reviewService.update(reviewId, reviewDto.getBody(), reviewDto.getStoryScore(), reviewDto.getGraphicsScore(),
+                reviewDto.getAudioScore(), reviewDto.getControlsScore(), reviewDto.getFunScore(),
+                sessionService.getCurrentUser());
+        return Response.noContent().build();
     }
 
 

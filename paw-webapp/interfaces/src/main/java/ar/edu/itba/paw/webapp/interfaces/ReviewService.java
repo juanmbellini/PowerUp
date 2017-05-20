@@ -69,18 +69,18 @@ public interface ReviewService {
      * @param audioScore    The new audio score.
      * @param controlsScore The new controls score.
      * @param funScore      The new fun score.
-     * @param updaterUserId The user performing the operation.
+     * @param updater       The {@link User} updating the {@link Review}.
      */
     void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                Integer controlsScore, Integer funScore, long updaterUserId);
+                Integer controlsScore, Integer funScore, User updater);
 
     /**
      * Deletes {@link Review} with the given {@code reviewId}.
      *
-     * @param reviewId      The id of the review to be deleted.
-     * @param deleterUserId The user performing the operation.
+     * @param reviewId The id of the review to be deleted.
+     * @param deleter  The {@link User} deleting the {@link Review}.
      */
-    void delete(long reviewId, long deleterUserId);
+    void delete(long reviewId, User deleter);
 
 
 }
