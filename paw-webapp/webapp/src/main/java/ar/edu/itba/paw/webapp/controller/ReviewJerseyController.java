@@ -111,5 +111,15 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @DELETE
+    @Path("/{id : \\d+}")
+    public Response deleteReview(@PathParam("id") final long reviewId) {
+        if (reviewId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        reviewService.delete(reviewId, sessionService.getCurrentUser());
+        return Response.noContent().build();
+    }
+
 
 }
