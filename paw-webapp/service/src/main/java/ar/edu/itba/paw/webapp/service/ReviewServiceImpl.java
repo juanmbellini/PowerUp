@@ -65,6 +65,7 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
                 throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
             }
         }
+        // If gameId is null, check will be handled by model layer together with other errors that might occur.
         return reviewDao.create(reviewer, gameId == null ? null : gameDao.findById(gameId),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
