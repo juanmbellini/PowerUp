@@ -17,20 +17,20 @@ public interface ReviewDao {
                             int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * @see ReviewService#create(long, long, String, int, int, int, int, int)
+     * @see ReviewService#create(Long, String, Integer, Integer, Integer, Integer, Integer, User)
      */
     Review create(User reviewer, Game game,
                   String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                   Integer controlsScore, Integer funScore);
 
     /**
-     * @see ReviewService#update(long, String, Integer, Integer, Integer, Integer, Integer, long) .
+     * @see ReviewService#update(long, String, Integer, Integer, Integer, Integer, Integer, User) .
      */
     void update(Review review, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                 Integer controlsScore, Integer funScore);
 
     /**
-     * @see ReviewService#delete(long, long)
+     * @see ReviewService#delete(long, User)
      */
     void delete(Review review);
 

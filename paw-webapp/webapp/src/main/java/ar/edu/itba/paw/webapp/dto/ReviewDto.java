@@ -1,7 +1,10 @@
 package ar.edu.itba.paw.webapp.dto;
 
+import ar.edu.itba.paw.webapp.controller.GameJerseyController;
+import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Review;
 
+import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -63,7 +66,7 @@ public class ReviewDto extends EntityDto {
         // For Jax-RS
     }
 
-    public ReviewDto(Review review) {
+    public ReviewDto(Review review, UriBuilder baseUri) {
         super(review.getId());
         this.userId = review.getUser().getId();
         this.username = review.getUser().getUsername();
@@ -76,6 +79,16 @@ public class ReviewDto extends EntityDto {
         this.audioScore = review.getAudioScore();
         this.controlsScore = review.getControlsScore();
         this.funScore = review.getFunScore();
+
+        // Urls
+        this.userUrl = baseUri.clone()
+                .path(UserJerseyController.END_POINT)
+                .path(String.valueOf(review.getUser().getId()))
+                .build().toString();
+        this.gameUrl = baseUri.clone()
+                .path(GameJerseyController.END_POINT)
+                .path(String.valueOf(review.getGame().getId()))
+                .build().toString();
     }
 
 
@@ -103,23 +116,23 @@ public class ReviewDto extends EntityDto {
         return body;
     }
 
-    public int getStoryScore() {
+    public Integer getStoryScore() {
         return storyScore;
     }
 
-    public int getGraphicsScore() {
+    public Integer getGraphicsScore() {
         return graphicsScore;
     }
 
-    public int getAudioScore() {
+    public Integer getAudioScore() {
         return audioScore;
     }
 
-    public int getControlsScore() {
+    public Integer getControlsScore() {
         return controlsScore;
     }
 
-    public int getFunScore() {
+    public Integer getFunScore() {
         return funScore;
     }
 
@@ -137,8 +150,8 @@ public class ReviewDto extends EntityDto {
      * @param reviews The collection of {@link Review}
      * @return A list of {@link ReviewDto}.
      */
-    public static List<ReviewDto> createList(Collection<Review> reviews) {
-        return reviews.stream().map(ReviewDto::new).collect(Collectors.toList());
+    public static List<ReviewDto> createList(Collection<Review> reviews, UriBuilder uriBuilder) {
+        return reviews.stream().map(review -> new ReviewDto(review, uriBuilder.clone())).collect(Collectors.toList());
     }
 
 

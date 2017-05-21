@@ -41,7 +41,6 @@ public interface ReviewService {
     /**
      * Creates a new review with the specified data.
      *
-     * @param reviewerId    The id of the user who created the review.
      * @param gameId        The id of the game getting reviewed.
      * @param reviewBody    The textual review.
      * @param storyScore    The story score.
@@ -49,13 +48,14 @@ public interface ReviewService {
      * @param audioScore    The audio score.
      * @param controlsScore The controls score.
      * @param funScore      The fun score.
+     * @param reviewer      The {@link User} writing the {@link Review}.
      * @return The created review.
      * @throws NoSuchEntityException If no such user or game exists.
      * @throws ValidationException   If the {@link User} with the given {@code reviewerId}
      *                               has already reviewed the {@link Game} with the given {@code gameId}.
      */
-    Review create(long reviewerId, long gameId, String reviewBody,
-                  int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore)
+    Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                  Integer controlsScore, Integer funScore, User reviewer)
             throws NoSuchEntityException, ValidationException;
 
 
@@ -69,18 +69,18 @@ public interface ReviewService {
      * @param audioScore    The new audio score.
      * @param controlsScore The new controls score.
      * @param funScore      The new fun score.
-     * @param updaterUserId The user performing the operation.
+     * @param updater       The {@link User} updating the {@link Review}.
      */
     void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                Integer controlsScore, Integer funScore, long updaterUserId);
+                Integer controlsScore, Integer funScore, User updater);
 
     /**
      * Deletes {@link Review} with the given {@code reviewId}.
      *
-     * @param reviewId      The id of the review to be deleted.
-     * @param deleterUserId The user performing the operation.
+     * @param reviewId The id of the review to be deleted.
+     * @param deleter  The {@link User} deleting the {@link Review}.
      */
-    void delete(long reviewId, long deleterUserId);
+    void delete(long reviewId, User deleter);
 
 
 }

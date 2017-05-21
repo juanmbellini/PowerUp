@@ -89,7 +89,7 @@ public class GameController extends BaseController {
     }
 
 
-    @RequestMapping("/search")
+    @RequestMapping("/search") // DONE
     public ModelAndView search(@RequestParam(value = "name", required = false) String name,
                                @RequestParam(value = "filters", required = false) String filtersStr,
                                //TODO change to orderBy
@@ -200,7 +200,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping("/game")
+    @RequestMapping("/game") // DONE
     public ModelAndView game(@RequestParam(name = "id") long gameId,
                              @ModelAttribute("rateAndStatusForm") RateAndStatusForm rateAndStatusForm) {
         final ModelAndView mav = new ModelAndView("game");
@@ -303,7 +303,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "/reviews")
+    @RequestMapping(value = "/reviews") // DONE
     public ModelAndView reviews(HttpServletRequest request,
                                 @RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId,
                                 @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId,
@@ -363,7 +363,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "/write-review", method = RequestMethod.GET)
+    @RequestMapping(value = "/write-review", method = RequestMethod.GET) // DONE
     public ModelAndView writeReview(@RequestParam(name = "id") long gameId,
                                     @ModelAttribute("reviewForm") final ReviewForm reviewForm) {
         ModelAndView mav = null;
@@ -387,7 +387,7 @@ public class GameController extends BaseController {
         mav.addObject("criteria", new String[] {"story", "graphics", "audio", "controls", "fun"});
         return mav;
     }
-    @RequestMapping(value = "/delete-review", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
         Review review = reviewService.findById(reviewId);
         if(!review.getUser().equals(getCurrentUser())){
@@ -398,7 +398,7 @@ public class GameController extends BaseController {
         return new ModelAndView("redirect:/game?id=" + gameId);
     }
 
-    @RequestMapping(value = "/write-review", method = RequestMethod.POST)
+    @RequestMapping(value = "/write-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "id") long gameId,
                                      @Valid @ModelAttribute("reviewForm") final ReviewForm reviewForm,
                                      final BindingResult errors) {
@@ -407,7 +407,7 @@ public class GameController extends BaseController {
         }
         //Valid review, create
         try {
-            reviewService.create(getCurrentUser().getId(), gameId, reviewForm.getReview(), reviewForm.getStoryScore(), reviewForm.getGraphicsScore(), reviewForm.getAudioScore(), reviewForm.getControlsScore(), reviewForm.getStoryScore());
+//            reviewService.create(gameId, reviewForm.getReview(), reviewForm.getStoryScore(), reviewForm.getGraphicsScore(), reviewForm.getAudioScore(), reviewForm.getControlsScore(), reviewForm.getStoryScore(), );
         } catch (NoSuchEntityException e) {
             LOG.warn("Attempted to create a review with an invalid user or game ID {}", e);
             return new ModelAndView("error404");

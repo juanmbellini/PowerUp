@@ -35,14 +35,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
+
 
 /**
  * API endpoint for user management.
  */
-@Path("users")
+@Path(END_POINT)
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
 public class UserJerseyController implements UpdateParamsChecker {
+
+    public static final String END_POINT = "users";
 
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService) {
