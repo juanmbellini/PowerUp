@@ -32,6 +32,26 @@ import java.util.stream.IntStream;
     }
 
     /**
+     * Returns the object of the given {@code Class} with the given {@code fieldName} set to the given {@code value}.
+     * If more than one object matches, the first one is returned.
+     * If no object matches, {@code null} is returned.
+     *
+     * @param em        The entity manager.
+     * @param klass     The class of the returned object.
+     * @param fieldName The field name to use as a search criteria
+     * @param value     The value of the field.
+     * @param <T>       The type of the object.
+     * @param <E>       The type of the value
+     * @return The first element with the given {@code fieldName} set to {@code value}, or {@code null} if not present.
+     */
+    /* package*/
+    static <T, E> T findByField(EntityManager em, Class<T> klass, String fieldName, E value) {
+        List<T> result = em.createQuery("FROM " + klass.getSimpleName() +
+                " WHERE " + fieldName + " = ?0", klass).setParameter(0, value).getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
+
+    /**
      * Attempts to find an entity by ID. If found, returns it, otherwise throws exception.
      *
      * @param entityManager An entity manager with which to perform queries.

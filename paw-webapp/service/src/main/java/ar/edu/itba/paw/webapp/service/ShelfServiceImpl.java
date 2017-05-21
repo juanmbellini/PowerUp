@@ -47,6 +47,11 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
+    public Shelf findByName(String name) {
+        return shelfDao.findByName(name);
+    }
+
+    @Override
     public Shelf create(String name, long creatorId) {
         return shelfDao.create(name, userDao.findById(creatorId));
     }

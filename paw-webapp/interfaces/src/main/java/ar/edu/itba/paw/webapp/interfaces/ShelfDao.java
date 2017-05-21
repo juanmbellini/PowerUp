@@ -24,6 +24,11 @@ public interface ShelfDao {
     Shelf findById(long shelfId);
 
     /**
+     * @see ShelfService#findByName(String)
+     */
+    Shelf findByName(String name);
+
+    /**
      * @see ShelfService#create(String, long)
      */
     Shelf create(String name, User creator);

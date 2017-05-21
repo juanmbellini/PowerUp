@@ -69,6 +69,14 @@ public class ShelfHibernateDao implements ShelfDao {
     }
 
     @Override
+    public Shelf findByName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException();
+        }
+        return DaoHelper.findByField(em, Shelf.class, "name", name);
+    }
+
+    @Override
     public Shelf create(String name, User creator) {
         Shelf shelf = new Shelf(name, creator);
         em.persist(shelf);

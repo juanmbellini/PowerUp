@@ -38,6 +38,14 @@ public interface ShelfService {
     Shelf findById(long shelfId);
 
     /**
+     * Finds a shelf by its name.
+     *
+     * @param name The shelf's name.
+     * @return The shelf.
+     */
+    Shelf findByName(String name);
+
+    /**
      * Creates a new {@link Shelf} using the specified data.
      *
      * @param name      The name for the shelf.
