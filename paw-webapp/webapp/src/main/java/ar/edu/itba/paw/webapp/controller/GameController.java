@@ -303,7 +303,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "/reviews")
+    @RequestMapping(value = "/reviews") // DONE
     public ModelAndView reviews(HttpServletRequest request,
                                 @RequestParam(name = "gameId", required = false, defaultValue = "-1") long gameId,
                                 @RequestParam(name = "userId", required = false, defaultValue = "-1") long userId,
@@ -363,7 +363,7 @@ public class GameController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "/write-review", method = RequestMethod.GET)
+    @RequestMapping(value = "/write-review", method = RequestMethod.GET) // DONE
     public ModelAndView writeReview(@RequestParam(name = "id") long gameId,
                                     @ModelAttribute("reviewForm") final ReviewForm reviewForm) {
         ModelAndView mav = null;
@@ -387,7 +387,7 @@ public class GameController extends BaseController {
         mav.addObject("criteria", new String[] {"story", "graphics", "audio", "controls", "fun"});
         return mav;
     }
-    @RequestMapping(value = "/delete-review", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
         Review review = reviewService.findById(reviewId);
         if(!review.getUser().equals(getCurrentUser())){
@@ -398,7 +398,7 @@ public class GameController extends BaseController {
         return new ModelAndView("redirect:/game?id=" + gameId);
     }
 
-    @RequestMapping(value = "/write-review", method = RequestMethod.POST)
+    @RequestMapping(value = "/write-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "id") long gameId,
                                      @Valid @ModelAttribute("reviewForm") final ReviewForm reviewForm,
                                      final BindingResult errors) {
