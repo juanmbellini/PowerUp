@@ -15,7 +15,9 @@ import java.util.stream.Stream;
  * weekends, another one with their favorite games, and yet another one for the games they want to buy, etc.
  */
 @Entity
-@Table(name = "shelves")
+@Table(name = "shelves",
+        indexes = {@Index(name = "shelves_name_user_id_idx",
+                columnList = "name, user_id", unique = true)})
 public class Shelf implements ValidationExceptionThrower {
 
     @Id
@@ -23,7 +25,7 @@ public class Shelf implements ValidationExceptionThrower {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shelves_seq")
     private long id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
