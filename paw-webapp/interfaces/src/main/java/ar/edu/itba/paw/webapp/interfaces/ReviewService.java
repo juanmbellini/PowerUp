@@ -54,8 +54,8 @@ public interface ReviewService {
      * @throws ValidationException   If the {@link User} with the given {@code reviewerId}
      *                               has already reviewed the {@link Game} with the given {@code gameId}.
      */
-    Review create(Long gameId, String reviewBody,
-                  int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore, User reviewer)
+    Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                  Integer controlsScore, Integer funScore, User reviewer)
             throws NoSuchEntityException, ValidationException;
 
 

@@ -53,8 +53,8 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     }
 
     @Override
-    public Review create(Long gameId, String reviewBody, int storyScore, int graphicsScore, int audioScore,
-                         int controlsScore, int funScore, User reviewer)
+    public Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                         Integer controlsScore, Integer funScore, User reviewer)
             throws NoSuchEntityException, ValidationException {
 
         // If no game id is sent, just call create, which will throw a ValidationException with all errors.
