@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -24,9 +25,9 @@ public interface ShelfDao {
     Shelf findById(long shelfId);
 
     /**
-     * @see ShelfService#findByName(String)
+     * @see ShelfService#findByName(long, String)
      */
-    Shelf findByName(String name);
+    Shelf findByName(User owner, String name);
 
     /**
      * @see ShelfService#create(String, long)
@@ -42,6 +43,11 @@ public interface ShelfDao {
      * @see ShelfService#delete(long, long)
      */
     void delete(Shelf shelf);
+
+    /**
+     * @see ShelfService#getShelfGames(long, String, int, int, OrderCategory, SortDirection)
+     */
+    Page<Game> getShelfGames(Shelf shelf, int pageNumber, int pageSize, OrderCategory orderCategory, SortDirection sortDirection);
 
 
     /**

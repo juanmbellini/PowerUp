@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -38,12 +39,13 @@ public interface ShelfService {
     Shelf findById(long shelfId);
 
     /**
-     * Finds a shelf by its name.
+     * Finds a shelf by its name, given a {@link User} whose id is the given {@code userId}.
      *
-     * @param name The shelf's name.
-     * @return The shelf.
+     * @param userId The owner's id.
+     * @param name   The shelf's name.
+     * @return The shelf if the user and the shelf exist, or {@code null} otherwise.
      */
-    Shelf findByName(String name);
+    Shelf findByName(long userId, String name);
 
     /**
      * Creates a new {@link Shelf} using the specified data.
@@ -72,6 +74,22 @@ public interface ShelfService {
      * @param deleterId The user performing the operation.
      */
     void delete(long shelfId, long deleterId);
+
+
+    /**
+     * Returns a paginated list of games of the {@link Shelf} with the given {@code shelfName},
+     * belonging to the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The user's id.
+     * @param shelfName     The shelf's name.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param orderCategory The ordering category.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return
+     */
+    Page<Game> getShelfGames(long userId, String shelfName,
+                             int pageNumber, int pageSize, OrderCategory orderCategory, SortDirection sortDirection);
 
 
     /**

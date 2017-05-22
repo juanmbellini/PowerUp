@@ -2,17 +2,13 @@ package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.ShelfGame;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class ShelfHibernateDao implements ShelfDao {
@@ -69,11 +65,8 @@ public class ShelfHibernateDao implements ShelfDao {
     }
 
     @Override
-    public Shelf findByName(String name) {
-        if (name == null) {
-            throw new IllegalArgumentException();
-        }
-        return DaoHelper.findByField(em, Shelf.class, "name", name);
+    public Shelf findByName(User owner, String name) {
+        return DaoHelper.findByFields(em, Shelf.class, createSearchingMap(owner, name));
     }
 
     @Override
@@ -98,6 +91,16 @@ public class ShelfHibernateDao implements ShelfDao {
             throw new IllegalArgumentException();
         }
         em.remove(shelf);
+    }
+
+    @Override
+    public Page<Game> getShelfGames(Shelf shelf, int pageNumber, int pageSize, OrderCategory orderCategory,
+                                    SortDirection sortDirection) {
+
+        return DaoHelper.findPageWithConditions(em, Game.class, "FROM ShelfGame shelfGame", "shelfGame.game", "game.id",
+                Collections.singletonList(new DaoHelper.ConditionAndParameterWrapper("shelfGame.shelf = ?0", shelf, 0)),
+                pageNumber, pageSize, "shelfGame.game." + Game.getOrderField(orderCategory), sortDirection);
+
     }
 
     @Override
@@ -131,5 +134,26 @@ public class ShelfHibernateDao implements ShelfDao {
         em.merge(shelf);
     }
 
+
+    // ==============
+    // Helpers
+    // ==============
+
+    /**
+     * Creates a map to be used for searching a Shelf in the {@link ShelfHibernateDao#findByName(User, String)} method.
+     *
+     * @param user The user
+     * @param name The shelf name.
+     * @return The created map.
+     */
+    private static Map<String, Object> createSearchingMap(User user, String name) {
+        if (user == null || name == null) {
+            throw new IllegalArgumentException();
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", user);
+        map.put("name", name);
+        return map;
+    }
 
 }

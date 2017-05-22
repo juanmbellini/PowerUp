@@ -3,6 +3,8 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -47,8 +49,9 @@ public class ShelfServiceImpl implements ShelfService {
     }
 
     @Override
-    public Shelf findByName(String name) {
-        return shelfDao.findByName(name);
+    public Shelf findByName(long userId, String name) {
+        User user = userDao.findById(userId);
+        return user == null ? null : shelfDao.findByName(user, name);
     }
 
     @Override
@@ -64,6 +67,17 @@ public class ShelfServiceImpl implements ShelfService {
     @Override
     public void delete(long shelfId, long deleterId) {
         shelfDao.delete(checkShelfValuesAndAuthoring(shelfId, deleterId));
+    }
+
+    @Override
+    public Page<Game> getShelfGames(long userId, String shelfName, int pageNumber, int pageSize,
+                                    OrderCategory orderCategory, SortDirection sortDirection) {
+        User user = userDao.findById(userId);
+        if (user == null) {
+            return null;
+        }
+        Shelf shelf = shelfDao.findByName(user, shelfName);
+        return shelf == null ? null : shelfDao.getShelfGames(shelf, pageNumber, pageSize, orderCategory, sortDirection);
     }
 
     @Override
