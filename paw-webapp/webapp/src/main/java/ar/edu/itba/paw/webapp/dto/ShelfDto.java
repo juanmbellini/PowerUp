@@ -1,15 +1,16 @@
 package ar.edu.itba.paw.webapp.dto;
 
+import ar.edu.itba.paw.webapp.controller.ShelfJerseyController;
+import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Shelf;
-import org.hibernate.Hibernate;
 
+import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,22 +39,29 @@ public class ShelfDto extends EntityDto {
     private String userUrl;
 
 
-    @XmlElement
-    private List<ShelfGameDto> games;
-
-
     public ShelfDto() {
         // For Jax-RS
     }
 
 
-    public ShelfDto(Shelf shelf) {
+    public ShelfDto(Shelf shelf, UriBuilder baseUri) {
         super(shelf.getId());
         this.name = shelf.getName();
         this.userName = shelf.getUser().getUsername();
         this.userId = shelf.getUser().getId();
-        this.games = !Hibernate.isInitialized(shelf.getShelfGames()) ? new LinkedList<>() :
-                shelf.getGames().stream().map(ShelfGameDto::new).collect(Collectors.toList());
+
+        // Urls
+        this.userUrl = baseUri.clone()
+                .path(UserJerseyController.END_POINT)
+                .path(String.valueOf(shelf.getUser().getId()))
+                .build().toString();
+        this.gamesUrl = baseUri.clone()
+                .path(UserJerseyController.END_POINT)
+                .path(String.valueOf(shelf.getUser().getId()))
+                .path(ShelfJerseyController.END_POINT)
+                .path(shelf.getName())
+                .path(ShelfJerseyController.GAMES_END_POINT)
+                .build().toString();
 
     }
 
@@ -70,10 +78,6 @@ public class ShelfDto extends EntityDto {
         return userId;
     }
 
-    public List<ShelfGameDto> getGames() {
-        return games;
-    }
-
     public String getGamesUrl() {
         return gamesUrl;
     }
@@ -88,8 +92,8 @@ public class ShelfDto extends EntityDto {
      * @param shelves The collection of {@link Shelf}
      * @return A list of {@link ShelfDto}.
      */
-    public static List<ShelfDto> createList(Collection<Shelf> shelves) {
-        return shelves.stream().map(ShelfDto::new).collect(Collectors.toList());
+    public static List<ShelfDto> createList(Collection<Shelf> shelves, UriBuilder uriBuilder) {
+        return shelves.stream().map(shelf -> new ShelfDto(shelf, uriBuilder.clone())).collect(Collectors.toList());
     }
 
 
