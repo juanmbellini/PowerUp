@@ -72,7 +72,7 @@ public class GameDto {
         this.name = game.getName();
         this.summary = game.getSummary();
         this.avgScore = game.getAvgScore();
-        this.releaseDate = game.getReleaseDate().toString();
+        this.releaseDate = game.getReleaseDate() == null ? null : game.getReleaseDate().toString();
         this.coverPictureUrl = game.getCoverPictureUrl();
 
         this.genres = !Hibernate.isInitialized(game.getGenres()) ? null :
