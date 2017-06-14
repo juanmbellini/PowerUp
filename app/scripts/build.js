@@ -28,7 +28,8 @@ require.config({
         authService: 'services/AuthService',
         'csrf-service': 'services/CsrfService',
         'angular-slick': '../../bower_components/angular-slick/dist/slick',
-        'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage'
+        'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
+        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload'
     },
     shim: {
         jquery: {
@@ -108,6 +109,11 @@ require.config({
             ]
         },
         'angular-local-storage': {
+            deps: [
+                'angular'
+            ]
+        },
+        'ng-file-upload': {
             deps: [
                 'angular'
             ]

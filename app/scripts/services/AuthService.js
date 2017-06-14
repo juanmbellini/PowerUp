@@ -61,7 +61,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             // Request
             $log.debug('Adding auth token REQUEST interceptor');
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
-                if (['post', 'put', 'delete'].indexOf(operation) !== -1) {   // Only attach token to protected endpoints
+                if (['post', 'put', 'remove'].indexOf(operation) !== -1) {   // Only attach token to protected endpoints
                     var token = getToken();
                     if (token !== null) {
                         // $log.debug('Adding auth token to request headers');
@@ -139,13 +139,39 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             return getCurrentUser() !== null;
         }
 
+        /**
+         * Checks whether the specified data corresponds to the current user.
+         *
+         * @param data {object,string,number} Can be a user object with a username or id property, a username (string)
+         * or a user ID (number). Each case is handled appropriately. If an unsupported data type is sent, always
+         * returns false.
+         * @returns {boolean} Whether the specified data corresponds to the current user.
+         */
+        function isCurrentUser(data) {
+            if (!isLoggedIn()) {
+                return false;
+            }
+            switch (typeof data) {
+                case 'object':
+                    return (data.hasOwnProperty('username') && data.username === getCurrentUser().username) ||
+                        (data.hasOwnProperty('id') && data.id === getCurrentUser().id);
+                case 'string':
+                    return data === getCurrentUser().username;
+                case 'number':
+                    return data === getCurrentUser().id;
+                default:
+                    return false;
+            }
+        }
+
         // Public exported functions
         return {
             trackToken: trackToken,
             authenticate: authenticate,
             logOut: logOut,
             isLoggedIn: isLoggedIn,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            isCurrentUser: isCurrentUser
         };
     }]);
 });

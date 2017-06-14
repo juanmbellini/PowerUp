@@ -497,8 +497,8 @@ public class User implements Serializable, ValidationExceptionThrower {
         }
 
         ValidationHelper.arrayNullOrLengthBetweenTwoNumbers(profilePicture,
-                NumericConstants.PROFILE_PICTURE_MIN_LENGTH, NumericConstants.PROFILE_PICTURE_MAX_LENGTH,
-                errorList, ValueErrorConstants.PICTURE_TOO_SHORT, ValueErrorConstants.PICTURE_TOO_LONG);
+                NumericConstants.PROFILE_PICTURE_MIN_SIZE, NumericConstants.PROFILE_PICTURE_MAX_SIZE,
+                errorList, ValueErrorConstants.PICTURE_TOO_SMALL, ValueErrorConstants.PICTURE_TOO_BIG);
 
         ValidationHelper.stringNullOrLengthBetweenTwoValues(mimeType, NumericConstants.MIME_TYPE_MIN_LENGTH,
                 NumericConstants.MIME_TYPE_MAX_LENGTH, errorList, ValueErrorConstants.MIME_TYPE_TOO_SHORT,

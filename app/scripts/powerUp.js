@@ -8,7 +8,8 @@ define(['routes',
     'angular-cookies',
     'restangular',
     'sweetalert.angular',
-    'angular-local-storage'
+    'angular-local-storage',
+    'ng-file-upload'
     ],
   function (config, dependencyResolverFor, i18n) {
     var powerUp = angular.module('powerUp', [
@@ -17,7 +18,8 @@ define(['routes',
       'restangular',
       'ngCookies',
       'oitozero.ngSweetAlert',
-      'LocalStorageModule'
+      'LocalStorageModule',
+      'ngFileUpload'
     ]);
     powerUp
       .config(

@@ -52,11 +52,11 @@ public class ValueErrorConstants {
     public static final ValueError MISSING_PICTURE = new ValueError(MISSING_VALUE, "picture",
             "The picture is missing");
 
-    public static final ValueError PICTURE_TOO_SHORT = new ValueError(ILLEGAL_VALUE, "picture",
-            "The picture is too short");
+    public static final ValueError PICTURE_TOO_SMALL = new ValueError(ILLEGAL_VALUE, "picture",
+            "The picture is too small");
 
-    public static final ValueError PICTURE_TOO_LONG = new ValueError(ILLEGAL_VALUE, "picture",
-            "The picture is too long");
+    public static final ValueError PICTURE_TOO_BIG = new ValueError(ILLEGAL_VALUE, "picture",
+            "The picture is too big");
 
 
     public static final ValueError MISSING_MIME_TYPE = new ValueError(MISSING_VALUE, "mimeType",

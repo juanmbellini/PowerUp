@@ -33,6 +33,15 @@ public class UserGameScoreDto extends EntityDto {
     private String gameName;
 
     @XmlElement
+    private String gameCoverPictureUrl;
+
+    @XmlElement
+    private String gameSummary;
+
+    @XmlElement
+    private String gameReleaseDate;
+
+    @XmlElement
     private Integer score;
 
 
@@ -45,7 +54,9 @@ public class UserGameScoreDto extends EntityDto {
         this.gameId = gameStatus.getGame().getId();
         this.gameName = gameStatus.getGame().getName();
         this.score = gameStatus.getScore();
-
+        this.gameCoverPictureUrl = gameStatus.getGame().getCoverPictureUrl();
+        this.gameSummary = gameStatus.getGame().getSummary();
+        this.gameReleaseDate = gameStatus.getGame().getReleaseDate() == null ? null : gameStatus.getGame().getReleaseDate().toString();
     }
 
     public Long getGameId() {
@@ -60,6 +71,17 @@ public class UserGameScoreDto extends EntityDto {
         return score;
     }
 
+    public String getGameCoverPictureUrl() {
+        return gameCoverPictureUrl;
+    }
+
+    public String getGameSummary() {
+        return gameSummary;
+    }
+
+    public String getGameReleaseDate() {
+        return gameReleaseDate;
+    }
 
     /**
      * Returns a list of {@link UserGameScoreDto} based on the given collection of {@link UserGameScoreDto}.

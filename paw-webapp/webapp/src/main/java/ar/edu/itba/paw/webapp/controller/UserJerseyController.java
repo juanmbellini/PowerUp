@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.webapp.dto.ProfilePictureDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.dto.UserGameScoreDto;
 import ar.edu.itba.paw.webapp.dto.UserGameStatusDto;
@@ -105,7 +104,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/username={username : .+}")
+    @Path("/username/{username : .+}")
     public Response getByUsername(@PathParam("username") final String username) {
         if (username == null) {
             throw new IllegalParameterValueException("username");
@@ -116,7 +115,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/email={email : .+}")
+    @Path("/email/{email : .+}")
     public Response getByEMail(@PathParam("email") final String email) {
         if (email == null) {
             throw new IllegalParameterValueException("email");
@@ -224,6 +223,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                                   // Filters
                                   @QueryParam("gameId") @DefaultValue("") Long gameIdFilter,
                                   @QueryParam("gameName") @DefaultValue("") String gameNameFilter) {
+        //TODO: Allow sorting by user score
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
         }
@@ -322,31 +322,50 @@ public class UserJerseyController implements UpdateParamsChecker {
         }
     }
 
+    @OPTIONS
+    @Path("/picture")
+    public Response pictureOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
     @PUT
     @Path("/picture")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response uploadProfilePicture(ProfilePictureDto picture) {
+    public Response uploadProfilePicture(String base64Input) {
         long userId = sessionService.getCurrentUserId();
         if (userId == -1) {
             LOG.error("Couldn't get current user on profile picture PUT");
             return Response.serverError().build();
         }
-        if (picture.getBase64Data() == null || picture.getBase64Data().isEmpty()) {
+        if (base64Input == null || base64Input.isEmpty()) {
             LOG.info("No data for profile picture update for user #{}, returning HTTP 400 Bad Request", userId);
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
+        String[] inputData = base64Input.split(",");
+        if (inputData.length != 2 || !inputData[0].matches("data:image/(\\w+);base64")) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        String providedMimeType = inputData[0].substring(5, inputData[0].indexOf(';'));
+        String pictureBase64 = inputData[1];
         byte[] pictureBytes;
-        String mimeType;
+        String processedMimeType;
         try {
-            pictureBytes = java.util.Base64.getMimeDecoder().decode(picture.getBase64Data());
+            //https://stackoverflow.com/a/43251650/2333689
+            pictureBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(pictureBase64);
         } catch (IllegalArgumentException e) {  //Not Base64
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
         try {
-            mimeType = getMimeType(byteArrayToTempFile(pictureBytes));
-            if (mimeType == null || !SUPPORTED_PICTURE_TYPES.contains(mimeType)) {
+            processedMimeType = getMimeType(byteArrayToTempFile(pictureBytes));
+            if (processedMimeType == null || !SUPPORTED_PICTURE_TYPES.contains(processedMimeType)) {
                 return Response
                         .status(Response.Status.UNSUPPORTED_MEDIA_TYPE)
                         .header("X-Supported-Media-Types", Arrays.toString(SUPPORTED_PICTURE_TYPES.toArray()).replace("[", "").replace("]", "").replace(" ", "")).build();
@@ -355,9 +374,13 @@ public class UserJerseyController implements UpdateParamsChecker {
             LOG.error("Error detecting MIME type of uploaded profile picture for user #{}: {}", userId, e);
             return Response.serverError().build();
         }
-        userService.changeProfilePicture(userId, pictureBytes, mimeType, userId);
-//        userService.setProfilePicture(userId, pictureBytes, mimeType);
-        LOG.info("Updated profile picture for user #{}", userId);
+        if (!processedMimeType.equals(providedMimeType)) {
+            LOG.warn("Received mismatching MIME type for profile picture update for {}, rejecting", sessionService.getCurrentUsername());
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        //Valid, update
+        userService.changeProfilePicture(userId, pictureBytes, processedMimeType, userId);
+        LOG.info("Updated profile picture for {}", sessionService.getCurrentUsername());
         return Response.noContent().build();
     }
 
@@ -370,8 +393,8 @@ public class UserJerseyController implements UpdateParamsChecker {
             LOG.error("Couldn't get current user on profile picture DELETE");
             return Response.serverError().build();
         }
-        userService.removeProfilePicture(userId, userId);// TODO: user performing the operation?
-        LOG.info("Deleted profile picture for user #{}", userId);
+        userService.removeProfilePicture(userId, userId);   //The current user may only remove their own profile picture
+        LOG.info("Deleted profile picture for {}", sessionService.getCurrentUsername());
         return Response.ok().build();
     }
 

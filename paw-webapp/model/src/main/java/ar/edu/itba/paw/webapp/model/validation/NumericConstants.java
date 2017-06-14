@@ -14,7 +14,7 @@ public class NumericConstants {
 
     public final static int PASSWORD_MAX_LENGTH = 100;
 
-    public final static int PROFILE_PICTURE_MAX_LENGTH = 10 * 1024;
+    public final static int PROFILE_PICTURE_MAX_SIZE = 2 * 1000000;   //2MB
 
     public final static int MIME_TYPE_MAX_LENGTH = 256;
 
@@ -30,7 +30,7 @@ public class NumericConstants {
 
     public final static int PASSWORD_MIN_LENGTH = 6;
 
-    public final static int PROFILE_PICTURE_MIN_LENGTH = 1;
+    public final static int PROFILE_PICTURE_MIN_SIZE = 1;
 
     public final static int MIME_TYPE_MIN_LENGTH = 3;
 
