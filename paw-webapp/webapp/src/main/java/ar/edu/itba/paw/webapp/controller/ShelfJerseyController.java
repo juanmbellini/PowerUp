@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.dto.ShelfDto;
+import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
@@ -16,12 +17,13 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 import static ar.edu.itba.paw.webapp.controller.ShelfJerseyController.END_POINT;
 
 /**
- * API endpoint for user management.
+ * API endpoint for user shelves management.
  */
 @Path(UserJerseyController.END_POINT + "/{userId : \\d+}/" + END_POINT)
 @Component
@@ -126,6 +128,17 @@ public class ShelfJerseyController {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .build());
+    }
+
+    @POST
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response createShelf(final ShelfDto shelfDto) {
+        if (shelfDto == null) {
+            throw new MissingJsonException();
+        }
+        Shelf shelf = shelfService.create(shelfDto.getName(), sessionService.getCurrentUserId());
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getId())).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
 
