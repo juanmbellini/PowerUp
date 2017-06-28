@@ -30,17 +30,17 @@ public interface ShelfDao {
     Shelf findByName(User owner, String name);
 
     /**
-     * @see ShelfService#create(String, long)
+     * @see ShelfService#create(long, String, User)
      */
     Shelf create(String name, User creator);
 
     /**
-     * @see ShelfService#update(long, String, long)
+     * @see ShelfService#update(long, String, String, User)
      */
     void update(Shelf shelf, String name);
 
     /**
-     * @see ShelfService#delete(long, long)
+     * @see ShelfService#delete(long, String, User)
      */
     void delete(Shelf shelf);
 
@@ -51,17 +51,17 @@ public interface ShelfDao {
 
 
     /**
-     * @see ShelfService#addGameToShelf(long, long, long)
+     * @see ShelfService#addGameToShelf(long, String, long, User)
      */
     void addGameToShelf(Shelf shelf, Game game);
 
     /**
-     * @see ShelfService#removeGameFromShelf(long, long, long)
+     * @see ShelfService#removeGameFromShelf(long, String, long, User)
      */
     void removeGameFromShelf(Shelf shelf, Game game);
 
     /**
-     * @see ShelfService#clearShelf(long, long)
+     * @see ShelfService#clearShelf(long, String, User)
      */
     void clearShelf(Shelf shelf);
 
@@ -111,6 +111,4 @@ public interface ShelfDao {
             return valueOf(name.toUpperCase());
         }
     }
-
-
 }

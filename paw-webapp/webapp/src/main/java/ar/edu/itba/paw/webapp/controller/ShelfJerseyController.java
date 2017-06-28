@@ -132,11 +132,12 @@ public class ShelfJerseyController {
 
     @POST
     @Consumes(value = {MediaType.APPLICATION_JSON})
-    public Response createShelf(final ShelfDto shelfDto) {
+    public Response createShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
+                                final ShelfDto shelfDto) {
         if (shelfDto == null) {
             throw new MissingJsonException();
         }
-        Shelf shelf = shelfService.create(shelfDto.getName(), sessionService.getCurrentUserId());
+        final Shelf shelf = shelfService.create(userId, shelfDto.getName(), sessionService.getCurrentUser());
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
