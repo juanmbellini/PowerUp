@@ -15,6 +15,6 @@ public class UnauthenticatedExceptionMapper implements ExceptionMapper<Unauthent
 
     @Override
     public Response toResponse(UnauthenticatedException exception) {
-        return Response.status(Response.Status.FORBIDDEN).build();
+        return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 }
