@@ -77,8 +77,11 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
-        validateNameAvailability(owner, newName);
         final Shelf shelf = getShelf(owner, name); // Throws NoSuchEntityException if it not exists.
+        if (name.equals(newName)) {
+            return; // Avoid querying database for name availability and updating.
+        }
+        validateNameAvailability(owner, newName);
         shelfDao.update(shelf, newName);
 
     }
@@ -91,9 +94,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateDeletePermission(owner, deleter);
-        final Shelf shelf = getShelf(owner, name); // Throws NoSuchEntityException if it not exists.
-        shelfDao.delete(shelf);
-
+        getShelfOptional(owner, name).ifPresent(shelfDao::delete); // If not present, do nothing (and be idempotent).
     }
 
     @Override
@@ -224,8 +225,8 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
      * @throws ValidationException If the given {@link User} owns a {@link Shelf} with the given {@code shelfName}.
      */
     private void validateNameAvailability(final User user, final String shelfName) throws ValidationException {
-        if (user == null) {
-            throw new IllegalArgumentException("Can't check name availability for a null user.");
+        if (user == null || shelfName == null) {
+            throw new IllegalArgumentException("User and name must not be null");
         }
         // TODO: add existence method
         if (shelfDao.findByName(user, shelfName) != null) {

@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.dto.ShelfDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
@@ -135,11 +134,13 @@ public class ShelfJerseyController implements UpdateParamsChecker {
     @Consumes(value = {MediaType.APPLICATION_JSON})
     public Response createShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
                                 final ShelfDto shelfDto) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("userId", userId, id -> id <= 0));
         if (shelfDto == null) {
             throw new MissingJsonException();
         }
         final Shelf shelf = shelfService.create(userId, shelfDto.getName(), sessionService.getCurrentUser());
-        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getId())).build();
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getName())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
@@ -148,8 +149,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
     @Path("/{shelfName : .+}")
     @Consumes(value = {MediaType.APPLICATION_JSON})
     public Response updateShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                                 @PathParam("shelfName") final String shelfName,
-                                 final ShelfDto shelfDto) {
+                                @PathParam("shelfName") final String shelfName,
+                                final ShelfDto shelfDto) {
         if (shelfDto == null) {
             throw new MissingJsonException();
         }
@@ -172,5 +173,16 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         return Response.noContent().location(uri).build();
     }
 
+
+    @DELETE
+    @Path("/{shelfName : .+}")
+    public Response deleteShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
+                                @PathParam("shelfName") final String shelfName) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("userId", userId, id -> id <= 0)
+                .addParameter("shelfName", shelfName, name -> name == null));
+        shelfService.delete(userId, shelfName, sessionService.getCurrentUser());
+        return Response.noContent().build();
+    }
 
 }
