@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.dto.ShelfDto;
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
@@ -28,7 +29,7 @@ import static ar.edu.itba.paw.webapp.controller.ShelfJerseyController.END_POINT;
 @Path(UserJerseyController.END_POINT + "/{userId : \\d+}/" + END_POINT)
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
-public class ShelfJerseyController {
+public class ShelfJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "shelves";
 
@@ -91,13 +92,13 @@ public class ShelfJerseyController {
 
 
     @GET
-    @Path("/{shelf-name}")
+    @Path("/{shelfName : .+}")
     public Response getByName(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                              @PathParam("shelf-name") final String shelfName) {
+                              @PathParam("shelfName") final String shelfName) {
 
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelf-name", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, name -> name == null));
 
         final Shelf shelf = shelfService.findByName(userId, shelfName);
         return shelf == null ? Response.status(Response.Status.NOT_FOUND).build()
@@ -106,9 +107,9 @@ public class ShelfJerseyController {
 
 
     @GET
-    @Path("/{shelf-name}/" + GAMES_END_POINT)
+    @Path("/{shelfName : .+}/" + GAMES_END_POINT)
     public Response listShelfGames(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelf-name")
+                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
                                    final String shelfName,
                                    @QueryParam("orderBy") @DefaultValue("name") final OrderCategory orderCategory,
                                    @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
@@ -118,7 +119,7 @@ public class ShelfJerseyController {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelf-name", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, name -> name == null));
 
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection,
@@ -140,6 +141,35 @@ public class ShelfJerseyController {
         final Shelf shelf = shelfService.create(userId, shelfDto.getName(), sessionService.getCurrentUser());
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+
+    @PUT
+    @Path("/{shelfName : .+}")
+    @Consumes(value = {MediaType.APPLICATION_JSON})
+    public Response updateShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
+                                 @PathParam("shelfName") final String shelfName,
+                                 final ShelfDto shelfDto) {
+        if (shelfDto == null) {
+            throw new MissingJsonException();
+        }
+        checkUpdateValues("userId", userId, id -> id > 0, shelfDto.getUserId(),
+                (pathId, dtoId) -> dtoId == null || Long.compare(pathId, dtoId) == 0);
+        // The shelfName string is just checked if its null because dto and path names will probably be different
+        // (The name is the only editable field for a shelf)
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("shelfName", shelfName, name -> name == null));
+
+        shelfService.update(userId, shelfName, shelfDto.getName(), sessionService.getCurrentUser());
+        final URI uri = uriInfo.getBaseUriBuilder()
+                .path(UserJerseyController.END_POINT)   // Appends users endpoint
+                .path(Long.toString(userId))            // Appends user id
+                .path(END_POINT)                        // Appends shelves endpoint
+                .path(shelfDto.getName())               // Appends new name
+                .build();
+        // As endpoint includes shelf name, and shelf name changes (if its not the same) after execution
+        // new location is informed by the "Location" header (whether the name changed, or not)
+        return Response.noContent().location(uri).build();
     }
 
 
