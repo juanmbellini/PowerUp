@@ -13,22 +13,22 @@ public interface ShelfService {
 
 
     /**
-     * Returns a {@link Page} with the shelves, applying filters, pagination and sorting.
+     * Returns a {@link Page} with the shelves owned by the {@link User} with the given ownerId,
+     * applying filters, pagination and sorting.
      *
+     * @param ownerId        The id of the {@link User} owning the returned shelves.
      * @param nameFilter     Filter for the name.
      * @param gameIdFilter   Filter for game id.
      * @param gameNameFilter Filter for game name.
-     * @param userIdFilter   Filter for user id.
-     * @param userNameFilter Filter for user name.
      * @param pageNumber     The page number.
      * @param pageSize       The page size.
      * @param sortingType    The sorting type (id, game id, or creation date).
      * @param sortDirection  The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
-                           Long userIdFilter, String userNameFilter,
-                           int pageNumber, int pageSize, ShelfDao.SortingType sortingType, SortDirection sortDirection);
+    Page<Shelf> getUserShelves(long ownerId, String nameFilter, Long gameIdFilter, String gameNameFilter,
+                               int pageNumber, int pageSize, ShelfDao.SortingType sortingType,
+                               SortDirection sortDirection);
 
     /**
      * Finds a shelf by ID.

@@ -67,15 +67,14 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                                @QueryParam("gameId") @DefaultValue("") final Long gameId,
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
                                // This path param is declared at class level
-                               @SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                               @QueryParam("userName") @DefaultValue("") final String userName) {
+                               @SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId) {
 
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("userId", userId, id -> id <= 0));
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        shelfService.getShelves(name, gameId, gameName, userId, userName, pageNumber, pageSize,
+                        shelfService.getUserShelves(userId, name, gameId, gameName, pageNumber, pageSize,
                                 sortingType, sortDirection),
                         (shelfPage) -> new GenericEntity<List<ShelfDto>>(ShelfDto.createList(shelfPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
@@ -84,8 +83,6 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                                 .addParameter("name", name)
                                 .addParameter("gameId", gameId)
                                 .addParameter("gameName", gameName)
-                                .addParameter("userId", userId)
-                                .addParameter("userName", userName)
                                 .build());
     }
 

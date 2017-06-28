@@ -41,10 +41,11 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
 
 
     @Override
-    public Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
-                                  Long userIdFilter, String userNameFilter, int pageNumber, int pageSize,
-                                  ShelfDao.SortingType sortingType, SortDirection sortDirection) {
-        return shelfDao.getShelves(nameFilter, gameIdFilter, gameNameFilter, userIdFilter, userNameFilter,
+    public Page<Shelf> getUserShelves(long ownerId, String nameFilter, Long gameIdFilter, String gameNameFilter,
+                                      int pageNumber, int pageSize, ShelfDao.SortingType sortingType,
+                                      SortDirection sortDirection) {
+        getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
+        return shelfDao.getShelves(nameFilter, gameIdFilter, gameNameFilter, ownerId, null,
                 pageNumber, pageSize, sortingType, sortDirection);
     }
 
