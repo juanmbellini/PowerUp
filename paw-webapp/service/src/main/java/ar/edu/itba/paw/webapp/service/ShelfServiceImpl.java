@@ -125,7 +125,8 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
         final Shelf shelf = getShelf(owner, shelfName); // Throws NoSuchEntityException if it not exists.
-        shelfDao.removeGameFromShelf(shelf, gameDao.findById(gameId)); // If game does not exists, lower layer will handle.
+        // If game not exists, do nothing (and be idempotent). If shelf not contains game, lower layer will handle
+        Optional.ofNullable(gameDao.findById(gameId)).ifPresent(game -> shelfDao.removeGameFromShelf(shelf, game));
     }
 
     @Override

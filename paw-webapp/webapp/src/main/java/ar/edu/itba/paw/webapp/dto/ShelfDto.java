@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.dto;
 
+import ar.edu.itba.paw.webapp.controller.GameJerseyController;
 import ar.edu.itba.paw.webapp.controller.ShelfJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -101,12 +102,17 @@ public class ShelfDto extends EntityDto {
     @XmlType(name = "shelfGame")
     public static class ShelfGameDto {
 
-
+        @XmlElement
         private Long gameId;
 
+        @XmlElement
         private String gameName;
 
+        @XmlElement
         private String gameUrl;
+
+        @XmlElement
+        private String coverPictureUrl;
 
 
         public ShelfGameDto() {
@@ -114,11 +120,40 @@ public class ShelfDto extends EntityDto {
         }
 
 
-        public ShelfGameDto(Game game) {
+        public ShelfGameDto(Game game, UriBuilder baseUri) {
             this.gameId = game.getId();
             this.gameName = game.getName();
-            this.gameUrl = ""; // TODO: complete
+            this.gameUrl = baseUri.clone()
+                    .path(GameJerseyController.END_POINT)
+                    .path(Long.toString(game.getId()))
+                    .build().toString();
+            this.coverPictureUrl = game.getCoverPictureUrl();
         }
 
+        public Long getGameId() {
+            return gameId;
+        }
+
+        public String getGameName() {
+            return gameName;
+        }
+
+        public String getGameUrl() {
+            return gameUrl;
+        }
+
+        public String getCoverPictureUrl() {
+            return coverPictureUrl;
+        }
+
+        /**
+         * Returns a list of {@link ShelfGameDto} based on the given collection of {@link Game}.
+         *
+         * @param games The collection of {@link Game}
+         * @return A list of {@link ShelfGameDto}.
+         */
+        public static List<ShelfGameDto> createList(Collection<Game> games, UriBuilder uriBuilder) {
+            return games.stream().map(game -> new ShelfGameDto(game, uriBuilder.clone())).collect(Collectors.toList());
+        }
     }
 }
