@@ -67,13 +67,13 @@ define(['powerUp'], function(powerUp) {
         };
 
 
-        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId}).then(function (reviews) {
-            $scope.reviews = reviews;
-        }, function() {
-            console.log('There was an error getting reviews');
-        });
+        // Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId}).then(function (reviews) {
+        //     $scope.reviews = reviews;
+        // }, function() {
+        //     console.log('There was an error getting reviews');
+        // });
 
-        // $scope.reviews = {data: [{game: {id: 7522, name: 'daGame', coverPictureUrl: 'https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/rwhafb8nebwrc84edjd1.jpg'}, review: 'ALTO JUEGASO', storyScore: 2, graphicsScore: 5, audioScore: 3, controlsScore: 4, funScore: 8, overallScore: 7, date: '2015-02-01', user: {id: 1, username: 'jorge'}}], totalPages: 1, pageNumber: 1, pageSize: 1, overAllAmountOfElements: 1};
+        $scope.reviews = [{gameId: 7522, gameName: 'daGame', coverPictureUrl: 'https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/rwhafb8nebwrc84edjd1.jpg', body: 'ALTO JUEGASO', storyScore: 2, graphicsScore: 5, audioScore: 3, controlsScore: 4, funScore: 8, date: '2015-02-01', userId: 1, username: 'jorge'},{gameId: 7522, gameName: 'daGame', coverPictureUrl: 'https://res.cloudinary.com/igdb/image/upload/t_cover_big_2x/rwhafb8nebwrc84edjd1.jpg', body: 'ALTO JUEGASO', storyScore: 2, graphicsScore: 5, audioScore: 3, controlsScore: 4, funScore: 8, date: '2015-02-01', userId: 1, username: 'jorge'}];
     });
 
 });
