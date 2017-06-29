@@ -43,6 +43,11 @@ define([], function() {
             '/write-review': {
                 templateUrl: '/views/reviews/write-review.html',
                 controller: 'WriteReviewCtrl'
+
+            },
+            '/reviews': {
+                templateUrl: '/views/reviews/reviews.html',
+                controller: 'ReviewCtrl'
             }
             /* ===== yeoman hook ===== */
             /* Do not remove these commented lines! Needed for auto-generation */

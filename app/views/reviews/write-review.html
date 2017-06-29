@@ -19,13 +19,16 @@
 							</div>
 						</div>
 						<div class="col s3">
-							<div ng-repeat="criterium in criteria">
-								<div class="input-field">
-									<p style="text-transform: capitalize;">{{criterium}}</p>
-									<select ng-model="{{criterium}}-score">
-										<option ng-repeat="score in range(1, 10)" value="{{score}}" ng-selected="score === 5">{{score}}</option>
-									</select>
-								</div>
+							<div ng-repeat="criterion in criteria">
+								<!--<div class="input-field">-->
+								<!--</div>-->
+								<p style="text-transform: capitalize;">{{criterion.name}}</p>
+								<!--<select ng-model="criterion.score" class="browser-default">-->
+								<select ng-model="criterion.score" class="browser-default" ng-options="score for score in range(1, 10)">
+									<option value="score">-- choose score --</option>
+									<!--TODO se corre en 1 el score entre value y label no se que onda.-->
+									<!--<option ng-repeat="score in range(1, 10)" ng-selected="score === 5" value="{{score}}">{{score}}</option>-->
+								</select>
 							</div>
 						</div>
 					</div>

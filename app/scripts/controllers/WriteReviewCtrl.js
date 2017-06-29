@@ -4,7 +4,17 @@ define(['powerUp', 'authService'], function(powerUp) {
     powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', function($scope, $location, $log, AuthService) {
         $scope.gameId = $location.search().id;
         $scope.game = null;
-        $scope.criteria = ['story', 'graphics', 'audio', 'controls', 'fun'];
+        $scope.criteriaNames = ['story', 'graphics', 'audio', 'controls', 'fun'];
+        $scope.criteria = {};
+        $scope.scoreTest = 0;
+
+        $scope.criteriaNames.forEach(function(criterion) {
+            $scope.criteria[criterion] = {};
+            $scope.criteria[criterion].name = criterion;
+            $scope.criteria[criterion].score = 5;
+        });
+
+
 
         var errorHandler = function(error) {
             $log.error('Error: ', error);
@@ -12,8 +22,8 @@ define(['powerUp', 'authService'], function(powerUp) {
         };
 
         $scope.findGame = function(gameId) {
-            if(!gameId) {
-                errorHandler("Invalid game ID");
+            if (!gameId) {
+                errorHandler('Invalid game ID');
             }
 
             Restangular.one('games', gameId).get().then(function(game) {
@@ -28,10 +38,11 @@ define(['powerUp', 'authService'], function(powerUp) {
                 }
             }, errorHandler);
 
+
         };
 
         $scope.submitReview = function() {
-            //TODO validate input?
+            // TODO validate input?
 
             var review = { review: $scope.review };
             $scope.criteria.forEach(function (criterium) {
@@ -45,6 +56,11 @@ define(['powerUp', 'authService'], function(powerUp) {
         angular.element('document').ready(function() {
             $('textarea').characterCounter();
         });
-    }]);
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+
+    });
+
 
 });

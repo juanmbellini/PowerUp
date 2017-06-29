@@ -1,0 +1,202 @@
+<main>
+	<div class="container">
+		<div class="section no-pad-bot">
+			<!--TITLE-->
+			<h2 class="header center orange-text wrap-text">
+				<span>
+					<a ng-if="game" ng-href="#game?id={{game.id}}"> {{game.name}} </a>
+				 	Reviews
+					<span ng-if="user">
+						by <a ng-href="#profile?username={{user.username}}"> {{user.username}} <img
+							class="circle" style="width:50px; height:50px; vertical-align: middle;"
+							ng-src="{{apiLocation}}/users/{{user.userId}}/picture"/></a>
+					</span>
+				</span>
+			</h2>
+			<!--PAGE SIZE-->
+			<div ng-if="reviews.overAllAmountOfElements > 0" class="row">
+				<span>
+					<div class="input-field col s2 offset-s5">
+						<select class="browser-default" id="pageSize">
+							<option ng-repeat="pageSize in pageSizes"> {{pageSize}} </option>
+						</select>
+					</div>
+					<label>Reviews per page</label>
+				</span>
+			</div>
+		</div>
+		<!--REVIEWS-->
+		<div class="section no-pad-top">
+			<div class="row">
+				<div ng-if="reviews.overAllAmountOfElements > 0">
+					<!--REVIEWS LIST-->
+					<ul class="collection reviews-list">
+						<li ng-repeat="review in reviews.data" class="collection-item avatar">
+							<div ng-if="!user && game">
+								<!--Viewing reviews by game, variable is user-->
+								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+									 alt="{{review.username}}" class="circle"/>
+								<span class="title wrap-text">
+                                                <a ng-href="#profile?userId={{review.userId}}">{{review.username}}</a>
+                                            </span>
+							</div>
+							<div ng-if="user && !game">
+								<!--TODO coverPicture need game-->
+								<!--<img ng-src="review.game.coverPictureUrl" alt="{{review.game.name}}" class="circle"/>-->
+								<span class="title wrap-text">
+											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
+										</span>
+							</div>
+							<div ng-if="user && game">
+								<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
+								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+									 alt="{{review.userName}}" class="circle">
+								<span class="title wrap-text">
+											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a> | <a
+										ng-href="#profile?userId={{review.userId}}">{{review.userName}}</a>
+										</span>
+							</div>
+							<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+							<!-- TODO why href="" <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>-->
+							<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)"
+							   class="material-icons red-text text-lighten-1 delete-button">
+								<i class="material-icons right">delete</i>
+							</a>
+							<p class="wrap-text">
+								<a ng-if="!user && game" ng-href="#reviews?userId={{review.userId}}">Other reviews by
+									{{review.userName}}</a>
+								<a ng-if="user && !game" ng-href="#reviews?gameId={{review.gameId}}">Other
+									{{review.gameName}} reviews</a>
+								<span ng-if="user && game">
+									<a ng-href="#reviews?gameId={{review.gameId}}">Other
+									{{review.gameName}} reviews</a> | <a ng-href="#reviews?userId={{review.userId}}">Other
+								reviews by {{review.userName}}</a>
+								</span>
+							</p>
+							<br/>
+							<div class="row">
+								<p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
+								<div class="col s2">
+									<p style="color: #26a69a;">
+										Story: <span class="right">{{review.storyScore}}</span>
+										<br/>
+										Graphics: <span class="right">{{review.graphicsScore}}</span>
+										<br/>
+										Audio: <span class="right">{{review.audioScore}}</span>
+										<br/>
+										Controls: <span class="right">{{review.controlsScore}}</span>
+										<br/>
+										Fun: <span class="right">{{review.funScore}}</span>
+										<br/>
+										<b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<!--END REVIEWS LIST-->
+					<!--PAGINATION-->
+					<div ng-if="reviews.totalPages > 1" class="row">
+						<ul class="pagination center">
+							<!--TODO pagination-->
+							<!--Left chevron - only shown when there are > 1 pages -->
+							<!--<div ng-if="reviews.totalPages > 1">-->
+							<!---->
+							<!--<li ng-if="reviews.pageNumber > 1" class="waves-effect">-->
+							<!--<a href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
+							<!--<i class="material-icons">chevron_left</i>-->
+							<!--</a>-->
+							<!--</li>-->
+							<!---->
+							<!--<li ng-if="reviews.pageNumber <= 1" class="disabled">-->
+							<!--<a href="#!">-->
+							<!--<i class="material-icons">chevron_left</i>-->
+							<!--</a>-->
+							<!--</li>-->
+							<!--</div>-->
+							<!---->
+							<!--Page numbers - always shown-->
+							<!--<c:set var="just_one"-->
+							<!--value="${(reviews.pageNumber - 4) <= 0 || reviews.totalPages <= 10}"/>-->
+							<!--<c:set var="no_more_prev"-->
+							<!--value="${(reviews.pageNumber + 5) > reviews.totalPages}"/>-->
+							<!--<c:set var="the_first_ones"-->
+							<!--value="${(reviews.pageNumber + 5) < 10}"/>-->
+							<!--<c:set var="no_more_next"-->
+							<!--value="${reviews.totalPages < 10 || (reviews.pageNumber + 5) >= reviews.totalPages}"/>-->
+							<!--<c:forEach var="pageIt"-->
+							<!--begin="${just_one ? 1 : no_more_prev ? reviews.totalPages - 9 : reviews.pageNumber - 4}"-->
+							<!--end="${no_more_next ? reviews.totalPages : the_first_ones ? 10 : reviews.pageNumber + 5}">-->
+							<!--<li class=${pageIt == reviews.pageNumber ? "active" : "waves-effect"}>-->
+							<!--<c:choose>-->
+							<!--<c:when test="${pageIt == reviews.pageNumber}">-->
+							<!--<a>-->
+							<!--${pageIt}-->
+							<!--</a>-->
+							<!--</c:when>-->
+							<!--<c:otherwise>-->
+							<!--<a href="${changePageUrl}pageNumber=${pageIt}&pageSize=${reviews.pageSize}">-->
+							<!--${pageIt}-->
+							<!--</a>-->
+							<!--</c:otherwise>-->
+							<!--</c:choose>-->
+							<!--</li>-->
+							<!--</c:forEach>-->
+							<!--&lt;!&ndash;Right chevron - only shown if there are > 1 pages&ndash;&gt;-->
+							<!--<c:if test="${reviews.totalPages > 1}">-->
+							<!--<c:choose>-->
+							<!--<c:when test="${reviews.pageNumber == reviews.totalPages}">-->
+							<!--<li class="disabled">-->
+							<!--<a href="#!">-->
+							<!--<i class="material-icons">chevron_right</i>-->
+							<!--</a>-->
+							<!--</li>-->
+							<!--</c:when>-->
+							<!--<c:otherwise>-->
+							<!--<li class="waves-effect">-->
+							<!--<a href="${changePageUrl}pageNumber=${reviews.pageNumber + 1}&pageSize=${reviews.pageSize}">-->
+							<!--<i class="material-icons">chevron_right</i>-->
+							<!--</a>-->
+							<!--</li>-->
+							<!--</c:otherwise>-->
+							<!--</c:choose>-->
+							<!--</c:if>-->
+						</ul>
+					</div>
+					<!--END PAGINATION-->
+				</div>
+
+				<!--NO REVIEWS-->
+				<h5  ng-if="reviews.overAllAmountOfElements == 0" class="center">No reviews yet!
+					<a ng-if="!isLoggedIn()" href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!
+				</h5>
+
+
+				<!--Review button-->
+				<div ng-if="canWriteReview()" class="row">
+					<div class="col s12 center">
+						<a ng-href="#write-review?id={{game.id}}" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--END REVIEWS-->
+	</div>
+</main>
+
+<script type="text/javascript">
+	//	$(function() {
+	//		$("#pageSize").on("change", function() {
+	//			window.location = "${changePageUrl}pageSize=" + $(this).val();
+	//		});
+	//
+	//		$(".delete-button").on('click', function (event) {
+	//			var reviewId = $(this).data('reviewId');
+	//			//Create an inline form and submit it to redirect with POST
+	//			$("<form action='<c:url value="/delete-review" />' method='POST'> \
+	//                <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
+	//                <input type='hidden' name='returnUrl' value='/reviews" + window.location.search + "'/> \
+	//               </form>").submit();
+	//		});
+	//	});
+</script>

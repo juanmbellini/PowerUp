@@ -7,6 +7,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         $scope.gameId = $location.search().id;
         $scope.game = null;
 
+
+
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(game) {
                 $scope.game = game;
@@ -56,7 +58,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
          *                 REVIEWS
          * ****************************************/
         $scope.reviews = null;
-
         $scope.$on('gameFound', function() {
             Restangular.all('reviews').getList({gameId: $scope.game.id}).then(function (reviews) {
                 $scope.reviews = reviews;
@@ -101,7 +102,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         $scope.deleteReview = function(review) {
             // TODO implement
-            $log.info("TODO: Delete review on click");
+            $log.info('TODO: Delete review on click');
             // Restangular.one("reviews", review.id).remove().then(function(data) {
             //     $log.info("Success: ", data);
             // },
@@ -109,5 +110,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             //     $log.error("Error: ", error)
             // });
         };
+
+
     }]);
 });
