@@ -1,7 +1,6 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Game;
@@ -63,7 +62,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public Shelf create(long ownerId, String name, User creator) {
         if (creator == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateCreationPermission(owner, creator);
@@ -74,7 +73,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public void update(long ownerId, String name, String newName, User updater) {
         if (updater == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
@@ -91,7 +90,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public void delete(long ownerId, String name, User deleter) {
         if (deleter == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateDeletePermission(owner, deleter);
@@ -109,7 +108,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public void addGameToShelf(long ownerId, String shelfName, long gameId, User updater) {
         if (updater == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
@@ -120,7 +119,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public void removeGameFromShelf(long ownerId, String shelfName, long gameId, User updater) {
         if (updater == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
@@ -132,7 +131,7 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
     @Override
     public void clearShelf(long ownerId, String shelfName, User updater) {
         if (updater == null) {
-            throw new UnauthenticatedException();
+            throw new IllegalArgumentException();
         }
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);

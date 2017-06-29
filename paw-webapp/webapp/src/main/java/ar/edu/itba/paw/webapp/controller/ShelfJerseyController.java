@@ -1,9 +1,9 @@
 package ar.edu.itba.paw.webapp.controller;
 
 
-import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.dto.ShelfDto;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
 import ar.edu.itba.paw.webapp.interfaces.ShelfService;
@@ -19,6 +19,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import static ar.edu.itba.paw.webapp.controller.ShelfJerseyController.END_POINT;
 
@@ -109,7 +110,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         if (shelfDto == null) {
             throw new MissingJsonException();
         }
-        final Shelf shelf = shelfService.create(userId, shelfDto.getName(), sessionService.getCurrentUser());
+        final Shelf shelf = shelfService.create(userId, shelfDto.getName(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getName())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
@@ -130,7 +132,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("shelfName", shelfName, name -> name == null));
 
-        shelfService.update(userId, shelfName, shelfDto.getName(), sessionService.getCurrentUser());
+        shelfService.update(userId, shelfName, shelfDto.getName(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getBaseUriBuilder()
                 .path(UserJerseyController.END_POINT)   // Appends users endpoint
                 .path(Long.toString(userId))            // Appends user id
@@ -149,7 +152,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
                 .addParameter("shelfName", shelfName, name -> name == null));
-        shelfService.delete(userId, shelfName, sessionService.getCurrentUser());
+        shelfService.delete(userId, shelfName,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
@@ -196,7 +200,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                 .addParameter("userId", userId, id -> id <= 0)
                 .addParameter("shelfName", shelfName, name -> name == null));
 
-        shelfService.addGameToShelf(userId, shelfName, shelfGameDto.getGameId(), sessionService.getCurrentUser());
+        shelfService.addGameToShelf(userId, shelfName, shelfGameDto.getGameId(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelfGameDto.getGameId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
@@ -215,7 +220,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                 .addParameter("shelfName", shelfName, name -> name == null)
                 .addParameter("gameId", gameId, id -> id <= 0));
 
-        shelfService.removeGameFromShelf(userId, shelfName, gameId, sessionService.getCurrentUser());
+        shelfService.removeGameFromShelf(userId, shelfName, gameId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
