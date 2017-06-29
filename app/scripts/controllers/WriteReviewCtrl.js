@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'csrf-service'], function(powerUp) {
+define(['powerUp', 'authService'], function(powerUp) {
 
-    powerUp.controller('WriteReviewCtrl', ['CsrfService', function($scope, $log, CsrfService) {
+    powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', function($scope, $location, $log, AuthService) {
         $scope.gameId = $location.search().id;
         $scope.game = null;
         $scope.criteria = ['story', 'graphics', 'audio', 'controls', 'fun'];
@@ -33,20 +33,13 @@ define(['powerUp', 'csrf-service'], function(powerUp) {
         $scope.submitReview = function() {
             //TODO validate input?
 
-            if(CsrfService.isTokenSet()) {
-                var review = { review: $scope.review };
-                $scope.criteria.forEach(function (criterium) {
-                    review[criterium + 'Score'] = $scope[criterium+'-score'];
-                });
-                Restangular.all('reviews').post(review, undefined, CsrfService.attachTokenHeader()).then(function(response) {
-                    $location.search('#game').search({id: $scope.gameId});
-                });
-            } else {
-                $log.debug('No CSRF token set, retrieving and retrying with token');
-                CsrfService.requestToken(function() {
-                    $scope.submitReview(); // Try again with the CSRF token set
-                });
-            }
+            var review = { review: $scope.review };
+            $scope.criteria.forEach(function (criterium) {
+                review[criterium + 'Score'] = $scope[criterium+'-score'];
+            });
+            Restangular.all('reviews').post(review).then(function(response) {
+                $location.search('#game').search({id: $scope.gameId});
+            });
         };
 
         angular.element('document').ready(function() {
