@@ -225,4 +225,18 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @DELETE
+    @Path("/{shelfName : .+}/" + GAMES_END_POINT)
+    public Response clearShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId")
+                               final long userId,
+                               @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
+                               final String shelfName) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("userId", userId, id -> id <= 0)
+                .addParameter("shelfName", shelfName, name -> name == null));
+        shelfService.clearShelf(userId, shelfName,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
+
 }
