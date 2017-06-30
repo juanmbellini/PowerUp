@@ -189,8 +189,8 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
 
     /**
      * Validates that the given {@code operator} can perform the given {@code operationName}
-     * on a {@link Shelf} whose owner is the given {@code owner}, according to the given
-     * {@link BiPredicate}. (which must implement the {@link BiPredicate#test(Object, Object)} in a way that it returns
+     * over a {@link Shelf} whose owner is the given {@code owner}, according to the given
+     * {@link BiPredicate} (which must implement the {@link BiPredicate#test(Object, Object)} in a way that it returns
      * {@code true} if the operator has permission to operate over the {@link Shelf} of the owner, or {@code false}
      * otherwise).
      *
