@@ -159,8 +159,10 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
      *
      * @param owner   The {@link User} that will be the future owner of the new {@link Shelf}.
      * @param creator The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code creator} does not have permission
+     *                               to create a {@link Shelf} for the {@code owner}.
      */
-    private void validateCreationPermission(final User owner, final User creator) {
+    private void validateCreationPermission(final User owner, final User creator) throws UnauthorizedException {
         validatePermission(owner, creator, "create",
                 (ownerUser, creatorUser) -> Long.compare(ownerUser.getId(), creatorUser.getId()) == 0);
     }
@@ -170,8 +172,10 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
      *
      * @param owner   The {@link User} owning the {@link Shelf}
      * @param updater The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code updater} does not have permission
+     *                               to update a {@link Shelf} owned by the {@code owner}.
      */
-    private void validateUpdatePermission(final User owner, final User updater) {
+    private void validateUpdatePermission(final User owner, final User updater) throws UnauthorizedException {
         validatePermission(owner, updater, "update",
                 (ownerUser, updaterUser) -> Long.compare(ownerUser.getId(), updaterUser.getId()) == 0);
     }
@@ -181,8 +185,10 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
      *
      * @param owner   The {@link User} owning the {@link Shelf}
      * @param deleter The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code deleter} does not have permission
+     *                               to delete a {@link Shelf} owned by the {@code owner}.
      */
-    private void validateDeletePermission(final User owner, final User deleter) {
+    private void validateDeletePermission(final User owner, final User deleter) throws UnauthorizedException {
         validatePermission(owner, deleter, "delete",
                 (ownerUser, deleterUser) -> Long.compare(ownerUser.getId(), deleterUser.getId()) == 0);
     }
