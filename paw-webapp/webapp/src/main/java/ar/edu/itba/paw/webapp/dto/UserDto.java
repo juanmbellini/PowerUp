@@ -18,7 +18,7 @@ public class UserDto extends EntityDto {
 
 
     @XmlElement
-    private String username;
+    private String userName;
 
     @XmlElement
     private String email;
@@ -33,13 +33,13 @@ public class UserDto extends EntityDto {
 
     public UserDto(User user) {
         super(user.getId());
-        username = user.getUsername();
+        userName = user.getUsername();
         email = user.getEmail();
     }
 
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
 

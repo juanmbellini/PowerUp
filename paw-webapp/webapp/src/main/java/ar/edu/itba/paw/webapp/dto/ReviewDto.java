@@ -26,13 +26,16 @@ public class ReviewDto extends EntityDto {
     private Long userId;
 
     @XmlElement
-    private String username;
+    private String userName;
 
     @XmlElement
     private Long gameId;
 
     @XmlElement
     private String gameName;
+
+    @XmlElement
+    private String gameCoverPictureUrl;
 
     @XmlElement
     private String date;
@@ -69,9 +72,10 @@ public class ReviewDto extends EntityDto {
     public ReviewDto(Review review, UriBuilder baseUri) {
         super(review.getId());
         this.userId = review.getUser().getId();
-        this.username = review.getUser().getUsername();
+        this.userName = review.getUser().getUsername();
         this.gameId = review.getGame().getId();
         this.gameName = review.getGame().getName();
+        this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
         this.date = review.getDate().toString();
         this.body = review.getReview();
         this.storyScore = review.getStoryScore();
@@ -96,8 +100,8 @@ public class ReviewDto extends EntityDto {
         return userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public Long getGameId() {
@@ -106,6 +110,10 @@ public class ReviewDto extends EntityDto {
 
     public String getGameName() {
         return gameName;
+    }
+
+    public String getGameCoverPictureUrl() {
+        return gameCoverPictureUrl;
     }
 
     public String getDate() {
