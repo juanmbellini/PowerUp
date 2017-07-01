@@ -134,13 +134,19 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     }
 
     @OPTIONS
-    public Response pictureOptions() {
+    public Response reviewsOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
                 .type(MediaType.TEXT_HTML)                                              //Required by CORS
                 .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
                 .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
         return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}")
+    public Response reviewOptions() {
+        return reviewsOptions();
     }
 
 }

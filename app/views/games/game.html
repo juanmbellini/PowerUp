@@ -241,7 +241,7 @@
                                 <span class="title">{{review.username}}</span>
                                 <p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
                                 <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
-                                <p><a href="#reviews?userId={{review.id}}">Other reviews by {{review.username}}</a></p>
+                                <p><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
                                 <br/>
                                 <div class="row">
                                     <p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
@@ -265,10 +265,11 @@
                         </ul>
                     </div>
                     <!--End review list-->
-
-                    <div class="row" ng-if="canSubmitReview()">
+                    <div ng-if="canWriteReview" class="row">
                         <div class="col s12 center">
-                            <a href="#write-review?id={{game.id}}" class="center btn waves-effect waves-light offset-s4">Write a Review <i class="material-icons right">send</i></a>
+                            <a ng-href="#write-review?id={{game.id}}"
+                               class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+                                    class="material-icons right">send</i></a>
                         </div>
                     </div>
                 </div>

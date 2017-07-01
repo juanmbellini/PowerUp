@@ -1,12 +1,13 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$filter', function($scope, $location, $log, Restangular, AuthService, $filter) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
         $scope.game = null;
 
+        $scope.canWriteReview = false;
 
 
         $scope.findGame = function(gameId) {
@@ -61,24 +62,29 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         $scope.$on('gameFound', function() {
             Restangular.all('reviews').getList({gameId: $scope.game.id}).then(function (reviews) {
                 $scope.reviews = reviews;
+                console.log('found review ', $scope.reviews);
+                $scope.checkCanWriteReview();
             }, function() {
                 console.log('There was an error getting reviews');
             });
         });
 
-        $scope.canWriteReview = function() {
-            if ($scope.reviews === null || !AuthService.isLoggedIn()) {
-                return false;
+        $scope.checkCanWriteReview = function() {
+            if (!AuthService.isLoggedIn()) {
+                $scope.canWriteReview = false;
             } else {
-                // Can submit review if user hasn't made one already. For now we just check that the retrieved reviews don't have the current user as author.
-                // TODO consider hitting API for this since reviews may be paginated
-                var currentUserId = AuthService.getCurrentUser().id;
-                $scope.reviews.forEach(function(review) {
-                    if (currentUserId === review.user.id) {
-                        return false;
+                var currentUserUsername = AuthService.getCurrentUser().username;
+                Restangular.all('reviews').getList({userName: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
+                    if (reviews.length > 0) {
+                        $scope.canWriteReview = false;
+                    } else {
+                        $scope.canWriteReview = true;
                     }
+                }, function(response) {
+                    console.log('There was an error getting reviews, ', response);
+                    $scope.canWriteReview = false;
+                    return;
                 });
-                return true;
             }
         };
 
@@ -101,14 +107,17 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         };
 
         $scope.deleteReview = function(review) {
-            // TODO implement
-            $log.info('TODO: Delete review on click');
-            // Restangular.one("reviews", review.id).remove().then(function(data) {
-            //     $log.info("Success: ", data);
-            // },
-            // function(error) {
-            //     $log.error("Error: ", error)
-            // });
+            Restangular.one('reviews', review.id).remove().then(function(data) {
+                $log.info('Success: ', data);
+                $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                    return reviewToFilter.id !== review.id;
+                });
+            },
+            function(error) {
+                $log.error('Error: ', error);
+            },function () {
+                    checkCanWriteReview();
+            });
         };
 
 

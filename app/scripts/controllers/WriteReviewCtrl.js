@@ -38,14 +38,17 @@ define(['powerUp', 'authService'], function(powerUp) {
         $scope.submitReview = function() {
             // TODO validate input?
 
-            var review = {body: $scope.review, gameId:$scope.gameId};
+            var review = {body: $scope.review, gameId: $scope.gameId};
             $scope.criteriaNames.forEach(function(criterionName) {
                 var criterion = $scope.criteria[criterionName];
                 review[criterion.name + 'Score'] = criterion.score;
             });
             console.log('Submiting Review', review);
             Restangular.all('reviews').post(review).then(function(response) {
-                $location.search('#game').search({id: $scope.gameId});
+                // $location.search('#game').search({id: $scope.gameId});
+                $location.search({id: $scope.gameId});
+                $location.path('game');
+
             }, function(response) {
                 console.log('Error with status code', response.status); // TODO handle error
             });

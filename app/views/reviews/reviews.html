@@ -9,12 +9,12 @@
 					<span ng-if="user">
 						by <a ng-href="#profile?username={{user.username}}"> {{user.username}} <img
 							class="circle" style="width:50px; height:50px; vertical-align: middle;"
-							ng-src="{{apiLocation}}/users/{{user.userId}}/picture"/></a>
+							ng-src="{{apiLocation}}/users/{{user.id}}/picture"/></a>
 					</span>
 				</span>
 			</h2>
 			<!--PAGE SIZE-->
-			<div ng-if="reviews.overAllAmountOfElements > 0" class="row">
+			<div ng-if="reviews.length > 0" class="row">
 				<span>
 					<div class="input-field col s2 offset-s5">
 						<select class="browser-default" id="pageSize">
@@ -28,10 +28,10 @@
 		<!--REVIEWS-->
 		<div class="section no-pad-top">
 			<div class="row">
-				<div ng-if="reviews.overAllAmountOfElements > 0">
+				<div ng-if="reviews.length > 0">
 					<!--REVIEWS LIST-->
 					<ul class="collection reviews-list">
-						<li ng-repeat="review in reviews.data" class="collection-item avatar">
+						<li ng-repeat="review in reviews" class="collection-item avatar">
 							<div ng-if="!user && game">
 								<!--Viewing reviews by game, variable is user-->
 								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
@@ -50,10 +50,10 @@
 							<div ng-if="user && game">
 								<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
 								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
-									 alt="{{review.userName}}" class="circle">
+									 alt="{{review.username}}" class="circle">
 								<span class="title wrap-text">
 											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a> | <a
-										ng-href="#profile?userId={{review.userId}}">{{review.userName}}</a>
+										ng-href="#profile?userId={{review.userId}}">{{review.username}}</a>
 										</span>
 							</div>
 							<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
@@ -64,13 +64,13 @@
 							</a>
 							<p class="wrap-text">
 								<a ng-if="!user && game" ng-href="#reviews?userId={{review.userId}}">Other reviews by
-									{{review.userName}}</a>
+									{{review.username}}</a>
 								<a ng-if="user && !game" ng-href="#reviews?gameId={{review.gameId}}">Other
 									{{review.gameName}} reviews</a>
 								<span ng-if="user && game">
 									<a ng-href="#reviews?gameId={{review.gameId}}">Other
 									{{review.gameName}} reviews</a> | <a ng-href="#reviews?userId={{review.userId}}">Other
-								reviews by {{review.userName}}</a>
+								reviews by {{review.username}}</a>
 								</span>
 							</p>
 							<br/>
@@ -167,15 +167,17 @@
 				</div>
 
 				<!--NO REVIEWS-->
-				<h5  ng-if="reviews.overAllAmountOfElements == 0" class="center">No reviews yet!
+				<h5  ng-if="reviews.length == 0" class="center">No reviews yet!
 					<a ng-if="!isLoggedIn()" href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!
 				</h5>
 
 
 				<!--Review button-->
-				<div ng-if="canWriteReview()" class="row">
+				<div ng-if="!user && canWriteReview" class="row">
 					<div class="col s12 center">
-						<a ng-href="#write-review?id={{game.id}}" class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i class="material-icons right">send</i></a>
+						<a ng-href="#write-review?id={{game.id}}"
+						   class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+								class="material-icons right">send</i></a>
 					</div>
 				</div>
 			</div>
