@@ -9,8 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
@@ -30,6 +29,67 @@ import java.util.stream.IntStream;
     static <T> T findSingle(EntityManager entityManager, Class<T> klass, long id) {
         return entityManager.find(klass, id);
     }
+
+    /**
+     * Returns the object of the given {@code klass} with the given {@code fieldName} set to the given {@code value}.
+     * If more than one object matches, the first one is returned.
+     * If no object matches, {@code null} is returned.
+     *
+     * @param em        The entity manager.
+     * @param klass     The class of the returned object.
+     * @param fieldName The field name to use as a search criteria
+     * @param value     The value of the field.
+     * @param <T>       The type of the object to be returned.
+     * @param <E>       The type of the value
+     * @return The first element with the given {@code fieldName} set to {@code value}, or {@code null} if not present.
+     */
+    /* package*/
+    static <T, E> T findByField(EntityManager em, Class<T> klass, String fieldName, E value) {
+        List<T> result = em.createQuery("FROM " + klass.getSimpleName() +
+                " WHERE " + fieldName + " = ?0", klass).setParameter(0, value).getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
+
+    /**
+     * Returns the object of the given {@code klass} that matches the given {@code fieldsAndValues}.
+     * If more than one object matches, the first one is returned.
+     * If no object matches, {@code null} is returned.
+     *
+     * @param em              The entity manager.
+     * @param klass           The class of the returned object.
+     * @param fieldsAndValues A map containing field names as keys and values for those fields as values.
+     * @param <T>             The type of the object to be returned.
+     * @return The first element matching the given {@code fieldsAndValues}, or {@code null} if not present.
+     */
+    /* package */
+    static <T> T findByFields(EntityManager em, Class<T> klass, Map<String, Object> fieldsAndValues) {
+        if (fieldsAndValues == null) {
+            throw new IllegalArgumentException();
+        }
+        // Create query string
+        StringBuilder str = new StringBuilder().append("FROM ").append(klass.getSimpleName());
+        Iterator<Map.Entry<String, Object>> it = fieldsAndValues.entrySet().iterator();
+        int paramNumber = 0;
+        Map<Integer, Object> params = new HashMap<>();
+        if (it.hasNext()) {
+            Map.Entry<String, Object> entry = it.next();
+            str.append(" WHERE ").append(entry.getKey()).append(" = ?").append(paramNumber);
+            params.put(paramNumber, entry.getValue());
+            paramNumber++;
+        }
+        while (it.hasNext()) {
+            Map.Entry<String, Object> entry = it.next();
+            str.append(" AND ").append(entry.getKey()).append(" = ?").append(paramNumber);
+            params.put(paramNumber, entry.getValue());
+            paramNumber++;
+        }
+
+        final TypedQuery<T> query = em.createQuery(str.toString(), klass);
+        params.entrySet().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
+        List<T> result = query.getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
+
 
     /**
      * Attempts to find an entity by ID. If found, returns it, otherwise throws exception.
@@ -193,6 +253,51 @@ import java.util.stream.IntStream;
     }
 
 
+    /**
+     * Retrieves a {@link Page} applying conditions
+     *
+     * @param em            The entity manager.
+     * @param klass         The entity's class.
+     * @param baseQuery     The base query.
+     * @param baseAlias     The alias used for the entity in the base query.
+     * @param countField    The field used to count.
+     * @param conditions    A list containing conditions to be applied.
+     *                      Check {@link DaoHelper.ConditionAndParameterWrapper}
+     * @param pageNumber    The number of page.
+     * @param pageSize      The size of page.
+     * @param sortByField   The field used to sort.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param <T>           The type of the entity.
+     * @return The page containing matched data.
+     */
+    static <T> Page<T> findPageWithConditions(EntityManager em, Class<T> klass,
+                                              String baseQuery, String baseAlias, String countField,
+                                              List<ConditionAndParameterWrapper> conditions,
+                                              int pageNumber, int pageSize, String sortByField,
+                                              SortDirection sortDirection) {
+        return findPageWithConditions(em, klass, new StringBuilder(baseQuery), baseAlias, countField, conditions,
+                pageNumber, pageSize, sortByField, sortDirection);
+
+    }
+
+
+    /**
+     * Retrieves a {@link Page} applying conditions
+     *
+     * @param em            The entity manager.
+     * @param klass         The entity's class.
+     * @param baseQuery     A {@link StringBuilder} containing the base query.
+     * @param baseAlias     The alias used for the entity in the base query.
+     * @param countField    The field used to count.
+     * @param conditions    A list containing conditions to be applied.
+     *                      Check {@link DaoHelper.ConditionAndParameterWrapper}
+     * @param pageNumber    The number of page.
+     * @param pageSize      The size of page.
+     * @param sortByField   The field used to sort.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param <T>           The type of the entity.
+     * @return The page containing matched data.
+     */
     static <T> Page<T> findPageWithConditions(EntityManager em, Class<T> klass,
                                               StringBuilder baseQuery, String baseAlias, String countField,
                                               List<ConditionAndParameterWrapper> conditions,
