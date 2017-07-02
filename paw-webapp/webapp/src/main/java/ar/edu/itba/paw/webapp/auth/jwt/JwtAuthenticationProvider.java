@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.auth.jwt;
 
 import ar.edu.itba.paw.webapp.interfaces.JwtService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -45,7 +46,8 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
         String token = jwtAuthenticationToken.getToken();
 
-        String authenticatedUsername = jwtHelper.parseToken(token).getSubject();
+        Claims tokenClaims = jwtHelper.parseToken(token);
+        String authenticatedUsername = tokenClaims == null ? null : tokenClaims.getSubject();
         if (authenticatedUsername == null) {
             throw new MalformedJwtException("JWT token is invalid");
         }
