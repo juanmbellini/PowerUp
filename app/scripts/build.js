@@ -29,7 +29,8 @@ require.config({
         'csrf-service': 'services/CsrfService',
         'angular-slick': '../../bower_components/angular-slick/dist/slick',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
-        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload'
+        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
+        loadingCircle: 'directives/loading-circle'
     },
     shim: {
         jquery: {
@@ -114,6 +115,11 @@ require.config({
             ]
         },
         'ng-file-upload': {
+            deps: [
+                'angular'
+            ]
+        },
+        loadingCircle: {
             deps: [
                 'angular'
             ]
