@@ -30,7 +30,7 @@
                         <li ng-repeat="thread in threads" class="collection-item avatar">
 
                             <img ng-src="{{apiLocation}}/users/{{thread.creatorId}}/picture" alt="{{thread.creatorUsername}}" class="circle">
-                            <a class="title truncate" ng-href="#thread?id={{thread.id}}">{{thread.title}}</a>
+                            <a class="title truncate" ng-href="#thread/{{thread.id}}">{{thread.title}}</a>
 
                             <!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
                             <p>Submitted TODO created date {{thread.createdAt}}<!--createdAt.Time--> by {{thread.creatorUsername}}</p>

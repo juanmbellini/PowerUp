@@ -1,9 +1,11 @@
 'use strict';
 define(['powerUp'], function(powerUp) {
 
-    powerUp.controller('ThreadCtrl', function($scope, Restangular, AuthService, $location) {
+    powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', 'Restangular', 'AuthService', function($scope, $location, $routeParams, Restangular, AuthService) {
         Restangular.setFullResponse(false);
         $scope.thread = {creator: {username: '<h1>Hello</h1>', id: '1'},id: 1,comments: [],initialComment: 'MI PRIMER COMENTARIO',title: 'EL TITULO', createdAt: '2016-1-13', likeCount: 3};
+
+        $scope.threadId = $routeParams.threadId;
 
         $scope.isLoggedIn = AuthService.isLoggedIn;
         $scope.getCurrentUser = AuthService.getCurrentUser;
@@ -27,5 +29,5 @@ define(['powerUp'], function(powerUp) {
         $scope.editComment = function() {
 
         };
-    });
+    }]);
 });
