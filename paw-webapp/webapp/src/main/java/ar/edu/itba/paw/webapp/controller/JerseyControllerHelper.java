@@ -63,8 +63,9 @@ import java.util.stream.Collectors;
     static /* package */ void checkParameters(ParametersWrapper builder)
             throws IllegalParameterValueException {
         Map<String, ValueAndPredicateWrapper> parameters = builder.getParameters();
-        Set<String> wrongParameters = parameters.keySet().stream()
-                .filter(parameter -> parameters.get(parameter).test())
+        Set<String> wrongParameters = parameters.entrySet().stream()
+                .filter(entry -> entry.getValue().test())
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
         if (!wrongParameters.isEmpty()) {
             throw new IllegalParameterValueException(wrongParameters);

@@ -4,6 +4,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.ReviewDto;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewService;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
@@ -18,11 +19,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import static ar.edu.itba.paw.webapp.controller.ReviewJerseyController.END_POINT;
 
 /**
- * API endpoint for user management.
+ * API endpoint for review management.
  */
 @Path(END_POINT)
 @Component
@@ -51,7 +53,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     // ================ API methods ================
 
 
-    // ======== Basic shelf operation ========
+    // ======== Basic review operation ========
 
 
     @GET
@@ -100,7 +102,8 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         }
         Review review = reviewService.create(reviewDto.getGameId(), reviewDto.getBody(),
                 reviewDto.getStoryScore(), reviewDto.getGraphicsScore(), reviewDto.getAudioScore(),
-                reviewDto.getControlsScore(), reviewDto.getFunScore(), sessionService.getCurrentUser());
+                reviewDto.getControlsScore(), reviewDto.getFunScore(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(review.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
@@ -112,7 +115,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         checkUpdateValues(reviewId, "id", reviewDto);
         reviewService.update(reviewId, reviewDto.getBody(), reviewDto.getStoryScore(), reviewDto.getGraphicsScore(),
                 reviewDto.getAudioScore(), reviewDto.getControlsScore(), reviewDto.getFunScore(),
-                sessionService.getCurrentUser());
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
@@ -122,7 +125,8 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         if (reviewId <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        reviewService.delete(reviewId, sessionService.getCurrentUser());
+        reviewService.delete(reviewId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 

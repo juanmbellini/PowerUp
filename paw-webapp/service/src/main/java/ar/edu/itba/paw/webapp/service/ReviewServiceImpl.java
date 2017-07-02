@@ -6,6 +6,7 @@ import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
 import ar.edu.itba.paw.webapp.interfaces.ReviewService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
@@ -16,7 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
+import java.util.Optional;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,61 +58,140 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     public Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                          Integer controlsScore, Integer funScore, User reviewer)
             throws NoSuchEntityException, ValidationException {
-
-        // If no game id is sent, just call create, which will throw a ValidationException with all errors.
-        if (gameId != null) {
-            // TODO: create method for checking existence
-            if (!reviewDao.getReviews(gameId, null, reviewer.getId(), null, 1, 1, ReviewDao.SortingType.GAME_ID,
-                    SortDirection.ASC).getData().isEmpty()) {
-                throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
-            }
+        if (reviewer == null) {
+            throw new IllegalArgumentException();
         }
-        // If gameId is null, check will be handled by model layer together with other errors that might occur.
-        return reviewDao.create(reviewer, gameId == null ? null : gameDao.findById(gameId),
+        // Holds a Game if gameId is not null and a Game exists with that id, else will hold null.
+        Optional<Game> gameOptional = getGameOptional(gameId);
+        // Will check existence if game exists.
+        gameOptional.ifPresent(game -> validateReviewExistence(game, reviewer));
+        // If optional holds null, ask for null. Else ask for the game it holds.
+        return reviewDao.create(reviewer, gameOptional.orElse(null),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
 
     @Override
     public void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                        Integer controlsScore, Integer funScore, User updater) {
-        reviewDao.update(checkReviewValuesAndAuthoring(reviewId, updater),
-                reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        if (updater == null) {
+            throw new IllegalArgumentException();
+        }
+        final Review review = getReview(reviewId);
+        validateUpdatePermission(review, updater);
+        reviewDao.update(review, reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
     }
 
     @Override
     public void delete(long reviewId, User deleter) {
-        reviewDao.delete(checkReviewValuesAndAuthoring(reviewId, deleter));
+        if (deleter == null) {
+            throw new IllegalArgumentException();
+        }
+        getReviewOptional(reviewId).ifPresent(review -> {
+            validateDeletePermission(review, deleter);
+            reviewDao.delete(review);
+        });
     }
 
 
-
-
-    /*
-     * Helpers
+    /**
+     * Returns an optional holding a possible {@link Game} (if it exists and if {@code gameId} is not null).
+     *
+     * @param gameId The {@link Game} id.
+     * @return The Optional of {@link Game} possibly holding a {@link Game} with the given {@code gameId}.
      */
+    private Optional<Game> getGameOptional(Long gameId) {
+        return Optional.ofNullable(gameId).map(gameDao::findById);
+    }
 
     /**
-     * Checks if the values are correct (including authoring).
-     * Upon success,  it returns the {@link Review} with the given {@code reviewId}. Otherwise, an exception is thrown.
+     * Checks that the given {@code updater} has permission to update the given {@link Review}.
      *
-     * @param reviewId The review id.
-     * @param user     The user.
-     * @return The review with the given {@code reviewId}.
-     * @throws NoSuchEntityException If no {@link Review} exists with the given {@code reviewId}.
-     * @throws UnauthorizedException If the given {@link User} is not the creator
-     *                               of the {@link Review} with the given {@code reviewId}.
+     * @param review  The {@link Review} to be updated.
+     * @param updater The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code updater} does not have permission to update the given {@code review}.
      */
-    private Review checkReviewValuesAndAuthoring(long reviewId, User user) throws NoSuchEntityException,
-            UnauthorizedException {
-        Review review = reviewDao.findById(reviewId);
-        if (review == null) {
-            throw new NoSuchEntityException(Collections.singletonList("reviewId"));
+    private void validateUpdatePermission(final Review review, final User updater) throws UnauthorizedException {
+        validatePermission(review, updater, "update",
+                (reviewLambda, updaterUser) -> Long.compare(reviewLambda.getUser().getId(), updaterUser.getId()) == 0);
+    }
+
+    /**
+     * Checks that the given {@code deleter} has permission to delete the given {@link Review}.
+     *
+     * @param review  The {@link Review} to be deleted.
+     * @param deleter The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code deleter} does not have permission to delete the given {@code review}.
+     */
+    private void validateDeletePermission(final Review review, final User deleter) throws UnauthorizedException {
+        validatePermission(review, deleter, "delete",
+                (reviewLambda, deleterUser) -> Long.compare(reviewLambda.getUser().getId(), deleterUser.getId()) == 0);
+    }
+
+    /**
+     * Validates that the given {@code operator} can perform the given {@code operationName}
+     * over the given {@link Review}, according to the given {@link BiPredicate}
+     * (which must implement the {@link BiPredicate#test(Object, Object)} in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Review}, or {@code false} otherwise).
+     *
+     * @param review        The {@link Review} to be operated over.
+     * @param operator      The {@link User} who is operating over the {@link Review}.
+     * @param operationName A {@link String} indicating the operation being done (for informative purposes).
+     * @param testFunction  A {@link BiPredicate} that implements logic to check if the operation is allowed.
+     * @throws UnauthorizedException If the {@code operator} {@link User} does not have permission to operate over
+     *                               the given {@link Review}.
+     * @implNote The {@link BiPredicate#test(Object, Object)} must be implemented in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Review}, or {@code false} otherwise.
+     */
+    private void validatePermission(final Review review, final User operator,
+                                    String operationName, BiPredicate<Review, User> testFunction)
+            throws UnauthorizedException {
+        if (review == null || operator == null) {
+            throw new IllegalArgumentException("Review and Operator must not be null");
         }
-        final long userId = user.getId();
-        if (userId != review.getUser().getId()) {
-            throw new UnauthorizedException("Review #" + reviewId + " does not belong to user #" + userId);
+        if (testFunction.negate().test(review, operator)) {
+            throw new UnauthorizedException("User #" + operator.getId() + " does not have permission" +
+                    " to " + operationName + " review #" + review.getId());
         }
-        return review;
+    }
+
+
+    /**
+     * Checks whether a {@link Review} was written to the given {@link Game}, by the given {@link User}.
+     *
+     * @param game The {@link Game} to check if it was reviewed by the given {@code user}.
+     * @param user The {@link User} to check if it wrote a review for the given {@code game}.
+     */
+    private void validateReviewExistence(Game game, User user) {
+        if (game == null || user == null) {
+            throw new IllegalArgumentException("Game and user must not be null");
+        }
+        // TODO: create method for checking existence
+        if (!reviewDao.getReviews(game.getId(), null, user.getId(), null, 1, 1, ReviewDao.SortingType.GAME_ID,
+                SortDirection.ASC).getData().isEmpty()) {
+            throwValidationException(Stream.of(GAME_ALREADY_REVIEWED_BY_USER).collect(Collectors.toList()));
+        }
+    }
+
+
+    /**
+     * Retrieves the {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId The {@link Review} id.
+     * @return The {@link Review} with the given {@code reviewId}.
+     * @throws NoSuchEntityException If no {@link Review} exists with the given {@code reviewId}.
+     */
+    private Review getReview(long reviewId) throws NoSuchEntityException {
+        return getReviewOptional(reviewId).orElseThrow(NoSuchEntityException::new);
+    }
+
+    /**
+     * Retrieves a nullable {@link Optional} of {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId The {@link Review} id.
+     * @return The nullable {@link Optional}.
+     */
+    private Optional<Review> getReviewOptional(long reviewId) {
+        return Optional.ofNullable(reviewDao.findById(reviewId));
     }
 
 

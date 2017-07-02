@@ -49,7 +49,7 @@ public class SessionServiceImpl implements SessionService {
         if(username == null) {
             return null;
         }
-        //Avoid unnecesary extra DB calls by caching the current user.
+        // Avoid unnecessary extra DB calls by caching the current user.
         if(currentUser == null || !currentUser.getUsername().equals(username)) {
             currentUser = userService.findByUsername(username);
         }
