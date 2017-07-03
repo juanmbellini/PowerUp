@@ -29,9 +29,9 @@
                 </div>
                 <div class="row"></div>
                 <div class='input-field col s12'>
-                    <form:textarea path="initialComment" cssClass="materialize-textarea" />
-                    <form:label path="initialComment">Initial comment (optional)</form:label>
-                    <form:errors path="initialComment" cssClass="formError" element="p"/>
+                    <form:textarea path="body" cssClass="materialize-textarea" />
+                    <form:label path="body">Initial comment (optional)</form:label>
+                    <form:errors path="body" cssClass="formError" element="p"/>
                 </div>
             </div>
 

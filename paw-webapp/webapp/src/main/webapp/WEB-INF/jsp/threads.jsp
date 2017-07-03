@@ -45,7 +45,7 @@
                                 <p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>
                                 <br>
                                 <p class="truncate">
-                                    <c:out value="${thread.initialComment}" />
+                                    <c:out value="${thread.body}" />
                                 </p>
                                 <%--Un/like section--%>
                                 <span href="#!" class="secondary-content"><b>${thread.likeCount}</b>&nbsp;&nbsp;

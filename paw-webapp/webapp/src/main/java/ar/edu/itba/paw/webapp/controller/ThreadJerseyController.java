@@ -19,6 +19,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * API endpoint for thread management.
@@ -79,9 +80,9 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         if (id <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        final Thread thread = threadService.findById(id);
-        return thread == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new ThreadDto(thread)).build();
+        return Optional.ofNullable(threadService.findById(id))
+                .map(thread -> Response.ok(new ThreadDto(thread)).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @POST

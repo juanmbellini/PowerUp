@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikesCount;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -24,8 +25,9 @@ public interface ThreadService {
      * @param sortDirection  The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter, int pageNumber, int pageSize,
-                            ThreadDao.SortingType sortingType, SortDirection sortDirection);
+    Page<ThreadWithLikesCount> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                          int pageNumber, int pageSize,
+                                          ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
      * Creates a new {@link Thread} with the specified data.
@@ -65,7 +67,7 @@ public interface ThreadService {
      * @param threadId The ID to match.
      * @return The matching thread or {@code null} if not found.
      */
-    Thread findById(long threadId);
+    ThreadWithLikesCount findById(long threadId);
 
     /**
      * Marks a like for a given thread by a given user, if not already liked.

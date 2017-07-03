@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikesCount;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -51,11 +55,22 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                   int pageNumber, int pageSize,
-                                   ThreadDao.SortingType sortingType, SortDirection sortDirection) {
-        return threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
+    public Page<ThreadWithLikesCount> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                                 int pageNumber, int pageSize,
+                                                 ThreadDao.SortingType sortingType, SortDirection sortDirection) {
+        final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        final Map<Thread, Long> likesCounts = threadLikeDao.countLikes(page.getData());
+
+        return new Page.Builder<ThreadWithLikesCount>()
+                .setTotalPages(page.getTotalPages())
+                .setOverAllAmountOfElements(page.getOverAllAmountOfElements())
+                .setPageSize(page.getPageSize())
+                .setPageNumber(page.getPageNumber())
+                .setData(page.getData().stream()
+                        .map(thread -> new ThreadWithLikesCount(thread, likesCounts.get(thread)))
+                        .collect(Collectors.toList()))
+                .build();
     }
 
     @Override
@@ -75,8 +90,10 @@ public class ThreadServiceImpl implements ThreadService {
 
 
     @Override
-    public Thread findById(long threadId) {
-        return threadDao.findById(threadId);
+    public ThreadWithLikesCount findById(long threadId) {
+        return Optional.ofNullable(threadDao.findById(threadId))
+                .map(thread -> new ThreadWithLikesCount(thread, thread.getLikeCount()))
+                .orElse(null);
     }
 
 

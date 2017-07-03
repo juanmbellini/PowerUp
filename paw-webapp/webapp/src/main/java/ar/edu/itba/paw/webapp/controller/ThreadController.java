@@ -64,13 +64,13 @@ public class ThreadController extends BaseController {
     @RequestMapping("/thread")
     public ModelAndView thread(@RequestParam(name = "id") long threadId, @ModelAttribute("commentForm") final CommentForm form) {
         ModelAndView mav = new ModelAndView("thread");
-        Thread thread = threadService.findById(threadId);
-        if (thread == null) {
-            mav = new ModelAndView("error404");
-        } else {
-            mav.addObject("thread", thread);
-            form.setThreadId(thread.getId());
-        }
+//        Thread thread = threadService.findById(threadId);
+//        if (thread == null) {
+//            mav = new ModelAndView("error404");
+//        } else {
+//            mav.addObject("thread", thread);
+//            form.setThreadId(thread.getId());
+//        }
         return mav;
     }
 

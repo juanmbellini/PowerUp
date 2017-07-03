@@ -28,14 +28,14 @@
                     <span class="title wrap-text">Submitted by <a href="<c:url value="/profile?username=${thread.creator.username}" />"><c:out value="${thread.creator.username}" /></a></span>
                     <p><fmt:formatDate value="${thread.createdAt.time}" type="both" /></p>
                     <br />
-                    <p class="preserve-newlines wrap-text"><c:out value="${thread.initialComment}" /></p>
+                    <p class="preserve-newlines wrap-text"><c:out value="${thread.body}" /></p>
                     <%--Thread action links--%>
                     <c:if test="${isLoggedIn && thread.creator.id == currentUser.id}">
                         <div class="action-links">
                             <%--Rename link--%>
                             <a href="#!" class="edit-thread-title-link" data-thread-id="${thread.id}" data-thread-title="${thread.title}">Change Title</a>
                             <%--Edit link--%>
-                            | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-comment="<c:out value="${thread.initialComment}"/>" data-form-shown="false">Edit Comment</a>
+                            | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-comment="<c:out value="${thread.body}"/>" data-form-shown="false">Edit Comment</a>
                             <%--Delete link--%>
                             | <a href="#!" class="delete-thread-link" data-thread-id="${thread.id}">Delete</a>
                         </div>
@@ -134,7 +134,7 @@
         $(".edit-thread-initial-comment-link").on("click", function (event) {
             var $me = $(this);
             if (!$me.data("form-shown")) {
-                var initialComment = $me.data("thread-initial-comment");
+                var body = $me.data("thread-initial-comment");
                 var $form = $("<form></form>");
                 $form.attr("action", "<c:url value="/edit-thread-initial-comment" />");
                 $form.attr("method", "POST");
@@ -146,7 +146,7 @@
                 //Text area
                 $form.append("<div class='row'> \
                         <div class='input-field col s12'> \
-                            <textarea name='newComment' class='materialize-textarea' required='required'>"+ initialComment +"</textarea> \
+                            <textarea name='newComment' class='materialize-textarea' required='required'>"+ body +"</textarea> \
                             <label for='newComment'>New initial comment</label> \
                         </div> \
                     </div>");

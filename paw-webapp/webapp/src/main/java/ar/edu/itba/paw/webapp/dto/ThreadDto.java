@@ -1,6 +1,7 @@
 package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikesCount;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -27,6 +28,9 @@ public class ThreadDto extends EntityDto {
     private String body;
 
     @XmlElement
+    private Long likesCount;
+
+    @XmlElement
     private Long creatorId;
 
     @XmlElement
@@ -41,12 +45,13 @@ public class ThreadDto extends EntityDto {
     }
 
 
-    public ThreadDto(Thread thread) {
-        super(thread.getId());
-        this.title = thread.getTitle();
-        this.body = thread.getInitialComment();
-        this.creatorId = thread.getCreator().getId();
-        this.creatorUsername = thread.getCreator().getUsername();
+    public ThreadDto(ThreadWithLikesCount threadWithLikesCount) {
+        super(threadWithLikesCount.getThread().getId());
+        this.title = threadWithLikesCount.getThread().getTitle();
+        this.body = threadWithLikesCount.getThread().getBody();
+        this.creatorId = threadWithLikesCount.getThread().getCreator().getId();
+        this.creatorUsername = threadWithLikesCount.getThread().getCreator().getUsername();
+        this.likesCount = threadWithLikesCount.getLikesCount();
     }
 
 
@@ -70,13 +75,17 @@ public class ThreadDto extends EntityDto {
         return creatorUrl;
     }
 
+    public Long getLikesCount() {
+        return likesCount;
+    }
+
     /**
      * Returns a list of {@link ThreadDto} based on the given collection of {@link Thread}.
      *
      * @param threads The collection of {@link Thread}
      * @return A list of {@link ThreadDto}.
      */
-    public static List<ThreadDto> createList(Collection<Thread> threads) {
+    public static List<ThreadDto> createList(Collection<ThreadWithLikesCount> threads) {
         return threads.stream().map(ThreadDto::new).collect(Collectors.toList());
     }
 }
