@@ -208,18 +208,6 @@ public class UserHibernateDao implements UserDao {
 //
     }
 
-
-    @Override
-    public Page<Game> recommendedGames(User user, int pageNumber, int pageSize, SortDirection sortDirection) {
-        return null;
-    }
-
-    @Override
-    public Page<Game> recommendedGames(User user, Set<Shelf> shelves,
-                                       int pageNumber, int pageSize, SortDirection sortDirection) {
-        return null;
-    }
-
     @Override
     public Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection) {
         return getPageOfRelationObject(user, null, null, pageNumber, pageSize, sortingType.getFieldName(), sortDirection, UserGameStatus.class, em);

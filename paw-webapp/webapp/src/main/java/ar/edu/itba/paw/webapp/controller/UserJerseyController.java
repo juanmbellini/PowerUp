@@ -11,6 +11,7 @@ import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -463,6 +464,24 @@ public class UserJerseyController implements UpdateParamsChecker {
 
         String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
         return mimeType;
+    }
+
+    @GET
+    @Path("/{id : \\d+}/recomended-games")
+    public Response getGameScores(@PathParam("id") final long userId) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        Collection<Game> recommendedGames = userService.recommendGames(userId);
+        Page<Game> page = new Page<>(1, 1, recommendedGames.size(), recommendedGames.size(), recommendedGames);
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, null, null,
+                        page,
+                        (gamePage) -> new GenericEntity<List<GameDto>>(GameDto.createList(gamePage.getData())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear()
+                                .build());
+
     }
 
     @GET

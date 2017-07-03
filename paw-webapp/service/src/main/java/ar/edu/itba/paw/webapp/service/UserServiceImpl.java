@@ -158,19 +158,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     }
 
-
-    @Override
-    public Page<Game> recommendedGames(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
-        return userDao.recommendedGames(checkUserExistence(userId), pageNumber, pageSize, sortDirection);
-    }
-
-    @Override
-    public Page<Game> recommendedGames(long userId, Set<Shelf> shelves,
-                                       int pageNumber, int pageSize, SortDirection sortDirection) {
-        return userDao.recommendedGames(checkUserExistence(userId), shelves, pageNumber, pageSize, sortDirection);
-    }
-
-
     @Override
     public Collection<Game> recommendGames(long userId) {
         return userDao.recommendGames(userId);

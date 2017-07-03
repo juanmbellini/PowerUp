@@ -194,40 +194,11 @@ public interface UserService {
      */
     void delete(long userId, long deleterId);
 
-
-    /**
-     * Recommends games for the {@link User} with the given {@code userId},
-     * based on the scores of the games he has scored, applying sorting and pagination.
-     *
-     * @param userId        The user id.
-     * @param pageNumber    The page number.
-     * @param pageSize      The page size.
-     * @param sortDirection The sort direction.
-     * @return The resulting page.
-     */
-    Page<Game> recommendedGames(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
-
-    /**
-     * Recommends games for the {@link User} with the given {@code userId},
-     * based on the scores of the games he has scored in the selected shelves, applying sorting and pagination.
-     *
-     * @param userId        The user id.
-     * @param shelves       The shelves.
-     * @param pageNumber    The page number.
-     * @param pageSize      The page size.
-     * @param sortDirection The sort direction.
-     * @return
-     */
-    Page<Game> recommendedGames(long userId, Set<Shelf> shelves,
-                                int pageNumber, int pageSize, SortDirection sortDirection);
-
-
     /**
      * Recommends games for user based on the scores of the games he has scored
      *
      * @param userId The ID of the user who is getting the recommendations
      */
-    @Deprecated
     Collection<Game> recommendGames(long userId);
 
     /**
@@ -237,7 +208,6 @@ public interface UserService {
      * @param shelves
      * @return
      */
-    @Deprecated
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
     /**

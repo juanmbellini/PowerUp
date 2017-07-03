@@ -119,16 +119,12 @@ public interface UserDao extends FindByIdDao<User> {
     /**
      * @see UserService#recommendGames(long)
      */
-    @Deprecated
     Collection<Game> recommendGames(long userId);
 
     /**
      * @see UserService#recommendGames(long, Set)
      */
-    @Deprecated
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
-
-
 
     /**
      * Enum indicating the sorting type for the "get reviews" method.
