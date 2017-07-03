@@ -13,7 +13,8 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
         var pendingRequests = {
             changeTitle: false,
             changeThreadComment: false,
-            deleteThread: false
+            deleteThread: false,
+            likeOrUnlikeThread: false
         };
 
         // Get requested thread
@@ -27,13 +28,6 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
 
         $scope.isLikedByCurrentUser = function(thread) {
             return true;   // TODO
-        };
-
-        $scope.unlikeThread = function() {
-
-        };
-        $scope.likeThread = function() {
-
         };
 
         $scope.changeTitle = function() {
@@ -123,6 +117,43 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
                         swal.enableButtons();
                     });
                 }
+            });
+        };
+
+        /* *************************************************
+         *  LIKE/UNLIKE FUNCTIONS, adapted from ThreadsCtrl
+         * ************************************************/
+        $scope.likeThread = function(thread) {
+            var threadId = thread.id;
+            if (!threadId || pendingRequests.likeOrUnlikeThread) {
+                return;
+            }
+            pendingRequests.likeOrUnlikeThread = true;
+            Restangular.one('threads', threadId).post('like').then(function(response) {
+                // Update like count
+                thread.likeCount++;
+                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns true
+                pendingRequests.likeOrUnlikeThread = false;
+            }, function(error) {
+                $log.error('Error liking thread #', threadId, ': ', error);
+                pendingRequests.likeOrUnlikeThread = false;
+            });
+        };
+
+        $scope.unlikeThread = function(thread) {
+            var threadId = thread.id;
+            if (!threadId || pendingRequests.likeOrUnlikeThread) {
+                return;
+            }
+            pendingRequests.likeOrUnlikeThread = true;
+            Restangular.one('threads', threadId).post('unlike').then(function(response) {
+                // Update like count
+                thread.likeCount--;
+                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns false
+                pendingRequests.likeOrUnlikeThread = false;
+            }, function(error) {
+                $log.error('Error unliking thread #', threadId, ': ', error);
+                pendingRequests.likeOrUnlikeThread = false;
             });
         };
 

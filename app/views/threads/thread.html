@@ -48,16 +48,19 @@
 					<div class="action-form"></div>
 
 					<!--Un/like section-->
-					<span href="#!" class="secondary-content"><b>{{thread.likeCount}}</b>
-						<!--&nbsp;&nbsp; wwwwaaaaattttt TODO-->
-                                <i ng-if="!isLoggedIn()" class="material-icons black-text">thumb_up</i>
-                                <a ng-if="isLoggedIn() && isLikedByCurrentUser(thread)"
-								   class="unlike-thread" ng-click="unlikeThread()"><i
-										class="material-icons green-text">thumb_up</i></a>
-                                <a ng-if="isLoggedIn() &&  !isLikedByCurrentUser(thread)" href="#!"
-								   class="like-thread" ng-click="likeThread()"><i
-										class="material-icons black-text">thumb_up</i></a>
-                            </span>
+					<span href="#!" class="secondary-content">
+						<b>TODO like count{{thread.likeCount}}</b>
+						<!--Not logged in - black actionless thumbs up-->
+						<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+						<!--Logged in and liked - green thumbs up with action to unlike-->
+						<a ng-if="isLoggedIn && isLikedByCurrentUser(thread)" ng-click="unlikeThread(thread)" href="">
+							<i class="material-icons green-text">thumb_up</i>
+						</a>
+						<!--Logged in and not liked - black thumbs up with action to like-->
+						<a ng-if="isLoggedIn && !isLikedByCurrentUser(thread)" ng-click="likeThread(thread)" href="">
+							<i class="material-icons black-text">thumb_up</i>
+						</a>
+					</span>
 					<!--End un/like section-->
 				</li>
 			</ul>
