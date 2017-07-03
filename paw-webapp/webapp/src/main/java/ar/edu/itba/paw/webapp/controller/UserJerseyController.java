@@ -3,12 +3,10 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
-import ar.edu.itba.paw.webapp.interfaces.SessionService;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -46,12 +44,15 @@ public class UserJerseyController implements UpdateParamsChecker {
     public static final String END_POINT = "users";
 
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService) {
+    private UserJerseyController(UserService userService, SessionService sessionService, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
+        this.shelfService = shelfService;
     }
 
     private final UserService userService;
+
+    private final ShelfService shelfService;
 
     private final SessionService sessionService;
 
@@ -468,11 +469,20 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     @GET
     @Path("/{id : \\d+}/recomended-games")
-    public Response getRecommendedGames(@PathParam("id") final long userId) {
+    public Response getRecommendedGames(@PathParam("id") final long userId,
+                                        @QueryParam("shelves") final List<String> shelves) {
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        Collection<Game> recommendedGames = userService.recommendGames(userId);
+        Set<Shelf> shelvesFilter = null;
+        if(shelves != null) {
+            shelvesFilter = new HashSet<>();
+            for (String s : shelves) {
+                Shelf shelf = shelfService.findByName(userId, s);
+                if (shelf != null) shelvesFilter.add(shelf);
+            }
+        }
+        Collection<Game> recommendedGames = userService.recommendGames(userId, shelvesFilter);
         return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)){}).build();
     }
 
