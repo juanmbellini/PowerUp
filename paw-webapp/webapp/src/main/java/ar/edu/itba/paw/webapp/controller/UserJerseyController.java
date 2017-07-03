@@ -468,20 +468,12 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     @GET
     @Path("/{id : \\d+}/recomended-games")
-    public Response getGameScores(@PathParam("id") final long userId) {
+    public Response getRecommendedGames(@PathParam("id") final long userId) {
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
         }
         Collection<Game> recommendedGames = userService.recommendGames(userId);
-        Page<Game> page = new Page<>(1, 1, recommendedGames.size(), recommendedGames.size(), recommendedGames);
-        return JerseyControllerHelper
-                .createCollectionGetResponse(uriInfo, null, null,
-                        page,
-                        (gamePage) -> new GenericEntity<List<GameDto>>(GameDto.createList(gamePage.getData())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .build());
-
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)){}).build();
     }
 
     @GET
