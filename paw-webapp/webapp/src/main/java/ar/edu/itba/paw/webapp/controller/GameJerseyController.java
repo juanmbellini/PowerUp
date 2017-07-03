@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.FilterCategoryDto;
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
@@ -12,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ar.edu.itba.paw.webapp.controller.GameJerseyController.END_POINT;
 
@@ -86,6 +85,19 @@ public class GameJerseyController {
         final Game game = gameService.findById(id);
         return game == null ?
                 Response.status(Response.Status.NOT_FOUND).build() : Response.ok(new GameDto(game)).build();
+    }
+
+    @GET
+    @Path("/{id : \\d+}/related-games")
+    public Response getRelatedGames(@PathParam("id") final long gameId) {
+        if (gameId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        Set<FilterCategory> filters = new HashSet<>();
+        filters.add(FilterCategory.platform);
+        filters.add(FilterCategory.genre);
+        Collection<Game> relatedGames = gameService.findRelatedGames(gameId, filters);
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(relatedGames)){}).build();
     }
 
 
