@@ -31,7 +31,8 @@ public class CorsFilter implements ContainerResponseFilter {
         CORS_HEADERS.put("Access-Control-Allow-Origin", "http://localhost:9000");   //Allow access from grunt server
         CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");               //Allow sending credentials in CORS
         CORS_HEADERS.put("Access-Control-Allow-Headers", "Authorization");          //Allow sending Authorization header for protected endpoints
-        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-TOKEN");               //Allow reading X-TOKEN header when logging in
+        //Allow reading X-TOKEN header when logging in and all pagination headers when searching
+        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-TOKEN, X-Total-Pages, X-Amount-Of-Elements, X-Overall-Amount-Of-Elements, X-Page-Number, X-Page-Size, X-Prev-Page-Ur, X-Next-Page-Url, X-First-Page-Url, X-Last-Page-Url");
     }
 
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
