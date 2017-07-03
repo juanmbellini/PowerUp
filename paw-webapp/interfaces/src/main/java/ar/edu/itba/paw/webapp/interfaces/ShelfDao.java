@@ -85,7 +85,7 @@ public interface ShelfDao {
         UPDATED {
             @Override
             public String getFieldName() {
-                return "updated_at";
+                return "updatedAt";
             }
         };
 

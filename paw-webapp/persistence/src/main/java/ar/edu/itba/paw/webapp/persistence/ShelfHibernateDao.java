@@ -30,7 +30,7 @@ public class ShelfHibernateDao implements ShelfDao {
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
         int conditionNumber = 0;
         if (nameFilter != null && !nameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.name) LIKE ? " + conditionNumber,
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.name) LIKE ?" + conditionNumber,
                     "%" + nameFilter.toLowerCase() + "%", conditionNumber));
             conditionNumber++;
         }
@@ -55,7 +55,7 @@ public class ShelfHibernateDao implements ShelfDao {
         }
 
         return DaoHelper.findPageWithConditions(em, Shelf.class, query, "shelf", "shelf.id", conditions,
-                pageNumber, pageSize, "shelf." + sortingType.getFieldName(), sortDirection);
+                pageNumber, pageSize, "shelf." + sortingType.getFieldName(), sortDirection, true);
     }
 
 
@@ -99,7 +99,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
         return DaoHelper.findPageWithConditions(em, Game.class, "FROM ShelfGame shelfGame", "shelfGame.game", "game.id",
                 Collections.singletonList(new DaoHelper.ConditionAndParameterWrapper("shelfGame.shelf = ?0", shelf, 0)),
-                pageNumber, pageSize, "shelfGame.game." + Game.getOrderField(orderCategory), sortDirection);
+                pageNumber, pageSize, "shelfGame.game." + Game.getOrderField(orderCategory), sortDirection, false);
 
     }
 
