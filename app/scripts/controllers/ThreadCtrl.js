@@ -14,12 +14,16 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
             changeTitle: false,
             changeThreadComment: false,
             deleteThread: false,
-            likeOrUnlikeThread: false
+            likeOrUnlikeThread: false,
+            comments: {
+                create: false
+            }
         };
 
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
             $scope.thread = response;
+            $scope.thread.comments = [];    // TODO return from API
             $scope.isCurrentUser = AuthService.isCurrentUser(response.creatorUsername);
         }, function(error) {
             $log.error('Error getting thread #', $scope.threadId, ': ', error);
@@ -120,9 +124,9 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
             });
         };
 
-        /* *************************************************
-         *  LIKE/UNLIKE FUNCTIONS, adapted from ThreadsCtrl
-         * ************************************************/
+        /* ************************************************************
+         *    THREAD LIKE/UNLIKE FUNCTIONS, adapted from ThreadsCtrl
+         * ***********************************************************/
         $scope.likeThread = function(thread) {
             var threadId = thread.id;
             if (!threadId || pendingRequests.likeOrUnlikeThread) {
@@ -155,6 +159,17 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
                 $log.error('Error unliking thread #', threadId, ': ', error);
                 pendingRequests.likeOrUnlikeThread = false;
             });
+        };
+
+        /* **************************************************
+         *                  COMMENT FUNCTIONS
+         * *************************************************/
+        $scope.createComment = function(newComment) {
+            if(!newComment || pendingRequests.comments.create) {
+                return;
+            }
+            pendingRequests.comments.create = true;
+            
         };
 
         /* *************************************************

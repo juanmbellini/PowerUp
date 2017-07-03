@@ -71,29 +71,26 @@
 		<!--COMMENTS-->
 		<div class="row">
 			<h5 ng-if="thread.comments.length == 0" class="center">No comments</h5>
-
-			<h5 ng-if="thread.comments.length > 0" class="center">All {{thread.allComments.length}} comments</h5>
+			<h5 ng-if="thread.comments.length > 0" class="center">All TODO full comment count {{thread.comments.fullLength()}} comments</h5>
 
 			<!--Print entire comment tree recursively-->
-			<!--TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/-->
+			<!-- TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/ -->
 			<!--<c:url value="/" var="baseUrl" />-->
 			<!--${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}-->
 		</div>
 		<!--END COMMENTS-->
 		<!--Add a comment form-->
-		<div ng-if="isLoggedIn()" class="row">
-
-			<form name="commentForm" class="css-form" novalidate>
+		<div ng-if="isLoggedIn" class="row">
+			<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
 				<div class='row'>
 					<div class='input-field col s12'>
-						<textarea type="text" ng-model="newComment" name="newComment" required="required" cssClass="materialize-textarea"/>
-						<label path="newComment">New comment</label>
+						<textarea id="new-comment-textarea" type="text" ng-model="newComment" required="required" cssClass="materialize-textarea"></textarea>
+						<label for="new-comment-textarea">New comment</label>
 					</div>
 				</div>
 				<div class='row'>
 					<div class="col s4 offset-s5">
-						<button type='submit' ng-click="createComment(form)" name='btn_comment'
-								class='col s6 btn btn-large waves-effect light-blue'>
+						<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
 							Submit <i class="material-icons right">send</i>
 						</button>
 					</div>

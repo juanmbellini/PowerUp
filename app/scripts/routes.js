@@ -28,6 +28,10 @@ define([], function() {
                 templateUrl: '/views/threads/thread.html',
                 controller: 'ThreadCtrl'
             },
+            '/thread/create': {
+                templateUrl: '/views/threads/create.html',
+                controller: 'CreateThreadCtrl'
+            },
             '/list': {
                 templateUrl: '/views/lists/lists.html',
                 controller: 'ListsCtrl'
