@@ -25,10 +25,8 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
           return false;   // TODO
         };
 
-        // Like threads on like button click
-        angular.element('body').on('click', '.like-thread', function(event) {
-            var $target = $(event.currentTarget);
-            var threadId = $target.data('thread-id');
+        $scope.likeThread = function(thread) {
+            var threadId = thread.id;
             if (!threadId || disabledThreadButtons.indexOf(threadId) !== -1) {
                 return;
             }
@@ -36,17 +34,8 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             disabledThreadButtons.push(threadId);
             Restangular.one('threads', threadId).post('like').then(function(response) {
                 // Update like count
-                var $likeCountElement = $target.closest('span').find('b');
-                var likeCount = parseInt($likeCountElement.html(), 10);
-                if (!isNaN(likeCount)) {
-                    $likeCountElement.html(likeCount + 1);
-                }
-                // Change like button to unlike button
-                var $thumb = $target.find('i');
-                $target.removeClass('like-thread');
-                $target.addClass('unlike-thread');
-                $thumb.removeClass('black-text');
-                $thumb.addClass('green-text');
+                thread.likeCount++;
+                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns true
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             }, function(error) {
@@ -54,12 +43,10 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             });
-        });
+        };
 
-        // Unlike threads on unlike button click
-        angular.element('body').on('click', '.unlike-thread', function(event) {
-            var $target = $(event.currentTarget);
-            var threadId = $target.data('thread-id');
+        $scope.unlikeThread = function(thread) {
+            var threadId = thread.id;
             if (!threadId || disabledThreadButtons.indexOf(threadId) !== -1) {
                 return;
             }
@@ -67,17 +54,8 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             disabledThreadButtons.push(threadId);
             Restangular.one('threads', threadId).post('unlike').then(function(response) {
                 // Update like count
-                var $likeCountElement = $target.closest('span').find('b');
-                var likeCount = parseInt($likeCountElement.html(), 10);
-                if (!isNaN(likeCount)) {
-                    $likeCountElement.html(likeCount - 1);
-                }
-                // Change unlike button to like button
-                var $thumb = $target.find('i');
-                $target.removeClass('unlike-thread');
-                $target.addClass('like-thread');
-                $thumb.removeClass('green-text');
-                $thumb.addClass('black-text');
+                thread.likeCount--;
+                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns false
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             }, function(error) {
@@ -85,6 +63,6 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             });
-        });
+        };
     }]);
 });
