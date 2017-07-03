@@ -19,8 +19,7 @@ require.config({
         velocity: '../../bower_components/velocity/velocity',
         'velocity.ui': '../../bower_components/velocity/velocity.ui',
         sweetalert: '../../bower_components/sweetalert/dist/sweetalert.min',
-        'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert.min',
-        ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
+        'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert',
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
@@ -29,6 +28,8 @@ require.config({
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
+        // Ignore ngSweetAlert, it's automatically added. The one we use is sweetalert.angular
+        ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         'materialize.global': [
             '../../bower_components/materialize/js/global'
         ],

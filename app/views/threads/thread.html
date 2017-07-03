@@ -1,31 +1,48 @@
 <main class="section">
 	<div class="container row">
-		<!--Title-->
+        <div ng-if="thread === null" class="center">
+            <h5>Fetching thread...</h5>
+            <loadingcircle></loadingcircle>
+        </div>
+
+        <!--Title-->
 		<h1 class="center wrap-text"> {{thread.title}} </h1>
 
 		<!--Original comment-->
 		<div class="row">
 			<ul class="collection">
 				<li class="collection-item avatar">
-					<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture"
-						 alt="{{thread.creator.username}}" class="circle">
-					<span class="title wrap-text">Submitted {{thread.createdAt}} by <a ng-href="#profile?username={{thread.creator.id}}"> {{thread.creator.username}} </a></span>
+					<img ng-src="{{apiLocation}}/users/{{thread.creatorId}}/picture" alt="{{thread.creatorUsername}}" class="circle">
+					<span class="title wrap-text">Submitted TODO created at {{thread.createdAt}} by <a ng-href="#profile?username={{thread.creatorUsername}}">{{thread.creatorUsername}}</a></span>
 					<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
 					<!--<p>Submitted {{thread.createdAt}}&lt;!&ndash;createdAt.Time&ndash;&gt; by {{thread.creator.username}}</p>-->
 					<br>
-					<p class="preserve-newlines wrap-text">{{thread.initialComment}}</p>
+					<p class="preserve-newlines wrap-text">{{thread.body}}</p>
+
+					<form ng-if="changeThreadCommentFormVisible" id="change-thread-comment-form" ng-submit="changeThreadComment()" style="margin-top: 10px;">
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;">{{thread.body}}</textarea>
+								<label for="change-thread-comment-textarea" class="active">New initial comment</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s4 offset-s5">
+								<button type="submit" class="col s6 btn btn-large waves-effect light-blue">
+									Submit <i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>
+					</form>
 
 					<!--Thread action links-->
-					<div ng-if="isLoggedIn()" class="action-links"> <!--&& getCurrentUser != null && thread.creator.id == getCurrentUser().id-->
+					<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
 						<!--Rename link-->
-						<a ng-click="changeTitle()" class="edit-thread-title-link"
-						   data-thread-title="{{thread.title}}">Change Title</a>
+						<a ng-click="changeTitle()">Change Title</a>
 						<!--Edit link-->
-						| <a ng-click="editComment()" class="edit-thread-initial-comment-link"
-							 data-thread-initial-comment="{{thread.initialComment}}" data-form-shown="false">Edit
-						Comment</a>
+						| <a ng-click="showChangeThreadCommentForm()">Change Comment</a>
 						<!--Delete link-->
-						| <a ng-click="deleteThread()" class="delete-thread-link">Delete</a>
+						| <a ng-click="deleteThread()"  id="delete-thread">Delete</a>
 					</div>
 
 					<div class="action-form"></div>
@@ -103,102 +120,6 @@
 			<!--/* ************************-->
 			 <!--*      Thread actions-->
 			 <!--* ***********************/-->
-			<!--$(".edit-thread-initial-comment-link").on("click", function (event) {-->
-				<!--var $me = $(this);-->
-				<!--if (!$me.data("form-shown")) {-->
-					<!--var initialComment = $me.data("thread-initial-comment");-->
-					<!--var $form = $("<form></form>");-->
-					<!--$form.attr("action", "<c:url value="/edit-thread-initial-comment" />");-->
-					<!--$form.attr("method", "POST");-->
-					<!--$form.css("margin-top", "10px");-->
-
-					<!--$form.append("<input type='hidden' name='threadId' value='${thread.id}' />");-->
-					<!--$form.append("<input type='hidden' name='returnUrl' value='/thread?id=${thread.id} />");-->
-
-					<!--//Text area-->
-					<!--$form.append("<div class='row'> \-->
-                        <!--<div class='input-field col s12'> \-->
-                            <!--<textarea name='newComment' class='materialize-textarea' required='required'>"+ initialComment +"</textarea> \-->
-                            <!--<label for='newComment'>New initial comment</label> \-->
-                        <!--</div> \-->
-                    <!--</div>");-->
-
-					<!--//Submit button-->
-					<!--$form.append("<div class='row'>	\-->
-                        <!--<div class='col s4 offset-s5'>	\-->
-                            <!--<button type='submit' class='col s6 btn btn-large waves-effect light-blue'>	\-->
-                                <!--Submit <i class='material-icons right'>send</i>	\-->
-                            <!--</button>	\-->
-                        <!--</div>	\-->
-                    <!--</div>");-->
-
-					<!--$me.parent().parent().find(".action-form").html($form);-->
-					<!--$me.data("form-shown", true);-->
-					<!--$form.find("textarea").trigger('autoresize');-->
-					<!--$form.find("textarea").focus();-->
-				<!--} else {-->
-					<!--$me.parent().parent().find(".action-form form textarea").focus();-->
-				<!--}-->
-			<!--});-->
-
-			<!--$(".edit-thread-title-link").on("click", function (event) {-->
-				<!--var $me = $(this);-->
-				<!--var threadId = $me.data("thread-id");-->
-				<!--var threadTitle = $me.data("thread-title");-->
-				<!--swal({-->
-							<!--title: "Change thread title",-->
-							<!--text: "Change from \""+ threadTitle +"\" to",-->
-							<!--type: "input",-->
-							<!--showCancelButton: true,-->
-							<!--closeOnConfirm: false,-->
-							<!--inputPlaceholder: "New title"-->
-						<!--},-->
-						<!--function(inputValue){-->
-							<!--if(inputValue === false) {-->
-								<!--return false-->
-							<!--}-->
-
-							<!--if (inputValue === "" || inputValue.length > 50) {-->
-								<!--swal.showInputError("Please write between 1 and 50 characters");-->
-								<!--return false-->
-							<!--}-->
-
-							<!--//Disable submit button to prevent multiple submissions-->
-							<!--$(".confirm").attr('disabled', 'disabled');-->
-
-							<!--//Create an inline form and submit it to redirect with POST-->
-							<!--$("<form action='<c:url value="/edit-thread-title" />' method='POST'> \-->
-                        <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
-                        <!--<input type='hidden' name='newTitle' value='"+ inputValue +"' /> \-->
-                        <!--<input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \-->
-                        <!--</form>").submit();-->
-						<!--});-->
-			<!--});-->
-
-			<!--$(".delete-thread-link").on("click", function (event) {-->
-				<!--var $me = $(this);-->
-				<!--var threadId = $me.data("thread-id");-->
-				<!--swal({-->
-							<!--title: "Are you sure?",-->
-							<!--text: "This thread and all its comments will be permanently lost",-->
-							<!--type: "warning",-->
-							<!--showCancelButton: true,-->
-							<!--confirmButtonColor: "#DD6B55",-->
-							<!--confirmButtonText: "Yes",-->
-							<!--cancelButtonText: "No",-->
-							<!--closeOnConfirm: false-->
-						<!--},-->
-						<!--function(){-->
-							<!--//Disable submit button to prevent multiple submissions-->
-							<!--$(".confirm").attr('disabled', 'disabled');-->
-
-							<!--//Create an inline form and submit it to redirect with POST-->
-							<!--$("<form action='<c:url value="/delete-thread" />' method='POST'> \-->
-                        <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
-                        <!--<input type='hidden' name='returnUrl' value='/threads' /> \-->
-                        <!--</form>").submit();-->
-						<!--});-->
-			<!--});-->
 
 			<!--$(".like-thread").on("click", function(event) {-->
 				<!--var threadId = $(this).data("thread-id");-->
