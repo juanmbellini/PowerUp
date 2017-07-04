@@ -41,10 +41,10 @@
                 </form>
             </div>
         </div>
-        <div class="col s9">
 
+        <div class="col s9">
             <div class="row">
-                <h1 class="center">{{user.userName}}'s Game List</h1>
+                <h1 class="center">{{user.username}}'s Game List</h1>
                 <h5 ng-if="isUserLoggedOwner" class="center"><a ng-href="#search">Search games</a> to add them to
                     your list!</h5>
                 <div class="col s12 divider"></div>
@@ -75,15 +75,22 @@
                                 TODO STATUS
                             </b></p>
                         </div>
-                        <div class="col s2 center" ng-init="gameShelves = getGameShelves(game)">
+                        <div class="col s2 center " ng-init="gameShelves = getGameShelves(game)">
 
                             <!--<p style="margin-top: 33px;"><b>-->
 
-                                <!--TODO SHELVES-->
-                                <span ng-if="gameShelves.length == 0">L: {{gameShelves.length}} HOLA  No shelves</span>
-                                <span ng-if="gameShelves.length != 0" ng-repeat="shelf in gameShelves">L: {{gameShelves.length}} HOLA {{shelf.name}} </span>
+                                <span ng-repeat="shelf in gameShelves"> {{shelf.name}} </span>
+                                <span ng-hide="gameShelves.lenth">  No shelves</span>
 
-                                <!--<c:choose>-->
+                                <!--TODO SHELVES-->
+                                <!--<span ng-if="gameShelves.length === 0">L: {{gameShelves.length}} HOLA  No shelves</span>-->
+
+                                <!--<span ng-if="gameShelves.length !== 0" ng-repeat="shelf in gameShelves">L: {{gameShelves.length}} HOLA {{shelf.name}} </span>-->
+
+                                <!--<br/>-->
+                                <!--<span ng-if="gameShelves.length !== 0"> {{gameShelves}} SSS {{gameShelves.length}}</span>-->
+
+                            <!--<c:choose>-->
                                 <!--<c:when test="${ empty shelvesForGamesMap.get(game)}">No shelves</c:when>-->
                                 <!--<c:otherwise>-->
                                 <!--<c:forEach items="${shelvesForGamesMap.get(game)}" var="shelf">-->
@@ -144,7 +151,7 @@
                             <h5 class="center">Recommended Games for
                                     <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
                                 <span ng-if="isUserLoggedOwner">you</span>
-                                <span ng-if="!isUserLoggedOwner">{{user.userName}}</span>
+                                <span ng-if="!isUserLoggedOwner">{{user.username}}</span>
                             !</h5>
                             <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
                                 <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">

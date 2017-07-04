@@ -27,15 +27,13 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         // } else if ($scope.username) {
             // userURL =  Restangular.all('users').one(username,$scope.username);
             // TODO username. Paja porque todo lo otro depende de la userURL que no podria armar. tendria que hacer que todo espere
+        } else if ($scope.currentUser !== null && $scope.currentUser.id) {
+            $location.search({id: $scope.currentUser.id});
+            $location.path('list');
         } else {
-            if ($scope.currentUser !== null && $scope.currentUser.id) {
-                $location.search({id: $scope.currentUser.id});
-                $location.path('list');
-            } else {
-                $log.debug('Need id in url or be logged');
-                $location.search({});
-                $location.path('');
-            }
+            $log.debug('Need id in url or be logged');
+            $location.search({});
+            $location.path('');
         }
 
         $scope.getShelves = function() {
@@ -74,7 +72,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                 return shelves;
             }, function (response) {
                 $log.error('Couldn\'t get shelves, status code', response.status);
-                return {};
+                return [];
             });
         };
 
@@ -156,7 +154,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
         $scope.isUserLoggedOwner = false;
         $scope.checkUserLoggedOwner = function () {
-            $scope.isUserLoggedOwner = $scope.user && $scope.currentUser && $scope.user.userName === $scope.currentUser.username; // AuthService.isCurrentUser($scope.user);
+            $scope.isUserLoggedOwner = $scope.user && $scope.currentUser && $scope.user.username === $scope.currentUser.username; // AuthService.isCurrentUser($scope.user);
         };
 
 
