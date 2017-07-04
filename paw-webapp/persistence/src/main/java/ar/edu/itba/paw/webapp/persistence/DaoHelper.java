@@ -118,7 +118,7 @@ import java.util.stream.IntStream;
      * @param entityManager An entity manager with which to perform queries.
      * @param klass         The class of the object type to return.
      * @param baseQuery     The base HQL query. <b>NOTE:</b> Parameters must be numbered instead of named,
-     *                      e.g. {@code "FROM User AS U WHERE U.username = ?1}"
+     *                      and start with 1 (e.g. {@code "FROM User AS U WHERE U.username = ?1"})
      * @param parameters    Parameters for the query, in order of appearance in the query.
      * @return The found entity, or {@code null} if not found.
      * @throws javax.persistence.NonUniqueResultException If more than one result is found.
@@ -126,13 +126,10 @@ import java.util.stream.IntStream;
     /*package*/
     static <T> T findSingleWithConditions(EntityManager entityManager, Class<T> klass, String baseQuery,
                                           Object... parameters) throws NonUniqueResultException {
-        TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
+        final TypedQuery<T> query = entityManager.createQuery(baseQuery, klass);
         IntStream.range(0, parameters.length).forEach(each -> query.setParameter(each + 1, parameters[each]));
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        final List<T> result = query.getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
     /**
