@@ -5,7 +5,7 @@ import ar.edu.itba.paw.webapp.model.Thread;
 /**
  * This class wraps a {@link Thread} together with the amount of likes it has.
  */
-public class ThreadWithLikesCount {
+public class ThreadWithLikeCount {
 
     /**
      * The wrapped {@link Thread}
@@ -15,18 +15,18 @@ public class ThreadWithLikesCount {
     /**
      * The amount of likes.
      */
-    private final long likesCount;
+    private final long likeCount;
 
 
     /**
      * Constructor.
      *
      * @param thread     The wrapped {@link Thread}.
-     * @param likesCount The amount of likes.
+     * @param likeCount The amount of likes.
      */
-    public ThreadWithLikesCount(Thread thread, long likesCount) {
+    public ThreadWithLikeCount(Thread thread, long likeCount) {
         this.thread = thread;
-        this.likesCount = likesCount;
+        this.likeCount = likeCount;
     }
 
     /**
@@ -39,7 +39,7 @@ public class ThreadWithLikesCount {
     /**
      * The amount of likes.
      */
-    public long getLikesCount() {
-        return likesCount;
+    public long getLikeCount() {
+        return likeCount;
     }
 }
