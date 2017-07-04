@@ -468,22 +468,15 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/{id : \\d+}/recomended-games")
+    @Path("/{id : \\d+}/recommended-games")
     public Response getRecommendedGames(@PathParam("id") final long userId,
                                         @QueryParam("shelves") final List<String> shelves) {
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        Set<Shelf> shelvesFilter = null;
-        if(shelves != null) {
-            shelvesFilter = new HashSet<>();
-            for (String s : shelves) {
-                Shelf shelf = shelfService.findByName(userId, s);
-                if (shelf != null) shelvesFilter.add(shelf);
-            }
-        }
-        Collection<Game> recommendedGames = userService.recommendGames(userId, shelvesFilter);
-        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)){}).build();
+        Collection<Game> recommendedGames = userService.recommendGames(userId, shelves);
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)) {
+        }).build();
     }
 
     @GET

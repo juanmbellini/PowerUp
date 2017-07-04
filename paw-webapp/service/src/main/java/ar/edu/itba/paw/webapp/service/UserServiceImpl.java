@@ -28,16 +28,19 @@ import java.util.stream.Stream;
 public class UserServiceImpl implements UserService, ValidationExceptionThrower, NoSuchEntityThrower,
         ExistenceByIdChecker<User> {
 
-    
+
     private final UserDao userDao;
 
     private final GameDao gameDao;
 
+    private final ShelfDao shelfDao;
+
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, GameService gameService, ShelfService shelfService) {
+    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
+        this.shelfDao = shelfDao;
     }
 
 
@@ -164,7 +167,14 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
+    public Collection<Game> recommendGames(long userId, List<String> shelfNameFilters) {
+        final User user = Optional.ofNullable(userDao.findById(userId)).orElseThrow(NoSuchEntityException::new);
+        final Set<Shelf> shelves = Optional.ofNullable(shelfNameFilters)
+                .map(list -> list.stream()
+                        .map(name -> shelfDao.findByName(user, name)) // Map each name to a shelf
+                        .filter(each -> each != null) // Remove those that are null
+                        .collect(Collectors.toSet())) // Store shelves into set
+                .orElse(new HashSet<>()); // If list of names is null, return an empty hash set.
         return userDao.recommendGames(userId, shelves);
     }
 

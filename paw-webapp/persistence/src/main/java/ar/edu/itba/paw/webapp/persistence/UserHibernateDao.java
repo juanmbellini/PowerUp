@@ -13,6 +13,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by julrodriguez on 28/10/16.
@@ -229,13 +230,11 @@ public class UserHibernateDao implements UserDao {
     public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
         if (shelves == null || shelves.isEmpty()) return recommendGames(userId);
 
-        Set<Long> gameIds = new HashSet<>();
-
-        for (Shelf shelf : shelves) {
-            for (Game game : shelf.getGames()) {
-                gameIds.add(game.getId());
-            }
-        }
+        final Set<Long> gameIds = shelves.stream()
+                .map(Shelf::getGames) // Maps each shelf to a list of games
+                .flatMap(Collection::stream) // Maps each list of games to a stream of games, and join each stream
+                .map(Game::getId) // Map each game to its id
+                .collect(Collectors.toSet()); // Collect all ids into a set
 
         return recommendGames(gameIds, userId);
     }
