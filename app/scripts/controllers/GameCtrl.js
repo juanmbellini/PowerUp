@@ -74,7 +74,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
                 $scope.canWriteReview = false;
             } else {
                 var currentUserUsername = AuthService.getCurrentUser().username;
-                Restangular.all('reviews').getList({userName: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
+                Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
                     if (reviews.length > 0) {
                         $scope.canWriteReview = false;
                     } else {

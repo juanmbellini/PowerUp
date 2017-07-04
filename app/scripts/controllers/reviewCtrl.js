@@ -78,21 +78,13 @@ define(['powerUp'], function(powerUp) {
 
         };
 
-        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId}).then(function (reviews) {
-            $scope.reviews = reviews;
-            console.log('foundReviews', reviews);
-            checkCanWriteReview();
-        }, function() {
-            console.log('There was an error getting reviews');
-        });
-
         // TODO borrar y juntar
         $scope.checkCanWriteReview = function() {
             if ($scope.userId || !AuthService.isLoggedIn() || !$scope.gameId) {
                 $scope.canWriteReview = false;
             } else {
                 var currentUserUsername = AuthService.getCurrentUser().username;
-                Restangular.all('reviews').getList({userName: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
+                Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
                     if (reviews.length > 0) {
                         $scope.canWriteReview = false;
                     } else {
@@ -105,6 +97,17 @@ define(['powerUp'], function(powerUp) {
                 });
             }
         };
+
+        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId}).then(function (reviews) {
+            $scope.reviews = reviews;
+            console.log('foundReviews', reviews);
+            checkCanWriteReview();
+        }, function() {
+            console.log('There was an error getting reviews');
+        });
+
+
+
     });
 
 });

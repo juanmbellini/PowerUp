@@ -44,7 +44,6 @@ require.config({
         modal: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal',
         tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
         popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover'
-        loadingCircle: 'directives/loading-circle'
     },
     shim: {
         jquery: {
@@ -134,11 +133,6 @@ require.config({
             ]
         },
         'ng-file-upload': {
-            deps: [
-                'angular'
-            ]
-        },
-        loadingCircle: {
             deps: [
                 'angular'
             ]

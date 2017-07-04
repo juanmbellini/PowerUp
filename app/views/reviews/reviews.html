@@ -41,8 +41,7 @@
                                             </span>
 							</div>
 							<div ng-if="user && !game">
-								<!--TODO coverPicture need game-->
-								<!--<img ng-src="review.game.coverPictureUrl" alt="{{review.game.name}}" class="circle"/>-->
+								<img ng-src="{{review.gameCoverPictureUrl}}" alt="{{review.gameName}}" class="circle"/>
 								<span class="title wrap-text">
 											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
 										</span>
