@@ -33,7 +33,7 @@
                             <a class="title truncate" ng-href="#thread/{{thread.id}}">{{thread.title}}</a>
 
                             <!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
-                            <p>Submitted TODO created date {{thread.createdAt}}<!--createdAt.Time--> by {{thread.creatorUsername}}</p>
+                            <p>Submitted TODO created date {{thread.createdAt}}<!--createdAt.Time--> by <a ng-href="#profile?username={{thread.creatorUsername}}">{{thread.creatorUsername}}</a></p>
                             <br>
                             <p class="truncate">
                                 TODO initial comment if present {{thread.initialComment}}

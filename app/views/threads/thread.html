@@ -13,9 +13,9 @@
 			<ul class="collection">
 				<li class="collection-item avatar">
 					<img ng-src="{{apiLocation}}/users/{{thread.creatorId}}/picture" alt="{{thread.creatorUsername}}" class="circle">
-					<span class="title wrap-text">Submitted TODO created at {{thread.createdAt}} by <a ng-href="#profile?username={{thread.creatorUsername}}">{{thread.creatorUsername}}</a></span>
+					<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creatorUsername}}">{{thread.creatorUsername}}</a></span>
 					<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
-					<!--<p>Submitted {{thread.createdAt}}&lt;!&ndash;createdAt.Time&ndash;&gt; by {{thread.creator.username}}</p>-->
+					<p>TODO createdAt datetime {{thread.createdAt}}</p>
 					<br>
 					<p class="preserve-newlines wrap-text">{{thread.body}}</p>
 
