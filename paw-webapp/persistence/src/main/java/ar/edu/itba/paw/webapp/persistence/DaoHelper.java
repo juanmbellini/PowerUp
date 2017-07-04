@@ -274,9 +274,9 @@ import java.util.stream.IntStream;
                                               String baseQuery, String baseAlias, String countField,
                                               List<ConditionAndParameterWrapper> conditions,
                                               int pageNumber, int pageSize, String sortByField,
-                                              SortDirection sortDirection) {
+                                              SortDirection sortDirection, boolean includeSelect) {
         return findPageWithConditions(em, klass, new StringBuilder(baseQuery), baseAlias, countField, conditions,
-                pageNumber, pageSize, sortByField, sortDirection);
+                pageNumber, pageSize, sortByField, sortDirection, includeSelect);
 
     }
 
@@ -302,7 +302,7 @@ import java.util.stream.IntStream;
                                               StringBuilder baseQuery, String baseAlias, String countField,
                                               List<ConditionAndParameterWrapper> conditions,
                                               int pageNumber, int pageSize, String sortByField,
-                                              SortDirection sortDirection) {
+                                              SortDirection sortDirection, boolean includeSelect) {
         // Conditions
         appendConditions(baseQuery, conditions);
 
@@ -323,9 +323,11 @@ import java.util.stream.IntStream;
             throw new NumberOfPageBiggerThanTotalAmountException();
         }
 
-        StringBuilder dataQueryStr = new StringBuilder()
-                .append("SELECT DISTINCT ").append(baseAlias).append(" ")
-                .append(baseQuery)
+        StringBuilder dataQueryStr = new StringBuilder();
+        if (includeSelect) {
+            dataQueryStr.append("SELECT DISTINCT ").append(baseAlias).append(" ");
+        }
+        dataQueryStr.append(baseQuery)
                 .append(" ORDER BY ").append(sortByField).append(" ").append(sortDirection.getQLKeyword());
 
         TypedQuery<T> dataQuery = em.createQuery(dataQueryStr.toString(), klass)

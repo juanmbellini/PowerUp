@@ -73,7 +73,7 @@ public interface ThreadDao {
         BEST {
             @Override
             public String getFieldName() {
-                return "SIZE(likes)";
+                return "SIZE(thread.likes)";
             }
         },
         NEWEST {

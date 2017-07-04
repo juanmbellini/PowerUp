@@ -57,7 +57,7 @@ public class UserHibernateDao implements UserDao {
                     authorityFilter, conditionNumber));
         }
         return DaoHelper.findPageWithConditions(em, User.class, query, "user", "user.id", conditions,
-                pageNumber, pageSize, "user." + sortingType.getFieldName(), sortDirection);
+                pageNumber, pageSize, "user." + sortingType.getFieldName(), sortDirection, true);
     }
 
 
@@ -367,7 +367,7 @@ public class UserHibernateDao implements UserDao {
                     "%" + gameNameFilter.toLowerCase() + "%", conditionsNumber));
         }
         return DaoHelper.findPageWithConditions(em, klass, query, "relationObject", "id", conditions,
-                pageNumber, pageSize, sortingField, sortDirection);
+                pageNumber, pageSize, sortingField, sortDirection, false);
     }
 
 }

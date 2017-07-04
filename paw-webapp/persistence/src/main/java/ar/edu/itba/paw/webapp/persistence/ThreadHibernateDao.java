@@ -48,7 +48,7 @@ public class ThreadHibernateDao implements ThreadDao {
         }
 
         return DaoHelper.findPageWithConditions(em, Thread.class, query, "thread", "thread.id", conditions,
-                pageNumber, pageSize, "thread." + sortingType.getFieldName(), sortDirection);
+                pageNumber, pageSize, sortingType.getFieldName(), sortDirection, false);
     }
 
 

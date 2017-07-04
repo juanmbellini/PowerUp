@@ -56,7 +56,7 @@ public class ReviewHibernateDao implements ReviewDao {
         }
 
         return DaoHelper.findPageWithConditions(em, Review.class, query, "review", "review.id", conditions,
-                pageNumber, pageSize, "review." + sortingType.getFieldName(), sortDirection);
+                pageNumber, pageSize, sortingType.getFieldName(), sortDirection, false);
 
     }
 
