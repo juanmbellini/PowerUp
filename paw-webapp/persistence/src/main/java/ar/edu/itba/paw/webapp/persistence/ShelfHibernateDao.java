@@ -24,7 +24,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
 
         final StringBuilder query = new StringBuilder()
-                .append("FROM Shelf shelf LEFT JOIN shelf.games game");
+                .append("FROM Shelf shelf LEFT JOIN shelf.games shelfGame");
 
         // Conditions
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
@@ -35,12 +35,12 @@ public class ShelfHibernateDao implements ShelfDao {
             conditionNumber++;
         }
         if (gameIdFilter != null) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelf.game.id = ?" + conditionNumber,
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelfGame.game.id = ?" + conditionNumber,
                     gameIdFilter, conditionNumber));
             conditionNumber++;
         }
         if (gameNameFilter != null && !gameNameFilter.isEmpty()) {
-            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.game.name) LIKE ?" + conditionNumber,
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelfGame.game.name) LIKE ?" + conditionNumber,
                     "%" + gameNameFilter.toLowerCase() + "%", conditionNumber));
             conditionNumber++;
         }
