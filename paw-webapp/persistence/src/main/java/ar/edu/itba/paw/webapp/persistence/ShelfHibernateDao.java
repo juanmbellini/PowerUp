@@ -19,7 +19,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
     @Override
     public Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
-                                  Long userIdFilter, String userNameFilter,
+                                  Long userIdFilter, String usernameFilter,
                                   int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
 
 
@@ -49,9 +49,9 @@ public class ShelfHibernateDao implements ShelfDao {
                     userIdFilter, conditionNumber));
             conditionNumber++;
         }
-        if (userNameFilter != null && !userNameFilter.isEmpty()) {
+        if (usernameFilter != null && !usernameFilter.isEmpty()) {
             conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.user.username) LIKE ?" + conditionNumber,
-                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
+                    "%" + usernameFilter.toLowerCase() + "%", conditionNumber));
         }
 
         return DaoHelper.findPageWithConditions(em, Shelf.class, query, "shelf", "shelf.id", conditions,

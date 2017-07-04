@@ -17,14 +17,14 @@ public interface ThreadService {
      *
      * @param titleFilter    Filter for the title.
      * @param userIdFilter   Filter for user id.
-     * @param userNameFilter Filter for user name.
+     * @param usernameFilter Filter for username.
      * @param pageNumber     The page number.
      * @param pageSize       The page size.
      * @param sortingType    The sorting type (id, game id, or creation date).
      * @param sortDirection  The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter, int pageNumber, int pageSize,
+    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter, int pageNumber, int pageSize,
                             ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**

@@ -13,7 +13,7 @@ public interface ThreadDao {
     /**
      * @see ThreadService#getThreads(String, Long, String, int, int, SortingType, SortDirection) .
      */
-    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter,
+    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                             int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
 

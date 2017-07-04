@@ -15,7 +15,7 @@ public interface UserDao extends FindByIdDao<User> {
     /**
      * @see UserService#getUsers(String, String, Authority, int, int, SortingType, SortDirection) .
      */
-    Page<User> getUsers(String userNameFilter, String emailFilter, Authority authorityFilter,
+    Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                         int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**

@@ -42,10 +42,10 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
 
 
     @Override
-    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize,
                                    ReviewDao.SortingType sortingType, SortDirection sortDirection) {
-        return reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, userNameFilter,
+        return reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
     }
 

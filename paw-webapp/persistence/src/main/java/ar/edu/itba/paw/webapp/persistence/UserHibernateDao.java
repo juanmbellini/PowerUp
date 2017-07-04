@@ -32,7 +32,7 @@ public class UserHibernateDao implements UserDao {
     }
 
     @Override
-    public Page<User> getUsers(String userNameFilter, String emailFilter, Authority authorityFilter,
+    public Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                                int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
 
 
@@ -42,9 +42,9 @@ public class UserHibernateDao implements UserDao {
         // Conditions
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
         int conditionNumber = 0;
-        if (userNameFilter != null && !userNameFilter.isEmpty()) {
+        if (usernameFilter != null && !usernameFilter.isEmpty()) {
             conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(user.username) LIKE ?" + conditionNumber,
-                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
+                    "%" + usernameFilter.toLowerCase() + "%", conditionNumber));
             conditionNumber++;
         }
         if (emailFilter != null && !emailFilter.isEmpty()) {

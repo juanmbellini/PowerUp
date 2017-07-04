@@ -42,10 +42,10 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
 
     @Override
-    public Page<User> getUsers(String userNameFilter, String emailFilter, Authority authorityFilter,
+    public Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                                int pageNumber, int pageSize,
                                UserDao.SortingType sortingType, SortDirection sortDirection) {
-        return userDao.getUsers(userNameFilter, emailFilter, authorityFilter,
+        return userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
     }
 
