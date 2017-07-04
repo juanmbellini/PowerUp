@@ -78,6 +78,8 @@ define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
             true    // This is necessary because getCurrentUser returns a different object instance every time. With this as true, we check for value equality rather than instance equality
         );
 
+        Waves.displayEffect();
+
         // Restangular.all('users').getList()  // GET: /users
         //   .then(function(users) {
         //     console.log('All users: ', users);
