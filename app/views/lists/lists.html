@@ -79,11 +79,11 @@
                         </div>
                         <div class="col s2 center" ng-init="gameShelves = getGameShelves(game)">
 
-                            <p style="margin-top: 33px;"><b>
+                            <!--<p style="margin-top: 33px;"><b>-->
 
                                 <!--TODO SHELVES-->
-                                <span ng-if="gameShelves.length == 0">No shelves</span>
-                                <span ng-if="gameShelves.length != 0" ng-repeat="shelf in gameShelves">{{shelf.name}} </span>
+                                <span ng-if="gameShelves.length == 0">L: {{gameShelves.length}} HOLA  No shelves</span>
+                                <span ng-if="gameShelves.length != 0" ng-repeat="shelf in gameShelves">L: {{gameShelves.length}} HOLA {{shelf.name}} </span>
 
                                 <!--<c:choose>-->
                                 <!--<c:when test="${ empty shelvesForGamesMap.get(game)}">No shelves</c:when>-->
@@ -93,7 +93,7 @@
                                 <!--</c:forEach>-->
                                 <!--</c:otherwise>-->
                                 <!--</c:choose>-->
-                            </b></p>
+                            <!--</b></p>-->
                         </div>
                         <div class="col s1 center">
                             <p style="margin-top: 33px;"><b>
