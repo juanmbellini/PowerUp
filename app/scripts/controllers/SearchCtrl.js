@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'loadingCircle'], function(powerUp) {
 
 
     powerUp.controller('SearchCtrl', function($scope, searchedTitleService, $location, Restangular) {
@@ -16,7 +16,7 @@ define(['powerUp'], function(powerUp) {
         $scope.searchedName = $location.search().name;
         $scope.ascending = $location.search().ascending;
         $scope.pageNumber = $location.search().pageNumber;
-        $scope.orderCategory = $location.search().orderCategory;
+        $scope.orderCategory = $location.search().orderCategory || 'name';
         $scope.developers = $location.search().developer;
         $scope.publishers = $location.search().publisher;
         $scope.genres = $location.search().genre;
@@ -28,6 +28,8 @@ define(['powerUp'], function(powerUp) {
         if ($scope.ascending === undefined) {
             $scope.ascending = true;
         }
+
+        $scope.games = null;
         // $scope.keywords = $location.search().keyword;
 
         // $scope.changePageUrl = function(pageNumber) {
@@ -106,6 +108,13 @@ define(['powerUp'], function(powerUp) {
             console.log('Error with status code', response.status);
         });
 
-    });
+        /* ********************************************
+         *      MATERIALIZE INITIALIZATION
+         * *******************************************/
+        // Collapsible for filters
+        angular.element('.collapsible').collapsible();
 
+        // Tab for filter sections
+        angular.element('ul.tabs').tabs();
+    });
 });

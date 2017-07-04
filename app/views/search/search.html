@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Search - PowerUp</title>
-
-</head>
-<body>
 <main>
     <div class="container">
         <div class="row filters-row">
@@ -14,10 +7,10 @@
 
             <div class="col s12">
                 <div class="col s6 offset-s3 ">
-                    <form ng-submit="submitSearch()" ng-controller="SearchCtrl">
+                    <form ng-submit="submitSearch()">
                         <div class="input-field">
                             <input placeholder="Title" type="search" ng-model="searchedName" name="name"/>
-                            <i class="material-icons" ng-click="submitSearch()" style="color:black;" id="search-icon">search</i>
+                            <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
                     </form>
                 </div>
@@ -25,8 +18,12 @@
         </div>
 
         <!--RESULTS-->
-        <div class="row">
-            <div ng-if="games.length <= 0">
+        <div ng-if="games === null" class="center">
+            <h5>Searching games...</h5>
+            <loadingcircle ></loadingcircle>
+        </div>
+        <div class="row" ng-if="games !== null">
+            <div ng-if="games.length == 0">
                 <!--"No results" notice-->
                 <h3 class="center">No results</h3>
             </div>
@@ -41,11 +38,11 @@
                 </ul>
             </div>
             <!--Filters collapsible-->
-            <button class="btn waves-effect waves-light right" id="submit-search" {{hasFilters()? '' : 'disabled'}}>Search <i class="material-icons right">send</i></button>
-            <button class="btn waves-effect waves-light right" id="clear-filters">Clear filters <i class="material-icons right">close</i></button>
+            <button class="btn waves-effect waves-light right" id="submit-search">Search <i class="material-icons right">send</i></button>
+            <button class="btn waves-effect waves-light right" id="clear-filters" ng-disabled="!hasFilters()">Clear filters <i class="material-icons right">close</i></button>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
-                    <div class="collapsible-header {{hasFilters()? ' active' : ''}}">
+                    <div class="collapsible-header" ng-class="{active: hasFilters()}">
                     <i class="material-icons">filter_list</i>Filters
                     </div>
                     <div class="collapsible-body">
@@ -53,6 +50,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
+                                    <!--TODO these links redirect to other pages, even with target="_self"-->
                                     <li class="tab col s3"><a href="#platforms" class="active">Platforms</a></li>
                                     <li class="tab col s3"><a href="#genres">Genres</a></li>
                                     <li class="tab col s3"><a href="#developers">Developers</a></li>
@@ -122,7 +120,7 @@
                 <div ng-if="games.length > 1">
                     <div class="right-align" id="sorting">
                         <!--SORT BY NAME-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == null || orderCategory == 'name')? '' : 'inactive'}}" data-category="name" ng-click="sortNameButton()">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'name'}" data-category="name" ng-click="sortNameButton()">
                             Name
                             <i class="material-icons right">
                                 <div ng-switch="(orderCategory == null || orderCategory == 'name') && ascending == false">
@@ -134,8 +132,7 @@
                         </button>
 
                         <!--SORT BY RELEASE DATE-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == 'release')? '' : 'inactive'}}"
-                                ng-click="sortReleaseButton()" data-category="releaseSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'release'}" ng-click="sortReleaseButton()" data-category="releaseSort">
                             Release
                             <i class="material-icons right">
                                 <div ng-switch="(orderCategory == 'release') && ascending == true">
@@ -146,8 +143,7 @@
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
-                        <button class="btn waves-effect waves-light {{(orderCategory == 'avg_score')? '' : 'inactive'}}"
-                                ng-click="sortRatingButton()" data-category="ratingSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'avg_score'}" ng-click="sortRatingButton()" data-category="ratingSort">
                             Rating
                             <i class="material-icons right">
                                 <div ng-switch="(orderCategory == 'avg_score') && ascending == true">
@@ -180,7 +176,7 @@
                         </div>
                         <div class="col primary-content s7">
                             <p class="title">
-                                <a href='#/game?id={{game.id}}'>
+                                <a ng-href='#/game?id={{game.id}}'>
                                     {{game.name}}
                                 </a>
                             </p>
@@ -196,7 +192,8 @@
                             <div class="secondary-content">
                                 <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
                                     <div ng-switch-when="true">
-                                        <p class="rating-number center"><b><span>{{game.avgScore | number:2}}</span></b>
+                                        <p class="rating-number center">
+                                            <b><span>{{game.avgScore | number:2}}</span></b>
                                         </p>
                                         <p class="rating-stars hide-on-small-and-down">
                                             <!--range(0,4)-->
@@ -225,7 +222,7 @@
         </div>
     </div>
     <!--Another total games count-->
-    <ul class="row games-count">
+    <ul class="row games-count" ng-if="games && games.length > 0">
         <div class="col s6">
             Games {{(pageNumber - 1) * pageSize + 1 }} -
             {{(pageNumber - 1) * pageSize + games.length}}
