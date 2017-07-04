@@ -35,7 +35,7 @@ public class Thread implements ValidationExceptionThrower {
     @Column(name = "initial_comment")
     private String body;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "thread")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "thread", orphanRemoval = true, cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<Comment> allComments; // Used just for counting
 
