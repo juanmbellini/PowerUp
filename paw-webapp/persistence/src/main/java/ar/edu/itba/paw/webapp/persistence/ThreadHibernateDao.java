@@ -21,7 +21,7 @@ public class ThreadHibernateDao implements ThreadDao {
 
 
     @Override
-    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter,
+    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize,
                                    SortingType sortingType, SortDirection sortDirection) {
 
@@ -42,9 +42,9 @@ public class ThreadHibernateDao implements ThreadDao {
                     userIdFilter, conditionNumber));
             conditionNumber++;
         }
-        if (userNameFilter != null && !userNameFilter.isEmpty()) {
+        if (usernameFilter != null && !usernameFilter.isEmpty()) {
             conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(creator.username) LIKE ?" + conditionNumber,
-                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
+                    "%" + usernameFilter.toLowerCase() + "%", conditionNumber));
         }
 
         return DaoHelper.findPageWithConditions(em, Thread.class, query, "thread", "thread.id", conditions,

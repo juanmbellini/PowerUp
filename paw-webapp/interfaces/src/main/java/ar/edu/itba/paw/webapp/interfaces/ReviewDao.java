@@ -13,7 +13,7 @@ public interface ReviewDao {
     /**
      * @see ReviewService#getReviews(Long, String, Long, String, int, int, SortingType, SortDirection).
      */
-    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                             int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**

@@ -65,12 +65,12 @@ public class ReviewJerseyController implements UpdateParamsChecker {
                                @QueryParam("gameId") @DefaultValue("") final Long gameId,
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
                                @QueryParam("userId") @DefaultValue("") final Long userId,
-                               @QueryParam("userName") @DefaultValue("") final String userName) {
+                               @QueryParam("username") @DefaultValue("") final String username) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber));
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        reviewService.getReviews(gameId, gameName, userId, userName, pageNumber, pageSize,
+                        reviewService.getReviews(gameId, gameName, userId, username, pageNumber, pageSize,
                                 sortingType, sortDirection),
                         (reviewPage) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(reviewPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
@@ -79,7 +79,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
                                 .addParameter("gameId", gameId)
                                 .addParameter("gameName", gameName)
                                 .addParameter("userId", userId)
-                                .addParameter("userName", userName)
+                                .addParameter("username", username)
                                 .build());
     }
 

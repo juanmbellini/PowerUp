@@ -16,7 +16,7 @@ public interface ShelfDao {
      * @see ShelfService#getShelves(String, Long, String, Long, String, int, int, SortingType, SortDirection)
      */
     Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
-                           Long userIdFilter, String userNameFilter,
+                           Long userIdFilter, String usernameFilter,
                            int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**

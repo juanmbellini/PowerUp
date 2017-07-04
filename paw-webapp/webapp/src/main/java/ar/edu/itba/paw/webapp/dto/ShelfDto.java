@@ -28,7 +28,7 @@ public class ShelfDto extends EntityDto {
     private String name;
 
     @XmlElement
-    private String userName;
+    private String username;
 
     @XmlElement
     private Long userId;
@@ -48,7 +48,7 @@ public class ShelfDto extends EntityDto {
     public ShelfDto(Shelf shelf, UriBuilder baseUri) {
         super(shelf.getId());
         this.name = shelf.getName();
-        this.userName = shelf.getUser().getUsername();
+        this.username = shelf.getUser().getUsername();
         this.userId = shelf.getUser().getId();
 
         // Urls
@@ -71,8 +71,8 @@ public class ShelfDto extends EntityDto {
         return name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public Long getUserId() {

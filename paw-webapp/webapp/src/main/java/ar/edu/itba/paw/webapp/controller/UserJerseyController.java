@@ -69,21 +69,21 @@ public class UserJerseyController implements UpdateParamsChecker {
     // ======== Basic user operation ========
 
     @GET
-    public Response getUsers(@QueryParam("orderBy") @DefaultValue("userName") final UserDao.SortingType sortingType,
+    public Response getUsers(@QueryParam("orderBy") @DefaultValue("username") final UserDao.SortingType sortingType,
                              @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                              @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                              @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                              // Filters
-                             @QueryParam("userName") @DefaultValue("") final String userName,
+                             @QueryParam("username") @DefaultValue("") final String username,
                              @QueryParam("email") @DefaultValue("") final String email,
                              @QueryParam("authority") @DefaultValue("") final Authority authority) {
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUsers(userName, email, authority, pageNumber, pageSize, sortingType, sortDirection),
+                        userService.getUsers(username, email, authority, pageNumber, pageSize, sortingType, sortDirection),
                         (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .addParameter("userName", userName)
+                                .addParameter("username", username)
                                 .addParameter("email", email)
                                 .addParameter("authority", authority)
                                 .build());
@@ -104,12 +104,12 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/userName/{userName : .+}")
-    public Response getByUsername(@PathParam("userName") final String userName) {
-        if (userName == null) {
-            throw new IllegalParameterValueException("userName");
+    @Path("/username/{username : .+}")
+    public Response getByUsername(@PathParam("username") final String username) {
+        if (username == null) {
+            throw new IllegalParameterValueException("username");
         }
-        final User user = userService.findByUsername(userName);
+        final User user = userService.findByUsername(username);
         return user == null ? Response.status(Response.Status.NOT_FOUND).build()
                 : Response.ok(new UserDto(user)).build();
     }
@@ -132,7 +132,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (userDto == null) {
             throw new MissingJsonException();
         }
-        final User user = userService.create(userDto.getUserName(), userDto.getEmail(), userDto.getPassword());
+        final User user = userService.create(userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(user.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }

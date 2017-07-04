@@ -25,7 +25,7 @@ public class ReviewHibernateDao implements ReviewDao {
 
 
     @Override
-    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
 
 
@@ -50,9 +50,9 @@ public class ReviewHibernateDao implements ReviewDao {
                     userIdFilter, conditionNumber));
             conditionNumber++;
         }
-        if (userNameFilter != null && !userNameFilter.isEmpty()) {
+        if (usernameFilter != null && !usernameFilter.isEmpty()) {
             conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(user.username) LIKE ?" + conditionNumber,
-                    "%" + userNameFilter.toLowerCase() + "%", conditionNumber));
+                    "%" + usernameFilter.toLowerCase() + "%", conditionNumber));
         }
 
         return DaoHelper.findPageWithConditions(em, Review.class, query, "review", "review.id", conditions,

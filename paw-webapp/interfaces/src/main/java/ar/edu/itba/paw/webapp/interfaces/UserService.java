@@ -17,7 +17,7 @@ public interface UserService {
     /**
      * Returns a {@link Page} with the users, applying filters, pagination and sorting.
      *
-     * @param userNameFilter  Filter for username.
+     * @param usernameFilter  Filter for username.
      * @param emailFilter     Filter for email.
      * @param authorityFilter Filter for authority.
      * @param pageNumber      The page number.
@@ -26,7 +26,7 @@ public interface UserService {
      * @param sortDirection   The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<User> getUsers(String userNameFilter, String emailFilter, Authority authorityFilter,
+    Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                         int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
 
 

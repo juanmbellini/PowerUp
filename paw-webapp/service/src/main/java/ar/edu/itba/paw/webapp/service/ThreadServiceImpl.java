@@ -51,10 +51,10 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String userNameFilter,
+    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize,
                                    ThreadDao.SortingType sortingType, SortDirection sortDirection) {
-        return threadDao.getThreads(titleFilter, userIdFilter, userNameFilter,
+        return threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
     }
 

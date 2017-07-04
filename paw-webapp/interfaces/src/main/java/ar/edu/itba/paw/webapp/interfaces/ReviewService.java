@@ -19,14 +19,14 @@ public interface ReviewService {
      * @param gameIdFilter   Filter for game id.
      * @param gameNameFilter Filter for game name.
      * @param userIdFilter   Filter for user id.
-     * @param userNameFilter Filter for user name.
+     * @param usernameFilter Filter for user name.
      * @param pageNumber     The page number.
      * @param pageSize       The page size.
      * @param sortingType    The sorting type (id, game id, or creation date).
      * @param sortDirection  The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String userNameFilter,
+    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                             int pageNumber, int pageSize,
                             ReviewDao.SortingType sortingType, SortDirection sortDirection);
 
