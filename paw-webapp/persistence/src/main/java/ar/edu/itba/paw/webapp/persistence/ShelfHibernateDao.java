@@ -99,7 +99,7 @@ public class ShelfHibernateDao implements ShelfDao {
 
         return DaoHelper.findPageWithConditions(em, Game.class, "FROM ShelfGame shelfGame", "shelfGame.game", "game.id",
                 Collections.singletonList(new DaoHelper.ConditionAndParameterWrapper("shelfGame.shelf = ?0", shelf, 0)),
-                pageNumber, pageSize, "shelfGame.game." + Game.getOrderField(orderCategory), sortDirection, false);
+                pageNumber, pageSize, "shelfGame.game." + orderCategory.getFieldName(), sortDirection, true);
 
     }
 
