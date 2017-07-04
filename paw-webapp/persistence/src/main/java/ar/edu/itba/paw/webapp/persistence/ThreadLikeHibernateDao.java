@@ -25,24 +25,17 @@ public class ThreadLikeHibernateDao implements ThreadLikeDao {
      * Holds the base query for searching and checking existence of {@link ThreadLike}.
      */
     private static final String BASE_QUERY = "FROM ThreadLike _like" +
-            " WHERE _like.thread = :thread AND _like.user = :user";
+            " WHERE _like.thread = ?1 AND _like.user = ?2";
 
 
     @Override
     public ThreadLike find(Thread thread, User user) {
-        final List<ThreadLike> likes = em.createQuery("SELECT _like " + BASE_QUERY, ThreadLike.class)
-                .setParameter("thread", thread)
-                .setParameter("user", user)
-                .getResultList();
-        return likes.isEmpty() ? null : likes.get(0);
+        return DaoHelper.findSingleWithConditions(em, ThreadLike.class, "SELECT _like " + BASE_QUERY, thread, user);
     }
 
     @Override
     public boolean exists(Thread thread, User user) {
-        return em.createQuery("SELECT COUNT(_like) " + BASE_QUERY, Long.class)
-                .setParameter("thread", thread)
-                .setParameter("user", user)
-                .getSingleResult() > 0;
+        return DaoHelper.exists(em, "SELECT COUNT(_like) " + BASE_QUERY, thread, user);
     }
 
 
