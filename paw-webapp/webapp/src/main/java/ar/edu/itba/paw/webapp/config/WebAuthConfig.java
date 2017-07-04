@@ -22,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
@@ -59,7 +60,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RequestMatcher protectedEndpointsMatcher() {
         return new OrRequestMatcher(
-            new AntPathRequestMatcher("/**", "POST"),
+            new NegatedRequestMatcher(new AntPathRequestMatcher("/api/users", "POST")),
             new AntPathRequestMatcher("/**", "PUT"),
             new AntPathRequestMatcher("/**", "DELETE"),
             new AntPathRequestMatcher("/**", "PATCH")
