@@ -33,6 +33,10 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "threads";
 
+    public static final String COMMENTS_END_POINT = "comments";
+
+    public static final String LIKES_END_POINT = "likes";
+
     @Autowired
     private ThreadJerseyController(ThreadService threadService, SessionService sessionService) {
         this.threadService = threadService;
@@ -68,7 +72,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         threadService.getThreads(title, userId, username,
                                 pageNumber, pageSize, sortingType, sortDirection),
-                        (threadPage) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(threadPage.getData())) {
+                        (threadPage) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(threadPage.getData(),
+                                uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("title", title)
@@ -84,7 +89,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("id");
         }
         return Optional.ofNullable(threadService.findById(id))
-                .map(thread -> Response.ok(new ThreadDto(thread)).build())
+                .map(thread -> Response.ok(new ThreadDto(thread, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
@@ -123,8 +128,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     }
 
     @PUT
-    @Path("/{id : \\d+}/likes")
-    public Response likeThread(@PathParam("id") final long threadId) {
+    @Path("/{id : \\d+}/" + LIKES_END_POINT)
+    public Response likeThread(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long threadId) {
         if (threadId <= 0) {
             throw new IllegalParameterValueException("id");
         }
@@ -134,8 +139,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/{id : \\d+}/likes")
-    public Response unlikeThread(@PathParam("id") final long threadId) {
+    @Path("/{id : \\d+}/" + LIKES_END_POINT)
+    public Response unlikeThread(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long threadId) {
         if (threadId <= 0) {
             throw new IllegalParameterValueException("id");
         }
