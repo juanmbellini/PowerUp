@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.webapp.dto.FilterCategoryDto;
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
@@ -97,7 +96,8 @@ public class GameJerseyController {
         filters.add(FilterCategory.platform);
         filters.add(FilterCategory.genre);
         Collection<Game> relatedGames = gameService.findRelatedGames(gameId, filters);
-        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(relatedGames)){}).build();
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(relatedGames)) {
+        }).build();
     }
 
 
