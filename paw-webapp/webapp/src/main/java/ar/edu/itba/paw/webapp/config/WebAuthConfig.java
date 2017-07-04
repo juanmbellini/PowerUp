@@ -60,7 +60,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RequestMatcher protectedEndpointsMatcher() {
         return new OrRequestMatcher(
-            new NegatedRequestMatcher(new AntPathRequestMatcher("/api/users", "POST")),
+            new AntPathRequestMatcher("/**", "POST"),
             new AntPathRequestMatcher("/**", "PUT"),
             new AntPathRequestMatcher("/**", "DELETE"),
             new AntPathRequestMatcher("/**", "PATCH")
@@ -101,6 +101,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
             .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/favicon.ico", "/403");
+            .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/favicon.ico", "/403")
+            .antMatchers(HttpMethod.POST, "/api/users");
     }
 }
