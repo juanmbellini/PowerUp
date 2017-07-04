@@ -119,7 +119,7 @@ public class ThreadDto extends EntityDto {
 
 
         @XmlElement
-        private String userName;
+        private String username;
 
         @XmlElement
         private String profilePictureUrl;
@@ -135,7 +135,7 @@ public class ThreadDto extends EntityDto {
 
         public CreatorDto(User user, UriBuilder baseUri) {
             super(user.getId());
-            this.userName = user.getUsername();
+            this.username = user.getUsername();
             this.creatorUrl = baseUri.clone()
                     .path(UserJerseyController.END_POINT)
                     .path(Long.toString(user.getId()))
@@ -148,8 +148,8 @@ public class ThreadDto extends EntityDto {
         }
 
 
-        public String getUserName() {
-            return userName;
+        public String getUsername() {
+            return username;
         }
 
         public String getProfilePictureUrl() {

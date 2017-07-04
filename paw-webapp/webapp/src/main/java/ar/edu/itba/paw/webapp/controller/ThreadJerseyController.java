@@ -66,11 +66,11 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                                // Filters
                                @QueryParam("title") @DefaultValue("") final String title,
                                @QueryParam("userId") @DefaultValue("") final Long userId,
-                               @QueryParam("userName") @DefaultValue("") final String userName) {
+                               @QueryParam("username") @DefaultValue("") final String username) {
         return JerseyControllerHelper
                 .createCollectionGetResponse(
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getThreads(title, userId, userName,
+                        threadService.getThreads(title, userId, username,
                                 pageNumber, pageSize, sortingType, sortDirection),
                         (threadPage) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(threadPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
@@ -78,7 +78,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("title", title)
                                 .addParameter("userId", userId)
-                                .addParameter("userName", userName)
+                                .addParameter("username", username)
                                 .build());
     }
 
