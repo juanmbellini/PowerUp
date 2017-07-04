@@ -1,9 +1,9 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikesCount;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -30,38 +30,6 @@ public interface ThreadService {
                                           ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * Creates a new {@link Thread} with the specified data.
-     *
-     * @param title         The thread's title.
-     * @param creatorUserId The user's id.
-     * @param threadBody    The thread's body (i.e. initial comment).
-     * @return The created thread.
-     * @throws NoSuchEntityException If the creator doesn't exist.
-     */
-    Thread create(String title, long creatorUserId, String threadBody) throws NoSuchEntityException;
-
-    /**
-     * Updates the {@link Thread} with the given {@code threadId}.
-     *
-     * @param threadId   The thread's id.
-     * @param title      The new title.
-     * @param threadBody The body of the thread.
-     * @param userId     The id of the user performing the operation.
-     */
-    void update(long threadId, String title, String threadBody, long userId);
-
-    /**
-     * Deletes a thread along with all its comments. Only the thread's creator may delete threads.
-     *
-     * @param threadId The ID of the thread to delete.
-     * @param userId   The ID of the user attempting to delete the thread.
-     * @throws NoSuchEntityException If the thread doesn't exist.
-     * @throws UnauthorizedException If the user isn't allowed to delete the thread.
-     */
-    void delete(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
-
-
-    /**
      * Finds a thread by ID.
      *
      * @param threadId The ID to match.
@@ -70,20 +38,50 @@ public interface ThreadService {
     ThreadWithLikesCount findById(long threadId);
 
     /**
+     * Creates a new {@link Thread} with the specified data.
+     *
+     * @param title      The thread's title.
+     * @param threadBody The thread's body (i.e. initial comment).
+     * @param creator    The {@link User} creating the {@link Thread}.
+     * @return The created thread.
+     * @throws NoSuchEntityException If the creator doesn't exist.
+     */
+    Thread create(String title, String threadBody, User creator) throws NoSuchEntityException;
+
+    /**
+     * Updates the {@link Thread} with the given {@code threadId}.
+     *
+     * @param threadId   The thread's id.
+     * @param title      The new title.
+     * @param threadBody The body of the thread.
+     * @param updater    The {@link User} performing the operation.
+     */
+    void update(long threadId, String title, String threadBody, User updater);
+
+    /**
+     * Deletes a thread along with all its comments. Only the thread's creator may delete threads.
+     *
+     * @param threadId The ID of the thread to delete.
+     * @param deleter  The {@link User} performing the operation.
+     */
+    void delete(long threadId, User deleter);
+
+
+    /**
      * Marks a like for a given thread by a given user, if not already liked.
      *
      * @param threadId The ID of the thread to like.
-     * @param userId   The ID of the user liking the thread.
+     * @param liker    The {@link User} performing the operation.
      */
-    void likeThread(long threadId, long userId);
+    void likeThread(long threadId, User liker);
 
     /**
      * Removes a like from a given thread by a given user, if liked.
      *
      * @param threadId The ID of the thread to unlike.
-     * @param userId   The ID of the user unliking the thread.
+     * @param unliker  The {@link User} performing the operation.
      */
-    void unlikeThread(long threadId, long userId);
+    void unlikeThread(long threadId, User unliker);
 
 
     /*

@@ -13,27 +13,38 @@ import java.util.Map;
 public interface ThreadLikeDao {
 
     /**
-     * Finds a like for a given thread by a given user.
+     * Finds a {@link ThreadLike} made by a given {@link User} to a given {@link Thread}
      *
-     * @param threadId The thread ID.
-     * @param userId   The ID of the user who liked the thread.
-     * @return The matching like, or {@code null} if not found.
+     * @param thread The liked {@link Thread}
+     * @param user   The {@link User} that liked the {@link Thread}.
+     * @return The matching {@link ThreadLike}, or {@code null} if not present.
      */
-    ThreadLike find(long threadId, long userId);
+    ThreadLike find(Thread thread, User user);
 
     /**
      * Checks whether a given user has liked a given thread.
      *
-     * @param threadId The thread ID.
-     * @param userId   The user ID.
+     * @param thread The liked {@link Thread}
+     * @param user   The {@link User} that liked the {@link Thread}.
      * @return Whether the user has liked the specified thread.
      */
-    boolean exists(long threadId, long userId); // TODO: difference with find(threadId, userId) != null ??
+    boolean exists(Thread thread, User user);
 
+    /**
+     * Creates a new {@link ThreadLike} (i.e likes a {@link Thread} by a given {@link User}).
+     *
+     * @param thread The {@link Thread} being liked
+     * @param user   The {@link User} liking the {@link Thread}.
+     * @return The new {@link ThreadLike}.
+     */
     ThreadLike create(Thread thread, User user);
 
+    /**
+     * Deletes the given {@link ThreadLike} (i.e unlikes a {@link Thread}).
+     *
+     * @param threadLike The {@link ThreadLike} representing the {@link Thread} being liked.
+     */
     void delete(ThreadLike threadLike);
-
 
     /**
      * Counts the amount of likes for each {@link Thread} in the given collection.

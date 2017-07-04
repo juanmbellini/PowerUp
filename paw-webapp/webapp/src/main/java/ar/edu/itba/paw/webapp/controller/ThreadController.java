@@ -87,16 +87,16 @@ public class ThreadController extends BaseController {
         }
         //Valid, create
         ModelAndView mav = null;
-        try {
-            String title = form.getTitle().trim(),
-                    initialComment = form.getInitialComment().trim();
-            Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
-            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
-            mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
-        } catch (Exception e) {
-            LOG.error("Error creating thread: {}", e);
-            return new ModelAndView("error500");
-        }
+//        try {
+//            String title = form.getTitle().trim(),
+//                    initialComment = form.getInitialComment().trim();
+////            Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
+////            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
+////            mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
+//        } catch (Exception e) {
+//            LOG.error("Error creating thread: {}", e);
+//            return new ModelAndView("error500");
+//        }
         return mav;
     }
 
@@ -146,7 +146,7 @@ public class ThreadController extends BaseController {
                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.likeThread(threadId, getCurrentUser().getId());
+//            threadService.likeThread(threadId, getCurrentUser().getId());
 //            threadService.updateHotValue(threadId);
             LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -165,7 +165,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.unlikeThread(threadId, getCurrentUser().getId());
+//            threadService.unlikeThread(threadId, getCurrentUser().getId());
 //            threadService.updateHotValue(threadId);
             LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -229,7 +229,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.delete(threadId, getCurrentUser().getId());
+//            threadService.delete(threadId, getCurrentUser().getId());
             LOG.info("{} deleted thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {

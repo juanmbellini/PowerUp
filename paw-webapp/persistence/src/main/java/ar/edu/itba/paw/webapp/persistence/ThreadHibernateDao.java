@@ -53,7 +53,7 @@ public class ThreadHibernateDao implements ThreadDao {
 
 
     @Override
-    public Thread create(String title, User creator, String creatorComment) {
+    public Thread create(String title, String creatorComment, User creator) {
         Thread thread = new Thread(creator, title, creatorComment);
         em.persist(thread);
         return thread;

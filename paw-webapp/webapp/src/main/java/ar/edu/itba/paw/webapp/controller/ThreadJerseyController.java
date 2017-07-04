@@ -4,12 +4,12 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.ThreadDto;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.ThreadDao;
 import ar.edu.itba.paw.webapp.interfaces.ThreadService;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,17 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import static ar.edu.itba.paw.webapp.controller.ThreadJerseyController.END_POINT;
+
 /**
  * API endpoint for thread management.
  */
-@Path("threads")
+@Path(END_POINT)
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
 public class ThreadJerseyController implements UpdateParamsChecker {
 
+    public static final String END_POINT = "threads";
 
     @Autowired
     private ThreadJerseyController(ThreadService threadService, SessionService sessionService) {
@@ -52,7 +55,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     // ======== Basic thread operation ========
 
     @GET
-    public Response getThreads(@QueryParam("orderBy") @DefaultValue("newest") final ThreadDao.SortingType sortingType,
+    public Response getThreads(@QueryParam("orderBy") @DefaultValue("id") final ThreadDao.SortingType sortingType,
                                @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
@@ -91,8 +94,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         if (threadDto == null) {
             throw new MissingJsonException();
         }
-        final Thread thread = threadService.create(threadDto.getTitle(), getCurrentUserId(),
-                threadDto.getBody());
+        final Thread thread = threadService.create(threadDto.getTitle(), threadDto.getBody(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(thread.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
@@ -103,25 +106,41 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     public Response updateThread(@PathParam("id") final long threadId,
                                  final ThreadDto threadDto) {
         checkUpdateValues(threadId, "id", threadDto);
-        threadService.update(threadId, threadDto.getTitle(), threadDto.getBody(), getCurrentUserId()); // TODO: updater
+        threadService.update(threadId, threadDto.getTitle(), threadDto.getBody(),
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
     @DELETE
     @Path("/{id : \\d+}")
     public Response deleteThread(@PathParam("id") final long threadId) {
-        threadService.delete(threadId, getCurrentUserId()); // TODO: updater
+        if (threadId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        threadService.delete(threadId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
-
-    // ================ Helper methods ================
-
-
-    private long getCurrentUserId() {
-        User user = this.sessionService.getCurrentUser();
-        return user == null ? -1 : user.getId();
+    @PUT
+    @Path("/{id : \\d+}/likes")
+    public Response likeThread(@PathParam("id") final long threadId) {
+        if (threadId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        threadService.likeThread(threadId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
     }
 
-
+    @DELETE
+    @Path("/{id : \\d+}/likes")
+    public Response unlikeThread(@PathParam("id") final long threadId) {
+        if (threadId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        threadService.unlikeThread(threadId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
 }

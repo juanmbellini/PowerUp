@@ -18,9 +18,9 @@ public interface ThreadDao {
 
 
     /**
-     * @see ThreadService#create(String, long, String)
+     * @see ThreadService#create(String, String, User)
      */
-    Thread create(String title, User creator, String creatorComment);
+    Thread create(String title, String creatorComment, User creator);
 
 
     /**
@@ -76,7 +76,7 @@ public interface ThreadDao {
                 return "SIZE(thread.likes)";
             }
         },
-        NEWEST {
+        DATE {
             @Override
             public String getFieldName() {
                 return "createdAt";
