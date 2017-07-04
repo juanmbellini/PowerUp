@@ -17,7 +17,7 @@ public interface ThreadService {
      *
      * @param titleFilter    Filter for the title.
      * @param userIdFilter   Filter for user id.
-     * @param usernameFilter Filter for user name.
+     * @param usernameFilter Filter for username.
      * @param pageNumber     The page number.
      * @param pageSize       The page size.
      * @param sortingType    The sorting type (id, game id, or creation date).
