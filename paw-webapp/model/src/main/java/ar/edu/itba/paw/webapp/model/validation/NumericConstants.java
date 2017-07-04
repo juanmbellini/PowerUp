@@ -18,7 +18,7 @@ public class NumericConstants {
 
     public final static int MIME_TYPE_MAX_LENGTH = 256;
 
-    public final static int TEXT_FIELD_MAX_LENGTH = 10 * 2014;
+    public final static int TEXT_FIELD_MAX_LENGTH = 10 * 1024;
 
     public final static int TITLE_MAX_LENGTH = 128;
 
