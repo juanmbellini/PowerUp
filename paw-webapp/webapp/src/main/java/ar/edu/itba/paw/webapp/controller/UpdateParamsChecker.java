@@ -43,7 +43,7 @@ import java.util.function.Predicate;
      * @param idChecker            A {@link Predicate} that implements logic to check if the id is correct
      *                             (whose {@link Predicate#test(Object) method returns {@code true} if the id is correct,
      *                             or {@code false} otherwise}).
-     * @param dtoField             The id taken from the url path.
+     * @param dtoField             The id taken from the dto.
      * @param idAndDtoFieldChecker A {@link BiPredicate} that implements logic to check if the dto and path id match
      *                             (whose {@link BiPredicate#test(Object, Object)} method returns {@code true}
      *                             if the ids match, or {@code false} otherwise}).

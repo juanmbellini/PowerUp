@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -14,25 +15,40 @@ public interface CommentDao {
 
 
     /**
+     * Finds a {@link Page} of top level {@link Comment}s to the given {@link Thread}.
+     * Sorting and Pagination can be applied.
+     *
+     * @param thread        The commented {@link Thread}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, game id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
+     */
+    Page<Comment> getThreadComments(Thread thread, int pageNumber, int pageSize,
+                                    SortingType sortingType, SortDirection sortDirection);
+
+
+    /**
      * Creates a comment in a {@link Thread}.
      *
-     * @param thread         The commented {@link Thread}.
-     * @param commenter      The {@link User} commenting.
-     * @param commentMessage The comment content.
-     * @return
+     * @param thread    The commented {@link Thread}.
+     * @param body      The comment content.
+     * @param commenter The {@link User} commenting.
+     * @return The new {@link Comment}.
      */
-    Comment comment(Thread thread, User commenter, String commentMessage);
+    Comment comment(Thread thread, String body, User commenter);
 
 
     /**
      * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
      *
-     * @param comment        The {@link Comment} to be replied.
-     * @param commenter      The {@link User} replying
-     * @param commentMessage The comment content.
-     * @return
+     * @param comment The {@link Comment} to be replied.
+     * @param body    The comment content.
+     * @param replier The {@link User} replying
+     * @return The new {@link Comment} (i.e the reply to the given {@link Comment}).
      */
-    Comment reply(Comment comment, User commenter, String commentMessage);
+    Comment reply(Comment comment, String body, User replier);
 
 
     /**
@@ -103,6 +119,47 @@ public interface CommentDao {
             }
         }
         return null;
+    }
+
+
+    /**
+     * Enum indicating the sorting type for the "get threads" method.
+     */
+    enum SortingType {
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(comment.likes)";
+            }
+        },
+        DATE {
+            @Override
+            public String getFieldName() {
+                return "createdAt";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
     }
 
 }

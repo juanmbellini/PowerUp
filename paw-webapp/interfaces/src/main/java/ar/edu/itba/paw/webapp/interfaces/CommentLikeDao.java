@@ -4,6 +4,9 @@ import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.CommentLike;
 import ar.edu.itba.paw.webapp.model.User;
 
+import java.util.Collection;
+import java.util.Map;
+
 /**
  * Data Access Object for {@link ar.edu.itba.paw.webapp.model.CommentLike}.
  */
@@ -35,4 +38,11 @@ public interface CommentLikeDao {
      */
     void delete(CommentLike commentLike);
 
+    /**
+     * Counts the amount of likes for each {@link Comment} in the given collection.
+     *
+     * @param comments The {@link Comment} whose likes must be counted.
+     * @return A {@link Map} holding the amount of likes for each {@link Comment}.
+     */
+    Map<Comment, Long> countLikes(Collection<Comment> comments);
 }

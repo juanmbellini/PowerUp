@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class CommentLikeHibernateDao implements CommentLikeDao {
@@ -51,4 +53,11 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
         }
         em.remove(commentLike);
     }
+
+    @Override
+    public Map<Comment, Long> countLikes(Collection<Comment> comments) {
+        return DaoHelper.countLikes(comments, em, "comment", CommentLike.class);
+    }
+
+
 }

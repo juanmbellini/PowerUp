@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikeCount;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -88,25 +89,68 @@ public interface ThreadService {
      * Comments
      */
 
+
+    /**
+     * Finds a {@link Page} of top level {@link Comment}s to the given {@link Thread}.
+     * Sorting and Pagination can be applied.
+     *
+     * @param threadId      The commented {@link Thread} ID.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, game id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
+     */
+    Page<LikeableEntityWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                           CommentDao.SortingType sortingType,
+                                                           SortDirection sortDirection);
+
+    /**
+     * Finds a comment by ID.
+     *
+     * @param commentId The ID to match.
+     * @return The matching comment or {@code null} if not found.
+     */
+    LikeableEntityWrapper<Comment> findCommentById(long commentId);
+
+
     /**
      * Adds a top-level comment to a given thread, created by a given user.
      *
-     * @param threadId    The ID of the thread to which the comment belongs.
-     * @param commenterId The ID of the commenter.
-     * @param comment     The comment.
+     * @param threadId  The ID of the thread to which the {@link Comment} belongs.
+     * @param body      The comment's body.
+     * @param commenter The {@link User} commenting.
      * @return The created comment.
      */
-    Comment comment(long threadId, long commenterId, String comment);
+    Comment comment(long threadId, String body, User commenter);
 
     /**
-     * Adds a reply to a given comment, created by a given user.
+     * Edits a comment. Only the original commenter may update their comment.
+     *
+     * @param commentId The comment ID.
+     * @param newBody   The new comment.
+     * @param updater   The {@link User} performing the operation.
+     */
+    void editComment(long commentId, String newBody, User updater);
+
+    /**
+     * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
+     *
+     * @param commentId The ID of the comment to delete.
+     * @param deleter   The {@link User} performing the operation.
+     * @throws NoSuchEntityException If the comment doesn't exist.
+     */
+    void deleteComment(long commentId, User deleter) throws NoSuchEntityException;
+
+    /**
+     * Adds a reply to a given comment.
      *
      * @param commentId The ID of the comment being replied.
-     * @param replierId The ID of the replier.
-     * @param reply     The reply.
+     * @param body      The reply content.
+     * @param replier   The {@link User} replying.
      * @return The created reply.
      */
-    Comment replyToComment(long commentId, long replierId, String reply);
+    Comment replyToComment(long commentId, String body, User replier);
 
     /**
      * Marks a like for a given comment or reply by a given user, if not already liked.
@@ -123,24 +167,6 @@ public interface ThreadService {
      * @param userId    The ID of the user unliking the comment.
      */
     void unlikeComment(long commentId, long userId);
-
-    /**
-     * Edits a comment. Only the original commenter may update their comment.
-     *
-     * @param commentId  The comment ID.
-     * @param userId     The commenter ID.
-     * @param newComment The new comment.
-     */
-    void editComment(long commentId, long userId, String newComment);
-
-    /**
-     * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
-     *
-     * @param commentId The ID of the comment to delete.
-     * @param userId    The ID of the user attempting to delete the comment.
-     * @throws NoSuchEntityException If the comment doesn't exist.
-     */
-    void deleteComment(long commentId, long userId) throws NoSuchEntityException;
 
 
 }

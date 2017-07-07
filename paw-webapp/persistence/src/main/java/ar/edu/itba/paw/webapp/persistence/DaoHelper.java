@@ -3,13 +3,16 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
+import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -338,6 +341,45 @@ import java.util.stream.IntStream;
 
 
     /**
+     * Groups {@link LikeableEntity}s with the amount of {@link Like} each one has.
+     *
+     * @param entities   The {@link Collection} of {@link LikeableEntity}.
+     * @param em         The entity manager.
+     * @param entityName The entity name (i.e how it is defined in the {@link Like} {@link Class}).
+     * @param likeClass  The {@link Class} representing the {@link Like} for the {@link LikeableEntity}.
+     * @param <E>        The specific {@link LikeableEntity} type.
+     * @param <T>        The specific {@link Like} type.
+     * @return A {@link Map} grouping {@link LikeableEntity} with the amount of {@link Like} for each.
+     */
+    /* package */
+    static <E extends LikeableEntity, T extends Like> Map<E, Long> countLikes(Collection<E> entities, EntityManager em,
+                                                                              String entityName, Class<T> likeClass) {
+        if (entities == null) {
+            throw new IllegalArgumentException();
+        }
+        if (entities.isEmpty()) {
+            return new HashMap<>(); // Avoids querying
+        }
+
+        // Used for easily getting an entity by its id.
+        final Map<Long, E> ids = entities.stream()
+                .collect(Collectors.toMap(LikeableEntity::getId, Function.identity()));
+        //noinspection unchecked
+        final List<Object[]> likes = em.createQuery("SELECT _like." + entityName + ".id, count(_like)" +
+                " FROM " + likeClass.getSimpleName() + " _like" +
+                " WHERE _like." + entityName + " IN :entities" +
+                " GROUP BY _like." + entityName + ".id")
+                .setParameter("entities", entities)
+                .getResultList();
+        // The likes list holds Object arrays with two elements each: entity id and likes count
+        final Map<E, Long> result = likes.stream()
+                .collect(Collectors.toMap(each -> ids.get((Long) each[0]), each -> (Long) each[1]));
+        entities.forEach(entity -> result.putIfAbsent(entity, 0L));
+        return result;
+    }
+
+
+    /**
      * Creates a page.
      *
      * @param data                    Data in the page.
@@ -409,21 +451,9 @@ import java.util.stream.IntStream;
 
         private int position;
 
-
-        /**
-         * Constructor.
-         *
-         * @param condition The condition in HQL.
-         * @param parameter The object to be used as parameter.
-         */
-        @Deprecated
-        /* package */ ConditionAndParameterWrapper(String condition, Object parameter) {
+        /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
             this.condition = condition;
             this.parameter = parameter;
-        }
-
-        /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
-            this(condition, parameter);
             this.position = position;
         }
 

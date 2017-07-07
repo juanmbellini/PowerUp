@@ -23,7 +23,7 @@ public class Functions {
         StringBuilder builder = new StringBuilder("<ul class='collection'>");
         for(Comment comment : currentLevel) {
             String escapedUsername = HtmlUtils.htmlEscape(comment.getCommenter().getUsername(), "UTF-8"),
-                    escapedComment = HtmlUtils.htmlEscape(comment.getComment(), "UTF-8");
+                    escapedComment = HtmlUtils.htmlEscape(comment.getBody(), "UTF-8");
             long commentId = comment.getId();
 
             //Basic section

@@ -35,7 +35,7 @@
                             <%--Rename link--%>
                             <a href="#!" class="edit-thread-title-link" data-thread-id="${thread.id}" data-thread-title="${thread.title}">Change Title</a>
                             <%--Edit link--%>
-                            | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-comment="<c:out value="${thread.body}"/>" data-form-shown="false">Edit Comment</a>
+                            | <a href="#!" class="edit-thread-initial-comment-link" data-thread-id="${thread.id}" data-thread-initial-body="<c:out value="${thread.body}"/>" data-form-shown="false">Edit Comment</a>
                             <%--Delete link--%>
                             | <a href="#!" class="delete-thread-link" data-thread-id="${thread.id}">Delete</a>
                         </div>
@@ -86,7 +86,7 @@
         <c:if test="${isLoggedIn}">
             <%--Add a comment form--%>
             <div class="row">
-                <c:url value="/comment" var="commentUrl"/>
+                <c:url value="/body" var="commentUrl"/>
                 <form:form modelAttribute="commentForm" action="${commentUrl}" method="POST">
                     <form:hidden path="threadId"/>
                     <div class='row'>
@@ -136,7 +136,7 @@
             if (!$me.data("form-shown")) {
                 var body = $me.data("thread-initial-comment");
                 var $form = $("<form></form>");
-                $form.attr("action", "<c:url value="/edit-thread-initial-comment" />");
+                $form.attr("action", "<c:url value="/edit-thread-initial-body" />");
                 $form.attr("method", "POST");
                 $form.css("margin-top", "10px");
 
@@ -298,7 +298,7 @@
                 var commentId = $me.data("comment-id");
                 var comment = $me.data("comment").trim();
                 var $form = $("<form></form>");
-                $form.attr("action", "<c:url value="/edit-comment" />");
+                $form.attr("action", "<c:url value="/edit-body" />");
                 $form.attr("method", "POST");
                 $form.css("margin-top", "10px");
 
@@ -351,7 +351,7 @@
                 $(".confirm").attr('disabled', 'disabled');
 
                 //Create an inline form and submit it to redirect with POST
-                $("<form action='<c:url value="/delete-comment" />' method='POST'> \
+                $("<form action='<c:url value="/delete-body" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
                 <input type='hidden' name='returnUrl' value='/thread?id=${thread.id}' /> \
                </form>").submit();
@@ -361,7 +361,7 @@
         $(".like-comment").on("click", function(event) {
             var commentId = $(this).data("comment-id");
             //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/like-comment" />' method='POST'> \
+            $("<form action='<c:url value="/like-body" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
                 <input type='hidden' name='returnUrl' value='/thread?id=${thread.id}#" + commentId + "' /> \
                </form>").submit();
@@ -370,7 +370,7 @@
         $(".unlike-comment").on("click", function(event) {
             var commentId = $(this).data("comment-id");
             //Create an inline form and submit it to redirect with POST
-            $("<form action='<c:url value="/unlike-comment" />' method='POST'> \
+            $("<form action='<c:url value="/unlike-body" />' method='POST'> \
                 <input type='hidden' name='commentId' value='" + commentId + "' /> \
                 <input type='hidden' name='returnUrl' value='/thread?id=${thread.id}#" + commentId + "' /> \
                </form>").submit();
