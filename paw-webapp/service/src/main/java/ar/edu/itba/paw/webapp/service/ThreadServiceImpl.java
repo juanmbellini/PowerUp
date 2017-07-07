@@ -7,7 +7,6 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
 import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikeCount;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,30 +57,22 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<ThreadWithLikeCount> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                                int pageNumber, int pageSize,
-                                                ThreadDao.SortingType sortingType, SortDirection sortDirection) {
+    public Page<LikeableEntityWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                                          int pageNumber, int pageSize,
+                                                          ThreadDao.SortingType sortingType,
+                                                          SortDirection sortDirection) {
+        // TODO: is liked by...
         final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
         final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
-//        return createNewPage(page, likeCounts);
-        // TODO: is liked by...
-        return new Page.Builder<ThreadWithLikeCount>()
-                .setTotalPages(page.getTotalPages())
-                .setOverAllAmountOfElements(page.getOverAllAmountOfElements())
-                .setPageSize(page.getPageSize())
-                .setPageNumber(page.getPageNumber())
-                .setData(page.getData().stream()
-                        .map(thread -> new ThreadWithLikeCount(thread, likeCounts.get(thread)))
-                        .collect(Collectors.toList()))
-                .build();
+        return createNewPage(page, likeCounts);
     }
 
     @Override
-    public ThreadWithLikeCount findById(long threadId) {
+    public LikeableEntityWrapper<Thread> findById(long threadId) {
         // TODO: is liked by...
         return Optional.ofNullable(threadDao.findById(threadId))
-                .map(thread -> new ThreadWithLikeCount(thread, thread.getLikeCount()))
+                .map(LikeableEntityWrapper::new)
                 .orElse(null);
     }
 

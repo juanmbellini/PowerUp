@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.model_wrappers.ThreadWithLikeCount;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -53,22 +53,22 @@ public class ThreadDto extends EntityDto {
     }
 
 
-    public ThreadDto(ThreadWithLikeCount threadWithLikeCount, UriBuilder baseUri) {
-        super(threadWithLikeCount.getThread().getId());
-        this.title = threadWithLikeCount.getThread().getTitle();
-        this.body = threadWithLikeCount.getThread().getBody();
-        this.createdAt = LocalDateTime.ofInstant(threadWithLikeCount.getThread().getCreatedAt().toInstant(),
+    public ThreadDto(LikeableEntityWrapper<Thread> threadWithLikeCount, UriBuilder baseUri) {
+        super(threadWithLikeCount.getEntity().getId());
+        this.title = threadWithLikeCount.getEntity().getTitle();
+        this.body = threadWithLikeCount.getEntity().getBody();
+        this.createdAt = LocalDateTime.ofInstant(threadWithLikeCount.getEntity().getCreatedAt().toInstant(),
                 ZoneId.systemDefault()).toString();
-        this.creator = new CreatorDto(threadWithLikeCount.getThread().getCreator(), baseUri.clone());
+        this.creator = new CreatorDto(threadWithLikeCount.getEntity().getCreator(), baseUri.clone());
         this.likeCount = threadWithLikeCount.getLikeCount();
         this.commentsUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(threadWithLikeCount.getThread().getId()))
+                .path(Long.toString(threadWithLikeCount.getEntity().getId()))
                 .path(ThreadJerseyController.COMMENTS_END_POINT)
                 .build().toString();
         this.likesUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(threadWithLikeCount.getThread().getId()))
+                .path(Long.toString(threadWithLikeCount.getEntity().getId()))
                 .path(ThreadJerseyController.LIKES_END_POINT)
                 .build().toString();
     }
@@ -108,7 +108,8 @@ public class ThreadDto extends EntityDto {
      * @param threads The collection of {@link Thread}
      * @return A list of {@link ThreadDto}.
      */
-    public static List<ThreadDto> createList(Collection<ThreadWithLikeCount> threads, UriBuilder uriBuilder) {
+    public static List<ThreadDto> createList(Collection<LikeableEntityWrapper<Thread>> threads,
+                                             UriBuilder uriBuilder) {
         return threads.stream().map(thread -> new ThreadDto(thread, uriBuilder.clone())).collect(Collectors.toList());
     }
 

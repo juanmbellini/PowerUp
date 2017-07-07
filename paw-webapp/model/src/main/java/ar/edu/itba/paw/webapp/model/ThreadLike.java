@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Table(name = "thread_likes",
         indexes = {@Index(name = "thread_likes_pkey",
                 columnList = "user_id, thread_id", unique = true)})
-public class ThreadLike implements ValidationExceptionThrower {
+public class ThreadLike implements ValidationExceptionThrower, Like {
 
     @Id
     @SequenceGenerator(name = "thread_likes_seq", sequenceName = "thread_likes_id_seq", allocationSize = 1)
