@@ -34,7 +34,7 @@ public class Comment implements ValidationExceptionThrower, Likeable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Thread thread;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 

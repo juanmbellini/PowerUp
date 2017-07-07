@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -29,6 +30,12 @@ public class CommentDto extends EntityDto {
 
     @XmlElement
     private String createdAt;
+
+    @XmlElement
+    private Long inReplyTo;
+
+    @XmlElement
+    private String inReplyToUrl;
 
     @XmlElement
     private Long likeCount;
@@ -61,6 +68,14 @@ public class CommentDto extends EntityDto {
         this.body = wrapper.getEntity().getBody();
         this.createdAt = LocalDateTime.ofInstant(wrapper.getEntity().getCreatedAt().toInstant(),
                 ZoneId.systemDefault()).toString();
+        this.inReplyTo = Optional.ofNullable(wrapper.getEntity().getParentComment()).map(Comment::getId).orElse(null);
+        this.inReplyToUrl = Optional.ofNullable(wrapper.getEntity().getParentComment())
+                .map(comment -> baseUri.clone()
+                        .path(ThreadJerseyController.END_POINT)
+                        .path(ThreadJerseyController.COMMENTS_END_POINT)
+                        .path(Long.toString(comment.getId()))
+                        .build().toString())
+                .orElse(null);
         this.likeCount = wrapper.getLikeCount();
         this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
         this.commenter = new ThreadDto.CreatorDto(wrapper.getEntity().getCommenter(), baseUri);
@@ -117,6 +132,14 @@ public class CommentDto extends EntityDto {
 
     public Boolean getLikedByCurrentUser() {
         return likedByCurrentUser;
+    }
+
+    public Long getInReplyTo() {
+        return inReplyTo;
+    }
+
+    public String getInReplyToUrl() {
+        return inReplyToUrl;
     }
 
     /**
