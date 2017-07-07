@@ -1,9 +1,11 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.ThreadLikeDao;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.ThreadLike;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -23,6 +25,14 @@ public class ThreadLikeHibernateDao implements ThreadLikeDao {
     private static final String BASE_QUERY = "FROM ThreadLike _like" +
             " WHERE _like.thread = ?1 AND _like.user = ?2";
 
+    @Override
+    public Page<ThreadLike> getLikes(Thread thread, int pageNumber, int pageSize,
+                                     SortingType sortingType, SortDirection sortDirection) {
+
+        return DaoHelper.getLikesPage(em, pageNumber, pageSize, sortingType.getFieldName(), sortDirection,
+                ThreadLike.class,
+                new DaoHelper.ConditionAndParameterWrapper("_like.thread = ?0", thread, 0));
+    }
 
     @Override
     public ThreadLike find(Thread thread, User user) {

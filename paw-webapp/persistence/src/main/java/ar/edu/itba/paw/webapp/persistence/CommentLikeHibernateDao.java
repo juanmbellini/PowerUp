@@ -1,9 +1,11 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.CommentLikeDao;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.CommentLike;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ import java.util.Map;
 
 @Repository
 public class CommentLikeHibernateDao implements CommentLikeDao {
+
     @PersistenceContext
     private EntityManager em;
 
@@ -21,6 +24,15 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
      */
     private static final String BASE_QUERY = "FROM CommentLike _like" +
             " WHERE _like.comment = ?1 AND _like.user = ?2";
+
+
+    @Override
+    public Page<CommentLike> getLikes(Comment comment, int pageNumber, int pageSize,
+                                      SortingType sortingType, SortDirection sortDirection) {
+        return DaoHelper.getLikesPage(em, pageNumber, pageSize, sortingType.getFieldName(), sortDirection,
+                CommentLike.class,
+                new DaoHelper.ConditionAndParameterWrapper("_like.comment = ?0", comment, 0));
+    }
 
 
     @Override

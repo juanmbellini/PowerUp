@@ -1,6 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
-import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  */
 @Entity
 @Table(name = "comments")
-public class Comment implements ValidationExceptionThrower, LikeableEntity {
+public class Comment implements ValidationExceptionThrower, Likeable {
 
 
     @Id

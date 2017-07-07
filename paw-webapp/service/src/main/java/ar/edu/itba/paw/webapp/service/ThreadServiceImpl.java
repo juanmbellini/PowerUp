@@ -5,8 +5,9 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiPredicate;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -57,22 +59,22 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<LikeableEntityWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                                          int pageNumber, int pageSize,
-                                                          ThreadDao.SortingType sortingType,
-                                                          SortDirection sortDirection) {
+    public Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                                    int pageNumber, int pageSize,
+                                                    ThreadDao.SortingType sortingType,
+                                                    SortDirection sortDirection) {
         // TODO: is liked by...
         final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
         final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
-        return createNewPage(page, likeCounts);
+        return createLikeableNewPage(page, likeCounts);
     }
 
     @Override
-    public LikeableEntityWrapper<Thread> findById(long threadId) {
+    public LikeableWrapper<Thread> findById(long threadId) {
         // TODO: is liked by...
         return Optional.ofNullable(threadDao.findById(threadId))
-                .map(LikeableEntityWrapper::new)
+                .map(LikeableWrapper::new)
                 .orElse(null);
     }
 
@@ -128,28 +130,34 @@ public class ThreadServiceImpl implements ThreadService {
         Optional.ofNullable(threadLikeDao.find(thread, unliker)).ifPresent(threadLikeDao::delete);
     }
 
-
+    @Override
+    public Page<User> getUsersLikingTheThread(long threadId, int pageNumber, int pageSize,
+                                              ThreadLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Thread thread = getThread(threadId);
+        final Page<ThreadLike> page = threadLikeDao.getLikes(thread, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
+    }
 
     /*
      * Comments
      */
 
     @Override
-    public Page<LikeableEntityWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
-                                                                  CommentDao.SortingType sortingType,
-                                                                  SortDirection sortDirection) {
+    public Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                            CommentDao.SortingType sortingType,
+                                                            SortDirection sortDirection) {
         final Thread thread = getThread(threadId); // Throws NoSuchEntityException if not exists
         // TODO: is liked by...
         final Page<Comment> page = commentDao.getThreadComments(thread, pageNumber, pageSize,
                 sortingType, sortDirection);
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
-        return createNewPage(page, likeCounts);
+        return createLikeableNewPage(page, likeCounts);
     }
 
     @Override
-    public LikeableEntityWrapper<Comment> findCommentById(long commentId) {
+    public LikeableWrapper<Comment> findCommentById(long commentId) {
         // TODO: is liked by...
-        return Optional.ofNullable(commentDao.findById(commentId)).map(LikeableEntityWrapper::new).orElse(null);
+        return Optional.ofNullable(commentDao.findById(commentId)).map(LikeableWrapper::new).orElse(null);
     }
 
     @Override
@@ -178,15 +186,15 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<LikeableEntityWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
-                                                                  CommentDao.SortingType sortingType,
-                                                                  SortDirection sortDirection) {
+    public Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                            CommentDao.SortingType sortingType,
+                                                            SortDirection sortDirection) {
         final Comment comment = getComment(commentId); // Throws NoSuchEntityException if not exists
         // TODO: is liked by...
         final Page<Comment> page = commentDao.getCommentReplies(comment, pageNumber, pageSize,
                 sortingType, sortDirection);
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
-        return createNewPage(page, likeCounts);
+        return createLikeableNewPage(page, likeCounts);
     }
 
     @Override
@@ -222,6 +230,14 @@ public class ThreadServiceImpl implements ThreadService {
         Optional.ofNullable(commentLikeDao.find(comment, unliker)).ifPresent(commentLikeDao::delete);
     }
 
+    @Override
+    public Page<User> getUsersLikingTheComment(long commentId, int pageNumber, int pageSize,
+                                               CommentLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Comment comment = getComment(commentId);
+        final Page<CommentLike> page = commentLikeDao
+                .getLikes(comment, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
+    }
 
     // ========================================
 
@@ -325,7 +341,7 @@ public class ThreadServiceImpl implements ThreadService {
 
 
     /**
-     * Creates a new {@link Page} of {@link LikeableEntityWrapper} according to the given {@code oldPage}
+     * Creates a new {@link Page} of {@link LikeableWrapper} according to the given {@code oldPage}
      * and the {@link Map} of {@code likeCounts}.
      *
      * @param oldPage    The old {@link Page} from which data is taken.
@@ -333,17 +349,38 @@ public class ThreadServiceImpl implements ThreadService {
      * @param <T>        The type of elements in the {@link Page}.
      * @return The new {@link Page}.
      */
-    private static <T extends LikeableEntity> Page<LikeableEntityWrapper<T>> createNewPage(Page<T> oldPage,
-                                                                                           Map<T, Long> likeCounts) {
-        return new Page.Builder<LikeableEntityWrapper<T>>()
+    private <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
+                                                                                Map<T, Long> likeCounts) {
+        return fromAnotherPage(oldPage, entity -> new LikeableWrapper<>(entity, likeCounts.get(entity))).build();
+    }
+
+    /**
+     * Creates a new {@link Page} of {@link User} according to the given {@code oldPage} of {@link Like}.
+     *
+     * @param oldPage The old {@link Page} from which data is taken.
+     * @return The new {@link Page}.
+     */
+    private Page<User> createLikersPage(Page<? extends Like> oldPage) {
+        return fromAnotherPage(oldPage, Like::getUser).build();
+    }
+
+    /**
+     * Creates a new {@link Page} from the given {@code oldPage}, applying the given {@code transformFunction}.
+     *
+     * @param oldPage           The old {@link Page} from which data is taken.
+     * @param transformFunction The {@link Function} that is applied to each element of the {@code oldPage}
+     *                          in order to create the new {@link Page}
+     * @param <E>               The type of elements the {@code oldPage} holds.
+     * @param <T>               The type of elements the new {@link Page} will hold.
+     * @return The new {@link Page}.
+     */
+    private static <E, T> Page.Builder<T> fromAnotherPage(Page<E> oldPage, Function<E, T> transformFunction) {
+        return new Page.Builder<T>()
                 .setTotalPages(oldPage.getTotalPages())
                 .setOverAllAmountOfElements(oldPage.getOverAllAmountOfElements())
                 .setPageSize(oldPage.getPageSize())
                 .setPageNumber(oldPage.getPageNumber())
-                .setData(oldPage.getData().stream()
-                        .map(entity -> new LikeableEntityWrapper<>(entity, likeCounts.get(entity)))
-                        .collect(Collectors.toList()))
-                .build();
+                .setData(oldPage.getData().stream().map(transformFunction).collect(Collectors.toList()));
     }
 
 
@@ -355,7 +392,8 @@ public class ThreadServiceImpl implements ThreadService {
      * @throws UnauthorizedException If the {@code updater} does not have permission
      *                               to update the given {@code comment}.
      */
-    private void validateCommentUpdatePermission(final Comment comment, final User updater) throws UnauthorizedException {
+    private void validateCommentUpdatePermission(final Comment comment, final User updater)
+            throws UnauthorizedException {
         validateCommentPermission(comment, updater, "update",
                 (commentLambda, updaterUser) ->
                         Long.compare(commentLambda.getCommenter().getId(), updaterUser.getId()) == 0);
@@ -369,7 +407,8 @@ public class ThreadServiceImpl implements ThreadService {
      * @throws UnauthorizedException If the {@code deleter} does not have permission
      *                               to delete the given {@code comment}.
      */
-    private void validateCommentDeletePermission(final Comment comment, final User deleter) throws UnauthorizedException {
+    private void validateCommentDeletePermission(final Comment comment, final User deleter)
+            throws UnauthorizedException {
         validateCommentPermission(comment, deleter, "delete",
                 (commentLambda, deleterUser) ->
                         Long.compare(commentLambda.getCommenter().getId(), deleterUser.getId()) == 0);

@@ -2,7 +2,9 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.CommentLike;
+import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
 import java.util.Map;
@@ -11,6 +13,21 @@ import java.util.Map;
  * Data Access Object for {@link ar.edu.itba.paw.webapp.model.CommentLike}.
  */
 public interface CommentLikeDao {
+
+
+    /**
+     * Returns a {@link Page} of {@link CommentLike} belonging to the given {@link Comment}
+     *
+     * @param comment        The liked {@link Comment}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<CommentLike> getLikes(Comment comment, int pageNumber, int pageSize,
+                               SortingType sortingType, SortDirection sortDirection);
+
 
     /**
      * Finds a {@link CommentLike} made by a given {@link User} to a given {@link Comment}
@@ -53,4 +70,45 @@ public interface CommentLikeDao {
      * @return A {@link Map} holding the amount of likes for each {@link Comment}.
      */
     Map<Comment, Long> countLikes(Collection<Comment> comments);
+
+
+    /**
+     * Enum indicating the sorting type for the "get users liking" method.
+     */
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return "id";
+            }
+        },
+        DATE {
+            @Override
+            public String getFieldName() {
+                return "createdAt";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
 }

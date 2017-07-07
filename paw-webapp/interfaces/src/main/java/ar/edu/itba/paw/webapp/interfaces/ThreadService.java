@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -21,13 +21,13 @@ public interface ThreadService {
      * @param usernameFilter Filter for username.
      * @param pageNumber     The page number.
      * @param pageSize       The page size.
-     * @param sortingType    The sorting type (id, game id, or creation date).
+     * @param sortingType    The sorting type (id, hot, best, or creation date).
      * @param sortDirection  The sort direction (i.e ASC or DESC).
-     * @return The resulting page.
+     * @return The resulting {@link Page}.
      */
-    Page<LikeableEntityWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                                   int pageNumber, int pageSize,
-                                                   ThreadDao.SortingType sortingType, SortDirection sortDirection);
+    Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                             int pageNumber, int pageSize,
+                                             ThreadDao.SortingType sortingType, SortDirection sortDirection);
 
     /**
      * Finds a thread by ID.
@@ -35,7 +35,7 @@ public interface ThreadService {
      * @param threadId The ID to match.
      * @return The matching thread or {@code null} if not found.
      */
-    LikeableEntityWrapper<Thread> findById(long threadId);
+    LikeableWrapper<Thread> findById(long threadId);
 
     /**
      * Creates a new {@link Thread} with the specified data.
@@ -84,6 +84,19 @@ public interface ThreadService {
     void unlikeThread(long threadId, User unliker);
 
 
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Thread} with the given {@code threadId}.
+     *
+     * @param threadId      The ID of the {@link Thread}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheThread(long threadId, int pageNumber, int pageSize,
+                                       ThreadLikeDao.SortingType sortingType, SortDirection sortDirection);
+
     /*
      * Comments
      */
@@ -100,9 +113,9 @@ public interface ThreadService {
      * @param sortDirection The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<LikeableEntityWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
-                                                           CommentDao.SortingType sortingType,
-                                                           SortDirection sortDirection);
+    Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                     CommentDao.SortingType sortingType,
+                                                     SortDirection sortDirection);
 
     /**
      * Finds a comment by ID.
@@ -110,7 +123,7 @@ public interface ThreadService {
      * @param commentId The ID to match.
      * @return The matching comment or {@code null} if not found.
      */
-    LikeableEntityWrapper<Comment> findCommentById(long commentId);
+    LikeableWrapper<Comment> findCommentById(long commentId);
 
 
     /**
@@ -152,9 +165,9 @@ public interface ThreadService {
      * @param sortDirection The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<LikeableEntityWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
-                                                           CommentDao.SortingType sortingType,
-                                                           SortDirection sortDirection);
+    Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                     CommentDao.SortingType sortingType,
+                                                     SortDirection sortDirection);
 
     /**
      * Adds a reply to a given comment.
@@ -183,5 +196,17 @@ public interface ThreadService {
      */
     void unlikeComment(long commentId, User unliker);
 
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Comment} with the given {@code commentId}.
+     *
+     * @param commentId     The ID of the {@link Comment}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheComment(long commentId, int pageNumber, int pageSize,
+                                        CommentLikeDao.SortingType sortingType, SortDirection sortDirection);
 
 }

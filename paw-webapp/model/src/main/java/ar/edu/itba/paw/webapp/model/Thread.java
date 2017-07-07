@@ -1,6 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
-import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.*;
 
@@ -12,14 +12,13 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Models a thread, created by a specific user with a title, along with its comments and responses.
  */
 @Entity
 @Table(name = "threads")
-public class Thread implements ValidationExceptionThrower, LikeableEntity {
+public class Thread implements ValidationExceptionThrower, Likeable {
 
     @Id
     @SequenceGenerator(name = "threads_seq", sequenceName = "threads_id_seq", allocationSize = 1)

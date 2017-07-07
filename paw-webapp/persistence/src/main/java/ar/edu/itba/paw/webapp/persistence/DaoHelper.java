@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
-import ar.edu.itba.paw.webapp.model.model_interfaces.LikeableEntity;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import javax.persistence.EntityManager;
@@ -341,19 +341,19 @@ import java.util.stream.IntStream;
 
 
     /**
-     * Groups {@link LikeableEntity}s with the amount of {@link Like} each one has.
+     * Groups {@link Likeable}s with the amount of {@link Like} each one has.
      *
-     * @param entities   The {@link Collection} of {@link LikeableEntity}.
+     * @param entities   The {@link Collection} of {@link Likeable}.
      * @param em         The entity manager.
      * @param entityName The entity name (i.e how it is defined in the {@link Like} {@link Class}).
-     * @param likeClass  The {@link Class} representing the {@link Like} for the {@link LikeableEntity}.
-     * @param <E>        The specific {@link LikeableEntity} type.
+     * @param likeClass  The {@link Class} representing the {@link Like} for the {@link Likeable}.
+     * @param <E>        The specific {@link Likeable} type.
      * @param <T>        The specific {@link Like} type.
-     * @return A {@link Map} grouping {@link LikeableEntity} with the amount of {@link Like} for each.
+     * @return A {@link Map} grouping {@link Likeable} with the amount of {@link Like} for each.
      */
     /* package */
-    static <E extends LikeableEntity, T extends Like> Map<E, Long> countLikes(Collection<E> entities, EntityManager em,
-                                                                              String entityName, Class<T> likeClass) {
+    static <E extends Likeable, T extends Like> Map<E, Long> countLikes(Collection<E> entities, EntityManager em,
+                                                                        String entityName, Class<T> likeClass) {
         if (entities == null) {
             throw new IllegalArgumentException();
         }
@@ -363,7 +363,7 @@ import java.util.stream.IntStream;
 
         // Used for easily getting an entity by its id.
         final Map<Long, E> ids = entities.stream()
-                .collect(Collectors.toMap(LikeableEntity::getId, Function.identity()));
+                .collect(Collectors.toMap(Likeable::getId, Function.identity()));
         //noinspection unchecked
         final List<Object[]> likes = em.createQuery("SELECT _like." + entityName + ".id, count(_like)" +
                 " FROM " + likeClass.getSimpleName() + " _like" +
@@ -376,6 +376,30 @@ import java.util.stream.IntStream;
                 .collect(Collectors.toMap(each -> ids.get((Long) each[0]), each -> (Long) each[1]));
         entities.forEach(entity -> result.putIfAbsent(entity, 0L));
         return result;
+    }
+
+    /**
+     * Returns a {@link Page} of {@link Like} according to the given {@link ConditionAndParameterWrapper}.
+     *
+     * @param em            The entity manager.
+     * @param pageNumber    The number of page.
+     * @param pageSize      The size of page.
+     * @param sortingType   The field used to sort.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param klass         The {@link Class} of the entity representing the {@link Like}.
+     * @param condition     The condition to match for getting likes.
+     * @param <T>           The specific {@link Like} type.
+     * @return The {@link Page} with {@link Like}.
+     */
+    public static <T extends Like> Page<T> getLikesPage(EntityManager em, int pageNumber, int pageSize,
+                                                         String sortingType, SortDirection sortDirection,
+                                                         Class<T> klass, ConditionAndParameterWrapper condition) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM ").append(klass.getSimpleName()).append(" _like");
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = Collections.singletonList(condition);
+        return DaoHelper.findPageWithConditions(em, klass, query, "_like", "_like.id", conditions,
+                pageNumber, pageSize, "_like." + sortingType, sortDirection, false);
+
     }
 
 

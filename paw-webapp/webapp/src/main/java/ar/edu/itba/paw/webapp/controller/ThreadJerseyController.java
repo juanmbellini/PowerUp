@@ -3,11 +3,13 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.CommentDto;
 import ar.edu.itba.paw.webapp.dto.ThreadDto;
+import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Comment;
+import ar.edu.itba.paw.webapp.model.CommentLike;
 import ar.edu.itba.paw.webapp.model.Thread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -175,6 +177,29 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @GET
+    @Path("/{threadId : \\d+}/" + LIKES_END_POINT)
+    public Response getThreadLikers(@QueryParam("orderBy") @DefaultValue("id")
+                                    final ThreadLikeDao.SortingType sortingType,
+                                    @QueryParam("sortDirection") @DefaultValue("ASC")
+                                    final SortDirection sortDirection,
+                                    @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                    @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                    @SuppressWarnings("RSReferenceInspection") @PathParam("threadId")
+                                    final long threadId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        threadService
+                                .getUsersLikingTheThread(threadId, pageNumber, pageSize, sortingType, sortDirection),
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear()
+                                .build());
+    }
+
     @OPTIONS
     @Path("/{threadId : \\d+}/" + LIKES_END_POINT)
     public Response threadLikeOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId) {
@@ -320,6 +345,29 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         threadService.unlikeComment(commentId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
+    }
+
+    @GET
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
+    public Response getCommentLikers(@QueryParam("orderBy") @DefaultValue("id")
+                                     final CommentLikeDao.SortingType sortingType,
+                                     @QueryParam("sortDirection") @DefaultValue("ASC")
+                                     final SortDirection sortDirection,
+                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                     @SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
+                                     final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        threadService
+                                .getUsersLikingTheComment(commentId, pageNumber, pageSize, sortingType, sortDirection),
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear()
+                                .build());
     }
 
 

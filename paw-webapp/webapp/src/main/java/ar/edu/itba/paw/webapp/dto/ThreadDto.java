@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -53,7 +53,7 @@ public class ThreadDto extends EntityDto {
     }
 
 
-    public ThreadDto(LikeableEntityWrapper<Thread> threadWithLikeCount, UriBuilder baseUri) {
+    public ThreadDto(LikeableWrapper<Thread> threadWithLikeCount, UriBuilder baseUri) {
         super(threadWithLikeCount.getEntity().getId());
         this.title = threadWithLikeCount.getEntity().getTitle();
         this.body = threadWithLikeCount.getEntity().getBody();
@@ -108,7 +108,7 @@ public class ThreadDto extends EntityDto {
      * @param threads The collection of {@link Thread}
      * @return A list of {@link ThreadDto}.
      */
-    public static List<ThreadDto> createList(Collection<LikeableEntityWrapper<Thread>> threads,
+    public static List<ThreadDto> createList(Collection<LikeableWrapper<Thread>> threads,
                                              UriBuilder uriBuilder) {
         return threads.stream().map(thread -> new ThreadDto(thread, uriBuilder.clone())).collect(Collectors.toList());
     }

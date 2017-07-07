@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.model.Comment;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -53,7 +53,7 @@ public class CommentDto extends EntityDto {
         // For Jax-RS
     }
 
-    public CommentDto(LikeableEntityWrapper<Comment> commentWrapper, UriBuilder baseUri) {
+    public CommentDto(LikeableWrapper<Comment> commentWrapper, UriBuilder baseUri) {
         super(commentWrapper.getEntity().getId());
         this.body = commentWrapper.getEntity().getBody();
         this.createdAt = LocalDateTime.ofInstant(commentWrapper.getEntity().getCreatedAt().toInstant(),
@@ -117,7 +117,7 @@ public class CommentDto extends EntityDto {
      * @param comments The collection of {@link Comment}
      * @return A list of {@link CommentDto}.
      */
-    public static List<CommentDto> createList(Collection<LikeableEntityWrapper<Comment>> comments,
+    public static List<CommentDto> createList(Collection<LikeableWrapper<Comment>> comments,
                                               UriBuilder uriBuilder) {
         return comments.stream().map(wrapper -> new CommentDto(wrapper, uriBuilder.clone()))
                 .collect(Collectors.toList());
