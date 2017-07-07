@@ -4,6 +4,12 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
     powerUp.service('AuthService', ['$log', '$location', 'Restangular', 'localStorageService', function ($log, $location, Restangular, LocalStorage) {
         var trackingToken = false;
 
+        // Endpoints for which authentication is optional, and for which authentication will be sent
+        // if the user is logged in
+        var optionalAuthenticationEndpoints = [
+            /\/threads\/?/
+        ];
+
         /* ********************************************
          *              Private functions
          * *******************************************/
@@ -25,6 +31,20 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             } else {
                 LocalStorage.set('currentUser', newUser);
             }
+        }
+
+        function isOptionallyAuthenticatedEndpoint(url) {
+            // Disregard protocol, domain and port; care only about path after '/api'
+            var regex = /http:\/\/(\w+)(:\d*)?\/api\/(.*)/;
+            if(!regex.test(url)) {
+                return false;
+            }
+            url = '/' + regex.exec(url)[3];
+            // Return true on the first element that matches, or false if no element matches.
+            // Thanks to https://stackoverflow.com/a/2641374/2333689
+            return optionalAuthenticationEndpoints.some(function(urlRegex) {
+                return urlRegex.test(url);
+            });
         }
 
         /* ********************************************
@@ -61,7 +81,8 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             // Request
             $log.debug('Adding auth token REQUEST interceptor');
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
-                if (['post', 'put', 'remove'].indexOf(operation) !== -1) {   // Only attach token to protected endpoints
+                // Only attach token to protected endpoints, or to optionally authenticated GET endpoints when logged in
+                if (['post', 'put', 'remove'].indexOf(operation) !== -1 || (['get', 'getList'].indexOf(operation) !== -1 && isOptionallyAuthenticatedEndpoint(url)) && isLoggedIn()) {
                     var token = getToken();
                     if (token !== null) {
                         // $log.debug('Adding auth token to request headers');
