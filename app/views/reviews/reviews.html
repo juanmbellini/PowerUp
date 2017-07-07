@@ -17,8 +17,10 @@
 			<div ng-if="reviews.length > 0" class="row">
 				<span>
 					<div class="input-field col s2 offset-s5">
-						<select class="browser-default" id="pageSize">
-							<option ng-repeat="pageSize in pageSizes"> {{pageSize}} </option>
+						<!--<select ng-change="updatePageSize()" ng-model="pageSizeSelected" ng-options="pageSizeValue for pageSizeValue in pageSizes" class="browser-default"></select>-->
+						<!--<select class="browser-default" ng-options="pageSizeValue for pageSizeValue in pageSizes" ng-model="pageSizeSelected" ng-change="updatePageSize()"></select>-->
+						<select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
+							<option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
 						</select>
 					</div>
 					<label>Reviews per page</label>
@@ -95,20 +97,20 @@
 					</ul>
 					<!--END REVIEWS LIST-->
 					<!--PAGINATION-->
-					<div ng-if="headersPagination[x-total-pages] > 1" class="row">
+					<div ng-if="totalPages > 1" class="row">
 						<ul class="pagination center">
 							<!--TODO pagination-->
 							<!--Left chevron - only shown when there are > 1 pages -->
-							<div ng-if="headersPagination[x-total-pages] > 1">
+							<div ng-if="totalPages > 1">
 
-								<li ng-if="headersPagination[x-page-number] > 1" class="waves-effect">
+								<li ng-if="pageNumber > 1" class="waves-effect">
 									 <!--TODO borrar. asi era antes: <a ng-href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
-									<a ng-href="{{headersPagination[x-prev-page-url]}}">
+									<a ng-href="{{headersPagination['x-prev-page-url']}}">
 										<i class="material-icons">chevron_left</i>
 									</a>
 								</li>
 
-								<li ng-if="headersPagination[x-page-number] <= 1" class="disabled">
+								<li ng-if="pageNumber <= 1" class="disabled">
 									<a href="#!">
 										<i class="material-icons">chevron_left</i>
 									</a>
@@ -117,19 +119,19 @@
 
 							<!--Page numbers - always shown-->
 
-							<li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == headersPagination[x-page-number] ? 'active' : 'waves-effect'">
-								<a ng-if="pageIt == headersPagination[x-page-number]"> {{pageIt}} </a>
-								<a  ng-if="pageIt != headersPagination[x-page-number]" ng-href=""> {{pageIt}} </a>
+							<li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == pageNumber ? 'active' : 'waves-effect'">
+								<a ng-if="pageIt == pageNumber"> {{pageIt}} </a>
+								<a  ng-if="pageIt != pageNumber" ng-href=""> {{pageIt}} </a>
 							</li>
 							<!--Right chevron - only shown if there are > 1 pages-->
 
-							<div ng-if="headersPagination[x-total-pages] > 1">
-								<li class="disabled" ng-if="headersPagination[x-page-number] == headersPagination[x-total-pages]">
+							<div ng-if="totalPages > 1">
+								<li class="disabled" ng-if="pageNumber == totalPages">
 									<a href="#!"> <i class="material-icons">chevron_right</i> </a>
 								</li>
 
-								<li class="waves-effect" ng-if="headersPagination[x-page-number] != headersPagination[x-total-pages]">
-									<a ng-href="{{headersPagination[x-next-page-url]}}">
+								<li class="waves-effect" ng-if="pageNumber != totalPages">
+									<a ng-href="{{headersPagination['x-next-page-url']}}">
 										<i class="material-icons">chevron_right</i>
 									</a>
 								</li>

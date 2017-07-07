@@ -300,7 +300,8 @@ import java.util.stream.Collectors;
     static /* package */ ParametersWrapper getPaginationReadyParametersWrapper(int pageSize, int pageNumber) {
         return JerseyControllerHelper.getParametersWrapper()
                 .addParameter("pageSize", pageSize,
-                        size -> size != SMALL_PAGE && size != MEDIUM_PAGE && size != LARGE_PAGE)
+//                        size -> size != SMALL_PAGE && size != MEDIUM_PAGE && size != LARGE_PAGE)
+                          size -> size <=0 || size >LARGE_PAGE)
                 .addParameter("pageNumber", pageNumber, number -> number <= 0);
     }
 

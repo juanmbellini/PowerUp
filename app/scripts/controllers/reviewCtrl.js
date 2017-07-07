@@ -5,9 +5,15 @@ define(['powerUp'], function(powerUp) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
-        $scope.pageSizes = [5,10,15];
-        $scope.pageSize = 5;
+        $scope.pageSizes = [1,5,10,15];
 
+        $scope.pageSize = parseInt($location.search().pageSize, 10);
+        if (!$scope.pageSize) {
+            $scope.pageSize = 5;
+        }
+        $scope.pageSizeSelected = $scope.pageSize;
+
+        $scope.pageNumber = $location.search().pageNumber;
         $scope.userId = $location.search().userId;
         $scope.gameId = $location.search().gameId;
         if (!$scope.userId && !$scope.gameId) {
@@ -15,6 +21,13 @@ define(['powerUp'], function(powerUp) {
             $location.search({});
             $location.path('');
         }
+
+
+
+        $scope.updatePageSize = function (pageSizeSelected) {
+            $scope.pageSize = pageSizeSelected;
+            $location.search('pageSize', $scope.pageSize);
+        };
 
 
         // TODO delete duplicated
@@ -106,7 +119,7 @@ define(['powerUp'], function(powerUp) {
         };
 
 
-        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: 1}).then(function (response) {
+        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize}).then(function (response) {
             var reviews = response.data;
             $scope.reviews = reviews;
             console.log('foundReviews', reviews);
@@ -118,31 +131,38 @@ define(['powerUp'], function(powerUp) {
             console.log('There was an error getting reviews');
         });
 
+        $scope.changePageNumber = function(newPageNumber) {
+
+        }
+
        $scope.updatePagination = function() {
+           $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);
+           $scope.totalPages = parseInt($scope.headersPagination['x-total-pages'], 10);
+
            // Show the fist ten
-           $scope.paginationJustOne = ($scope.headersPagination['x-page-number'] - 4 <= 0) || ($scope.headersPagination['x-total-pages'] <= 10);
+           $scope.paginationJustOne = ($scope.pageNumber - 4 <= 0) || ($scope.totalPages <= 10);
            // Show the last ten
-           $scope.paginationNoMorePrev = ($scope.headersPagination['x-page-number'] + 5 > $scope.headersPagination['x-total-pages']);
-           $scope.paginationTheFirstOnes = ($scope.headersPagination['x-page-number'] + 5 < 10);
-           $scope.paginationNoMoreNext = ($scope.headersPagination['x-page-number'] + 5 >= $scope.headersPagination['x-total-pages']) || ($scope.headersPagination['x-total-pages'] < 10);
+           $scope.paginationNoMorePrev = ($scope.pageNumber + 5 > $scope.totalPages);
+           $scope.paginationTheFirstOnes = ($scope.pageNumber + 5 < 10);
+           $scope.paginationNoMoreNext = ($scope.pageNumber + 5 >= $scope.totalPages) || ($scope.totalPages < 10);
 
            if ($scope.paginationJustOne) {
                $scope.paginationBegin = 1;
            } else {
-               $scope.paginationBegin = $scope.paginationNoMorePrev ? $scope.headersPagination['x-total-pages'] - 9 : $scope.headersPagination['x-page-number'] - 4;
+               $scope.paginationBegin = $scope.paginationNoMorePrev ? $scope.totalPages - 9 : $scope.pageNumber - 4;
            }
 
            if ($scope.paginationNoMoreNext) {
-               $scope.paginationEnd = $scope.headersPagination['x-total-pages'];
+               $scope.paginationEnd = $scope.totalPages;
            } else {
-               $scope.paginationEnd = $scope.paginationTheFirstOnes ? 10 : $scope.headersPagination['x-page-number'] + 5;
+               $scope.paginationEnd = $scope.paginationTheFirstOnes ? 10 : $scope.pageNumber + 5;
            }
 
            $scope.rangePagination = [];
-           for (var i = $scope.paginationBegin; i < $scope.paginationEnd; i++) {
+           for (var i = $scope.paginationBegin; i <= $scope.paginationEnd; i++) {
                $scope.rangePagination.push(i);
            }
-       }
+       };
 
     });
 
