@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.dto;
 
+import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model_wrappers.LikeableEntityWrapper;
 
@@ -22,8 +23,6 @@ import java.util.stream.Collectors;
 @XmlType(name = "comment")
 public class CommentDto extends EntityDto {
 
-    @XmlElement
-    private Long threadId;
 
     @XmlElement
     private String body;
@@ -37,6 +36,18 @@ public class CommentDto extends EntityDto {
     @XmlElement
     private ThreadDto.CreatorDto commenter;
 
+    @XmlElement
+    private String repliesUrl;
+
+    @XmlElement
+    private String likesUrl;
+
+    @XmlElement
+    private Long threadId;
+
+    @XmlElement
+    private String threadUrl;
+
 
     public CommentDto() {
         // For Jax-RS
@@ -49,7 +60,23 @@ public class CommentDto extends EntityDto {
                 ZoneId.systemDefault()).toString();
         this.likeCount = commentWrapper.getLikeCount();
         this.commenter = new ThreadDto.CreatorDto(commentWrapper.getEntity().getCommenter(), baseUri);
+        this.repliesUrl = baseUri.clone()
+                .path(ThreadJerseyController.END_POINT)
+                .path(ThreadJerseyController.COMMENTS_END_POINT)
+                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .path(ThreadJerseyController.REPLIES_END_POINT)
+                .build().toString();
+        this.likesUrl = baseUri.clone()
+                .path(ThreadJerseyController.END_POINT)
+                .path(ThreadJerseyController.COMMENTS_END_POINT)
+                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .path(ThreadJerseyController.LIKES_END_POINT)
+                .build().toString();
         this.threadId = commentWrapper.getEntity().getThread().getId();
+        this.threadUrl = baseUri.clone()
+                .path(ThreadJerseyController.END_POINT)
+                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .build().toString();
     }
 
     public Long getThreadId() {
@@ -70,6 +97,18 @@ public class CommentDto extends EntityDto {
 
     public Long getLikeCount() {
         return likeCount;
+    }
+
+    public String getThreadUrl() {
+        return threadUrl;
+    }
+
+    public String getRepliesUrl() {
+        return repliesUrl;
+    }
+
+    public String getLikesUrl() {
+        return likesUrl;
     }
 
     /**
