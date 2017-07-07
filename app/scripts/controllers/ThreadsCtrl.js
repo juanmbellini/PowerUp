@@ -21,8 +21,12 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             });
         };
 
+        // TODO use API for this
         $scope.isLikedByCurrentUser = function(thread) {
-          return false;   // TODO
+            if(!$scope.isLoggedIn || !thread.hasOwnProperty("likedByCurrentUser")) {
+                return false;
+            }
+            return thread.likedByCurrentUser;
         };
 
         $scope.likeThread = function(thread) {
@@ -32,10 +36,11 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             }
             // Disable this like button
             disabledThreadButtons.push(threadId);
-            Restangular.one('threads', threadId).post('like').then(function(response) {
+
+            Restangular.one('threads', threadId).one('likes').put().then(function(response) {
                 // Update like count
                 thread.likeCount++;
-                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns true
+                setLikedByCurrentUser(thread, true);
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             }, function(error) {
@@ -52,10 +57,11 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             }
             // Disable this unlike button
             disabledThreadButtons.push(threadId);
-            Restangular.one('threads', threadId).post('unlike').then(function(response) {
+
+            Restangular.one('threads', threadId).one('likes').remove().then(function(response) {
                 // Update like count
                 thread.likeCount--;
-                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns false
+                setLikedByCurrentUser(thread, false);
                 // Re-enable button
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             }, function(error) {
@@ -64,5 +70,17 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
                 disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
             });
         };
+
+        /* *****************************
+         *       PRIVATE FUNCTIONS
+         * ****************************/
+        // TODO use API for this
+        function setLikedByCurrentUser(thread, isLiked) {
+            if(!thread || typeof thread !== 'object' || typeof isLiked === 'undefined') {
+                return;
+            }
+            thread.likedByCurrentUser = isLiked;
+            return thread;
+        }
     }]);
 });
