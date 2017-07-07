@@ -2,6 +2,7 @@
 define(['powerUp', 'authService'], function(powerUp) {
 
     powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', function($scope, $location, $log, AuthService, Restangular) {
+        Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
         if (!$scope.gameId) {
             console.log('No gameId');

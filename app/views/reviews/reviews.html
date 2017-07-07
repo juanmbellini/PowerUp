@@ -95,71 +95,45 @@
 					</ul>
 					<!--END REVIEWS LIST-->
 					<!--PAGINATION-->
-					<div ng-if="reviews.totalPages > 1" class="row">
+					<div ng-if="headersPagination[x-total-pages] > 1" class="row">
 						<ul class="pagination center">
 							<!--TODO pagination-->
 							<!--Left chevron - only shown when there are > 1 pages -->
-							<!--<div ng-if="reviews.totalPages > 1">-->
-							<!---->
-							<!--<li ng-if="reviews.pageNumber > 1" class="waves-effect">-->
-							<!--<a href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
-							<!--<i class="material-icons">chevron_left</i>-->
-							<!--</a>-->
-							<!--</li>-->
-							<!---->
-							<!--<li ng-if="reviews.pageNumber <= 1" class="disabled">-->
-							<!--<a href="#!">-->
-							<!--<i class="material-icons">chevron_left</i>-->
-							<!--</a>-->
-							<!--</li>-->
-							<!--</div>-->
-							<!---->
+							<div ng-if="headersPagination[x-total-pages] > 1">
+
+								<li ng-if="headersPagination[x-page-number] > 1" class="waves-effect">
+									 <!--TODO borrar. asi era antes: <a ng-href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
+									<a ng-href="{{headersPagination[x-prev-page-url]}}">
+										<i class="material-icons">chevron_left</i>
+									</a>
+								</li>
+
+								<li ng-if="headersPagination[x-page-number] <= 1" class="disabled">
+									<a href="#!">
+										<i class="material-icons">chevron_left</i>
+									</a>
+								</li>
+							</div>
+
 							<!--Page numbers - always shown-->
-							<!--<c:set var="just_one"-->
-							<!--value="${(reviews.pageNumber - 4) <= 0 || reviews.totalPages <= 10}"/>-->
-							<!--<c:set var="no_more_prev"-->
-							<!--value="${(reviews.pageNumber + 5) > reviews.totalPages}"/>-->
-							<!--<c:set var="the_first_ones"-->
-							<!--value="${(reviews.pageNumber + 5) < 10}"/>-->
-							<!--<c:set var="no_more_next"-->
-							<!--value="${reviews.totalPages < 10 || (reviews.pageNumber + 5) >= reviews.totalPages}"/>-->
-							<!--<c:forEach var="pageIt"-->
-							<!--begin="${just_one ? 1 : no_more_prev ? reviews.totalPages - 9 : reviews.pageNumber - 4}"-->
-							<!--end="${no_more_next ? reviews.totalPages : the_first_ones ? 10 : reviews.pageNumber + 5}">-->
-							<!--<li class=${pageIt == reviews.pageNumber ? "active" : "waves-effect"}>-->
-							<!--<c:choose>-->
-							<!--<c:when test="${pageIt == reviews.pageNumber}">-->
-							<!--<a>-->
-							<!--${pageIt}-->
-							<!--</a>-->
-							<!--</c:when>-->
-							<!--<c:otherwise>-->
-							<!--<a href="${changePageUrl}pageNumber=${pageIt}&pageSize=${reviews.pageSize}">-->
-							<!--${pageIt}-->
-							<!--</a>-->
-							<!--</c:otherwise>-->
-							<!--</c:choose>-->
-							<!--</li>-->
-							<!--</c:forEach>-->
-							<!--&lt;!&ndash;Right chevron - only shown if there are > 1 pages&ndash;&gt;-->
-							<!--<c:if test="${reviews.totalPages > 1}">-->
-							<!--<c:choose>-->
-							<!--<c:when test="${reviews.pageNumber == reviews.totalPages}">-->
-							<!--<li class="disabled">-->
-							<!--<a href="#!">-->
-							<!--<i class="material-icons">chevron_right</i>-->
-							<!--</a>-->
-							<!--</li>-->
-							<!--</c:when>-->
-							<!--<c:otherwise>-->
-							<!--<li class="waves-effect">-->
-							<!--<a href="${changePageUrl}pageNumber=${reviews.pageNumber + 1}&pageSize=${reviews.pageSize}">-->
-							<!--<i class="material-icons">chevron_right</i>-->
-							<!--</a>-->
-							<!--</li>-->
-							<!--</c:otherwise>-->
-							<!--</c:choose>-->
-							<!--</c:if>-->
+
+							<li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == headersPagination[x-page-number] ? 'active' : 'waves-effect'">
+								<a ng-if="pageIt == headersPagination[x-page-number]"> {{pageIt}} </a>
+								<a  ng-if="pageIt != headersPagination[x-page-number]" ng-href=""> {{pageIt}} </a>
+							</li>
+							<!--Right chevron - only shown if there are > 1 pages-->
+
+							<div ng-if="headersPagination[x-total-pages] > 1">
+								<li class="disabled" ng-if="headersPagination[x-page-number] == headersPagination[x-total-pages]">
+									<a href="#!"> <i class="material-icons">chevron_right</i> </a>
+								</li>
+
+								<li class="waves-effect" ng-if="headersPagination[x-page-number] != headersPagination[x-total-pages]">
+									<a ng-href="{{headersPagination[x-next-page-url]}}">
+										<i class="material-icons">chevron_right</i>
+									</a>
+								</li>
+							</div>
 						</ul>
 					</div>
 					<!--END PAGINATION-->
