@@ -91,7 +91,7 @@ public interface ThreadService {
 
 
     /**
-     * Finds a {@link Page} of top level {@link Comment}s to the given {@link Thread}.
+     * Finds a {@link Page} of top level {@link Comment}s to the {@link Thread} with the given {@code threadId}.
      * Sorting and Pagination can be applied.
      *
      * @param threadId      The commented {@link Thread} ID.
@@ -143,6 +143,20 @@ public interface ThreadService {
     void deleteComment(long commentId, User deleter) throws NoSuchEntityException;
 
     /**
+     * Finds a {@link Page} of {@link Comment}s that are immediate reply to the {@link Comment}
+     * with the given {@code commentId}.
+     *
+     * @param commentId     The replied {@link Comment} ID.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (date or best).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
+     */
+    Page<LikeableEntityWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                           CommentDao.SortingType sortingType, SortDirection sortDirection);
+
+    /**
      * Adds a reply to a given comment.
      *
      * @param commentId The ID of the comment being replied.
@@ -151,6 +165,7 @@ public interface ThreadService {
      * @return The created reply.
      */
     Comment replyToComment(long commentId, String body, User replier);
+
 
     /**
      * Marks a like for a given comment or reply by a given user, if not already liked.

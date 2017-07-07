@@ -259,6 +259,27 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @GET
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + REPLIES_END_POINT)
+    public Response getReplies(@QueryParam("orderBy") @DefaultValue("date") final CommentDao.SortingType sortingType,
+                               @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                               @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                               @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                               @SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
+                               final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
+                .addParameter("commentId", commentId, id -> id <= 0));
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        threadService.getCommentReplies(commentId, pageNumber, pageSize, sortingType, sortDirection),
+                        (commentPage) -> new GenericEntity<List<CommentDto>>(CommentDto
+                                .createList(commentPage.getData(), uriInfo.getBaseUriBuilder())) {
+                        }, JerseyControllerHelper.getParameterMapBuilder().clear().build());
+    }
+
+
     @POST
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + REPLIES_END_POINT)
     public Response replyComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")

@@ -37,18 +37,17 @@ public class CommentHibernateDao implements CommentDao {
     }
 
     @Override
+    public Comment findById(long id) {
+        return em.find(Comment.class, id);
+    }
+
+    @Override
     public Comment comment(Thread thread, String body, User commenter) {
         final Comment comment = new Comment(thread, body, commenter);
         em.persist(comment);
         return comment;
     }
 
-    @Override
-    public Comment reply(Comment comment, String body, User replier) {
-        final Comment reply = new Comment(comment, body, replier);
-        em.persist(comment);
-        return comment;
-    }
 
     @Override
     public void update(Comment comment, String newComment) {
@@ -67,11 +66,27 @@ public class CommentHibernateDao implements CommentDao {
         em.remove(comment);
     }
 
+    @Override
+    public Page<Comment> getCommentReplies(Comment comment, int pageNumber, int pageSize,
+                                           SortingType sortingType, SortDirection sortDirection) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Comment comment");
+
+        // Conditions
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        conditions.add(new DaoHelper.ConditionAndParameterWrapper("parentComment = ?0", comment, 0));
+
+        return DaoHelper.findPageWithConditions(em, Comment.class, query, "comment", "comment.id", conditions,
+                pageNumber, pageSize, sortingType.getFieldName(), sortDirection, false);
+    }
 
     @Override
-    public Comment findById(long id) {
-        return em.find(Comment.class, id);
+    public Comment reply(Comment comment, String body, User replier) {
+        final Comment reply = new Comment(comment, body, replier);
+        em.persist(reply);
+        return reply;
     }
+
 
     @Override
     public Comment findComment(long threadId, long userId) {

@@ -21,13 +21,21 @@ public interface CommentDao {
      * @param thread        The commented {@link Thread}.
      * @param pageNumber    The page number.
      * @param pageSize      The page size.
-     * @param sortingType   The sorting type (id, game id, or creation date).
+     * @param sortingType   The sorting type (date or best).
      * @param sortDirection The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
     Page<Comment> getThreadComments(Thread thread, int pageNumber, int pageSize,
                                     SortingType sortingType, SortDirection sortDirection);
 
+
+    /**
+     * Finds a comment or a reply by ID.
+     *
+     * @param id The ID.
+     * @return The matching comment or reply, or {@code null} if not found.
+     */
+    Comment findById(long id);
 
     /**
      * Creates a comment in a {@link Thread}.
@@ -38,17 +46,6 @@ public interface CommentDao {
      * @return The new {@link Comment}.
      */
     Comment comment(Thread thread, String body, User commenter);
-
-
-    /**
-     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
-     *
-     * @param comment The {@link Comment} to be replied.
-     * @param body    The comment content.
-     * @param replier The {@link User} replying
-     * @return The new {@link Comment} (i.e the reply to the given {@link Comment}).
-     */
-    Comment reply(Comment comment, String body, User replier);
 
 
     /**
@@ -68,12 +65,30 @@ public interface CommentDao {
     void delete(Comment comment);
 
     /**
-     * Finds a comment or a reply by ID.
+     * Finds a {@link Page} of {@link Comment}s that are immediate reply to the {@link Comment}
+     * with the given {@code commentId}.
+     * Sorting and Pagination can be applied.
      *
-     * @param id The ID.
-     * @return The matching comment or reply, or {@code null} if not found.
+     * @param comment       The replied {@link Comment}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (date or best).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
      */
-    Comment findById(long id);
+    Page<Comment> getCommentReplies(Comment comment, int pageNumber, int pageSize,
+                                    SortingType sortingType, SortDirection sortDirection);
+
+    /**
+     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
+     *
+     * @param comment The {@link Comment} to be replied.
+     * @param body    The comment content.
+     * @param replier The {@link User} replying
+     * @return The new {@link Comment} (i.e the reply to the given {@link Comment}).
+     */
+    Comment reply(Comment comment, String body, User replier);
+
 
     /**
      * Finds a top-level comment for a given thread by a given user.
@@ -112,7 +127,7 @@ public interface CommentDao {
                     return reply;
                 }
                 //TODO check if this is necessary
-//                for(Comment replyReply : reply.getReplies()) {
+//                for(Comment replyReply : reply.getCommentReplies()) {
 //                    queue.offer(replyReply);
 //                }
                 queue.addAll(reply.getReplies());

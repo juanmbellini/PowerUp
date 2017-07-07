@@ -187,6 +187,18 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
+    public Page<LikeableEntityWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                                  CommentDao.SortingType sortingType,
+                                                                  SortDirection sortDirection) {
+        final Comment comment = getComment(commentId); // Throws NoSuchEntityException if not exists
+        // TODO: is liked by...
+        final Page<Comment> page = commentDao.getCommentReplies(comment, pageNumber, pageSize,
+                sortingType, sortDirection);
+        final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
+        return createNewPage(page, likeCounts);
+    }
+
+    @Override
     public Comment replyToComment(long commentId, String body, User replier) {
         if (replier == null) {
             throw new IllegalArgumentException();
