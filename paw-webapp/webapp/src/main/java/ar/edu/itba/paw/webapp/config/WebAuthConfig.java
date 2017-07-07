@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.config;
 import ar.edu.itba.paw.webapp.auth.json.JsonAuthenticationFailureHandler;
 import ar.edu.itba.paw.webapp.auth.json.JsonAuthenticationFilter;
 import ar.edu.itba.paw.webapp.auth.json.JsonAuthenticationSuccessHandler;
+import ar.edu.itba.paw.webapp.auth.jwt.JwtAuthenticationFailureHandler;
 import ar.edu.itba.paw.webapp.auth.jwt.JwtAuthenticationFilter;
 import ar.edu.itba.paw.webapp.auth.jwt.JwtAuthenticationProvider;
 import ar.edu.itba.paw.webapp.auth.jwt.JwtAuthenticationSuccessHandler;
@@ -54,6 +55,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationManager(authenticationManager());
         filter.setRequiresAuthenticationRequestMatcher(protectedEndpointsMatcher());
         filter.setAuthenticationSuccessHandler(new JwtAuthenticationSuccessHandler());
+        filter.setAuthenticationFailureHandler(new JwtAuthenticationFailureHandler());
         return filter;
     }
 

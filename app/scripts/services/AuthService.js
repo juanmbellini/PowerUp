@@ -123,6 +123,19 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
                     $location.path('');
                 }
             }, function(error) {
+                if(error.status === 401) {
+                    // Either token expired or password changed, either way these credentials won't work anymore. Assume logged out successfully.
+                    $log.warn("Credentials rejected when logging out, assuming successful logout.");
+                    setCurrentUser(null);
+                    setToken(null);
+                    if (typeof successCallback !== 'undefined') {
+                        successCallback();
+                    } else {
+                        $location.search();
+                        $location.path('');
+                    }
+                    return;
+                }
                 if (typeof failureCallback !== 'undefined') {
                     failureCallback(error);
                 } else {
