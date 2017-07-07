@@ -71,7 +71,7 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     /**
      * Some endpoints may optionally accept authentication, and possibly return different responses in that case. The
      * endpoints matched by this matcher MUST also work without authentication, although the response may be different
-     * thatn if authenticated.
+     * than if authenticated.
      *
      * @return A matcher for optionally authenticated endpoints.
      */

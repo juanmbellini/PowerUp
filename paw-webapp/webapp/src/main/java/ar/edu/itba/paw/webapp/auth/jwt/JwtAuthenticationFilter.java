@@ -47,7 +47,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         JwtAuthenticationToken requestToken = extractToken(request);
         if (requestToken == null) {
-            if(optionallyAuthenticatedEndpointsMatcher.matches(request)) {
+            if (optionallyAuthenticatedEndpointsMatcher.matches(request)) {
                 // Return anonymous authentication (i.e. not logged in)
                 return new AnonymousAuthenticationToken("PAW_ANONYMOUS", "ANONYMOUS", Collections.singletonList(new SimpleGrantedAuthority("NONE")));
             } else {
