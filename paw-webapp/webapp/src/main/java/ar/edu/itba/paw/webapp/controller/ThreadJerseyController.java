@@ -127,6 +127,32 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @OPTIONS
+    @Path("/")
+    public Response threadOptions() {
+        Response.ResponseBuilder result = Response
+                .noContent()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "POST")
+                .header("Access-Control-Allow-Headers", "Content-Type");    //Required by CORS
+        return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{id: \\d+}/")
+    public Response threadsOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long threadId) {
+        Response.ResponseBuilder result = Response
+                .noContent()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type");    //Required by CORS
+        return result.build();
+    }
+
+    /* **************************
+     *       THREAD LIKES
+     * *************************/
+
     @PUT
     @Path("/{id : \\d+}/" + LIKES_END_POINT)
     public Response likeThread(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long threadId) {
@@ -147,5 +173,16 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         threadService.unlikeThread(threadId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
+    }
+
+    @OPTIONS
+    @Path("/{id: \\d+}/" + LIKES_END_POINT)
+    public Response likeOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long threadId) {
+        Response.ResponseBuilder result = Response
+                .noContent()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type");    //Required by CORS
+        return result.build();
     }
 }
