@@ -1,3 +1,9 @@
+a.disabled {
+  opacity: 0.7;
+  cursor: default;
+  pointer-events: none;
+}
+
 .icon-block {
   padding: 0 15px;
 }

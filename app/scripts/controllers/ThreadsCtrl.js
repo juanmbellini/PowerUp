@@ -10,8 +10,6 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
 
-        var disabledThreadButtons = [];
-
         $scope.getThreads = function() {
             Restangular.all('threads').getList({orderBy: $scope.order}).then(function(response) {
                 $scope.threads = response;
@@ -21,7 +19,6 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
             });
         };
 
-        // TODO use API for this
         $scope.isLikedByCurrentUser = function(thread) {
             if(!$scope.isLoggedIn || !thread.hasOwnProperty("likedByCurrentUser")) {
                 return false;
@@ -31,56 +28,69 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
 
         $scope.likeThread = function(thread) {
             var threadId = thread.id;
-            if (!threadId || disabledThreadButtons.indexOf(threadId) !== -1) {
+            if (!threadId || thread.likesDisabled) {
                 return;
             }
             // Disable this like button
-            disabledThreadButtons.push(threadId);
+            disableLikeButton(thread);
 
             Restangular.one('threads', threadId).one('likes').put().then(function(response) {
                 // Update like count
                 thread.likeCount++;
                 setLikedByCurrentUser(thread, true);
                 // Re-enable button
-                disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
+                enableLikeButton(thread);
             }, function(error) {
                 $log.error('Error liking thread #', threadId, ': ', error);
                 // Re-enable button
-                disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
+                enableLikeButton(thread);
             });
         };
 
         $scope.unlikeThread = function(thread) {
             var threadId = thread.id;
-            if (!threadId || disabledThreadButtons.indexOf(threadId) !== -1) {
+            if (!threadId || thread.likesDisabled) {
                 return;
             }
             // Disable this unlike button
-            disabledThreadButtons.push(threadId);
+            disableLikeButton(thread);
 
             Restangular.one('threads', threadId).one('likes').remove().then(function(response) {
                 // Update like count
                 thread.likeCount--;
                 setLikedByCurrentUser(thread, false);
                 // Re-enable button
-                disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
+                enableLikeButton(thread);
             }, function(error) {
                 $log.error('Error unliking thread #', threadId, ': ', error);
                 // Re-enable button
-                disabledThreadButtons.splice(disabledThreadButtons.indexOf(threadId), 1);
+                enableLikeButton(thread);
             });
         };
 
         /* *****************************
          *       PRIVATE FUNCTIONS
          * ****************************/
-        // TODO use API for this
         function setLikedByCurrentUser(thread, isLiked) {
-            if(!thread || typeof thread !== 'object' || typeof isLiked === 'undefined') {
+            if(!thread || typeof thread !== 'object' || !thread.hasOwnProperty('likedByCurrentUser') || typeof isLiked === 'undefined') {
                 return;
             }
             thread.likedByCurrentUser = isLiked;
             return thread;
+        }
+
+        function disableLikeButton(thread) {
+            if (!thread) {
+                return;
+            }
+            thread.likesDisabled = true;
+        }
+
+        function enableLikeButton(thread) {
+            if (!thread) {
+                return;
+            }
+            thread.likesDisabled = false;
         }
     }]);
 });
