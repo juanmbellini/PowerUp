@@ -251,7 +251,7 @@ public class ThreadController extends BaseController {
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.likeComment(commentId, getCurrentUser().getId());
+//            threadService.likeComment(commentId, getCurrentUser().getId());
             LOG.info("{} liked comment #{}", getCurrentUsername(), commentId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -269,7 +269,7 @@ public class ThreadController extends BaseController {
                                       @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.unlikeComment(commentId, getCurrentUser().getId());
+//            threadService.unlikeComment(commentId, getCurrentUser().getId());
             LOG.info("{} unliked comment #{}", getCurrentUsername(), commentId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {

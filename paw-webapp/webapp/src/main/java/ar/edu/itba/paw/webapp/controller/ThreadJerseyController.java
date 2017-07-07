@@ -249,6 +249,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}")
     public Response deleteComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
                                   final long commentId) {
         if (commentId <= 0) {
@@ -293,6 +294,36 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         final URI uri = getNewCommentLocation(uriInfo.getBaseUriBuilder(), reply);
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
+
+
+    // ==== Comment likes ====
+
+    @PUT
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
+    public Response likeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
+                                final long commentId) {
+        if (commentId <= 0) {
+            throw new IllegalParameterValueException("threadId");
+        }
+        threadService.likeComment(commentId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
+    public Response unlikeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
+                                  final long commentId) {
+        if (commentId <= 0) {
+            throw new IllegalParameterValueException("threadId");
+        }
+        threadService.unlikeComment(commentId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
+
+
+    // ================ Helpers ================
 
 
     /**

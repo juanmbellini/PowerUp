@@ -201,20 +201,25 @@ public class ThreadServiceImpl implements ThreadService {
 
 
     @Override
-    public void likeComment(long commentId, long userId) {
-        final CommentAndUserWrapper wrapper = getCommentAndUser(commentId, userId); // Checks existence
-        if (commentLikeDao.find(commentId, userId) != null) {
-            commentLikeDao.create(wrapper.getComment(), wrapper.getUser());
+    public void likeComment(long commentId, User liker) {
+        if (liker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Comment comment = getComment(commentId);
+        // If already liked, do nothing and be idempotent
+        if (!commentLikeDao.exists(comment, liker)) {
+            commentLikeDao.create(comment, liker);
         }
     }
 
     @Override
-    public void unlikeComment(long commentId, long userId) {
-        validateExistenceOfCommentAndUser(commentDao.findById(commentId), userDao.findById(userId));
-        CommentLike like = commentLikeDao.find(commentId, userId);
-        if (like != null) {
-            commentLikeDao.delete(like);
+    public void unlikeComment(long commentId, User unliker) {
+        if (unliker == null) {
+            throw new IllegalArgumentException();
         }
+        final Comment comment = getComment(commentId);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(commentLikeDao.find(comment, unliker)).ifPresent(commentLikeDao::delete);
     }
 
 

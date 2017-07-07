@@ -13,14 +13,22 @@ import java.util.Map;
 public interface CommentLikeDao {
 
     /**
-     * Finds the {@link CommentLike} for the {@link Comment} with the given {@code commentId},
-     * done by the {@link User} with the given {@code userId}.
+     * Finds a {@link CommentLike} made by a given {@link User} to a given {@link Comment}
      *
-     * @param commentId The comment ID.
-     * @param userId    The user ID.
-     * @return The {@link CommentLike}, or {@code null} if the {@link User} didn't like the {@link Comment}.
+     * @param comment The liked {@link Comment}
+     * @param user    The {@link User} that liked the {@link Comment}.
+     * @return The matching {@link CommentLike}, or {@code null} if not present.
      */
-    CommentLike find(long commentId, long userId);
+    CommentLike find(Comment comment, User user);
+
+    /**
+     * Checks whether a given {@link User} has liked a given {@link Comment}.
+     *
+     * @param comment The liked {@link Comment}
+     * @param user    The {@link User} that liked the {@link Comment}.
+     * @return Whether the {@link User} has liked the specified {@link Comment}.
+     */
+    boolean exists(Comment comment, User user);
 
     /**
      * Creates a {@link CommentLike} (i.e. makes the given {@link User} like the given {@link Comment}).

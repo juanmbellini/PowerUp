@@ -153,7 +153,8 @@ public interface ThreadService {
      * @return The resulting page.
      */
     Page<LikeableEntityWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
-                                                           CommentDao.SortingType sortingType, SortDirection sortDirection);
+                                                           CommentDao.SortingType sortingType,
+                                                           SortDirection sortDirection);
 
     /**
      * Adds a reply to a given comment.
@@ -170,17 +171,17 @@ public interface ThreadService {
      * Marks a like for a given comment or reply by a given user, if not already liked.
      *
      * @param commentId The ID of the comment to be liked.
-     * @param userId    The ID of the user liking the comment.
+     * @param liker     The {@link User} performing the operation.
      */
-    void likeComment(long commentId, long userId);
+    void likeComment(long commentId, User liker);
 
     /**
      * Removes a like from a given comment or reply by a given user, if liked.
      *
      * @param commentId The ID of the comment to be unliked.
-     * @param userId    The ID of the user unliking the comment.
+     * @param unliker   The {@link User} performing the operation.
      */
-    void unlikeComment(long commentId, long userId);
+    void unlikeComment(long commentId, User unliker);
 
 
 }
