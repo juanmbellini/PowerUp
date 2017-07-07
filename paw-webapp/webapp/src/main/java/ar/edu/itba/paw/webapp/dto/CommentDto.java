@@ -79,7 +79,7 @@ public class CommentDto extends EntityDto {
         this.threadId = wrapper.getEntity().getThread().getId();
         this.threadUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(wrapper.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getThread().getId()))
                 .build().toString();
     }
 
