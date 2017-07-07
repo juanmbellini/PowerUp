@@ -7,11 +7,16 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
 
         $scope.threads = null;
         $scope.order = $location.search().order || 'hot';
+        $scope.direction = $location.search().sortDirection;
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
 
         $scope.getThreads = function() {
-            Restangular.all('threads').getList({orderBy: $scope.order}).then(function(response) {
+            var params = {orderBy: $scope.order};
+            if ($scope.direction) {
+                params.sortDirection = $scope.direction;
+            }
+            Restangular.all('threads').getList(params).then(function(response) {
                 $scope.threads = response;
             }, function(error) {
                 $log.error('Error getting threads: ', error);
