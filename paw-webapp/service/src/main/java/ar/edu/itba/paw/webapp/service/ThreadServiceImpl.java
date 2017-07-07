@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -62,19 +59,21 @@ public class ThreadServiceImpl implements ThreadService {
     public Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                                                     int pageNumber, int pageSize,
                                                     ThreadDao.SortingType sortingType,
-                                                    SortDirection sortDirection) {
-        // TODO: is liked by...
+                                                    SortDirection sortDirection, User currentUser) {
         final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
         final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
-        return createLikeableNewPage(page, likeCounts);
+        final Map<Thread, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> threadLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
-    public LikeableWrapper<Thread> findById(long threadId) {
-        // TODO: is liked by...
+    public LikeableWrapper<Thread> findById(long threadId, User currentUser) {
         return Optional.ofNullable(threadDao.findById(threadId))
-                .map(LikeableWrapper::new)
+                .map(thread -> new LikeableWrapper<>(thread,
+                        // If currentUser is present check if it liked the thread. If not present, get null.
+                        Optional.ofNullable(currentUser).map(user -> threadLikeDao.exists(thread, user)).orElse(null)))
                 .orElse(null);
     }
 
@@ -145,19 +144,23 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
                                                             CommentDao.SortingType sortingType,
-                                                            SortDirection sortDirection) {
+                                                            SortDirection sortDirection, User currentUser) {
         final Thread thread = getThread(threadId); // Throws NoSuchEntityException if not exists
-        // TODO: is liked by...
         final Page<Comment> page = commentDao.getThreadComments(thread, pageNumber, pageSize,
                 sortingType, sortDirection);
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
-        return createLikeableNewPage(page, likeCounts);
+        final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
-    public LikeableWrapper<Comment> findCommentById(long commentId) {
-        // TODO: is liked by...
-        return Optional.ofNullable(commentDao.findById(commentId)).map(LikeableWrapper::new).orElse(null);
+    public LikeableWrapper<Comment> findCommentById(long commentId, User currentUser) {
+        return Optional.ofNullable(commentDao.findById(commentId))
+                .map(comment -> new LikeableWrapper<>(comment,
+                        // If currentUser is present check if it liked the thread. If not present, get null.
+                        Optional.ofNullable(currentUser).map(user -> commentLikeDao.exists(comment, user)).orElse(null)))
+                .orElse(null);
     }
 
     @Override
@@ -188,13 +191,15 @@ public class ThreadServiceImpl implements ThreadService {
     @Override
     public Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
                                                             CommentDao.SortingType sortingType,
-                                                            SortDirection sortDirection) {
+                                                            SortDirection sortDirection, User currentUser) {
         final Comment comment = getComment(commentId); // Throws NoSuchEntityException if not exists
         // TODO: is liked by...
         final Page<Comment> page = commentDao.getCommentReplies(comment, pageNumber, pageSize,
                 sortingType, sortDirection);
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
-        return createLikeableNewPage(page, likeCounts);
+        final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
@@ -350,8 +355,11 @@ public class ThreadServiceImpl implements ThreadService {
      * @return The new {@link Page}.
      */
     private <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
-                                                                                Map<T, Long> likeCounts) {
-        return fromAnotherPage(oldPage, entity -> new LikeableWrapper<>(entity, likeCounts.get(entity))).build();
+                                                                                Map<T, Long> likeCounts,
+                                                                                Map<T, Boolean> likes) {
+        return fromAnotherPage(oldPage, entity ->
+                new LikeableWrapper<>(entity, likeCounts.get(entity), likes.get(entity)))
+                .build();
     }
 
     /**

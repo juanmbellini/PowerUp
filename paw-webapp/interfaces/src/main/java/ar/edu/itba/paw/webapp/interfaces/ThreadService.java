@@ -23,19 +23,22 @@ public interface ThreadService {
      * @param pageSize       The page size.
      * @param sortingType    The sorting type (id, hot, best, or creation date).
      * @param sortDirection  The sort direction (i.e ASC or DESC).
+     * @param currentUser    The {@link User} performing the operation.
      * @return The resulting {@link Page}.
      */
     Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                                              int pageNumber, int pageSize,
-                                             ThreadDao.SortingType sortingType, SortDirection sortDirection);
+                                             ThreadDao.SortingType sortingType, SortDirection sortDirection,
+                                             User currentUser);
 
     /**
      * Finds a thread by ID.
      *
-     * @param threadId The ID to match.
+     * @param threadId    The ID to match.
+     * @param currentUser The {@link User} performing the operation.
      * @return The matching thread or {@code null} if not found.
      */
-    LikeableWrapper<Thread> findById(long threadId);
+    LikeableWrapper<Thread> findById(long threadId, User currentUser);
 
     /**
      * Creates a new {@link Thread} with the specified data.
@@ -111,19 +114,21 @@ public interface ThreadService {
      * @param pageSize      The page size.
      * @param sortingType   The sorting type (id, game id, or creation date).
      * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param currentUser   The {@link User} performing the operation.
      * @return The resulting page.
      */
     Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
                                                      CommentDao.SortingType sortingType,
-                                                     SortDirection sortDirection);
+                                                     SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a comment by ID.
      *
-     * @param commentId The ID to match.
+     * @param commentId   The ID to match.
+     * @param currentUser The {@link User} performing the operation.
      * @return The matching comment or {@code null} if not found.
      */
-    LikeableWrapper<Comment> findCommentById(long commentId);
+    LikeableWrapper<Comment> findCommentById(long commentId, User currentUser);
 
 
     /**
@@ -163,11 +168,12 @@ public interface ThreadService {
      * @param pageSize      The page size.
      * @param sortingType   The sorting type (date or best).
      * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param currentUser   The {@link User} performing the operation.
      * @return The resulting page.
      */
     Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
                                                      CommentDao.SortingType sortingType,
-                                                     SortDirection sortDirection);
+                                                     SortDirection sortDirection, User currentUser);
 
     /**
      * Adds a reply to a given comment.

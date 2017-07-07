@@ -66,5 +66,10 @@ public class CommentLikeHibernateDao implements CommentLikeDao {
         return DaoHelper.countLikes(comments, em, "comment", CommentLike.class);
     }
 
+    @Override
+    public Map<Comment, Boolean> likedBy(Collection<Comment> comments, User user) {
+        return DaoHelper.likedBy(comments, user, em, Comment.class);
+    }
+
 
 }

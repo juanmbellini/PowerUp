@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model_wrappers;
 
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 
 /**
@@ -17,27 +18,35 @@ public class LikeableWrapper<T extends Likeable> {
      */
     private final long likeCount;
 
+    /**
+     * Indicates whether the current {@link User} likes the {@code entity}.
+     */
+    private final Boolean likedByCurrentUser;
+
 
     /**
      * Constructor.
      *
-     * @param entity    The wrapped {@link Likeable}.
-     * @param likeCount The amount of likes.
+     * @param entity             The wrapped {@link Likeable}.
+     * @param likeCount          The amount of likes.
+     * @param likedByCurrentUser Indicates whether the current {@link User} likes the {@code entity}.
      */
-    public LikeableWrapper(T entity, long likeCount) {
+    public LikeableWrapper(T entity, long likeCount, Boolean likedByCurrentUser) {
         this.entity = entity;
         this.likeCount = likeCount;
+        this.likedByCurrentUser = likedByCurrentUser;
     }
 
     /**
      * Constructor.
      *
-     * @param entity The wrapped {@link Likeable}.
+     * @param entity             The wrapped {@link Likeable}.
+     * @param likedByCurrentUser Indicates whether the current {@link User} likes the {@code entity}.
      * @implNote This method uses {@link Likeable#getLikeCount()} method which might trigger an SQL query.
-     * If you have the like count use {@link LikeableWrapper#LikeableWrapper(Likeable, long)}.
+     * If you have the like count use {@link LikeableWrapper#LikeableWrapper(Likeable, long, Boolean)}.
      */
-    public LikeableWrapper(T entity) {
-        this(entity, entity.getLikeCount());
+    public LikeableWrapper(T entity, Boolean likedByCurrentUser) {
+        this(entity, entity.getLikeCount(), likedByCurrentUser);
     }
 
     /**
@@ -52,5 +61,12 @@ public class LikeableWrapper<T extends Likeable> {
      */
     public long getLikeCount() {
         return likeCount;
+    }
+
+    /**
+     * @return Whether the current {@link User} likes the {@code entity}.
+     */
+    public Boolean getLikedByCurrentUser() {
+        return likedByCurrentUser;
     }
 }

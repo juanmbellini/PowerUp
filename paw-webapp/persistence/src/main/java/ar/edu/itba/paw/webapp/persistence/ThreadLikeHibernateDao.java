@@ -67,4 +67,10 @@ public class ThreadLikeHibernateDao implements ThreadLikeDao {
     public Map<Thread, Long> countLikes(Collection<Thread> threads) {
         return DaoHelper.countLikes(threads, em, "thread", ThreadLike.class);
     }
+
+
+    @Override
+    public Map<Thread, Boolean> likedBy(Collection<Thread> threads, User user) {
+        return DaoHelper.likedBy(threads, user, em, Thread.class);
+    }
 }

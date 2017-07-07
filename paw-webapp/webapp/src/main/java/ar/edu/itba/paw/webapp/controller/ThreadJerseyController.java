@@ -76,7 +76,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                 .createCollectionGetResponse(
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         threadService.getThreads(title, userId, username,
-                                pageNumber, pageSize, sortingType, sortDirection),
+                                pageNumber, pageSize, sortingType, sortDirection, sessionService.getCurrentUser()),
                         (threadPage) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(threadPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
                         },
@@ -93,7 +93,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         if (id <= 0) {
             throw new IllegalParameterValueException("threadId");
         }
-        return Optional.ofNullable(threadService.findById(id))
+        return Optional.ofNullable(threadService.findById(id, sessionService.getCurrentUser()))
                 .map(thread -> Response.ok(new ThreadDto(thread, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
@@ -230,7 +230,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return JerseyControllerHelper
                 .createCollectionGetResponse(
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getThreadComments(threadId, pageNumber, pageSize, sortingType, sortDirection),
+                        threadService.getThreadComments(threadId, pageNumber, pageSize, sortingType, sortDirection,
+                                sessionService.getCurrentUser()),
                         (commentPage) -> new GenericEntity<List<CommentDto>>(CommentDto
                                 .createList(commentPage.getData(), uriInfo.getBaseUriBuilder())) {
                         }, JerseyControllerHelper.getParameterMapBuilder().clear().build());
@@ -243,7 +244,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         if (commentId <= 0) {
             throw new IllegalParameterValueException("commentId");
         }
-        return Optional.ofNullable(threadService.findCommentById(commentId))
+        return Optional.ofNullable(threadService.findCommentById(commentId, sessionService.getCurrentUser()))
                 .map(thread -> Response.ok(new CommentDto(thread, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
@@ -299,7 +300,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return JerseyControllerHelper
                 .createCollectionGetResponse(
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getCommentReplies(commentId, pageNumber, pageSize, sortingType, sortDirection),
+                        threadService.getCommentReplies(commentId, pageNumber, pageSize, sortingType, sortDirection,
+                                sessionService.getCurrentUser()),
                         (commentPage) -> new GenericEntity<List<CommentDto>>(CommentDto
                                 .createList(commentPage.getData(), uriInfo.getBaseUriBuilder())) {
                         }, JerseyControllerHelper.getParameterMapBuilder().clear().build());

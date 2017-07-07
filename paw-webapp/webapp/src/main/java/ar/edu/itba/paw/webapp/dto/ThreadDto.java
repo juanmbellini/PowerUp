@@ -39,6 +39,9 @@ public class ThreadDto extends EntityDto {
     private Long likeCount;
 
     @XmlElement
+    private Boolean likedByCurrentUser;
+
+    @XmlElement
     private CreatorDto creator;
 
     @XmlElement
@@ -53,22 +56,23 @@ public class ThreadDto extends EntityDto {
     }
 
 
-    public ThreadDto(LikeableWrapper<Thread> threadWithLikeCount, UriBuilder baseUri) {
-        super(threadWithLikeCount.getEntity().getId());
-        this.title = threadWithLikeCount.getEntity().getTitle();
-        this.body = threadWithLikeCount.getEntity().getBody();
-        this.createdAt = LocalDateTime.ofInstant(threadWithLikeCount.getEntity().getCreatedAt().toInstant(),
+    public ThreadDto(LikeableWrapper<Thread> wrapper, UriBuilder baseUri) {
+        super(wrapper.getEntity().getId());
+        this.title = wrapper.getEntity().getTitle();
+        this.body = wrapper.getEntity().getBody();
+        this.createdAt = LocalDateTime.ofInstant(wrapper.getEntity().getCreatedAt().toInstant(),
                 ZoneId.systemDefault()).toString();
-        this.creator = new CreatorDto(threadWithLikeCount.getEntity().getCreator(), baseUri.clone());
-        this.likeCount = threadWithLikeCount.getLikeCount();
+        this.creator = new CreatorDto(wrapper.getEntity().getCreator(), baseUri.clone());
+        this.likeCount = wrapper.getLikeCount();
+        this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
         this.commentsUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(threadWithLikeCount.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getId()))
                 .path(ThreadJerseyController.COMMENTS_END_POINT)
                 .build().toString();
         this.likesUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(threadWithLikeCount.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getId()))
                 .path(ThreadJerseyController.LIKES_END_POINT)
                 .build().toString();
     }
@@ -100,6 +104,10 @@ public class ThreadDto extends EntityDto {
 
     public String getLikesUrl() {
         return likesUrl;
+    }
+
+    public Boolean getLikedByCurrentUser() {
+        return likedByCurrentUser;
     }
 
     /**

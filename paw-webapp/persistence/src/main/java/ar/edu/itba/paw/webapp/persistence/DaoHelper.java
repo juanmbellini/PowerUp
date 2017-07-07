@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -379,6 +380,42 @@ import java.util.stream.IntStream;
     }
 
     /**
+     * Indicates whether the given {@link User} liked (or not) the given {@code {@link Likeable}}.
+     *
+     * @param entities      The {@link Collection} of {@link Likeable}.
+     * @param user          The {@link User} to be checked if it liked the given {@link Likeable}s.
+     * @param em            The entity manager.
+     * @param likeableClass The {@link Class} of {@link Likeable}.
+     * @param <E>           The specific {@link Likeable} type.
+     * @return A {@link Map} holding a flag for each {@link Likeable}, which indicates if its liked or not.
+     */
+    /* package */
+    static <E extends Likeable> Map<E, Boolean> likedBy(Collection<E> entities, User user, EntityManager em,
+                                                        Class<E> likeableClass) {
+
+        if (entities == null || user == null) {
+            throw new IllegalArgumentException();
+        }
+        if (entities.isEmpty()) {
+            return new HashMap<>(); // Avoids querying
+        }
+        final String className = likeableClass.getSimpleName();
+        final String field = className.toLowerCase();
+        final List<E> liked = em.createQuery("SELECT DISTINCT " + field +
+                " FROM " + className + " " + field + " INNER JOIN " + field + ".likes _like" +
+                " WHERE _like.user = :user AND " + field + " IN :entities", likeableClass)
+                .setParameter("user", user)
+                .setParameter("entities", entities)
+                .getResultList();
+
+        // The likes list holds Object arrays with two elements each: entity id and likes count
+        final Map<E, Boolean> result = liked.stream()
+                .collect(Collectors.toMap(Function.identity(), each -> true));
+        entities.forEach(entity -> result.putIfAbsent(entity, false));
+        return result;
+    }
+
+    /**
      * Returns a {@link Page} of {@link Like} according to the given {@link ConditionAndParameterWrapper}.
      *
      * @param em            The entity manager.
@@ -391,9 +428,10 @@ import java.util.stream.IntStream;
      * @param <T>           The specific {@link Like} type.
      * @return The {@link Page} with {@link Like}.
      */
-    public static <T extends Like> Page<T> getLikesPage(EntityManager em, int pageNumber, int pageSize,
-                                                         String sortingType, SortDirection sortDirection,
-                                                         Class<T> klass, ConditionAndParameterWrapper condition) {
+    /* package */
+    static <T extends Like> Page<T> getLikesPage(EntityManager em, int pageNumber, int pageSize,
+                                                 String sortingType, SortDirection sortDirection,
+                                                 Class<T> klass, ConditionAndParameterWrapper condition) {
         final StringBuilder query = new StringBuilder()
                 .append("FROM ").append(klass.getSimpleName()).append(" _like");
         final List<DaoHelper.ConditionAndParameterWrapper> conditions = Collections.singletonList(condition);

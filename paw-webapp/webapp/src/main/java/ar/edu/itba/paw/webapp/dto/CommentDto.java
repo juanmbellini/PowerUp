@@ -34,6 +34,9 @@ public class CommentDto extends EntityDto {
     private Long likeCount;
 
     @XmlElement
+    private Boolean likedByCurrentUser;
+
+    @XmlElement
     private ThreadDto.CreatorDto commenter;
 
     @XmlElement
@@ -53,29 +56,30 @@ public class CommentDto extends EntityDto {
         // For Jax-RS
     }
 
-    public CommentDto(LikeableWrapper<Comment> commentWrapper, UriBuilder baseUri) {
-        super(commentWrapper.getEntity().getId());
-        this.body = commentWrapper.getEntity().getBody();
-        this.createdAt = LocalDateTime.ofInstant(commentWrapper.getEntity().getCreatedAt().toInstant(),
+    public CommentDto(LikeableWrapper<Comment> wrapper, UriBuilder baseUri) {
+        super(wrapper.getEntity().getId());
+        this.body = wrapper.getEntity().getBody();
+        this.createdAt = LocalDateTime.ofInstant(wrapper.getEntity().getCreatedAt().toInstant(),
                 ZoneId.systemDefault()).toString();
-        this.likeCount = commentWrapper.getLikeCount();
-        this.commenter = new ThreadDto.CreatorDto(commentWrapper.getEntity().getCommenter(), baseUri);
+        this.likeCount = wrapper.getLikeCount();
+        this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
+        this.commenter = new ThreadDto.CreatorDto(wrapper.getEntity().getCommenter(), baseUri);
         this.repliesUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
                 .path(ThreadJerseyController.COMMENTS_END_POINT)
-                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getId()))
                 .path(ThreadJerseyController.REPLIES_END_POINT)
                 .build().toString();
         this.likesUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
                 .path(ThreadJerseyController.COMMENTS_END_POINT)
-                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getId()))
                 .path(ThreadJerseyController.LIKES_END_POINT)
                 .build().toString();
-        this.threadId = commentWrapper.getEntity().getThread().getId();
+        this.threadId = wrapper.getEntity().getThread().getId();
         this.threadUrl = baseUri.clone()
                 .path(ThreadJerseyController.END_POINT)
-                .path(Long.toString(commentWrapper.getEntity().getId()))
+                .path(Long.toString(wrapper.getEntity().getId()))
                 .build().toString();
     }
 
@@ -109,6 +113,10 @@ public class CommentDto extends EntityDto {
 
     public String getLikesUrl() {
         return likesUrl;
+    }
+
+    public Boolean getLikedByCurrentUser() {
+        return likedByCurrentUser;
     }
 
     /**

@@ -69,6 +69,15 @@ public interface ThreadLikeDao {
      */
     Map<Thread, Long> countLikes(Collection<Thread> threads);
 
+    /**
+     * Indicates whether the given {@link User} liked (or not) the given {@code threads}.
+     *
+     * @param threads The {@link Thread} whose likes must be checked.
+     * @param user    The {@link User} liking (or not) the {@link Thread}s.
+     * @return A {@link Map} holding a flag for each {@link Thread}, which indicates if its liked or not.
+     */
+    Map<Thread, Boolean> likedBy(Collection<Thread> threads, User user);
+
 
     /**
      * Enum indicating the sorting type for the "get users liking" method.

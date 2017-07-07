@@ -2,7 +2,6 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.CommentLike;
-import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -18,7 +17,7 @@ public interface CommentLikeDao {
     /**
      * Returns a {@link Page} of {@link CommentLike} belonging to the given {@link Comment}
      *
-     * @param comment        The liked {@link Comment}.
+     * @param comment       The liked {@link Comment}.
      * @param pageNumber    The page number.
      * @param pageSize      The page size.
      * @param sortingType   The sorting type (id, or creation date).
@@ -70,6 +69,15 @@ public interface CommentLikeDao {
      * @return A {@link Map} holding the amount of likes for each {@link Comment}.
      */
     Map<Comment, Long> countLikes(Collection<Comment> comments);
+
+    /**
+     * Indicates whether the given {@link User} liked (or not) the given {@code comments}.
+     *
+     * @param comments The {@link Comment} whose likes must be checked.
+     * @param user     The {@link User} liking (or not) the {@link Comment}s.
+     * @return A {@link Map} holding a flag for each {@link Comment}, which indicates if its liked or not.
+     */
+    Map<Comment, Boolean> likedBy(Collection<Comment> comments, User user);
 
 
     /**
