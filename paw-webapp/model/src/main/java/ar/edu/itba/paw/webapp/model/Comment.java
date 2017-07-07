@@ -93,12 +93,17 @@ public class Comment implements ValidationExceptionThrower, LikeableEntity {
         final List<ValueError> errors = new LinkedList<>();
         if (parent == null) {
             errors.add(ValueErrorConstants.MISSING_PARENT); // This constructor is used for replies
-        } else if (!validParent(parent)) {
-            errors.add(ValueErrorConstants.CYCLE_IN_PARENTS);
+        } else {
+            if (!validParent(parent)) {
+                errors.add(ValueErrorConstants.CYCLE_IN_PARENTS);
+            }
+            ValidationHelper.objectNotNull(parent.getThread(), errors, ValueErrorConstants.MISSING_THREAD);
         }
         ValidationHelper.objectNotNull(replier, errors, ValueErrorConstants.MISSING_COMMENTER);
 
         update(body, errors);
+        //noinspection ConstantConditions
+        this.thread = parent.getThread();
         this.parentComment = parent;
         this.commenter = replier;
     }
