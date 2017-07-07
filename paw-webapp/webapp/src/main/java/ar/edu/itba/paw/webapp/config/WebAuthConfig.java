@@ -63,7 +63,23 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
             new AntPathRequestMatcher("/**", "POST"),
             new AntPathRequestMatcher("/**", "PUT"),
             new AntPathRequestMatcher("/**", "DELETE"),
-            new AntPathRequestMatcher("/**", "PATCH")
+            new AntPathRequestMatcher("/**", "PATCH"),
+            optionallyAuthenticatedEndpointsMatcher()
+        );
+    }
+
+    /**
+     * Some endpoints may optionally accept authentication, and possibly return different responses in that case. The
+     * endpoints matched by this matcher MUST also work without authentication, although the response may be different
+     * thatn if authenticated.
+     *
+     * @return A matcher for optionally authenticated endpoints.
+     */
+    @Bean
+    public RequestMatcher optionallyAuthenticatedEndpointsMatcher() {
+        return new OrRequestMatcher(
+            // TODO hacer la lista más específica para no procesar endpoints de más
+            new AntPathRequestMatcher("/**", "GET")
         );
     }
 

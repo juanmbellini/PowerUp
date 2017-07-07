@@ -3,8 +3,10 @@ package ar.edu.itba.paw.webapp.auth.jwt;
 import ar.edu.itba.paw.webapp.interfaces.JwtService;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.HttpMethod;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Collections;
 
 /**
  * JWT authentication filter. Applied on all pages for stateless API traversing (i.e. JWT token must be provided for
@@ -33,6 +36,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     @Autowired
     private JwtHelper jwtHelper;
 
+    @Autowired
+    private RequestMatcher optionallyAuthenticatedEndpointsMatcher;
+
     public JwtAuthenticationFilter() {
         super("/**");
     }
@@ -41,7 +47,12 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         JwtAuthenticationToken requestToken = extractToken(request);
         if (requestToken == null) {
-            throw new MissingJwtException("No JWT token found in request headers");
+            if(optionallyAuthenticatedEndpointsMatcher.matches(request)) {
+                // Return anonymous authentication (i.e. not logged in)
+                return new AnonymousAuthenticationToken("PAW_ANONYMOUS", "ANONYMOUS", Collections.singletonList(new SimpleGrantedAuthority("NONE")));
+            } else {
+                throw new MissingJwtException("No JWT token found in request headers");
+            }
         }
         return getAuthenticationManager().authenticate(requestToken);
     }
