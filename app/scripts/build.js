@@ -31,6 +31,7 @@ require.config({
         // Ignore ngSweetAlert, it's automatically added. The one we use is sweetalert.angular
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         likesService: 'services/LikesService',
+        paginationService: 'services/PaginationService',
         'materialize.global': [
             '../../bower_components/materialize/js/global'
         ],
@@ -320,6 +321,11 @@ require.config({
             ]
         },
         likesService: {
+            deps: [
+                'angular'
+            ]
+        },
+        paginationService: {
             deps: [
                 'angular'
             ]
