@@ -255,6 +255,60 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             });
         };
 
+        $scope.changeComment = function(comment) {
+            if(comment.editsDisabled) {
+                return;
+            }
+
+            comment.editsDisabled = true;
+            Restangular.all('threads').one('comments', comment.id).customPUT({body: comment.body}).then(function() {
+                comment.editsDisabled = false;
+                comment.showChangeForm = false;
+            }, function(error) {
+                $log.error('Error updating comment #' + comment.id + ': ', error);
+                comment.editsDisabled = false;
+            });
+        };
+
+        $scope.deleteComment = function(comment) {
+            if(comment.deleteDisabled) {
+                return;
+            }
+
+            swal({
+                    title: 'Are you sure?',
+                    text: 'This comment and all its replies will be permanently lost',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
+                    closeOnConfirm: false
+                },
+                function() {
+                    swal.disableButtons();
+
+                    if (!comment.deleteDisabled) {
+                        comment.deleteDisabled = true;
+                        Restangular.all('threads').one('comments', comment.id).remove().then(function() {
+                            comment.deleteDisabled = false;
+
+                            // Remove comment from frontend
+                            $scope.comments.splice($scope.comments.findIndex(function(c) { return c.id === comment.id;}), 1);
+                            // TODO: The pagination of comments may now be inconsistent, since results will be off by 1 element for
+                            // each element that gets deleted. Consider not removing elements, instead crossing off their content.
+                            // On next reload the comment will be gone.
+
+                            swal.close();
+                        }, function(error) {
+                            $log.error('Error deleting comment #' + comment.id + ': ', error);
+                            comment.deleteDisabled = false;
+                            swal.enableButtons();
+                        });
+                    }
+                });
+        };
+
         /* *************************************************
          *              PRIVATE FUNCTIONS
          * ************************************************/

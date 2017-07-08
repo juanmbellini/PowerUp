@@ -89,17 +89,35 @@
 							</span>
 							<p class="wrap-text">Submitted {{comment.createdAt}}</p>
 							<br />
-							<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+							<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 							<!--End comment info-->
+
+                            <!--Change comment form-->
+                            <form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+                                        <label for="change-comment-{{comment.id}}-textarea" class="active">New comment</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s4 offset-s5">
+                                        <button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+                                            Submit <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--End change comment form-->
 
 							<!--Comment action links-->
 							<div class="action-links" ng-if="isLoggedIn">
 								<!--Reply link-->
-								<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+								<a href="" class="reply-link">Reply</a>
 								<!--Edit link-->
-								| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+								| <a href="" class="edit-comment-link" ng-click="comment.showChangeForm = true">Edit</a>
 								<!--Delete link-->
-								| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+								| <a href="" class="delete-comment-link" ng-click="deleteComment(comment)">Delete</a>
 							</div>
 							<!--End comment action links-->
 
@@ -144,17 +162,35 @@
 									</span>
 									<p class="wrap-text">Submitted {{comment.createdAt}}</p>
 									<br />
-									<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+									<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 									<!--End comment info-->
+
+									<!--Change comment form-->
+									<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+										<div class="row">
+											<div class="input-field col s12">
+												<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+												<label for="change-comment-{{comment.id}}-textarea" class="active">New comment</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col s4 offset-s5">
+												<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+													Submit <i class="material-icons right">send</i>
+												</button>
+											</div>
+										</div>
+									</form>
+									<!--End change comment form-->
 
 									<!--Comment action links-->
 									<div class="action-links" ng-if="isLoggedIn">
 										<!--Reply link-->
-										<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+										<a href="" class="reply-link">Reply</a>
 										<!--Edit link-->
-										| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+										| <a href="" class="edit-comment-link" ng-click="comment.showChangeForm = true">Edit</a>
 										<!--Delete link-->
-										| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+										| <a href="" class="delete-comment-link" ng-click="deleteComment(comment)">Delete</a>
 									</div>
 									<!--End comment action links-->
 
@@ -194,28 +230,37 @@
 									</span>
 											<p class="wrap-text">Submitted {{comment.createdAt}}</p>
 											<br />
-											<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+											<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 											<!--End comment info-->
+
+											<!--Change comment form-->
+											<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+												<div class="row">
+													<div class="input-field col s12">
+														<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+														<label for="change-comment-{{comment.id}}-textarea" class="active">New comment</label>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col s4 offset-s5">
+														<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+															Submit <i class="material-icons right">send</i>
+														</button>
+													</div>
+												</div>
+											</form>
+											<!--End change comment form-->
 
 											<!--Comment action links-->
 											<div class="action-links" ng-if="isLoggedIn">
 												<!--Reply link-->
-												<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+												<a href="" class="reply-link">Reply</a>
 												<!--Edit link-->
-												| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+												| <a href="" class="edit-comment-link" ng-click="comment.showChangeForm = true">Edit</a>
 												<!--Delete link-->
-												| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+												| <a href="" class="delete-comment-link" ng-click="deleteComment(comment)">Delete</a>
 											</div>
 											<!--End comment action links-->
-
-											<!--Comment replies action links-->
-											<!--TODO ng-if has replies-->
-											<div class="action-links">
-												<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
-												<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
-												<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
-											</div>
-											<!--End comment replies action links-->
 
 											<!--Comment un/like section-->
 											<span class="secondary-content">
@@ -244,17 +289,35 @@
 									</span>
 													<p class="wrap-text">Submitted {{comment.createdAt}}</p>
 													<br />
-													<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+													<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 													<!--End comment info-->
+
+													<!--Change comment form-->
+													<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+														<div class="row">
+															<div class="input-field col s12">
+																<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+																<label for="change-comment-{{comment.id}}-textarea" class="active">New comment</label>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col s4 offset-s5">
+																<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+																	Submit <i class="material-icons right">send</i>
+																</button>
+															</div>
+														</div>
+													</form>
+													<!--End change comment form-->
 
 													<!--Comment action links-->
 													<div class="action-links" ng-if="isLoggedIn">
 														<!--Reply link-->
-														<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+														<a href="" class="reply-link">Reply</a>
 														<!--Edit link-->
-														| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+														| <a href="" class="edit-comment-link" ng-click="comment.showChangeForm = true">Edit</a>
 														<!--Delete link-->
-														| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+														| <a href="" class="delete-comment-link" ng-click="deleteComment(comment)">Delete</a>
 													</div>
 													<!--End comment action links-->
 
@@ -293,16 +356,35 @@
 									</span>
 															<p class="wrap-text">Submitted {{comment.createdAt}}</p>
 															<br />
-															<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+															<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 															<!--End comment info-->
+
+															<!--Change comment form-->
+															<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+																<div class="row">
+																	<div class="input-field col s12">
+																		<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+																		<label for="change-comment-{{comment.id}}-textarea" class="active">New comment</label>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col s4 offset-s5">
+																		<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+																			Submit <i class="material-icons right">send</i>
+																		</button>
+																	</div>
+																</div>
+															</form>
+															<!--End change comment form-->
 
 															<!--Comment action links-->
 															<div class="action-links" ng-if="isLoggedIn">
-																<!--NO reply link-->
+																<!--Reply link-->
+																<a href="" class="reply-link">Reply</a>
 																<!--Edit link-->
-																<a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+																| <a href="" class="edit-comment-link" ng-click="comment.showChangeForm = true">Edit</a>
 																<!--Delete link-->
-																| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+																| <a href="" class="delete-comment-link" ng-click="deleteComment(comment)">Delete</a>
 															</div>
 															<!--End comment action links-->
 
