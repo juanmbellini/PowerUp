@@ -30,6 +30,7 @@ require.config({
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
         // Ignore ngSweetAlert, it's automatically added. The one we use is sweetalert.angular
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
+        likesService: 'services/LikesService',
         'materialize.global': [
             '../../bower_components/materialize/js/global'
         ],
@@ -316,6 +317,11 @@ require.config({
         velocity: {
             deps: [
                 'jquery'
+            ]
+        },
+        likesService: {
+            deps: [
+                'angular'
             ]
         }
     },
