@@ -133,7 +133,6 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     }
 
     @OPTIONS
-    @Path("/")
     public Response threadsOptions() {
         return Response.noContent()
                 .type(MediaType.TEXT_HTML)  // Required by CORS
@@ -370,6 +369,16 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .build());
+    }
+
+    @OPTIONS
+    @Path("/comments/{commentId : \\d+}/" + LIKES_END_POINT)
+    public Response commentLikeOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
+        return Response.noContent()
+                .type(MediaType.TEXT_HTML)  // Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type")    // Required by CORS
+                .build();
     }
 
 
