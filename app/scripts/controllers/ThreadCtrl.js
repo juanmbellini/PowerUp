@@ -33,9 +33,9 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             PaginationService.get($scope.paginatedComments, function(response) {
                 $scope.comments = response.data;
                 $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
-                $scope.comments.forEach(function(comment) {
-                    $scope.getCommentReplies(comment);
-                });
+                // $scope.comments.forEach(function(comment) {
+                //     $scope.getCommentReplies(comment);
+                // });
             }, function(error) {
                 $log.error('Error getting comments for thread #', $scope.threadId, ': ', error);
                 $scope.comments = [];
@@ -46,6 +46,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
         });
 
         $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
+
+        $scope.hasMorePages = PaginationService.hasMorePages;
 
         $scope.changeTitle = function() {
             swal({
@@ -178,17 +180,21 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             if (!PaginationService.isInitialized(comment.paginatedReplies)) {
                 comment.paginatedReplies = PaginationService.initialize(Restangular.all('threads').one('comments', comment.id), 'replies', 0);  // Initialize on page 0 so the first call to nextPage will get page 1
             }
+            comment.repliesBusy = true;
             PaginationService.getNextPage(comment.paginatedReplies, function(response) {
                 if(!comment.replies) {
                     comment.replies = [];
                 }
                 comment.replies = comment.replies.concat(response.data);
                 comment.replies.hasMoreReplies = PaginationService.hasMorePages(comment.paginatedReplies);
+                comment.repliesBusy = false;
 
-                // TODO do this on demand
-                comment.replies.forEach(function(comment) {
-                    $scope.getCommentReplies(comment);
-                });
+                // comment.replies.forEach(function(comment) {
+                //     $scope.getCommentReplies(comment);
+                // });
+            }, function(error) {
+                $log.error('Error getting replies for comment #' + comment.id + ': ', error);
+                comment.repliesBusy = false;
             });
         };
 

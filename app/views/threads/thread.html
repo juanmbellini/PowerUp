@@ -103,7 +103,20 @@
 							</div>
 							<!--End comment action links-->
 
-                            <!--Comment un/like section-->
+							<!--Comment replies action links-->
+							<!--TODO ng-if has replies-->
+							<div>
+								<a ng-if="!comment.replies" href="" ng-click="getCommentReplies(comment)">Load replies</a>
+								<a ng-if="comment.replies && hasMorePages(comment.replies)" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+								<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+								<!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+								<!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+									<!--<loadingcircle-small></loadingcircle-small>-->
+								<!--</div>-->
+							</div>
+							<!--End comment replies action links-->
+
+							<!--Comment un/like section-->
                             <span class="secondary-content">
                                 <b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
                                     <!--Not logged in - black actionless thumbs up-->
@@ -144,6 +157,15 @@
 										| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
 									</div>
 									<!--End comment action links-->
+
+									<!--Comment replies action links-->
+									<!--TODO ng-if has replies-->
+									<div class="action-links">
+										<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
+										<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+										<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+									</div>
+									<!--End comment replies action links-->
 
 									<!--Comment un/like section-->
 									<span class="secondary-content">
@@ -186,6 +208,15 @@
 											</div>
 											<!--End comment action links-->
 
+											<!--Comment replies action links-->
+											<!--TODO ng-if has replies-->
+											<div class="action-links">
+												<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
+												<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+												<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+											</div>
+											<!--End comment replies action links-->
+
 											<!--Comment un/like section-->
 											<span class="secondary-content">
 										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
@@ -227,6 +258,15 @@
 													</div>
 													<!--End comment action links-->
 
+													<!--Comment replies action links-->
+													<!--TODO ng-if has replies-->
+													<div class="action-links">
+														<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
+														<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+														<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+													</div>
+													<!--End comment replies action links-->
+
 													<!--Comment un/like section-->
 													<span class="secondary-content">
 										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
@@ -258,14 +298,15 @@
 
 															<!--Comment action links-->
 															<div class="action-links" ng-if="isLoggedIn">
-																<!--Reply link-->
-																<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+																<!--NO reply link-->
 																<!--Edit link-->
-																| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+																<a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
 																<!--Delete link-->
 																| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
 															</div>
 															<!--End comment action links-->
+
+															<!--NO Comment replies action links-->
 
 															<!--Comment un/like section-->
 															<span class="secondary-content">
