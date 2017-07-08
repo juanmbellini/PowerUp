@@ -122,11 +122,18 @@
                             <!--TODO comment replies-->
 						</li>
 					</ul>
-					<!--Print entire comment tree recursively-->
-					<!-- TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/ -->
-					<!--<c:url value="/" var="baseUrl" />-->
-					<!--${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}-->
+					<!--Load more comments-->
+					<div>
+						<p ng-if="!hasMoreComments">No more comments</p>
+						<a ng-if="hasMoreComments && !pendingRequests.comments.getTopLevel" href="" ng-click="getMoreTopLevelComments()">Load more comments</a>
+						<p style="display:inline-block" ng-if="pendingRequests.comments.getTopLevel">Fetching more comments...</p>
+						<div ng-if="pendingRequests.comments.getTopLevel" style="display: inline-block; vertical-align: middle">
+							<loadingcircle></loadingcircle>
+						</div>
+					</div>
+					<!--End load more comments-->
 				</div>
+
 				<!--Add a comment form-->
 				<div ng-if="isLoggedIn" class="row">
 					<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">

@@ -1,9 +1,10 @@
 'use strict';
-define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService', 'paginationService'], function(powerUp) {
 
-    powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', 'LikesService', function($scope, $location, $routeParams, $log, Restangular, AuthService, LikesService) {
+    powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $routeParams, $log, Restangular, AuthService, LikesService, PaginationService) {
         $scope.threadId = $routeParams.threadId;
         $scope.thread = null;
+        $scope.paginatedComments = null;
         $scope.comments = null;
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
@@ -11,25 +12,30 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], funct
 
         // DOM control
         $scope.changeThreadCommentFormVisible = false;
-        var pendingRequests = {
+        $scope.pendingRequests = {
             changeTitle: false,
             changeThreadComment: false,
             deleteThread: false,
             comments: {
+                getTopLevel: false,
                 create: false
             }
         };
+        $scope.hasMoreComments = false;
 
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
-            $scope.thread = response;
-            $scope.isCurrentUser = AuthService.isCurrentUser(response.creator.username);
+            $scope.thread = response.data;
+            $scope.isCurrentUser = AuthService.isCurrentUser($scope.thread.creator.username);
+
             // Get thread top-level comments on success
-            response.all('comments').getList().then(function(response) {
-                $scope.comments = response;
+            $scope.paginatedComments = PaginationService.initialize($scope.thread, 'comments');
+            PaginationService.get($scope.paginatedComments, function(response) {
+                $scope.comments = response.data;
+                $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
             }, function(error) {
                 $log.error('Error getting comments for thread #', $scope.threadId, ': ', error);
-                $scope.thread = {};
+                $scope.comments = [];
             });
         }, function(error) {
             $log.error('Error getting thread #', $scope.threadId, ': ', error);
@@ -60,15 +66,15 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], funct
 
                 swal.disableButtons();
 
-                if (!pendingRequests.changeTitle) {
-                    pendingRequests.changeTitle = true;
+                if (!$scope.pendingRequests.changeTitle) {
+                    $scope.pendingRequests.changeTitle = true;
                     putThread(function(response) {
                         // $scope.thread = response;
-                        pendingRequests.changeTitle = false;
+                        $scope.pendingRequests.changeTitle = false;
                         swal.close();
                     }, function(error) {
                         $log.error('Error updating thread #', $scope.threadId, ': ', error);
-                        pendingRequests.changeTitle = false;
+                        $scope.pendingRequests.changeTitle = false;
                         swal.enableButtons();
                     });
                 }
@@ -84,38 +90,38 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], funct
         };
 
         $scope.changeThreadComment = function() {
-            if (!pendingRequests.changeThreadComment) {
-                pendingRequests.changeThreadComment = true;
+            if (!$scope.pendingRequests.changeThreadComment) {
+                $scope.pendingRequests.changeThreadComment = true;
                 putThread(function(response) {
                     // $scope.thread = response;
                     $scope.changeThreadCommentFormVisible = false;
-                    pendingRequests.changeThreadComment = false;
+                    $scope.pendingRequests.changeThreadComment = false;
                 }, function(error) {
                     $log.error('Error updating thread #', $scope.threadId, ': ', error);
-                    pendingRequests.changeThreadComment = false;
+                    $scope.pendingRequests.changeThreadComment = false;
                 });
             }
         };
 
         $scope.deleteThread = function() {
-            if($scope.thread === null || !$scope.thread.restangularized) {
+            if ($scope.thread === null || !$scope.thread.restangularized) {
                 return;
             }
             swal({
-                title: "Are you sure?",
-                text: "This thread and all its comments will be permanently lost",
-                type: "warning",
+                title: 'Are you sure?',
+                text: 'This thread and all its comments will be permanently lost',
+                type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes",
-                cancelButtonText: "No",
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
                 closeOnConfirm: false
             },
             function() {
                 swal.disableButtons();
 
-                if(!pendingRequests.deleteThread) {
-                    pendingRequests.deleteThread = true;
+                if (!$scope.pendingRequests.deleteThread) {
+                    $scope.pendingRequests.deleteThread = true;
                     // $scope.thread is a Restangularized element, so it will know where to DELETE
                     $scope.thread.remove().then(function(response) {
                         // Redirect imminent, no need to close sweetAlert, set $scope.thread to NULL, etc.
@@ -150,11 +156,26 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], funct
         /* **************************************************
          *                  COMMENT FUNCTIONS
          * *************************************************/
-        $scope.createComment = function(newComment) {
-            if(!newComment || pendingRequests.comments.create) {
+        $scope.getMoreTopLevelComments = function() {
+            if($scope.paginatedComments === null || $scope.pendingRequests.comments.getTopLevel) {
                 return;
             }
-            pendingRequests.comments.create = true;
+            $scope.pendingRequests.comments.getTopLevel = true;
+            PaginationService.getNextPage($scope.paginatedComments, function(response) {
+                $scope.comments = $scope.comments.concat(response.data);
+                $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
+                $scope.pendingRequests.comments.getTopLevel = false;
+            }, function(error) {
+                $log.error('Error getting more comments: ', error);
+                $scope.pendingRequests.comments.getTopLevel = false;
+            });
+        };
+
+        $scope.createComment = function(newComment) {
+            if (!newComment || $scope.pendingRequests.comments.create) {
+                return;
+            }
+            $scope.pendingRequests.comments.create = true;
             
         };
 
@@ -178,10 +199,10 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], funct
          *              PRIVATE FUNCTIONS
          * ************************************************/
         function putThread(successCallback, errorCallback) {
-            if($scope.thread === null || !$scope.thread.restangularized) {
+            if ($scope.thread === null || !$scope.thread.restangularized) {
                 return;
             }
-            //$scope.thread is a Restangularized object so it will know where to PUT
+            // $scope.thread is a Restangularized object so it will know where to PUT
             $scope.thread.put().then(function(response) {
                 if (typeof successCallback !== 'undefined') {
                     successCallback(response);
