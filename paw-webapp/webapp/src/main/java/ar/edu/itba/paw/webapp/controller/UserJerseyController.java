@@ -333,6 +333,16 @@ public class UserJerseyController implements UpdateParamsChecker {
         return result.build();
     }
 
+    @OPTIONS
+    public Response userOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "POST")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
     @PUT
     @Path("/picture")
     @Consumes(MediaType.APPLICATION_JSON)
