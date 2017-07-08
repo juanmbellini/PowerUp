@@ -26,7 +26,7 @@ define(['powerUp', 'authService'], function(powerUp) {
         // Form control variables
         $scope.pictureSubmitDisabled = false;
         var deleteProfilePictureDisabled = false;
-        var DEFAULT_PROFILE_PICTURE_URL = "http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png";
+        var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
         Restangular.one('users').one('username', $scope.username).get().then(function(user) {
             if (!user) {
@@ -158,7 +158,7 @@ define(['powerUp', 'authService'], function(powerUp) {
             }
 
             /* TODO sort by descending user score */
-            Restangular.one('users', userId).getList('game-scores', {pageSize:10}).then(function(response) {
+            Restangular.one('users', userId).getList('game-scores', {pageSize: 10}).then(function(response) {
                 $scope.profile.top10 = response;
             });
         }

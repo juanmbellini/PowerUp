@@ -56,6 +56,9 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     // ======== Basic review operation ========
 
 
+
+
+
     @GET
     public Response getReviews(@QueryParam("orderBy") @DefaultValue("id") final ReviewDao.SortingType sortingType,
                                @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
@@ -130,5 +133,20 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @OPTIONS
+    public Response reviewsOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}")
+    public Response reviewOptions() {
+        return reviewsOptions();
+    }
 
 }

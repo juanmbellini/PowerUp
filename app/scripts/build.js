@@ -26,11 +26,10 @@ require.config({
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
         authService: 'services/AuthService',
+        loadingCircle: 'directives/loading-circle',
         'csrf-service': 'services/CsrfService',
-        'angular-slick': '../../bower_components/angular-slick/dist/slick',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
-        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
-        loadingCircle: 'directives/loading-circle'
+        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload'
     },
     shim: {
         jquery: {
@@ -99,6 +98,11 @@ require.config({
                 'angular'
             ]
         },
+        loadingCircle: {
+            deps: [
+                'angular'
+            ]
+        },
         authService: {
             deps: [
                 'angular'
@@ -115,11 +119,6 @@ require.config({
             ]
         },
         'ng-file-upload': {
-            deps: [
-                'angular'
-            ]
-        },
-        loadingCircle: {
             deps: [
                 'angular'
             ]
