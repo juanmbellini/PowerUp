@@ -342,7 +342,7 @@
 					</ul>
 					<!--Load more comments-->
 					<div>
-						<p ng-if="!hasMoreComments">No more comments</p>
+						<p ng-if="comments.length > 0 && !hasMoreComments">No more comments</p>
 						<a ng-if="hasMoreComments && !pendingRequests.comments.getTopLevel" href="" ng-click="getMoreTopLevelComments()">Load more comments</a>
 						<p style="display:inline-block" ng-if="pendingRequests.comments.getTopLevel">Fetching more comments...</p>
 						<div ng-if="pendingRequests.comments.getTopLevel" style="display: inline-block; vertical-align: middle">

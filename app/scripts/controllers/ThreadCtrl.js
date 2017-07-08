@@ -4,11 +4,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
     powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $routeParams, $log, Restangular, AuthService, LikesService, PaginationService) {
         $scope.threadId = $routeParams.threadId;
         $scope.thread = null;
-        $scope.paginatedComments = null;
         $scope.comments = null;
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
         $scope.isCurrentUser = false;
+
+        // Pagination control
+        var paginatedComments = null;
 
         // DOM control
         $scope.changeThreadCommentFormVisible = false;
@@ -29,10 +31,10 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             $scope.isCurrentUser = AuthService.isCurrentUser($scope.thread.creator.username);
 
             // Get thread top-level comments on success, don't use getMoreTopLevelComments() because this is a special case
-            $scope.paginatedComments = PaginationService.initialize($scope.thread, 'comments');
-            PaginationService.get($scope.paginatedComments, function(response) {
+            paginatedComments = PaginationService.initialize($scope.thread, 'comments');
+            PaginationService.get(paginatedComments, function(response) {
                 $scope.comments = response.data;
-                $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
+                $scope.hasMoreComments = PaginationService.hasMorePages(paginatedComments);
                 // $scope.comments.forEach(function(comment) {
                 //     $scope.getCommentReplies(comment);
                 // });
@@ -162,13 +164,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
          *                  COMMENT FUNCTIONS
          * *************************************************/
         $scope.getMoreTopLevelComments = function() {
-            if($scope.paginatedComments === null || $scope.pendingRequests.comments.getTopLevel) {
+            if (paginatedComments === null || $scope.pendingRequests.comments.getTopLevel) {
                 return;
             }
             $scope.pendingRequests.comments.getTopLevel = true;
-            PaginationService.getNextPage($scope.paginatedComments, function(response) {
+            PaginationService.getNextPage(paginatedComments, function(response) {
                 $scope.comments = $scope.comments.concat(response.data);
-                $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
+                $scope.hasMoreComments = PaginationService.hasMorePages(paginatedComments);
                 $scope.pendingRequests.comments.getTopLevel = false;
             }, function(error) {
                 $log.error('Error getting more comments: ', error);
@@ -182,7 +184,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             }
             comment.repliesBusy = true;
             PaginationService.getNextPage(comment.paginatedReplies, function(response) {
-                if(!comment.replies) {
+                if (!comment.replies) {
                     comment.replies = [];
                 }
                 comment.replies = comment.replies.concat(response.data);

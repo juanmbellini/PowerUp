@@ -1,9 +1,9 @@
 'use strict';
-define(['powerUp', 'authService', 'loadingCircle', 'likesService'], function(powerUp) {
+define(['powerUp', 'authService', 'loadingCircle', 'likesService', 'paginationService'], function(powerUp) {
 
-    powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', function($scope, $location, $log, Restangular, AuthService, LikesService) {
+    powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $log, Restangular, AuthService, LikesService, PaginationService) {
 
-        // Restangular.setFullResponse(false);
+        Restangular.setFullResponse(true);  // TODO set this to true in initial config and always use it as such
 
         $scope.threads = null;
         $scope.order = $location.search().order || 'hot';
@@ -11,13 +11,18 @@ define(['powerUp', 'authService', 'loadingCircle', 'likesService'], function(pow
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
 
+        // Hotfix
+        if ($scope.order === 'best' && !$scope.direction) {
+            $scope.direction = 'desc';
+        }
+
+        // Pagination control
+        var paginatedThreads = null;
+
         $scope.getThreads = function() {
-            var params = {orderBy: $scope.order};
-            if ($scope.direction) {
-                params.sortDirection = $scope.direction;
-            }
-            Restangular.all('threads').getList(params).then(function(response) {
-                $scope.threads = response;
+            paginatedThreads = PaginationService.initialize(Restangular.all('threads'), undefined, 1, undefined, $scope.order, $scope.direction);
+            PaginationService.get(paginatedThreads, function(response) {
+                $scope.threads = response.data;
             }, function(error) {
                 $log.error('Error getting threads: ', error);
                 $scope.threads = [];
@@ -25,7 +30,7 @@ define(['powerUp', 'authService', 'loadingCircle', 'likesService'], function(pow
         };
 
         $scope.isLikedByCurrentUser = function(thread) {
-            if(!$scope.isLoggedIn || !thread.hasOwnProperty("likedByCurrentUser")) {
+            if (!$scope.isLoggedIn || !thread.hasOwnProperty('likedByCurrentUser')) {
                 return false;
             }
             return thread.likedByCurrentUser;
