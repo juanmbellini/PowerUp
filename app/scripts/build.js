@@ -28,22 +28,8 @@ require.config({
         authService: 'services/AuthService',
         loadingCircle: 'directives/loading-circle',
         'csrf-service': 'services/CsrfService',
-        'angular-slick': '../../bower_components/angular-slick/dist/slick',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
-        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
-        bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap',
-        affix: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix',
-        alert: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert',
-        button: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button',
-        carousel: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel',
-        collapse: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse',
-        dropdown: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown',
-        tab: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab',
-        transition: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition',
-        scrollspy: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy',
-        modal: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal',
-        tooltip: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip',
-        popover: '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover'
+        'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload'
     },
     shim: {
         jquery: {
