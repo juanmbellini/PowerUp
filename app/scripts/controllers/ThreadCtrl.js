@@ -52,7 +52,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
 
         $scope.hasMorePages = PaginationService.hasMorePages;
 
-        $scope.changeTitle = function() {
+        $scope.changeThreadTitle = function() {
             swal({
                 title: 'Change thread title',
                 text: 'Change from "' + $scope.thread.title + '" to',
@@ -75,6 +75,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                 swal.disableButtons();
 
                 if (!$scope.pendingRequests.changeTitle) {
+                    $scope.thread.title = inputValue;
                     $scope.pendingRequests.changeTitle = true;
                     putThread(function(response) {
                         // $scope.thread = response;
@@ -93,6 +94,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             if (!$scope.changeThreadCommentFormVisible) {
                 $scope.changeThreadCommentFormVisible = true;
             }
+            // TODO this probably isn't working because the element isn't visible here, the cycle has to digest
             var $textArea = $('#change-thread-comment-textarea');
             $textArea.focus();
         };
@@ -132,7 +134,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                     $scope.pendingRequests.deleteThread = true;
                     // $scope.thread is a Restangularized element, so it will know where to DELETE
                     $scope.thread.remove().then(function(response) {
-                        // Redirect imminent, no need to close sweetAlert, set $scope.thread to NULL, etc.
+                        // Don't forget to close the sweet alert or it will follow the user to the next page!
+                        swal.close();
                         $location.path('threads');
                     }, function(error) {
                         $log.error('Error deleting thread #', $scope.threadId, ': ', error);
@@ -260,7 +263,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                 return;
             }
             // $scope.thread is a Restangularized object so it will know where to PUT
-            $scope.thread.put().then(function(response) {
+            $scope.thread.customPUT({title: $scope.thread.title, body: $scope.thread.body}).then(function(response) {
                 if (typeof successCallback !== 'undefined') {
                     successCallback(response);
                 }

@@ -18,12 +18,12 @@
 						<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
 						<p>{{thread.createdAt}}</p>
 						<br>
-						<p class="preserve-newlines wrap-text">{{thread.body}}</p>
+						<p ng-if="!changeThreadCommentFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
 
 						<form ng-if="changeThreadCommentFormVisible" id="change-thread-comment-form" ng-submit="changeThreadComment()" style="margin-top: 10px;">
 							<div class="row">
 								<div class="input-field col s12">
-									<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;">{{thread.body}}</textarea>
+									<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="thread.body">{{thread.body}}</textarea>
 									<label for="change-thread-comment-textarea" class="active">New initial comment</label>
 								</div>
 							</div>
@@ -39,11 +39,11 @@
 						<!--Thread action links-->
 						<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
 							<!--Rename link-->
-							<a ng-click="changeTitle()">Change Title</a>
+							<a ng-click="changeThreadTitle()">Change Title</a>
 							<!--Edit link-->
 							| <a ng-click="showChangeThreadCommentForm()">Change Comment</a>
 							<!--Delete link-->
-							| <a ng-click="deleteThread()"  id="delete-thread">Delete</a>
+							| <a ng-click="deleteThread()" class="red-text">Delete</a>
 						</div>
 
 						<div class="action-form"></div>
