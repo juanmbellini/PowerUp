@@ -22,13 +22,13 @@ define(['powerUp', 'authService'], function(powerUp) {
          * @param failureCallback       (Optional) Callback function to execute on failure. Receives error object as parameter.
          */
         function like(restangularizedObject, likeableObject, successCallback, failureCallback) {
-            if(!likeableObject) {
+            if (!likeableObject) {
                 likeableObject = restangularizedObject;
             }
-            if(!likeableObject || !restangularizedObject.hasOwnProperty('restangularized') || !AuthService.isLoggedIn()) {
+            if (!likeableObject || !restangularizedObject.hasOwnProperty('restangularized') || !AuthService.isLoggedIn()) {
                 return;
             }
-            if(likeableObject.hasOwnProperty('likesDisabled') && likeableObject.likesDisabled) {
+            if (likeableObject.hasOwnProperty('likesDisabled') && likeableObject.likesDisabled) {
                 return;
             }
             likeableObject.likesDisabled = true;
@@ -38,7 +38,7 @@ define(['powerUp', 'authService'], function(powerUp) {
 
                 likeableObject.likesDisabled = false;
                 likeableObject.likedByCurrentUser = true;
-                if(likeableObject.hasOwnProperty('likeCount')) {
+                if (likeableObject.hasOwnProperty('likeCount')) {
                     likeableObject.likeCount++;
                 }
 
@@ -71,13 +71,13 @@ define(['powerUp', 'authService'], function(powerUp) {
          * @param failureCallback       (Optional) Callback function to execute on failure. Receives error object as parameter.
          */
         function unlike(restangularizedObject, likeableObject, successCallback, failureCallback) {
-            if(!likeableObject) {
+            if (!likeableObject) {
                 likeableObject = restangularizedObject;
             }
-            if(!likeableObject || !restangularizedObject.hasOwnProperty('restangularized') || !AuthService.isLoggedIn()) {
+            if (!likeableObject || !restangularizedObject.hasOwnProperty('restangularized') || !AuthService.isLoggedIn()) {
                 return;
             }
-            if(likeableObject.hasOwnProperty('likesDisabled') && likeableObject.likesDisabled) {
+            if (likeableObject.hasOwnProperty('likesDisabled') && likeableObject.likesDisabled) {
                 return;
             }
             likeableObject.likesDisabled = true;
@@ -87,7 +87,7 @@ define(['powerUp', 'authService'], function(powerUp) {
 
                 likeableObject.likesDisabled = false;
                 likeableObject.likedByCurrentUser = false;
-                if(likeableObject.hasOwnProperty('likeCount')) {
+                if (likeableObject.hasOwnProperty('likeCount')) {
                     likeableObject.likeCount--;
                 }
 
@@ -112,7 +112,7 @@ define(['powerUp', 'authService'], function(powerUp) {
          *                          Otherwise returns whether the object is liked by the current user.
          */
         function isLikedByCurrentUser(object) {
-            if(!AuthService.isLoggedIn() || !object.hasOwnProperty('likedByCurrentUser')) {
+            if (!AuthService.isLoggedIn() || !object.hasOwnProperty('likedByCurrentUser')) {
                 return false;
             }
             return object.likedByCurrentUser;
@@ -126,7 +126,7 @@ define(['powerUp', 'authService'], function(powerUp) {
          * @return {object}             The passed object.
          */
         function setLikedByCurrentUser(object, isLiked) {
-            if(!object || typeof object!== 'object' || typeof isLiked !== 'boolean' || !AuthService.isLoggedIn()) {
+            if (!object || typeof object !== 'object' || typeof isLiked !== 'boolean' || !AuthService.isLoggedIn()) {
                 return object;
             }
             object.likedByCurrentUser = isLiked;
