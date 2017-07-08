@@ -14,6 +14,10 @@ define(['powerUp'], function(powerUp) {
         $scope.pageSizeSelected = $scope.pageSize;
 
         $scope.pageNumber = $location.search().pageNumber;
+        if (!$scope.pageNumber) {
+            $scope.pageNumber = 1;
+        }
+
         $scope.userId = $location.search().userId;
         $scope.gameId = $location.search().gameId;
         if (!$scope.userId && !$scope.gameId) {
@@ -119,7 +123,7 @@ define(['powerUp'], function(powerUp) {
         };
 
 
-        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize}).then(function (response) {
+        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
             var reviews = response.data;
             $scope.reviews = reviews;
             console.log('foundReviews', reviews);
@@ -132,8 +136,9 @@ define(['powerUp'], function(powerUp) {
         });
 
         $scope.changePageNumber = function(newPageNumber) {
-
-        }
+            $scope.pageNumber = newPageNumber;
+            $location.search('pageNumber', $scope.pageNumber);
+        };
 
        $scope.updatePagination = function() {
            $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);

@@ -99,13 +99,12 @@
 					<!--PAGINATION-->
 					<div ng-if="totalPages > 1" class="row">
 						<ul class="pagination center">
-							<!--TODO pagination-->
 							<!--Left chevron - only shown when there are > 1 pages -->
 							<div ng-if="totalPages > 1">
 
 								<li ng-if="pageNumber > 1" class="waves-effect">
 									 <!--TODO borrar. asi era antes: <a ng-href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
-									<a ng-href="{{headersPagination['x-prev-page-url']}}">
+									<a ng-click="changePageNumber(pageNumber-1)">
 										<i class="material-icons">chevron_left</i>
 									</a>
 								</li>
@@ -121,7 +120,7 @@
 
 							<li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == pageNumber ? 'active' : 'waves-effect'">
 								<a ng-if="pageIt == pageNumber"> {{pageIt}} </a>
-								<a  ng-if="pageIt != pageNumber" ng-href=""> {{pageIt}} </a>
+								<a ng-if="pageIt != pageNumber" ng-click="changePageNumber(pageIt)"> {{pageIt}} </a>
 							</li>
 							<!--Right chevron - only shown if there are > 1 pages-->
 
@@ -131,7 +130,7 @@
 								</li>
 
 								<li class="waves-effect" ng-if="pageNumber != totalPages">
-									<a ng-href="{{headersPagination['x-next-page-url']}}">
+									<a ng-click="changePageNumber(pageNumber+1)">
 										<i class="material-icons">chevron_right</i>
 									</a>
 								</li>
@@ -165,15 +164,6 @@
 	//	$(function() {
 	//		$("#pageSize").on("change", function() {
 	//			window.location = "${changePageUrl}pageSize=" + $(this).val();
-	//		});
-	//
-	//		$(".delete-button").on('click', function (event) {
-	//			var reviewId = $(this).data('reviewId');
-	//			//Create an inline form and submit it to redirect with POST
-	//			$("<form action='<c:url value="/delete-review" />' method='POST'> \
-	//                <input type='hidden' name='reviewId' value='" + reviewId + "' /> \
-	//                <input type='hidden' name='returnUrl' value='/reviews" + window.location.search + "'/> \
-	//               </form>").submit();
 	//		});
 	//	});
 </script>
