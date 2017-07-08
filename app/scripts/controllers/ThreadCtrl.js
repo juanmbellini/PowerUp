@@ -24,6 +24,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             }
         };
         $scope.hasMoreComments = false;
+        $scope.newComment = {};
 
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
@@ -205,7 +206,34 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                 return;
             }
             $scope.pendingRequests.comments.create = true;
-            
+
+            $scope.thread.post('comments', newComment).then(function(response) {
+                // Fetch newly created comment
+                Restangular.oneUrl('routeName', response.headers('Location')).get().then(function(response) {
+                    $scope.comments.push(response.data);
+                    $scope.pendingRequests.comments.create = false;
+                    $scope.newComment.body = '';
+                });
+            }, function(error) {
+                $log.error('Error creating comment: ', error);
+                $scope.pendingRequests.comments.create = false;
+            });
+        };
+
+        $scope.replyToComment = function(newComment, parentComment) {
+            if (!newComment || $scope.pendingRequests.comments.create) {
+                return;
+            }
+            $scope.pendingRequests.comments.create = true;
+            var payload = {body: newComment};
+            if (parentComment) {
+                payload.inReplyTo = parentComment.id;
+            }
+            $scope.thread.post('comments', {}).then(function(response) {
+
+            }, function(error) {
+
+            });
         };
 
         $scope.likeComment = function(comment) {
