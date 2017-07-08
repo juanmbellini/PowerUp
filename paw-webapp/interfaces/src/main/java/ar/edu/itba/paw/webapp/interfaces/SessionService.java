@@ -35,24 +35,4 @@ public interface SessionService {
      * @return The currently authenticated user, or {@code null} if none.
      */
     User getCurrentUser();
-
-    /**
-     * Checks whether the specified user ID matches the current user's ID.
-     *
-     * @param userId The user ID to check.
-     * @return Whether {@code userId} belongs to the current user.
-     */
-    default boolean isCurrentUser(long userId) {
-        return isLoggedIn() && userId == getCurrentUserId();
-    }
-
-    /**
-     * Checks whether the specified username matches the current user's username.
-     *
-     * @param username The username to check.
-     * @return Whether {@code username} belongs to the current user.
-     */
-    default boolean isCurrentUser(String username) {
-        return isLoggedIn() && username == getCurrentUsername();
-    }
 }
