@@ -128,7 +128,7 @@
 						<a ng-if="hasMoreComments && !pendingRequests.comments.getTopLevel" href="" ng-click="getMoreTopLevelComments()">Load more comments</a>
 						<p style="display:inline-block" ng-if="pendingRequests.comments.getTopLevel">Fetching more comments...</p>
 						<div ng-if="pendingRequests.comments.getTopLevel" style="display: inline-block; vertical-align: middle">
-							<loadingcircle></loadingcircle>
+							<loadingcircle-small></loadingcircle-small>
 						</div>
 					</div>
 					<!--End load more comments-->

@@ -25,6 +25,7 @@ require.config({
         onComplete: 'directives/on-complete',
         authService: 'services/AuthService',
         loadingCircle: 'directives/loading-circle',
+        'loadingCircle-small': 'directives/loading-circle-small',
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
@@ -172,6 +173,11 @@ require.config({
             ]
         },
         loadingCircle: {
+            deps: [
+                'angular'
+            ]
+        },
+        'loadingCircle-small': {
             deps: [
                 'angular'
             ]
