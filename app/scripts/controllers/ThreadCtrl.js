@@ -28,11 +28,14 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             $scope.thread = response.data;
             $scope.isCurrentUser = AuthService.isCurrentUser($scope.thread.creator.username);
 
-            // Get thread top-level comments on success
+            // Get thread top-level comments on success, don't use getMoreTopLevelComments() because this is a special case
             $scope.paginatedComments = PaginationService.initialize($scope.thread, 'comments');
             PaginationService.get($scope.paginatedComments, function(response) {
                 $scope.comments = response.data;
                 $scope.hasMoreComments = PaginationService.hasMorePages($scope.paginatedComments);
+                $scope.comments.forEach(function(comment) {
+                    $scope.getCommentReplies(comment);
+                });
             }, function(error) {
                 $log.error('Error getting comments for thread #', $scope.threadId, ': ', error);
                 $scope.comments = [];
@@ -168,6 +171,19 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             }, function(error) {
                 $log.error('Error getting more comments: ', error);
                 $scope.pendingRequests.comments.getTopLevel = false;
+            });
+        };
+
+        $scope.getCommentReplies = function(comment) {
+            if (!PaginationService.isInitialized(comment.paginatedReplies)) {
+                comment.paginatedReplies = PaginationService.initialize(Restangular.all('threads').one('comments', comment.id), 'replies', 0);  // Initialize on page 0 so the first call to nextPage will get page 1
+            }
+            PaginationService.getNextPage(comment.paginatedReplies, function(response) {
+                if(!comment.replies) {
+                    comment.replies = [];
+                }
+                comment.replies = comment.replies.concat(response.data);
+                comment.replies.hasMoreReplies = PaginationService.hasMorePages(comment.paginatedReplies);
             });
         };
 

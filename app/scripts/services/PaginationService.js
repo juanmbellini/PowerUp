@@ -164,9 +164,6 @@ define(['powerUp'], function(powerUp) {
             }
         }
 
-        /* ********************************************
-         *              Private functions
-         * *******************************************/
         function isInitialized(object) {
             return typeof object === 'object'
                 && object.hasOwnProperty('restangularized') && object.restangularized
@@ -178,6 +175,9 @@ define(['powerUp'], function(powerUp) {
                 && object.pagination.hasOwnProperty('sortDirection');
         }
 
+        /* ********************************************
+         *              Private functions
+         * *******************************************/
         function query(object, successCallback, errorCallback) {
             if (!isInitialized(object)) {
                 return;
@@ -193,7 +193,7 @@ define(['powerUp'], function(powerUp) {
                 if (typeof errorCallback !== 'undefined') {
                     errorCallback(error);
                 } else {
-                    $log.error('Error getting paginated "', object.pagination.subElement, '" for ', object, ': ', error);
+                    $log.error('Error getting paginated "' + object.pagination.subElement + '" for ', object, ': ', error);
                 }
             });
         }
@@ -231,6 +231,7 @@ define(['powerUp'], function(powerUp) {
         // Public exported functions
         return {
             initialize: initialize,
+            isInitialized: isInitialized,
             get: get,
             getPage: getPage,
             getNextPage: getNextPage,
