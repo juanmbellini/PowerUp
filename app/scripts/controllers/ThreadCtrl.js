@@ -184,6 +184,11 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                 }
                 comment.replies = comment.replies.concat(response.data);
                 comment.replies.hasMoreReplies = PaginationService.hasMorePages(comment.paginatedReplies);
+
+                // TODO do this on demand
+                comment.replies.forEach(function(comment) {
+                    $scope.getCommentReplies(comment);
+                });
             });
         };
 

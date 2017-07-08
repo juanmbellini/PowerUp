@@ -119,7 +119,8 @@
                             </span>
                             <!--End comment un/like section-->
 
-							<!--Comment replies TODO make everything the same directive and call it recursively-->
+							<!--Comment replies-->
+							<!--TODO FOR COMMENT RECURSION CHANGE FROM HERE-->
 							<ul class="collection" ng-if="comment.replies.length > 0">
 								<li ng-repeat="comment in comment.replies" class="collection-item avatar">
 									<!--Comment info-->
@@ -159,9 +160,143 @@
 										</a>
 									</span>
 									<!--End comment un/like section-->
+
+									<!--Comment replies-2 TODO make everything the same directive and call it recursively-->
+									<ul class="collection" ng-if="comment.replies.length > 0">
+										<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+											<!--Comment info-->
+											<a name="{{comment.id}}"></a>
+											<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+											<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+											<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+											<br />
+											<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+											<!--End comment info-->
+
+											<!--Comment action links-->
+											<div class="action-links" ng-if="isLoggedIn">
+												<!--Reply link-->
+												<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+												<!--Edit link-->
+												| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+												<!--Delete link-->
+												| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+											</div>
+											<!--End comment action links-->
+
+											<!--Comment un/like section-->
+											<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+												<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+												<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+												<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+											<!--End comment un/like section-->
+
+											<!--Comment replies-3 TODO make everything the same directive and call it recursively-->
+											<ul class="collection" ng-if="comment.replies.length > 0">
+												<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+													<!--Comment info-->
+													<a name="{{comment.id}}"></a>
+													<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+													<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+													<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+													<br />
+													<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+													<!--End comment info-->
+
+													<!--Comment action links-->
+													<div class="action-links" ng-if="isLoggedIn">
+														<!--Reply link-->
+														<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+														<!--Edit link-->
+														| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+														<!--Delete link-->
+														| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+													</div>
+													<!--End comment action links-->
+
+													<!--Comment un/like section-->
+													<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+														<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+														<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+														<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+													<!--End comment un/like section-->
+													<!--Comment replies-4 TODO make everything the same directive and call it recursively-->
+													<ul class="collection" ng-if="comment.replies.length > 0">
+														<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+															<!--Comment info-->
+															<a name="{{comment.id}}"></a>
+															<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+															<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+															<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+															<br />
+															<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+															<!--End comment info-->
+
+															<!--Comment action links-->
+															<div class="action-links" ng-if="isLoggedIn">
+																<!--Reply link-->
+																<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+																<!--Edit link-->
+																| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+																<!--Delete link-->
+																| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+															</div>
+															<!--End comment action links-->
+
+															<!--Comment un/like section-->
+															<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+																<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+																<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+																<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+															<!--End comment un/like section-->
+														</li>
+													</ul>
+													<!--End comment replies-4-->
+												</li>
+											</ul>
+											<!--End comment replies-3-->
+
+
+										</li>
+									</ul>
+									<!--End comment replies-2-->
 								</li>
 							</ul>
 							<!--End comment replies-->
+							<!--TODO FOR COMMENT RECURSION CHANGE UP TO HERE-->
 						</li>
 					</ul>
 					<!--Load more comments-->
