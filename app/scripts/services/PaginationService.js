@@ -15,8 +15,9 @@ define(['powerUp'], function(powerUp) {
          * Adds a "pagination" property to a given Restangularized object to track pagination.
          *
          * @param object            The object to initialize. Must be Restangularized.
-         * @param subElement        The object's paginated sub-element to fetch later on. For example, to track a
-         *                          thread's comments, call `initialize(thread, 'comments', ...)`.
+         * @param subElement        (Optional) The object's paginated sub-element to fetch later on, if any. For example,
+         *                          to track threads call `initialize(Restangular.all('threads'), undefined, ...)`. To
+         *                          track a thread's comments, call `initialize(thread, 'comments', ...)`.
          * @param pageNumber        (Optional) The initial page number.
          * @param pageSize          (Optional) The page size.
          * @param orderBy           (Optional) Criterium to order results by.
@@ -147,11 +148,11 @@ define(['powerUp'], function(powerUp) {
          *                              Otherwise returns a boolean.
          */
         function hasMorePages(object, fetchIfNecessary) {
-            if(!isInitialized(object)) {
+            if (!isInitialized(object)) {
                 return undefined;
             }
-            if(!object.pagination.pageNumber) {
-                if(fetchIfNecessary === true) {
+            if (!object.pagination.pageNumber) {
+                if (fetchIfNecessary === true) {
                     get(object, hasMorePages(object, false), function(error) {
                         $log.error('Error getting ', object, ': ', error);
                         return undefined;
@@ -182,7 +183,9 @@ define(['powerUp'], function(powerUp) {
             if (!isInitialized(object)) {
                 return;
             }
-            object.getList(object.pagination.subElement, buildParamsObjectFor(object)).then(function(response) {
+            var param1 = object.pagination.subElement || buildParamsObjectFor(object);  // First or second
+            var param2 = object.pagination.subElement && buildParamsObjectFor(object);  // Second or undefined
+            object.getList(param1, param2).then(function(response) {
                 // Extract extra pagination data from response headers and add data to pagination property
                 Object.assign(object.pagination, extractPageMetadata(response));
 
