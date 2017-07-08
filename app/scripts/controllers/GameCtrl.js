@@ -60,7 +60,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
          * ****************************************/
         $scope.reviews = null;
         $scope.$on('gameFound', function() {
-            Restangular.all('reviews').getList({gameId: $scope.game.id}).then(function (reviews) {
+            Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (reviews) {
                 $scope.reviews = reviews;
                 console.log('found review ', $scope.reviews);
                 $scope.checkCanWriteReview();

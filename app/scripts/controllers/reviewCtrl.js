@@ -6,18 +6,15 @@ define(['powerUp'], function(powerUp) {
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
         $scope.pageSizes = [1,5,10,15];
-
         $scope.pageSize = parseInt($location.search().pageSize, 10);
         if (!$scope.pageSize) {
             $scope.pageSize = 5;
         }
         $scope.pageSizeSelected = $scope.pageSize;
-
         $scope.pageNumber = $location.search().pageNumber;
         if (!$scope.pageNumber) {
             $scope.pageNumber = 1;
         }
-
         $scope.userId = $location.search().userId;
         $scope.gameId = $location.search().gameId;
         if (!$scope.userId && !$scope.gameId) {
@@ -25,9 +22,6 @@ define(['powerUp'], function(powerUp) {
             $location.search({});
             $location.path('');
         }
-
-
-
         $scope.updatePageSize = function (pageSizeSelected) {
             $scope.pageSize = pageSizeSelected;
             $location.search('pageSize', $scope.pageSize);
@@ -71,10 +65,15 @@ define(['powerUp'], function(powerUp) {
                $location.path('');
            });
        }
+
+        /**
+         * Calculates the overallReviewScore of a review and returns it
+         * @param review
+         * @returns {number}
+         */
        $scope.overallReviewScore = function(review) {
             var fields = ['storyScore', 'graphicsScore', 'audioScore', 'controlsScore', 'funScore'];
             var result = 0;
-
             fields.forEach(function(field) {
                 result += review[field] / fields.length;
             });
@@ -107,6 +106,10 @@ define(['powerUp'], function(powerUp) {
             }
         };
 
+        /**
+         * Deletes the review
+         * @param review
+         */
         $scope.deleteReview = function(review) {
             Restangular.one('reviews', review.id).remove().then(function(response) {
                 var data = response.data;
@@ -122,7 +125,6 @@ define(['powerUp'], function(powerUp) {
             });
         };
 
-
         Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
             var reviews = response.data;
             $scope.reviews = reviews;
@@ -135,19 +137,26 @@ define(['powerUp'], function(powerUp) {
             console.log('There was an error getting reviews');
         });
 
+        /**
+         * Changes the pageNumber query parameter using the newPageNumber
+         * @param newPageNumber
+         */
         $scope.changePageNumber = function(newPageNumber) {
             $scope.pageNumber = newPageNumber;
             $location.search('pageNumber', $scope.pageNumber);
         };
 
+        /**
+         * Updates pagination variables using the pagination headers
+         */
        $scope.updatePagination = function() {
            $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);
            $scope.totalPages = parseInt($scope.headersPagination['x-total-pages'], 10);
-
            // Show the fist ten
            $scope.paginationJustOne = ($scope.pageNumber - 4 <= 0) || ($scope.totalPages <= 10);
            // Show the last ten
            $scope.paginationNoMorePrev = ($scope.pageNumber + 5 > $scope.totalPages);
+
            $scope.paginationTheFirstOnes = ($scope.pageNumber + 5 < 10);
            $scope.paginationNoMoreNext = ($scope.pageNumber + 5 >= $scope.totalPages) || ($scope.totalPages < 10);
 
@@ -156,19 +165,15 @@ define(['powerUp'], function(powerUp) {
            } else {
                $scope.paginationBegin = $scope.paginationNoMorePrev ? $scope.totalPages - 9 : $scope.pageNumber - 4;
            }
-
            if ($scope.paginationNoMoreNext) {
                $scope.paginationEnd = $scope.totalPages;
            } else {
                $scope.paginationEnd = $scope.paginationTheFirstOnes ? 10 : $scope.pageNumber + 5;
            }
-
            $scope.rangePagination = [];
            for (var i = $scope.paginationBegin; i <= $scope.paginationEnd; i++) {
                $scope.rangePagination.push(i);
            }
        };
-
     });
-
 });
