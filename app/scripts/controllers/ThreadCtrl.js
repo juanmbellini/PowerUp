@@ -13,10 +13,10 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
         var paginatedComments = null;
 
         // DOM control
-        $scope.changeThreadCommentFormVisible = false;
+        $scope.changeThreadBodyFormVisible = false;
         $scope.pendingRequests = {
             changeTitle: false,
-            changeThreadComment: false,
+            changeThreadBody: false,
             deleteThread: false,
             comments: {
                 getTopLevel: false,
@@ -90,25 +90,25 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             });
         };
 
-        $scope.showChangeThreadCommentForm = function() {
-            if (!$scope.changeThreadCommentFormVisible) {
-                $scope.changeThreadCommentFormVisible = true;
+        $scope.showChangeThreadBodyForm = function() {
+            if (!$scope.changeThreadBodyFormVisible) {
+                $scope.changeThreadBodyFormVisible = true;
             }
             // TODO this probably isn't working because the element isn't visible here, the cycle has to digest
             var $textArea = $('#change-thread-comment-textarea');
             $textArea.focus();
         };
 
-        $scope.changeThreadComment = function() {
-            if (!$scope.pendingRequests.changeThreadComment) {
-                $scope.pendingRequests.changeThreadComment = true;
+        $scope.changeThreadBody = function() {
+            if (!$scope.pendingRequests.changeThreadBody) {
+                $scope.pendingRequests.changeThreadBody = true;
                 putThread(function(response) {
                     // $scope.thread = response;
-                    $scope.changeThreadCommentFormVisible = false;
-                    $scope.pendingRequests.changeThreadComment = false;
+                    $scope.changeThreadBodyFormVisible = false;
+                    $scope.pendingRequests.changeThreadBody = false;
                 }, function(error) {
                     $log.error('Error updating thread #', $scope.threadId, ': ', error);
-                    $scope.pendingRequests.changeThreadComment = false;
+                    $scope.pendingRequests.changeThreadBody = false;
                 });
             }
         };

@@ -18,9 +18,9 @@
 						<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
 						<p>{{thread.createdAt}}</p>
 						<br>
-						<p ng-if="!changeThreadCommentFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
+						<p ng-if="!changeThreadBodyFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
 
-						<form ng-if="changeThreadCommentFormVisible" id="change-thread-comment-form" ng-submit="changeThreadComment()" style="margin-top: 10px;">
+						<form ng-if="changeThreadBodyFormVisible" id="change-thread-comment-form" ng-submit="changeThreadBody()" style="margin-top: 10px;">
 							<div class="row">
 								<div class="input-field col s12">
 									<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="thread.body">{{thread.body}}</textarea>
@@ -41,7 +41,7 @@
 							<!--Rename link-->
 							<a ng-click="changeThreadTitle()">Change Title</a>
 							<!--Edit link-->
-							| <a ng-click="showChangeThreadCommentForm()">Change Comment</a>
+							| <a ng-click="showChangeThreadBodyForm()">Change Comment</a>
 							<!--Delete link-->
 							| <a ng-click="deleteThread()" class="red-text">Delete</a>
 						</div>
