@@ -27,9 +27,7 @@ import java.util.stream.Collectors;
 /* package */ class JerseyControllerHelper {
 
 
-    private static final int SMALL_PAGE = 25;
-    private static final int MEDIUM_PAGE = 50;
-    private static final int LARGE_PAGE = 100;
+    private static final int MAX_PAGE_SIZE = 100;
 
 
     /**
@@ -300,8 +298,7 @@ import java.util.stream.Collectors;
     static /* package */ ParametersWrapper getPaginationReadyParametersWrapper(int pageSize, int pageNumber) {
         return JerseyControllerHelper.getParametersWrapper()
                 .addParameter("pageSize", pageSize,
-//                        size -> size != SMALL_PAGE && size != MEDIUM_PAGE && size != LARGE_PAGE)
-                          size -> size <=0 || size >LARGE_PAGE)
+                        size -> size <= 0 || size > MAX_PAGE_SIZE)
                 .addParameter("pageNumber", pageNumber, number -> number <= 0);
     }
 
