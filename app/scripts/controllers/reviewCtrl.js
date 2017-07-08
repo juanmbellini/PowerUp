@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp'], function(powerUp) {
 
-    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService) {
+    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
@@ -111,7 +111,7 @@ define(['powerUp'], function(powerUp) {
          * @param review
          */
         $scope.deleteReview = function(review) {
-            Restangular.one('reviews', review.id).remove().then(function(response) {
+            review.remove().then(function(response) {
                 var data = response.data;
                 $log.info('Success: ', data);
                 $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
@@ -121,7 +121,7 @@ define(['powerUp'], function(powerUp) {
             function(error) {
                 $log.error('Error: ', error);
             },function () {
-                $scope.checkCanWriteReview();
+                    $scope.checkCanWriteReview();
             });
         };
 

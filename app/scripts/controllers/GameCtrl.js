@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$filter', function($scope, $location, $log, Restangular, AuthService, $filter) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
@@ -107,7 +107,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         };
 
         $scope.deleteReview = function(review) {
-            Restangular.one('reviews', review.id).remove().then(function(data) {
+            review.remove().then(function(data) {
                 $log.info('Success: ', data);
                 $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
                     return reviewToFilter.id !== review.id;
@@ -116,7 +116,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             function(error) {
                 $log.error('Error: ', error);
             },function () {
-                    checkCanWriteReview();
+                    $scope.checkCanWriteReview();
             });
         };
 
