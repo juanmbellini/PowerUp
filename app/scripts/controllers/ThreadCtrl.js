@@ -1,9 +1,10 @@
 'use strict';
-define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'sweetalert.angular', 'likesService'], function(powerUp) {
 
-    powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', function($scope, $location, $routeParams, $log, Restangular, AuthService) {
+    powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', 'LikesService', function($scope, $location, $routeParams, $log, Restangular, AuthService, LikesService) {
         $scope.threadId = $routeParams.threadId;
         $scope.thread = null;
+        $scope.comments = null;
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
         $scope.isCurrentUser = false;
@@ -14,7 +15,6 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
             changeTitle: false,
             changeThreadComment: false,
             deleteThread: false,
-            likeOrUnlikeThread: false,
             comments: {
                 create: false
             }
@@ -23,16 +23,20 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
             $scope.thread = response;
-            $scope.thread.comments = [];    // TODO return from API
-            $scope.isCurrentUser = AuthService.isCurrentUser(response.creatorUsername);
+            $scope.isCurrentUser = AuthService.isCurrentUser(response.creator.username);
+            // Get thread top-level comments on success
+            response.all('comments').getList().then(function(response) {
+                $scope.comments = response;
+            }, function(error) {
+                $log.error('Error getting comments for thread #', $scope.threadId, ': ', error);
+                $scope.thread = {};
+            });
         }, function(error) {
             $log.error('Error getting thread #', $scope.threadId, ': ', error);
             $scope.thread = {};
         });
 
-        $scope.isLikedByCurrentUser = function(thread) {
-            return true;   // TODO
-        };
+        $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
 
         $scope.changeTitle = function() {
             swal({
@@ -128,37 +132,19 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
          *    THREAD LIKE/UNLIKE FUNCTIONS, adapted from ThreadsCtrl
          * ***********************************************************/
         $scope.likeThread = function(thread) {
-            var threadId = thread.id;
-            if (!threadId || pendingRequests.likeOrUnlikeThread) {
-                return;
-            }
-            pendingRequests.likeOrUnlikeThread = true;
-            Restangular.one('threads', threadId).post('like').then(function(response) {
-                // Update like count
-                thread.likeCount++;
-                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns true
-                pendingRequests.likeOrUnlikeThread = false;
+            LikesService.like(thread, undefined, function() {
+
             }, function(error) {
-                $log.error('Error liking thread #', threadId, ': ', error);
-                pendingRequests.likeOrUnlikeThread = false;
+                $log.error('Error liking thread #', thread.id, ': ', error);
             });
         };
 
         $scope.unlikeThread = function(thread) {
-            var threadId = thread.id;
-            if (!threadId || pendingRequests.likeOrUnlikeThread) {
-                return;
-            }
-            pendingRequests.likeOrUnlikeThread = true;
-            Restangular.one('threads', threadId).post('unlike').then(function(response) {
-                // Update like count
-                thread.likeCount--;
-                // TODO make sure $scope.isLikedByCurrentUser(thread) now returns false
-                pendingRequests.likeOrUnlikeThread = false;
-            }, function(error) {
-                $log.error('Error unliking thread #', threadId, ': ', error);
-                pendingRequests.likeOrUnlikeThread = false;
-            });
+            LikesService.unlike(thread, undefined, function() {
+
+             }, function(error) {
+                $log.error('Error unliking thread #', thread.id, ': ', error);
+             });
         };
 
         /* **************************************************
@@ -170,6 +156,22 @@ define(['powerUp', 'loadingCircle', 'sweetalert.angular'], function(powerUp) {
             }
             pendingRequests.comments.create = true;
             
+        };
+
+        $scope.likeComment = function(comment) {
+            LikesService.like(Restangular.all('threads').one('comments', comment.id), comment, function() {
+
+            }, function(error) {
+                $log.error('Error liking comment #', comment.id, ': ', error);
+            });
+        };
+
+        $scope.unlikeComment = function(comment) {
+            LikesService.unlike(Restangular.all('threads').one('comments', comment.id), comment, function() {
+
+            }, function(error) {
+                $log.error('Error unliking comment #', comment.id, ': ', error);
+            });
         };
 
         /* *************************************************

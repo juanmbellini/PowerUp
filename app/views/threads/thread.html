@@ -5,99 +5,151 @@
             <loadingcircle></loadingcircle>
         </div>
 
-        <!--Title-->
-		<h1 class="center wrap-text"> {{thread.title}} </h1>
+		<div ng-if="thread !== null">
+			<!--Title-->
+			<h1 class="center wrap-text"> {{thread.title}} </h1>
 
-		<!--Original comment-->
-		<div class="row">
-			<ul class="collection">
-				<li class="collection-item avatar">
-					<img ng-src="{{apiLocation}}/users/{{thread.creatorId}}/picture" alt="{{thread.creatorUsername}}" class="circle">
-					<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creatorUsername}}">{{thread.creatorUsername}}</a></span>
-					<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
-					<p>TODO createdAt datetime {{thread.createdAt}}</p>
-					<br>
-					<p class="preserve-newlines wrap-text">{{thread.body}}</p>
+			<!--Original comment-->
+			<div class="row">
+				<ul class="collection">
+					<li class="collection-item avatar">
+						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
+						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
+						<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
+						<p>{{thread.createdAt}}</p>
+						<br>
+						<p class="preserve-newlines wrap-text">{{thread.body}}</p>
 
-					<form ng-if="changeThreadCommentFormVisible" id="change-thread-comment-form" ng-submit="changeThreadComment()" style="margin-top: 10px;">
-						<div class="row">
-							<div class="input-field col s12">
-								<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;">{{thread.body}}</textarea>
-								<label for="change-thread-comment-textarea" class="active">New initial comment</label>
+						<form ng-if="changeThreadCommentFormVisible" id="change-thread-comment-form" ng-submit="changeThreadComment()" style="margin-top: 10px;">
+							<div class="row">
+								<div class="input-field col s12">
+									<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;">{{thread.body}}</textarea>
+									<label for="change-thread-comment-textarea" class="active">New initial comment</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s4 offset-s5">
+									<button type="submit" class="col s6 btn btn-large waves-effect light-blue">
+										Submit <i class="material-icons right">send</i>
+									</button>
+								</div>
+							</div>
+						</form>
+
+						<!--Thread action links-->
+						<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
+							<!--Rename link-->
+							<a ng-click="changeTitle()">Change Title</a>
+							<!--Edit link-->
+							| <a ng-click="showChangeThreadCommentForm()">Change Comment</a>
+							<!--Delete link-->
+							| <a ng-click="deleteThread()"  id="delete-thread">Delete</a>
+						</div>
+
+						<div class="action-form"></div>
+
+                        <!--Thread un/like section-->
+                        <span class="secondary-content">
+                            <b style="vertical-align: text-bottom">{{thread.likeCount}}</b>
+                            <!--Not logged in - black actionless thumbs up-->
+                            <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                            <!--Logged in and liked - green thumbs up with action to unlike-->
+                            <a ng-if="isLoggedIn && isLikedByCurrentUser(thread)" ng-click="unlikeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                <i class="material-icons green-text">thumb_up</i>
+                            </a>
+                            <!--Logged in and not liked - black thumbs up with action to like-->
+                            <a ng-if="isLoggedIn && !isLikedByCurrentUser(thread)" ng-click="likeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                <i class="material-icons black-text">thumb_up</i>
+                            </a>
+                            </span>
+                        <!--End thread un/like section-->
+					</li>
+				</ul>
+			</div>
+
+			<div class="row col s12 divider"></div>
+
+			<!--COMMENTS-->
+			<div ng-if="comments === null" class="center">
+				<h5>Fetching thread comments...</h5>
+				<loadingcircle></loadingcircle>
+			</div>
+			<div ng-if="comments !== null">
+				<div class="row">
+					<h5 ng-if="comments.length == 0" class="center">No comments. Leave the first comment!</h5>
+					<h5 ng-if="comments.length > 0" class="center">Comments</h5>
+
+					<ul class="collection" ng-if="comments.length > 0">
+						<li ng-repeat="comment in comments" class="collection-item avatar">
+							<!--Comment info-->
+							<a name="{{comment.id}}"></a>
+							<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+							<span class="title wrap-text">
+								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+							</span>
+							<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+							<br />
+							<p class="preserve-newlines wrap-text">{{comment.body}}</p>
+							<!--End comment info-->
+
+							<!--Comment action links-->
+							<div class="action-links" ng-if="isLoggedIn">
+								<!--Reply link-->
+								<a href="" class="reply-link" data-comment-id="1" data-form-shown="false">Reply</a>
+								<!--Edit link-->
+								| <a href="" class="edit-comment-link" data-comment-id="1" data-comment="According to my mom, to be is the best option" data-form-shown="false">Edit</a>
+								<!--Delete link-->
+								| <a href="" class="delete-comment-link" data-comment-id="1" data-form-shown="false">Delete</a>
+							</div>
+							<!--End comment action links-->
+
+                            <!--Comment un/like section-->
+                            <span class="secondary-content">
+                                <b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+                                    <!--Not logged in - black actionless thumbs up-->
+                                <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                                    <!--Logged in and liked - green thumbs up with action to unlike-->
+                                <a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+                                    <i class="material-icons green-text">thumb_up</i>
+                                </a>
+                                    <!--Logged in and not liked - black thumbs up with action to like-->
+                                <a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled}" href="">
+                                    <i class="material-icons black-text">thumb_up</i>
+                                </a>
+                            </span>
+                            <!--End comment un/like section-->
+
+                            <!--TODO comment replies-->
+						</li>
+					</ul>
+					<!--Print entire comment tree recursively-->
+					<!-- TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/ -->
+					<!--<c:url value="/" var="baseUrl" />-->
+					<!--${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}-->
+				</div>
+				<!--Add a comment form-->
+				<div ng-if="isLoggedIn" class="row">
+					<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
+						<div class='row'>
+							<div class='input-field col s12'>
+								<textarea id="new-comment-textarea" type="text" ng-model="newComment" required="required" class="materialize-textarea"></textarea>
+								<label for="new-comment-textarea">New comment</label>
 							</div>
 						</div>
-						<div class="row">
+						<div class='row'>
 							<div class="col s4 offset-s5">
-								<button type="submit" class="col s6 btn btn-large waves-effect light-blue">
+								<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
 									Submit <i class="material-icons right">send</i>
 								</button>
 							</div>
 						</div>
 					</form>
-
-					<!--Thread action links-->
-					<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
-						<!--Rename link-->
-						<a ng-click="changeTitle()">Change Title</a>
-						<!--Edit link-->
-						| <a ng-click="showChangeThreadCommentForm()">Change Comment</a>
-						<!--Delete link-->
-						| <a ng-click="deleteThread()"  id="delete-thread">Delete</a>
-					</div>
-
-					<div class="action-form"></div>
-
-					<!--Un/like section-->
-					<span href="#!" class="secondary-content">
-						<b>TODO like count{{thread.likeCount}}</b>
-						<!--Not logged in - black actionless thumbs up-->
-						<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
-						<!--Logged in and liked - green thumbs up with action to unlike-->
-						<a ng-if="isLoggedIn && isLikedByCurrentUser(thread)" ng-click="unlikeThread(thread)" href="">
-							<i class="material-icons green-text">thumb_up</i>
-						</a>
-						<!--Logged in and not liked - black thumbs up with action to like-->
-						<a ng-if="isLoggedIn && !isLikedByCurrentUser(thread)" ng-click="likeThread(thread)" href="">
-							<i class="material-icons black-text">thumb_up</i>
-						</a>
-					</span>
-					<!--End un/like section-->
-				</li>
-			</ul>
-		</div>
-
-		<div class="row col s12 divider"></div>
-
-		<!--COMMENTS-->
-		<div class="row">
-			<h5 ng-if="thread.comments.length == 0" class="center">No comments</h5>
-			<h5 ng-if="thread.comments.length > 0" class="center">All TODO full comment count {{thread.comments.fullLength()}} comments</h5>
-
-			<!--Print entire comment tree recursively-->
-			<!-- TODO esperar los comentarios anidados en el json y hacer esto: http://jsfiddle.net/brendanowen/uXbn6/8/ -->
-			<!--<c:url value="/" var="baseUrl" />-->
-			<!--${paw:printCommentsTree(thread.topLevelComments, 0, baseUrl, currentUser)}-->
+				</div>
+				<!--End comment form-->
+			</div>
 		</div>
 		<!--END COMMENTS-->
-		<!--Add a comment form-->
-		<div ng-if="isLoggedIn" class="row">
-			<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
-				<div class='row'>
-					<div class='input-field col s12'>
-						<textarea id="new-comment-textarea" type="text" ng-model="newComment" required="required" cssClass="materialize-textarea"></textarea>
-						<label for="new-comment-textarea">New comment</label>
-					</div>
-				</div>
-				<div class='row'>
-					<div class="col s4 offset-s5">
-						<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
-							Submit <i class="material-icons right">send</i>
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<!--End comment form-->
+
 		<!--FAB-->
 		<div ng-if="isLoggedIn()" class="fixed-action-btn" style="bottom:10%;">
 			<!--href="<c:url value="/create-thread" />"-->
