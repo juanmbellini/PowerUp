@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
+define(['powerUp', 'authService', 'loadingCircle', 'likesService'], function(powerUp) {
 
-    powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
+    powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', function($scope, $location, $log, Restangular, AuthService, LikesService) {
 
         // Restangular.setFullResponse(false);
 
@@ -32,70 +32,24 @@ define(['powerUp', 'authService', 'loadingCircle'], function(powerUp) {
         };
 
         $scope.likeThread = function(thread) {
-            var threadId = thread.id;
-            if (!threadId || thread.likesDisabled) {
-                return;
-            }
-            // Disable this like button
-            disableLikeButton(thread);
+            LikesService.like(thread, undefined, function() {
 
-            Restangular.one('threads', threadId).one('likes').put().then(function(response) {
-                // Update like count
-                thread.likeCount++;
-                setLikedByCurrentUser(thread, true);
-                // Re-enable button
-                enableLikeButton(thread);
             }, function(error) {
-                $log.error('Error liking thread #', threadId, ': ', error);
-                // Re-enable button
-                enableLikeButton(thread);
+                $log.error('Error liking thread #', thread.id, ': ', error);
             });
         };
 
         $scope.unlikeThread = function(thread) {
-            var threadId = thread.id;
-            if (!threadId || thread.likesDisabled) {
-                return;
-            }
-            // Disable this unlike button
-            disableLikeButton(thread);
+            LikesService.unlike(thread, undefined, function() {
 
-            Restangular.one('threads', threadId).one('likes').remove().then(function(response) {
-                // Update like count
-                thread.likeCount--;
-                setLikedByCurrentUser(thread, false);
-                // Re-enable button
-                enableLikeButton(thread);
             }, function(error) {
-                $log.error('Error unliking thread #', threadId, ': ', error);
-                // Re-enable button
-                enableLikeButton(thread);
+                $log.error('Error unliking thread #', thread.id, ': ', error);
             });
         };
 
         /* *****************************
          *       PRIVATE FUNCTIONS
          * ****************************/
-        function setLikedByCurrentUser(thread, isLiked) {
-            if(!thread || typeof thread !== 'object' || !thread.hasOwnProperty('likedByCurrentUser') || typeof isLiked === 'undefined') {
-                return;
-            }
-            thread.likedByCurrentUser = isLiked;
-            return thread;
-        }
 
-        function disableLikeButton(thread) {
-            if (!thread) {
-                return;
-            }
-            thread.likesDisabled = true;
-        }
-
-        function enableLikeButton(thread) {
-            if (!thread) {
-                return;
-            }
-            thread.likesDisabled = false;
-        }
     }]);
 });
