@@ -1,5 +1,5 @@
 <main class="section">
-    <div ng-controller="ThreadsCtrl" class="container row" ng-init="getThreads()">
+    <div class="container row" ng-init="getThreads()">
         <!--Title-->
         <h1 class="center">PowerUp Threads</h1>
 
@@ -32,8 +32,7 @@
                             <img ng-src="{{thread.creator.profilePictureUrl}}" alt="{{thread.creator.username}}" class="circle">
                             <a class="title truncate" ng-href="#thread/{{thread.id}}">{{thread.title}}</a>
 
-                            <!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
-                            <p>Submitted TODO format created date {{thread.createdAt}}<!--createdAt.Time--> by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></p>
+                            <p>Submitted {{thread.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></p>
                             <br>
                             <p class="truncate">{{thread.body}}</p>
 
@@ -66,27 +65,4 @@
         </div>
         <!--END FAB-->
     </div>
-
 </main>
-
-<!--<script type="text/javascript">-->
-    <!--$(function() {-->
-        <!--$(".like-thread").on("click", function(event) {-->
-            <!--var threadId = $(this).data("thread-id");-->
-            <!--//Create an inline form and submit it to redirect with POST-->
-            <!--$("<form action='<c:url value="/like-thread" />' method='POST'> \-->
-                <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
-                <!--<input type='hidden' name='returnUrl' value='/threads#" + threadId + "' /> \-->
-               <!--</form>").submit();-->
-        <!--});-->
-
-        <!--$(".unlike-thread").on("click", function(event) {-->
-            <!--var threadId = $(this).data("thread-id");-->
-            <!--//Create an inline form and submit it to redirect with POST-->
-            <!--$("<form action='<c:url value="/unlike-thread" />' method='POST'> \-->
-                <!--<input type='hidden' name='threadId' value='" + threadId + "' /> \-->
-                <!--<input type='hidden' name='returnUrl' value='/threads#" + threadId + "' /> \-->
-               <!--</form>").submit();-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
