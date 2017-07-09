@@ -9,7 +9,7 @@
                 <div class="col s6 offset-s3 ">
                     <form ng-submit="submitSearch()">
                         <div class="input-field">
-                            <input placeholder="Title" type="search" ng-model="searchedName" name="name"/>
+                            <input placeholder="Title" type="search" ng-model="searchParams.name" name="name"/>
                             <i class="material-icons" style="color:black;" id="search-icon">search</i>
                         </div>
                     </form>
@@ -31,9 +31,9 @@
                 <!--Total games count-->
                 <ul class="row games-count">
                     <div class="col s6">
-                        Games {{(pageNumber - 1) * pageSize + 1 }} -
-                        {{(pageNumber - 1) * pageSize + games.length}}
-                        of {{overAllAmountOfElements}}
+                        Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
+                        {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
+                        of {{gamesPaginator.pagination.totalElements}}
                     </div>
                 </ul>
             </div>
@@ -122,10 +122,10 @@
                 <div ng-if="games.length > 1">
                     <div class="right-align" id="sorting">
                         <!--SORT BY NAME-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'name'}" data-category="name" ng-click="sortNameButton()">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'name'}" data-category="name" ng-click="sortNameButton()">
                             Name
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == null || orderCategory == 'name') && ascending == false">
+                                <div ng-switch="(searchParams.orderBy == null || searchParams.orderBy == 'name') && searchParams.sortDirection === 'desc'">
                                     <div ng-switch-when="true">arrow_drop_down</div>
                                     <!--TODO sacar flechas cuando inactivo? --Diego 03/02/2017-->
                                     <div ng-switch-default>arrow_drop_up</div>
@@ -134,10 +134,10 @@
                         </button>
 
                         <!--SORT BY RELEASE DATE-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'release'}" ng-click="sortReleaseButton()" data-category="releaseSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'release'}" ng-click="sortReleaseButton()" data-category="releaseSort">
                             Release
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == 'release') && ascending == true">
+                                <div ng-switch="(searchParams.orderBy == 'release') && searchParams.sortDirection === 'asc'">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
@@ -145,10 +145,10 @@
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: orderCategory !== 'avg_score'}" ng-click="sortRatingButton()" data-category="ratingSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'avg_score'}" ng-click="sortRatingButton()" data-category="ratingSort">
                             Rating
                             <i class="material-icons right">
-                                <div ng-switch="(orderCategory == 'avg_score') && ascending == true">
+                                <div ng-switch="(searchParams.orderBy == 'avg_score') && searchParams.sortDirection === 'asc'">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
@@ -224,9 +224,9 @@
     <!--Another total games count-->
     <ul class="row games-count" ng-if="games && games.length > 0">
         <div class="col s6">
-            Games {{(pageNumber - 1) * pageSize + 1 }} -
-            {{(pageNumber - 1) * pageSize + games.length}}
-            of {{overAllAmountOfElements}}
+            Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
+            {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
+            of {{gamesPaginator.pagination.totalElements}}
         </div>
     </ul>
 

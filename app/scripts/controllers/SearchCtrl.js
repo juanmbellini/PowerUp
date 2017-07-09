@@ -1,44 +1,49 @@
 'use strict';
-define(['powerUp', 'loadingCircle'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'paginationService'], function(powerUp) {
 
 
-    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', function($scope, $timeout, $location, $log, Restangular) {
-        // $httpParamSerializer
+    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function($scope, $timeout, $location, $log, Restangular, PaginationService) {
         Restangular.setFullResponse(true);
 
         $scope.overAllAmountOfElements = 100;
         $scope.totalPages = 114;
         $scope.pageSize = 25;
 
-        $scope.searchedName = $location.search().name;
-        $scope.ascending = $location.search().ascending;
-        $scope.pageNumber = $location.search().pageNumber;
-        $scope.orderCategory = $location.search().orderCategory || 'name';
-        $scope.developers = $location.search().developer;
-        $scope.publishers = $location.search().publisher;
-        $scope.genres = $location.search().genre;
-        $scope.platforms = $location.search().platform;
-        $scope.pageNumber = $location.search().pageNumber;
-        if (angular.isUndefined($scope.pageNumber)) {
-            $scope.pageNumber = 1;
-        }
-        if ($scope.ascending === undefined) {
-            $scope.ascending = true;
+        var defaults = {
+            name: undefined,
+            publisher: undefined,
+            developer: undefined,
+            genre: undefined,
+            keyword: undefined,
+            platform: undefined,
+            // Pagination
+            orderBy: 'name',
+            sortDirection: 'asc',
+            pageSize: 25,
+            pageNumber: 1
+        };
+
+        $scope.searchParams = {};
+
+        // Safely set all defaults
+        for(var key in defaults) {
+            var defaultValue = defaults[key];
+            var value = $location.search()[key];
+            if(typeof value !== 'string') {
+                $scope.searchParams[key] = defaultValue;
+            } else {
+                if(typeof defaultValue === 'number') {
+                    value = parseInt(value, 10);
+                }
+                $scope.searchParams[key] = value;
+            }
         }
 
         $scope.games = null;
-        // $scope.keywords = $location.search().keyword;
-
-        // $scope.changePageUrl = function(pageNumber) {
-        //     return $httpParamSerializer({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
-        //         publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
-        //         pageNumber: pageNumber});
-        //
-        // };
 
         $scope.submitSearch = function() {
             $log.debug('Reloading Search with specified parameters');
-            $location.search({'name': $scope.searchedName});
+            $location.search($scope.searchParams);
             $location.path('search');
         };
 
@@ -47,58 +52,57 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
         };
 
         $scope.hasFilters = function() {
-            return ($scope.developers !== undefined || $scope.publishers !== undefined || $scope.genres !== undefined || $scope.platforms !== undefined);
+            return ($scope.searchParams.developers !== undefined || $scope.searchParams.publishers !== undefined || $scope.searchParams.genres !== undefined || $scope.searchParams.platforms !== undefined);
         };
 
         $scope.sortNameButton = function() {
-            if ($scope.orderCategory === undefined || angular.equals($scope.orderCategory,'name')) {
-                $scope.ascending = !$scope.ascending;
+            if ($scope.searchParams.orderBy === undefined || angular.equals($scope.searchParams.orderBy,'name')) {
+                $scope.toggleSortDirection();
             }else {
-                $scope.orderCategory = 'name';
-                $scope.ascending = true;
+                $scope.searchParams.orderBy = 'name';
+                $scope.searchParams.sortDirection = 'asc';
             }
-            $location.search('orderCategory', $scope.orderCategory);
-            $location.search('ascending', $scope.ascending);
+            $location.search('orderBy', $scope.searchParams.orderBy);
+            $location.search('sortDirection', $scope.searchParams.sortDirection);
         };
 
         $scope.sortRatingButton = function() {
-            if (angular.equals($scope.orderCategory,'avg_score')) {
-                $scope.ascending = !$scope.ascending;
+            if (angular.equals($scope.searchParams.orderBy,'avg_score')) {
+                $scope.toggleSortDirection();
             }else {
-                $scope.orderCategory = 'avg_score';
-                $scope.ascending = false;
+                $scope.searchParams.orderBy = 'avg_score';
+                $scope.searchParams.sortDirection = 'desc';
             }
-            $location.search('orderCategory', $scope.orderCategory);
-            $location.search('ascending', $scope.ascending);
+            $location.search('orderBy', $scope.searchParams.orderBy);
+            $location.search('sortDirection', $scope.searchParams.sortDirection);
         };
 
         $scope.sortReleaseButton = function() {
-            if (angular.equals($scope.orderCategory,'release')) {
-                $scope.ascending = !$scope.ascending;
+            if (angular.equals($scope.searchParams.orderBy,'release')) {
+                $scope.toggleSortDirection();
             }else {
-                $scope.orderCategory = 'release';
-                $scope.ascending = false;
+                $scope.searchParams.orderBy = 'release';
+                $scope.searchParams.sortDirection = 'desc';
             }
-            $location.search('orderCategory', $scope.orderCategory);
-            $location.search('ascending', $scope.ascending);
+            $location.search('orderBy', $scope.searchParams.orderBy);
+            $location.search('sortDirection', $scope.searchParams.sortDirection);
         };
 
-        // TODO Deprecated
-        // $scope.reload = function() {
-        //     $location.search({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
-        //         publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
-        //         pageNumber: $scope.pageNumber});
-        //     $location.path('search');
-        // };
+        $scope.toggleSortDirection = function() {
+            if($scope.searchParams.sortDirection === 'asc') {
+                $scope.searchParams.sortDirection = 'desc';
+            } else if($scope.searchParams.sortDirection === 'desc') {
+                $scope.searchParams.sortDirection = 'asc';
+            }
+            $log.warn('Called toogleSortDirection but sort direction is neither asc nor desc. Doing nothing.')
+        };
 
-        var baseGames = Restangular.all('games');
-
-        baseGames.getList({orderCategory: $scope.orderCategory, ascending: $scope.ascending, name: $scope.searchedName,
-            publisher: $scope.publishers, genres: $scope.genres, platform: $scope.platforms, developer: $scope.developers,
-            pageNumber: $scope.pageNumber})
-            .then(function(response) {
-                $scope.games = response.data;
-                $log.debug('Found ' + $scope.games.length + ' games');
+        // Pagination control
+        $scope.gamesPaginator = PaginationService.initialize(Restangular.all('games'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
+        PaginationService.setRequestParams($scope.gamesPaginator, $scope.searchParams);
+        PaginationService.get($scope.gamesPaginator, function(response) {
+            $scope.games = response.data;
+            $log.debug('Found ' + $scope.games.length + ' games');
         }, function(error) {
             // TODO do something more useful
             $log.error('Error performing search: ', error);
