@@ -15,6 +15,7 @@
                 <span ng-if="isLoggedIn">Why not <a href="#threads/create">create one?</a></span>
             </h5>
             <div ng-if="threads && threads.length > 0">
+                <!--Sorting buttons-->
                 <div class="row">
                     <div class="col s12">
                         <a class="btn waves-effect waves-light {{(order == 'hot')? '' : 'inactive'}}"
@@ -25,6 +26,9 @@
                            ng-href="#threads?order=best">Highest Scoring</a>
                     </div>
                 </div>
+                <!--End sorting buttons-->
+
+                <!--Threads list-->
                 <div class="row">
                     <ul ng-if="threads.length > 0" class="collection">
                         <li ng-repeat="thread in threads" class="collection-item avatar">
@@ -54,6 +58,19 @@
                         </li>
                     </ul>
                 </div>
+                <!--End threads list-->
+
+                <!--Load more-->
+                <!--TODO consider auto-loading more when reaching end of page with scrollspy or something like that, in Thread comments too-->
+                <div>
+                    <p ng-if="threads.length > 0 && !hasMorePages">No more threads</p>
+                    <a ng-if="hasMorePages && !pendingRequests.threads" href="" ng-click="getMoreThreads()">Load more threads</a>
+                    <p style="display:inline-block" ng-if="pendingRequests.threads">Fetching more threads...</p>
+                    <div ng-if="pendingRequests.threads" style="display: inline-block; vertical-align: middle">
+                        <loadingcircle-small></loadingcircle-small>
+                    </div>
+                </div>
+                <!--End load more-->
             </div>
 
         </div>

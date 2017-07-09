@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService', 'loadingCircle', 'likesService', 'paginationService'], function(powerUp) {
+define(['powerUp', 'authService', 'loadingCircle', 'loadingCircle-small', 'likesService', 'paginationService'], function(powerUp) {
 
     powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $log, Restangular, AuthService, LikesService, PaginationService) {
 
@@ -16,16 +16,39 @@ define(['powerUp', 'authService', 'loadingCircle', 'likesService', 'paginationSe
             $scope.direction = 'desc';
         }
 
+        // DOM control
+        $scope.pendingRequests = {
+            threads: false
+        };
+
         // Pagination control
-        var paginatedThreads = null;
+        var threadsPaginator = null;
+        $scope.hasMorePages = false;
 
         $scope.getThreads = function() {
-            paginatedThreads = PaginationService.initialize(Restangular.all('threads'), undefined, 1, undefined, $scope.order, $scope.direction);
-            PaginationService.get(paginatedThreads, function(response) {
+            threadsPaginator = PaginationService.initialize(Restangular.all('threads'), undefined, 1, undefined, $scope.order, $scope.direction);
+            PaginationService.get(threadsPaginator, function(response) {
                 $scope.threads = response.data;
+                $scope.hasMorePages = PaginationService.hasMorePages(threadsPaginator);
             }, function(error) {
                 $log.error('Error getting threads: ', error);
                 $scope.threads = [];
+            });
+        };
+
+        $scope.getMoreThreads = function() {
+            if($scope.pendingRequests.threads) {
+                return;
+            }
+
+            $scope.pendingRequests.threads = true;
+            PaginationService.getNextPage(threadsPaginator, function(response) {
+                $scope.threads = $scope.threads.concat(response.data);
+                $scope.hasMorePages = PaginationService.hasMorePages(threadsPaginator);
+                $scope.pendingRequests.threads = false;
+            }, function(error) {
+                $log.error('Error getting more threads: ', error);
+                $scope.pendingRequests.threads = false;
             });
         };
 

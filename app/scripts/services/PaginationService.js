@@ -166,7 +166,7 @@ define(['powerUp'], function(powerUp) {
         }
 
         function isInitialized(object) {
-            return typeof object === 'object'
+            return object !== null && typeof object === 'object'
                 && object.hasOwnProperty('restangularized') && object.restangularized
                 && object.hasOwnProperty('pagination')
                 && object.pagination.hasOwnProperty('subElement')
