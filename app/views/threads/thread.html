@@ -528,10 +528,8 @@
 		<!--END COMMENTS-->
 
 		<!--FAB-->
-		<div ng-if="isLoggedIn()" class="fixed-action-btn" style="bottom:10%;">
-			<!--href="<c:url value="/create-thread" />"-->
-			<a id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red">
-				<!--TODO do create threads-->
+		<div ng-if="isLoggedIn" class="fixed-action-btn" style="bottom:10%;">
+			<a href="#threads/create" id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red">
 				<i class="large material-icons">mode_edit</i>
 			</a>
 		</div>
