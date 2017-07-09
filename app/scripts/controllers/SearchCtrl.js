@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'loadingCircle', 'paginationService'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'], function(powerUp) {
 
 
     powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function($scope, $timeout, $location, $log, Restangular, PaginationService) {

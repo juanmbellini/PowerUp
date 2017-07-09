@@ -80,14 +80,30 @@ define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
 
         Waves.displayEffect();      // To get waves effects working, https://gist.github.com/stephenjang/123740713c0b0ab21c9a#gistcomment-1982064
 
-        // Restangular.all('users').getList()  // GET: /users
-        //   .then(function(users) {
-        //     console.log('All users: ', users);
-        //   });
-        //
-        //     Restangular.one('users', 1).get().then(function(user) {
-        //   console.log('User #2: ', user);
-        // });
-		// var scope = angular.element('[ng-controller=myController]').scope();
+        /*
+         * Fetch possible game filters. Even though this is necessary only in Search, if the page changes or gets
+         * reloaded the controller is lost. Main controller is always present so processing will continue even on page
+         * changes.
+         * TODO consider passing this to a service using local storage, it takes a long time to retrieve this from the server
+         */
+        var filterTypes = ['publisher', 'developer', 'genre', 'keyword', 'platform'];
+        var remainingRequests = filterTypes.length;
+        $scope.filtersReady = false;
+        $scope.filters = {};
+
+        filterTypes.forEach(function(filterType) {
+            Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
+                $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
+                remainingRequests--;
+                console.log('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
+                if (remainingRequests <= 0) {
+                    console.log('Done fetching all filters');
+                    $scope.filtersReady = true;
+                }
+            }, function(error) {
+                console.log('ERROR getting filters for type ' + filterType + ': ', error);
+            });
+        });
+
 	});
 });
