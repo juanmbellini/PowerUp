@@ -10,7 +10,7 @@
                             <div class='row'>
                                 <div class='input-field col s6'>
                                     <p>Email:</p>
-                                    <input type="email" ng-model="userToSubmit.email" name="uEmail" ng-maxlength="254" required unique-email="" ng-class="{invalid: registerForm.uEmail.$dirty && registerForm.uEmail.$invalid}" />
+                                    <input type="email" ng-model="userToSubmit.email" name="uEmail" ng-maxlength="254" required unique-email="" ng-class="{invalid: registerForm.uEmail.$dirty && registerForm.uEmail.$invalid, valid: registerForm.uEmail.$dirty && registerForm.uEmail.$valid}" />
                                     <div ng-show=" submitted || registerForm.uEmail.$dirty">
                                         <div class="hide-while-in-focus" ng-show="!registerForm.uEmail.$error.required && !registerForm.uEmail.$error.email && !registerForm.uEmail.$error.maxlength" >
                                             <span ng-show="registerForm.uEmail.$loading">Loading...</span>
@@ -25,7 +25,7 @@
                                 </div>
                                 <div class='input-field col s6'>
                                     <p>Username:</p>
-                                    <input type="text" ng-model="userToSubmit.username" name="uName" required unique-username="" ng-maxlength="25" ng-class="{invalid: registerForm.uName.$dirty && registerForm.uName.$invalid}" />
+                                    <input type="text" ng-model="userToSubmit.username" name="uName" required unique-username="" ng-maxlength="25" ng-class="{invalid: registerForm.uName.$dirty && registerForm.uName.$invalid, valid: registerForm.uName.$dirty && registerForm.uName.$valid}" />
                                     <div ng-show="registerForm.uName.$dirty">
                                         <div class="hide-while-in-focus" ng-show="
                                          !registerForm.uName.$error.maxlength && !registerForm.uName.$error.required" >
@@ -42,7 +42,7 @@
                             <div class='row'>
                                 <div class='input-field col s6'>
                                     <p>Password:</p>
-                                    <input type="password" id="passwordId" ng-minlength="6" ng-maxlength="100" ng-model="userToSubmit.password" name="uPassword" required ng-class="{invalid: registerForm.uPassword.$dirty && registerForm.uPassword.$invalid}" />
+                                    <input type="password" id="passwordId" ng-minlength="6" ng-maxlength="100" ng-model="userToSubmit.password" name="uPassword" required ng-class="{invalid: registerForm.uPassword.$dirty && registerForm.uPassword.$invalid, valid: registerForm.uPassword.$dirty && registerForm.uPassword.$valid}" />
                                     <div ng-show=" submitted || registerForm.uPassword.$dirty">
                                         <span ng-show="registerForm.uPassword.$error.maxlength">Password needs to be 100 characters long or less.</span>
                                         <span ng-show="registerForm.uPassword.$error.minlength">Password needs to be at least 6 characters long.</span>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class='input-field col s6'>
                                     <p>Repeat Password:</p>
-                                    <input type="password" id="passwordId2" ng-model="userToSubmit.repeatPassword" name="uRepeatPassword" required pw-check="passwordId" ng-class="{invalid: registerForm.uRepeatPassword.$dirty && registerForm.uRepeatPassword.$invalid}" />
+                                    <input type="password" id="passwordId2" ng-model="userToSubmit.repeatPassword" name="uRepeatPassword" required pw-check="passwordId" ng-class="{invalid: registerForm.uRepeatPassword.$dirty && registerForm.uRepeatPassword.$invalid, valid: registerForm.uRepeatPassword.$dirty && registerForm.uRepeatPassword.$valid}" />
                                     <div ng-show=" submitted || registerForm.uRepeatPassword.$touched">
                                         <span ng-show='registerForm.uRepeatPassword.$error.pwmatch'>
                                             Passwords don't match.
