@@ -137,12 +137,12 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return Response.noContent()
                 .type(MediaType.TEXT_HTML)  // Required by CORS
                 .header("Access-Control-Allow-Methods", "POST")
-                .header("Access-Control-Allow-Headers", "Content-Type")    // Required by CORS
+                .header("Access-Control-Allow-Headers", "Content-Type, Location")    // Required by CORS
                 .build();
     }
 
     @OPTIONS
-    @Path("/{threadId : \\d+}/")
+    @Path("/{threadId : \\d+}")
     public Response threadOptions(@PathParam("threadId") final long threadId) {
         return Response.noContent()
                 .type(MediaType.TEXT_HTML) // Required by CORS
@@ -285,6 +285,26 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
+    @OPTIONS
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}")
+    public Response commentOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") long commentId) {
+        return Response.noContent()
+                .type(MediaType.TEXT_HTML)  // Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT, DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type")    // Required by CORS
+                .build();
+    }
+
+    @OPTIONS
+    @Path("/{threadId : \\d+}/" + COMMENTS_END_POINT)
+    public Response commentsOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId") long threadId) {
+        return Response.noContent()
+                .type(MediaType.TEXT_HTML)  // Required by CORS
+                .header("Access-Control-Allow-Methods", "POST")
+                .header("Access-Control-Allow-Headers", "Content-Type, Location")    // Required by CORS
+                .build();
+    }
+
     @GET
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + REPLIES_END_POINT)
     public Response getReplies(@QueryParam("orderBy") @DefaultValue("date") final CommentDao.SortingType sortingType,
@@ -319,6 +339,16 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = getNewCommentLocation(uriInfo.getBaseUriBuilder(), reply);
         return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+    @OPTIONS
+    @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + REPLIES_END_POINT)
+    public Response repliesOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") long commentId) {
+        return Response.noContent()
+                .type(MediaType.TEXT_HTML)  // Required by CORS
+                .header("Access-Control-Allow-Methods", "POST")
+                .header("Access-Control-Allow-Headers", "Content-Type, Location")    // Required by CORS
+                .build();
     }
 
 

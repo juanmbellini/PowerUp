@@ -32,7 +32,7 @@ public class CorsFilter implements ContainerResponseFilter {
         CORS_HEADERS.put("Access-Control-Allow-Credentials", "true");               //Allow sending credentials in CORS
         CORS_HEADERS.put("Access-Control-Allow-Headers", "Authorization");          //Allow sending Authorization header for protected endpoints
         //Allow reading X-TOKEN header when logging in and all pagination headers when searching
-        CORS_HEADERS.put("Access-Control-Expose-Headers", "X-TOKEN, X-Total-Pages, X-Amount-Of-Elements, X-Overall-Amount-Of-Elements, X-Page-Number, X-Page-Size, X-Prev-Page-Url, X-Next-Page-Url, X-First-Page-Url, X-Last-Page-Url");
+        CORS_HEADERS.put("Access-Control-Expose-Headers", "Location, X-TOKEN, X-Total-Pages, X-Amount-Of-Elements, X-Overall-Amount-Of-Elements, X-Page-Number, X-Page-Size, X-Prev-Page-Url, X-Next-Page-Url, X-First-Page-Url, X-Last-Page-Url");
     }
 
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
