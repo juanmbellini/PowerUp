@@ -30,17 +30,59 @@ define(['powerUp'], function(powerUp) {
                 });
             }
         };
-
-
-
         function validate(userToSubmit) {
-
             return (userToSubmit && userToSubmit.username && userToSubmit.email && userToSubmit.password && userToSubmit.repeatPassword
                 && userToSubmit.repeatPassword === userToSubmit.password);
         }
-
-
-
     });
-
+    powerUp.directive('uniqueUsername', function(Restangular) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                element.bind('blur', function (e) {
+                    ngModel.$loading = true;
+                    Restangular.all('users').one('username',element.val()).get().then(function () {
+                        ngModel.$setValidity('unique', false);
+                        ngModel.$loading = false;
+                    }, function () {
+                        ngModel.$setValidity('unique', true);
+                        ngModel.$loading = false;
+                    });
+                });
+            }
+        };
+    });
+    powerUp.directive('uniqueEmail', function(Restangular) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                element.bind('blur', function (e) {
+                    ngModel.$loading = true;
+                    Restangular.all('users').one('email',element.val()).get().then(function () {
+                        ngModel.$setValidity('unique', false);
+                        ngModel.$loading = false;
+                    }, function () {
+                        ngModel.$setValidity('unique', true);
+                        ngModel.$loading = false;
+                    });
+                });
+            }
+        };
+    });
+    powerUp.directive('pwCheck', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elem, attrs, ctrl) {
+                var firstPassword = '#' + attrs.pwCheck;
+                elem.add(firstPassword).on('keyup', function () {
+                    scope.$apply(function () {
+                        var v = elem.val() === $(firstPassword).val();
+                        ctrl.$setValidity('pwmatch', v);
+                    });
+                });
+            }
+        }
+    });
 });
