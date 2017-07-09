@@ -37,6 +37,7 @@
                     </div>
                 </ul>
             </div>
+
             <!--Filters collapsible-->
             <button class="btn waves-effect waves-light right" id="submit-search">Search <i class="material-icons right">send</i></button>
             <button class="btn waves-effect waves-light right" id="clear-filters" ng-disabled="!hasFilters()">Clear filters <i class="material-icons right">close</i></button>
@@ -114,6 +115,7 @@
                     </div>
                 </li>
             </ul>
+
             <!--Results, if any-->
             <div ng-if="games.length > 0">
                 <!--Sorting-->
@@ -154,70 +156,68 @@
                         </button>
                     </div>
                 </div>
+                <!--End sorting-->
+                <!--Games list header-->
+                <div class="col s12 center" id="games-list-header">
+                    <p class="col s2">Cover Picture</p>
+                    <p class="col s7 left-align">Title and Summary</p>
+                    <p class="col s1">Release</p>
+                    <p class="col s2 right-align">Avg. Rating</p>
+                </div>
+                <!--End games list header-->
             </div>
-            <!--End sorting-->
 
             <!--TODO pagination-->
-            <!--Games list header-->
-            <div class="col s12 center" id="games-list-header">
-                <p class="col s2">Cover Picture</p>
-                <p class="col s7 left-align">Title and Summary</p>
-                <p class="col s1">Release</p>
-                <p class="col s2 right-align">Avg. Rating</p>
-            </div>
 
             <!--Games list-->
-            <ul class="collection games-list">
-                <div ng-repeat="game in games">
-
-                    <li class="collection-item avatar col s12">
-                        <div class="col s2 cover-pic-container valign-wrapper">
-                            <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
-                        </div>
-                        <div class="col primary-content s7">
-                            <p class="title">
-                                <a ng-href='#/game?id={{game.id}}'>
-                                    {{game.name}}
-                                </a>
-                            </p>
-                            <p class="summary">{{game.summary}}</p>
-                        </div>
-                        <div class="col s1 center">
-                            <p style="margin-top: 33px;">
-                                {{game.releaseDate != null ? game.releaseDate : "Unknown" }}
-                                 <!--TODO get year -->
-                            </p>
-                        </div>
-                        <div class="col s2">
-                            <div class="secondary-content">
-                                <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
-                                    <div ng-switch-when="true">
-                                        <p class="rating-number center">
-                                            <b><span>{{game.avgScore | number:2}}</span></b>
-                                        </p>
-                                        <p class="rating-stars hide-on-small-and-down">
-                                            <!--range(0,4)-->
-                                        <div ng-repeat="i in [0,1,2,3,4]">
-                                            <div ng-if="(game.avgScore - (i * 2) - 1 ) < 0">
-                                                <i class="material-icons">star_border</i>
-                                            </div>
-                                            <div ng-if="(game.avgScore - (i * 2) - 1 ) == 0">
-                                                <i class="material-icons">star_half</i>
-                                            </div>
-                                            <div ng-if="(game.avgScore - (i * 2) - 1) > 0">
-                                                <i class="material-icons">star</i>
-                                            </div>
+            <ul class="collection games-list" ng-if="games.length > 0">
+                <li class="collection-item avatar col s12" ng-repeat="game in games">
+                    <div class="col s2 cover-pic-container valign-wrapper">
+                        <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                    </div>
+                    <div class="col primary-content s7">
+                        <p class="title">
+                            <a ng-href='#/game?id={{game.id}}'>
+                                {{game.name}}
+                            </a>
+                        </p>
+                        <p class="summary">{{game.summary}}</p>
+                    </div>
+                    <div class="col s1 center">
+                        <p style="margin-top: 33px;">
+                            {{game.releaseDate != null ? game.releaseDate : "Unknown" }}
+                             <!--TODO get year -->
+                        </p>
+                    </div>
+                    <div class="col s2">
+                        <div class="secondary-content">
+                            <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
+                                <div ng-switch-when="true">
+                                    <p class="rating-number center">
+                                        <b><span>{{game.avgScore | number:2}}</span></b>
+                                    </p>
+                                    <p class="rating-stars hide-on-small-and-down">
+                                        <!--range(0,4)-->
+                                    <div ng-repeat="i in [0,1,2,3,4]">
+                                        <div ng-if="(game.avgScore - (i * 2) - 1 ) < 0">
+                                            <i class="material-icons">star_border</i>
                                         </div>
-                                        </p>
+                                        <div ng-if="(game.avgScore - (i * 2) - 1 ) == 0">
+                                            <i class="material-icons">star_half</i>
+                                        </div>
+                                        <div ng-if="(game.avgScore - (i * 2) - 1) > 0">
+                                            <i class="material-icons">star</i>
+                                        </div>
                                     </div>
-                                    <div ng-switch-default>
-                                        <p class="rating-number center"><b>Unrated</b></p>
-                                    </div>
+                                    </p>
+                                </div>
+                                <div ng-switch-default>
+                                    <p class="rating-number center"><b>Unrated</b></p>
                                 </div>
                             </div>
                         </div>
-                    </li>
-                </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

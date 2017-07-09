@@ -2,12 +2,9 @@
 define(['powerUp', 'loadingCircle'], function(powerUp) {
 
 
-    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'searchedTitleService', 'Restangular', function($scope, $timeout, $location, $log, searchedTitleService, Restangular) {
+    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', function($scope, $timeout, $location, $log, Restangular) {
         // $httpParamSerializer
         Restangular.setFullResponse(true);
-
-        // TODO borrar, viejo.
-        $scope.searchedTitle = searchedTitleService.getTitle;
 
         $scope.overAllAmountOfElements = 100;
         $scope.totalPages = 114;
@@ -24,7 +21,7 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
         $scope.pageNumber = $location.search().pageNumber;
         if (angular.isUndefined($scope.pageNumber)) {
             $scope.pageNumber = 1;
-        };
+        }
         if ($scope.ascending === undefined) {
             $scope.ascending = true;
         }
@@ -40,8 +37,7 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
         // };
 
         $scope.submitSearch = function() {
-            $log.debug($scope.searchedName);
-            $log.info('HOLA!');
+            $log.debug('Reloading Search with specified parameters');
             $location.search({'name': $scope.searchedName});
             $location.path('search');
         };
@@ -102,10 +98,11 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
             pageNumber: $scope.pageNumber})
             .then(function(response) {
                 $scope.games = response.data;
-                $log.debug(response.data);
-                $log.debug(response.headers());
-        }, function(response) {
-            $log.debug('Error with status code', response.status);
+                $log.debug('Found ' + $scope.games.length + ' games');
+        }, function(error) {
+            // TODO do something more useful
+            $log.error('Error performing search: ', error);
+            $scope.games = [];
         });
 
         /* ********************************************
