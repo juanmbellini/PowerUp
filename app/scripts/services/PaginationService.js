@@ -48,7 +48,7 @@ define(['powerUp'], function(powerUp) {
          * @param params        The parameters to set.
          */
         function setRequestParams(object, params) {
-            if(!isInitialized(object) || params === null || typeof params !== 'object') {
+            if (!isInitialized(object) || params === null || typeof params !== 'object') {
                 return;
             }
             object.pagination.params = params;
@@ -229,11 +229,11 @@ define(['powerUp'], function(powerUp) {
                 return result;
             }
             // Add defined and non-null params to result
-            if(object.pagination.hasOwnProperty('params')) {
-                for(var key in object.pagination.params) {
-                    if(object.pagination.params.hasOwnProperty(key)) {
+            if (object.pagination.hasOwnProperty('params')) {
+                for (var key in object.pagination.params) {
+                    if (object.pagination.params.hasOwnProperty(key)) {
                         var value = object.pagination.params[key];
-                        if(typeof value !== 'undefined' && value !== null) {
+                        if (typeof value !== 'undefined' && value !== null) {
                             result[key] = value;
                         }
                     }

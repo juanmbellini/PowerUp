@@ -167,8 +167,6 @@
                 <!--End games list header-->
             </div>
 
-            <!--TODO pagination-->
-
             <!--Games list-->
             <ul class="collection games-list" ng-if="games.length > 0">
                 <li class="collection-item avatar col s12" ng-repeat="game in games">
@@ -219,16 +217,44 @@
                     </div>
                 </li>
             </ul>
+            <!--End games list-->
+
+            <!--Another total games count-->
+            <ul class="row games-count" ng-if="games && games.length > 0">
+                <div class="col s6">
+                    Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
+                    {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
+                    of {{gamesPaginator.pagination.totalElements}}
+                </div>
+            </ul>
+            <!--End extra total games count-->
         </div>
     </div>
-    <!--Another total games count-->
-    <ul class="row games-count" ng-if="games && games.length > 0">
-        <div class="col s6">
-            Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
-            {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
-            of {{gamesPaginator.pagination.totalElements}}
-        </div>
-    </ul>
+
+    <!--PAGINATION-->
+    <div ng-if="gamesPaginator.pagination.totalPages > 1" class="row">
+        <ul class="pagination center">
+            <!-- Left chevron - only shown when there are > 1 pages -->
+            <li ng-if="gamesPaginator.pagination.totalPages > 1" ng-class="gamesPaginator.pagination.pageNumber > 1 ? 'waves-effect' : 'disabled'">
+                <a href="" ng-click="setPageNumber(searchParams.pageNumber - 1)">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+
+            <!--Page numbers - always shown-->
+            <li ng-repeat="pageIt in getPageRange()"  ng-class="pageIt == gamesPaginator.pagination.pageNumber ? 'active' : 'waves-effect'">
+                <a href="" ng-click="setPageNumber(pageIt)">{{pageIt}}</a>
+            </li>
+
+            <!--Right chevron - only shown if there are > 1 pages-->
+            <li ng-if="gamesPaginator.pagination.totalPages > 1" ng-class="gamesPaginator.pagination.pageNumber < gamesPaginator.pagination.totalPages ? 'waves-effect' : 'disabled'">
+                <a href="" ng-click="setPageNumber(gamesPaginator.pagination.pageNumber + 1)">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--END PAGINATION-->
 
     <!--Pagination-->
     <!--<div class="row">-->
