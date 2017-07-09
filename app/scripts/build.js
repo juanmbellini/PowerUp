@@ -29,7 +29,6 @@ require.config({
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
-        // Ignore ngSweetAlert, it's automatically added. The one we use is sweetalert.angular
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         likesService: 'services/LikesService',
         paginationService: 'services/PaginationService',
@@ -98,7 +97,8 @@ require.config({
         ],
         'materialize.picker.date': [
             '../../bower_components/materialize/js/date_picker/picker.date'
-        ]
+        ],
+        materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
         jquery: {
