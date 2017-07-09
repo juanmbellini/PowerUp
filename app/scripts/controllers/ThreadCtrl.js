@@ -223,19 +223,29 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             });
         };
 
-        $scope.replyToComment = function(newComment, parentComment) {
-            if (!newComment || $scope.pendingRequests.comments.create) {
+        $scope.replyToComment = function(parentComment) {
+            if (!parentComment || !parentComment.newReply || parentComment.repliesDisabled) {
                 return;
             }
-            $scope.pendingRequests.comments.create = true;
-            var payload = {body: newComment};
-            if (parentComment) {
-                payload.inReplyTo = parentComment.id;
-            }
-            $scope.thread.post('comments', {}).then(function(response) {
+            parentComment.repliesDisabled = true;
 
+            Restangular.all('threads').one('comments', parentComment.id).post('replies', parentComment.newReply).then(function(response) {
+                // Fetch newly created reply
+                Restangular.oneUrl('routeName', response.headers('Location')).get().then(function(response) {
+                    if(!parentComment.replies) {
+                        parentComment.replies = [];
+                    }
+                    parentComment.replies.push(response.data);
+                    // TODO also consider that this may throw off future results, because we have an element that is not
+                    // being considered in pagination
+                    parentComment.repliesDisabled = false;
+                    parentComment.showReplyForm = false;
+                    parentComment.newReply.body = '';
+                });
             }, function(error) {
-
+                $log.error('Error replying to comment #' + parentComment.id + ':', error);
+                parentComment.repliesDisabled = false;
+                parentComment.showReplyForm = false;
             });
         };
 
@@ -253,6 +263,16 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             }, function(error) {
                 $log.error('Error unliking comment #', comment.id, ': ', error);
             });
+        };
+
+        $scope.showChangeCommentForm = function(comment) {
+            comment.showChangeForm = true;
+            comment.showReplyForm = false;
+        };
+
+        $scope.showReplyToCommentForm = function(comment) {
+            comment.showReplyForm = true;
+            comment.showChangeForm = false;
         };
 
         $scope.changeComment = function(comment) {
@@ -293,11 +313,11 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                         Restangular.all('threads').one('comments', comment.id).remove().then(function() {
                             comment.deleteDisabled = false;
 
-                            // Remove comment from frontend
-                            $scope.comments.splice($scope.comments.findIndex(function(c) { return c.id === comment.id;}), 1);
+                            // Mark comment tree as deleted from frontend
+                            markDeleted(comment);
                             // TODO: The pagination of comments may now be inconsistent, since results will be off by 1 element for
-                            // each element that gets deleted. Consider not removing elements, instead crossing off their content.
-                            // On next reload the comment will be gone.
+                            // each element that gets deleted. Consider triggering a reload of comments, on next reload
+                            // the comment will be gone.
 
                             swal.close();
                         }, function(error) {
@@ -328,6 +348,21 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
                     $log.error('Error updating thread #', $scope.threadId, ': ', error);
                 }
             });
+        }
+
+        /**
+         * Reecursively loops through the initial comment's replies and their replies to mark them all as logically
+         * deleted.
+         *
+         * @param initialComment The initially deleted comment
+         */
+        function markDeleted(initialComment) {
+            initialComment.deleted = true;
+            if (initialComment.replies) {
+                initialComment.replies.forEach(function(reply) {
+                    markDeleted(reply);
+                });
+            }
         }
     }]);
 });
