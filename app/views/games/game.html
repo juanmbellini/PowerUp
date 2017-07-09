@@ -177,10 +177,10 @@
 			</div>
 
 					<!--SCREENSHOTS AND VIDEOS-->
-                    <div class="row" ng-if="game.videoUrls || game.pictureUrls">
+                    <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
                         <div class="col s12 divider"></div>
 
-                        <div class="row" ng-if="game.videoUrls">
+                        <div class="row" ng-if="game.videoUrls.length > 0">
                             <h4 class="center">Videos</h4>
                             <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
                                 <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
@@ -192,8 +192,8 @@
                         </div>
                     </div>
 
-                    <div ng-if="game.pictureUrls">
-                        <div class="row" ng-if="game.videoUrls">
+                    <div ng-if="game.pictureUrls.length > 0">
+                        <div class="row" ng-if="game.videoUrls.length > 0">
                             <div class="col s12 divider"></div>
                         </div>
 
