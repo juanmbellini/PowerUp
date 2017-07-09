@@ -177,7 +177,7 @@
 			</div>
 
 					<!--SCREENSHOTS AND VIDEOS-->
-                    <div class="row" ng-if="game.videoUrls || game.pictureUrls">
+                    <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
                         <div class="col s12 divider"></div>
 
                         <div class="row" ng-if="game.videoUrls.length > 0">
@@ -193,7 +193,7 @@
                     </div>
 
                     <div ng-if="game.pictureUrls.length > 0">
-                        <div class="row" ng-if="game.videoUrls">
+                        <div class="row" ng-if="game.videoUrls.length > 0">
                             <div class="col s12 divider"></div>
                         </div>
 
