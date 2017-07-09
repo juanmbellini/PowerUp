@@ -232,7 +232,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
             Restangular.all('threads').one('comments', parentComment.id).post('replies', parentComment.newReply).then(function(response) {
                 // Fetch newly created reply
                 Restangular.oneUrl('routeName', response.headers('Location')).get().then(function(response) {
-                    if(!parentComment.replies) {
+                    if (!parentComment.replies) {
                         parentComment.replies = [];
                     }
                     parentComment.replies.push(response.data);
@@ -276,7 +276,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
         };
 
         $scope.changeComment = function(comment) {
-            if(comment.editsDisabled) {
+            if (comment.editsDisabled) {
                 return;
             }
 
@@ -291,7 +291,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular',
         };
 
         $scope.deleteComment = function(comment) {
-            if(comment.deleteDisabled) {
+            if (comment.deleteDisabled) {
                 return;
             }
 
