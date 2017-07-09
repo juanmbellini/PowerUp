@@ -15,8 +15,7 @@
 					<li class="collection-item avatar">
 						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
 						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
-						<!--<p>Submitted <fmt:formatDate value="${thread.createdAt.time}" type="both" /> by <c:out value="${thread.creator.username}" /></p>-->
-						<p>{{thread.createdAt}}</p>
+						<p>{{thread.createdAt | date: 'medium'}}</p>
 						<br>
 						<p ng-if="!changeThreadBodyFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
 
@@ -87,7 +86,7 @@
 							<span class="title wrap-text">
 								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 							</span>
-							<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+							<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
 							<br />
 							<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 							<!--End comment info-->
@@ -141,7 +140,7 @@
 
 							<!--Comment replies action links-->
 							<!--TODO ng-if has replies-->
-							<div>
+							<div class="action-links">
 								<a ng-if="!comment.replies" href="" ng-click="getCommentReplies(comment)">Load replies</a>
 								<a ng-if="comment.replies && hasMorePages(comment.replies)" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
 								<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
@@ -178,7 +177,7 @@
 									<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-									<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+									<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
 									<br />
 									<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 									<!--End comment info-->
@@ -232,7 +231,7 @@
 
 									<!--Comment replies action links-->
 									<!--TODO ng-if has replies-->
-									<div class="action-links">
+									<div class="action-links" ng-if="!comment.deleted">
 										<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
 										<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
 										<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
@@ -264,7 +263,7 @@
 											<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-											<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+											<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
 											<br />
 											<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 											<!--End comment info-->
@@ -341,7 +340,7 @@
 													<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-													<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+													<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
 													<br />
 													<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 													<!--End comment info-->
@@ -395,7 +394,7 @@
 
 													<!--Comment replies action links-->
 													<!--TODO ng-if has replies-->
-													<div class="action-links">
+													<div class="action-links" ng-if="!comment.deleted">
 														<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
 														<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
 														<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
@@ -426,7 +425,7 @@
 															<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-															<p class="wrap-text">Submitted {{comment.createdAt}}</p>
+															<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
 															<br />
 															<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 															<!--End comment info-->
