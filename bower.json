@@ -11,8 +11,7 @@
     "requirejs": "~2.1.11",
     "restangular": "^1.6.1",
     "angular-cookies": "~1.2.0",
-    "materialize": "^0.97.6",
-    "materialize-amdified": "^0.97.6",
+    "materialize": "^0",
     "velocity": "^1.4.2",
     "hammerjs": "^2.0.8",
     "sweetalert": "^1.1.3",
@@ -20,6 +19,7 @@
     "slick-carousel": "^1.6.0",
     "lightbox2": "^2.9.0",
     "angular-local-storage": "^0.5.2",
-    "ng-file-upload": "^12.2.13"
+    "ng-file-upload": "^12.2.13",
+    "jquery-ui": "^1.12.1"
   }
 }

@@ -2,7 +2,7 @@
 define(['powerUp', 'loadingCircle'], function(powerUp) {
 
 
-    powerUp.controller('SearchCtrl', function($scope, searchedTitleService, $location, Restangular) {
+    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'searchedTitleService', 'Restangular', function($scope, $timeout, $location, $log, searchedTitleService, Restangular) {
         // $httpParamSerializer
         Restangular.setFullResponse(true);
 
@@ -40,8 +40,8 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
         // };
 
         $scope.submitSearch = function() {
-            console.log($scope.searchedName);
-            console.log('HOLA!');
+            $log.debug($scope.searchedName);
+            $log.info('HOLA!');
             $location.search({'name': $scope.searchedName});
             $location.path('search');
         };
@@ -102,19 +102,23 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
             pageNumber: $scope.pageNumber})
             .then(function(response) {
                 $scope.games = response.data;
-                console.log(response.data);
-                console.log(response.headers());
+                $log.debug(response.data);
+                $log.debug(response.headers());
         }, function(response) {
-            console.log('Error with status code', response.status);
+            $log.debug('Error with status code', response.status);
         });
 
         /* ********************************************
          *      MATERIALIZE INITIALIZATION
          * *******************************************/
-        // Collapsible for filters
-        angular.element('.collapsible').collapsible();
+        $timeout(function() {
+            // Collapsible for filters
+            angular.element('.collapsible').collapsible();
 
-        // Tab for filter sections
-        angular.element('ul.tabs').tabs();
-    });
+            // Tab for filter sections
+            angular.element('ul.tabs').tabs();
+
+            $log.debug('Fired Materialize initializers');
+        }, 500);
+    }]);
 });
