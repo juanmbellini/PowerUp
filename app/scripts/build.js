@@ -29,28 +29,72 @@ require.config({
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
-        'materialize.global': ['../../bower_components/materialize/js/global'],
-        'materialize.animation': ['../../bower_components/materialize/js/animation'],
-        'materialize.toasts': ['../../bower_components/materialize/js/toasts'],
-        'materialize.collapsible': ['../../bower_components/materialize/js/collapsible'],
-        'materialize.dropdown': ['../../bower_components/materialize/js/dropdown'],
-        'materialize.leanModal': ['../../bower_components/materialize/js/modal'],
-        'materialize.materialbox': ['../../bower_components/materialize/js/materialbox'],
-        'materialize.parallax': ['../../bower_components/materialize/js/parallax'],
-        'materialize.tabs': ['../../bower_components/materialize/js/tabs'],
-        'materialize.tooltip': ['../../bower_components/materialize/js/tooltip'],
-        'materialize.sideNav': ['../../bower_components/materialize/js/sideNav'],
-        'materialize.scrollspy': ['../../bower_components/materialize/js/scrollspy'],
-        'materialize.forms': ['../../bower_components/materialize/js/forms'],
-        'materialize.slider': ['../../bower_components/materialize/js/slider'],
-        'materialize.cards': ['../../bower_components/materialize/js/cards'],
-        'materialize.pushpin': ['../../bower_components/materialize/js/pushpin'],
-        'materialize.transitions': ['../../bower_components/materialize/js/transitions'],
-        'materialize.scrollFire': ['../../bower_components/materialize/js/scrollFire'],
-        'materialize.waves': ['../../bower_components/materialize/js/waves'],
-        'materialize.character_counter': ['../../bower_components/materialize/js/character_counter'],
-        'materialize.picker': ['../../bower_components/materialize/js/date_picker/picker'],
-        'materialize.picker.date': ['../../bower_components/materialize/js/date_picker/picker.date']
+        'materialize.global': [
+            '../../bower_components/materialize/js/global'
+        ],
+        'materialize.animation': [
+            '../../bower_components/materialize/js/animation'
+        ],
+        'materialize.toasts': [
+            '../../bower_components/materialize/js/toasts'
+        ],
+        'materialize.collapsible': [
+            '../../bower_components/materialize/js/collapsible'
+        ],
+        'materialize.dropdown': [
+            '../../bower_components/materialize/js/dropdown'
+        ],
+        'materialize.leanModal': [
+            '../../bower_components/materialize/js/modal'
+        ],
+        'materialize.materialbox': [
+            '../../bower_components/materialize/js/materialbox'
+        ],
+        'materialize.parallax': [
+            '../../bower_components/materialize/js/parallax'
+        ],
+        'materialize.tabs': [
+            '../../bower_components/materialize/js/tabs'
+        ],
+        'materialize.tooltip': [
+            '../../bower_components/materialize/js/tooltip'
+        ],
+        'materialize.sideNav': [
+            '../../bower_components/materialize/js/sideNav'
+        ],
+        'materialize.scrollspy': [
+            '../../bower_components/materialize/js/scrollspy'
+        ],
+        'materialize.forms': [
+            '../../bower_components/materialize/js/forms'
+        ],
+        'materialize.slider': [
+            '../../bower_components/materialize/js/slider'
+        ],
+        'materialize.cards': [
+            '../../bower_components/materialize/js/cards'
+        ],
+        'materialize.pushpin': [
+            '../../bower_components/materialize/js/pushpin'
+        ],
+        'materialize.transitions': [
+            '../../bower_components/materialize/js/transitions'
+        ],
+        'materialize.scrollFire': [
+            '../../bower_components/materialize/js/scrollFire'
+        ],
+        'materialize.waves': [
+            '../../bower_components/materialize/js/waves'
+        ],
+        'materialize.character_counter': [
+            '../../bower_components/materialize/js/character_counter'
+        ],
+        'materialize.picker': [
+            '../../bower_components/materialize/js/date_picker/picker'
+        ],
+        'materialize.picker.date': [
+            '../../bower_components/materialize/js/date_picker/picker.date'
+        ]
     },
     shim: {
         jquery: {
@@ -158,49 +202,79 @@ require.config({
             ]
         },
         'materialize.animation': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.toasts': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.collapsible': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.dropdown': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.leanModal': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.materialbox': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.parallax': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.tabs': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.tooltip': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.sideNav': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.scrollspy': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.forms': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.slider': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.cards': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.pushpin': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.transitions': {
             deps: [
@@ -209,25 +283,39 @@ require.config({
             ]
         },
         'materialize.scrollFire': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.waves': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.character_counter': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.picker': {
-            deps: ['materialize.global']
+            deps: [
+                'materialize.global'
+            ]
         },
         'materialize.picker.date': {
-            deps: ['materialize.picker']
+            deps: [
+                'materialize.picker'
+            ]
         },
-        'hammerjs': {
-            deps: ['jquery']
+        hammerjs: {
+            deps: [
+                'jquery'
+            ]
         },
-        'velocity': {
-            deps: ['jquery']
+        velocity: {
+            deps: [
+                'jquery'
+            ]
         }
     },
     packages: [
