@@ -1,0 +1,28 @@
+<main class="section">
+    <div class="container row">
+        <!--Title-->
+        <h1 class="center">Create Thread</h1>
+
+        <form ng-submit="createThread()">
+            <div class='row'>
+                <div class='input-field col s12'>
+                    <input id="thread-title" type="text" ng-model="thread.title" required="required" maxlength="50" />
+                    <label for="thread-title" class="active">Thread title</label>
+                </div>
+                <div class="row"></div>
+                <div class='input-field col s12'>
+                    <textarea id="thread-body" class="materialize-textarea" ng-model="thread.body"></textarea>
+                    <label for="thread-body" class="active">Thread body (optional)</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s4 offset-s5">
+                    <button type='submit' name='btn_login' class='col s6 btn btn-large waves-effect light-blue' ng-class="{disabled: pendingRequests.thread.create}">
+                        Submit <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>

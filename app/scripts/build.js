@@ -19,16 +19,19 @@ require.config({
         velocity: '../../bower_components/velocity/velocity',
         'velocity.ui': '../../bower_components/velocity/velocity.ui',
         sweetalert: '../../bower_components/sweetalert/dist/sweetalert.min',
-        'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert.min',
-        ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
+        'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert',
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
         authService: 'services/AuthService',
         loadingCircle: 'directives/loading-circle',
+        'loadingCircle-small': 'directives/loading-circle-small',
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
+        ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
+        likesService: 'services/LikesService',
+        paginationService: 'services/PaginationService',
         'materialize.global': [
             '../../bower_components/materialize/js/global'
         ],
@@ -94,7 +97,8 @@ require.config({
         ],
         'materialize.picker.date': [
             '../../bower_components/materialize/js/date_picker/picker.date'
-        ]
+        ],
+        materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
         jquery: {
@@ -169,6 +173,11 @@ require.config({
             ]
         },
         loadingCircle: {
+            deps: [
+                'angular'
+            ]
+        },
+        'loadingCircle-small': {
             deps: [
                 'angular'
             ]
@@ -315,6 +324,16 @@ require.config({
         velocity: {
             deps: [
                 'jquery'
+            ]
+        },
+        likesService: {
+            deps: [
+                'angular'
+            ]
+        },
+        paginationService: {
+            deps: [
+                'angular'
             ]
         }
     },
