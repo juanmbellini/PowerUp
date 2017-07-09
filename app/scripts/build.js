@@ -94,7 +94,8 @@ require.config({
         ],
         'materialize.picker.date': [
             '../../bower_components/materialize/js/date_picker/picker.date'
-        ]
+        ],
+        materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
         jquery: {
