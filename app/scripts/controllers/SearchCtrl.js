@@ -23,9 +23,12 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             pageNumber: $location.search().pageNumber || 1
         };
 
+        // Search parameters which will trigger a new search when changed
+        var watchedSearchParams = ['orderBy', 'sortDirection', 'pageSize', 'pageNumber'];
+
         // Sanitize values
-        for(var key in $scope.searchParams) {
-            if($scope.searchParams.hasOwnProperty(key)) {
+        for (var key in $scope.searchParams) {
+            if ($scope.searchParams.hasOwnProperty(key)) {
                 if ($scope.searchParams[key] === true) {
                     delete $scope.searchParams[key];
                 }
@@ -47,14 +50,14 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
          * @return {Array}
          */
         $scope.getPageRange = function () {
-            if(!$scope.gamesPaginator.pagination.totalPages) {
+            if (!$scope.gamesPaginator.pagination.totalPages) {
                 return [];
             }
-            var deltaPages = 2; // How many pages before and after to show
+            var deltaPages = 4; // How many pages before and after to show
             var result = [];
-            for(var i = -deltaPages; i <= deltaPages; i++) {
+            for (var i = -deltaPages; i <= deltaPages; i++) {
                 var page = $scope.gamesPaginator.pagination.pageNumber + i;
-                if(page >= 1 && page <= $scope.gamesPaginator.pagination.totalPages) {
+                if (page >= 1 && page <= $scope.gamesPaginator.pagination.totalPages) {
                     result.push(page);
                 }
             }
@@ -63,6 +66,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         $scope.hasFilters = function() {
             return ($scope.searchParams.developers !== undefined || $scope.searchParams.publishers !== undefined || $scope.searchParams.genres !== undefined || $scope.searchParams.platforms !== undefined);
+        };
+
+        $scope.clearFilters = function() {
+            $scope.searchParams.developers = undefined;
+            $scope.searchParams.publishers = undefined;
+            $scope.searchParams.genres = undefined;
+            $scope.searchParams.platforms = undefined;
         };
 
         $scope.sortNameButton = function() {
@@ -99,19 +109,19 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         };
 
         $scope.toggleSortDirection = function() {
-            if($scope.searchParams.sortDirection === 'asc') {
+            if ($scope.searchParams.sortDirection === 'asc') {
                 $scope.searchParams.sortDirection = 'desc';
-            } else if($scope.searchParams.sortDirection === 'desc') {
+            } else if ($scope.searchParams.sortDirection === 'desc') {
                 $scope.searchParams.sortDirection = 'asc';
             }
-            $log.warn('Called toogleSortDirection but sort direction is neither asc nor desc. Doing nothing.')
+            $log.warn('Called toogleSortDirection but sort direction is neither asc nor desc. Doing nothing.');
         };
 
         $scope.setPageNumber = function(number) {
-            if(!$scope.gamesPaginator.pagination.totalPages) {
+            if (!$scope.gamesPaginator.pagination.totalPages) {
                 return;
             }
-            if(number >= 1 && number <= $scope.gamesPaginator.pagination.totalPages) {
+            if (number >= 1 && number <= $scope.gamesPaginator.pagination.totalPages) {
                 $scope.searchParams.pageNumber = number;
             }
         };
@@ -128,23 +138,31 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.games = [];
         });
 
-        // Reload page on param changes
-        $scope.$watch('searchParams', function(newVal, oldVal) {
-            if(typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
+        // Reload page on WATCHED param changes
+        $scope.$watch(function() {
+            var result = [];
+            watchedSearchParams.forEach(function(key) {
+                if ($scope.searchParams.hasOwnProperty(key)) {
+                    result[key] = $scope.searchParams[key];
+                }
+            });
+            return result;
+        }, function(newVal, oldVal) {
+            if (typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
                 return; // Initial change, ignore
             }
             $scope.submitSearch();
         }, true);
 
         // Enable filters when ready
-        if($scope.filtersReady) {
+        if ($scope.filtersReady) {
             $log.debug('Filters were already loaded, enabling filters');
             setUpAutocomplete();
         } else {
             $log.debug('Filters not loaded, waiting');
         }
         $scope.$watch('filtersReady', function(newVal, oldVal) {
-            if(newVal === true) {
+            if (newVal === true) {
                 $log.debug('Filters ready, enabling filters');
                 setUpAutocomplete();
             }
@@ -164,34 +182,88 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             return obj;
         }
 
-        function setUpAutocomplete() {
-            if(!$scope.filtersReady) {
+        function initialChipData(filterCategory, data) {
+            var result = [];
+            if(typeof data !== 'object' || !Array.isArray(data)) {
+                return result;
+            }
+            for(var i = 0; i < data.length; i++) {
+                result[i] = {
+                    tag: data[i],
+                    filterCategory: filterCategory
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Converts undefined values to empty arrays, string values to single-element arrays, leaves arrays alone.
+         *
+         * @param filters
+         */
+        function sanitizeFilters(filters) {
+            switch(typeof filters) {
+                case 'undefined':
+                    return [];
+                case 'string':
+                    return new Array(filters);
+                default:
+                    return filters;
+            }
+        }
+
+        function addFilter(filterCategory, value) {
+            if(!$scope.searchParams.hasOwnProperty(filterCategory)) {
                 return;
             }
-            for(var filterCategory in $scope.filters) {
-                if($scope.filters.hasOwnProperty(filterCategory)) {
+            var usedValues = $scope.searchParams[filterCategory];
+            var allowedValues = $scope.filters[filterCategory];
+            if(usedValues.indexOf(value) === -1 && allowedValues.indexOf(value) !== -1) {
+                $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
+                $scope.searchParams[filterCategory].push(value);
+            }
+        }
+
+        function removeFilter(filterCategory, value) {
+            if(!$scope.searchParams.hasOwnProperty(filterCategory)) {
+                return;
+            }
+            var index = $scope.searchParams[filterCategory].indexOf(value);
+            if(index === -1) {
+                return;
+            }
+            $log.debug('Removing ' + value + ' from ' + filterCategory + ' category');
+            $scope.searchParams[filterCategory].splice(index, 1);
+        }
+
+        function setUpAutocomplete() {
+            if (!$scope.filtersReady) {
+                return;
+            }
+            for (var filterCategory in $scope.filters) {
+                if ($scope.filters.hasOwnProperty(filterCategory)) {
                     // Need to create inner closure so 'filterCategory' has the right value - see https://stackoverflow.com/a/23038392/2333689
                     (function(filterCategory) {
                         var filters = $scope.filters[filterCategory];
 
+                        // TODO do this elsewhere, it doesn't belong here
+                        $scope.searchParams[filterCategory] = sanitizeFilters($scope.searchParams[filterCategory]);
+
                         $timeout(function() {
                             $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
                             angular.element('#' + filterCategory + '-autocomplete').material_chip({
+                                data: initialChipData(filterCategory, $scope.searchParams[filterCategory]),
                                 autocompleteOptions: {
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
                                     limit: 20,
                                     onAutocomplete: function(val) {
-                                        $log.debug('Adding ' + val + ' to ' + filterCategory + ' category');
-                                        if(!$scope.searchParams[filterCategory]) {
-                                            $scope.searchParams[filterCategory] = [];
-                                        }
-                                        // $scope.searchParams[filterCategory].push(val);
+                                        addFilter(filterCategory, val);
                                     },
                                     minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
                                 }
                             });
-                        });
+                        }, 3000);
                     })(filterCategory);
                 }
             }
@@ -209,6 +281,10 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
             // Chips for filters
             angular.element('.chips').material_chip();
+
+            angular.element('.chips').on('chip.delete', function(e, chip) {
+                removeFilter(chip.filterCategory, chip.tag);
+            });
 
             $log.debug('Fired Materialize initializers');
         }, 500);
