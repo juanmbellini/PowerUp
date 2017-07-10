@@ -44,8 +44,8 @@
                 <loadingcircle-small></loadingcircle-small>
             </div>
             <div ng-style="{'margin-top': filtersReady ? '0' : '8px'}">
-                <button class="btn waves-effect waves-light right" id="submit-search">Search <i class="material-icons right">send</i></button>
-                <button class="btn waves-effect waves-light right" id="clear-filters" ng-disabled="!hasFilters()">Clear filters <i class="material-icons right">close</i></button>
+                <button class="btn waves-effect waves-light right" id="submit-search" ng-click="submitSearch()">Search <i class="material-icons right">send</i></button>
+                <button class="btn waves-effect waves-light right" id="clear-filters" ng-disabled="!hasFilters()" ng-click="clearFilters()">Clear filters <i class="material-icons right">close</i></button>
             </div>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
