@@ -9,6 +9,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         $scope.canWriteReview = false;
 
+        $scope.rangeScore = [];
+        for (var i = 1; i <= 10; i++) {
+            $scope.rangeScore.push(i);
+        }
+
+        $scope.playStatusOptions = ['verdurita1', 'verdurita2']; // TODO get from api real playStatusOptions
+
+        // TODO Pedir shelves del uusario al endpoint de shelves. Pedir las shelves en las cuales tiene este juego y hacer el metodo que se fija si esta en la shelf.
 
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(game) {
@@ -32,6 +40,53 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             });
 
         };
+
+        $scope.findGame($scope.gameId);
+
+        var userId = 1; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
+
+        // Shelves
+        $scope.shelves = [];
+        $scope.shelvesWithGame = [];
+        Restangular.one('users',userId).all('shelves').getList().then(function (shelves) {
+            $scope.shelvesWithGame = shelves;
+        });
+        Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelves) {
+            $scope.shelves = shelves;
+        });
+        /**
+         * Returns if the game is in this shelf
+         * @param shelf
+         */
+        $scope.isInShelf = function (shelf) {
+
+        };
+        /**
+         * Changes value of game in this shelf (take game out of shelf or puts it
+         * @param shelf
+         */
+        $scope.updateInShelf = function (shelf) {
+
+        };
+
+
+        // Related Games
+        $scope.relatedGames = [];
+        Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(relatedGames) {
+            $scope.relatedGames = relatedGames;
+            $scope.relatedMin = Math.min($scope.relatedGames.length, 5);
+        }, function (response) {
+            console.log('Error with status code', response.status); // TODO handle error
+        });
+        $scope.$on('relatedRendered', function(event) {
+            angular.element('#related-carousel').slick({
+                infinite: false,
+                arrows: true
+            });
+            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+        });
+
+        // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
 
         /* *******************************
          * Event receivers for ng-repeats, see http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
@@ -119,6 +174,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
                     $scope.checkCanWriteReview();
             });
         };
+
 
 
     }]);
