@@ -136,8 +136,69 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.submitSearch();
         }, true);
 
+        // Enable filters when ready
+        if($scope.filtersReady) {
+            $log.debug('Filters were already loaded, enabling filters');
+            setUpAutocomplete();
+        } else {
+            $log.debug('Filters not loaded, waiting');
+        }
+        $scope.$watch('filtersReady', function(newVal, oldVal) {
+            if(newVal === true) {
+                $log.debug('Filters ready, enabling filters');
+                setUpAutocomplete();
+            }
+        });
+
         /* ********************************************
-         *      MATERIALIZE INITIALIZATION
+         *          PRIVATE FUNCTIONS
+         * *******************************************/
+        // Adapted from https://gist.github.com/Daniel-Hug/aacee325605abaa72998
+        function arrayToObj(array, fn) {
+            var obj = {};
+            var len = array.length;
+            for (var i = 0; i < len; i++) {
+                var key = array[i].value;
+                obj[key] = null;            // Set value to image URL if you want to show a circular image for an entry
+            }
+            return obj;
+        }
+
+        function setUpAutocomplete() {
+            if(!$scope.filtersReady) {
+                return;
+            }
+            for(var filterCategory in $scope.filters) {
+                if($scope.filters.hasOwnProperty(filterCategory)) {
+                    // Need to create inner closure so 'filterCategory' has the right value - see https://stackoverflow.com/a/23038392/2333689
+                    (function(filterCategory) {
+                        var filters = $scope.filters[filterCategory];
+
+                        $timeout(function() {
+                            $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
+                            angular.element('#' + filterCategory + '-autocomplete').material_chip({
+                                autocompleteOptions: {
+                                    data: arrayToObj(filters),
+                                    // Max amount of results that can be shown at once. Default: Infinity.
+                                    limit: 20,
+                                    onAutocomplete: function(val) {
+                                        $log.debug('Adding ' + val + ' to ' + filterCategory + ' category');
+                                        if(!$scope.searchParams[filterCategory]) {
+                                            $scope.searchParams[filterCategory] = [];
+                                        }
+                                        // $scope.searchParams[filterCategory].push(val);
+                                    },
+                                    minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
+                                }
+                            });
+                        });
+                    })(filterCategory);
+                }
+            }
+        }
+
+        /* ********************************************
+         *          MATERIALIZE INITIALIZATION
          * *******************************************/
         $timeout(function() {
             // Collapsible for filters
@@ -145,6 +206,9 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
             // Tab for filter sections
             angular.element('ul.tabs').tabs();
+
+            // Chips for filters
+            angular.element('.chips').material_chip();
 
             $log.debug('Fired Materialize initializers');
         }, 500);
