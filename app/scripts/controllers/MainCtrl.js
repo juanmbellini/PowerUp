@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
+define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
@@ -24,51 +24,16 @@ define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', function($scope, $cookies, Restangular, AuthService, CsrfService) {
+    powerUp.controller('MainCtrl', ['$scope', '$log', 'Restangular', 'AuthService', 'localStorageService', function($scope, $log, Restangular, AuthService, LocalStorageService) {
         Restangular.setFullResponse(false);
-        // powerUp.controller('MainCtrl', ['$scope', '$cookies', 'Restangular', function ($scope, $cookies, Restangular) {
 
         AuthService.trackToken();
 
-
-        $scope.welcomeText = 'Welcome to your powerUp page';
-
-        // // Log in if not logged in
-        // if ($cookies.hasOwnProperty('JSESSIONID') && $cookies.JSESSIONID) {
-        //     console.log('Already logged in as PAW');
-        //     console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
-        // } else {
-        //     console.log('Logging in as PAW...');
-        //     var auth = Restangular.all('auth/login');
-        //     auth.post({'username': 'paw', 'password': 'paw'})
-        //         .then(function (data) {
-        //             console.log('Logged in as PAW, session cookie saved, future requests will be sent as PAW');
-        //             console.log('To clear session cookie, go to the "Application" tab in Chrome Dev tools, Storage => Cookies => localhost and delete JSESSIONID');
-        //         });
-        //     // auth.customPOST({'username': 'paw', 'password': 'paw'}, undefined, undefined, {'Content-Type': 'application/json'});
-        // }
-
-        // Restangular.setDefaultHeaders({'Access-Control-Allow-Headers': '*'});
-        // Restangular.setDefaultHeaders({'Access-Control-Allow-Origin': '*'});
-        // Restangular.setDefaultHeaders({'Access-Control-Expose-Headers': '*'});
-
-
-        $scope.range = function(min, max, step) {
-            step = step || 1;
-            var input = [];
-            for (var i = min; i <= max; i += step) {
-                input.push(i);
-            }
-            return input;
-        };
-
         $scope.logOut = AuthService.logOut;
-
         $scope.apiLocation = 'http://localhost:8080/api';
-
         $scope.isLoggedIn = AuthService.isLoggedIn;
-
         $scope.currentUser = AuthService.getCurrentUser();
+
         // Watch the current user to always keep it updated
         $scope.$watch(
             AuthService.getCurrentUser,
@@ -88,22 +53,29 @@ define(['powerUp', 'authService', 'csrf-service'], function (powerUp) {
          */
         var filterTypes = ['publisher', 'developer', 'genre', 'keyword', 'platform'];
         var remainingRequests = filterTypes.length;
-        $scope.filtersReady = false;
         $scope.filters = {};
+        $scope.filtersReady = false;
 
-        filterTypes.forEach(function(filterType) {
-            Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
-                $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
-                remainingRequests--;
-                console.log('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
-                if (remainingRequests <= 0) {
-                    console.log('Done fetching all filters');
-                    $scope.filtersReady = true;
-                }
-            }, function(error) {
-                console.log('ERROR getting filters for type ' + filterType + ': ', error);
+        if(LocalStorageService.get('filters')) {
+            $log.debug('Loading filters from local storage');
+            $scope.filters = LocalStorageService.get('filters');
+            $scope.filtersReady = true;
+        } else {
+            $log.debug('Querying API for filters');
+            filterTypes.forEach(function(filterType) {
+                Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
+                    $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
+                    remainingRequests--;
+                    $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
+                    if (remainingRequests <= 0) {
+                        $log.debug('Done fetching all filters, saving to local storage');
+                        LocalStorageService.set('filters', $scope.filters);
+                        $scope.filtersReady = true;
+                    }
+                }, function(error) {
+                    $log.error('ERROR getting filters for type ' + filterType + ': ', error);
+                });
             });
-        });
-
-	});
+        }
+	}]);
 });
