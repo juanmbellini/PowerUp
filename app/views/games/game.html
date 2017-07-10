@@ -9,10 +9,10 @@
 			<!--RATE AND STATUS FORM-->
 			<div class="row" ng-show="isLoggedIn()">
                 <!--<form ng-show="isLoggedIn()" name="registerForm" class="css-form" ng-submit="register(registerForm)" novalidate>-->
-                    <div class="col s3"></div>
-					<div class="col s6 center-align">
+                  	<div class="col s2"></div>
+                    <div class="col s10 center-align">
 						<div class="row" style="margin-bottom:0;">
-							<div class="col s4 center-align">
+							<div class="col s3 center-align">
                                 <label>Score: </label>
                                 <ng-input>
                                     <select ng-model="gameScore" class="browser-default" ng-options="score for score in rangeScore">
@@ -20,7 +20,7 @@
                                     </select>
                                 </ng-input>
 							</div>
-                            <div class="col s4 center-align">
+                            <div class="col s3 center-align">
                                 <label>PlayStatus: </label>
                                 <ng-input>
                                     <select ng-model="gamePlayStatus" class="browser-default" ng-options="playStatus for playStatus in playStatusOptions">
@@ -28,8 +28,22 @@
                                     </select>
                                 </ng-input>
                             </div>
-
-
+                            <div class="col s6 center-align">
+                                <label>Shelves: </label>
+                                <ng-input>
+                                    <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
+                                    <div ng-show="shelves.length > 0">
+                                        <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
+                                            <option value="" disabled selected>Select shelves</option>
+                                            <!--<%&#45;&#45;<option id="newShelf" value="newShelf" >New shelf...</option>&#45;&#45;%>-->
+                                            <!--<c:forEach var="entry" items="${shelves}">-->
+                                            <!--<c:set var="shelf" value="${entry.key}"/>-->
+                                            <!--<c:set var="isInShelf" value="${entry.value}"/>-->
+                                            <option ng-repeat="shelf in shelves" value="{{shelf}}"> {{shelf.name}} </option>
+                                        </select>
+                                    </div>
+                                </ng-input>
+                            </div>
 							<!--<c:choose>-->
 								<!--<c:when test="${isLoggedIn}">-->
 									<!--<div class="col s4 center">-->
@@ -56,19 +70,8 @@
 
                 <div class="col s3"></div>
                 <div class="col s8 center-align">
-                    <p class="col s4 center">Update in shelves</p>
-                    <div class="col s4">
-                        <p ng-if="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
-                        <div ng-if="shelves.length > 0">
-                            <select id="shelves"  ng-model="shelvesSelected" multiple>
-                                <option value="" disabled selected>Select shelves</option>
-											<!--<%&#45;&#45;<option id="newShelf" value="newShelf" >New shelf...</option>&#45;&#45;%>-->
-											<!--<c:forEach var="entry" items="${shelves}">-->
-												<!--<c:set var="shelf" value="${entry.key}"/>-->
-												<!--<c:set var="isInShelf" value="${entry.value}"/>-->
-                                <option ng-click="updateInShelf(shelf)" ng-repeat="shelf in shelves" value="{{shelf.id}}" {{isInShelf(shelf) ? selected : }}> {{shelf.name}} </option>
-                            </select>
 
+                </div>
 							<!--<c:choose>-->
 								<!--<c:when test="${isLoggedIn}">-->
 									<!--<button type="submit" class="btn waves-effect waves-light">Update Shelves</button>-->
@@ -82,9 +85,7 @@
 					<!--</form>-->
 				<!--</div>-->
 			<!--</c:if>-->
-                        </div>
-                    </div>
-                </div>
+
             </div>
 			<!--END SHELVES FORM-->
 		</div>

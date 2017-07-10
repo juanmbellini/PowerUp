@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', function($scope, $location, $log, Restangular, AuthService, $timeout) {
 
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
@@ -43,32 +43,62 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         $scope.findGame($scope.gameId);
 
-        var userId = 1; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
+        var userId = 2; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
 
         // Shelves
         $scope.shelves = [];
         $scope.shelvesWithGame = [];
+        $scope.shelvesWithGameDirty = [];
         Restangular.one('users',userId).all('shelves').getList().then(function (shelves) {
-            $scope.shelvesWithGame = shelves;
-        });
-        Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelves) {
             $scope.shelves = shelves;
+            $timeout(function () {
+                $('select').material_select();
+            },30);
         });
-        /**
-         * Returns if the game is in this shelf
-         * @param shelf
-         */
-        $scope.isInShelf = function (shelf) {
-
-        };
+        Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelvesWithGame) {
+            $scope.shelvesWithGame = shelvesWithGame;
+            $scope.shelvesWithGameDirty = shelvesWithGame;
+        });
         /**
          * Changes value of game in this shelf (take game out of shelf or puts it
          * @param shelf
          */
         $scope.updateInShelf = function (shelf) {
+            if ($scope.shelvesWithGame.indexOf(shelf.name) === -1) {
+                // The game is not in the array, then it was removed
+                Restangular.one('users',$scope.userId).one('shelves',shelf.name).one('games',$scope.gameId).remove().then(function () {
 
+                }, function (response) {
+                    $log.error('could not remove game from shelf', response);
+                });
+            } else {
+                // The game is in the array, then it was added
+                Restangular.one('users',$scope.userId).one('shelves',shelf.name).all('games').post({gameId: $scope.gameId}).then(function () {
+
+                }, function (response) {
+                    $log.error('could not add game to shelf', response);
+                });
+            }
+        };
+        $scope.updateShelfSelect = function () {
+            // console.log(shelfUpdated);
+
+            angular.forEach($scope.shelvesWithGame, function (shelf) {
+                $scope.updateInShelf(shelf);
+            });
+
+            // console.log($scope.shelvesWithGame);
+            // Restangular.one('users',userId).all('shelves').post($scope.shelvesWithGame}).then(function () {
+            //
+            // },function (response) {
+            //     $log.error("update shelves for game didn't work", response);
+            // });
         };
 
+        // Restangular.one('users',$scope.userId).all('play-statuses').getList({}).then(function (playStatuses) {
+        //     console.log(playStatuses);
+        // });
+        // Para el gameStatus. userId path. gameId, playStatus
 
         // Related Games
         $scope.relatedGames = [];
