@@ -5,7 +5,6 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -245,9 +244,10 @@ public interface UserService {
      * Gets all games in this user's main game list (games they have marked as playing, played, etc.).
      *
      * @param userId The ID of the user whose list to fetch.
-     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
+     * @param sortingType
+     * @return
      */
-    Map<PlayStatus, Set<Game>> getGameList(long userId); // TODO: ?!?!
+    Page<UserGameStatus> getGameList(long userId, int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection);
 
 
     /**

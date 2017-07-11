@@ -182,23 +182,8 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public Map<PlayStatus, Set<Game>> getGameList(long userId) {
-        User user = userDao.findById(userId);
-        if (user == null) {
-            throw new NoSuchUserException();
-        }
-        Map<PlayStatus, Set<Game>> result = new HashMap<>();
-        for (PlayStatus status : PlayStatus.values()) {
-            if (!result.containsKey(status)) {
-                result.put(status, new LinkedHashSet<>());
-            }
-        }
-        for (Map.Entry<Long, PlayStatus> entry : user.getPlayedGames().entrySet()) {
-            Game game = gameDao.findById(entry.getKey());
-            PlayStatus status = entry.getValue();
-            result.get(status).add(game);
-        }
-        return result;
+    public Page<UserGameStatus> getGameList(long userId, int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection) {
+        return userDao.getGameList(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
     }
 
 

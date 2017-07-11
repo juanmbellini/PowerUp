@@ -1,8 +1,6 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.webapp.dto.UserDto;
-import ar.edu.itba.paw.webapp.dto.UserGameScoreDto;
-import ar.edu.itba.paw.webapp.dto.UserGameStatusDto;
+import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
@@ -11,6 +9,7 @@ import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
@@ -457,5 +456,29 @@ public class UserJerseyController implements UpdateParamsChecker {
 
         String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
         return mimeType;
+    }
+
+    @GET
+    @Path("/{userId : \\d+}/game-list")
+    public Response listShelfGames(@PathParam("userId") final long userId,
+                                   @QueryParam("orderBy") @DefaultValue("game-id")
+                                   final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                   @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
+                .addParameter("userId", userId, id -> id <= 0));
+
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        //TODO Add sorting and filtering to gameList
+                        userService.getGameList(userId, pageNumber, pageSize, sortingType, sortDirection),
+                        (gamesPage) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
+                                .createList(gamesPage.getData())) {
+                        },
+                        scoreAndStatusMap(null,null));
     }
 }
