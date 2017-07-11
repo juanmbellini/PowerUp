@@ -108,9 +108,9 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         function authenticate(username, password, successCallback, failureCallback) {
             Restangular.all('auth/login').post({username: username, password: password})
                 .then(function(data) {
-                    setCurrentUser({username: username});
+                    setCurrentUser(data);   // TODO only copy fields to object? i.e. don't copy full Restangularized object
                     // TODO pass parameters to callback?
-                    $log.info('Successfully authenticated as ', username);
+                    $log.info('Successfully authenticated as ', getCurrentUser().username);
                     if (typeof successCallback !== 'undefined') {
                         successCallback();
                     }
