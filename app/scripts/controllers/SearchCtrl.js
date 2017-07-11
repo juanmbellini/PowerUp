@@ -157,14 +157,14 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         // Enable filters when ready
         if ($scope.filtersReady) {
             $log.debug('Filters were already loaded, enabling filters');
-            setUpAutocomplete();
+            setUpFilters();
         } else {
             $log.debug('Filters not loaded, waiting');
         }
         $scope.$watch('filtersReady', function(newVal, oldVal) {
             if (newVal === true) {
                 $log.debug('Filters ready, enabling filters');
-                setUpAutocomplete();
+                setUpFilters();
             }
         });
 
@@ -217,7 +217,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 return;
             }
             var usedValues = $scope.searchParams[filterCategory];
-            var allowedValues = $scope.filters[filterCategory];
+            var allowedValues = $scope.filters[filterCategory].map(function(element) {return element.value;});
             if(usedValues.indexOf(value) === -1 && allowedValues.indexOf(value) !== -1) {
                 $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
                 $scope.searchParams[filterCategory].push(value);
@@ -236,7 +236,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.searchParams[filterCategory].splice(index, 1);
         }
 
-        function setUpAutocomplete() {
+        function setUpFilters() {
             if (!$scope.filtersReady) {
                 return;
             }
