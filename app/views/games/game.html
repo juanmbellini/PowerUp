@@ -13,16 +13,18 @@
                         <div class="col s3 center-align">
                             <label>Score: </label>
                             <ng-input>
-                                <select ng-model="gameScore" class="browser-default" ng-change="updateScore()"  ng-options="score for score in rangeScore">
+                                <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
                                     <option value="delete">Select score</option>
+                                    <option ng-repeat="score in rangeScore">{{score}}</option>
                                 </select>
                             </ng-input>
                         </div>
                         <div class="col s3 center-align">
                             <label>PlayStatus: </label>
                             <ng-input>
-                                <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()"  ng-options="playStatus for playStatus in playStatusOptions">
+                                <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
                                     <option value="delete">Select play status</option>
+                                    <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
                                 </select>
                             </ng-input>
                         </div>

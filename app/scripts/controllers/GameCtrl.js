@@ -9,15 +9,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         $scope.canWriteReview = false;
 
-        $scope.rangeScore = [];
-        for (var i = 1; i <= 10; i++) {
-            $scope.rangeScore.push(i);
-        }
-
-        $scope.playStatusOptions = ['verdurita1', 'verdurita2']; // TODO get from api real playStatusOptions
-
-        // TODO Pedir shelves del uusario al endpoint de shelves. Pedir las shelves en las cuales tiene este juego y hacer el metodo que se fija si esta en la shelf.
-
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(game) {
                 $scope.game = game;
@@ -45,16 +36,30 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         var userId = 2; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
 
+        // Play Status
+        $scope.playStatusOptions = ['verdurita1', 'verdurita2']; // TODO get from api real playStatusOptions
+        // TODO chang this call to be made at the begining or something only once.
+        // Restangular.one('users', userId).
+
+
         // Game Score
+        $scope.rangeScore = [];
+        for (var i = 1; i <= 10; i++) {
+            $scope.rangeScore.push(i);
+        }
         $scope.gameScore = null;
-        Restangular.one('users', userId).all('game-scores').get({gameId: $scope.gameId}).then(function (gameScore) {
-            $scope.gameScore = gameScore;
+        Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (gameScore) {
+            if (gameScore.length > 0) {
+                $scope.gameScore = gameScore[0].score;
+            } else {
+                $scope.gameScore = 'delete';
+            }
         }, function (response) {
-            $log.error('Could not remove score from game', response);
+            $log.error('Could not get score from game', response);
         });
         $scope.updateScore = function () {
             if ($scope.gameScore === 'delete') {
-                Restangular.one('users', userId).one('game-scores',$scope.gameId).delete().then(function () {
+                Restangular.one('users', userId).one('game-scores',$scope.gameId).remove().then(function (response) {
                     $log.info('removed score from game', response);
                 }, function (response) {
                     $log.error('Could not remove score from game', response);
