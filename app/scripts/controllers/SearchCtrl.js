@@ -1,8 +1,7 @@
 'use strict';
 define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'], function(powerUp) {
 
-
-    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function($scope, $timeout, $location, $log, Restangular, PaginationService) {
+    powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function ($scope, $timeout, $location, $log, Restangular, PaginationService) {
         Restangular.setFullResponse(true);
 
         $scope.overAllAmountOfElements = 100;
@@ -24,11 +23,11 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         };
 
         // Search parameters which will trigger a new search when changed
-        var watchedSearchParams = ['orderBy', 'sortDirection', 'pageSize', 'pageNumber'];
+        var paginationSearchParams = ['orderBy', 'sortDirection', 'pageSize', 'pageNumber'];
 
         var defaultSortDirections = {
             name: 'asc',
-            avg_score: 'desc',
+            avg_score: 'desc',  // eslint-disable-line camelcase
             release: 'desc'
         };
 
@@ -43,7 +42,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         $scope.games = null;
 
-        $scope.submitSearch = function() {
+        $scope.submitSearch = function () {
             $log.debug('Reloading Search with specified parameters: ', $scope.searchParams);
             $location.search($scope.searchParams);
             $location.path('search');
@@ -70,15 +69,12 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             return result;
         };
 
-        $scope.hasFilters = function() {
-            return ($scope.searchParams.developers !== undefined || $scope.searchParams.publishers !== undefined || $scope.searchParams.genres !== undefined || $scope.searchParams.platforms !== undefined);
-        };
-
-        $scope.clearFilters = function() {
-            $scope.searchParams.developers = undefined;
-            $scope.searchParams.publishers = undefined;
-            $scope.searchParams.genres = undefined;
-            $scope.searchParams.platforms = undefined;
+        $scope.clearFilters = function () {
+            $scope.searchParams.developer = [];
+            $scope.searchParams.publisher = [];
+            $scope.searchParams.genre = [];
+            $scope.searchParams.platform = [];
+            setUpFilters();
         };
 
         /**
@@ -87,8 +83,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
          *
          * @param orderBy The new criterion to order by.
          */
-        $scope.changeOrderBy = function(orderBy) {
-            if($scope.searchParams.orderBy === orderBy) {
+        $scope.changeOrderBy = function (orderBy) {
+            if ($scope.searchParams.orderBy === orderBy) {
                 $scope.toggleSortDirection();
             } else {
                 $scope.searchParams.orderBy = orderBy;
@@ -97,7 +93,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.searchParams.pageNumber = 1;
         };
 
-        $scope.toggleSortDirection = function() {
+        $scope.toggleSortDirection = function () {
             if ($scope.searchParams.sortDirection === 'asc') {
                 $scope.searchParams.sortDirection = 'desc';
             } else if ($scope.searchParams.sortDirection === 'desc') {
@@ -106,7 +102,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $log.warn('Called toogleSortDirection but sort direction is neither asc nor desc. Doing nothing.');
         };
 
-        $scope.setPageNumber = function(number) {
+        $scope.setPageNumber = function (number) {
             if (!$scope.gamesPaginator.pagination.totalPages) {
                 return;
             }
@@ -118,25 +114,19 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         // Pagination control
         $scope.gamesPaginator = PaginationService.initialize(Restangular.all('games'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
         PaginationService.setRequestParams($scope.gamesPaginator, $scope.searchParams);
-        PaginationService.get($scope.gamesPaginator, function(response) {
+        PaginationService.get($scope.gamesPaginator, function (response) {
             $scope.games = response.data;
             $log.debug('Found ' + $scope.games.length + ' games');
-        }, function(error) {
+        }, function (error) {
             // TODO do something more useful
             $log.error('Error performing search: ', error);
             $scope.games = [];
         });
 
-        // Reload page on WATCHED param changes
-        $scope.$watchCollection(function() {
-            var result = {};
-            watchedSearchParams.forEach(function(key) {
-                if ($scope.searchParams.hasOwnProperty(key)) {
-                    result[key] = $scope.searchParams[key];
-                }
-            });
-            return result;
-        }, function(newVal, oldVal) {
+        // Reload page on pagination changes
+        $scope.$watchCollection(function () {
+            return extractProperties(paginationSearchParams, $scope.searchParams);
+        }, function (newVal, oldVal) {
             if (typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
                 return; // Initial change, ignore
             }
@@ -149,13 +139,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             setUpFilters();
         } else {
             $log.debug('Filters not loaded, waiting');
+            $scope.$watch('filtersReady', function (newVal, oldVal) {
+                if (newVal === true) {
+                    $log.debug('Filters ready, enabling filters');
+                    setUpFilters();
+                }
+            });
         }
-        $scope.$watch('filtersReady', function(newVal, oldVal) {
-            if (newVal === true) {
-                $log.debug('Filters ready, enabling filters');
-                setUpFilters();
-            }
-        });
 
         /* ********************************************
          *          PRIVATE FUNCTIONS
@@ -171,16 +161,31 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             return obj;
         }
 
+        /**
+         * Extract a subset of a specified objet's properties.
+         *
+         * @return {object}     The sub-object.
+         */
+        function extractProperties(properties, object) {
+            var result = {};
+            properties.forEach(function (key) {
+                if (object.hasOwnProperty(key)) {
+                    result[key] = object[key];
+                }
+            });
+            return result;
+        }
+
         function initialChipData(filterCategory, data) {
             var result = [];
-            if(typeof data !== 'object' || !Array.isArray(data)) {
+            if (typeof data !== 'object' || !Array.isArray(data)) {
                 return result;
             }
-            for(var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.length; i++) {
                 result[i] = {
                     tag: data[i],
                     filterCategory: filterCategory
-                }
+                };
             }
             return result;
         }
@@ -191,7 +196,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
          * @param filters
          */
         function sanitizeFilters(filters) {
-            switch(typeof filters) {
+            switch (typeof filters) {
                 case 'undefined':
                     return [];
                 case 'string':
@@ -202,23 +207,25 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         }
 
         function addFilter(filterCategory, value) {
-            if(!$scope.searchParams.hasOwnProperty(filterCategory)) {
+            if (!$scope.searchParams.hasOwnProperty(filterCategory)) {
                 return;
             }
             var usedValues = $scope.searchParams[filterCategory];
-            var allowedValues = $scope.filters[filterCategory].map(function(element) {return element.value;});
-            if(usedValues.indexOf(value) === -1 && allowedValues.indexOf(value) !== -1) {
+            var allowedValues = $scope.filters[filterCategory].map(function (element) {
+                return element.value;
+            });
+            if (usedValues.indexOf(value) === -1 && allowedValues.indexOf(value) !== -1) {
                 $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
                 $scope.searchParams[filterCategory].push(value);
             }
         }
 
         function removeFilter(filterCategory, value) {
-            if(!$scope.searchParams.hasOwnProperty(filterCategory)) {
+            if (!$scope.searchParams.hasOwnProperty(filterCategory)) {
                 return;
             }
             var index = $scope.searchParams[filterCategory].indexOf(value);
-            if(index === -1) {
+            if (index === -1) {
                 return;
             }
             $log.debug('Removing ' + value + ' from ' + filterCategory + ' category');
@@ -232,13 +239,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             for (var filterCategory in $scope.filters) {
                 if ($scope.filters.hasOwnProperty(filterCategory)) {
                     // Need to create inner closure so 'filterCategory' has the right value - see https://stackoverflow.com/a/23038392/2333689
-                    (function(filterCategory) {
+                    (function (filterCategory) {
                         var filters = $scope.filters[filterCategory];
 
                         // TODO do this elsewhere, it doesn't belong here
                         $scope.searchParams[filterCategory] = sanitizeFilters($scope.searchParams[filterCategory]);
 
-                        $timeout(function() {
+                        $timeout(function () {
                             $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
                             angular.element('#' + filterCategory + '-autocomplete').material_chip({
                                 data: initialChipData(filterCategory, $scope.searchParams[filterCategory]),
@@ -246,36 +253,49 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
                                     limit: 20,
-                                    onAutocomplete: function(val) {
+                                    onAutocomplete: function (val) {
                                         addFilter(filterCategory, val);
                                     },
                                     minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
                                 }
                             });
-                        }, 3000);
+                        });
                     })(filterCategory);
                 }
             }
+            // Done adding all filters to view, expand filters collapsible if necessary
+            if (hasFilters()) {
+                angular.element('#filters-collapsible').addClass('active');
+                // Manually trigger a click to properly set the active tab
+                $timeout(function () {
+                    angular.element('.tabs li a.active').trigger('click');
+                }, 250);
+            }
+        }
+
+        function hasFilters() {
+            return $scope.searchParams.developer.length > 0
+                    || $scope.searchParams.publisher.length > 0
+                    || $scope.searchParams.genre.length > 0
+                    || $scope.searchParams.platform.length > 0;
         }
 
         /* ********************************************
          *          MATERIALIZE INITIALIZATION
          * *******************************************/
-        $timeout(function() {
-            // Collapsible for filters
-            angular.element('.collapsible').collapsible();
+        // Collapsible for filters
+        angular.element('.collapsible').collapsible();
 
-            // Tab for filter sections
-            angular.element('ul.tabs').tabs();
+        // Tab for filter sections
+        angular.element('ul.tabs').tabs();
 
-            // Chips for filters
-            angular.element('.chips').material_chip();
+        // Chips for filters
+        angular.element('.chips').material_chip();
 
-            angular.element('.chips').on('chip.delete', function(e, chip) {
-                removeFilter(chip.filterCategory, chip.tag);
-            });
+        angular.element('.chips').on('chip.delete', function (e, chip) {
+            removeFilter(chip.filterCategory, chip.tag);
+        });
 
-            $log.debug('Fired Materialize initializers');
-        }, 500);
+        $log.debug('Fired Materialize initializers');
     }]);
 });

@@ -22,7 +22,7 @@
             <h5>Searching games...</h5>
             <loadingcircle ></loadingcircle>
         </div>
-        <div class="row" ng-if="games !== null">
+        <div class="row" ng-show="games !== null">
             <div ng-if="games.length == 0">
                 <!--"No results" notice-->
                 <h3 class="center">No results</h3>
@@ -45,11 +45,11 @@
             </div>
             <div ng-style="{'margin-top': filtersReady ? '0' : '8px'}">
                 <button class="btn waves-effect waves-light right" id="submit-search" ng-click="submitSearch()">Search <i class="material-icons right">send</i></button>
-                <button class="btn waves-effect waves-light right" id="clear-filters" ng-disabled="!hasFilters()" ng-click="clearFilters()">Clear filters <i class="material-icons right">close</i></button>
+                <button class="btn waves-effect waves-light right" id="clear-filters" ng-click="clearFilters()">Clear filters <i class="material-icons right">close</i></button>
             </div>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
-                    <div class="collapsible-header" ng-class="{active: hasFilters()}">
+                    <div class="collapsible-header" id="filters-collapsible">
                     <i class="material-icons">filter_list</i>Filters
                     </div>
                     <div class="collapsible-body">

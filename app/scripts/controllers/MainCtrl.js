@@ -47,22 +47,22 @@ define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
 
         /*
          * Fetch possible game filters. Even though this is necessary only in Search, if the page changes or gets
-         * reloaded the controller is lost. Main controller is always present so processing will continue even on page
-         * changes.
-         * TODO consider passing this to a service using local storage, it takes a long time to retrieve this from the server
+         * reloaded the controller is lost. Main controller is always present so processing will continue loading
+         * filters even on page changes.
          */
-        var filterTypes = ['publisher', 'developer', 'genre', 'keyword', 'platform'];
-        var remainingRequests = filterTypes.length;
         $scope.filters = {};
+        $scope.filterCategories = ['publisher', 'developer', 'genre', 'keyword', 'platform'];
         $scope.filtersReady = false;
+        var remainingRequests = $scope.filterCategories.length;
 
-        if(LocalStorageService.get('filters')) {
+        // Keep filters in local storage because it takes a long time to get these from the server
+        if (LocalStorageService.get('filters')) {
             $log.debug('Loading filters from local storage');
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
         } else {
             $log.debug('Querying API for filters');
-            filterTypes.forEach(function(filterType) {
+            $scope.filterCategories.forEach(function(filterType) {
                 Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
                     $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
                     remainingRequests--;
