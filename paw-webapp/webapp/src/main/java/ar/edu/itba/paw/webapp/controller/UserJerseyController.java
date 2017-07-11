@@ -3,10 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
-import ar.edu.itba.paw.webapp.interfaces.SessionService;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
@@ -20,6 +17,7 @@ import org.apache.tika.parser.ParseContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -45,14 +43,20 @@ public class UserJerseyController implements UpdateParamsChecker {
     public static final String END_POINT = "users";
 
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService) {
+    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.sessionService = sessionService;
+        this.mailService = mailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     private final UserService userService;
 
+    private final MailService mailService;
+
     private final SessionService sessionService;
+
+    private PasswordEncoder passwordEncoder;
 
     @Context
     private UriInfo uriInfo;
@@ -136,11 +140,23 @@ public class UserJerseyController implements UpdateParamsChecker {
 
 
     @PUT
-    @Path("/{id : \\d+}/password")
+    @Path("/{id : \\d+}/password-change")
     public Response changePassword(@PathParam("id") final long userId,
                                    final UserDto userDto) {
         checkUpdateValues(userId, "id", userDto);
-        userService.changePassword(userId, userDto.getPassword(), userId); // TODO: updater
+        String newPassword = passwordEncoder.encode(userDto.getPassword());
+        userService.changePassword(userId, newPassword, userId); // TODO: updater
+        mailService.sendEmailChangePassword(userService.findByEmail(userDto.getEmail()));
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path("/{id : \\d+}/password-reset")
+    public Response resetPassword(@PathParam("id") final long userId) {
+        String newPassword = userService.generateNewPassword();
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        userService.changePassword(userId, hashedPassword, userId); // TODO: updater
+//        mailService.sendEmailResetPassword(userService.findById(userId), newPassword);
         return Response.noContent().build();
     }
 
