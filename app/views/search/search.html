@@ -143,11 +143,11 @@
                                 {{game.name}}
                             </a>
                         </p>
-                        <p class="summary">{{game.summary}}</p>
+                        <p class="summary" style="display: -webkit-box">{{game.summary}}</p>
                     </div>
                     <div class="col s1 center">
                         <p style="margin-top: 33px;">
-                            {{game.releaseDate != null ? game.releaseDate : "Unknown" }}
+                            {{game.releaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}
                              <!--TODO get year -->
                         </p>
                     </div>

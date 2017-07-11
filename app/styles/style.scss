@@ -221,22 +221,16 @@ $lineHeight: 1.5;
 $maxLines: 3;
 
 <!--/* Multi-line clamping adapted from http://codepen.io/martinwolf/pen/qlFdp */-->
- //TODO ya no anda el multiline, habria que probar importando lo que sea necesario. -- Diego 07/02/2017
 .summary {
   margin: 5px auto 0 auto !important;
-  display: block; /* Fallback for non-webkit */
   display: -webkit-box;
+  //display: block; /* Fallback for non-webkit */
   max-width: 100%;
   font-size: $fontSizeStr;
   line-height: $lineHeight;
   -webkit-line-clamp: $maxLines;
-  height: $fontSizeInt * $lineHeight * $maxLines; /* Fallback for non-webkit */
+  height: $fontSizeStr * $lineHeight * $maxLines; /* Fallback for non-webkit */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-a {
-  cursor: pointer;
-  cursor: hand;
 }

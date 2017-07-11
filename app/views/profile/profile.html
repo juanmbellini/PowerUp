@@ -51,10 +51,10 @@
                         <p class="title">
                             <a ng-href="#game?id={{entry.gameId}}">{{entry.entryName}}</a>
                         </p>
-                        <p class="summary">{{entry.gameSummary || "No summary"}}</p>
+                        <p class="summary" style="display: -webkit-box">{{entry.gameSummary || "No summary"}}</p>
                     </div>
                     <div class="col s1 center">
-                        <p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? entry.gameReleaseDate : "Unknown" }}</p>
+                        <p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}</p>
                     </div>
                     <div class="col s2">
                         <div class="secondary-content">
