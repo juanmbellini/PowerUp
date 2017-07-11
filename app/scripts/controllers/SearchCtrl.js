@@ -26,7 +26,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         // Search parameters which will trigger a new search when changed
         var watchedSearchParams = ['orderBy', 'sortDirection', 'pageSize', 'pageNumber'];
 
-        // Sanitize values
+        var defaultSortDirections = {
+            name: 'asc',
+            avg_score: 'desc',
+            release: 'desc'
+        };
+
+        // Sanitize search param values
         for (var key in $scope.searchParams) {
             if ($scope.searchParams.hasOwnProperty(key)) {
                 if ($scope.searchParams[key] === true) {
@@ -75,37 +81,20 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.searchParams.platforms = undefined;
         };
 
-        $scope.sortNameButton = function() {
-            if ($scope.searchParams.orderBy === undefined || angular.equals($scope.searchParams.orderBy,'name')) {
+        /**
+         * Toggles sorting direction or sets new order-by criterion and default sort direction.  Always resets page
+         * number to 1.
+         *
+         * @param orderBy The new criterion to order by.
+         */
+        $scope.changeOrderBy = function(orderBy) {
+            if($scope.searchParams.orderBy === orderBy) {
                 $scope.toggleSortDirection();
-            }else {
-                $scope.searchParams.orderBy = 'name';
-                $scope.searchParams.sortDirection = 'asc';
+            } else {
+                $scope.searchParams.orderBy = orderBy;
+                $scope.searchParams.sortDirection = defaultSortDirections[orderBy];
             }
-            $location.search('orderBy', $scope.searchParams.orderBy);
-            $location.search('sortDirection', $scope.searchParams.sortDirection);
-        };
-
-        $scope.sortRatingButton = function() {
-            if (angular.equals($scope.searchParams.orderBy,'avg_score')) {
-                $scope.toggleSortDirection();
-            }else {
-                $scope.searchParams.orderBy = 'avg_score';
-                $scope.searchParams.sortDirection = 'desc';
-            }
-            $location.search('orderBy', $scope.searchParams.orderBy);
-            $location.search('sortDirection', $scope.searchParams.sortDirection);
-        };
-
-        $scope.sortReleaseButton = function() {
-            if (angular.equals($scope.searchParams.orderBy,'release')) {
-                $scope.toggleSortDirection();
-            }else {
-                $scope.searchParams.orderBy = 'release';
-                $scope.searchParams.sortDirection = 'desc';
-            }
-            $location.search('orderBy', $scope.searchParams.orderBy);
-            $location.search('sortDirection', $scope.searchParams.sortDirection);
+            $scope.searchParams.pageNumber = 1;
         };
 
         $scope.toggleSortDirection = function() {
@@ -139,8 +128,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         });
 
         // Reload page on WATCHED param changes
-        $scope.$watch(function() {
-            var result = [];
+        $scope.$watchCollection(function() {
+            var result = {};
             watchedSearchParams.forEach(function(key) {
                 if ($scope.searchParams.hasOwnProperty(key)) {
                     result[key] = $scope.searchParams[key];
@@ -152,7 +141,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 return; // Initial change, ignore
             }
             $scope.submitSearch();
-        }, true);
+        });
 
         // Enable filters when ready
         if ($scope.filtersReady) {

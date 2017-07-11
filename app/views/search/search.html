@@ -87,22 +87,21 @@
                 <div ng-if="games.length > 1">
                     <div class="right-align" id="sorting">
                         <!--SORT BY NAME-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'name'}" data-category="name" ng-click="sortNameButton()">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'name'}" ng-click="changeOrderBy('name')">
                             Name
-                            <i class="material-icons right">
-                                <div ng-switch="(searchParams.orderBy == null || searchParams.orderBy == 'name') && searchParams.sortDirection === 'desc'">
-                                    <div ng-switch-when="true">arrow_drop_down</div>
-                                    <!--TODO sacar flechas cuando inactivo? --Diego 03/02/2017-->
-                                    <div ng-switch-default>arrow_drop_up</div>
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'name'">
+                                <div ng-switch="searchParams.sortDirection === 'asc'">
+                                    <div ng-switch-when="true">arrow_drop_up</div>
+                                    <div ng-switch-default>arrow_drop_down</div>
                                 </div>
                             </i>
                         </button>
 
                         <!--SORT BY RELEASE DATE-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'release'}" ng-click="sortReleaseButton()" data-category="releaseSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'release'}" ng-click="changeOrderBy('release')">
                             Release
-                            <i class="material-icons right">
-                                <div ng-switch="(searchParams.orderBy == 'release') && searchParams.sortDirection === 'asc'">
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'release'">
+                                <div ng-switch="searchParams.sortDirection === 'asc'">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
@@ -110,10 +109,10 @@
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
-                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'avg_score'}" ng-click="sortRatingButton()" data-category="ratingSort">
+                        <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'avg_score'}" ng-click="changeOrderBy('avg_score')">
                             Rating
-                            <i class="material-icons right">
-                                <div ng-switch="(searchParams.orderBy == 'avg_score') && searchParams.sortDirection === 'asc'">
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'avg_score'">
+                                <div ng-switch="searchParams.sortDirection === 'asc'">
                                     <div ng-switch-when="true">arrow_drop_up</div>
                                     <div ng-switch-default>arrow_drop_down</div>
                                 </div>
