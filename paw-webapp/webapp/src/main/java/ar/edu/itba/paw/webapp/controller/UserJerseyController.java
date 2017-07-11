@@ -9,7 +9,7 @@ import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
@@ -28,10 +28,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.io.*;
 import java.net.URI;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 
@@ -153,8 +151,9 @@ public class UserJerseyController implements UpdateParamsChecker {
     // ==== Play status ====
 
     @GET
-    @Path("/{id : \\d+}/play-statuses")
-    public Response getPlayStatuses(@PathParam("id") final long userId,
+    @Path("/{id : \\d+}/play-status/{gameId : \\d+}")
+    public Response getPlayStatus(@PathParam("id") final long userId,
+                                  @PathParam("gameId") Long gameIdFilter,
                                     // Pagination and Sorting
                                     @QueryParam("orderBy") @DefaultValue("game-id")
                                     final UserDao.PlayStatusAndGameScoresSortingType sortingType,
@@ -162,8 +161,6 @@ public class UserJerseyController implements UpdateParamsChecker {
                                     final SortDirection sortDirection,
                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                    // Filters
-                                    @QueryParam("gameId") Long gameIdFilter,
                                     @QueryParam("gameName") String gameNameFilter) {
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
@@ -180,8 +177,18 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     }
 
+    @GET
+    @Path("/play-statuses")
+    public Response getPlayStatuses() {
+        return Response.ok(new GenericEntity<List<PlayStatus>>(playStatusList()){}).build();
+    }
+
+    private List<PlayStatus> playStatusList() {
+        return Arrays.stream(PlayStatus.values()).collect(Collectors.toList());
+    }
+
     @POST
-    @Path("/{id : \\d+}/play-statuses")
+    @Path("/{id : \\d+}/play-status")
     @Consumes(value = {MediaType.APPLICATION_JSON})
     public Response addPlayStatus(@PathParam("id") final long userId,
                                   final UserGameStatusDto userGameStatusDto) {
@@ -192,7 +199,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/{id : \\d+}/play-statuses/{gameId : \\d+}")
+    @Path("/{id : \\d+}/play-status/{gameId : \\d+}")
     public Response removePlayStatus(@PathParam("id") final long userId,
                                      @PathParam("gameId") final long gameId) {
         if (userId <= 0) {
@@ -280,7 +287,7 @@ public class UserJerseyController implements UpdateParamsChecker {
      * Creates a map to be used in the
      * {@link #getGameScores(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
      * or the
-     * {@link #getPlayStatuses(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
+     * {@link #getPlayStatus(long,Long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, String)}
      * methods.
      *
      * @param gameIdFilter   Filter for game id.
