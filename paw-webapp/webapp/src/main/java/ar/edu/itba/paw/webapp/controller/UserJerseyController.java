@@ -146,7 +146,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userDto);
         String newPassword = passwordEncoder.encode(userDto.getPassword());
         userService.changePassword(userId, newPassword, userId); // TODO: updater
-        mailService.sendEmailChangePassword(userService.findByEmail(userDto.getEmail()));
+        mailService.sendEmailChangePassword(userService.findById(userId));
         return Response.noContent().build();
     }
 
