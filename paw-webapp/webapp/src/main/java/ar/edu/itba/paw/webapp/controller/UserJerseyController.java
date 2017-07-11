@@ -351,6 +351,36 @@ public class UserJerseyController implements UpdateParamsChecker {
         return result.build();
     }
 
+    @OPTIONS
+    @Path("/{id : \\d+}/play-statuses")
+    public Response playStatusOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/game-scores")
+    public Response scoreOptions() {
+        return playStatusOptions();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/play-statuses/{gameId : \\d+}")
+    public Response playStatusOptions2() {
+        return playStatusOptions();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/game-scores/{gameId : \\d+}")
+    public Response scoreOptions2() {
+        return playStatusOptions();
+    }
+
+
     @PUT
     @Path("/picture")
     @Consumes(MediaType.APPLICATION_JSON)

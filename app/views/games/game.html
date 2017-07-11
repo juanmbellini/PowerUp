@@ -6,88 +6,42 @@
 		</div>
 		<!--ACTION FORMS-->
 		<div class="section">
-			<!--RATE AND STATUS FORM-->
 			<div class="row" ng-show="isLoggedIn()">
-                <!--<form ng-show="isLoggedIn()" name="registerForm" class="css-form" ng-submit="register(registerForm)" novalidate>-->
-                  	<div class="col s2"></div>
-                    <div class="col s10 center-align">
-						<div class="row" style="margin-bottom:0;">
-							<div class="col s3 center-align">
-                                <label>Score: </label>
-                                <ng-input>
-                                    <select ng-model="gameScore" class="browser-default" ng-options="score for score in rangeScore">
-                                        <option value="">Select score</option>
+                <div class="col s2"></div>
+                <div class="col s10 center-align">
+                    <div class="row" style="margin-bottom:0;">
+                        <div class="col s3 center-align">
+                            <label>Score: </label>
+                            <ng-input>
+                                <select ng-model="gameScore" class="browser-default" ng-change="updateScore()"  ng-options="score for score in rangeScore">
+                                    <option value="delete">Select score</option>
+                                </select>
+                            </ng-input>
+                        </div>
+                        <div class="col s3 center-align">
+                            <label>PlayStatus: </label>
+                            <ng-input>
+                                <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()"  ng-options="playStatus for playStatus in playStatusOptions">
+                                    <option value="delete">Select play status</option>
+                                </select>
+                            </ng-input>
+                        </div>
+                        <div class="col s6 center-align">
+                            <label>Shelves: </label>
+                            <ng-input>
+                                <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
+                                <div ng-show="shelves.length > 0">
+                                    <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
+                                        <option value="" disabled selected>Select shelves</option>
+                                        <option ng-repeat="shelf in shelves" value="{{shelf.name}}" {{isInShelf(shelf.name)? selected : }}> {{shelf.name}} </option>
                                     </select>
-                                </ng-input>
-							</div>
-                            <div class="col s3 center-align">
-                                <label>PlayStatus: </label>
-                                <ng-input>
-                                    <select ng-model="gamePlayStatus" class="browser-default" ng-options="playStatus for playStatus in playStatusOptions">
-                                        <option value="">Select play status</option>
-                                    </select>
-                                </ng-input>
-                            </div>
-                            <div class="col s6 center-align">
-                                <label>Shelves: </label>
-                                <ng-input>
-                                    <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
-                                    <div ng-show="shelves.length > 0">
-                                        <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
-                                            <option value="" disabled selected>Select shelves</option>
-                                            <!--<%&#45;&#45;<option id="newShelf" value="newShelf" >New shelf...</option>&#45;&#45;%>-->
-                                            <!--<c:forEach var="entry" items="${shelves}">-->
-                                            <!--<c:set var="shelf" value="${entry.key}"/>-->
-                                            <!--<c:set var="isInShelf" value="${entry.value}"/>-->
-                                            <option ng-repeat="shelf in shelves" value="{{shelf}}"> {{shelf.name}} </option>
-                                        </select>
-                                    </div>
-                                </ng-input>
-                            </div>
-							<!--<c:choose>-->
-								<!--<c:when test="${isLoggedIn}">-->
-									<!--<div class="col s4 center">-->
-										<!--<button id="submit" type="submit" class="btn waves-effect waves-light">Update List</button>-->
-									<!--</div>-->
-								<!--</c:when>-->
-								<!--<c:otherwise>-->
-									<!--<div class="col s4 center">-->
-										<!--<%&#45;&#45;TODO redirect user back here after login&#45;&#45;%>-->
-										<!--<a class="btn waves-effect waves-light" href="<c:url value="/login" />">Login</a>-->
-									<!--</div>-->
-								<!--</c:otherwise>-->
-							<!--</c:choose>-->
-						</div>
-					</div>
-				<!--</form:form>-->
-				<!--<c:if test="${isLoggedIn && canUpdateShelves}">-->
-					<!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
-				<!--</c:if>-->
-			</div>
-            <!--END RATE AND STATUS FORM-->
-            <!--SHELVES FORM-->
-            <div class="row" ng-show="isLoggedIn()" style="margin-bottom:0; margin-top: 0;">
-
-                <div class="col s3"></div>
-                <div class="col s8 center-align">
-
+                                </div>
+                            </ng-input>
+                        </div>
+                    </div>
                 </div>
-							<!--<c:choose>-->
-								<!--<c:when test="${isLoggedIn}">-->
-									<!--<button type="submit" class="btn waves-effect waves-light">Update Shelves</button>-->
-								<!--</c:when>-->
-								<!--<c:otherwise>-->
-									<!--<%&#45;&#45;TODO redirect user back  here after login&#45;&#45;%>-->
-									<!--<a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>-->
-								<!--</c:otherwise>-->
-							<!--</c:choose>-->
-						<!--</div>-->
-					<!--</form>-->
-				<!--</div>-->
-			<!--</c:if>-->
-
-            </div>
-			<!--END SHELVES FORM-->
+                <!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
+			</div>
 		</div>
 		<!--END ACTION FORMS-->
 

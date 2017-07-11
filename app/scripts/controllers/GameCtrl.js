@@ -45,10 +45,33 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
         var userId = 2; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
 
+        // Game Score
+        $scope.gameScore = null;
+        Restangular.one('users', userId).all('game-scores').get({gameId: $scope.gameId}).then(function (gameScore) {
+            $scope.gameScore = gameScore;
+        }, function (response) {
+            $log.error('Could not remove score from game', response);
+        });
+        $scope.updateScore = function () {
+            if ($scope.gameScore === 'delete') {
+                Restangular.one('users', userId).one('game-scores',$scope.gameId).delete().then(function () {
+                    $log.info('removed score from game', response);
+                }, function (response) {
+                    $log.error('Could not remove score from game', response);
+                });
+            } else {
+                Restangular.one('users', userId).all('game-scores').post({gameId: $scope.gameId, score: $scope.gameScore}).then(function () {
+                    $log.info('added score to game', response);
+                }, function (response) {
+                    $log.error('Could not add score to game', response);
+                });
+            }
+        };
+
         // Shelves
         $scope.shelves = [];
-        $scope.shelvesWithGame = [];
-        $scope.shelvesWithGameDirty = [];
+        $scope.shelvesWithGame = []; // name array
+        $scope.shelvesWithGameDirty = []; // name array
         Restangular.one('users',userId).all('shelves').getList().then(function (shelves) {
             $scope.shelves = shelves;
             $timeout(function () {
@@ -56,44 +79,45 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             },30);
         });
         Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelvesWithGame) {
-            $scope.shelvesWithGame = shelvesWithGame;
-            $scope.shelvesWithGameDirty = shelvesWithGame;
+            $scope.shelvesWithGame = [];
+            angular.forEach(shelvesWithGame, function (shelf) {
+                $scope.shelvesWithGame.push(shelf.name);
+            });
+            $scope.oldShelvesWithGame = $scope.shelvesWithGame;
         });
-        /**
-         * Changes value of game in this shelf (take game out of shelf or puts it
-         * @param shelf
-         */
-        $scope.updateInShelf = function (shelf) {
-            if ($scope.shelvesWithGame.indexOf(shelf.name) === -1) {
-                // The game is not in the array, then it was removed
-                Restangular.one('users',$scope.userId).one('shelves',shelf.name).one('games',$scope.gameId).remove().then(function () {
-
-                }, function (response) {
-                    $log.error('could not remove game from shelf', response);
-                });
-            } else {
-                // The game is in the array, then it was added
-                Restangular.one('users',$scope.userId).one('shelves',shelf.name).all('games').post({gameId: $scope.gameId}).then(function () {
-
-                }, function (response) {
-                    $log.error('could not add game to shelf', response);
-                });
-            }
-        };
         $scope.updateShelfSelect = function () {
             // console.log(shelfUpdated);
+            angular.forEach($scope.shelvesWithGame, function (shelfName) {
+                if ($scope.oldShelvesWithGame.indexOf(shelfName) === -1) {
+                    // The game is not in the oldArray, then it was added
+                    Restangular.one('users',userId).one('shelves',shelfName).all('games').post({gameId: $scope.gameId}).then(function () {
 
-            angular.forEach($scope.shelvesWithGame, function (shelf) {
-                $scope.updateInShelf(shelf);
+                    }, function (response) {
+                        $log.error('could not add game to shelf', response);
+                    });
+                }
             });
+            angular.forEach($scope.oldShelvesWithGame, function (shelfName) {
+                if ($scope.shelvesWithGame.indexOf(shelfName) === -1) {
+                    // The game is not in the newArray, then it was removed
+                    Restangular.one('users',userId).one('shelves',shelfName).one('games',$scope.gameId).remove().then(function () {
 
-            // console.log($scope.shelvesWithGame);
-            // Restangular.one('users',userId).all('shelves').post($scope.shelvesWithGame}).then(function () {
-            //
-            // },function (response) {
-            //     $log.error("update shelves for game didn't work", response);
-            // });
+                    }, function (response) {
+                        $log.error('could not remove game from shelf', response);
+                    });
+                }
+            });
+            $scope.oldShelvesWithGame = $scope.shelvesWithGame;
         };
+        $scope.isInShelf = function(shelfName) {
+              return $scope.shelvesWithGame.indexOf(shelfName) !== -1;
+        };
+        // console.log($scope.shelvesWithGame);
+        // Restangular.one('users',userId).all('shelves').post($scope.shelvesWithGame}).then(function () {
+        //
+        // },function (response) {
+        //     $log.error("update shelves for game didn't work", response);
+        // });
 
         // Restangular.one('users',$scope.userId).all('play-statuses').getList({}).then(function (playStatuses) {
         //     console.log(playStatuses);
