@@ -150,7 +150,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         return Response.noContent().build();
     }
 
-    @GET
+    @POST
     @Path("/{id : \\d+}/password-reset")
     public Response resetPassword(@PathParam("id") final long userId) {
         String newPassword = userService.generateNewPassword();
