@@ -221,6 +221,11 @@ public class UserHibernateDao implements UserDao {
     }
 
     @Override
+    public Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection) {
+        return getPageOfRelationObject(user, null, null, pageNumber, pageSize, sortingType.getFieldName(), sortDirection, UserGameStatus.class, em);
+    }
+
+    @Override
     public Collection<Game> recommendGames(long userId) {
 
         User user = findById(userId);
@@ -231,7 +236,6 @@ public class UserHibernateDao implements UserDao {
 
 
     }
-
 
     @Override
     public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
@@ -369,5 +373,4 @@ public class UserHibernateDao implements UserDao {
         return DaoHelper.findPageWithConditions(em, klass, query, "relationObject", "id", conditions,
                 pageNumber, pageSize, sortingField, sortDirection, false);
     }
-
 }

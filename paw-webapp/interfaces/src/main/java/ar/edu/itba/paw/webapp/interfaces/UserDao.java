@@ -110,6 +110,11 @@ public interface UserDao extends FindByIdDao<User> {
     Page<Game> recommendedGames(User user, Set<Shelf> shelves,
                                 int pageNumber, int pageSize, SortDirection sortDirection);
 
+    /**
+     * @see UserService#getGameList(long, int, int, PlayStatusAndGameScoresSortingType, SortDirection)
+     */
+    Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection);
+
 
     /**
      * @see UserService#recommendGames(long)

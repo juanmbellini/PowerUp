@@ -95,10 +95,10 @@ public class UserController extends BaseController {
         ModelAndView mav = new ModelAndView("profile");
         mav.addObject("user", user);
         mav.addObject("formHasErrors", errors.hasErrors());
-        Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
-        mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
-        mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
-        mav.addObject("planToPlayGames", gameList.get(PlayStatus.PLAN_TO_PLAY));
+//        Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
+//        mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
+//        mav.addObject("playingGames", gameList.get(PlayStatus.PLAYING));
+//        mav.addObject("planToPlayGames", gameList.get(PlayStatus.PLAN_TO_PLAY));
 
         //Add up to 10 games in descending rank order
         Map<Game, Integer> topGames = new LinkedHashMap<>();
@@ -118,52 +118,52 @@ public class UserController extends BaseController {
         return mav;
     }
 
-    @RequestMapping(value = "/list")
-    public ModelAndView list(@RequestParam(value = "username", required = false) String username,
-                             @RequestParam(value = "playStatusesCheckbox", required = false) String[] playStatusesCheckboxStr,
-                             @RequestParam(value = "shelvesCheckbox", required = false) String[] shelvesCheckboxStr) {
-        if (username == null) {
-            if (!isLoggedIn()) {
-                return new ModelAndView("redirect:error400");
-            }
-            return list(getCurrentUsername(),playStatusesCheckboxStr,shelvesCheckboxStr);
-        }
-        final ModelAndView mav = new ModelAndView("shelves");
-        User user = userService.findByUsername(username);
-        if (user == null) return new ModelAndView("error400");
+//    @RequestMapping(value = "/list")
+//    public ModelAndView list(@RequestParam(value = "username", required = false) String username,
+//                             @RequestParam(value = "playStatusesCheckbox", required = false) String[] playStatusesCheckboxStr,
+//                             @RequestParam(value = "shelvesCheckbox", required = false) String[] shelvesCheckboxStr) {
+//        if (username == null) {
+//            if (!isLoggedIn()) {
+//                return new ModelAndView("redirect:error400");
+//            }
+//            return list(getCurrentUsername(),playStatusesCheckboxStr,shelvesCheckboxStr);
+//        }
+//        final ModelAndView mav = new ModelAndView("shelves");
+//        User user = userService.findByUsername(username);
+//        if (user == null) return new ModelAndView("error400");
+//
+//        Set<String> shelvesFilter = new HashSet<>();
+//        if(shelvesCheckboxStr!=null){
+//            for(String s: shelvesCheckboxStr){
+//                shelvesFilter.add(s);
+//            }
+//        }
+//
+//        Set<String> playStatusesFilter = new HashSet<>();
+//        if(playStatusesCheckboxStr!=null){
+//            for(String s: playStatusesCheckboxStr){
+//                playStatusesFilter.add(s);
+//            }
+//        }
+//
+//
+//        Map<Game, Set<Shelf>> shelvesForGames = new HashMap();
+//        Map<Game, PlayStatus> playStatuses = new HashMap<>();
 
-        Set<String> shelvesFilter = new HashSet<>();
-        if(shelvesCheckboxStr!=null){
-            for(String s: shelvesCheckboxStr){
-                shelvesFilter.add(s);
-            }
-        }
 
-        Set<String> playStatusesFilter = new HashSet<>();
-        if(playStatusesCheckboxStr!=null){
-            for(String s: playStatusesCheckboxStr){
-                playStatusesFilter.add(s);
-            }
-        }
-
-
-        Map<Game, Set<Shelf>> shelvesForGames = new HashMap();
-        Map<Game, PlayStatus> playStatuses = new HashMap<>();
-
-
-        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(user.getId()).entrySet()) {
-            // TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
-            PlayStatus status = entry.getKey();
-            Set<Game> games = entry.getValue();
-            for(Game game : games) {
-                if(!shelvesForGames.containsKey(game)){
-                    shelvesForGames.put(game,new HashSet<>());
-                }
-                if(!playStatuses.containsKey(game)) {
-                    playStatuses.put(game, status);
-                }
-            }
-        }
+//        for (Map.Entry<PlayStatus, Set<Game>> entry : userService.getGameList(user.getId()).entrySet()) {
+//             TODO use other set and give it order? ScoreOrder? (If treeSet is used, danger of eliminating games)
+//            PlayStatus status = entry.getKey();
+//            Set<Game> games = entry.getValue();
+//            for(Game game : games) {
+//                if(!shelvesForGames.containsKey(game)){
+//                    shelvesForGames.put(game,new HashSet<>());
+//                }
+//                if(!playStatuses.containsKey(game)) {
+//                    playStatuses.put(game, status);
+//                }
+//            }
+//        }
 //        Set<Shelf> shelves = shelfService.findByUserId(user.getId());
 //        for(Shelf shelf : shelves) {
 //            for(Game game : shelf.getGames()) {
@@ -174,53 +174,53 @@ public class UserController extends BaseController {
 //        }
         //scores
 //        Map<Game, Integer> scores = userService.getScoredGames(user.getId()); // TODO: fix
-
-
-        Set<Game> games = new HashSet<>();
-
-        for(Game game: playStatuses.keySet()){
-            boolean validShelf = false;
-            boolean validPlayStatus = false;
-            if(playStatusesFilter.isEmpty()) validPlayStatus =true;
-            for(String playStatusFilter: playStatusesFilter){
-                if(playStatuses.get(game).name().equals(playStatusFilter)){
-                    validPlayStatus = true;
-                }
-            }
-
-            if(shelvesFilter.isEmpty()) validShelf =true;
-            for(String shelfFilter: shelvesFilter){
-                for(Shelf shelf: shelvesForGames.get(game)){
-                    if(shelf.getName().equals(shelfFilter)){
-                        validShelf = true;
-                    }
-                }
-            }
-            if(validPlayStatus && validShelf) games.add(game);
-        }
-
-        Collection<Game> recommendedGames = new LinkedHashSet<>();
-        if (isLoggedIn()) {
-            Set<Shelf> shelfFilter = new HashSet<>();
+//
+//
+//        Set<Game> games = new HashSet<>();
+//
+//        for(Game game: playStatuses.keySet()){
+//            boolean validShelf = false;
+//            boolean validPlayStatus = false;
+//            if(playStatusesFilter.isEmpty()) validPlayStatus =true;
+//            for(String playStatusFilter: playStatusesFilter){
+//                if(playStatuses.get(game).name().equals(playStatusFilter)){
+//                    validPlayStatus = true;
+//                }
+//            }
+//
+//            if(shelvesFilter.isEmpty()) validShelf =true;
+//            for(String shelfFilter: shelvesFilter){
+//                for(Shelf shelf: shelvesForGames.get(game)){
+//                    if(shelf.getName().equals(shelfFilter)){
+//                        validShelf = true;
+//                    }
+//                }
+//            }
+//            if(validPlayStatus && validShelf) games.add(game);
+//        }
+//
+//        Collection<Game> recommendedGames = new LinkedHashSet<>();
+//        if (isLoggedIn()) {
+//            Set<Shelf> shelfFilter = new HashSet<>();
 //            for(Shelf shelf: shelves){
 //                if(shelvesFilter.contains(shelf.getName())){
 //                    shelfFilter.add(shelf);
 //                }
 //            }
-            recommendedGames = userService.recommendGames(getCurrentUser().getId(), shelfFilter);
-        }
-        mav.addObject("recommendedGames", recommendedGames);
-        mav.addObject("playStatusEnumValues", PlayStatus.values());
-        mav.addObject("playStatusesFilter",playStatusesFilter);
-        mav.addObject("shelvesFilter",shelvesFilter);
-        mav.addObject("games",games);
-        mav.addObject("user", user);
+//            recommendedGames = userService.recommendGames(getCurrentUser().getId(), shelfFilter);
+//        }
+//        mav.addObject("recommendedGames", recommendedGames);
+//        mav.addObject("playStatusEnumValues", PlayStatus.values());
+//        mav.addObject("playStatusesFilter",playStatusesFilter);
+//        mav.addObject("shelvesFilter",shelvesFilter);
+//        mav.addObject("games",games);
+//        mav.addObject("user", user);
 //        mav.addObject("scores",scores);
 //        mav.addObject("shelves", shelves);
-        mav.addObject("shelvesForGamesMap",shelvesForGames);
-        mav.addObject("playStatuses", playStatuses);
-        return mav;
-    }
+//        mav.addObject("shelvesForGamesMap",shelvesForGames);
+//        mav.addObject("playStatuses", playStatuses);
+//        return mav;
+//    }
 
     @RequestMapping(value = "/remove-from-list", method = RequestMethod.POST)
     public ModelAndView removeFromList(@RequestParam(value = "gameId") long gameId,
