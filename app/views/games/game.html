@@ -6,10 +6,11 @@
 		</div>
 		<!--ACTION FORMS-->
 		<div class="section">
-			<div class="row" ng-show="isLoggedIn()">
-                <div class="col s2"></div>
+			<div class="row">
+                <div class="col s1">
+                </div>
                 <div class="col s10 center-align">
-                    <div class="row" style="margin-bottom:0;">
+                    <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
                         <div class="col s3 center-align">
                             <label>Score: </label>
                             <ng-input>
@@ -40,6 +41,11 @@
                                 </div>
                             </ng-input>
                         </div>
+                    </div>
+                    <div ng-show="!isLoggedIn()" class="row" style="margin-bottom:0;">
+                        <p>
+                            <a ng-href="#/login">LogIn </a> to rate this game! To give it a play status! Or to add it to one of your shelves!
+                        </p>
                     </div>
                 </div>
                 <!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->

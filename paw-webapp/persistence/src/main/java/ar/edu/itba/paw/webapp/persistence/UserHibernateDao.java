@@ -26,7 +26,6 @@ public class UserHibernateDao implements UserDao {
 
     private final GameDao gameDao;
 
-
     @Autowired
     public UserHibernateDao(GameDao gameDao, GenreDao genreDao) {
         this.gameDao = gameDao;

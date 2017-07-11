@@ -98,23 +98,10 @@ public interface UserDao extends FindByIdDao<User> {
      */
     void delete(User user);
 
-
-    /**
-     * @see UserService#recommendedGames(long, int, int, SortDirection)
-     */
-    Page<Game> recommendedGames(User user, int pageNumber, int pageSize, SortDirection sortDirection);
-
-    /**
-     * @see UserService#recommendedGames(long, Set, int, int, SortDirection)
-     */
-    Page<Game> recommendedGames(User user, Set<Shelf> shelves,
-                                int pageNumber, int pageSize, SortDirection sortDirection);
-
     /**
      * @see UserService#getGameList(long, int, int, PlayStatusAndGameScoresSortingType, SortDirection)
      */
     Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection);
-
 
     /**
      * @see UserService#recommendGames(long)

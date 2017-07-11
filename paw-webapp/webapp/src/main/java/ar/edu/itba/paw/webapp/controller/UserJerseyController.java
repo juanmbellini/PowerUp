@@ -352,7 +352,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @OPTIONS
-    @Path("/{id : \\d+}/play-statuses")
+    @Path("/{id : \\d+}/play-status")
     public Response playStatusOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
@@ -369,7 +369,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @OPTIONS
-    @Path("/{id : \\d+}/play-statuses/{gameId : \\d+}")
+    @Path("/{id : \\d+}/play-status/{gameId : \\d+}")
     public Response playStatusOptions2() {
         return playStatusOptions();
     }

@@ -39,7 +39,35 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         // Play Status
         $scope.playStatusOptions = ['verdurita1', 'verdurita2']; // TODO get from api real playStatusOptions
         // TODO chang this call to be made at the begining or something only once.
-        // Restangular.one('users', userId).
+        Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
+            $scope.playStatusOptions = playStatuses;
+        }, function (response) {
+            $log.error('Could not get playStatuses', response);
+        });
+        Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (playStatus) {
+            if (playStatus.length > 0) {
+                $scope.gamePlayStatus = playStatus[0].status;
+            } else {
+                $scope.gamePlayStatus = 'delete';
+            }
+        }, function (response) {
+            $log.error('Could not get play status from game', response);
+        });
+        $scope.updatePlayStatus = function () {
+            if ($scope.gamePlayStatus === 'delete') {
+                Restangular.one('users', userId).one('play-status',$scope.gameId).remove().then(function (response) {
+                    $log.info('removed play status from game', response);
+                }, function (response) {
+                    $log.error('Could not remove play status from game', response);
+                });
+            } else {
+                Restangular.one('users', userId).all('play-status').post({gameId: $scope.gameId, status: $scope.gamePlayStatus}).then(function (response) {
+                    $log.info('added play status to game', response);
+                }, function (response) {
+                    $log.error('Could not add play status to game', response);
+                });
+            }
+        };
 
 
         // Game Score
