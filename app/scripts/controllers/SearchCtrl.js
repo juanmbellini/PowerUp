@@ -42,7 +42,10 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         $scope.games = null;
 
-        $scope.submitSearch = function () {
+        $scope.submitSearch = function (resetPageNumber) {
+            if(resetPageNumber === true) {
+                $scope.searchParams.pageNumber = 1;
+            }
             $log.debug('Reloading Search with specified parameters: ', $scope.searchParams);
             $location.search($scope.searchParams);
             $location.path('search');
@@ -130,7 +133,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             if (typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
                 return; // Initial change, ignore
             }
-            $scope.submitSearch();
+            $scope.submitSearch(false); // False to prevent infinite loop
         });
 
         // Enable filters when ready
