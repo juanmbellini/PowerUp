@@ -14,7 +14,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             Restangular.one('games', gameId).get().then(function(game) {
                 $scope.game = game;
                 $scope.gameId = game.id;
-
                 console.log('Game: ', game);
                 if ($scope.gameId > 0 && $scope.game !== null) {
                     $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page

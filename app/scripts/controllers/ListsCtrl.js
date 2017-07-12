@@ -4,7 +4,18 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService) {
 
         // TODO replace this values with api calls. -- Droche 15/02/2017
-        $scope.playStatuses = ['planToPlay','playing','played'];
+        $scope.playStatuses = [];
+        Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
+            $scope.playStatuses = playStatuses;
+        }, function (response) {
+            $log.error('Could not get playStatuses', response);
+        });
+
+        Restangular.setFullResponse(false);
+
+        $scope.checkCurrentUserLogged = function() { // TODO change name to isCurrentUserLoggedAndOwner
+            $scope.isCurrentUserLogged = AuthService.isLoggedIn();
+        };
 
         $scope.userId = $location.search().id;
         $scope.username = $location.search().username;
@@ -47,11 +58,10 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         $scope.shelves = null;
         $scope.getShelves();
 
+        // Games
         $scope.games = [];
         // TODO change games to real game list and recommended games too.
         var baseGames = Restangular.all('games');
-
-
         baseGames.getList({}).then(function(games) {
             $scope.games = games;
             $scope.$broadcast('gamesLoaded');
@@ -59,22 +69,56 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             $log.error('Error with status code', response.status);
         });
 
-       baseGames.getList({}).then(function(games) {
-            // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
-            $scope.recommendedGames = games;
-            $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
-        }, function(response) {
-            $log.error('Error with status code', response.status);
+        $scope.$on('gamesLoaded', function() {
+
+            angular.forEach($scope.games, function (gameRef, index, gameArray) {
+                var game = gameArray[index];
+                Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
+                    if (gameScore.length > 0) {
+                       game.userScore = gameScore[0].score;
+                    }
+                }, function (response) {
+                    $log.error('Could not get score from game', response);
+                });
+                Restangular.one('users',$scope.userId).all('shelves').getList({gameId: game.id}).then(function (shelvesWithGame) {
+                    game.shelves = shelvesWithGame;
+                });
+                Restangular.one('users', $scope.userId).one('play-status', game.id).get().then(function (playStatus) {
+                    if (playStatus.length > 0) {
+                        game.status = playStatus[0].status;
+                    }
+                }, function (response) {
+                    $log.error('Could not get play status from game', response);
+                });
+            });
         });
 
-        $scope.getGameShelves = function(game) {
-            userURL.all('shelves').getList({gameId: game.id}).then(function(shelves) {
-                return shelves;
-            }, function (response) {
-                $log.error('Couldn\'t get shelves, status code', response.status);
-                return [];
-            });
-        };
+        $scope.selectedShelves = [];
+        // https://stackoverflow.com/questions/14514461/how-do-i-bind-to-list-of-checkbox-values-with-angularjs
+        // TODO hacer esto con las shelves por un lado y con los playStatus por otro y juntarlos para el getList. Para esto solo shelves.
+        Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (recommendedGames) {
+            $scope.recommendedGames = recommendedGames;
+            $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+        }, function (response) {
+            $log.error("Could not get recommended games", response);
+        });
+
+       // baseGames.getList({}).then(function(games) {
+       //      // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
+       //      $scope.recommendedGames = games;
+       //      $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+       //  }, function(response) {
+       //      $log.error('Error with status code', response.status);
+       //  });
+
+        // $scope.getGameShelves = function(game) {
+        //     userURL.all('shelves').getList({gameId: game.id}).then(function(shelves) {
+        //         return shelves;
+        //     }, function (response) {
+        //         $log.error('Couldn\'t get shelves, status code', response.status);
+        //         return [];
+        //     });
+        // };
 
 
         $scope.deleteShelf = function(shelf) {
@@ -148,9 +192,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
         $scope.isCurrentUserLogged = false;
 
-        $scope.checkCurrentUserLogged = function() { // TODO change name to isCurrentUserLoggedAndOwner
-            $scope.isCurrentUserLogged = AuthService.isLoggedIn();
-        };
+
 
         $scope.isUserLoggedOwner = false;
         $scope.checkUserLoggedOwner = function () {

@@ -28,7 +28,7 @@
           <li><a ng-href="#threads">Threads <i class="material-icons right">forum</i></a></li>
 
           <li ng-if="isLoggedIn()"><a ng-href="#profile?username={{currentUser.username}}">{{currentUser.username}}<i class="material-icons right">person</i></a></li>
-          <li ng-if="isLoggedIn()"><a ng-href="#list?username={{currentUser.username}}">Game List <i class="material-icons right">menu</i></a></li>
+          <li ng-if="isLoggedIn()"><a ng-href="#list?id={{currentUser.id}}">Game List <i class="material-icons right">menu</i></a></li>
           <li ng-if="isLoggedIn()" ng-click="logOut()"><a ng-href="#/">Log Out <i class="material-icons right">exit_to_app</i></a></li>
 
           <li ng-if="!isLoggedIn()"><a ng-href="#login">Log In <i class="material-icons right">person_outline</i></a></li>

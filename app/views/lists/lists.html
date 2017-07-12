@@ -60,7 +60,7 @@
                     <p class="col s2 ">Own score</p>
                     <p class="col s1"></p>
                 </div>
-                <ul ng-if="games.length != 0" class="collection games-list">
+                <ul ng-show="games.length != 0" class="collection games-list">
                     <!--TODO limit number of shown games, create link to show more-->
                     <li ng-repeat="game in games" class="collection-item avatar col s12">
                         <div class="col s2 cover-pic-container valign-wrapper">
@@ -70,42 +70,20 @@
                             <p class="title wrap-text"><a ng-href="#game?id={{game.id}}">{{game.name}}</a></p>
                         </div>
                         <div class="col s1 center">
-                            <p style="margin-top: 33px;"><b>
-                                <!-- TODO {{empty playStatuses.get(game) ? "No status" : playStatuses.get(game).pretty}-->
-                                TODO STATUS
-                            </b></p>
+                            <p ng-if="game.status" style="margin-top: 33px;"><b> {{game.status}}</b></p>
+                            <p ng-if="!game.status" style="margin-top: 33px;"><b> No Status</b></p>
                         </div>
-                        <div class="col s2 center " ng-init="gameShelves = getGameShelves(game)">
-
-                            <!--<p style="margin-top: 33px;"><b>-->
-
-                                <span ng-repeat="shelf in gameShelves"> {{shelf.name}} </span>
-                                <span ng-hide="gameShelves.lenth">  No shelves</span>
-
-                                <!--TODO SHELVES-->
-                                <!--<span ng-if="gameShelves.length === 0">L: {{gameShelves.length}} HOLA  No shelves</span>-->
-
-                                <!--<span ng-if="gameShelves.length !== 0" ng-repeat="shelf in gameShelves">L: {{gameShelves.length}} HOLA {{shelf.name}} </span>-->
-
-                                <!--<br/>-->
-                                <!--<span ng-if="gameShelves.length !== 0"> {{gameShelves}} SSS {{gameShelves.length}}</span>-->
-
-                            <!--<c:choose>-->
-                                <!--<c:when test="${ empty shelvesForGamesMap.get(game)}">No shelves</c:when>-->
-                                <!--<c:otherwise>-->
-                                <!--<c:forEach items="${shelvesForGamesMap.get(game)}" var="shelf">-->
-                                <!--<c:out value="${shelf.name}"/>-->
-                                <!--</c:forEach>-->
-                                <!--</c:otherwise>-->
-                                <!--</c:choose>-->
-                            <!--</b></p>-->
+                        <div class="col s2 center">
+                            <p class=wrap-text style="margin-top: 33px;"><b>
+                                <span ng-repeat="shelf in game.shelves"> {{shelf.name}}<span ng-hide="$last">,</span></span>
+                                <span ng-hide="game.shelves.length">  No shelves</span>
+                            </b></p>
                         </div>
                         <div class="col s1 center">
                             <p style="margin-top: 33px;"><b>
                                 {{(game.avgScore === null || game.avgScore == 0)?'No avg rating':(game.avgScore |
                                 number:2)}}
-                            </b>
-                            </p>
+                            </b>  </p>
                         </div>
                         <div class="col s2 center">
                             <!--
