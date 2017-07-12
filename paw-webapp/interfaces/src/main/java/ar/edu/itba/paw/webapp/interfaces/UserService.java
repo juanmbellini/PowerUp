@@ -5,6 +5,8 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -112,7 +114,8 @@ public interface UserService {
 
     /**
      * Sets or updates a play status for a specified game for a specified user.
-     *  @param userId    The ID of the user who is setting or updating status.
+     *
+     * @param userId    The ID of the user who is setting or updating status.
      * @param gameId    The ID of the game whose status is being registered.
      * @param status    The status.
      * @param updaterId The id of the user performing the operation.
@@ -121,7 +124,8 @@ public interface UserService {
 
     /**
      * Removes status from user u to game id.
-     *  @param userId    The ID of the user who is getting a gameStatus removed
+     *
+     * @param userId    The ID of the user who is getting a gameStatus removed
      * @param gameId    The ID of the game whose gameStatus is getting removed
      * @param updaterId The id of the user performing the operation.
      */
@@ -194,51 +198,21 @@ public interface UserService {
      */
     void delete(long userId, long deleterId);
 
-
-    /**
-     * Recommends games for the {@link User} with the given {@code userId},
-     * based on the scores of the games he has scored, applying sorting and pagination.
-     *
-     * @param userId        The user id.
-     * @param pageNumber    The page number.
-     * @param pageSize      The page size.
-     * @param sortDirection The sort direction.
-     * @return The resulting page.
-     */
-    Page<Game> recommendedGames(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
-
-    /**
-     * Recommends games for the {@link User} with the given {@code userId},
-     * based on the scores of the games he has scored in the selected shelves, applying sorting and pagination.
-     *
-     * @param userId        The user id.
-     * @param shelves       The shelves.
-     * @param pageNumber    The page number.
-     * @param pageSize      The page size.
-     * @param sortDirection The sort direction.
-     * @return
-     */
-    Page<Game> recommendedGames(long userId, Set<Shelf> shelves,
-                                int pageNumber, int pageSize, SortDirection sortDirection);
-
-
     /**
      * Recommends games for user based on the scores of the games he has scored
      *
      * @param userId The ID of the user who is getting the recommendations
      */
-    @Deprecated
     Collection<Game> recommendGames(long userId);
 
     /**
      * Recommends games for user based on the scores of the games he has scored for the shelf selected
      *
-     * @param userId
-     * @param shelves
-     * @return
+     * @param userId           The id of the {@link User} to which the recommendation must be done.
+     * @param shelfNameFilters A {@link List} of names of {@link Shelf} to be included in the recommendation process.
+     * @return A {@link Collection} of recommended {@link Game}s.
      */
-    @Deprecated
-    Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
+    Collection<Game> recommendGames(long userId, List<String> shelfNameFilters);
 
     /**
      * Gets all games in this user's main game list (games they have marked as playing, played, etc.).

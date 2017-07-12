@@ -3,14 +3,13 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
-import ar.edu.itba.paw.webapp.interfaces.SessionService;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.interfaces.UserService;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Authority;
 import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -45,12 +44,15 @@ public class UserJerseyController implements UpdateParamsChecker {
     public static final String END_POINT = "users";
 
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService) {
+    private UserJerseyController(UserService userService, SessionService sessionService, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
+        this.shelfService = shelfService;
     }
 
     private final UserService userService;
+
+    private final ShelfService shelfService;
 
     private final SessionService sessionService;
 
@@ -349,6 +351,36 @@ public class UserJerseyController implements UpdateParamsChecker {
         return result.build();
     }
 
+    @OPTIONS
+    @Path("/{id : \\d+}/play-status")
+    public Response playStatusOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/game-scores")
+    public Response scoreOptions() {
+        return playStatusOptions();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/play-status/{gameId : \\d+}")
+    public Response playStatusOptions2() {
+        return playStatusOptions();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/game-scores/{gameId : \\d+}")
+    public Response scoreOptions2() {
+        return playStatusOptions();
+    }
+
+
     @PUT
     @Path("/picture")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -463,6 +495,18 @@ public class UserJerseyController implements UpdateParamsChecker {
 
         String mimeType = metadata.get(HttpHeaders.CONTENT_TYPE);
         return mimeType;
+    }
+
+    @GET
+    @Path("/{id : \\d+}/recommended-games")
+    public Response getRecommendedGames(@PathParam("id") final long userId,
+                                        @QueryParam("shelves") final List<String> shelves) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        Collection<Game> recommendedGames = userService.recommendGames(userId, shelves);
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)) {
+        }).build();
     }
 
     @GET

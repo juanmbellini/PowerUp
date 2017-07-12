@@ -36,7 +36,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         function isOptionallyAuthenticatedEndpoint(url) {
             // Disregard protocol, domain and port; care only about path after '/api'
             var regex = /http:\/\/(\w+)(:\d*)?\/api\/(.*)/;
-            if(!regex.test(url)) {
+            if (!regex.test(url)) {
                 return false;
             }
             url = '/' + regex.exec(url)[3];

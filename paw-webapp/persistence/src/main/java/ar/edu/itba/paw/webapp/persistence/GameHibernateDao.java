@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
+import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.*;
@@ -65,10 +67,10 @@ public class GameHibernateDao implements GameDao {
         Query queryCount = em.createQuery(countString + fromString.toString());
 
         fromString.append(" order by ")
-                .append(orderCategory==OrderCategory.avg_score?"NULLIF(":"")
+                .append(orderCategory==OrderCategory.AVG_SCORE?"NULLIF(":"")
                 .append("g.")
-                .append(Game.getOrderField(orderCategory))
-                .append(orderCategory==OrderCategory.avg_score?",0)":"")
+                .append(orderCategory.getFieldName())
+                .append(orderCategory==OrderCategory.AVG_SCORE?",0)":"")
                 .append(ascending ? " ASC NULLS LAST" : " DESC NULLS LAST");
 
         TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
@@ -89,8 +91,13 @@ public class GameHibernateDao implements GameDao {
             return Page.emptyPage();
         }
         int actualPageSize = pageSize == 0 ? count : pageSize;
+        int totalAmountOfPages = Math.max((int) Math.ceil((double) count / actualPageSize), 1);
+        // Avoid making the query if pageSize is wrong
+        if (pageNumber > totalAmountOfPages) {
+            throw new NumberOfPageBiggerThanTotalAmountException();
+        }
         return new Page.Builder<Game>()
-                .setTotalPages(Math.max((int) Math.ceil((double) count / actualPageSize), 1))
+                .setTotalPages(totalAmountOfPages)
                 .setPageNumber(pageNumber)
                 .setPageSize(actualPageSize)
                 .setOverAllAmountOfElements(count)
@@ -156,6 +163,7 @@ public class GameHibernateDao implements GameDao {
         if (game == null) {
             return null;
         }
+        // TODO: move to service layer?
         loadGenres(game);
         loadPlatforms(game);
         loadDevelopers(game);
@@ -245,7 +253,7 @@ public class GameHibernateDao implements GameDao {
                 ArrayList<String> filterArrayParameter = new ArrayList<>();
                 filterArrayParameter.add(filter);
                 filterParameterMap.put(filterCategory, filterArrayParameter);
-                Collection<Game> resultGames = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                Collection<Game> resultGames = searchGames("", filterParameterMap, OrderCategory.AVG_SCORE, false);
                 for (Game game : resultGames) {
                     if (!excludedGameIds.contains(game.getId())) {
                         if (!gamesWeightMap.containsKey(game)) {
