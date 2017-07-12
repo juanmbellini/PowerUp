@@ -128,8 +128,6 @@ public interface UserDao extends FindByIdDao<User> {
     @Deprecated
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
-
-
     /**
      * Enum indicating the sorting type for the "get reviews" method.
      */

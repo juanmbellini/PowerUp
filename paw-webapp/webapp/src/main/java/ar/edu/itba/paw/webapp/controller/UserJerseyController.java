@@ -4,10 +4,7 @@ import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.Authority;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -41,18 +38,20 @@ import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "users";
-
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder) {
+    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
         this.passwordEncoder = passwordEncoder;
+        this.shelfService = shelfService;
     }
 
     private final UserService userService;
 
     private final MailService mailService;
+
+    private final ShelfService shelfService;
 
     private final SessionService sessionService;
 
@@ -224,7 +223,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (gameId <= 0) {
             throw new IllegalParameterValueException("gameId");
         }
-        userService.removePlayStatus(userId, gameId, userId); // TODO: updater
+        userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
         return Response.noContent().build();
     }
 
@@ -268,6 +267,9 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userGameScoreDto);
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
+        if(userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+            userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
+        }
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
@@ -282,7 +284,14 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
+        if(!belongsToGameList(userId, gameId)){
+            deleteFromGameList(userId, gameId);
+        }
         return Response.noContent().build();
+    }
+
+    private void deleteFromGameList(long userId, long gameId) {
+        userService.removePlayStatus(userId, gameId, userId);
     }
 
 
@@ -503,5 +512,15 @@ public class UserJerseyController implements UpdateParamsChecker {
                                 .createList(gamesPage.getData())) {
                         },
                         scoreAndStatusMap(null,null));
+    }
+    
+    /**
+     *
+     * @return whether or not the game belongs to the User's GameList.
+     */
+
+    private boolean belongsToGameList(final long userId, final long gameId){
+        return !userService.getGameScores(userId, gameId, null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 25, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty();
     }
 }
