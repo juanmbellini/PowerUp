@@ -146,5 +146,7 @@ public class UserGameStatus {
         return result;
     }
 
-
+    public void setPlayStatus(PlayStatus playStatus) {
+        this.playStatus = playStatus;
+    }
 }

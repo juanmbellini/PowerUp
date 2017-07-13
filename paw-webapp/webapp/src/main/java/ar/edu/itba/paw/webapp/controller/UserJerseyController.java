@@ -285,9 +285,7 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
-        if(!belongsToGameList(userId, gameId)){
-            deleteFromGameList(userId, gameId);
-        }
+        if(!belongsToGameList(userId, gameId)) deleteFromGameList(userId, gameId);
         return Response.noContent().build();
     }
 
@@ -564,11 +562,14 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     private boolean belongsToGameList(final long userId, final long gameId){
         boolean hasPlayStatus = false;
-        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().iterator().next();
-        if(ugs == null ) {
-            userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
-        } else {
-            if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+        Collection<UserGameStatus> playStatuses = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData();
+        if(playStatuses != null && playStatuses.iterator().hasNext()){
+            UserGameStatus ugs = playStatuses.iterator().next();
+            if(ugs == null ) {
+                userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
+            } else {
+                if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+            }
         }
         return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
                 || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()

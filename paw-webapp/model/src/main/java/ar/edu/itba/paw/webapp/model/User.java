@@ -126,8 +126,13 @@ public class User implements Serializable, ValidationExceptionThrower {
      * @throws ValidationException If any value is not valid.
      */
     public void setPlayStatus(Game game, PlayStatus playStatus) throws ValidationException {
-        checkPlayStatusValues(game, playStatus); // Checks values not null and status not set yet for given game.
-        playedGames.add(new UserGameStatus(game, this, playStatus));
+        checkPlayStatusValues(game, playStatus); //
+        UserGameStatus ugs = findGameStatus(game);
+        if (ugs != null) {
+            ugs.setPlayStatus(playStatus);
+        }else{
+            playedGames.add(new UserGameStatus(game, this, playStatus));
+        }
     }
 
     /**
@@ -155,9 +160,13 @@ public class User implements Serializable, ValidationExceptionThrower {
      */
     public UserGameScore scoreGame(Game game, Integer score) throws ValidationException {
         checkScoreGameValues(game, score);
-        UserGameScore gameScore = findGameScore(game);
-        scoredGames.add(new UserGameScore(game, this, score));
-        return gameScore;
+        UserGameScore ugs = findGameScore(game);
+        if (ugs != null) {
+            ugs.setScore(score);
+        }else{
+            scoredGames.add(new UserGameScore(game, this, score));
+        }
+        return ugs;
     }
 
     /**
@@ -456,10 +465,10 @@ public class User implements Serializable, ValidationExceptionThrower {
     private void checkPlayStatusValues(Game game, PlayStatus playStatus) throws ValidationException {
         List<ValueError> errorList = new LinkedList<>();
         ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
-        if (errorList.size() == 0 && findGameStatus(game) != null) {
-            // Checks if the game is not null (errorList.size() == 0) and that status is not set yet for the game.
-            errorList.add(ValueErrorConstants.PLAY_STATUS_ALREADY_SET);
-        }
+//        if (errorList.size() == 0 && findGameStatus(game) != null) {
+//            // Checks if the game is not null (errorList.size() == 0) and that status is not set yet for the game.
+//            errorList.add(ValueErrorConstants.PLAY_STATUS_ALREADY_SET);
+//        }
         ValidationHelper.objectNotNull(playStatus, errorList, ValueErrorConstants.MISSING_PLAY_STATUS);
         throwValidationException(errorList);
     }
