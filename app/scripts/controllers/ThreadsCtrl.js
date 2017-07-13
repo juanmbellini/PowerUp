@@ -37,7 +37,7 @@ define(['powerUp', 'authService', 'loadingCircle', 'loadingCircle-small', 'likes
         };
 
         $scope.getMoreThreads = function() {
-            if($scope.pendingRequests.threads) {
+            if ($scope.pendingRequests.threads) {
                 return;
             }
 

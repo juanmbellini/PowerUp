@@ -1,8 +1,8 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.webapp.dto.FilterCategoryDto;
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
+import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ar.edu.itba.paw.webapp.controller.GameJerseyController.END_POINT;
 
@@ -40,10 +37,16 @@ public class GameJerseyController {
     }
 
 
+    // ================ API methods ================
+
+
+    // ======== Basic user operation ========
+
+
     @GET
     @Path("/")
     public Response getGames(@QueryParam("orderBy") @DefaultValue("name") final OrderCategory orderCategory,
-                             @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                             @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                              @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                              @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                              // Filters
@@ -54,7 +57,8 @@ public class GameJerseyController {
                              @QueryParam("keyword") final List<String> keywords,
                              @QueryParam("platform") final List<String> platforms) {
 
-        // TODO: Check params once chore/error-system is merged
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection,
                         gameService.searchGames(name,
@@ -76,24 +80,34 @@ public class GameJerseyController {
     @GET
     @Path("/{id : \\d+}")
     public Response findById(@PathParam("id") final long id) {
-        if (id <= 0) {
-//            throw new IllegalParameterValueException(PathParam.class, "id", "");
-            // TODO: uncomment above and remove below when merging chore/error-system
-            throw new IllegalArgumentException();
-        }
+        JerseyControllerHelper.checkParameter("id", id, value -> value <= 0);
         final Game game = gameService.findById(id);
         return game == null ?
                 Response.status(Response.Status.NOT_FOUND).build() : Response.ok(new GameDto(game)).build();
     }
 
-
     @GET
-    @Path("/filters")
-    public Response getFilters() {
-        return Response
-                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
-                }).build();
+    @Path("/{id : \\d+}/related-games")
+    public Response getRelatedGames(@PathParam("id") final long gameId) {
+        if (gameId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        Set<FilterCategory> filters = new HashSet<>();
+        filters.add(FilterCategory.platform);
+        filters.add(FilterCategory.genre);
+        Collection<Game> relatedGames = gameService.findRelatedGames(gameId, filters);
+        return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(relatedGames)) {
+        }).build();
     }
+
+
+//    @GET
+//    @Path("/filters")
+//    public Response getFilters() {
+//        return Response
+//                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
+//                }).build();
+//    }
 
     @GET
     @Path("/filters/{type}")
@@ -106,8 +120,10 @@ public class GameJerseyController {
     }
 
 
+    // ================ Helper methods ================
+
     /**
-     * Create a filers map.
+     * Create a filters map.
      *
      * @param publishers The list with the publishers values.
      * @param developers The list with the developers values.
@@ -126,49 +142,6 @@ public class GameJerseyController {
         filters.put(FilterCategory.keyword, keywords);
         filters.put(FilterCategory.platform, platforms);
         return filters;
-    }
-
-    /**
-     * Creates an {@link URI} based on the given {@link UriInfo}, including 'orderCategory', 'ascending', 'pageSize',
-     * 'pageNumber', 'name', 'publisher', 'developer', 'genre', 'keyword' and 'platform' as query params.
-     * For 'publisher', 'developer', 'genre', 'keyword' and 'platform', they can appear more than once.
-     * Values for these params are based on the given arguments of this method.
-     *
-     * @param uriInfo       The {@link UriInfo} from which the absolute path is taken.
-     * @param orderCategory The order category for the query param.
-     * @param ascending     The ascending condition for the 'ascending' query param.
-     * @param pageSize      The page size for the query param.
-     * @param pageNumber    The page number for the query param.
-     * @param name          The name for the query param.
-     * @param publishers    The List of publishers for the query params
-     *                      (if it has more than one element, the query param is repeated).
-     * @param developers    The List of developers for the query params
-     *                      (if it has more than one element, the query param is repeated).
-     * @param genres        The List of genres for the query params
-     *                      (if it has more than one element, the query param is repeated).
-     * @param keywords      The List of keywords for the query params
-     *                      (if it has more than one element, the query param is repeated).
-     * @param platforms     The List of platforms for the query params
-     *                      (if it has more than one element, the query param is repeated).
-     * @return The created {@link URI}.
-     */
-    private static URI createGetAllGamesUri(final UriInfo uriInfo, final OrderCategory orderCategory,
-                                            final boolean ascending, final int pageSize, final int pageNumber,
-                                            final String name, final List<String> publishers,
-                                            final List<String> developers, final List<String> genres,
-                                            final List<String> keywords, final List<String> platforms) {
-        return uriInfo.getAbsolutePathBuilder()
-                .queryParam("orderCategory", orderCategory)
-                .queryParam("ascending", ascending)
-                .queryParam("pageSize", pageSize)
-                .queryParam("pageNumber", pageNumber)
-                .queryParam("name", name)
-                .queryParam("publisher", publishers.toArray())
-                .queryParam("developer", developers.toArray())
-                .queryParam("genre", genres.toArray())
-                .queryParam("keyword", keywords.toArray())
-                .queryParam("platform", platforms.toArray())
-                .build();
     }
 
 }

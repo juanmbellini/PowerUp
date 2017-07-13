@@ -2,7 +2,10 @@ package ar.edu.itba.paw.webapp.auth.json;
 
 import ar.edu.itba.paw.webapp.auth.jwt.JwtHelper;
 import ar.edu.itba.paw.webapp.config.CorsFilter;
+import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.entity.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,7 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
     private UserService userService;
 
     /**
-     * Attach a JWT to the 200 OK response.
+     * Attach a JWT to the 200 OK and write the authenticated user's JSON to the response.
      */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -46,5 +49,9 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
             }
         }
         response.setStatus(200);
+
+        //Successfully logged in, send full user JSON in response
+        response.setContentType(ContentType.APPLICATION_JSON.toString());
+        new ObjectMapper().writeValue(response.getOutputStream(), new UserDto(userService.findByUsername(authentication.getName())));
     }
 }

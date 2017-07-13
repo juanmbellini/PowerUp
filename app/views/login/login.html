@@ -23,58 +23,31 @@
                   <div class='input-field col s12'>
                     <p>Username:</p>
                     <input type="text" ng-model="username" name="username"/>
-                    <!--<form:errors path="username" cssClass="formError" element="p" Style="size: 1px"/>-->
                   </div>
                 </div>
                 <div class='row'>
                   <div class='input-field col s12'>
                     <p>Password:</p>
                     <input type="password" ng-model="password" name="password" />
-                    <!--minlength="0" maxlength="10"-->
-                    <!--<form:errors path="password" cssClass="formError" element="p"/>-->
                   </div>
                   <!--<label style='float: right;'>-->
                     <!--<a id="forgot-password" class='light-blue-text' href='#!'><b>Forgot Password?</b></a>-->
                   <!--</label>-->
                 </div>
-                <!--<c:if test="${error}" >-->
-                  <!--<div class="row">-->
-                    <!--<div class="col s12">-->
-                      <!--<p class="center"  style="font-size: larger; color:red;">Invalid username/password</p>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</c:if>-->
-                <!--<p>-->
-                  <!--<form:checkbox path="rememberMe" checked="checked" cssStyle="display: none;"/>-->
-                  <!--<%&#45;&#45;<form:label path="rememberMe1">Remember Me</form:label>&#45;&#45;%>-->
-                <!--</p>-->
+                <div class="row">
+                  <p ng-if="loginError" class="center formError"  style="font-size: larger;">Invalid username/password</p>
+                  <p ng-if="!loginError" class="center formError"  style="font-size: larger;"><br/></p>
+                </div>
                 <div class="row">
                   <button type='submit' ng-click="logIn(form)" name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Log In</button>
                 </div>
-
-                <!--Referencias:-->
-                <!--<label>  Size (integer 0 - 10):  <input type="number" ng-model="size" name="size"-->
-                         <!--min="0" max="10" integer />{{size}}</label><br />-->
-                <!--<span ng-show="form.size.$error.integer">The value is not a valid integer!</span>-->
-                <!--<span ng-show="form.size.$error.min || form.size.$error.max">-->
-      <!--The value must be in range 0 to 10!</span>-->
-              <!--</div>-->
-
-              <!--<div>-->
-                <!--<label>-->
-                  <!--Username:-->
-                  <!--<input type="text" ng-model="name" name="name" username />{{name}}</label><br />-->
-                <!--<span ng-show="form.name.$pending.username">Checking if this name is available...</span>-->
-                <!--<span ng-show="form.name.$error.username">This username is already taken!</span>-->
-              <!--</div>-->
-              <!--fin referencia-->
               </div>
             </form>
             </div>
           </div>
         </div>
     </div>
-    <!--<h5 class="center"><a href="<c:url value="/register"/>">Create account</a></h5>-->
+    <h5 class="center"><a ng-href="#register">Create account</a></h5>
   </div>
 </main>
 

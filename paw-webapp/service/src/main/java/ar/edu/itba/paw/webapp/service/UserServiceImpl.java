@@ -10,6 +10,7 @@ import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,16 +29,19 @@ import java.util.stream.Stream;
 public class UserServiceImpl implements UserService, ValidationExceptionThrower, NoSuchEntityThrower,
         ExistenceByIdChecker<User> {
 
-    
+
     private final UserDao userDao;
 
     private final GameDao gameDao;
 
+    private final ShelfDao shelfDao;
+
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, GameService gameService, ShelfService shelfService) {
+    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
+        this.shelfDao = shelfDao;
     }
 
 
@@ -158,47 +162,26 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     }
 
-
-    @Override
-    public Page<Game> recommendedGames(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
-        return userDao.recommendedGames(checkUserExistence(userId), pageNumber, pageSize, sortDirection);
-    }
-
-    @Override
-    public Page<Game> recommendedGames(long userId, Set<Shelf> shelves,
-                                       int pageNumber, int pageSize, SortDirection sortDirection) {
-        return userDao.recommendedGames(checkUserExistence(userId), shelves, pageNumber, pageSize, sortDirection);
-    }
-
-
     @Override
     public Collection<Game> recommendGames(long userId) {
         return userDao.recommendGames(userId);
     }
 
     @Override
-    public Collection<Game> recommendGames(long userId, Set<Shelf> shelves) {
+    public Collection<Game> recommendGames(long userId, List<String> shelfNameFilters) {
+        final User user = Optional.ofNullable(userDao.findById(userId)).orElseThrow(NoSuchEntityException::new);
+        final Set<Shelf> shelves = Optional.ofNullable(shelfNameFilters)
+                .map(list -> list.stream()
+                        .map(name -> shelfDao.findByName(user, name)) // Map each name to a shelf
+                        .filter(each -> each != null) // Remove those that are null
+                        .collect(Collectors.toSet())) // Store shelves into set
+                .orElse(new HashSet<>()); // If list of names is null, return an empty hash set.
         return userDao.recommendGames(userId, shelves);
     }
 
     @Override
-    public Map<PlayStatus, Set<Game>> getGameList(long userId) {
-        User user = userDao.findById(userId);
-        if (user == null) {
-            throw new NoSuchUserException();
-        }
-        Map<PlayStatus, Set<Game>> result = new HashMap<>();
-        for (PlayStatus status : PlayStatus.values()) {
-            if (!result.containsKey(status)) {
-                result.put(status, new LinkedHashSet<>());
-            }
-        }
-        for (Map.Entry<Long, PlayStatus> entry : user.getPlayedGames().entrySet()) {
-            Game game = gameDao.findById(entry.getKey());
-            PlayStatus status = entry.getValue();
-            result.get(status).add(game);
-        }
-        return result;
+    public Page<UserGameStatus> getGameList(long userId, int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection) {
+        return userDao.getGameList(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
     }
 
 
@@ -210,9 +193,8 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      */
     public String generateNewPassword() {
         SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(32);
+        return new BigInteger(130, random).toString(8);
     }
-
 
     /*
      * Helpers
