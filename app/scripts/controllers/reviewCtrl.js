@@ -1,18 +1,18 @@
 'use strict';
 define(['powerUp'], function(powerUp) {
 
-    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log) {
+    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
         $scope.pageSizes = [1,5,10,15];
         $scope.pageSize = parseInt($location.search().pageSize, 10);
-        if (!$scope.pageSize) {
+        if (!$scope.pageSize || $scope.pageSize <= 0 || $scope.pageSize > 100) {
             $scope.pageSize = 5;
         }
         $scope.pageSizeSelected = $scope.pageSize;
         $scope.pageNumber = $location.search().pageNumber;
-        if (!$scope.pageNumber) {
+        if (!$scope.pageNumber || $scope.pageNumber <= 0) {
             $scope.pageNumber = 1;
         }
         $scope.userId = $location.search().userId;
@@ -114,9 +114,10 @@ define(['powerUp'], function(powerUp) {
             review.remove().then(function(response) {
                 var data = response.data;
                 $log.info('Success: ', data);
-                $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
-                    return reviewToFilter.id !== review.id;
-                });
+                $route.reload();
+                // $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                //     return reviewToFilter.id !== review.id;
+                // });
             },
             function(error) {
                 $log.error('Error: ', error);
@@ -126,6 +127,7 @@ define(['powerUp'], function(powerUp) {
         };
 
         Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
+            // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay reviews para ese usuario.
             var reviews = response.data;
             $scope.reviews = reviews;
             console.log('foundReviews', reviews);
@@ -135,6 +137,8 @@ define(['powerUp'], function(powerUp) {
             $scope.updatePagination();
         }, function() {
             console.log('There was an error getting reviews');
+            $location.search('pageNumber', 1);
+
         });
 
         /**

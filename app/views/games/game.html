@@ -1,116 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<!--<link href="<c:url value="/slick/slick.css" />" type="text/css" rel="stylesheet"/>-->
-	<!--<link href="<c:url value="/slick/slick-theme.css" />" type="text/css" rel="stylesheet"/>-->
-	<!--<link href="<c:url value="/css/lightbox.css" />" type="text/css" rel="stylesheet"/>-->
-	<title ng-controller="GameCtrl">{{game.name}} - PowerUp</title>
-</head>
-<main ng-controller="GameCtrl" ng-init="findGame(gameId)">
+<main>
     <div class="container" >
 		<div class="section no-pad-bot">
 			<h1 class="header center orange-text">{{game.name}}</h1>
 			<h5 class="center orange-text">{{game.releaseDate}}</h5>
 		</div>
 		<!--ACTION FORMS-->
-		<div class="section">
-			<!--RATE AND STATUS FORM-->
-			<!--<div class="row">-->
-				<!--<c:url value="/rateAndUpdateStatus?id=${game.id}" var="postPath"/>-->
-				<!--<form:form modelAttribute="rateAndStatusForm" action="${isLoggedIn ? postPath : ''}" method="post" class="center-align" id="rateAndStatusForm">-->
-					<!--<div class="col s3"></div>-->
-					<!--<div class="col s6 center-align">-->
-						<!--<div class="row" style="margin-bottom:0;">-->
-							<!--<div class="col s4 center-align">-->
-								<!--<form:select path="score" id="score">-->
-									<!--<form:option value="" label="Select score"/>-->
-									<!--<form:options items="${scoreValues}"/>-->
-								<!--</form:select>-->
-								<!--<form:label path="score">Score: </form:label>-->
-								<!--<%&#45;&#45;<form:input type="text" path="score"/>&#45;&#45;%>-->
-								<!--<form:errors path="score" cssClass="formError" element="p" Style="size: 1px"/>-->
-							<!--</div>-->
-
-							<!--<div class="col s4 center-align">-->
-								<!--<form:select path="playStatus" id="status">-->
-									<!--<%&#45;&#45;<form:option selected="true" value="" label="Select play status" disabled="true"/>&#45;&#45;%>-->
-									<!--<form:options items="${statuses}"/>-->
-								<!--</form:select>-->
-								<!--<form:label path="playStatus">PlayStatus: </form:label>-->
-								<!--<%&#45;&#45;<form:input type="playStatus" path="playStatus" />&#45;&#45;%>-->
-								<!--<form:errors path="playStatus" cssClass="formError" element="p"/>-->
-							<!--</div>-->
-
-							<!--<c:choose>-->
-								<!--<c:when test="${isLoggedIn}">-->
-									<!--<div class="col s4 center">-->
-										<!--<button id="submit" type="submit" class="btn waves-effect waves-light">Update List</button>-->
-									<!--</div>-->
-								<!--</c:when>-->
-								<!--<c:otherwise>-->
-									<!--<div class="col s4 center">-->
-										<!--<%&#45;&#45;TODO redirect user back here after login&#45;&#45;%>-->
-										<!--<a class="btn waves-effect waves-light" href="<c:url value="/login" />">Login</a>-->
-									<!--</div>-->
-								<!--</c:otherwise>-->
-							<!--</c:choose>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</form:form>-->
-				<!--<c:if test="${isLoggedIn && canUpdateShelves}">-->
-					<!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
-				<!--</c:if>-->
-			<!--</div>-->
-			<!--END RATE AND STATUS FORM-->
-			<!--SHELVES FORM-->
-			<!--<c:if test="${canUpdateShelves}">-->
-				<!--<div class="row" style="margin-bottom:0; margin-top: 0;">-->
-					<!--<c:url value="/update-shelves-by-game" var="shelvesUrl"/>-->
-					<!--<form action="${isLoggedIn ? shelvesUrl : ''}" method="POST" class="center-align" id="shelvesForm">-->
-						<!--<input type="hidden" name="gameId" value="${game.id}"/>-->
-						<!--<div class="col s3"></div>-->
-						<!--<div class="col s8 center-align">-->
-							<!--<p class="col s4 center">Update in shelves</p>-->
-							<!--<div class="col s4">-->
-								<!--<c:choose>-->
-									<!--<c:when test="${fn:length(shelves) == 0}">-->
-										<!--<p>You have no shelves. Why not <a href="<c:url value="/list" />">create-->
-											<!--one</a>?</p>-->
-									<!--</c:when>-->
-									<!--<c:otherwise>-->
-										<!--<select id="shelves" multiple>-->
-											<!--<option value="" disabled selected>Select shelves</option>-->
-											<!--<%&#45;&#45;<option id="newShelf" value="newShelf" >New shelf...</option>&#45;&#45;%>-->
-											<!--<c:forEach var="entry" items="${shelves}">-->
-												<!--<c:set var="shelf" value="${entry.key}"/>-->
-												<!--<c:set var="isInShelf" value="${entry.value}"/>-->
-												<!--<option value="${shelf.id}" <c:if test="${isInShelf}">selected</c:if>><c:out value="${shelf.name}"/></option>-->
-											<!--</c:forEach>-->
-										<!--</select>-->
-										<!--<%&#45;&#45;Forced to loop twice, the <input> element can't go inside the <select>&#45;&#45;%>-->
-										<!--<c:forEach var="entry" items="${shelves}">-->
-											<!--<c:set var="shelf" value="${entry.key}"/>-->
-											<!--<c:set var="isInShelf" value="${entry.value}"/>-->
-											<!--<input type="hidden" class="shelfHidden" name="${shelf.id}" value="${isInShelf}"/>-->
-										<!--</c:forEach>-->
-									<!--</c:otherwise>-->
-								<!--</c:choose>-->
-							<!--</div>-->
-
-							<!--<c:choose>-->
-								<!--<c:when test="${isLoggedIn}">-->
-									<!--<button type="submit" class="btn waves-effect waves-light">Update Shelves</button>-->
-								<!--</c:when>-->
-								<!--<c:otherwise>-->
-									<!--<%&#45;&#45;TODO redirect user back  here after login&#45;&#45;%>-->
-									<!--<a class="btn waves-effect waves-light" href="<c:url value="/login" />">Log in</a>-->
-								<!--</c:otherwise>-->
-							<!--</c:choose>-->
-						<!--</div>-->
-					<!--</form>-->
-				<!--</div>-->
-			<!--</c:if>-->
-			<!--END SHELVES FORM-->
+        <!--class="section"-->
+		<div >
+			<div class="row">
+                <div class="col s1">
+                </div>
+                <div class="col s10 center-align">
+                    <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
+                        <div class="col s3 center-align">
+                            <label>Score: </label>
+                            <ng-input>
+                                <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
+                                    <option value="delete">Select score</option>
+                                    <option ng-repeat="score in rangeScore">{{score}}</option>
+                                </select>
+                                <span ng-if="loadingScore">Loading...</span>
+                                <span ng-if="updatedScore && !loadingScore">Updated!</span>
+                            </ng-input>
+                        </div>
+                        <div class="col s3 center-align">
+                            <label>PlayStatus: </label>
+                            <ng-input>
+                                <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
+                                    <option value="delete">Select play status</option>
+                                    <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
+                                </select>
+                                <span ng-if="loadingStatus">Loading...</span>
+                                <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
+                            </ng-input>
+                        </div>
+                        <div class="col s6 center-align" class="divWithShelves">
+                            <label>Shelves: </label>
+                            <ng-input>
+                                <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
+                                <div ng-show="shelves.length > 0">
+                                    <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
+                                        <option value="" disabled selected>Select shelves</option>
+                                        <option ng-repeat="shelf in shelves" value="{{shelf.name}}" {{isInShelf(shelf.name)? selected : }}> {{shelf.name}} </option>
+                                    </select>
+                                    <span ng-if="loadingShelves">Loading...</span>
+                                    <span ng-if="updatedShelves && !loadingShelves">Updated!</span>
+                                </div>
+                            </ng-input>
+                        </div>
+                    </div>
+                    <div ng-show="!isLoggedIn()" class="row" style="margin-bottom:0;">
+                        <p>
+                            <a ng-href="#/login">LogIn </a> to rate this game! To give it a play status! Or to add it to one of your shelves!
+                        </p>
+                    </div>
+                </div>
+                <!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
+			</div>
 		</div>
 		<!--END ACTION FORMS-->
 
@@ -171,48 +117,48 @@
 							{{publisher}}
 						</a>
 					</div>
-					<div class="col s12 divider"></div>
-					<br/>
+					<!--<div class="col s12 divider"></div>-->
+					<!--<br/>-->
 				</div>
 			</div>
 
-					<!--SCREENSHOTS AND VIDEOS-->
-                    <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
-                        <div class="col s12 divider"></div>
+            <!--SCREENSHOTS AND VIDEOS-->
+            <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
+                <div class="col s12 divider"></div>
 
-                        <div class="row" ng-if="game.videoUrls.length > 0">
-                            <h4 class="center">Videos</h4>
-                            <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
-                                <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
-                                    <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
-                                            height="360" ng-src="{{video}}" frameborder="0">
-                                    </iframe>
-                                </div>
+                <div class="row" ng-if="game.videoUrls.length > 0">
+                    <h4 class="center">Videos</h4>
+                    <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
+                        <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
+                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
+                                    height="360" ng-src="{{video}}" frameborder="0">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="game.pictureUrls.length > 0">
+                <div class="row" ng-if="game.videoUrls.length > 0">
+                    <div class="col s12 divider"></div>
+                </div>
+
+                <div class="row" >
+                    <h4 class="center">Screenshots</h4>
+                    <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
+                        <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
+                            <div class="valign-wrapper slide-image">
+                                <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
+                                    <img ng-src="{{picture}}" class="valign"/>
+                                    <!--TODO re-enable lazy loading, a game can have a lot of images-->
+                                    <!--<img data-lazy="{{picture}}" class="valign"/>-->
+                                </a>
                             </div>
                         </div>
                     </div>
-
-                    <div ng-if="game.pictureUrls.length > 0">
-                        <div class="row" ng-if="game.videoUrls.length > 0">
-                            <div class="col s12 divider"></div>
-                        </div>
-
-                        <div class="row" >
-                            <h4 class="center">Screenshots</h4>
-                            <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
-                                <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
-                                    <div class="valign-wrapper slide-image">
-                                        <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
-                                            <img ng-src="{{picture}}" class="valign"/>
-                                            <!--TODO re-enable lazy loading, a game can have a lot of images-->
-                                            <!--<img data-lazy="{{picture}}" class="valign"/>-->
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-					<!--END SCREENSHOTS AND VIDEOS-->
+                </div>
+            </div>
+            <!--END SCREENSHOTS AND VIDEOS-->
 
 			<!--REVIEWS-->
             <div ng-if="game">
@@ -276,33 +222,42 @@
             </div>
 			<!--END REVIEWS-->
 
-					<!--RELATED GAMES-->
-					<!--<c:if test="${ fn:length( relatedGames) > 0 }">-->
-						<!--<div class="row">-->
-							<!--<div class="col s12 divider"></div>-->
-						<!--</div>-->
-						<!--<div class="row">-->
-							<!--<h5 class="center">Related Games</h5>-->
-							<!--<div class="slick-carousel" id="related-games-carousel">-->
-								<!--<c:forEach var="game" items="${relatedGames}">-->
-									<!--<div class="slide-container">-->
-										<!--<div class="valign-wrapper slide-image">-->
-											<!--<a href="<c:url value="/game?id=${game.id}"/>">-->
-											<!--<img data-lazy="${game.coverPictureUrl}" class="valign"/>-->
-											<!--</a>-->
-										<!--</div>-->
-										<!--<h5 class="center slide-text">-->
-											<!--<a href="<c:url value="/game?id=${game.id}"/>">${game.name}</a>-->
-										<!--</h5>-->
-									<!--</div>-->
-								<!--</c:forEach>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</c:if>-->
-					<!--END RELATED GAMES-->
+            <!--RELATED GAMES-->
+            <div ng-if="relatedGames.length > 0" class="row">
+                <div class="row"><div class="col s12 divider"/></div>
+                <h5 class="center">Related Games</h5>
+                <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
+                    <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
+                        <a ng-href="#game?id={{game.id}}">
+                            <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
+                            <!--data-lazy-->
+                        </a>
+                        <h5 class="center slide-text">
+                            <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <!--END RELATED-->
 		</div>
 	</div>
 </main>
+
+
+<script type="text/javascript">
+    require(['slick-carousel'], function() {
+        //TODO consider only doing this if there are picture or videos or relatedGames
+        $(function() {
+            $('.slick-carousel').slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: true,
+                lazyload: 'ondemand'
+            });
+        });
+    });
+</script>
 
 <!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>-->
@@ -359,5 +314,3 @@
 		<!--});-->
 <!--</script>-->
 <!--<script type="text/javascript" src="<c:url value="/js/lightbox.js" />"></script>-->
-</body>
-</html>

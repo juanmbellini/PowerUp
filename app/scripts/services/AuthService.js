@@ -36,7 +36,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         function isOptionallyAuthenticatedEndpoint(url) {
             // Disregard protocol, domain and port; care only about path after '/api'
             var regex = /http:\/\/(\w+)(:\d*)?\/api\/(.*)/;
-            if(!regex.test(url)) {
+            if (!regex.test(url)) {
                 return false;
             }
             url = '/' + regex.exec(url)[3];
@@ -108,9 +108,9 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         function authenticate(username, password, successCallback, failureCallback) {
             Restangular.all('auth/login').post({username: username, password: password})
                 .then(function(data) {
-                    setCurrentUser({username: username});
+                    setCurrentUser(data);   // TODO only copy fields to object? i.e. don't copy full Restangularized object
                     // TODO pass parameters to callback?
-                    $log.info('Successfully authenticated as ', username);
+                    $log.info('Successfully authenticated as ', getCurrentUser().username);
                     if (typeof successCallback !== 'undefined') {
                         successCallback();
                     }

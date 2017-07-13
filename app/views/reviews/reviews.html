@@ -34,47 +34,52 @@
 					<!--REVIEWS LIST-->
 					<ul class="collection reviews-list">
 						<li ng-repeat="review in reviews" class="collection-item avatar">
-							<div ng-if="!user && game">
-								<!--Viewing reviews by game, variable is user-->
-								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
-									 alt="{{review.username}}" class="circle"/>
-								<span class="title wrap-text">
+							<div class="row">
+								<div class="col s10">
+									<div ng-if="!user && game">
+										<!--Viewing reviews by game, variable is user-->
+										<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+											 alt="{{review.username}}" class="circle"/>
+										<span class="title wrap-text">
                                                 <a ng-href="#profile?userId={{review.userId}}">{{review.username}}</a>
                                             </span>
-							</div>
-							<div ng-if="user && !game">
-								<img ng-src="{{review.gameCoverPictureUrl}}" alt="{{review.gameName}}" class="circle"/>
-								<span class="title wrap-text">
+									</div>
+									<div ng-if="user && !game">
+										<img ng-src="{{review.gameCoverPictureUrl}}" alt="{{review.gameName}}" class="circle"/>
+										<span class="title wrap-text">
 											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
 										</span>
-							</div>
-							<div ng-if="user && game">
-								<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
-								<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
-									 alt="{{review.username}}" class="circle">
-								<span class="title wrap-text">
+									</div>
+									<div ng-if="user && game">
+										<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
+										<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+											 alt="{{review.username}}" class="circle">
+										<span class="title wrap-text">
 											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a> | <a
-										ng-href="#profile?userId={{review.userId}}">{{review.username}}</a>
+												ng-href="#profile?userId={{review.userId}}">{{review.username}}</a>
 										</span>
+									</div>
+									<p class="wrap-text">
+										<a ng-if="!user && game" ng-href="#reviews?userId={{review.userId}}">Other reviews by
+											{{review.username}}</a>
+										<a ng-if="user && !game" ng-href="#reviews?gameId={{review.gameId}}">Other
+											{{review.gameName}} reviews</a>
+										<span ng-if="user && game">
+												<a ng-href="#reviews?gameId={{review.gameId}}">Other
+												{{review.gameName}} reviews</a> | <a ng-href="#reviews?userId={{review.userId}}">Other
+												reviews by {{review.username}}</a>
+											</span>
+									</p>
+								</div>
+								<div class="col s2">
+									<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}
+										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)"
+										   class="material-icons red-text text-lighten-1 delete-button">
+											<i class="material-icons right">delete</i>
+										</a>
+									</p>
+								</div>
 							</div>
-							<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
-							<!-- TODO why href="" <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>-->
-							<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)"
-							   class="material-icons red-text text-lighten-1 delete-button">
-								<i class="material-icons right">delete</i>
-							</a>
-							<p class="wrap-text">
-								<a ng-if="!user && game" ng-href="#reviews?userId={{review.userId}}">Other reviews by
-									{{review.username}}</a>
-								<a ng-if="user && !game" ng-href="#reviews?gameId={{review.gameId}}">Other
-									{{review.gameName}} reviews</a>
-								<span ng-if="user && game">
-									<a ng-href="#reviews?gameId={{review.gameId}}">Other
-									{{review.gameName}} reviews</a> | <a ng-href="#reviews?userId={{review.userId}}">Other
-								reviews by {{review.username}}</a>
-								</span>
-							</p>
-							<br/>
 							<div class="row">
 								<p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
 								<div class="col s2">
@@ -142,9 +147,8 @@
 
 				<!--NO REVIEWS-->
 				<h5  ng-if="reviews.length == 0" class="center">No reviews yet!
-					<a ng-if="!isLoggedIn()" href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!
+					<div ng-if="!isLoggedIn()"><a href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!</div>
 				</h5>
-
 
 				<!--Review button-->
 				<div ng-if="!user && canWriteReview" class="row">

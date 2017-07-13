@@ -265,4 +265,33 @@ public class ShelfJerseyController implements UpdateParamsChecker {
     private void deleteFromGameList(long userId, long gameId) {
         userService.removePlayStatus(userId, gameId, userId);
     }
+
+    // TODO verificar si no se puede soluciar el problema de permitir OPTIONS de otra manera
+    @OPTIONS
+    public Response shelvesOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    @OPTIONS
+    @Path("/{shelfName : .+}")
+    public Response shelvesOptions2() {
+        return shelvesOptions();
+    }
+
+    @OPTIONS
+    @Path("/{shelfName : .+}/" + GAMES_END_POINT)
+    public Response shelvesOptions3() {
+        return shelvesOptions();
+    }
+
+    @OPTIONS
+    @Path("/{shelfName : .+}/" + GAMES_END_POINT + "/{gameId : \\d+}")
+    public Response shelvesOptions4() {
+        return shelvesOptions();
+    }
 }
