@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
-    powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService) {
+    powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout) {
 
         // TODO replace this values with api calls. -- Droche 15/02/2017
         $scope.playStatuses = [];
@@ -62,8 +62,8 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         $scope.games = [];
         // TODO change games to real game list and recommended games too.
         var baseGames = Restangular.all('games');
-        baseGames.getList({}).then(function(games) {
-            $scope.games = games;
+        baseGames.getList({pageSize: 5}).then(function(games) {
+            // $scope.games = games;
             $scope.$broadcast('gamesLoaded');
         }, function(response) {
             $log.error('Error with status code', response.status);
@@ -93,15 +93,46 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             });
         });
 
+        // PlayStatuses
+        $scope.selectedPlayStatuses = [];
+        $scope.toggleSelectionPlayStatus = function toggleSelection(playStatus) {
+            var idx = $scope.selectedPlayStatuses.indexOf(playStatus);
+            if (idx > -1) {
+                // Is currently selected
+                $scope.selectedPlayStatuses.splice(idx, 1);
+            } else {
+                // Is newly selected
+                $scope.selectedPlayStatuses.push(playStatus);
+            }
+            $log.info($scope.selectedPlayStatuses);
+        };
+
+        // Shelves
         $scope.selectedShelves = [];
-        // https://stackoverflow.com/questions/14514461/how-do-i-bind-to-list-of-checkbox-values-with-angularjs
-        // TODO hacer esto con las shelves por un lado y con los playStatus por otro y juntarlos para el getList. Para esto solo shelves.
-        Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (recommendedGames) {
-            $scope.recommendedGames = recommendedGames;
-            $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
-        }, function (response) {
-            $log.error("Could not get recommended games", response);
+        $scope.toggleSelectionShelves = function toggleSelection(shelf) {
+            var idx = $scope.selectedShelves.indexOf(shelf);
+            if (idx > -1) {
+                // Is currently selected
+                $scope.selectedShelves.splice(idx, 1);
+            } else {
+                // Is newly selected
+                $scope.selectedShelves.push(shelf);
+            }
+            $log.info($scope.selectedShelves);
+        };
+
+        $scope.$watchCollection('selectedShelves', function () {
+            Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (recommendedGames) {
+                $scope.recommendedGames = recommendedGames;
+                $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+            }, function (response) {
+                $log.error('Could not get recommended games', response);
+                $scope.recommendedGames = [];
+            });
         });
+
+        // TODO hacer esto con las shelves por un lado y con los playStatus por otro y juntarlos para el getList. Para esto solo shelves.
+
 
        // baseGames.getList({}).then(function(games) {
        //      // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
@@ -241,11 +272,17 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             // });
         };
 
+        $scope.hasSlick = false;
         $scope.$on('recommendedRendered', function(event) {
-            angular.element('#recommended-carousel').slick({
+            if ($scope.hasSlick) {
+                $scope.hasSlick = false;
+                angular.element('#recommended-carousel').slick('unslick');
+            }
+             angular.element('#recommended-carousel').slick({
                 infinite: false,
                 arrows: true
             });
+            $scope.hasSlick =true;
             require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
         });
 

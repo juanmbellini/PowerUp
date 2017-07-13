@@ -5,13 +5,13 @@
             <form name="shelfForm" class="css-form"  ng-submit="submitSearch()" novalidate>
                 <h5>Filter by Status</h5>
                 <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
-                    <input type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"/>
+                    <input   ng-click="toggleSelectionPlayStatus(playStatus)" type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"  ng-checked="selectedPlayStatuses.indexOf(playStatus) > -1"/>
                     <!--{{((containsPlayStatusesFilter(playStatus))? 'checked' : '')}} TODO droche-->
                     <label class="wrap-text" for="{{playStatus}}">{{playStatus}}</label>
                 </p>
                 <h5>Filter by Shelf</h5>
                 <p ng-repeat="shelf in shelves" class="checkbox-list">
-                    <input type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}"/>
+                    <input  ng-click="toggleSelectionShelves(shelf.name)" type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}" ng-checked="selectedShelves.indexOf(shelf) > -1"/>
                     <!--<c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if>-->
                     <label class="wrap-text" for="{{shelf.id}}">
                         {{shelf.name}}
@@ -130,7 +130,8 @@
                                     <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
                                 <span ng-if="isUserLoggedOwner">you</span>
                                 <span ng-if="!isUserLoggedOwner">{{user.username}}</span>
-                            !</h5>
+                                <span ng-if="selectedShelves.length > 0"> using selected shelves</span>
+                                !</h5>
                             <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
                                 <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
                                     <a ng-href="#game?id={{game.id}}">

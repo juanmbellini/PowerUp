@@ -36,7 +36,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
 
         if (AuthService.isLoggedIn()) {
-            var userId = AuthService.getCurrentUser().id; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
+            var userId = AuthService.getCurrentUser().id;
 
             // Play Status
             $scope.playStatusOptions = [];
