@@ -37,22 +37,22 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         }
 
         // Sanitize numeric search param values
-        if (isNaN(parseInt($scope.searchParams.pageSize))) {
+        if (isNaN(parseInt($scope.searchParams.pageSize, 10))) {
             $scope.searchParams.pageSize = 25;
         } else {
-            $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize);
+            $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize, 10);
         }
-        if (isNaN(parseInt($scope.searchParams.pageNumber))) {
+        if (isNaN(parseInt($scope.searchParams.pageNumber, 10))) {
             $scope.searchParams.pageNumber = 1;
         } else {
-            $scope.searchParams.pageNumber = parseInt($scope.searchParams.pageNumber);
+            $scope.searchParams.pageNumber = parseInt($scope.searchParams.pageNumber, 10);
         }
 
 
         $scope.games = null;
 
         $scope.submitSearch = function (resetPageNumber) {
-            if(resetPageNumber === true) {
+            if (resetPageNumber === true) {
                 $scope.searchParams.pageNumber = 1;
             }
             $log.debug('Reloading Search with specified parameters: ', $scope.searchParams);
@@ -125,6 +125,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         // Pagination control
         $scope.pageSizes = [25, 50, 100];
+        $scope.resetPageNumberOnSubmit = false;
         $scope.gamesPaginator = PaginationService.initialize(Restangular.all('games'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
         PaginationService.setRequestParams($scope.gamesPaginator, $scope.searchParams);
         PaginationService.get($scope.gamesPaginator, function (response) {
@@ -143,14 +144,16 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 return result;
             }
             $scope.pageSizes.forEach(function(pageSize, index, pageSizes) {
-                if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index-1])) {
+                if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index - 1])) {
                     result.push(pageSize);
                 }
             });
             var customPageSize = $scope.pageSizes.indexOf($scope.searchParams.pageSize) === -1 ? $scope.searchParams.pageSize : null;
-            if(customPageSize) {
+            if (customPageSize) {
                 result.push(customPageSize);
-                result.sort(function(a, b) { return a-b; });
+                result.sort(function(a, b) {
+                    return a - b;
+                });
             }
             return result;
         };
@@ -162,7 +165,9 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             if (typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
                 return; // Initial change, ignore
             }
-            $scope.submitSearch(false); // False to prevent infinite loop
+            // If page number didn't change, then a different pagination param changed. Reset page number.
+            var resetPageNumber = newVal.pageNumber === oldVal.pageNumber;
+            $scope.submitSearch(resetPageNumber);
         });
 
         // Enable filters when ready
@@ -249,6 +254,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             if (usedValues.indexOf(value) === -1 && allowedValues.indexOf(value) !== -1) {
                 $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
                 $scope.searchParams[filterCategory].push(value);
+                $scope.resetPageNumberOnSubmit = true;
             }
         }
 
@@ -262,6 +268,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             }
             $log.debug('Removing ' + value + ' from ' + filterCategory + ' category');
             $scope.searchParams[filterCategory].splice(index, 1);
+            $scope.resetPageNumberOnSubmit = true;
         }
 
         function setUpFilters() {
