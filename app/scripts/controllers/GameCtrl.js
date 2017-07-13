@@ -1,8 +1,9 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', function($scope, $location, $log, Restangular, AuthService, $timeout) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, $timeout, $anchorScroll) {
 
+        $anchorScroll();
         Restangular.setFullResponse(false);
         $scope.gameId = $location.search().id;
         $scope.game = null;
