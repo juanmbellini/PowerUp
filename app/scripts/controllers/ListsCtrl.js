@@ -3,24 +3,15 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout) {
 
-        // TODO replace this values with api calls. -- Droche 15/02/2017
-        $scope.playStatuses = [];
-        Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
-            $scope.playStatuses = playStatuses;
-        }, function (response) {
-            $log.error('Could not get playStatuses', response);
-        });
-
         Restangular.setFullResponse(false);
 
+        // User
         $scope.checkCurrentUserLogged = function() { // TODO change name to isCurrentUserLoggedAndOwner
             $scope.isCurrentUserLogged = AuthService.isLoggedIn();
         };
-
         $scope.userId = $location.search().id;
         $scope.username = $location.search().username;
         $scope.currentUser = AuthService.getCurrentUser();
-
         var userURL = null;
         if ($scope.userId) {
             userURL = Restangular.one('users',$scope.userId);
@@ -34,7 +25,6 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                 $location.search({});
                 $location.path('');
             });
-
         // } else if ($scope.username) {
             // userURL =  Restangular.all('users').one(username,$scope.username);
             // TODO username. Paja porque todo lo otro depende de la userURL que no podria armar. tendria que hacer que todo espere
@@ -46,54 +36,70 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             $location.search({});
             $location.path('');
         }
-
-        $scope.getShelves = function() {
-            userURL.all('shelves').getList({}).then(function(shelves) {
-                $scope.shelves = shelves;
-            }, function(error) {
-                $log.error('Could not get user shelves. Error with status code', error.status);
-            });
+        $scope.isCurrentUserLogged = false;
+        $scope.isUserLoggedOwner = false;
+        $scope.checkUserLoggedOwner = function () {
+            $scope.isUserLoggedOwner = $scope.user && $scope.currentUser && $scope.user.username === $scope.currentUser.username; // AuthService.isCurrentUser($scope.user);
         };
-
-        $scope.shelves = null;
-        $scope.getShelves();
 
         // Games
         $scope.games = [];
-        // TODO change games to real game list and recommended games too.
-        var baseGames = Restangular.all('games');
-        baseGames.getList({pageSize: 5}).then(function(games) {
-            // $scope.games = games;
-            $scope.$broadcast('gamesLoaded');
-        }, function(response) {
-            $log.error('Error with status code', response.status);
-        });
-
-        $scope.$on('gamesLoaded', function() {
-
-            angular.forEach($scope.games, function (gameRef, index, gameArray) {
-                var game = gameArray[index];
-                Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
-                    if (gameScore.length > 0) {
-                       game.userScore = gameScore[0].score;
-                    }
-                }, function (response) {
-                    $log.error('Could not get score from game', response);
+        function updateGameList() {
+            // {shelves: $scope.selectedShelves, statuses: $scope.selectedPlayStatuses}
+            userURL.all('game-list').getList().then(function(games) {
+                angular.forEach(games, function (gameRef, index, gameArray) {
+                    $scope.games = games;
+                    Restangular.one('games', gameRef.gameId).get().then(function (game) {
+                        gameArray[index] = game;
+                        addInformationToGame(gameRef, index, gameArray);
+                    });
                 });
-                Restangular.one('users',$scope.userId).all('shelves').getList({gameId: game.id}).then(function (shelvesWithGame) {
-                    game.shelves = shelvesWithGame;
-                });
-                Restangular.one('users', $scope.userId).one('play-status', game.id).get().then(function (playStatus) {
-                    if (playStatus.length > 0) {
-                        game.status = playStatus[0].status;
-                    }
-                }, function (response) {
-                    $log.error('Could not get play status from game', response);
-                });
+            }, function(response) {
+                $log.error('Error with status code', response.status);
             });
-        });
+        }
+        function addInformationToGame(gameRef, index, gameArray) {
+            var game = gameArray[index];
+            Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
+                if (gameScore.length > 0) {
+                    game.userScore = gameScore[0].score;
+                }
+            }, function (response) {
+                $log.error('Could not get score from game', response);
+            });
+            Restangular.one('users',$scope.userId).all('shelves').getList({gameId: game.id}).then(function (shelvesWithGame) {
+                game.shelves = shelvesWithGame;
+            });
+            Restangular.one('users', $scope.userId).one('play-status', game.id).get().then(function (playStatus) {
+                if (playStatus.length > 0) {
+                    game.status = playStatus[0].status;
+                }
+            }, function (response) {
+                $log.error('Could not get play status from game', response);
+            });
+        }
+        $scope.deleteGame = function(game) { // TODO re pensar si va a existir exto en el nuevo contexto
+            SweetAlert.swal({
+                    title: 'Are you sure?',
+                    text: 'You are about to delete ' + game.name + ' from all your shelves.',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Delete',
+                    closeOnConfirm: false
+                },
+                function () {
+                    $log.debug('Now your game should be deleted');
+                });
+        };
 
         // PlayStatuses
+        $scope.playStatuses = [];
+        Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
+            $scope.playStatuses = playStatuses;
+        }, function (response) {
+            $log.error('Could not get playStatuses', response);
+        });
         $scope.selectedPlayStatuses = [];
         $scope.toggleSelectionPlayStatus = function toggleSelection(playStatus) {
             var idx = $scope.selectedPlayStatuses.indexOf(playStatus);
@@ -120,8 +126,17 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             }
             $log.info($scope.selectedShelves);
         };
-
+        $scope.getShelves = function() {
+            userURL.all('shelves').getList({}).then(function(shelves) {
+                $scope.shelves = shelves;
+            }, function(error) {
+                $log.error('Could not get user shelves. Error with status code', error.status);
+            });
+        };
+        $scope.shelves = null;
+        $scope.getShelves();
         $scope.$watchCollection('selectedShelves', function () {
+            updateGameList();
             Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (recommendedGames) {
                 $scope.recommendedGames = recommendedGames;
                 $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
@@ -130,28 +145,6 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                 $scope.recommendedGames = [];
             });
         });
-
-        // TODO hacer esto con las shelves por un lado y con los playStatus por otro y juntarlos para el getList. Para esto solo shelves.
-
-
-       // baseGames.getList({}).then(function(games) {
-       //      // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
-       //      $scope.recommendedGames = games;
-       //      $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
-       //  }, function(response) {
-       //      $log.error('Error with status code', response.status);
-       //  });
-
-        // $scope.getGameShelves = function(game) {
-        //     userURL.all('shelves').getList({gameId: game.id}).then(function(shelves) {
-        //         return shelves;
-        //     }, function (response) {
-        //         $log.error('Couldn\'t get shelves, status code', response.status);
-        //         return [];
-        //     });
-        // };
-
-
         $scope.deleteShelf = function(shelf) {
             SweetAlert.swal({
                     title: 'Are you sure?',
@@ -220,20 +213,6 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                     });
                 });
         };
-
-        $scope.isCurrentUserLogged = false;
-
-
-
-        $scope.isUserLoggedOwner = false;
-        $scope.checkUserLoggedOwner = function () {
-            $scope.isUserLoggedOwner = $scope.user && $scope.currentUser && $scope.user.username === $scope.currentUser.username; // AuthService.isCurrentUser($scope.user);
-        };
-
-
-
-
-
         $scope.newShelfName = null;
         $scope.createShelf = function() {
             console.log($scope.newShelfName);
@@ -247,31 +226,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             });
         };
 
-        $scope.deleteGame = function(game) { // TODO re pensar si va a existir exto en el nuevo contexto
-            SweetAlert.swal({
-                    title: 'Are you sure?',
-                    text: 'You are about to delete ' + game.name + ' from all your shelves.',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Delete',
-                    closeOnConfirm: false
-                },
-                function () {
-                    $log.debug('Now your game should be deleted');
-                });
-        };
-
-        $scope.submitSearch = function() {
-            // TODO deprecated pero guardo for now
-            // $('#new-shelf-form').on('submit', function(event) {
-            //     var name = $(this).find('input[type=text]').val();
-            //     if(name.length === 0 || name.length > 25) {
-            //         event.preventDefault();
-            //     }
-            // });
-        };
-
+        // RecommendedGames
         $scope.hasSlick = false;
         $scope.$on('recommendedRendered', function(event) {
             if ($scope.hasSlick) {
@@ -282,10 +237,12 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                 infinite: false,
                 arrows: true
             });
-            $scope.hasSlick =true;
+            $scope.hasSlick = true;
             require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
         });
 
-
+        $scope.$watchCollection('selectedPlayStatuses', function() {
+            updateGameList();
+        });
     });
 });
