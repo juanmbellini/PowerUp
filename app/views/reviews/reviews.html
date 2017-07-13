@@ -147,9 +147,8 @@
 
 				<!--NO REVIEWS-->
 				<h5  ng-if="reviews.length == 0" class="center">No reviews yet!
-					<a ng-if="!isLoggedIn()" href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!
+					<div ng-if="!isLoggedIn()"><a href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!</div>
 				</h5>
-
 
 				<!--Review button-->
 				<div ng-if="!user && canWriteReview" class="row">

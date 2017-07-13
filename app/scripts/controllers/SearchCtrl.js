@@ -25,6 +25,9 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
         if (angular.isUndefined($scope.pageNumber)) {
             $scope.pageNumber = 1;
         };
+        if (angular.isUndefined($scope.pageSize) || $scope.pageSize <= 0 || $scope.pageSize > 100) {
+            $scope.pageSize = 25;
+        }
         if ($scope.ascending === undefined) {
             $scope.ascending = true;
         }
@@ -105,7 +108,7 @@ define(['powerUp', 'loadingCircle'], function(powerUp) {
                 $log.debug(response.data);
                 $log.debug(response.headers());
         }, function(response) {
-            $log.debug('Error with status code', response.status);
+            $log.debug('Error with status code', response.data.status);
         });
 
         /* ********************************************
