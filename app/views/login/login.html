@@ -35,8 +35,8 @@
                   <!--</label>-->
                 </div>
                 <div class="row">
-                  <p ng-if="loginError" class="center"  style="font-size: larger; color:red;">Invalid username/password</p>
-                  <p ng-if="!loginError" class="center"  style="font-size: larger; color:red;"><br/></p>
+                  <p ng-if="loginError" class="center formError"  style="font-size: larger;">Invalid username/password</p>
+                  <p ng-if="!loginError" class="center formError"  style="font-size: larger;"><br/></p>
                 </div>
                 <div class="row">
                   <button type='submit' ng-click="logIn(form)" name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Log In</button>
