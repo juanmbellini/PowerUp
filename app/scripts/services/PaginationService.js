@@ -40,6 +40,21 @@ define(['powerUp'], function(powerUp) {
         }
 
         /**
+         * Sets request parameters to be sent on each request under the object's "pagination" property. NOTE: If
+         * changing request params when the paginator has already fetched results, consider re-initializing paginator or
+         * setting page back to 1. Results may be inconsistent otherwise.
+         *
+         * @param object        The object to set parameters for. Must be initialized.
+         * @param params        The parameters to set.
+         */
+        function setRequestParams(object, params) {
+            if (!isInitialized(object) || params === null || typeof params !== 'object') {
+                return;
+            }
+            object.pagination.params = params;
+        }
+
+        /**
          * Fetch a page of the specified object's sub-element with the object's current configuration.
          *
          * @param object            The object which has pagination info. Must have been initialized previously.
@@ -67,7 +82,7 @@ define(['powerUp'], function(powerUp) {
                 return;
             }
             object.pagination.pageNumber = pageNumber;
-            query(object, successCallback, errorCallback);
+            get(object, successCallback, errorCallback);
         }
 
         /**
@@ -213,6 +228,18 @@ define(['powerUp'], function(powerUp) {
             if (!isInitialized(object)) {
                 return result;
             }
+            // Add defined and non-null params to result
+            if (object.pagination.hasOwnProperty('params')) {
+                for (var key in object.pagination.params) {
+                    if (object.pagination.params.hasOwnProperty(key)) {
+                        var value = object.pagination.params[key];
+                        if (typeof value !== 'undefined' && value !== null) {
+                            result[key] = value;
+                        }
+                    }
+                }
+            }
+            // Add pagination params to result (will overwrite search params in previous conditional)
             ['pageNumber', 'pageSize', 'orderBy', 'sortDirection'].forEach(function(key) {
                 if (typeof object.pagination[key] !== 'undefined' && object.pagination[key] !== null) {
                     result[key] = object.pagination[key];
@@ -235,6 +262,7 @@ define(['powerUp'], function(powerUp) {
         return {
             initialize: initialize,
             isInitialized: isInitialized,
+            setRequestParams: setRequestParams,
             get: get,
             getPage: getPage,
             getNextPage: getNextPage,

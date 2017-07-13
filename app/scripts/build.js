@@ -98,6 +98,9 @@ require.config({
         'materialize.picker.date': [
             '../../bower_components/materialize/js/date_picker/picker.date'
         ],
+        'materialize.chips': [
+            '../../bower_components/materialize/js/chips'
+        ],
         materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
@@ -316,6 +319,11 @@ require.config({
                 'materialize.picker'
             ]
         },
+        'materialize.chips': {
+            deps: [
+                'materialize.global'
+            ]
+        },
         hammerjs: {
             deps: [
                 'jquery'
@@ -377,7 +385,8 @@ require([
         'materialize.waves',
         'materialize.character_counter',
         'materialize.picker',
-        'materialize.picker.date'
+        'materialize.picker.date',
+        'materialize.chips'
     ],
     function() {
         angular.bootstrap(document, ['powerUp']);
