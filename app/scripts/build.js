@@ -99,7 +99,7 @@ require.config({
             '../../bower_components/materialize/js/date_picker/picker.date'
         ],
         'materialize.chips': [
-            'chips'
+            '../../bower_components/materialize/js/chips'
         ],
         materialize: '../../bower_components/materialize/bin/materialize'
     },
