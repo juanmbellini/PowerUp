@@ -32,76 +32,29 @@ require.config({
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
         likesService: 'services/LikesService',
         paginationService: 'services/PaginationService',
-        'materialize.global': [
-            '../../bower_components/materialize/js/global'
-        ],
-        'materialize.animation': [
-            '../../bower_components/materialize/js/animation'
-        ],
-        'materialize.toasts': [
-            '../../bower_components/materialize/js/toasts'
-        ],
-        'materialize.collapsible': [
-            '../../bower_components/materialize/js/collapsible'
-        ],
-        'materialize.dropdown': [
-            '../../bower_components/materialize/js/dropdown'
-        ],
-        'materialize.leanModal': [
-            '../../bower_components/materialize/js/modal'
-        ],
-        'materialize.materialbox': [
-            '../../bower_components/materialize/js/materialbox'
-        ],
-        'materialize.parallax': [
-            '../../bower_components/materialize/js/parallax'
-        ],
-        'materialize.tabs': [
-            '../../bower_components/materialize/js/tabs'
-        ],
-        'materialize.tooltip': [
-            '../../bower_components/materialize/js/tooltip'
-        ],
-        'materialize.sideNav': [
-            '../../bower_components/materialize/js/sideNav'
-        ],
-        'materialize.scrollspy': [
-            '../../bower_components/materialize/js/scrollspy'
-        ],
-        'materialize.forms': [
-            '../../bower_components/materialize/js/forms'
-        ],
-        'materialize.slider': [
-            '../../bower_components/materialize/js/slider'
-        ],
-        'materialize.cards': [
-            '../../bower_components/materialize/js/cards'
-        ],
-        'materialize.pushpin': [
-            '../../bower_components/materialize/js/pushpin'
-        ],
-        'materialize.transitions': [
-            '../../bower_components/materialize/js/transitions'
-        ],
-        'materialize.scrollFire': [
-            '../../bower_components/materialize/js/scrollFire'
-        ],
-        'materialize.waves': [
-            '../../bower_components/materialize/js/waves'
-        ],
-        'materialize.character_counter': [
-            '../../bower_components/materialize/js/character_counter'
-        ],
-        'materialize.picker': [
-            '../../bower_components/materialize/js/date_picker/picker'
-        ],
-        'materialize.picker.date': [
-            '../../bower_components/materialize/js/date_picker/picker.date'
-        ],
-        'materialize.chips': [
-            '../../bower_components/materialize/js/chips'
-        ],
-        materialize: '../../bower_components/materialize/bin/materialize'
+        'materialize.global': '../../bower_components/materialize/js/global',
+        'materialize.animation': '../../bower_components/materialize/js/animation',
+        'materialize.toasts': '../../bower_components/materialize/js/toasts',
+        'materialize.collapsible': '../../bower_components/materialize/js/collapsible',
+        'materialize.dropdown': '../../bower_components/materialize/js/dropdown',
+        'materialize.leanModal': '../../bower_components/materialize/js/modal',
+        'materialize.materialbox': '../../bower_components/materialize/js/materialbox',
+        'materialize.parallax': '../../bower_components/materialize/js/parallax',
+        'materialize.tabs': '../../bower_components/materialize/js/tabs',
+        'materialize.tooltip': '../../bower_components/materialize/js/tooltip',
+        'materialize.sideNav': '../../bower_components/materialize/js/sideNav',
+        'materialize.scrollspy': '../../bower_components/materialize/js/scrollspy',
+        'materialize.forms': '../../bower_components/materialize/js/forms',
+        'materialize.slider': '../../bower_components/materialize/js/slider',
+        'materialize.cards': '../../bower_components/materialize/js/cards',
+        'materialize.pushpin': '../../bower_components/materialize/js/pushpin',
+        'materialize.transitions': '../../bower_components/materialize/js/transitions',
+        'materialize.scrollFire': '../../bower_components/materialize/js/scrollFire',
+        'materialize.waves': '../../bower_components/materialize/js/waves',
+        'materialize.character_counter': '../../bower_components/materialize/js/character_counter',
+        'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
+        'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
+        'materialize.chips': '../../bower_components/materialize/js/chips'
     },
     shim: {
         jquery: {

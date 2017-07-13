@@ -41,7 +41,7 @@
                                 <div ng-show="shelves.length > 0">
                                     <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
                                         <option value="" disabled selected>Select shelves</option>
-                                        <option ng-repeat="shelf in shelves" value="{{shelf.name}}" {{isInShelf(shelf.name)? selected : }}> {{shelf.name}} </option>
+                                        <option ng-repeat="shelf in shelves" value="{{shelf.name}}" ng-selected="isInShelf(shelf.name)"> {{shelf.name}} </option>
                                     </select>
                                     <span ng-if="loadingShelves">Loading...</span>
                                     <span ng-if="updatedShelves && !loadingShelves">Updated!</span>
