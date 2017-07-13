@@ -28,7 +28,7 @@ public class MailServiceImpl implements MailService{
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
+                mimeMessage.setFrom(new InternetAddress("powerup.paw@gmail.com"));
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear "
@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService{
                         + ", \nYour new password is: "
                         + newPassword
                         + "\nPlease head to your userpage and change your password");
-                mimeMessage.setSubject("PowerApp password reset");
+                mimeMessage.setSubject("PowerUp password reset");
             }
         };
 
@@ -52,14 +52,14 @@ public class MailServiceImpl implements MailService{
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
+                mimeMessage.setFrom(new InternetAddress("powerup.paw@gmail.com"));
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear "
                         + user.getUsername()
                         + ", \nYour password was changed. If you haven't changed your password, please reset your password at"
                         + " the log in page clicking on forgot password.");
-                mimeMessage.setSubject("PowerApp password change notice");
+                mimeMessage.setSubject("PowerUp password change notice");
             }
         };
 
@@ -75,16 +75,16 @@ public class MailServiceImpl implements MailService{
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                mimeMessage.setFrom(new InternetAddress("powerappcontact@gmail.com"));
+                mimeMessage.setFrom(new InternetAddress("powerup.paw@gmail.com"));
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear "
                         + user.getUsername()
-                        + ", \nWelcome to PowerApp, your videogame database and discovery platform. "
-                        + " We hope you enjoy our services. Feel free to send any feedback to powerappcontact@gmail.com. " +
+                        + ", \nWelcome to PowerUp, your videogame database and discovery platform. "
+                        + " We hope you enjoy our services. Feel free to send any feedback to powerup.paw@gmail.com. " +
                         "\n Your sincerely," +
-                        "\n PowerApp team.");
-                mimeMessage.setSubject(user.getUsername() + ", welcome to PowerApp!");
+                        "\n PowerUp team.");
+                mimeMessage.setSubject(user.getUsername() + ", welcome to PowerUp!");
             }
         };
 

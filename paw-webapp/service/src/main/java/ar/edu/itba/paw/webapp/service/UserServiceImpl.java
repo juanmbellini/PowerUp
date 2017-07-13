@@ -10,6 +10,7 @@ import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -192,9 +193,8 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      */
     public String generateNewPassword() {
         SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(32);
+        return new BigInteger(130, random).toString(8);
     }
-
 
     /*
      * Helpers

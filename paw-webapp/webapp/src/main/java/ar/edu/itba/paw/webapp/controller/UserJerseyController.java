@@ -4,12 +4,7 @@ import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.Authority;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.utilities.Page;
+import ar.edu.itba.paw.webapp.model.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -19,6 +14,7 @@ import org.apache.tika.parser.ParseContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -42,19 +38,24 @@ import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "users";
-
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService, ShelfService shelfService) {
+    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
+        this.mailService = mailService;
+        this.passwordEncoder = passwordEncoder;
         this.shelfService = shelfService;
     }
 
     private final UserService userService;
 
+    private final MailService mailService;
+
     private final ShelfService shelfService;
 
     private final SessionService sessionService;
+
+    private PasswordEncoder passwordEncoder;
 
     @Context
     private UriInfo uriInfo;
@@ -138,11 +139,23 @@ public class UserJerseyController implements UpdateParamsChecker {
 
 
     @PUT
-    @Path("/{id : \\d+}/password")
+    @Path("/{id : \\d+}/password-change")
     public Response changePassword(@PathParam("id") final long userId,
                                    final UserDto userDto) {
         checkUpdateValues(userId, "id", userDto);
-        userService.changePassword(userId, userDto.getPassword(), userId); // TODO: updater
+        String newPassword = passwordEncoder.encode(userDto.getPassword());
+        userService.changePassword(userId, newPassword, userId); // TODO: updater
+        mailService.sendEmailChangePassword(userService.findById(userId));
+        return Response.noContent().build();
+    }
+
+    @POST
+    @Path("/{id : \\d+}/password-reset")
+    public Response resetPassword(@PathParam("id") final long userId) {
+        String newPassword = userService.generateNewPassword();
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        userService.changePassword(userId, hashedPassword, userId); // TODO: updater
+//        mailService.sendEmailResetPassword(userService.findById(userId), newPassword);
         return Response.noContent().build();
     }
 
@@ -210,7 +223,8 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (gameId <= 0) {
             throw new IllegalParameterValueException("gameId");
         }
-        userService.removePlayStatus(userId, gameId, userId); // TODO: updater
+        userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
+        if(!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
         return Response.noContent().build();
     }
 
@@ -254,6 +268,9 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userGameScoreDto);
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
+        if(userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+            userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
+        }
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
@@ -268,7 +285,14 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
+        if(!belongsToGameList(userId, gameId)){
+            deleteFromGameList(userId, gameId);
+        }
         return Response.noContent().build();
+    }
+
+    private void deleteFromGameList(long userId, long gameId) {
+        userService.removePlayStatus(userId, gameId, userId);
     }
 
 
@@ -531,5 +555,23 @@ public class UserJerseyController implements UpdateParamsChecker {
                                 .createList(gamesPage.getData())) {
                         },
                         scoreAndStatusMap(null,null));
+    }
+    
+    /**
+     *
+     * @return whether or not the game belongs to the User's GameList.
+     */
+
+    private boolean belongsToGameList(final long userId, final long gameId){
+        boolean hasPlayStatus = false;
+        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().iterator().next();
+        if(ugs == null ) {
+            userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
+        } else {
+            if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+        }
+        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
+                || hasPlayStatus;
     }
 }

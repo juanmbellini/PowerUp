@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 public enum PlayStatus {
     PLAN_TO_PLAY,
     PLAYING,
-    PLAYED;
+    PLAYED,
+    NO_PLAY_STATUS;
 
     private final Pattern p = Pattern.compile(" (\\w)(\\w*)");       //Non-static because it's not initialized otherwise
     private final String pretty = toTitleCase();

@@ -231,4 +231,10 @@ public interface UserService {
      */
     String generateNewPassword();
 
+    /**
+     * Change the user's password with a new randomly generated one.
+     * @param id The ID of the user whose password to reset.
+     * @return The generated password.
+     */
+//    void resetPassword(long id);
 }
