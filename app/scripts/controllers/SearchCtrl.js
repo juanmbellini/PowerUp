@@ -4,10 +4,6 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
     powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function ($scope, $timeout, $location, $log, Restangular, PaginationService) {
         Restangular.setFullResponse(true);
 
-        $scope.overAllAmountOfElements = 100;
-        $scope.totalPages = 114;
-        $scope.pageSize = 25;
-
         $scope.searchParams = {
             name: $location.search().name,
             publisher: $location.search().publisher,
@@ -39,6 +35,19 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 }
             }
         }
+
+        // Sanitize numeric search param values
+        if (isNaN(parseInt($scope.searchParams.pageSize))) {
+            $scope.searchParams.pageSize = 25;
+        } else {
+            $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize);
+        }
+        if (isNaN(parseInt($scope.searchParams.pageNumber))) {
+            $scope.searchParams.pageNumber = 1;
+        } else {
+            $scope.searchParams.pageNumber = parseInt($scope.searchParams.pageNumber);
+        }
+
 
         $scope.games = null;
 
@@ -115,6 +124,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
         };
 
         // Pagination control
+        $scope.pageSizes = [25, 50, 100];
         $scope.gamesPaginator = PaginationService.initialize(Restangular.all('games'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
         PaginationService.setRequestParams($scope.gamesPaginator, $scope.searchParams);
         PaginationService.get($scope.gamesPaginator, function (response) {
@@ -125,6 +135,25 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $log.error('Error performing search: ', error);
             $scope.games = [];
         });
+
+        $scope.validPageSizes = function() {
+            var result = [];
+            var pagination = $scope.gamesPaginator.pagination;
+            if (!pagination.totalElements) {
+                return result;
+            }
+            $scope.pageSizes.forEach(function(pageSize, index, pageSizes) {
+                if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index-1])) {
+                    result.push(pageSize);
+                }
+            });
+            var customPageSize = $scope.pageSizes.indexOf($scope.searchParams.pageSize) === -1 ? $scope.searchParams.pageSize : null;
+            if(customPageSize) {
+                result.push(customPageSize);
+                result.sort(function(a, b) { return a-b; });
+            }
+            return result;
+        };
 
         // Reload page on pagination changes
         $scope.$watchCollection(function () {
