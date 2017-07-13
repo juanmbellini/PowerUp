@@ -5,10 +5,7 @@ import ar.edu.itba.paw.webapp.dto.ShelfDto;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -204,7 +201,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
         shelfService.addGameToShelf(userId, shelfName, shelfGameDto.getGameId(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
-        if(userService.getPlayStatuses(userId, shelfGameDto.getGameId(), null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+        if(userService.getPlayStatuses(userId, shelfGameDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
             userService.setPlayStatus(userId, shelfGameDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
         }
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelfGameDto.getGameId())).build();
@@ -253,8 +250,16 @@ public class ShelfJerseyController implements UpdateParamsChecker {
      */
 
     private boolean belongsToGameList(final long userId, final long gameId){
-        return !userService.getGameScores(userId, gameId, null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
-                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 25, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty();
+        boolean hasPlayStatus = false;
+        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().iterator().next();
+        if(ugs == null ) {
+            userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
+        } else {
+            if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+        }
+        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
+                || hasPlayStatus;
     }
 
     private void deleteFromGameList(long userId, long gameId) {

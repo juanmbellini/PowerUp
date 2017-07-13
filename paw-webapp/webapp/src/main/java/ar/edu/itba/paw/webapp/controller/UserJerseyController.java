@@ -224,6 +224,7 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
+        if(!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
         return Response.noContent().build();
     }
 
@@ -267,7 +268,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userGameScoreDto);
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
-        if(userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+        if(userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
             userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
         }
         return Response.created(uri).status(Response.Status.CREATED).build();
@@ -520,7 +521,15 @@ public class UserJerseyController implements UpdateParamsChecker {
      */
 
     private boolean belongsToGameList(final long userId, final long gameId){
-        return !userService.getGameScores(userId, gameId, null, 1, 25, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
-                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 25, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty();
+        boolean hasPlayStatus = false;
+        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().iterator().next();
+        if(ugs == null ) {
+            userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
+        } else {
+            if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+        }
+        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
+                || hasPlayStatus;
     }
 }
