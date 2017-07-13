@@ -243,9 +243,17 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             }
         }
 
+        /**
+         * Attempts to add a given filter value to a given filter category.
+         *
+         * @param filterCategory    The filter category the value belongs to.
+         * @param value             The filter being added.
+         * @return {boolean}        True if the filter was added (params are valid and if the filter was not already
+         *                          applied). False otherwise.
+         */
         function addFilter(filterCategory, value) {
             if (!$scope.searchParams.hasOwnProperty(filterCategory)) {
-                return;
+                return false;
             }
             var usedValues = $scope.searchParams[filterCategory];
             var allowedValues = $scope.filters[filterCategory].map(function (element) {
@@ -255,6 +263,9 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
                 $scope.searchParams[filterCategory].push(value);
                 $scope.resetPageNumberOnSubmit = true;
+                return true;
+            } else {
+                return false;
             }
         }
 
@@ -292,9 +303,6 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
                                     limit: 20,
-                                    onAutocomplete: function (val) {
-                                        addFilter(filterCategory, val);
-                                    },
                                     minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
                                 }
                             });
@@ -333,6 +341,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         angular.element('.chips').on('chip.delete', function (e, chip) {
             removeFilter(chip.filterCategory, chip.tag);
+        });
+
+        angular.element('.chips').on('chip.add', function (e, chip) {
+            var $target = $(e.target);
+            if (!addFilter($target.data('category'), chip.tag)) {
+                $target.find('.chip .close:last').trigger('click');  // Trigger clicking on remove button
+            }
         });
 
         $log.debug('Fired Materialize initializers');
