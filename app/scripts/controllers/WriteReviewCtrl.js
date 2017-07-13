@@ -1,8 +1,9 @@
 'use strict';
 define(['powerUp', 'authService'], function(powerUp) {
 
-    powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', function($scope, $location, $log, AuthService, Restangular) {
+    powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', '$anchorScroll', function($scope, $location, $log, AuthService, Restangular, $anchorScroll) {
         Restangular.setFullResponse(false);
+        $anchorScroll();
         $scope.gameId = $location.search().id;
         if (!$scope.gameId) {
             console.log('No gameId');

@@ -5,7 +5,8 @@
 			<h5 class="center orange-text">{{game.releaseDate}}</h5>
 		</div>
 		<!--ACTION FORMS-->
-		<div class="section">
+        <!--class="section"-->
+		<div >
 			<div class="row">
                 <div class="col s1">
                 </div>
@@ -18,6 +19,8 @@
                                     <option value="delete">Select score</option>
                                     <option ng-repeat="score in rangeScore">{{score}}</option>
                                 </select>
+                                <span ng-if="loadingScore">Loading...</span>
+                                <span ng-if="updatedScore && !loadingScore">Updated!</span>
                             </ng-input>
                         </div>
                         <div class="col s3 center-align">
@@ -27,9 +30,11 @@
                                     <option value="delete">Select play status</option>
                                     <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
                                 </select>
+                                <span ng-if="loadingStatus">Loading...</span>
+                                <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
                             </ng-input>
                         </div>
-                        <div class="col s6 center-align">
+                        <div class="col s6 center-align" class="divWithShelves">
                             <label>Shelves: </label>
                             <ng-input>
                                 <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
@@ -38,6 +43,8 @@
                                         <option value="" disabled selected>Select shelves</option>
                                         <option ng-repeat="shelf in shelves" value="{{shelf.name}}" {{isInShelf(shelf.name)? selected : }}> {{shelf.name}} </option>
                                     </select>
+                                    <span ng-if="loadingShelves">Loading...</span>
+                                    <span ng-if="updatedShelves && !loadingShelves">Updated!</span>
                                 </div>
                             </ng-input>
                         </div>
