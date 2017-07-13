@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "comment_likes",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "comment_id"}))
-public class CommentLike implements ValidationExceptionThrower {
+public class CommentLike implements ValidationExceptionThrower, Like {
 
 
     @Id

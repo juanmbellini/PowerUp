@@ -1,34 +1,53 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.CommentDao;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.LinkedList;
+import java.util.List;
 
 @Repository
 public class CommentHibernateDao implements CommentDao {
+
     @PersistenceContext
     private EntityManager em;
 
 
     @Override
-    public Comment comment(Thread thread, User commenter, String commentMessage) {
-        final Comment comment = new Comment(thread, commenter, commentMessage);
+    public Page<Comment> getThreadComments(Thread thread, int pageNumber, int pageSize,
+                                           SortingType sortingType, SortDirection sortDirection) {
+
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Comment comment");
+
+
+        // Conditions
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        conditions.add(new DaoHelper.ConditionAndParameterWrapper("thread = ?0 AND parentComment is null", thread, 0));
+
+        return DaoHelper.findPageWithConditions(em, Comment.class, query, "comment", "comment.id", conditions,
+                pageNumber, pageSize, sortingType.getFieldName(), sortDirection, false);
+    }
+
+    @Override
+    public Comment findById(long id) {
+        return em.find(Comment.class, id);
+    }
+
+    @Override
+    public Comment comment(Thread thread, String body, User commenter) {
+        final Comment comment = new Comment(thread, body, commenter);
         em.persist(comment);
         return comment;
     }
 
-    @Override
-    public Comment reply(Comment comment, User commenter, String commentMessage) {
-        final Comment reply = new Comment(comment, commenter, commentMessage);
-        em.persist(comment);
-        return comment;
-    }
 
     @Override
     public void update(Comment comment, String newComment) {
@@ -47,11 +66,27 @@ public class CommentHibernateDao implements CommentDao {
         em.remove(comment);
     }
 
+    @Override
+    public Page<Comment> getCommentReplies(Comment comment, int pageNumber, int pageSize,
+                                           SortingType sortingType, SortDirection sortDirection) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Comment comment");
+
+        // Conditions
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        conditions.add(new DaoHelper.ConditionAndParameterWrapper("parentComment = ?0", comment, 0));
+
+        return DaoHelper.findPageWithConditions(em, Comment.class, query, "comment", "comment.id", conditions,
+                pageNumber, pageSize, sortingType.getFieldName(), sortDirection, false);
+    }
 
     @Override
-    public Comment findById(long id) {
-        return em.find(Comment.class, id);
+    public Comment reply(Comment comment, String body, User replier) {
+        final Comment reply = new Comment(comment, body, replier);
+        em.persist(reply);
+        return reply;
     }
+
 
     @Override
     public Comment findComment(long threadId, long userId) {

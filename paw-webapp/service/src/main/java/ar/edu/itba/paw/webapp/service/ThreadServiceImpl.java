@@ -5,13 +5,18 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -51,351 +56,397 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                   int pageNumber, int pageSize,
-                                   ThreadDao.SortingType sortingType, SortDirection sortDirection) {
-        return threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
+    public Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                                                    int pageNumber, int pageSize,
+                                                    ThreadDao.SortingType sortingType,
+                                                    SortDirection sortDirection, User currentUser) {
+        final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
+        final Map<Thread, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> threadLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
-    public Thread create(String title, long creatorUserId, String threadBody) throws NoSuchEntityException {
-        return threadDao.create(title, userDao.findById(creatorUserId), threadBody);
+    public LikeableWrapper<Thread> findById(long threadId, User currentUser) {
+        return Optional.ofNullable(threadDao.findById(threadId))
+                .map(thread -> new LikeableWrapper<>(thread,
+                        // If currentUser is present check if it liked the thread. If not present, get null.
+                        Optional.ofNullable(currentUser).map(user -> threadLikeDao.exists(thread, user)).orElse(null)))
+                .orElse(null);
     }
 
     @Override
-    public void update(long threadId, String title, String threadBody, long userId) {
-        threadDao.update(getThreadAndUserCheckingAuthoring(threadId, userId).getThread(), title, threadBody);
+    public Thread create(String title, String threadBody, User creator) throws NoSuchEntityException {
+        if (creator == null) {
+            throw new IllegalArgumentException();
+        }
+        return threadDao.create(title, threadBody, creator);
     }
 
     @Override
-    public void delete(long threadId, long userId) throws NoSuchEntityException {
-        threadDao.delete(getThreadAndUserCheckingAuthoring(threadId, userId).getThread());
+    public void update(long threadId, String title, String threadBody, User updater) {
+        if (updater == null) {
+            throw new IllegalArgumentException();
+        }
+        final Thread thread = getThread(threadId);
+        validateThreadUpdatePermission(thread, updater);
+        threadDao.update(thread, title, threadBody);
+    }
+
+    @Override
+    public void delete(long threadId, User deleter) {
+        if (deleter == null) {
+            throw new IllegalArgumentException();
+        }
+        getThreadOptional(threadId).ifPresent(thread -> {
+            validateThreadDeletePermission(thread, deleter);
+            threadDao.delete(thread);
+        });
     }
 
 
     @Override
-    public Thread findById(long threadId) {
-        return threadDao.findById(threadId);
-    }
-
-
-    @Override
-    public void likeThread(long threadId, long userId) {
-        final ThreadAndUserWrapper wrapper = getThreadAndUser(threadId, userId); // Checks if thread or user exist.
-        if (threadLikeDao.find(threadId, userId) != null) {
-            threadLikeDao.create(wrapper.getThread(), wrapper.getUser());
+    public void likeThread(long threadId, User liker) {
+        if (liker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Thread thread = getThread(threadId);
+        // If already liked, do nothing and be idempotent
+        if (!threadLikeDao.exists(thread, liker)) {
+            threadLikeDao.create(thread, liker);
         }
     }
 
     @Override
-    public void unlikeThread(long threadId, long userId) {
-        validateExistenceOfThreadAndUser(threadDao.findById(threadId), userDao.findById(userId));
-        final ThreadLike like = threadLikeDao.find(threadId, userId);
-        if (like != null) {
-            threadLikeDao.delete(like);
+    public void unlikeThread(long threadId, User unliker) {
+        if (unliker == null) {
+            throw new IllegalArgumentException();
         }
+        final Thread thread = getThread(threadId);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(threadLikeDao.find(thread, unliker)).ifPresent(threadLikeDao::delete);
     }
 
-
+    @Override
+    public Page<User> getUsersLikingTheThread(long threadId, int pageNumber, int pageSize,
+                                              ThreadLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Thread thread = getThread(threadId);
+        final Page<ThreadLike> page = threadLikeDao.getLikes(thread, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
+    }
 
     /*
      * Comments
      */
 
     @Override
-    public Comment comment(long threadId, long commenterId, String comment) {
-        final ThreadAndUserWrapper wrapper = getThreadAndUser(threadId, commenterId); // Checks existence
-        threadDao.updateHotValue(wrapper.getThread());
-        return commentDao.comment(wrapper.getThread(), wrapper.getUser(), comment);
+    public Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                            CommentDao.SortingType sortingType,
+                                                            SortDirection sortDirection, User currentUser) {
+        final Thread thread = getThread(threadId); // Throws NoSuchEntityException if not exists
+        final Page<Comment> page = commentDao.getThreadComments(thread, pageNumber, pageSize,
+                sortingType, sortDirection);
+        final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
+        final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
-    public Comment replyToComment(long commentId, long replierId, String reply) {
-        final CommentAndUserWrapper wrapper = getCommentAndUser(commentId, replierId); // Checks existence
-        threadDao.updateHotValue(wrapper.getComment().getThread());
-        return commentDao.reply(wrapper.getComment(), wrapper.getUser(), reply);
+    public LikeableWrapper<Comment> findCommentById(long commentId, User currentUser) {
+        return Optional.ofNullable(commentDao.findById(commentId))
+                .map(comment -> new LikeableWrapper<>(comment,
+                        // If currentUser is present check if it liked the thread. If not present, get null.
+                        Optional.ofNullable(currentUser).map(user -> commentLikeDao.exists(comment, user)).orElse(null)))
+                .orElse(null);
     }
 
     @Override
-    public void likeComment(long commentId, long userId) {
-        final CommentAndUserWrapper wrapper = getCommentAndUser(commentId, userId); // Checks existence
-        if (commentLikeDao.find(commentId, userId) != null) {
-            commentLikeDao.create(wrapper.getComment(), wrapper.getUser());
+    public Comment comment(long threadId, String body, User commenter) {
+        if (commenter == null) {
+            throw new IllegalArgumentException();
+        }
+        final Thread thread = getThread(threadId);
+        threadDao.updateHotValue(thread);
+        return commentDao.comment(thread, body, commenter);
+    }
+
+    @Override
+    public void editComment(long commentId, String newBody, User updater) {
+        final Comment comment = getComment(commentId);
+        validateCommentUpdatePermission(comment, updater);
+        commentDao.update(comment, newBody);
+    }
+
+    @Override
+    public void deleteComment(long commentId, User deleter) throws NoSuchEntityException {
+        getCommentOptional(commentId).ifPresent(comment -> {
+            validateCommentDeletePermission(comment, deleter);
+            commentDao.delete(comment);
+        });
+    }
+
+    @Override
+    public Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                            CommentDao.SortingType sortingType,
+                                                            SortDirection sortDirection, User currentUser) {
+        final Comment comment = getComment(commentId); // Throws NoSuchEntityException if not exists
+        // TODO: is liked by...
+        final Page<Comment> page = commentDao.getCommentReplies(comment, pageNumber, pageSize,
+                sortingType, sortDirection);
+        final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
+        final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
+    }
+
+    @Override
+    public Comment replyToComment(long commentId, String body, User replier) {
+        if (replier == null) {
+            throw new IllegalArgumentException();
+        }
+        final Comment comment = getComment(commentId);
+        threadDao.updateHotValue(comment.getThread());
+        return commentDao.reply(comment, body, replier);
+    }
+
+
+    @Override
+    public void likeComment(long commentId, User liker) {
+        if (liker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Comment comment = getComment(commentId);
+        // If already liked, do nothing and be idempotent
+        if (!commentLikeDao.exists(comment, liker)) {
+            commentLikeDao.create(comment, liker);
         }
     }
 
     @Override
-    public void unlikeComment(long commentId, long userId) {
-        validateExistenceOfCommentAndUser(commentDao.findById(commentId), userDao.findById(userId));
-        CommentLike like = commentLikeDao.find(commentId, userId);
-        if (like != null) {
-            commentLikeDao.delete(like);
+    public void unlikeComment(long commentId, User unliker) {
+        if (unliker == null) {
+            throw new IllegalArgumentException();
         }
-    }
-
-
-    @Override
-    public void editComment(long commentId, long userId, String newComment) {
-        commentDao.update(getCommentAndUserCheckingAuthoring(commentId, userId).getComment(), newComment);
+        final Comment comment = getComment(commentId);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(commentLikeDao.find(comment, unliker)).ifPresent(commentLikeDao::delete);
     }
 
     @Override
-    public void deleteComment(long commentId, long userId) throws NoSuchEntityException {
-        commentDao.delete(getCommentAndUserCheckingAuthoring(commentId, userId).getComment());
+    public Page<User> getUsersLikingTheComment(long commentId, int pageNumber, int pageSize,
+                                               CommentLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Comment comment = getComment(commentId);
+        final Page<CommentLike> page = commentLikeDao
+                .getLikes(comment, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
     }
 
-
-
-
-    /*
-     * Helpers
-     */
+    // ========================================
 
 
     /**
-     * Creates a {@link ThreadAndUserWrapper} using the given {@code threadId} and {@code userId},
-     * checking existence and authoring.
-     * Upon success, it returns a {@link ThreadAndUserWrapper} containing the {@link Thread}
-     * with the given {@code threadId}, and the {@link User} with the given {@code userId}.
-     * Otherwise, an exception is thrown.
+     * Retrieves the {@link Thread} with the given {@code threadId}.
      *
-     * @param threadId The thread id.
-     * @param userId   The user id.
-     * @return The wrapper object.
-     * @throws NoSuchEntityException If no {@link Thread} exists with the given {@code threadId},
-     *                               or if no {@link User} exists with the given {@code userId}.
-     * @throws UnauthorizedException If the {@link User} with the given {@code userId} is not the creator
-     *                               of the {@link Thread} with the given {@code threadId}
+     * @param threadId The {@link Thread} id.
+     * @return The {@link Thread} with the given {@code threadId}.
+     * @throws NoSuchEntityException If no {@link Thread} exists with the given {@code threadId}.
      */
-    private ThreadAndUserWrapper getThreadAndUserCheckingAuthoring(long threadId, long userId)
-            throws NoSuchEntityException, UnauthorizedException {
-        return getThreadAndUser(threadId, userId).validateAuthoring(); // Checks existence and authoring
+    private Thread getThread(long threadId) throws NoSuchEntityException {
+        return getThreadOptional(threadId).orElseThrow(NoSuchEntityException::new);
     }
 
     /**
-     * Creates a {@link ThreadAndUserWrapper} using the given {@code threadId} and {@code userId}, checking existence.
+     * Retrieves a nullable {@link Optional} of {@link Thread} with the given {@code threadId}.
      *
-     * @param threadId The thread id.
-     * @param userId   The user id.
-     * @return The wrapper object.
-     * @throws NoSuchEntityException If no {@link Thread} exists with the given {@code threadId},
-     *                               or if no {@link User} exists with the given {@code userId}.
+     * @param threadId The {@link Thread} id.
+     * @return The nullable {@link Optional}.
      */
-    private ThreadAndUserWrapper getThreadAndUser(long threadId, long userId) throws NoSuchEntityException {
-        final Thread thread = threadDao.findById(threadId);
-        final User user = userDao.findById(userId);
-        validateExistenceOfThreadAndUser(thread, user);
-
-        return new ThreadAndUserWrapper(thread, user);
+    private Optional<Thread> getThreadOptional(long threadId) {
+        return Optional.ofNullable(threadDao.findById(threadId));
     }
 
     /**
-     * Checks that the given {@link Thread} or the given {@link User} are not {@code null},
-     * throwing a {@link NoSuchEntityException} containing those {@code null} fields in it.
+     * Checks that the given {@code updater} has permission to update the given {@link Thread}.
      *
-     * @param thread The {@link Thread} to be checked.
-     * @param user   The {@link User} to be checked.
-     * @throws NoSuchEntityException If the given {@link Thread} or the given {@link User} are null.
+     * @param thread  The {@link Thread} to be updated.
+     * @param updater The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code updater} does not have permission to update the given {@code thread}.
      */
-    private void validateExistenceOfThreadAndUser(Thread thread, User user) throws NoSuchEntityException {
-        List<String> missing = new LinkedList<>();
-        if (thread == null) {
-            missing.add("threadId");
-        }
-        if (user == null) {
-            missing.add("userId");
-        }
-        if (!missing.isEmpty()) {
-            throw new NoSuchEntityException(missing);
-        }
+    private void validateThreadUpdatePermission(final Thread thread, final User updater) throws UnauthorizedException {
+        validateThreadPermission(thread, updater, "update",
+                (threadLambda, updaterUser) ->
+                        Long.compare(threadLambda.getCreator().getId(), updaterUser.getId()) == 0);
     }
 
-
     /**
-     * Creates a {@link CommentAndUserWrapper} using the given {@code commentId} and {@code userId},
-     * checking existence and authoring.
-     * Upon success, it returns a {@link CommentAndUserWrapper} containing the {@link Comment}
-     * with the given {@code commentId}, and the {@link User} with the given {@code userId}.
-     * Otherwise, an exception is thrown.
+     * Checks that the given {@code deleter} has permission to delete the given {@link Thread}.
      *
-     * @param commentId The comment id.
-     * @param userId    The user id.
-     * @return The wrapper object.
-     * @throws NoSuchEntityException If no {@link Comment} exists with the given {@code commentId},
-     *                               or if no {@link User} exists with the given {@code userId}.
-     * @throws UnauthorizedException If the {@link User} with the given {@code userId} is not the commenter
-     *                               of the {@link Comment} with the given {@code commentId}
+     * @param thread  The {@link Thread} to be deleted.
+     * @param deleter The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code deleter} does not have permission to delete the given {@code thread}.
      */
-    private CommentAndUserWrapper getCommentAndUserCheckingAuthoring(long commentId, long userId)
-            throws NoSuchEntityException, UnauthorizedException {
-        return getCommentAndUser(commentId, userId).validateAuthoring();
+    private void validateThreadDeletePermission(final Thread thread, final User deleter) throws UnauthorizedException {
+        validateThreadPermission(thread, deleter, "delete",
+                (threadLambda, deleterUser) ->
+                        Long.compare(threadLambda.getCreator().getId(), deleterUser.getId()) == 0);
     }
 
     /**
-     * Creates a {@link CommentAndUserWrapper} using the given {@code commentId} and {@code userId}, checking existence.
+     * Validates that the given {@code operator} can perform the given {@code operationName}
+     * over the given {@link Thread}, according to the given {@link BiPredicate}
+     * (which must implement the {@link BiPredicate#test(Object, Object)} in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Thread}, or {@code false} otherwise).
      *
-     * @param commentId The comment id.
-     * @param userId    The user id.
-     * @return The wrapper object.
-     * @throws NoSuchEntityException If no {@link Comment} exists with the given {@code commentId},
-     *                               or if no {@link User} exists with the given {@code userId}.
+     * @param thread        The {@link Thread} to be operated over.
+     * @param operator      The {@link User} who is operating over the {@link Thread}.
+     * @param operationName A {@link String} indicating the operation being done (for informative purposes).
+     * @param testFunction  A {@link BiPredicate} that implements logic to check if the operation is allowed.
+     * @throws UnauthorizedException If the {@code operator} {@link User} does not have permission to operate over
+     *                               the given {@link Thread}.
+     * @implNote The {@link BiPredicate#test(Object, Object)} must be implemented in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Thread}, or {@code false} otherwise.
      */
-    private CommentAndUserWrapper getCommentAndUser(long commentId, long userId) throws NoSuchEntityException {
-        final Comment comment = commentDao.findById(commentId);
-        final User user = userDao.findById(userId);
-        validateExistenceOfCommentAndUser(comment, user);
-
-        return new CommentAndUserWrapper(comment, user);
+    private void validateThreadPermission(final Thread thread, final User operator,
+                                          String operationName, BiPredicate<Thread, User> testFunction)
+            throws UnauthorizedException {
+        if (thread == null || operator == null) {
+            throw new IllegalArgumentException("Thread and Operator must not be null");
+        }
+        if (testFunction.negate().test(thread, operator)) {
+            throw new UnauthorizedException("User #" + operator.getId() + " does not have permission" +
+                    " to " + operationName + " thread #" + thread.getId());
+        }
     }
 
+
     /**
-     * Checks that the given {@link Comment} or the given {@link User} are not {@code null},
-     * throwing a {@link NoSuchEntityException} containing those {@code null} fields in it.
+     * Retrieves the {@link Comment} with the given {@code commentId}.
      *
-     * @param comment The {@link Comment} to be checked.
-     * @param user    The {@link User} to be checked.
-     * @throws NoSuchEntityException If the given {@link Comment} or the given {@link User} are null.
+     * @param commentId The {@link Comment} id.
+     * @return The {@link Comment} with the given {@code commentId}.
+     * @throws NoSuchEntityException If no {@link Comment} exists with the given {@code commentId}.
      */
-    private void validateExistenceOfCommentAndUser(Comment comment, User user) throws NoSuchEntityException {
-        List<String> missing = new LinkedList<>();
-        if (comment == null) {
-            missing.add("commentId");
-        }
-        if (user == null) {
-            missing.add("userId");
-        }
-        if (!missing.isEmpty()) {
-            throw new NoSuchEntityException(missing);
-        }
+    private Comment getComment(long commentId) throws NoSuchEntityException {
+        return getCommentOptional(commentId).orElseThrow(NoSuchEntityException::new);
     }
 
 
     /**
-     * Class encapsulating a thread and a user.
+     * Retrieves a nullable {@link Optional} of {@link Comment} with the given {@code commentId}.
+     *
+     * @param commentId The {@link Comment} id.
+     * @return The nullable {@link Optional}.
      */
-    private final static class ThreadAndUserWrapper {
-
-        /**
-         * The wrapped thread.
-         */
-        private final Thread thread;
-
-        /**
-         * The wrapper user.
-         */
-        private final User user;
-
-        /**
-         * Constructor.
-         *
-         * @param thread The thread to be wrapped.
-         * @param user   The user to be wrapped.
-         */
-        private ThreadAndUserWrapper(Thread thread, User user) {
-            this.thread = thread;
-            this.user = user;
-        }
-
-        /**
-         * Thread getter.
-         *
-         * @return The wrapped thread.
-         */
-        private Thread getThread() {
-            return thread;
-        }
-
-        /**
-         * User getter.
-         *
-         * @return The wrapped user.
-         */
-        private User getUser() {
-            return user;
-        }
+    private Optional<Comment> getCommentOptional(long commentId) {
+        return Optional.ofNullable(commentDao.findById(commentId));
+    }
 
 
-        /**
-         * Checks whether the wrapped {@link User} is the creator of the wrapped {@link Thread}.
-         * If not, an {@link UnauthorizedException} is thrown.
-         * Note that there is nothing wrong in wrapping a {@link Thread} and a {@link User} that is not the creator,
-         * but this method just checks this for authoring purposes.
-         *
-         * @return this (for method chaining).
-         * @throws UnauthorizedException If the wrapped {@link User} is not the creator of the wrapped {@link Thread}.
-         */
-        private ThreadAndUserWrapper validateAuthoring() throws UnauthorizedException {
-            if (!user.equals(thread.getCreator())) {
-                throw new UnauthorizedException("Thread #" + thread.getId() +
-                        " does not belong to user #" + user.getId());
-            }
-            return this;
-        }
+    /**
+     * Creates a new {@link Page} of {@link LikeableWrapper} according to the given {@code oldPage}
+     * and the {@link Map} of {@code likeCounts}.
+     *
+     * @param oldPage    The old {@link Page} from which data is taken.
+     * @param likeCounts The {@link Map} containing the amount of likes.
+     * @param <T>        The type of elements in the {@link Page}.
+     * @return The new {@link Page}.
+     */
+    private <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
+                                                                                Map<T, Long> likeCounts,
+                                                                                Map<T, Boolean> likes) {
+        return fromAnotherPage(oldPage, entity ->
+                new LikeableWrapper<>(entity, likeCounts.get(entity), likes.get(entity)))
+                .build();
     }
 
     /**
-     * Class encapsulating a comment and a user.
+     * Creates a new {@link Page} of {@link User} according to the given {@code oldPage} of {@link Like}.
+     *
+     * @param oldPage The old {@link Page} from which data is taken.
+     * @return The new {@link Page}.
      */
-    private final static class CommentAndUserWrapper {
-
-        /**
-         * The wrapped comment.
-         */
-        private final Comment comment;
-
-        /**
-         * The wrapper user.
-         */
-        private final User user;
-
-        /**
-         * Constructor.
-         *
-         * @param comment The comment to be wrapped.
-         * @param user    The user to be wrapped.
-         */
-        private CommentAndUserWrapper(Comment comment, User user) {
-            this.comment = comment;
-            this.user = user;
-        }
-
-        /**
-         * Comment getter.
-         *
-         * @return The wrapped comment.
-         */
-        private Comment getComment() {
-            return comment;
-        }
-
-        /**
-         * User getter.
-         *
-         * @return The wrapped user.
-         */
-        private User getUser() {
-            return user;
-        }
-
-        /**
-         * Checks whether the wrapped {@link User} is the commenter of the wrapped {@link Comment}.
-         * If not, an {@link UnauthorizedException} is thrown.
-         * Note that there is nothing wrong in wrapping a {@link Comment} and a {@link User} that is not the commenter,
-         * but this method just checks this for authoring purposes.
-         *
-         * @return this (for method chaining).
-         * @throws UnauthorizedException If the wrapped {@link User} is not the commenter
-         *                               of the wrapped {@link Comment}.
-         */
-        private CommentAndUserWrapper validateAuthoring() throws UnauthorizedException {
-            if (!user.equals(comment.getCommenter())) {
-                throw new UnauthorizedException("Comment #" + comment.getId() +
-                        " does not belong to user #" + user.getId());
-            }
-            return this;
-        }
+    private Page<User> createLikersPage(Page<? extends Like> oldPage) {
+        return fromAnotherPage(oldPage, Like::getUser).build();
     }
 
+    /**
+     * Creates a new {@link Page} from the given {@code oldPage}, applying the given {@code transformFunction}.
+     *
+     * @param oldPage           The old {@link Page} from which data is taken.
+     * @param transformFunction The {@link Function} that is applied to each element of the {@code oldPage}
+     *                          in order to create the new {@link Page}
+     * @param <E>               The type of elements the {@code oldPage} holds.
+     * @param <T>               The type of elements the new {@link Page} will hold.
+     * @return The new {@link Page}.
+     */
+    private static <E, T> Page.Builder<T> fromAnotherPage(Page<E> oldPage, Function<E, T> transformFunction) {
+        return new Page.Builder<T>()
+                .setTotalPages(oldPage.getTotalPages())
+                .setOverAllAmountOfElements(oldPage.getOverAllAmountOfElements())
+                .setPageSize(oldPage.getPageSize())
+                .setPageNumber(oldPage.getPageNumber())
+                .setData(oldPage.getData().stream().map(transformFunction).collect(Collectors.toList()));
+    }
+
+
+    /**
+     * Checks that the given {@code updater} has permission to update the given {@link Comment}.
+     *
+     * @param comment The {@link Comment} to be updated.
+     * @param updater The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code updater} does not have permission
+     *                               to update the given {@code comment}.
+     */
+    private void validateCommentUpdatePermission(final Comment comment, final User updater)
+            throws UnauthorizedException {
+        validateCommentPermission(comment, updater, "update",
+                (commentLambda, updaterUser) ->
+                        Long.compare(commentLambda.getCommenter().getId(), updaterUser.getId()) == 0);
+    }
+
+    /**
+     * Checks that the given {@code deleter} has permission to delete the given {@link Comment}.
+     *
+     * @param comment The {@link Comment} to be deleted.
+     * @param deleter The {@link User} performing the operation.
+     * @throws UnauthorizedException If the {@code deleter} does not have permission
+     *                               to delete the given {@code comment}.
+     */
+    private void validateCommentDeletePermission(final Comment comment, final User deleter)
+            throws UnauthorizedException {
+        validateCommentPermission(comment, deleter, "delete",
+                (commentLambda, deleterUser) ->
+                        Long.compare(commentLambda.getCommenter().getId(), deleterUser.getId()) == 0);
+    }
+
+    /**
+     * Validates that the given {@code operator} can perform the given {@code operationName}
+     * over the given {@link Comment}, according to the given {@link BiPredicate}
+     * (which must implement the {@link BiPredicate#test(Object, Object)} in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Comment}, or {@code false} otherwise).
+     *
+     * @param comment       The {@link Comment} to be operated over.
+     * @param operator      The {@link User} who is operating over the {@link Comment}.
+     * @param operationName A {@link String} indicating the operation being done (for informative purposes).
+     * @param testFunction  A {@link BiPredicate} that implements logic to check if the operation is allowed.
+     * @throws UnauthorizedException If the {@code operator} {@link User} does not have permission to operate over
+     *                               the given {@link Comment}.
+     * @implNote The {@link BiPredicate#test(Object, Object)} must be implemented in a way that it returns
+     * {@code true} if the operator has permission to operate over the {@link Comment}, or {@code false} otherwise.
+     */
+    private void validateCommentPermission(final Comment comment, final User operator,
+                                           String operationName, BiPredicate<Comment, User> testFunction)
+            throws UnauthorizedException {
+        if (comment == null || operator == null) {
+            throw new IllegalArgumentException("Comment and Operator must not be null");
+        }
+        if (testFunction.negate().test(comment, operator)) {
+            throw new UnauthorizedException("User #" + operator.getId() + " does not have permission" +
+                    " to " + operationName + " comment #" + comment.getId());
+        }
+    }
 
 }

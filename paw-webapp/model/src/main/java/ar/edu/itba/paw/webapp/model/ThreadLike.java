@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,8 +14,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "thread_likes",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "thread_id"}))
-public class ThreadLike implements ValidationExceptionThrower {
+        indexes = {@Index(name = "thread_likes_pkey",
+                columnList = "user_id, thread_id", unique = true)})
+public class ThreadLike implements ValidationExceptionThrower, Like {
 
     @Id
     @SequenceGenerator(name = "thread_likes_seq", sequenceName = "thread_likes_id_seq", allocationSize = 1)
@@ -22,10 +24,21 @@ public class ThreadLike implements ValidationExceptionThrower {
     private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(
+            columnDefinition = "integer",
+            name = "user_id",
+            referencedColumnName = "id",
+            nullable = false
+    )
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            columnDefinition = "integer",
+            name = "thread_id",
+            referencedColumnName = "id",
+            nullable = false
+    )
     private Thread thread;
 
     @Column(name = "created_at")
@@ -90,30 +103,23 @@ public class ThreadLike implements ValidationExceptionThrower {
         return createdAt;
     }
 
-
-    /**
-     * Equals based on the id.
-     *
-     * @param o The object to be compared with.
-     * @return {@code true} if they are the same, or {@code false} otherwise.
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ThreadLike)) return false;
 
-        ThreadLike thread = (ThreadLike) o;
+        ThreadLike that = (ThreadLike) o;
 
-        return id == thread.id;
+        return (user == null ? that.user == null : user.equals(that.user))
+                && (thread == null ? that.thread == null : thread.equals(that.thread));
+
     }
 
-    /**
-     * Hashcode based on the id.
-     *
-     * @return The hashcode.
-     */
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (thread != null ? thread.hashCode() : 0);
+        return result;
     }
+
 }

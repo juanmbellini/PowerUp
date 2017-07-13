@@ -64,13 +64,13 @@ public class ThreadController extends BaseController {
     @RequestMapping("/thread")
     public ModelAndView thread(@RequestParam(name = "id") long threadId, @ModelAttribute("commentForm") final CommentForm form) {
         ModelAndView mav = new ModelAndView("thread");
-        Thread thread = threadService.findById(threadId);
-        if (thread == null) {
-            mav = new ModelAndView("error404");
-        } else {
-            mav.addObject("thread", thread);
-            form.setThreadId(thread.getId());
-        }
+//        Thread thread = threadService.findById(threadId);
+//        if (thread == null) {
+//            mav = new ModelAndView("error404");
+//        } else {
+//            mav.addObject("thread", thread);
+//            form.setThreadId(thread.getId());
+//        }
         return mav;
     }
 
@@ -87,16 +87,16 @@ public class ThreadController extends BaseController {
         }
         //Valid, create
         ModelAndView mav = null;
-        try {
-            String title = form.getTitle().trim(),
-                    initialComment = form.getInitialComment().trim();
-            Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
-            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
-            mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
-        } catch (Exception e) {
-            LOG.error("Error creating thread: {}", e);
-            return new ModelAndView("error500");
-        }
+//        try {
+//            String title = form.getTitle().trim(),
+//                    initialComment = form.getInitialComment().trim();
+////            Thread thread = threadService.create(title, getCurrentUser().getId(), initialComment);
+////            LOG.info("{} created thread #{} with title \"{}\"", getCurrentUsername(), thread.getId(), title);
+////            mav = new ModelAndView("redirect:/thread?id=" + thread.getId());
+//        } catch (Exception e) {
+//            LOG.error("Error creating thread: {}", e);
+//            return new ModelAndView("error500");
+//        }
         return mav;
     }
 
@@ -110,10 +110,10 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             String commentContent = form.getComment().trim();
-            Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
+//            Comment comment = threadService.comment(form.getThreadId(), getCurrentUser().getId(), commentContent);
 //            threadService.updateHotValue(form.getThreadId());
             LOG.info("{} commented on thread #{}: \"{}\"", getCurrentUsername(), form.getThreadId(), commentContent);
-            mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
+//            mav = new ModelAndView("redirect:/thread?id=" + form.getThreadId() + "#" + comment.getId());
         } catch (Exception e) {
             LOG.error("Error creating thread: {}", e);
             return new ModelAndView("error500");
@@ -131,10 +131,11 @@ public class ThreadController extends BaseController {
         }
         try {
             reply = reply.trim();
-            Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
+//            Comment createdReply = threadService.replyToComment(parentCommentId, getCurrentUser().getId(), reply);
 //            threadService.updateHotValue(createdReply.getThread().getId());
             LOG.info("{} replied to comment #{} with \"{}\"", getCurrentUsername(), parentCommentId, reply);
-            return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
+            return null;
+//            return new ModelAndView("redirect:/thread?id=" + threadId + "#" + createdReply.getId());
         } catch (Exception e) {
             LOG.error("Error creating reply to comment #{}: {}", parentCommentId, e);
             return new ModelAndView("error500");
@@ -146,7 +147,7 @@ public class ThreadController extends BaseController {
                                    @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.likeThread(threadId, getCurrentUser().getId());
+//            threadService.likeThread(threadId, getCurrentUser().getId());
 //            threadService.updateHotValue(threadId);
             LOG.info("{} liked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -165,7 +166,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.unlikeThread(threadId, getCurrentUser().getId());
+//            threadService.unlikeThread(threadId, getCurrentUser().getId());
 //            threadService.updateHotValue(threadId);
             LOG.info("{} unliked thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
@@ -229,7 +230,7 @@ public class ThreadController extends BaseController {
                                      @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.delete(threadId, getCurrentUser().getId());
+//            threadService.delete(threadId, getCurrentUser().getId());
             LOG.info("{} deleted thread #{}", getCurrentUsername(), threadId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
@@ -250,7 +251,7 @@ public class ThreadController extends BaseController {
                                     @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.likeComment(commentId, getCurrentUser().getId());
+//            threadService.likeComment(commentId, getCurrentUser().getId());
             LOG.info("{} liked comment #{}", getCurrentUsername(), commentId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -268,7 +269,7 @@ public class ThreadController extends BaseController {
                                       @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.unlikeComment(commentId, getCurrentUser().getId());
+//            threadService.unlikeComment(commentId, getCurrentUser().getId());
             LOG.info("{} unliked comment #{}", getCurrentUsername(), commentId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (NoSuchEntityException e) {
@@ -288,7 +289,7 @@ public class ThreadController extends BaseController {
         ModelAndView mav = null;
         try {
             newComment = newComment.trim();
-            threadService.editComment(commentId, getCurrentUser().getId(), newComment);//TODO udates hotValue?
+//            threadService.editComment(commentId, getCurrentUser().getId(), newComment);//TODO udates hotValue?
             LOG.info("{} edited comment #{} to \"{}\"", getCurrentUsername(), commentId, newComment);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {
@@ -309,7 +310,7 @@ public class ThreadController extends BaseController {
                                       @RequestParam(name = "returnUrl", required = false, defaultValue = "/threads") final String returnUrl) {
         ModelAndView mav = null;
         try {
-            threadService.deleteComment(commentId, getCurrentUser().getId());
+//            threadService.deleteComment(commentId, getCurrentUser().getId());
             LOG.info("{} deleted comment #{}", getCurrentUsername(), commentId);
             mav = new ModelAndView("redirect:" + returnUrl);
         } catch (UnauthorizedException e) {

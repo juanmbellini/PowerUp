@@ -3,13 +3,17 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -338,6 +342,106 @@ import java.util.stream.IntStream;
 
 
     /**
+     * Groups {@link Likeable}s with the amount of {@link Like} each one has.
+     *
+     * @param entities   The {@link Collection} of {@link Likeable}.
+     * @param em         The entity manager.
+     * @param entityName The entity name (i.e how it is defined in the {@link Like} {@link Class}).
+     * @param likeClass  The {@link Class} representing the {@link Like} for the {@link Likeable}.
+     * @param <E>        The specific {@link Likeable} type.
+     * @param <T>        The specific {@link Like} type.
+     * @return A {@link Map} grouping {@link Likeable} with the amount of {@link Like} for each.
+     */
+    /* package */
+    static <E extends Likeable, T extends Like> Map<E, Long> countLikes(Collection<E> entities, EntityManager em,
+                                                                        String entityName, Class<T> likeClass) {
+        if (entities == null) {
+            throw new IllegalArgumentException();
+        }
+        if (entities.isEmpty()) {
+            return new HashMap<>(); // Avoids querying
+        }
+
+        // Used for easily getting an entity by its id.
+        final Map<Long, E> ids = entities.stream()
+                .collect(Collectors.toMap(Likeable::getId, Function.identity()));
+        //noinspection unchecked
+        final List<Object[]> likes = em.createQuery("SELECT _like." + entityName + ".id, count(_like)" +
+                " FROM " + likeClass.getSimpleName() + " _like" +
+                " WHERE _like." + entityName + " IN :entities" +
+                " GROUP BY _like." + entityName + ".id")
+                .setParameter("entities", entities)
+                .getResultList();
+        // The likes list holds Object arrays with two elements each: entity id and likes count
+        final Map<E, Long> result = likes.stream()
+                .collect(Collectors.toMap(each -> ids.get((Long) each[0]), each -> (Long) each[1]));
+        entities.forEach(entity -> result.putIfAbsent(entity, 0L));
+        return result;
+    }
+
+    /**
+     * Indicates whether the given {@link User} liked (or not) the given {@code {@link Likeable}}.
+     *
+     * @param entities      The {@link Collection} of {@link Likeable}.
+     * @param user          The {@link User} to be checked if it liked the given {@link Likeable}s.
+     * @param em            The entity manager.
+     * @param likeableClass The {@link Class} of {@link Likeable}.
+     * @param <E>           The specific {@link Likeable} type.
+     * @return A {@link Map} holding a flag for each {@link Likeable}, which indicates if its liked or not.
+     */
+    /* package */
+    static <E extends Likeable> Map<E, Boolean> likedBy(Collection<E> entities, User user, EntityManager em,
+                                                        Class<E> likeableClass) {
+
+        if (entities == null || user == null) {
+            throw new IllegalArgumentException();
+        }
+        if (entities.isEmpty()) {
+            return new HashMap<>(); // Avoids querying
+        }
+        final String className = likeableClass.getSimpleName();
+        final String field = className.toLowerCase();
+        final List<E> liked = em.createQuery("SELECT DISTINCT " + field +
+                " FROM " + className + " " + field + " INNER JOIN " + field + ".likes _like" +
+                " WHERE _like.user = :user AND " + field + " IN :entities", likeableClass)
+                .setParameter("user", user)
+                .setParameter("entities", entities)
+                .getResultList();
+
+        // The likes list holds Object arrays with two elements each: entity id and likes count
+        final Map<E, Boolean> result = liked.stream()
+                .collect(Collectors.toMap(Function.identity(), each -> true));
+        entities.forEach(entity -> result.putIfAbsent(entity, false));
+        return result;
+    }
+
+    /**
+     * Returns a {@link Page} of {@link Like} according to the given {@link ConditionAndParameterWrapper}.
+     *
+     * @param em            The entity manager.
+     * @param pageNumber    The number of page.
+     * @param pageSize      The size of page.
+     * @param sortingType   The field used to sort.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param klass         The {@link Class} of the entity representing the {@link Like}.
+     * @param condition     The condition to match for getting likes.
+     * @param <T>           The specific {@link Like} type.
+     * @return The {@link Page} with {@link Like}.
+     */
+    /* package */
+    static <T extends Like> Page<T> getLikesPage(EntityManager em, int pageNumber, int pageSize,
+                                                 String sortingType, SortDirection sortDirection,
+                                                 Class<T> klass, ConditionAndParameterWrapper condition) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM ").append(klass.getSimpleName()).append(" _like");
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = Collections.singletonList(condition);
+        return DaoHelper.findPageWithConditions(em, klass, query, "_like", "_like.id", conditions,
+                pageNumber, pageSize, "_like." + sortingType, sortDirection, false);
+
+    }
+
+
+    /**
      * Creates a page.
      *
      * @param data                    Data in the page.
@@ -409,21 +513,9 @@ import java.util.stream.IntStream;
 
         private int position;
 
-
-        /**
-         * Constructor.
-         *
-         * @param condition The condition in HQL.
-         * @param parameter The object to be used as parameter.
-         */
-        @Deprecated
-        /* package */ ConditionAndParameterWrapper(String condition, Object parameter) {
+        /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
             this.condition = condition;
             this.parameter = parameter;
-        }
-
-        /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
-            this(condition, parameter);
             this.position = position;
         }
 

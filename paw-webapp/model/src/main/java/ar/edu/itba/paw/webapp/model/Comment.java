@@ -1,7 +1,10 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -13,7 +16,7 @@ import java.util.stream.Collectors;
  */
 @Entity
 @Table(name = "comments")
-public class Comment implements ValidationExceptionThrower {
+public class Comment implements ValidationExceptionThrower, Likeable {
 
 
     @Id
@@ -26,7 +29,7 @@ public class Comment implements ValidationExceptionThrower {
     private User commenter;
 
     @Column(name = "comment")
-    private String comment;
+    private String body;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Thread thread;
@@ -35,11 +38,12 @@ public class Comment implements ValidationExceptionThrower {
     @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 
-    @OneToMany(mappedBy = "parentComment", fetch = FetchType.EAGER, orphanRemoval = true)
-    @OrderBy("createdAt ASC")
+    @OneToMany(mappedBy = "parentComment", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<Comment> replies = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
+    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<CommentLike> likes = new HashSet<>();
 
     @Column(name = "created_at")
@@ -61,16 +65,16 @@ public class Comment implements ValidationExceptionThrower {
      * This constructor is meant to be used for first comment.
      *
      * @param thread    The thread this comment belongs to.
+     * @param body      The comment content.
      * @param commenter The user who is commenting.
-     * @param comment   The comment content.
      * @throws ValidationException If any value is wrong.
      */
-    public Comment(Thread thread, User commenter, String comment) throws ValidationException {
+    public Comment(Thread thread, String body, User commenter) throws ValidationException {
         final List<ValueError> errors = new LinkedList<>();
         ValidationHelper.objectNotNull(thread, errors, ValueErrorConstants.MISSING_THREAD);
         ValidationHelper.objectNotNull(commenter, errors, ValueErrorConstants.MISSING_COMMENTER);
 
-        update(comment, errors);
+        update(body, errors);
         this.thread = thread;
         this.parentComment = null;
         this.commenter = commenter;
@@ -81,20 +85,25 @@ public class Comment implements ValidationExceptionThrower {
      * This constructor is meant to be used for replies.
      *
      * @param parent  The parent comment that this comment is replying to.
+     * @param body    The comment content.
      * @param replier The user who is replying.
-     * @param comment The comment content.
      * @throws ValidationException If any value is wrong.
      */
-    public Comment(Comment parent, User replier, String comment) throws ValidationException {
+    public Comment(Comment parent, String body, User replier) throws ValidationException {
         final List<ValueError> errors = new LinkedList<>();
         if (parent == null) {
             errors.add(ValueErrorConstants.MISSING_PARENT); // This constructor is used for replies
-        } else if (!validParent(parent)) {
-            errors.add(ValueErrorConstants.CYCLE_IN_PARENTS);
+        } else {
+            if (!validParent(parent)) {
+                errors.add(ValueErrorConstants.CYCLE_IN_PARENTS);
+            }
+            ValidationHelper.objectNotNull(parent.getThread(), errors, ValueErrorConstants.MISSING_THREAD);
         }
         ValidationHelper.objectNotNull(replier, errors, ValueErrorConstants.MISSING_COMMENTER);
 
-        update(comment, errors);
+        update(body, errors);
+        //noinspection ConstantConditions
+        this.thread = parent.getThread();
         this.parentComment = parent;
         this.commenter = replier;
     }
@@ -102,23 +111,23 @@ public class Comment implements ValidationExceptionThrower {
     /**
      * Updates the comment.
      *
-     * @param comment The new comment.
+     * @param body The new body.
      * @throws ValidationException If any value is wrong.
      */
-    public void update(String comment) throws ValidationException {
-        update(comment, new LinkedList<>());
+    public void update(String body) throws ValidationException {
+        update(body, new LinkedList<>());
     }
 
     /**
      * Updates the comment, receiving a list of detected errors before executing this method.
      *
-     * @param comment   The new comment.
+     * @param body      The new body.
      * @param errorList The list containing possible errors detected before executing the method.
      * @throws ValidationException If any value is wrong.
      */
-    private void update(String comment, List<ValueError> errorList) throws ValidationException {
-        checkValues(comment, errorList);
-        this.comment = comment;
+    private void update(String body, List<ValueError> errorList) throws ValidationException {
+        checkValues(body, errorList);
+        this.body = body;
     }
 
 
@@ -134,7 +143,7 @@ public class Comment implements ValidationExceptionThrower {
     /**
      * Commenter getter.
      *
-     * @return The comment.
+     * @return The body.
      */
     public User getCommenter() {
         return commenter;
@@ -143,10 +152,10 @@ public class Comment implements ValidationExceptionThrower {
     /**
      * Comment getter.
      *
-     * @return The comment (i.e body of comment).
+     * @return The body (i.e content of comment).
      */
-    public String getComment() {
-        return comment;
+    public String getBody() {
+        return body;
     }
 
     /**
@@ -154,7 +163,7 @@ public class Comment implements ValidationExceptionThrower {
      *
      * @return The amount of likes.
      */
-    public int getLikeCount() {
+    public long getLikeCount() {
         return likes.size();
     }
 
@@ -247,13 +256,13 @@ public class Comment implements ValidationExceptionThrower {
     /**
      * Checks the given values, throwing a {@link ValidationException} if any is wrong.
      *
-     * @param comment   The comment to be checked.
+     * @param body      The body to be checked.
      * @param errorList A list containing possible detected errors before calling this method.
      * @throws ValidationException If any value is wrong.
      */
-    private void checkValues(String comment, List<ValueError> errorList) throws ValidationException {
+    private void checkValues(String body, List<ValueError> errorList) throws ValidationException {
         errorList = errorList == null ? new LinkedList<>() : errorList;
-        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(comment, NumericConstants.COMMENT_BODY_MIN_LENGTH,
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(body, NumericConstants.COMMENT_BODY_MIN_LENGTH,
                 NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_COMMENT,
                 ValueErrorConstants.COMMENT_TOO_SHORT, ValueErrorConstants.COMMENT_TOO_LONG);
         throwValidationException(errorList);

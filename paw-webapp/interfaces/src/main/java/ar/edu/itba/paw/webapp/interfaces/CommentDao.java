@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -14,25 +15,37 @@ public interface CommentDao {
 
 
     /**
-     * Creates a comment in a {@link Thread}.
+     * Finds a {@link Page} of top level {@link Comment}s to the given {@link Thread}.
+     * Sorting and Pagination can be applied.
      *
-     * @param thread         The commented {@link Thread}.
-     * @param commenter      The {@link User} commenting.
-     * @param commentMessage The comment content.
-     * @return
+     * @param thread        The commented {@link Thread}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (date or best).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
      */
-    Comment comment(Thread thread, User commenter, String commentMessage);
+    Page<Comment> getThreadComments(Thread thread, int pageNumber, int pageSize,
+                                    SortingType sortingType, SortDirection sortDirection);
 
 
     /**
-     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
+     * Finds a comment or a reply by ID.
      *
-     * @param comment        The {@link Comment} to be replied.
-     * @param commenter      The {@link User} replying
-     * @param commentMessage The comment content.
-     * @return
+     * @param id The ID.
+     * @return The matching comment or reply, or {@code null} if not found.
      */
-    Comment reply(Comment comment, User commenter, String commentMessage);
+    Comment findById(long id);
+
+    /**
+     * Creates a comment in a {@link Thread}.
+     *
+     * @param thread    The commented {@link Thread}.
+     * @param body      The comment content.
+     * @param commenter The {@link User} commenting.
+     * @return The new {@link Comment}.
+     */
+    Comment comment(Thread thread, String body, User commenter);
 
 
     /**
@@ -52,12 +65,30 @@ public interface CommentDao {
     void delete(Comment comment);
 
     /**
-     * Finds a comment or a reply by ID.
+     * Finds a {@link Page} of {@link Comment}s that are immediate reply to the {@link Comment}
+     * with the given {@code commentId}.
+     * Sorting and Pagination can be applied.
      *
-     * @param id The ID.
-     * @return The matching comment or reply, or {@code null} if not found.
+     * @param comment       The replied {@link Comment}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (date or best).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
      */
-    Comment findById(long id);
+    Page<Comment> getCommentReplies(Comment comment, int pageNumber, int pageSize,
+                                    SortingType sortingType, SortDirection sortDirection);
+
+    /**
+     * Replies a comment (i.e comments a comment). Note that a reply is also a {@link Comment}.
+     *
+     * @param comment The {@link Comment} to be replied.
+     * @param body    The comment content.
+     * @param replier The {@link User} replying
+     * @return The new {@link Comment} (i.e the reply to the given {@link Comment}).
+     */
+    Comment reply(Comment comment, String body, User replier);
+
 
     /**
      * Finds a top-level comment for a given thread by a given user.
@@ -96,13 +127,54 @@ public interface CommentDao {
                     return reply;
                 }
                 //TODO check if this is necessary
-//                for(Comment replyReply : reply.getReplies()) {
+//                for(Comment replyReply : reply.getCommentReplies()) {
 //                    queue.offer(replyReply);
 //                }
                 queue.addAll(reply.getReplies());
             }
         }
         return null;
+    }
+
+
+    /**
+     * Enum indicating the sorting type for the "get threads" method.
+     */
+    enum SortingType {
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(comment.likes)";
+            }
+        },
+        DATE {
+            @Override
+            public String getFieldName() {
+                return "createdAt";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
     }
 
 }
