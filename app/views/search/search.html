@@ -29,13 +29,14 @@
             </div>
             <div ng-if="games.length > 0">
                 <!--Total games count-->
-                <ul class="row games-count">
-                    <div class="col s6">
+                <div class="row">
+                    <div class="games-count col s6">
                         Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
                         {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
                         of {{gamesPaginator.pagination.totalElements}}
                     </div>
-                </ul>
+                </div>
+                <!--End total games count-->
             </div>
 
             <!--Filters collapsible-->
@@ -57,23 +58,23 @@
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
-                                    <li class="tab col s3"><a href="#platforms" class="active">Platforms</a></li>
-                                    <li class="tab col s3"><a href="#genres">Genres</a></li>
-                                    <li class="tab col s3"><a href="#developers">Developers</a></li>
-                                    <li class="tab col s3"><a href="#publishers">Publishers</a></li>
+                                    <li class="tab col s3"><a href="#platform" class="active">Platforms</a></li>
+                                    <li class="tab col s3"><a href="#genre">Genres</a></li>
+                                    <li class="tab col s3"><a href="#developer">Developers</a></li>
+                                    <li class="tab col s3"><a href="#publisher">Publishers</a></li>
                                 </ul>
                             </div>
                             <!--Filter values-->
-                            <div id="platforms" class="col s12 filter">
+                            <div id="platform" class="col s12 filter">
                                 <div class="chips chips-autocomplete" id="platform-autocomplete" data-category="platform"></div>
                             </div>
-                            <div id="genres" class="col s12 filter">
+                            <div id="genre" class="col s12 filter">
                                 <div class="chips chips-autocomplete" id="genre-autocomplete" data-category="genre"></div>
                             </div>
-                            <div id="developers" class="col s12 filter">
+                            <div id="developer" class="col s12 filter">
                                 <div class="chips chips-autocomplete" id="developer-autocomplete" data-category="developer"></div>
                             </div>
-                            <div id="publishers" class="col s12 filter">
+                            <div id="publisher" class="col s12 filter">
                                 <div class="chips chips-autocomplete" id="publisher-autocomplete" data-category="publisher"></div>
                             </div>
                         </div>
@@ -184,14 +185,14 @@
             <!--End games list-->
 
             <!--Another total games count-->
-            <ul class="row games-count" ng-if="games && games.length > 0">
-                <div class="col s6">
+            <div class="row">
+                <div class="games-count col s6">
                     Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
                     {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
                     of {{gamesPaginator.pagination.totalElements}}
                 </div>
-            </ul>
-            <!--End extra total games count-->
+            </div>
+            <!--Another total games count-->
         </div>
     </div>
 

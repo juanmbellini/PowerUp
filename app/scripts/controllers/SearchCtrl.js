@@ -170,6 +170,16 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             $scope.submitSearch(resetPageNumber);
         });
 
+        // Open the filters collapsible when games are found and there are filters active
+        $scope.$watchCollection('games', function(newVal, oldVal) {
+            if (typeof oldVal === 'undefined' || angular.equals(newVal, oldVal)) {
+                return; // Initial change, ignore
+            }
+            if ($scope.filtersReady && hasFilters()) {
+                openFiltersCollapsible();
+            }
+        });
+
         // Enable filters when ready
         if ($scope.filtersReady) {
             $log.debug('Filters were already loaded, enabling filters');
@@ -213,15 +223,20 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
             return result;
         }
 
-        function initialChipData(filterCategory, data) {
+        /**
+         * Builds an array of objects adhering to the format specified by Materialize chips for initial data.
+         *
+         * @param data      The data to process.
+         * @return {Array}  The processed data, ready to use in Materialize chips initial data.
+         */
+        function initialChipData(data) {
             var result = [];
             if (typeof data !== 'object' || !Array.isArray(data)) {
                 return result;
             }
             for (var i = 0; i < data.length; i++) {
                 result[i] = {
-                    tag: data[i],
-                    filterCategory: filterCategory
+                    tag: data[i]
                 };
             }
             return result;
@@ -298,12 +313,12 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                         $timeout(function () {
                             $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
                             angular.element('#' + filterCategory + '-autocomplete').material_chip({
-                                data: initialChipData(filterCategory, $scope.searchParams[filterCategory]),
+                                data: initialChipData($scope.searchParams[filterCategory]),
                                 autocompleteOptions: {
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
                                     limit: 20,
-                                    minLength: 2 // The minimum length of the input for the autocomplete to start. Default: 1.
+                                    minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
                                 }
                             });
                         });
@@ -311,12 +326,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                 }
             }
             // Done adding all filters to view, expand filters collapsible if necessary
-            if (hasFilters()) {
-                angular.element('#filters-collapsible').addClass('active');
-                // Manually trigger a click to properly set the active tab
-                $timeout(function () {
-                    angular.element('.tabs li a.active').trigger('click');
-                }, 250);
+            if (hasFilters() && $scope.games) {
+                openFiltersCollapsible();
             }
         }
 
@@ -327,6 +338,40 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
                     || $scope.searchParams.platform.length > 0;
         }
 
+        /**
+         * Out of all filter categories available in the filters collapsible, from left to right as they appear on the
+         * page, gets the first category that has at least one value, or defaults to the first.
+         */
+        function getActiveTab() {
+            var categories = ['platform', 'genre', 'developer', 'publisher'];
+            if (!hasFilters()) {
+                return categories[0];
+            }
+            return categories.find(function(category) {
+                return $scope.searchParams[category].length > 0;
+            });
+        }
+
+        /**
+         * Simulates a click on the appropriate active filter category tab so when the filters collapsible expands, the
+         * correct tab is selected.
+         */
+        function clickActiveTab(timeout) {
+            $timeout(function() {
+                angular.element('ul.tabs').tabs('select_tab', getActiveTab());
+            }, timeout);
+        }
+
+        /**
+         * Simulates a click on the filters collapsible to open it.
+         */
+        function openFiltersCollapsible(timeout) {
+            timeout = timeout || 100;
+            $timeout(function() {
+                angular.element('#filters-collapsible').trigger('click');
+            }, timeout);
+        }
+
         /* ********************************************
          *          MATERIALIZE INITIALIZATION
          * *******************************************/
@@ -335,6 +380,15 @@ define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'],
 
         // Tab for filter sections
         angular.element('ul.tabs').tabs();
+
+        var firstTime = true;
+
+        angular.element('#filters-collapsible').on('click', function(e) {
+            if (firstTime) {
+                firstTime = false;
+                clickActiveTab();
+            }
+        });
 
         // Chips for filters
         angular.element('.chips').material_chip();
