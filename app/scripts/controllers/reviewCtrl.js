@@ -133,6 +133,21 @@ define(['powerUp'], function(powerUp) {
             console.log('foundReviews', reviews);
             $scope.headersPagination = response.headers();
             console.log($scope.headersPagination);
+            angular.forEach(reviews, function (reviewRef, index, reviewArray) {
+                Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                    var gameScore = response.data;
+                    if (gameScore.length > 0) {
+                        reviewArray[index].overallScore = gameScore[0].score;
+                    }
+                });
+            });
+            angular.forEach(reviews, function (reviewRef, index, reviewArray) {
+                Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                    var shelvesWithGame = response.data;
+                    reviewArray[index].shelves = shelvesWithGame;
+                });
+            });
+
             $scope.checkCanWriteReview();
             $scope.updatePagination();
         }, function() {
