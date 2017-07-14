@@ -186,6 +186,7 @@
                                 <img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
                                 <span class="title">{{review.username}}</span>
                                 <p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+                                <a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1"><i class="material-icons right">mode_edit</i></a>
                                 <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
                                 <p><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
                                 <br/>

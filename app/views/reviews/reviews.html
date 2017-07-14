@@ -73,7 +73,8 @@
 								</div>
 								<div class="col s2">
 									<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}
-										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)"
+										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1"><i class="material-icons right">mode_edit</i></a>
+										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
 										   class="material-icons red-text text-lighten-1 delete-button">
 											<i class="material-icons right">delete</i>
 										</a>
