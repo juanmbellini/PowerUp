@@ -70,19 +70,45 @@
 												reviews by {{review.username}}</a>
 											</span>
 									</p>
+									<p class="wrap-text"> Shelves:
+										<span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
+									</p>
 								</div>
 								<div class="col s2">
-									<p class="secondary-content" style="color: black;">{{review.date | date: 'mediumDate'}}
-										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)"
-										   class="material-icons red-text text-lighten-1 delete-button">
+									<p class="right-align">
+										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
+										   class="material-icons red-text text-lighten-1 delete-button ">
 											<i class="material-icons right">delete</i>
 										</a>
 									</p>
+									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
 								</div>
 							</div>
 							<div class="row">
 								<p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
 								<div class="col s2">
+									<div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
+										<div ng-switch-when="true">
+											<!--<span class="rating-stars hide-on-small-and-down">-->
+												<!--<span ng-repeat="i in [0,1,2,3,4]">-->
+													<!--<span ng-if="(review.overallScore - (i * 2) - 1 ) < 0">-->
+														<!--<i class="material-icons">star_border</i>-->
+													<!--</span>-->
+													<!--<span ng-if="(review.overallScore - (i * 2) - 1 ) == 0">-->
+														<!--<i class="material-icons">star_half</i>-->
+													<!--</span>-->
+													<!--<span ng-if="(review.overallScore - (i * 2) - 1) > 0">-->
+														<!--<i class="material-icons">star</i>-->
+													<!--</span>-->
+												<!--</span>-->
+											<!--</span>-->
+											<p class="rating-number"><b>Overall: <span class="right">{{review.overallScore}}</span></b></p>
+										</div>
+										<div ng-switch-default>
+											<p class="rating-number center"><b>Unrated</b></p>
+										</div>
+									</div>
 									<p style="color: #26a69a;">
 										Story: <span class="right">{{review.storyScore}}</span>
 										<br/>
@@ -94,7 +120,7 @@
 										<br/>
 										Fun: <span class="right">{{review.funScore}}</span>
 										<br/>
-										<b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>
+										<!--<b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>-->
 									</p>
 								</div>
 							</div>

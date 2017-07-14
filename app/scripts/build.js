@@ -54,7 +54,8 @@ require.config({
         'materialize.character_counter': '../../bower_components/materialize/js/character_counter',
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
-        'materialize.chips': '../../bower_components/materialize/js/chips'
+        'materialize.chips': '../../bower_components/materialize/js/chips',
+        materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
         jquery: {

@@ -217,6 +217,20 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (reviews) {
                 $scope.reviews = reviews;
                 console.log('found review ', $scope.reviews);
+                angular.forEach(reviews, function (reviewRef, index, reviewArray) {
+                    Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                        var gameScore = response;
+                        if (gameScore.length > 0) {
+                            reviewArray[index].overallScore = gameScore[0].score;
+                        }
+                    });
+                });
+                angular.forEach(reviews, function (reviewRef, index, reviewArray) {
+                    Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                        var shelvesWithGame = response;
+                        reviewArray[index].shelves = shelvesWithGame;
+                    });
+                });
                 $scope.checkCanWriteReview();
             }, function() {
                 console.log('There was an error getting reviews');
