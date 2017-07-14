@@ -7,7 +7,7 @@
         <div class="row">
             <div ng-if="threads === null" class="center">
                 <h5>Fetching threads...</h5>
-                <loadingcircle></loadingcircle>
+                <loading-circle></loading-circle>
             </div>
 
             <h5 ng-if="threads && threads.length == 0" class="center">
@@ -67,7 +67,7 @@
                     <a ng-if="hasMorePages && !pendingRequests.threads" href="" ng-click="getMoreThreads()">Load more threads</a>
                     <p style="display:inline-block" ng-if="pendingRequests.threads">Fetching more threads...</p>
                     <div ng-if="pendingRequests.threads" style="display: inline-block; vertical-align: middle">
-                        <loadingcircle-small></loadingcircle-small>
+                        <loading-circle-small></loading-circle-small>
                     </div>
                 </div>
                 <!--End load more-->

@@ -2,7 +2,7 @@
 	<div class="container row">
         <div ng-if="thread === null" class="center">
             <h5>Fetching thread...</h5>
-            <loadingcircle></loadingcircle>
+            <loading-circle></loading-circle>
         </div>
 
 		<div ng-if="thread !== null">
@@ -71,7 +71,7 @@
 			<!--COMMENTS-->
 			<div ng-if="comments === null" class="center">
 				<h5>Fetching thread comments...</h5>
-				<loadingcircle></loadingcircle>
+				<loading-circle></loading-circle>
 			</div>
 			<div ng-if="comments !== null">
 				<div class="row">
@@ -146,7 +146,7 @@
 								<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
 								<!--Loading circles don't play well with ul .collection-item .avatar li =( -->
 								<!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
-									<!--<loadingcircle-small></loadingcircle-small>-->
+									<!--<loading-circle-small></loading-circle-small>-->
 								<!--</div>-->
 							</div>
 							<!--End comment replies action links-->
@@ -498,7 +498,7 @@
 						<a ng-if="hasMoreComments && !pendingRequests.comments.getTopLevel" href="" ng-click="getMoreTopLevelComments()">Load more comments</a>
 						<p style="display:inline-block" ng-if="pendingRequests.comments.getTopLevel">Fetching more comments...</p>
 						<div ng-if="pendingRequests.comments.getTopLevel" style="display: inline-block; vertical-align: middle">
-							<loadingcircle-small></loadingcircle-small>
+							<loading-circle-small></loading-circle-small>
 						</div>
 					</div>
 					<!--End load more comments-->
