@@ -1,8 +1,7 @@
 /* global paths */
 'use strict';
 require.config({
-    // baseUrl: 'scripts',
-    baseUrl: 'TU VIEJA',
+    baseUrl: 'scripts',
     paths: {
         requirejs: '../../bower_components/requirejs/require',
         jquery: '../../bower_components/jquery/dist/jquery',
