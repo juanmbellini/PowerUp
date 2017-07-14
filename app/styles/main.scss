@@ -10,10 +10,10 @@ $roboto-font-path: "../fonts/roboto/";
 // Swal
 @import '../../bower_components/sweetalert/dist/sweetalert.css';
 // Slick
-@import '../../bower_components/slick-carousel/slick/slick';
-@import '../../bower_components/slick-carousel/slick/slick-theme';
+@import '../../bower_components/slick-carousel/slick/slick.scss';
+@import 'slick-theme.css';
 // Lightbox
-@import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
+@import 'lightbox.css';
 
 @import 'partials/home';
 @import 'style';

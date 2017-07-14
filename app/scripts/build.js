@@ -5,7 +5,7 @@ require.config({
     paths: {
         requirejs: '../../bower_components/requirejs/require',
         jquery: '../../bower_components/jquery/dist/jquery',
-        'jquery-ui': '../../bower_components/jquery-ui/jquery-ui',
+        'jquery-ui': 'jquery-ui',
         json3: '../../bower_components/json3/lib/json3',
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
