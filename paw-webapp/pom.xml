@@ -41,6 +41,7 @@
         <org.flywaydb.version>4.1.2</org.flywaydb.version>
         <commons-validator.version>1.6</commons-validator.version>
         <io.jsonwebtoken.jjwt.version>0.7.0</io.jsonwebtoken.jjwt.version>
+        <frontend-maven-plugin.version>1.4</frontend-maven-plugin.version>
     </properties>
 
     <modules>
@@ -65,7 +66,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <!-- Spring -->
             <!--TODO remove web MVC dependency after migrating to Jersey-->
             <dependency>
@@ -348,6 +348,71 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>Frontend Build</id>
+            <activation>
+                <file>
+                    <exists>../Gruntfile.js</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-maven-plugin.version}</version>
+                        <configuration>
+                            <workingDirectory>../</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Install Node and NPM</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v6.9.4</nodeVersion>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>bower install</id>
+                                <goals>
+                                    <goal>bower</goal>
+                                </goals>
+                            </execution>
+                            <!--TODO uncomment this when we have tests-->
+                            <!--<execution>-->
+                                <!--<id>javascript tests</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>karma</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<karmaConfPath>karma.conf.js</karmaConfPath>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                            <execution>
+                                <id>grunt build</id>
+                                <goals>
+                                    <goal>grunt</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>build --verbose</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -371,6 +436,12 @@
                 <version>${maven-war-plugin.version}</version>
                 <configuration>
                     <packagingExcludes>**/logback-test.xml, **/development.properties</packagingExcludes>
+                    <webResources>
+                        <resource>
+                            <!-- Relative to WEBAPP MODULE pom -->
+                            <directory>../../dist</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <!--Flyway maven plugin for running migrations from the command line in development-->

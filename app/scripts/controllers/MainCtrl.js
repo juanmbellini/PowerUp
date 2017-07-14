@@ -30,7 +30,7 @@ define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
         AuthService.trackToken();
 
         $scope.logOut = AuthService.logOut;
-        $scope.apiLocation = 'http://localhost:8080/api';
+        $scope.apiLocation = 'http://localhost:8080/paw-2016b-02/api';
         $scope.isLoggedIn = AuthService.isLoggedIn;
         $scope.currentUser = AuthService.getCurrentUser();
 

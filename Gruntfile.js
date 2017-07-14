@@ -402,6 +402,9 @@ module.exports = function (grunt) {
       baseUrl: ''
     });
 
+    options.baseUrl = 'paw-2016b-02/';
+    grunt.log.writeln('Base URL is: ', options);
+
     if (!options.outputFile) {
       grunt.fail.warn('Option `outputFile` not specified.');
     }
