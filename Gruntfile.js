@@ -427,6 +427,10 @@ module.exports = function (grunt) {
           var shortPath = path.relative(options.baseRoot, longPath);
           var shortModule = path.relative(options.baseRoot, longModule);
 
+          // Remove "directives/" and "services/" in the beginning of short modules, for some reason they don't work,
+          // even though "controllers/" does
+          shortModule = shortModule.replace(/^(directives|services)\//, '');
+
           mappings[removeExtension(shortModule)] = removeExtension(shortPath);
       }
     }
