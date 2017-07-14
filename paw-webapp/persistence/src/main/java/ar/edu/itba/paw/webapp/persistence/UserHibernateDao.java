@@ -154,9 +154,9 @@ public class UserHibernateDao implements UserDao {
             throw new IllegalArgumentException();
         }
         UserGameScore gameScore = user.scoreGame(game, score);
-        if (gameScore != null) {
-            em.remove(em.merge(gameScore)); // Removes relationship between user and game.
-        }
+//        if (gameScore != null) {
+//            em.remove(em.merge(gameScore)); // Removes relationship between user and game.
+//        }
         em.merge(user);
     }
 

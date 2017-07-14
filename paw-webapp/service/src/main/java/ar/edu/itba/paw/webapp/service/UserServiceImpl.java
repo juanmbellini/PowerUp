@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     @Override
     public void removeGameScore(long userId, long gameId, long updaterId) {
         checkPresentGameId(gameId);
-        userDao.removePlayStatus(checkUserValuesAndAuthoring(userId, updaterId), gameDao.findById(gameId));
+        userDao.removeGameScore(checkUserValuesAndAuthoring(userId, updaterId), gameDao.findById(gameId));
         gameDao.updateAvgScore(gameId); // TODO: receive object
     }
 
