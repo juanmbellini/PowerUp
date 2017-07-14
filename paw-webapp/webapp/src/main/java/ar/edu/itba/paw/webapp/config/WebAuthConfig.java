@@ -23,8 +23,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
@@ -81,7 +81,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     public RequestMatcher optionallyAuthenticatedEndpointsMatcher() {
         return new OrRequestMatcher(
             // TODO hacer la lista más específica para no procesar endpoints de más
-            new AntPathRequestMatcher("/**", "GET")
+            new AntPathRequestMatcher("/**", "GET"),
+            new RegexRequestMatcher("/api/users/\\d+/password-reset", "POST")
         );
     }
 
