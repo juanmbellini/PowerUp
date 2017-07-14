@@ -55,7 +55,6 @@ define(['powerUp', 'authService'], function(powerUp) {
                     criterion.score = oldReview[criterion.name + 'Score'];
                 });
                 reviewAlreadyExist = true;
-                // Materialize.updateTextFields();
             } else {
                 reviewAlreadyExist = false;
             }
