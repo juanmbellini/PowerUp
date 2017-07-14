@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
+define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
@@ -30,7 +30,7 @@ define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
         AuthService.trackToken();
 
         $scope.logOut = AuthService.logOut;
-        $scope.apiLocation = 'http://localhost:8080/paw-2016b-02/api';
+        $scope.apiLocation = 'http://pawserver.it.itba.edu.ar/paw-2016b-02/api';
         $scope.isLoggedIn = AuthService.isLoggedIn;
         $scope.currentUser = AuthService.getCurrentUser();
 

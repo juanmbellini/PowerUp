@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'sweetalert.angular', 'likesService', 'paginationService'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 'LikesService', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ThreadCtrl', ['$scope', '$location', '$routeParams', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $routeParams, $log, Restangular, AuthService, LikesService, PaginationService) {
         $scope.threadId = $routeParams.threadId;

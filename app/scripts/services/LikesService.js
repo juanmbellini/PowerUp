@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService'], function(powerUp) {
+define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.service('LikesService', ['$log', 'Restangular', 'AuthService', function ($log, Restangular, AuthService) {
 

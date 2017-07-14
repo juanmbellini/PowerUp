@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService'], function(powerUp) {
+define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', '$anchorScroll', function($scope, $location, $log, AuthService, Restangular, $anchorScroll) {
         Restangular.setFullResponse(false);
