@@ -27,7 +27,7 @@
                             <label>PlayStatus: </label>
                             <ng-input>
                                 <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
-                                    <option value="delete">Select play status</option>
+                                    <option value="no play status">Select play status</option>
                                     <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
                                 </select>
                                 <span ng-if="loadingStatus">Loading...</span>

@@ -40,9 +40,12 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
             // Play Status
             $scope.playStatusOptions = [];
-            // TODO chang this call to be made at the begining or something only once.
             Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
                 $scope.playStatusOptions = playStatuses;
+                $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
+                    return playStatusToFilter !== 'no play status';
+                });
+
             }, function (response) {
                 $log.error('Could not get playStatuses', response);
             });
@@ -50,14 +53,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
                 if (playStatus.length > 0) {
                     $scope.gamePlayStatus = playStatus[0].status;
                 } else {
-                    $scope.gamePlayStatus = 'delete';
+                    $scope.gamePlayStatus = 'no play status';
                 }
             }, function (response) {
                 $log.error('Could not get play status from game', response);
             });
             $scope.updatePlayStatus = function () {
                 $scope.loadingStatus = true;
-                if ($scope.gamePlayStatus === 'delete') {
+                if ($scope.gamePlayStatus === 'no play status') {
                     Restangular.one('users', userId).one('play-status',$scope.gameId).remove().then(function (response) {
                         $log.info('removed play status from game', response);
                         $scope.updatedStatus = true;
