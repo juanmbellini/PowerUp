@@ -1,10 +1,12 @@
 'use strict';
 define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
 
+    // TODO BORRAR
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
     });
 
+    // TODO BORRAR
     powerUp.service('searchedTitleService', function () {
 
         var searchedTitle = null;

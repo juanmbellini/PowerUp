@@ -24,6 +24,7 @@ require.config({
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/on-complete',
         authService: 'services/AuthService',
+        feedService: 'services/FeedService',
         loadingCircle: 'directives/loading-circle',
         'loadingCircle-small': 'directives/loading-circle-small',
         'csrf-service': 'services/CsrfService',
@@ -54,7 +55,8 @@ require.config({
         'materialize.character_counter': '../../bower_components/materialize/js/character_counter',
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
-        'materialize.chips': '../../bower_components/materialize/js/chips'
+        'materialize.chips': '../../bower_components/materialize/js/chips',
+        materialize: '../../bower_components/materialize/bin/materialize'
     },
     shim: {
         jquery: {
@@ -139,6 +141,11 @@ require.config({
             ]
         },
         authService: {
+            deps: [
+                'angular'
+            ]
+        },
+        feedService: {
             deps: [
                 'angular'
             ]
