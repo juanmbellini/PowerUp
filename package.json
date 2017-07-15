@@ -3,8 +3,6 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "angular": "^1.6.5",
-    "angular-mocks": "^1.6.5",
     "bower": "^1.3.12",
     "grunt": "^0.4.1",
     "grunt-cli": "^1.2.0",
@@ -34,10 +32,11 @@
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
-    "karma-safari-launcher": "^1.0.0",
     "load-grunt-tasks": "^0.4.0",
     "requirejs": "^2.1.11",
     "time-grunt": "^0.3.1"
