@@ -24,6 +24,7 @@ require.config({
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/onComplete',
         AuthService: 'services/AuthService',
+        feedService: 'services/FeedService',
         loadingCircle: 'directives/loadingCircle',
         loadingCircleSmall: 'directives/loadingCircleSmall',
         'csrf-service': 'services/CsrfService',
@@ -139,6 +140,11 @@ require.config({
             ]
         },
         AuthService: {
+            deps: [
+                'angular'
+            ]
+        },
+        feedService: {
             deps: [
                 'angular'
             ]
