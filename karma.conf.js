@@ -28,13 +28,18 @@ module.exports = function(config) {
       {pattern: 'bower_components/angular-local-storage/dist/angular-local-storage.js', included: false},
       {pattern: 'bower_components/angular-mocks/angular-mocks.js', included: false},
       {pattern: 'bower_components/angular-route/angular-route.js', included: false},
+      {pattern: 'bower_components/angular-translate/angular-translate.js', included: false},
+      // TODO remove angular cookies, we shouldn't be using cookies
+      {pattern: 'bower_components/angular-cookies/angular-cookies.js', included: false},
+      {pattern: 'bower_components/angular-route/angular-route.js', included: false},
       {pattern: 'bower_components/ng-file-upload/ng-file-upload.js', included: false},
-      // {pattern: 'bower_components/ngSweetAlert/SweetAlert.js', included: false},
-      //
+      {pattern: 'bower_components/ngSweetAlert/SweetAlert.js', included: false},
+
       // Etc.
       {pattern: 'bower_components/es5-shim/es5-shim.js', included: false},
       {pattern: 'bower_components/requirejs/require.js', included: false},
       {pattern: 'bower_components/restangular/dist/restangular.js', included: false},
+      {pattern: 'bower_components/lodash/dist/lodash.js', included: false},
 
       // UI
       {pattern: 'bower_components/jquery/dist/jquery.js', included: false},
@@ -53,7 +58,7 @@ module.exports = function(config) {
       {pattern: 'app/scripts/**/*.js', included: false},
       {pattern: 'app/views/**/*.html', included: false},
       {pattern: 'test-main.js', included: true},
-      {pattern: 'app/test/**.js', included: false}
+      {pattern: 'app/test/**/*.js', included: false}
     ],
 
 

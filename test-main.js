@@ -18,8 +18,12 @@ require.config({
 
   // Adapted from build.js
   paths: {
+    powerUp: 'app/scripts/powerUp',
     paths: 'app/scripts/paths',
     routes: 'app/scripts/routes',
+    'services/dependencyResolverFor': 'app/scripts/services/dependencyResolverFor',
+    'i18n/i18nLoader': 'app/scripts/i18n/i18nLoader',
+    'i18n/translations.en': 'app/scripts/i18n/translations.en',
     requirejs: 'bower_components/requirejs/require',
     jquery: 'bower_components/jquery/dist/jquery',
     'jquery-ui': 'bower_components/jquery-ui/jquery-ui',
@@ -28,6 +32,8 @@ require.config({
     'angular-route': 'bower_components/angular-route/angular-route',
     'angular-translate': 'bower_components/angular-translate/angular-translate',
     'angular-cookies': 'bower_components/angular-cookies/angular-cookies',
+    'angular-local-storage': 'bower_components/angular-local-storage/dist/angular-local-storage',
+    'angular-mocks': 'bower_components/angular-mocks/angular-mocks',
     'es5-shim': 'bower_components/es5-shim/es5-shim',
     moment: 'bower_components/moment/moment',
     restangular: 'bower_components/restangular/dist/restangular',
@@ -44,9 +50,7 @@ require.config({
     loadingCircle: 'app/scripts/directives/loading-circle',
     'loadingCircle-small': 'app/scripts/directives/loading-circle-small',
     'csrf-service': 'app/scripts/services/CsrfService',
-    'angular-local-storage': 'bower_components/angular-local-storage/dist/angular-local-storage',
     'ng-file-upload': 'bower_components/ng-file-upload/ng-file-upload',
-    ngSweetAlert: 'bower_components/ngSweetAlert/SweetAlert',
     likesService: 'app/scripts/services/LikesService',
     paginationService: 'app/scripts/services/PaginationService',
     'materialize.global': 'bower_components/materialize/js/global',
@@ -88,6 +92,11 @@ require.config({
       exports: 'angular',
       deps: [
         'jquery'
+      ]
+    },
+    'angular-mocks': {
+      deps: [
+        'angular'
       ]
     },
     'angular-route': {
@@ -325,7 +334,7 @@ require.config({
 
   // we have to kickoff jasmine, as it is asynchronous
   callback: function() {
-    console.log('KARMA LOAD COMPLETE, starting tests');
+    // console.log('KARMA LOAD COMPLETE, starting tests');
     window.__karma__.start()
   }
 })
