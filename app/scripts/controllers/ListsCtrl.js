@@ -11,6 +11,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         };
         $scope.userId = $location.search().id;
         $scope.username = $location.search().username;
+        $scope.shelfQuery = $location.search().shelf;
         $scope.currentUser = AuthService.getCurrentUser();
         var userURL = null;
         if ($scope.userId) {
@@ -28,7 +29,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         // } else if ($scope.username) {
             // userURL =  Restangular.all('users').one(username,$scope.username);
             // TODO username. Paja porque todo lo otro depende de la userURL que no podria armar. tendria que hacer que todo espere
-        } else if ($scope.currentUser !== null && $scope.currentUser.id) {
+        } else if (AuthService.isLoggedIn()) {
             $location.search({id: $scope.currentUser.id});
             $location.path('list');
         } else {
@@ -115,6 +116,9 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
         // Shelves
         $scope.selectedShelves = [];
+        if ($scope.shelfQuery) {
+            $scope.selectedShelves.push($scope.shelfQuery);
+        }
         $scope.toggleSelectionShelves = function (shelf) {
             var idx = $scope.selectedShelves.indexOf(shelf);
             if (idx > -1) {
@@ -220,7 +224,8 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             var shelf = {name: $scope.newShelfName};
             userURL.all('shelves').post(shelf).then(function(response) {
                 $log.debug('Created Shelf');
-                $scope.shelves.push(response.data);
+                $scope.getShelves();
+                // $scope.shelves.push(response);
             }, function(response) {
                 $log.error('Error creating shelf. Error with status code', response.status); // TODO handle error
             });

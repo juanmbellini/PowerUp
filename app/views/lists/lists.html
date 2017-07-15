@@ -11,7 +11,7 @@
                 </p>
                 <h5>Filter by Shelf</h5>
                 <p ng-repeat="shelf in shelves" class="checkbox-list">
-                    <input  ng-click="toggleSelectionShelves(shelf.name)" type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}" ng-checked="selectedShelves.indexOf(shelf) > -1"/>
+                    <input  ng-click="toggleSelectionShelves(shelf.name)" type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}" ng-checked="selectedShelves.indexOf(shelf.name) > -1"/>
                     <!--<c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if>-->
                     <label class="wrap-text" for="{{shelf.id}}">
                         {{shelf.name}}
