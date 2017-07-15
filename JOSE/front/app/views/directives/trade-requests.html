@@ -1,0 +1,158 @@
+<div class="row" style="padding-bottom: 20px">
+    <div class="col-md-9">
+        <h2>{{'userpage_whatheyhaveofferedyou' | translate}}</h2>
+        <hr/>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+            <div ng-if="trades==null || trades.length == 0">
+                <p>{{'userpage_noNewPropositions' | translate}}</p>
+            </div>
+            <div ng-if="trades != null && trades.length != 0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{'userpage_whattheyofferedu' | translate}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style = "padding-top: 15px; padding-bottom: 15px; background: #404040">
+                            </div>
+                            <table class="table table-hover text-center" id="whattheyofferedu-table" style="border: 1px solid black;table-layout: fixed;">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_date' | translate}}</th>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_whouofferedto' | translate}}</th>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_offeredu' | translate}}</th>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_interestedin' | translate}}</th>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_stateoftrade' | translate}}</th>
+                                    <th class="text-center" header-class="'text-center'">{{'userpage_actions' | translate}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="trade in trades track by $index">
+                                        <td style="vertical-align: middle;">
+                                            <div class="row">
+                                                    {{trade.lastStateChange | date:"HH:hh"}}
+                                            </div>
+                                            <div class="row">
+                                                    {{trade.lastStateChange | date}}
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle;">
+                                            <div ng-if="trade.state != 'ACCEPTED'">
+                                                <a ng-href="#user/{{trade.interestedId}}">
+                                                    {{trade.interestedUsername}}
+                                                </a>
+                                            </div>
+                                            <div ng-if="trade.state == 'ACCEPTED'">
+                                                <div class="row">
+                                                    <div class="col-sm-2"></div>
+                                                    <div class="col-sm-10">
+                                                        <span class="glyphicon glyphicon-user pull-left"></span>
+                                                        <a ng-href="#/user/{{trade.interestedId}}">
+                                                            {{trade.interestedUsername}}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-2"></div>
+                                                    <div class="col-sm-10">
+                                                        <span class="glyphicon glyphicon-envelope pull-left"></span>
+                                                        {{trade.interestedEmail}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-2"></div>
+                                                    <div class="col-sm-10">
+                                                        <span class="glyphicon glyphicon-earphone pull-left"></span>
+                                                        {{trade.interestedPhone}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle;">
+                                            <div class="row">
+                                              <a ng-href="#/offer/{{trade.interestedOfferId}}">
+                                                <img ng-src='/api/images/offer/{{trade.interestedOfferId}}' alt="offer picture" style="max-height: 100px" onerror="this.src='/images/defaultcover.jpg'"/>
+                                              </a>
+                                            </div>
+                                            <div class="row">
+                                                {{trade.interestedOfferName}}
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle;">
+                                            <div class="row">
+                                              <a ng-href="#/offer/{{trade.offererOfferId}}">
+                                                <img ng-src='/api/images/offer/{{trade.offererOfferId}}' alt="offer picture" style="max-height: 100px" onerror="this.src='/images/defaultcover.jpg'"/>
+                                              </a>
+                                            </div>
+                                            <div class="row">
+                                                {{trade.offererOfferName}}
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle;">
+                                            <div ng-if="trade.state == 'PENDING'">
+                                                <span class="label label-warning">{{'userpage_pending' | translate}}</span>
+                                            </div>
+                                            <div ng-if="trade.state == 'ACCEPTED'">
+                                                <span class="label label-success">{{'userpage_accepted' | translate}}</span>
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle;">
+                                            <div ng-if="trade.state == 'PENDING'">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button ng-click="acceptTrade()(trades, $index)" class="btn btn-success">
+                                                            <i class="glyphicon glyphicon-ok"></i> {{'userpage_accept' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px">
+                                                    <div class="col-sm-12">
+                                                        <button ng-click="rejectTrade()($index)" class="btn btn-danger">
+                                                            <i class="glyphicon glyphicon-remove"></i> {{'userpage_reject' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div ng-if="trade.state == 'ACCEPTED'">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button ng-click="completeTrade()(trades, $index)" class="btn btn-success">
+                                                            <i class="glyphicon glyphicon-ok"></i> {{'userpage_complete' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-top: 10px">
+                                                    <div class="col-sm-12">
+                                                        <button ng-click="cancelAcceptedTrade()(trades,$index)" class="btn btn-danger">
+                                                            <i class="glyphicon glyphicon-remove"></i> {{'userpage_cancel' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+
+</hr>

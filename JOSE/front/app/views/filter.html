@@ -1,0 +1,58 @@
+<!--<c:url value="/search" var="getPath"/>-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1 col-sm-1"></div>
+        <div class="hidden-xs hidden-sm col-md-2">
+            <img src="/images/Column-left.png" class="img-responsive">
+        </div>
+        <div class="col-md-6 center-block">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <!--<form id="advanced-search-form" action="${getPath}" method="get">-->
+                        <h3 style="margin-bottom: 25px; text-align: center;">{{'advancedSearch_title' | translate}}</h3>
+                        <div class="form-group">
+                            <input id="advsearch-query" ng-model="query_name" type="text" class="form-control" name="query" placeholder="{{'advancedSearch_name' | translate}}" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+																<select ng-model="searchPlatform" ng-options="pl.name as pl.name for pl in platforms" class="form-control">
+				                          	<option value="">{{'advancedSearch_platform' | translate}}</option>
+												        </select>
+                            </div>
+                            <div class="col-md-6">
+																<select ng-model="searchEsrb" ng-options="esrb.text as 'esrb_' + esrb.text | translate for esrb in esrbs" class="form-control">
+				                          	<option value="">{{'advancedSearch_esrb' | translate}}</option>
+												        </select>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-md-6">
+																<select ng-model="searchMpsp" ng-options="mpsp.text as 'mpsp_' + mpsp.text | translate for mpsp in mpsps" class="form-control">
+																		<option value="">{{'advancedSearch_spmp' | translate}}</option>
+																</select>
+                            </div>
+                            <div class="col-md-6">
+																<select ng-model="searchGenre" ng-options="genre.text as 'genres_' + genre.text | translate for genre in genres" class="form-control">
+																		<option value="">{{'advancedSearch_genre' | translate}}</option>
+																</select>
+                            </div>
+                        </div>
+
+                        <div class="center-block text-right" style="padding-top:10px">
+                            <input type="submit" class="btn btn-primary btn-lg" value="{{'advancedSearch_done' | translate}}" ng-click="performSearch()"/>
+                        </div>
+
+                    <!--</form>-->
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-2">
+            <img src="/images/Column-right.png" class="img-responsive">
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+    </div>
+</div>

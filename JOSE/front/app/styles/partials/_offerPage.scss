@@ -1,0 +1,55 @@
+p.offerAttributes{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    color: grey;
+}
+
+.offerCarouselImgContainer{
+    width:inherit;
+    height:500px;
+    vertical-align: top;
+    horizontal-align: top;
+    position: relative;
+    border: 1px solid black;
+}
+
+.img-responsive-offerImg{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+
+.miniOfferImgContainer{
+    width:auto;
+    height:150px;
+    vertical-align: top;
+    horizontal-align: top;
+    position: relative;
+
+}
+
+.miniOfferPic{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

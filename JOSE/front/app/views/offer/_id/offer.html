@@ -1,0 +1,252 @@
+<div class="container"  ng-show="loadingOffers">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="min-height: 70vh; display: flex; align-items: center">
+                <img src="/images/loading.gif" class="img-responsive center-block"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show ="!loadingOffers && offer === undefined" class="container-fluid">
+        <div class="row top-pad">
+            <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+                <img src="/images/Column-left.png" class="img-responsive">
+
+            </div>
+            <div class="col-md-12 col-lg-8" style="text-align: center; padding-bottom: 20px">
+                <h3 style="text-align: center">{{'offerpage_notfound' | translate}}</h3>
+                <img src="/images/offer-not-found.jpg" class="img-responsive center-block" style="max-height: 700px"/>
+            </div>
+            <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+                <img src="/images/Column-right.png" class="img-responsive">
+            </div>
+
+        </div>
+</div>
+
+<div ng-show ="!loadingOffers && offer !== undefined" class="container">
+    <div class="row" style="padding-top: 35px; padding-bottom: 20px">
+        <div class="col-md-6" >
+            <center>
+                <img src='/api/images/offer/{{offerId}}' class="img-thumbnail img-responsive" style="max-height: 350px" onerror="this.src='/images/defaultcover.jpg'"/>
+            </center>
+        </div>
+
+
+        <div class="col-md-6" style="border-left: 1px ridge #e5e7ea;">
+            <a class="result" href='/#/product/{{offer.prodId}}'>
+                <h1><strong>{{product.name}} ({{product.platform.name}})</strong></h1>
+            </a>
+            <h4>
+              <img src="images/icons/icon{{offer.offererIconId}}.jpg"
+                        class="img-responsive img-circle center-block pull-left"
+                        height="5%" width="5%">
+              <div style="padding-left:35px; padding-top:5px;">
+                <a class="result" href='/#/user/{{offer.userId}}'>
+                    {{offer.username}}
+                </a>
+              </div>
+            </h4>
+
+
+            <div ng-if="offer.nrRevs == 0">
+                <p class="offerAttributes" style="padding-top:10px; font-size: 120%">{{'offerpage_userRating' | translate}} - </p>
+            </div>
+            <div ng-if="offer.nrRevs > 0">
+
+                <div ng-if='offer.userRating<=2.5'>
+                    <p class="offerAttributes" style="padding-top:10px; font-size: 120%">{{'offerpage_userRating'| translate}}<small style="color: red"> {{offer.userRating | number:2}}</small></p>
+                </div>
+                <div ng-if='offer.userRating>2.5 && offer.user.avgRating<=3.5'>
+                    <p class="offerAttributes" style="padding-top:10px; font-size: 120%">{{'offerpage_userRating'| translate}}<small style="color: #FF8C00"> {{offer.userRating | number:2}}</small></p>
+                </div>
+                <div ng-if='offer.userRating>3.5'>
+                    <p class="offerAttributes" style="padding-top:10px; font-size: 120%">{{'offerpage_userRating'| translate}}<small style="color: #32CD32"> {{offer.userRating | number:2}}</small></p>
+                </div>
+            </div>
+
+
+            <p class="offerAttributes" style="padding-top:10px; font-size: 120%"><strong>{{'offerpage_description' | translate}}</strong> {{offer.description}}</p>
+            <p class="offerAttributes" style="padding-top:10px; font-size: 120%"><strong>{{'offerpage_genre' | translate}}</strong> {{'genres_' + product.genre | translate}}</p>
+            <p class="offerAttributes" style="padding-top:10px; font-size: 120%"><strong>{{'offerpage_spmp' | translate}}</strong> {{'mpsp_' + product.mpsp | translate}}</p>
+            <p class="offerAttributes" style="padding-top:10px; padding-bottom:10px; font-size: 120%"><strong>{{'offerpage_esrb' | translate}}</strong> {{'esrb_' + product.esrb | translate}}</p>
+
+
+            <div ng-if="offer.available">
+                <span class="label label-success">{{'offerpage_state_available' | translate}}</span>
+            </div>
+            <div ng-if="!offer.available">
+                <span class="label label-warning">{{'offerpage_state_unavailable' | translate}}</span>
+            </div>
+
+
+
+            <div ng-if='offer.available && loggedId != null && loggedId != offer.userId'>
+                <div style="padding-top:40px; padding-bottom:10px" align="left">
+                    <a class="btn btn-warning" href="/#/offer/{{offerId}}/trade">
+                        {{'offerpage_letsTrade'| translate}}
+                    </a>
+                </div>
+            </div>
+
+            <div  ng-if="loggedId == offer.userId">
+                <div style="padding-bottom: 8px; padding-top: 15px; color:darkslategrey">
+                    <a class="result" href="/#/user/{{offer.userId}}?offers">
+                        <button class="btn btn-primary">
+                            {{'offerpage_seeallmyoffers' | translate}}
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question section -->
+
+    <hr/>
+    <div class="row">
+        <h3>{{'offerpage_questions' | translate}}</h3>
+    </div>
+
+    <div ng-if="loggedId != null && loggedId != offer.userId && offer.available">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form" role="form" name="form" ng-submit="newQuestion()" accept-charset="UTF-8">
+                    <div class="form-group">
+
+                        <input
+                                class="form-control"
+                                type="textarea"
+                                id="question"
+                                ng-model="questionForm.question"
+                                path="question"
+                                placeholder="{{'offerpage_ask' | translate}}"
+                                required></input>
+                    </div>
+                    <div align="right">
+                        <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid">{{'offerpage_askButton' | translate}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <hr/>
+            <div class="questions-block">
+
+                <div ng-if='questions.length == 0'>
+                    <p>{{'offerpage_noQuestions' | translate}}</p>
+                </div>
+
+                <div ng-repeat="question in questions track by $index">
+                    <div class="row" id="q{{$index}}">
+
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                  <div class="row">
+                                    <a ng-href="/#/user/{{question.writerId}}">
+                                      <img src="images/icons/icon{{question.writerIconId}}.jpg"
+                                                class="img-responsive img-circle center-block clickable"
+                                                height="75%" width="75%">
+                                    </a>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-11">
+                                  <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <div class="panel-title pull-left">
+                                          {{question.writer}} - {{question.questionDate | date}}
+                                        </div>
+                                        <div ng-if=" loggedId != null &&
+                                    (question.writerId == loggedId) ||
+                                    (offer.userId == loggedId) ">
+                                          <button ng-click="deleteQuestion($index)" class="btn btn-danger pull-right">
+                                              <i class="glyphicon glyphicon-trash"></i>
+                                          </button>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-body" style="word-wrap:break-word;">
+                                      {{question.question}}
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                              <div ng-if="question.answer != null">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-sm-1">
+                                  <div class="row">
+                                    <a ng-href="/#/user/{{offer.userId}}">
+                                      <img src="images/icons/icon{{offer.offererIconId}}.jpg"
+                                                class="img-responsive img-circle center-block clickable"
+                                                height="75%" width="75%">
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-10">
+                                  <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                      {{offer.username}} - {{question.answerDate | date}}
+                                    </div>
+                                    <div class="panel-body" style="word-wrap:break-word;">
+                                      {{question.answer}}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+
+                                    <!-- Answer section -->
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div ng-if='loggedId == offer.userId && !question.answer' style="padding-right:15px">
+                                                <form class="form" role="form" name="form" ng-submit="answerQuestion($index)" accept-charset="UTF-8">
+                                                    <div class="form-group">
+                                                        <input
+                                                                class="form-control"
+                                                                type="textarea"
+                                                                id="answer{{$index}}"
+                                                                ng-model="answer"
+                                                                path="answer"
+                                                                name="answer"
+                                                                placeholder="{{'offerpage_answer' | translate}}"
+                                                                required></input>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input path="questionId" type="hidden" id="questionIdForm{{$index}}" value="{{question.id}}" style="display:none;"></input>
+                                                    </div>
+                                                    <div align="right">
+                                                        <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid">{{'offerpage_answerButton' | translate}}</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr/>
+                            </div>
+                            <br/><br/>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

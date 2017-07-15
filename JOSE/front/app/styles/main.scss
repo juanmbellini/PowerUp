@@ -1,0 +1,21 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "../../bower_components/components-font-awesome/fonts";
+// bower:scss
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss';
+// endbower
+@import '../../bower_components/components-font-awesome/scss/font-awesome.scss';
+@import '../../bower_components/angular-toastr/dist/angular-toastr.scss';
+
+@import 'partials/home';
+@import 'partials/offerwizard';
+@import 'partials/ratings';
+@import 'partials/result-page';
+@import 'partials/offerPage';
+@import 'partials/userpage';
+
+.top-pad{
+  padding-top:10px;
+}
+.clickable{
+  cursor: pointer;
+}

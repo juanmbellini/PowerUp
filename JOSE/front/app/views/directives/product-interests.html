@@ -1,0 +1,66 @@
+<div class="row" style="padding-bottom: 20px">
+    <div class="col-md-9">
+        <h2>{{'userpage_productInterests'| translate}}</h2>
+        <hr/>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<div ng-if="productinterests != null && productinterests.length != 0">
+    <div class="row">
+        <div class="col-md-12">
+
+          <div ng-repeat="row in productinterests track by $index" ng-init="indexRow = $index">
+
+            <div class="row" style="padding-bottom: 20px;">
+
+              <div ng-repeat="pi in row track by $index" ng-init="indexCol = $index">
+
+                <div class="col-md-3">
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" style="position: relative;">
+                      <div ng-if="user.userid == loggedid">
+                        <div class="row">
+                          <a ng-click="uninterest()(indexRow,indexCol)">
+                            <span class="glyphicon glyphicon-remove close"></span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <a ng-href="/#/product/{{pi.prodId}}">
+                          <img src="/api/images/product/{{pi.prodId}}"
+                          onerror="this.src='/images/defaultcover.jpg'"
+                          class="img-responsive center-block"
+                          style="max-height: 150px;">
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                  </div>
+                  <div class="row text-center">
+                    <a ng-href="/#/product/{{pi.prodId}}" style="color: black">{{pi.prodName}} ({{pi.platform}})</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+    </div>
+</div>
+<div ng-if="productinterests == null || productinterests.length == 0">
+    <div class="row">
+        <div class="col-md-12">
+          <div ng-if="user.userid == loggedid">
+            <p>{{'userpage_noProductInterests' | translate}}</p>
+          </div>
+          <div ng-if="user.userid != loggedid">
+            <p>{{'userpage_noProductInterests_anotherUser' | translate : '{user: user.username}'}}</p>
+          </div>
+        </div>
+    </div>
+</div>

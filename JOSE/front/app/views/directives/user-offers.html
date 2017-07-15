@@ -1,0 +1,90 @@
+<div class="row" style="padding-bottom: 20px">
+  <div class="col-md-9">
+    <h2>{{'userpage_offers'| translate}}</h2>
+    <hr/>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<div ng-if="offers != null && offers.length != 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading" style = "padding-top: 15px; padding-bottom: 15px; background: #404040">
+        </div>
+        <table class="table table-hover text-center" id="offers-table" style="border: 1px solid black;table-layout: fixed;">
+          <thead>
+          </thead>
+          <tbody>
+          <tr ng-repeat="offer in offers track by $index">
+            <td style="vertical-align: middle;">
+              {{offer.prodName}} ({{offer.platform}})
+            </td>
+            <td style="vertical-align: middle;">
+              <a ng-href='/#/offer/{{offer.offerId}}'><img class="img-responsive" ng-src="/api/images/offer/{{offer.offerId}}" alt="offer picture" style="max-height: 100px; display: block;margin-left: auto;margin-right: auto;" onerror="this.src='/images/defaultcover.jpg'"/></a>
+            </td>
+            <td style="vertical-align: middle;">
+              <div ng-if="offer.available">
+                <span class="label label-success">{{'offerpage_state_available' | translate}}</span>
+              </div>
+              <div ng-if="!offer.available">
+                <span class="label label-warning">{{'offerpage_state_unavailable' | translate}}</span>
+              </div>
+            </td>
+            <td style="vertical-align: middle;">{{offer.description}}</td>
+            <td ng-if="loggedid == userid" style="vertical-align: middle;">
+              <div class="row">
+                <div class="col-md-6" style="padding-right: 30px">
+
+                  <!-- Button trigger modal to delete offer-->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOfferModal{{offer.offerId}}">
+                    <i class="glyphicon glyphicon-trash"></i>
+                  </button>
+
+                  <!-- Modal, confirm delete offer-->
+                  <div class="modal fade" id="deleteOfferModal{{offer.offerId}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title" style="text-align: left;" id="deleteOfferModalLabel">{{'userpage_delete_offer_title' | translate}} </h4>
+                        </div>
+                        <div class="modal-body" style="text-align: left;">
+                          {{'userpage_delete_offer' | translate : '{offer: offer.prodName}'}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'cancel' | translate}}</button>
+                          <button type="button" class="btn btn-danger" ng-click="deleteOffer()($index)">{{'delete' | translate}}</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div ng-if="offers == null || offers.length == 0">
+
+      <div ng-if="userid == loggedid">
+        <p>{{'userpage_nooffers' | translate}}</p>
+        <div style="padding-top: 15px">
+          <a class="btn btn-primary" href="/#/newoffer">{{'userpage_upload' | translate}}</a>
+        </div>
+      </div>
+
+      <div ng-if="userid != loggedid">
+        <p>{{'userpage_nooffers_notloggeduser' | translate : '{user: username}'}}</p>
+      </div>
+
+</div>

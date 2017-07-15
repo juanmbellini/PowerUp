@@ -1,0 +1,71 @@
+<div class="row" style="padding-bottom: 20px">
+  <div class="col-md-9">
+    <h2>{{'userpage_userLikes'| translate}}</h2>
+    <hr/>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<div ng-if="userlikes != null && userlikes.length != 0">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div ng-repeat="row in userlikes track by $index" ng-init="indexRow = $index">
+
+        <div class="row">
+
+          <div ng-repeat="like in row track by $index" ng-init="indexCol = $index">
+
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" style="position: relative;">
+                  <div ng-if="userid == loggeduserid">
+                    <a ng-click="unlikeOther()(indexRow,indexCol)">
+                      <span class="glyphicon glyphicon-remove close"></span>
+                    </a>
+                  </div>
+                  <a ng-href="/#/user/{{like.likedId}}">
+                    <img src="images/icons/icon{{like.likedIconId}}.jpg" class="img-responsive img-circle center-block">
+                  </a>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="row text-center">
+                <a ng-href="/#/user/{{like.likedId}}" style="color: black">{{like.likedUsername}}</a>
+              </div>
+              <div class="row text-center">
+                <div ng-if="like.rating ==0"><small>-</small></div>
+                <div ng-if="like.rating > 0 && like.rating <= 2.5"><p style="color: red">{{like.rating | number:2}}</p></div>
+                <div ng-if="like.rating > 2.5 && like.rating <=3.5"><p style="color: #FF8C00">{{like.rating | number:2}}</p></div>
+                <div ng-if="like.rating > 3.5"><p style="color: #32CD32">{{like.rating | number:2}}</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+<div ng-if="userlikes == null || userlikes.length == 0">
+    <div class="row">
+
+        <div class="col-md-12">
+          <div ng-if="loggeduserid != userid">
+            <p>{{'userpage_noUserLikes' | translate : '{user: username}'}}</p>
+          </div>
+
+
+          <div ng-if="loggeduserid == userid">
+            <p>{{'userpage_noUserLikes_You' | translate}}</p>
+          </div>
+
+
+        </div>
+    </div>
+</div>
