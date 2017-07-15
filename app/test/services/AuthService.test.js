@@ -1,37 +1,42 @@
 'use strict';
 
 /*
- * ALWAYS require powerUp and angular-mocks, then require whatever else you need.
+ * ALWAYS require powerUp and angular-mocks, then require:
+ *  - Everything else in the define() on the top of the file you're testing
+ *  - Everything else required by whatever you are testing, unless it's an angular thing that starts with $
+ *  - What you're actually testing
  *
- * What you require here should be EXACTLY as the keys for the "paths" object in test-main.js
- *
- * If you want to require something that is not in test-main.js, you need to add it there AND in karma.conf.js
+ * What you require here should be typed EXACTLY as the keys for the "paths" object in test-main.js
+ * If you want to require something that is not in test-main.js, you need to add it there AND in karma.conf.js if it's
+ * not already there.
  */
-define(['powerUp', 'angular-mocks', 'authService', 'angular-local-storage'], function () {
+define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'authService'], function () {
 
-    // what you are testing
+    // What you are testing
     describe('AuthService', function () {
 
-        // Necessary
+        // Always necessary
         beforeEach(module('powerUp'));
 
-        // Angular stuff that you will need
+        // All the dependencies for AuthService
         var $httpBackend,   // Used to mock API calls
-            $rootScope,     // Used to create a $scope
-            $scope,
-            AuthService,    // Actual AuthService
-            LocalStorage;   // I will need this to mock local storage later
+            $log,           // Everything that the AuthService depends on
+            $location,
+            Restangular,
+            LocalStorage,
+            AuthService;    // Actual AuthService
 
         // Other variables
         var user = {id: 1, username: "paw", email: "paw@paw.paw"};
 
-        // Manually do all the angular injection
-        beforeEach(inject(function (_$httpBackend_, _$rootScope_, _AuthService_, _localStorageService_) {
+        // Have angular inject everything
+        beforeEach(inject(function (_$httpBackend_, _$log_, _$location_, _Restangular_, _localStorageService_, _AuthService_) {
             $httpBackend = _$httpBackend_;
-            $rootScope = _$rootScope_;
-            $scope = $rootScope.$new();
-            AuthService = _AuthService_;
+            $log = _$log_;
+            $location = _$location_;
+            Restangular = _Restangular_;
             LocalStorage = _localStorageService_;
+            AuthService = _AuthService_;
         }));
 
         /*
