@@ -101,7 +101,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             $log.error('Could not get playStatuses', response);
         });
         $scope.selectedPlayStatuses = [];
-        $scope.toggleSelectionPlayStatus = function toggleSelection(playStatus) {
+        $scope.toggleSelectionPlayStatus = function (playStatus) {
             var idx = $scope.selectedPlayStatuses.indexOf(playStatus);
             if (idx > -1) {
                 // Is currently selected
@@ -115,7 +115,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
 
         // Shelves
         $scope.selectedShelves = [];
-        $scope.toggleSelectionShelves = function toggleSelection(shelf) {
+        $scope.toggleSelectionShelves = function (shelf) {
             var idx = $scope.selectedShelves.indexOf(shelf);
             if (idx > -1) {
                 // Is currently selected
@@ -165,7 +165,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                     });
               });
         };
-        $scope.editShelf = function(shelf) { // TODO minimo de longitud de shelf == 1
+        $scope.editShelf = function(shelf) {
             SweetAlert.swal({
                     title: 'Rename \"' + shelf.name + '\" to...',
                     type: 'input',
@@ -220,7 +220,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             var shelf = {name: $scope.newShelfName};
             userURL.all('shelves').post(shelf).then(function(response) {
                 $log.debug('Created Shelf');
-                $scope.getShelves();
+                $scope.shelves.push(response.data);
             }, function(response) {
                 $log.error('Error creating shelf. Error with status code', response.status); // TODO handle error
             });

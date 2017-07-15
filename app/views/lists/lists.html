@@ -70,8 +70,7 @@
                             <p class="title wrap-text"><a ng-href="#game?id={{game.id}}">{{game.name}}</a></p>
                         </div>
                         <div class="col s1 center">
-                            <p ng-if="game.status" style="margin-top: 33px;"><b> {{game.status}}</b></p>
-                            <p ng-if="!game.status" style="margin-top: 33px;"><b> No Status</b></p>
+                            <p style="margin-top: 33px;"><b>{{game.status || 'No Status'}}</b></p>
                         </div>
                         <div class="col s2 center">
                             <p class=wrap-text style="margin-top: 33px;"><b>
@@ -86,30 +85,24 @@
                             </b>  </p>
                         </div>
                         <div class="col s2 center">
-                            <!--
-                            <div class="secondary-content">-->
-                                <!--<c:set var="score" value="${scores.get(game)}"/> TODO game.userScore-->
-                                <p ng-if="game.userScore <= 10 && game.userScore>=0" style="margin-top: 27px;"
-                                   class="rating-number center"><b>{{game.userScore}}</b></p>
-                                <p ng-if="game.userScore <= 10 && game.userScore>=0"
-                                   class="rating-stars hide-on-small-and-down">
-                                <div ng-repeat="i in [0,1,2,3,4]">
-                                    <div ng-if="(game.userScore - (i * 2) - 1 ) < 0">
-                                        <i class="material-icons">star_border</i>
-                                    </div>
-                                    <div ng-if="(game.userScore - (i * 2) - 1 ) == 0">
-                                        <i class="material-icons">star_half</i>
-                                    </div>
-                                    <div ng-if="(game.userScore - (i * 2) - 1) > 0">
-                                        <i class="material-icons">star</i>
-                                    </div>
+                            <p ng-if="game.userScore <= 10 && game.userScore>=0" style="margin-top: 27px;"
+                               class="rating-number center"><b>{{game.userScore}}</b></p>
+                            <p ng-if="game.userScore <= 10 && game.userScore>=0"
+                               class="rating-stars hide-on-small-and-down">
+                            <div ng-repeat="i in [0,1,2,3,4]">
+                                <div ng-if="(game.userScore - (i * 2) - 1 ) < 0">
+                                    <i class="material-icons">star_border</i>
                                 </div>
-                                </p>
-                                <p ng-if="game.userScore > 10 || game.userScore<0" style="margin-top: 33px;"
-                                   class="rating-number center"><b>Unrated</b></p>
-                                <!--
+                                <div ng-if="(game.userScore - (i * 2) - 1 ) == 0">
+                                    <i class="material-icons">star_half</i>
+                                </div>
+                                <div ng-if="(game.userScore - (i * 2) - 1) > 0">
+                                    <i class="material-icons">star</i>
+                                </div>
                             </div>
-                            -->
+                            </p>
+                            <p ng-if="game.userScore > 10 || game.userScore<0" style="margin-top: 33px;"
+                               class="rating-number center"><b>Unrated</b></p>
                         </div>
                         <div class="col s1">
                             <div class="secondary-content">
