@@ -53,6 +53,7 @@ require.config({
     'ng-file-upload': 'bower_components/ng-file-upload/ng-file-upload',
     likesService: 'app/scripts/services/LikesService',
     paginationService: 'app/scripts/services/PaginationService',
+    threadsCtrl: 'app/scripts/controllers/ThreadsCtrl',
     'materialize.global': 'bower_components/materialize/js/global',
     'materialize.animation': 'bower_components/materialize/js/animation',
     'materialize.toasts': 'bower_components/materialize/js/toasts',
