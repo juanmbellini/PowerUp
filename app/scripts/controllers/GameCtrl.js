@@ -14,7 +14,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             Restangular.one('games', gameId).get().then(function(game) {
                 $scope.game = game;
                 $scope.gameId = game.id;
-
                 console.log('Game: ', game);
                 if ($scope.gameId > 0 && $scope.game !== null) {
                     $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
@@ -37,7 +36,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
 
 
         if (AuthService.isLoggedIn()) {
-            var userId = AuthService.getCurrentUser().id; // TODO change para que auth te de el user. Agregar la validacion de que este conectado
+            var userId = AuthService.getCurrentUser().id;
 
             // Play Status
             $scope.playStatusOptions = [];
