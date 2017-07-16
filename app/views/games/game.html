@@ -142,7 +142,6 @@
                 <div class="row" ng-if="game.videoUrls.length > 0">
                     <div class="col s12 divider"></div>
                 </div>
-
                 <div class="row" >
                     <h4 class="center">Screenshots</h4>
                     <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
@@ -183,25 +182,27 @@
                         <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
                         <ul class="collection">
                             <li class="collection-item avatar" ng-repeat="review in reviews">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 0">
                                     <div class="col s10">
                                         <img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
-                                        <span class="title">{{review.username}}</span>
-                                        <p><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
-                                        <p class="wrap-text"> Shelves:
+                                        <span class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
+                                        <p class="smallText"><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
+                                        <p ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:
                                             <span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
                                         </p>
                                     </div>
                                     <div class="col s2">
+                                        <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
                                         <p class="right-align">
                                             <a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
                                             <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
-                                         </p>
-                                        <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
+                                    <div class="col s10">
+                                        <p class="wrap-text preserve-newlines">{{review.body}}</p>
+                                    </div>
                                     <div class="col s2">
                                         <div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
                                             <div ng-switch-when="true">
@@ -221,8 +222,6 @@
                                             Controls: <span class="right">{{review.controlsScore}}</span>
                                             <br/>
                                             Fun: <span class="right">{{review.funScore}}</span>
-                                            <br/>
-                                            <b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>
                                         </p>
                                     </div>
                                 </div>
