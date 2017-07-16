@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService'], function(powerUp) {
 
     powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, $timeout, $anchorScroll) {
 

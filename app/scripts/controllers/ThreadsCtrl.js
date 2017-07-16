@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService', 'loadingCircle', 'loadingCircle-small', 'likesService', 'paginationService'], function(powerUp) {
+define(['powerUp', 'AuthService', 'loadingCircle', 'loadingCircleSmall', 'LikesService', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $log, Restangular, AuthService, LikesService, PaginationService) {
 

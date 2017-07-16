@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService'], function(powerUp) {
+define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 

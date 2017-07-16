@@ -1,11 +1,11 @@
 /* global paths */
 'use strict';
 require.config({
-    baseUrl: '/scripts',
+    baseUrl: 'scripts',
     paths: {
         requirejs: '../../bower_components/requirejs/require',
         jquery: '../../bower_components/jquery/dist/jquery',
-        'jquery-ui': '../../bower_components/jquery-ui/jquery-ui',
+        'jquery-ui': 'jquery-ui',
         json3: '../../bower_components/json3/lib/json3',
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
@@ -22,16 +22,16 @@ require.config({
         'sweetalert.angular': '../../bower_components/ngSweetAlert/SweetAlert',
         'slick-carousel': '../../bower_components/slick-carousel/slick/slick',
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
-        onComplete: 'directives/on-complete',
-        authService: 'services/AuthService',
-        loadingCircle: 'directives/loading-circle',
-        'loadingCircle-small': 'directives/loading-circle-small',
+        onComplete: 'directives/onComplete',
+        AuthService: 'services/AuthService',
+        loadingCircle: 'directives/loadingCircle',
+        'loadingCircleSmall': 'directives/loadingCircleSmall',
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
-        likesService: 'services/LikesService',
-        paginationService: 'services/PaginationService',
+        LikesService: 'services/LikesService',
+        PaginationService: 'services/PaginationService',
         'materialize.global': '../../bower_components/materialize/js/global',
         'materialize.animation': '../../bower_components/materialize/js/animation',
         'materialize.toasts': '../../bower_components/materialize/js/toasts',
@@ -138,7 +138,7 @@ require.config({
                 'angular'
             ]
         },
-        authService: {
+        AuthService: {
             deps: [
                 'angular'
             ]
@@ -287,12 +287,12 @@ require.config({
                 'jquery'
             ]
         },
-        likesService: {
+        LikesService: {
             deps: [
                 'angular'
             ]
         },
-        paginationService: {
+        PaginationService: {
             deps: [
                 'angular'
             ]

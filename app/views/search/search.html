@@ -20,7 +20,7 @@
         <!--RESULTS-->
         <div ng-if="games === null" class="center">
             <h5>Searching games...</h5>
-            <loadingcircle ></loadingcircle>
+            <loading-circle ></loading-circle>
         </div>
         <div class="row" ng-show="games !== null">
             <div ng-if="games.length == 0">
@@ -42,7 +42,7 @@
             <!--Filters collapsible-->
             <div ng-if="!filtersReady" class="center">
                 <h5>Loading filters...this may take a while, please wait</h5>
-                <loadingcircle-small></loadingcircle-small>
+                <loading-circle-small></loading-circle-small>
             </div>
             <div ng-style="{'margin-top': filtersReady ? '0' : '8px'}">
                 <button class="btn waves-effect waves-light right" id="submit-search" ng-click="submitSearch(resetPageNumberOnSubmit)">Search <i class="material-icons right">send</i></button>

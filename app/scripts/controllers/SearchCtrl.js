@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'loadingCircle', 'loadingCircle-small', 'paginationService'], function(powerUp) {
+define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function ($scope, $timeout, $location, $log, Restangular, PaginationService) {
         Restangular.setFullResponse(true);

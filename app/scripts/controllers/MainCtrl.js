@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'authService', 'angular-local-storage'], function (powerUp) {
+define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
 
     powerUp.factory('Data', function() {
         return {message: "I'm data from a service"};
