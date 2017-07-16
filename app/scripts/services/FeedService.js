@@ -17,7 +17,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var threadFeedProvider = {};
             threadFeedProvider.array = [];
             threadFeedProvider.pointer = 0;
-            threadFeedProvider.paginator = PaginationService.initialize(Restangular.all('threads'));
+            threadFeedProvider.paginator = PaginationService.initialize(Restangular.all('threads'), undefined, undefined, 10);
             threadFeedProvider.type = 'thread';
             threadFeedProvider.dateName = 'createdAt';
             feedProviders.push(threadFeedProvider);
@@ -26,13 +26,14 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var reviewFeedProvider = {};
             reviewFeedProvider.array = [];
             reviewFeedProvider.pointer = 0;
-            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.all('reviews'));
+            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.all('reviews'), undefined, undefined, 10);
             reviewFeedProvider.type = 'review';
             reviewFeedProvider.dateName = 'date';
             feedProviders.push(reviewFeedProvider);
 
             feedProviders.forEach(function (providerCopy, index, array) {
                 var feedProvider = array[index];
+                feedProvider.isReady = false;
                 PaginationService.getPage(feedProvider.paginator, 1, function(response) {
                     var array = response.data;
                     array.forEach(function (element, array, index) {
@@ -49,6 +50,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var feedObject = {};
             feedObject.feedProviders = feedProviders;
             feedObject.userId = userId;
+            feedObject.thereAreMore = true;
             // feedProviders.push(statusFeedProvider);
             return feedObject;
         }
@@ -59,17 +61,21 @@ define(['powerUp', 'paginationService'], function(powerUp) {
                 return;
             }
             feedProvider.isReady = false;
-            PaginationService.getNextPage(feedProvider.paginator, function(response) {
-                var array = response.data;
-                array.forEach(function (element, array, index) {
-                   feedProvider.array.push(element);
+            if (PaginationService.hasMorePages(feedProvider.paginator) && feedProvider.array.length < feedProvider.pointer + 15) {
+                PaginationService.getNextPage(feedProvider.paginator, function(response) {
+                    var array = response.data;
+                    array.forEach(function (element, array, index) {
+                        feedProvider.array.push(element);
+                    });
+                    feedProvider.isReady = true;
+                }, function(error) {
+                    $log.error('Error getting nextPage: ', error);
+                    feedProvider.isReady = true;
+                    // TODO do something? Stop asking for these pages???
                 });
+            } else {
                 feedProvider.isReady = true;
-            }, function(error) {
-                $log.error('Error getting nextPage: ', error);
-                feedProvider.isReady = true;
-                // TODO do something? Stop asking for these pages???
-            });
+            }
         }
 
         function isReady(feedObj) {
@@ -79,53 +85,73 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var feedProviders = feedObj.feedProviders;
             var isItReady = true;
             feedProviders.forEach(function (providerCopy, index, array) {
-                if (!providerCopy.isReady || providerCopy.array.length <= 0) {
+                if (!providerCopy.isReady) {
                     isItReady = false;
                 }
             });
             return isItReady;
         }
 
-        function getFeedElement(feedObj) {
-            var feedProviders = feedObj.feedProviders;
-            if (!isReady(feedObj)) {
-                return null;
+        function getFeed(feedObj) {
+            if (feedObj === null || !isReady(feedObj)) {
+                return [];
             }
-            var newestElementProvider = null;
-            var newestDate = null;
-            feedProviders.forEach(function (providerCopy, index, array) {
-                var element = peekNext(providerCopy);
-                if (element !== null) {
-                    var newDate = new Date(element[providerCopy.dateName]);
-                    if (newestDate === null) {
-                        newestDate = newDate;
-                        newestElementProvider = array[index];
+            var feedProviders = feedObj.feedProviders;
+            var thereAreMore = true;
+            var feedArray = [];
+            var counter = 0;
+            while (thereAreMore && counter < 60) {
+                var newestElementProvider = null;
+                var newestDate = null;
+                counter = counter + 1;
+                feedProviders.forEach(function (providerCopy, index, array) {
+                    if (thereAreMore) {
+                        if (hasMore(providerCopy)) {
+                            var element = peekNext(providerCopy);
+                            if (element !== null) {
+                                var newDate = new Date(element[providerCopy.dateName]);
+                                if (newestDate === null) {
+                                    newestDate = newDate;
+                                    newestElementProvider = array[index];
+                                }
+                                if (newDate < newestDate) {// TODO bien >
+                                    newestDate = newDate;
+                                    newestElementProvider = array[index];
+                                }
+                            } else {
+                                thereAreMore = false;
+                            }
+                        }
                     }
-                    if (newDate < newestDate) {// TODO bien >
-                        newestDate = newDate;
-                        newestElementProvider = array[index];
+                });
+                if (thereAreMore) {
+                    if (newestElementProvider === null) {
+                        thereAreMore = false;
+                        feedObj.thereAreMore = false;
+                    } else {
+                        feedArray.push(getNext(newestElementProvider));
                     }
                 }
+            }
+            feedProviders.forEach(function (providerCopy, index, array) {
+                getMore(array[index]);
             });
-            return getNext(newestElementProvider);
+            return feedArray;
         }
 
         function peekNext(feedProvider) {
-            if (!hasMore(feedProvider) || !feedProvider.isReady) {
+            if (feedProvider.pointer >= feedProvider.array.length) {
                 return null;
             }
             return feedProvider.array[feedProvider.pointer];
         }
 
         function getNext(feedProvider) {
-            if (!hasMore(feedProvider) || !feedProvider.isReady) {
+            var element = peekNext(feedProvider);
+            if (element === null) {
                 return null;
             }
-            var element = feedProvider.array[feedProvider.pointer];
             feedProvider.pointer++;
-            if (feedProvider.pointer >= feedProvider.array.length) {
-                getMore(feedProvider);
-            }
             var wrapper = {};
             wrapper.data = element;
             wrapper.type = feedProvider.type;
@@ -150,7 +176,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
 
         return {
             initialize: initialize,
-            getFeedElement: getFeedElement,
+            getFeed: getFeed,
             isReady: isReady
         };
     }]);
