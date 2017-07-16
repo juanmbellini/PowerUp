@@ -6,8 +6,9 @@ NO MAXVALUE
 CACHE 1;
 
 CREATE TABLE user_follow (
-    id integer NOT NULL,
-    follower_id integer NOT NULL,
-    followed_id integer NOT NULL,
-    date timestamp with time zone DEFAULT now() NOT NULL
+
+  id          INTEGER                                NOT NULL,
+  follower_id INTEGER                                NOT NULL,
+  followed_id INTEGER                                NOT NULL,
+  date        TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );
