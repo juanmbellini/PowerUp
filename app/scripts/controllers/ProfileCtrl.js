@@ -1,10 +1,12 @@
 'use strict';
-define(['powerUp', 'AuthService'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
         Restangular.setFullResponse(true);
         $scope.Restangular = Restangular;
         $scope.AuthService = AuthService;
+
+        $scope.isCurrentUser = AuthService.isCurrentUser;
 
         $scope.userId = $location.search().userId;
         $scope.username = $location.search().username;
@@ -24,6 +26,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         // Form control variables
         $scope.pictureSubmitDisabled = false;
         var deleteProfilePictureDisabled = false;
+        var resettingPassword = false;
         var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
         Restangular.one('users').one('username', $scope.username).get().then(function(response) {
@@ -116,6 +119,29 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             return $scope.requestedUser && AuthService.isCurrentUser($scope.requestedUser);
         };
 
+        /**
+         * Shows the first SWAL for resetting password. Asks for new password.
+         */
+        $scope.changePassword = function() {
+            swal({
+                    title: 'New password',
+                    type: 'input',
+                    inputType: 'password',
+                    showCancelButton: true,
+                    closeOnConfirm: false
+                },
+                function(inputValue) {
+                    if (inputValue === false) {
+                        return false;
+                    } else if (inputValue === '') {
+                        swal.showInputError('Please write a new password');
+                        return false;
+                    }
+
+                    secondPasswordSwal(inputValue);
+                });
+        };
+
         // Follow
         $scope.canFollow = function () {
             return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
@@ -161,6 +187,55 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             /* TODO sort by descending user score */
             Restangular.one('users', userId).getList('game-scores', {pageSize: 10}).then(function(response) {
                 $scope.profile.top10 = response;
+            });
+        }
+
+        /**
+         * Shows the second password change SWAL. The input password must match the provided new password. On cancel,
+         * goes back to the first SWAL. On confirm, hits API.
+         *
+         * @param newPassword   The new password, as input in {@link firstPasswordSwal()}. Must match that.
+         */
+        function secondPasswordSwal(newPassword) {
+            if(resettingPassword) {
+                return;
+            }
+            swal({
+                title: 'Confirm password',
+                type: 'input',
+                inputType: 'password',
+                showCancelButton: true,
+                closeOnConfirm: false,
+                closeOnCancel: false,
+                cancelButtonText: 'Go Back'
+            },
+            function(inputValue) {
+                if (inputValue === false) {
+                    // Pressed cancel
+                    $scope.changePassword();
+                    return;
+                }
+
+                if (inputValue === '') {
+                    swal.showInputError('Please write your new password again');
+                    return false;
+                } else if (inputValue !== newPassword) {
+                    swal.showInputError('Passwords don\'t match');
+                    return false;
+                }
+
+                // Confirmed, hit API
+                swal.disableButtons();
+                resettingPassword = true;
+
+                Restangular.all('users').customPUT({password: inputValue}, 'password').then(function(response) {
+                    swal('Password Changed!', undefined, 'success');
+                    resettingPassword = false;
+                }, function(error) {
+                    swal.showInputError('Server error, please try again');
+                    $log.error('Error resetting password: ', error);
+                    resettingPassword = false;
+                });
             });
         }
     }]);
