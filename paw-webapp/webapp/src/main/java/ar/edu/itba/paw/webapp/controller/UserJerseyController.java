@@ -25,6 +25,7 @@ import java.io.*;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 
@@ -38,6 +39,7 @@ import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "users";
+
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
         this.userService = userService;
@@ -162,6 +164,38 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     // ======== Collections ========
 
+    @GET
+    @Path("/{userId : \\d+}/game-list")
+    public Response listShelfGames(@PathParam("userId") final long userId,
+                                   @QueryParam("orderBy") @DefaultValue("game-name")
+                                   final UserDao.ListGameSortingType sortingType,
+                                   @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
+                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                   // Filters
+                                   @QueryParam("shelfName") final List<String> shelfNames,
+                                   @QueryParam("status") final List<PlayStatus> statuses) {
+
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
+                .addParameter("userId", userId, id -> id <= 0));
+        final JerseyControllerHelper.ParameterMapBuilder parametersBuilder = JerseyControllerHelper
+                .getParameterMapBuilder()
+                .clear();
+        shelfNames.forEach(name -> parametersBuilder.addParameter("shelfName", name));
+        statuses.forEach(status -> parametersBuilder.addParameter("status", status));
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        //TODO Add sorting and filtering to gameList
+                        userService.getGameList(userId, shelfNames, statuses,
+                                pageNumber, pageSize, sortingType, sortDirection),
+                        (gamesPage) -> new GenericEntity<List<ListGameDto>>(ListGameDto
+                                .createList(gamesPage.getData(), uriInfo.getBaseUriBuilder())) {
+                        }, parametersBuilder.build());
+
+    }
+
 
     // ==== Play status ====
 
@@ -169,14 +203,14 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/play-status/{gameId : \\d+}")
     public Response getPlayStatus(@PathParam("id") final long userId,
                                   @PathParam("gameId") Long gameIdFilter,
-                                    // Pagination and Sorting
-                                    @QueryParam("orderBy") @DefaultValue("game-id")
-                                    final UserDao.PlayStatusAndGameScoresSortingType sortingType,
-                                    @QueryParam("sortDirection") @DefaultValue("asc")
-                                    final SortDirection sortDirection,
-                                    @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
-                                    @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                    @QueryParam("gameName") String gameNameFilter) {
+                                  // Pagination and Sorting
+                                  @QueryParam("orderBy") @DefaultValue("game-id")
+                                  final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                  @QueryParam("sortDirection") @DefaultValue("asc")
+                                  final SortDirection sortDirection,
+                                  @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                  @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                  @QueryParam("gameName") String gameNameFilter) {
         if (userId <= 0) {
             throw new IllegalParameterValueException("id");
         }
@@ -195,7 +229,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     @GET
     @Path("/play-statuses")
     public Response getPlayStatuses() {
-        return Response.ok(new GenericEntity<List<PlayStatus>>(playStatusList()){}).build();
+        return Response.ok(new GenericEntity<List<PlayStatus>>(playStatusList()) {
+        }).build();
     }
 
     private List<PlayStatus> playStatusList() {
@@ -224,7 +259,7 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
-        if(!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
+        if (!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
         return Response.noContent().build();
     }
 
@@ -268,7 +303,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userGameScoreDto);
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
-        if(userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+        if (userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()) {
             userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
         }
         return Response.created(uri).status(Response.Status.CREATED).build();
@@ -285,7 +320,7 @@ public class UserJerseyController implements UpdateParamsChecker {
             throw new IllegalParameterValueException("gameId");
         }
         userService.removeGameScore(userId, gameId, userId); // TODO: updater
-        if(!belongsToGameList(userId, gameId)) deleteFromGameList(userId, gameId);
+        if (!belongsToGameList(userId, gameId)) deleteFromGameList(userId, gameId);
         return Response.noContent().build();
     }
 
@@ -311,7 +346,7 @@ public class UserJerseyController implements UpdateParamsChecker {
      * Creates a map to be used in the
      * {@link #getGameScores(long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, Long, String)}
      * or the
-     * {@link #getPlayStatus(long,Long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, String)}
+     * {@link #getPlayStatus(long, Long, UserDao.PlayStatusAndGameScoresSortingType, SortDirection, int, int, String)}
      * methods.
      *
      * @param gameIdFilter   Filter for game id.
@@ -531,47 +566,23 @@ public class UserJerseyController implements UpdateParamsChecker {
         }).build();
     }
 
-    @GET
-    @Path("/{userId : \\d+}/game-list")
-    public Response listShelfGames(@PathParam("userId") final long userId,
-                                   @QueryParam("orderBy") @DefaultValue("game-id")
-                                   final UserDao.PlayStatusAndGameScoresSortingType sortingType,
-                                   @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
-                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
-                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
 
-        JerseyControllerHelper.checkParameters(JerseyControllerHelper
-                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
-                .addParameter("userId", userId, id -> id <= 0));
-
-        return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        //TODO Add sorting and filtering to gameList
-                        userService.getGameList(userId, pageNumber, pageSize, sortingType, sortDirection),
-                        (gamesPage) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
-                                .createList(gamesPage.getData())) {
-                        },
-                        scoreAndStatusMap(null,null));
-    }
-    
     /**
-     *
      * @return whether or not the game belongs to the User's GameList.
      */
 
-    private boolean belongsToGameList(final long userId, final long gameId){
+    private boolean belongsToGameList(final long userId, final long gameId) {
         boolean hasPlayStatus = false;
-        Collection<UserGameStatus> playStatuses = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData();
-        if(playStatuses != null && playStatuses.iterator().hasNext()){
+        Collection<UserGameStatus> playStatuses = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData();
+        if (playStatuses != null && playStatuses.iterator().hasNext()) {
             UserGameStatus ugs = playStatuses.iterator().next();
-            if(ugs == null ) {
+            if (ugs == null) {
                 userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
             } else {
-                if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+                if (!ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
             }
         }
-        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()
                 || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
                 || hasPlayStatus;
     }

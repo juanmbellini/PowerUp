@@ -244,9 +244,9 @@ public class GameController extends BaseController {
             values will be what will get displayed to the user.
          */
         Map<PlayStatus, String> statuses = new LinkedHashMap<>();
-        for (PlayStatus status : PlayStatus.values()) {
-            statuses.put(status, status.getPretty());
-        }
+//        for (PlayStatus status : PlayStatus.values()) {
+////            statuses.put(status, status.getPretty());
+//        }
         mav.addObject("statuses", statuses);
         mav.addObject("game", game);
 //        mav.addObject("reviews", reviewService.findRecentByGameId(game.getId(), 5));    //TODO don't use magic numbers

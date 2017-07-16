@@ -468,7 +468,7 @@ import java.util.stream.IntStream;
      * @param <T>                     Type of data.
      * @return A page built from the given params.
      */
-    private static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber, int totalPages,
+    public static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber, int totalPages,
                                           long overAllAmountOfElements) {
         return new Page.Builder<T>()
                 .setPageSize(pageSize)
