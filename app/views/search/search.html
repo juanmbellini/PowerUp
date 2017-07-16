@@ -182,7 +182,7 @@
             <!--End games list-->
 
             <!--Another total games count-->
-            <div class="row">
+            <div class="row" ng-if="games.length > 0">
                 <div class="games-count col s6">
                     Games {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + 1 }} -
                     {{(gamesPaginator.pagination.pageNumber - 1) * gamesPaginator.pagination.pageSize + games.length}}
