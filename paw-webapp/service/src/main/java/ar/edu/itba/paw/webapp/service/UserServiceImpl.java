@@ -229,6 +229,11 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return new BigInteger(130, random).toString(8);
     }
 
+    @Override
+    public Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
+        return userDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
+    }
+
 
     // =====================
 
@@ -272,17 +277,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return Optional.ofNullable(shelfDao.findByName(user, shelfName));
     }
 
-
-
-
-
-
-
-
-    @Override
-    public Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
-        return userDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
-    }
 
     /*
      * Helpers

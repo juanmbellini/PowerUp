@@ -19,11 +19,6 @@ public class UserFollow {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_follow_seq")
     private long id;
 
-    @Id
-    @SequenceGenerator(name = "user_follow_seq", sequenceName = "user_follow_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_follow_seq")
-    private long id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             columnDefinition = "integer",

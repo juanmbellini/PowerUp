@@ -9,10 +9,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-<<<<<<<c51f3d6671d5baec2b81c69ca232d0b27e7b1834
-        =======
-import java.io.IOException;
->>>>>>>add date to playstatus
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Collection;

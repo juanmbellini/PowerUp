@@ -6,7 +6,6 @@ NO MAXVALUE
 CACHE 1;
 
 CREATE TABLE user_follow (
-
   id          INTEGER                                NOT NULL,
   follower_id INTEGER                                NOT NULL,
   followed_id INTEGER                                NOT NULL,
