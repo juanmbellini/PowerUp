@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import org.apache.commons.io.IOUtils;
@@ -521,11 +522,55 @@ public class UserJerseyController implements UpdateParamsChecker {
         return JerseyControllerHelper
                 .createCollectionGetResponse(
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUserFollowing(userId, pageNumber, pageSize, sortingType, sortDirection),
+                        userService.getUsersFollowing(userId, pageNumber, pageSize, sortingType, sortDirection),
                         (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
                                 .createList(usersFollowingPage.getData())) {
                         },
                         scoreAndStatusMap(null, null));
+    }
+
+    @GET
+    @Path("/{id : \\d+}/users-followed-by")
+    public Response getUserFollowedBy(@PathParam("id") final long userId,
+                                     // Pagination and Sorting
+                                     @QueryParam("orderBy") @DefaultValue("id")
+                                     final UserDao.SortingType sortingType,
+                                     @QueryParam("sortDirection") @DefaultValue("asc")
+                                     final SortDirection sortDirection,
+                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getUserFollowedBy(userId, pageNumber, pageSize, sortingType, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createList(usersFollowingPage.getData())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
+    @PUT
+    @Path("/{id : \\d+}/follow/")
+    public Response followUser(@PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.followUser(Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new), followedId);
+        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(followedId)).build();
+        return Response.created(uri).status(Response.Status.CREATED).build();
+    }
+
+    @DELETE
+    @Path("/{id : \\d+}/unfollow/")
+    public Response unFollowUser(@PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.unFollowUser(Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new), followedId);
+        return Response.noContent().build();
     }
 
     /**

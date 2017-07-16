@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.UserFollow;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -495,6 +496,22 @@ import java.util.stream.IntStream;
                 query.append(" AND ").append(conditions.get(i++).getCondition());
             }
         }
+    }
+
+    public static Page<UserFollow> getFollowingPage(EntityManager em, int pageNumber, int pageSize, String sortingType, SortDirection sortDirection, Class<UserFollow> klass, ConditionAndParameterWrapper condition) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM ").append(klass.getSimpleName()).append(" follow");
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = Collections.singletonList(condition);
+        return DaoHelper.findPageWithConditions(em, klass, query, "follow", "follow.id", conditions,
+                pageNumber, pageSize, "follow." + sortingType, sortDirection, false);
+    }
+
+    public static Page<UserFollow> getFollowedByPage(EntityManager em, int pageNumber, int pageSize, String sortingType, SortDirection sortDirection, Class<UserFollow> klass, ConditionAndParameterWrapper condition) {
+        final StringBuilder query = new StringBuilder()
+                .append("FROM ").append(klass.getSimpleName()).append(" follow");
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = Collections.singletonList(condition);
+        return DaoHelper.findPageWithConditions(em, klass, query, "follow", "follow.id", conditions,
+                pageNumber, pageSize, "follow." + sortingType, sortDirection, false);
     }
 
 

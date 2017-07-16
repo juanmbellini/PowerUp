@@ -36,12 +36,15 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final ShelfDao shelfDao;
 
+    private final UserFollowDao userFollowDao;
+
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao) {
+    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
+        this.userFollowDao = userFollowDao;
     }
 
 
@@ -230,8 +233,58 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
-        return userDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
+    public Page<User> getUsersFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
+        Page <UserFollow> us = userFollowDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, UserFollowDao.SortingType.ID, sortDirection);
+        Collection<User> usersFollowing = new ArrayList<>();
+        for(UserFollow userFollow : us.getData()){
+            usersFollowing.add(userFollow.getFollowed());
+        }
+        return new Page.Builder<User>()
+                .setPageSize(pageSize)
+                .setPageNumber(pageNumber)
+                .setOverAllAmountOfElements(us.getOverAllAmountOfElements())
+                .setTotalPages(us.getTotalPages())
+                .setData(usersFollowing)
+                .build();
+
+    }
+
+    @Override
+    public Page<User> getUserFollowedBy(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
+        Page <UserFollow> us = userFollowDao.getUserFollowedBy(checkUserExistence(userId), pageNumber, pageSize, UserFollowDao.SortingType.ID, sortDirection);
+        Collection<User> usersFollowing = new ArrayList<>();
+        for(UserFollow userFollow : us.getData()){
+            usersFollowing.add(userFollow.getFollower());
+        }
+        return new Page.Builder<User>()
+                .setPageSize(pageSize)
+                .setPageNumber(pageNumber)
+                .setOverAllAmountOfElements(us.getOverAllAmountOfElements())
+                .setTotalPages(us.getTotalPages())
+                .setData(usersFollowing)
+                .build();
+    }
+
+    @Override
+    public void followUser(User follower, long followed) {
+        if (follower == null) {
+            throw new IllegalArgumentException();
+        }
+        final User user = getUser(followed);
+        // If already liked, do nothing and be idempotent
+        if (!userFollowDao.exists(follower, user)) {
+            userFollowDao.create(follower, user);
+        }
+    }
+
+    @Override
+    public void unFollowUser(User unFollower, long unFollowed) {
+        if (unFollower == null) {
+            throw new IllegalArgumentException();
+        }
+        final User user = getUser(unFollowed);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(userFollowDao.find(unFollower, user)).ifPresent(userFollowDao::delete);
     }
 
 

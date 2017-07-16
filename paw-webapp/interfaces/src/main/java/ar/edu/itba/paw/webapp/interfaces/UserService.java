@@ -238,7 +238,14 @@ public interface UserService {
      */
     String generateNewPassword();
 
-    Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+    Page<User> getUsersFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+
+    void followUser(User follower, long followed);
+
+    Page<User> getUserFollowedBy(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+
+
+    void unFollowUser(User unFollower, long unFollowed);
 
     /**
      * Change the user's password with a new randomly generated one.

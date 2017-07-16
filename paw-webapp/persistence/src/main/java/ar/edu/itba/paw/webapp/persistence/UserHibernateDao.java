@@ -272,13 +272,6 @@ public class UserHibernateDao implements UserDao {
         return recommendGames(gameIds, userId);
     }
 
-    @Override
-    public Page<User> getUserFollowing(User user, int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
-        //TODO
-        return null;
-    }
-
-
 //    private Page<Game> recommendedGames(User user, Set<Game> relatedGames,
 //                                        int pageNumber, int pageSize, SortDirection sortDirection) {
 //        Map<Long, Integer> scoredGames = user.getScoredGames();
