@@ -75,7 +75,7 @@ define(['routes',
             $translateProvider.translations('preferredLanguage', i18n);
             $translateProvider.preferredLanguage('preferredLanguage');
 
-            RestangularProvider.setBaseUrl('http://pawserver.it.itba.edu.ar/paw-2016b-02/api');
+            RestangularProvider.setBaseUrl('http://localhost:8080/api');
             RestangularProvider.setDefaultHttpFields({
               withCredentials: true                                       // To allow authentication via CORS
             });
