@@ -1,6 +1,8 @@
 package ar.edu.itba.paw.webapp.model;
 
 import ar.edu.itba.paw.webapp.model.validation.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -52,10 +54,12 @@ public class User implements Serializable, ValidationExceptionThrower {
     private Collection<UserGameStatus> playedGames;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "followed", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Collection<UserFollow> following;
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<UserFollow> following;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "follower", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Collection<UserFollow> followedBy;
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<UserFollow> followers;
 
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -75,6 +79,7 @@ public class User implements Serializable, ValidationExceptionThrower {
         this.playedGames = new HashSet<>();
         this.scoredGames = new HashSet<>();
         this.following = new HashSet<>();
+        this.followers = new HashSet<>();
         this.authorities = new HashSet<>();
 
     }
@@ -137,7 +142,7 @@ public class User implements Serializable, ValidationExceptionThrower {
         UserGameStatus ugs = findGameStatus(game);
         if (ugs != null) {
             ugs.setPlayStatus(playStatus);
-        }else{
+        } else {
             playedGames.add(new UserGameStatus(game, this, playStatus));
         }
     }
@@ -170,7 +175,7 @@ public class User implements Serializable, ValidationExceptionThrower {
         UserGameScore ugs = findGameScore(game);
         if (ugs != null) {
             ugs.setScore(score);
-        }else{
+        } else {
             scoredGames.add(new UserGameScore(game, this, score));
         }
         return ugs;
@@ -302,6 +307,23 @@ public class User implements Serializable, ValidationExceptionThrower {
         return authorities;
     }
 
+    /**
+     * Following count getter.
+     *
+     * @return The amount of {@link User} being followed by {@code this} user.
+     */
+    public long getFollowingCount() {
+        return following.size();
+    }
+
+    /**
+     * Followers count getter.
+     *
+     * @return The amount of {@link User} following {@code this} user.
+     */
+    public long getFollowersCount() {
+        return followers.size();
+    }
 
     /**
      * Checks whether the user has a profile picture set.
@@ -382,13 +404,6 @@ public class User implements Serializable, ValidationExceptionThrower {
     private UserGameScore findGameScore(Game game) {
         List<UserGameScore> list = scoredGames.stream()
                 .filter(each -> each.getGame().equals(game) && each.getUser().equals(this))
-                .collect(Collectors.toList());
-        return list.isEmpty() ? null : list.get(0);
-    }
-
-    private UserFollow findUserFollow(User user) {
-        List<UserFollow> list = following.stream()
-                .filter(each -> each.getFollowed().equals(user) && each.getFollower().equals(this))
                 .collect(Collectors.toList());
         return list.isEmpty() ? null : list.get(0);
     }
