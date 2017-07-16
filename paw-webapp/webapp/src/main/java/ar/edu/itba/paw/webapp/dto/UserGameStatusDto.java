@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +40,9 @@ public class UserGameStatusDto extends EntityDto {
     @JsonDeserialize(using = DtoHelper.PlayStatusEnumDeserializer.class)
     private PlayStatus status;
 
+    @XmlElement
+    private String date;
+
 
     public UserGameStatusDto() {
         // For Jax-RS
@@ -48,6 +53,7 @@ public class UserGameStatusDto extends EntityDto {
         this.gameId = gameStatus.getGame().getId();
         this.gameName = gameStatus.getGame().getName();
         this.status = gameStatus.getPlayStatus();
+        this.date = LocalDateTime.ofInstant(gameStatus.getDate().toInstant(), ZoneId.systemDefault()).toString();
 
     }
 
@@ -64,6 +70,9 @@ public class UserGameStatusDto extends EntityDto {
         return status;
     }
 
+    public String getDate() {
+        return date;
+    }
 
     /**
      * Returns a list of {@link UserGameStatusDto} based on the given collection of {@link UserGameStatus}.

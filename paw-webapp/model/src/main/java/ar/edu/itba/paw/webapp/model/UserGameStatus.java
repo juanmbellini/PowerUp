@@ -1,6 +1,9 @@
 package ar.edu.itba.paw.webapp.model;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.util.Calendar;
 
 /**
  * Class representing a relationship between a {@link User} and a {@link Game}, including a {@link PlayStatus}.
@@ -55,6 +58,10 @@ public class UserGameStatus {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private PlayStatus playStatus;
+
+    @UpdateTimestamp
+    @Access(value = AccessType.FIELD)
+    private Calendar date;
 
 
     /* package */ UserGameStatus() {
@@ -148,5 +155,13 @@ public class UserGameStatus {
 
     public void setPlayStatus(PlayStatus playStatus) {
         this.playStatus = playStatus;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 }
