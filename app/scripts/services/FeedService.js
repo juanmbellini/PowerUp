@@ -101,7 +101,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
                         newestDate = newDate;
                         newestElementProvider = array[index];
                     }
-                    if (newDate > newestDate) {
+                    if (newDate < newestDate) {// TODO bien >
                         newestDate = newDate;
                         newestElementProvider = array[index];
                     }
@@ -129,6 +129,18 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var wrapper = {};
             wrapper.data = element;
             wrapper.type = feedProvider.type;
+            if (wrapper.type === 'review') {
+                Restangular.one('users', element.userId).all('game-scores').getList({gameId: element.gameId}).then(function (response) {
+                    var gameScore = response.data;
+                    if (gameScore.length > 0) {
+                        element.overallScore = gameScore[0].score;
+                    }
+                });
+                Restangular.one('users',element.userId).all('shelves').getList({gameId: element.gameId}).then(function (response) {
+                    var shelvesWithGame = response.data;
+                    element.shelves = shelvesWithGame;
+                });
+            }
             return wrapper;
         }
 
