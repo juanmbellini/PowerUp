@@ -1,16 +1,12 @@
 <main>
     <div class="container">
         <div class="row filters-row">
-            <h3 class="header center orange-text">
-                Search
-            </h3>
-
-            <div class="col s12">
+            <div class="col s12" style="margin-top: 5px;">
                 <div class="col s6 offset-s3 ">
                     <form ng-submit="submitSearch(true)">
                         <div class="input-field">
-                            <input placeholder="Title" type="search" ng-model="searchParams.name" name="name"/>
-                            <i class="material-icons" style="color:black;" id="search-icon">search</i>
+                            <input placeholder="Game title" type="search" ng-model="searchParams.name" />
+                            <i class="material-icons" style="color:black; margin-top:6px;">search</i>
                         </div>
                     </form>
                 </div>
@@ -90,34 +86,19 @@
                         <!--SORT BY NAME-->
                         <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'name'}" ng-click="changeOrderBy('name')">
                             Name
-                            <i class="material-icons right" ng-if="searchParams.orderBy === 'name'">
-                                <div ng-switch="searchParams.sortDirection === 'asc'">
-                                    <div ng-switch-when="true">arrow_drop_up</div>
-                                    <div ng-switch-default>arrow_drop_down</div>
-                                </div>
-                            </i>
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'name'">arrow_drop_{{searchParams.sortDirection === 'asc' ? 'up' : 'down'}}</i>
                         </button>
 
                         <!--SORT BY RELEASE DATE-->
                         <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'release'}" ng-click="changeOrderBy('release')">
                             Release
-                            <i class="material-icons right" ng-if="searchParams.orderBy === 'release'">
-                                <div ng-switch="searchParams.sortDirection === 'asc'">
-                                    <div ng-switch-when="true">arrow_drop_up</div>
-                                    <div ng-switch-default>arrow_drop_down</div>
-                                </div>
-                            </i>
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'release'">arrow_drop_{{searchParams.sortDirection === 'asc' ? 'up' : 'down'}}</i>
                         </button>
 
                         <!--SORT BY AVERAGE RATING-->
                         <button class="btn waves-effect waves-light" ng-class="{inactive: searchParams.orderBy !== 'avg_score'}" ng-click="changeOrderBy('avg_score')">
                             Rating
-                            <i class="material-icons right" ng-if="searchParams.orderBy === 'avg_score'">
-                                <div ng-switch="searchParams.sortDirection === 'asc'">
-                                    <div ng-switch-when="true">arrow_drop_up</div>
-                                    <div ng-switch-default>arrow_drop_down</div>
-                                </div>
-                            </i>
+                            <i class="material-icons right" ng-if="searchParams.orderBy === 'avg_score'">arrow_drop_{{searchParams.sortDirection === 'asc' ? 'up' : 'down'}}</i>
                         </button>
                     </div>
                 </div>
@@ -126,8 +107,8 @@
                 <div class="col s12 center" id="games-list-header">
                     <p class="col s2">Cover Picture</p>
                     <p class="col s7 left-align">Title and Summary</p>
-                    <p class="col s1">Release</p>
-                    <p class="col s2 right-align">Avg. Rating</p>
+                    <p class="col s1" style="padding-left: 2.2%;">Release</p>
+                    <p class="col s2 center-align">Avg. Rating</p>
                 </div>
                 <!--End games list header-->
             </div>
