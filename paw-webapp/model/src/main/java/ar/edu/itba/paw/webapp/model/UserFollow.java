@@ -54,4 +54,23 @@ public class UserFollow{
     public User getFollower() {
         return follower;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserFollow)) return false;
+
+        UserFollow that = (UserFollow) o;
+
+        return (followed == null ? that.followed == null : followed.equals(that.followed))
+                && (follower == null ? that.follower == null : follower.equals(that.follower));
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = follower != null ? follower.hashCode() : 0;
+        result = 31 * result + (followed != null ? followed.hashCode() : 0);
+        return result;
+    }
 }

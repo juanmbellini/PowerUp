@@ -117,6 +117,8 @@ public interface UserDao extends FindByIdDao<User> {
      */
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
+    Page<User> getUserFollowing(User user, int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
+
     /**
      * Enum indicating the sorting type for the "get reviews" method.
      */

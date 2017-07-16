@@ -503,6 +503,31 @@ public class UserJerseyController implements UpdateParamsChecker {
         return Response.ok().build();
     }
 
+    /* ========== Follow ========= */
+
+    @GET
+    @Path("/{id : \\d+}/users-following")
+    public Response getUserFollowing(@PathParam("id") final long userId,
+                                  // Pagination and Sorting
+                                  @QueryParam("orderBy") @DefaultValue("id")
+                                  final UserDao.SortingType sortingType,
+                                  @QueryParam("sortDirection") @DefaultValue("asc")
+                                  final SortDirection sortDirection,
+                                  @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                  @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(
+                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
+                        userService.getUserFollowing(userId, pageNumber, pageSize, sortingType, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createList(usersFollowingPage.getData())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
     /**
      * Creates a temporary File from an input stream.
      *

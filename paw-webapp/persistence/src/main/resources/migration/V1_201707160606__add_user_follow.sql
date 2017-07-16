@@ -1,5 +1,3 @@
-ALTER TABLE ONLY game_play_statuses ADD COLUMN date timestamp with time zone DEFAULT now() NOT NULL;
-
 CREATE SEQUENCE user_follow_seq
 START WITH 1
 INCREMENT BY 1

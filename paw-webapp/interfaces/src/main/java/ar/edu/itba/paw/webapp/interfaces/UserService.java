@@ -238,6 +238,8 @@ public interface UserService {
      */
     String generateNewPassword();
 
+    Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+
     /**
      * Change the user's password with a new randomly generated one.
      * @param id The ID of the user whose password to reset.

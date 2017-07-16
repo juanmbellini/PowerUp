@@ -228,7 +228,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(8);
     }
-
+    
 
     // =====================
 
@@ -278,6 +278,11 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
 
 
+
+    @Override
+    public Page<User> getUserFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
+        return userDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, sortingType, sortDirection);
+    }
 
     /*
      * Helpers
