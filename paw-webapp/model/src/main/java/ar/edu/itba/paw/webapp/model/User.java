@@ -217,18 +217,6 @@ public class User implements Serializable, ValidationExceptionThrower {
         authorities.remove(authority);
     }
 
-    /**
-     * Sets the given User as followed by the current User.
-     *
-     * @param user       The user to be followed.
-     * @throws ValidationException If any value is not valid.
-     */
-    public void followUser(User user) throws ValidationException {
-        UserFollow userFollow = findUserFollow(user);
-        if (userFollow == null) return;
-        following.add(new UserFollow(user, this));
-    }
-
 
     // ======== Getters ========
 
