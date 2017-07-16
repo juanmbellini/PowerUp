@@ -51,6 +51,9 @@ public class User implements Serializable, ValidationExceptionThrower {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<UserGameStatus> playedGames;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Collection<UserFollow> following;
+
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
@@ -68,6 +71,7 @@ public class User implements Serializable, ValidationExceptionThrower {
         // For Hibernate
         this.playedGames = new HashSet<>();
         this.scoredGames = new HashSet<>();
+        this.following = new HashSet<>();
         this.authorities = new HashSet<>();
 
     }
@@ -208,6 +212,18 @@ public class User implements Serializable, ValidationExceptionThrower {
     public void removeAuthority(Authority authority) {
         checkAuthority(authority);
         authorities.remove(authority);
+    }
+
+    /**
+     * Sets the given User as followed by the current User.
+     *
+     * @param user       The user to be followed.
+     * @throws ValidationException If any value is not valid.
+     */
+    public void followUser(User user) throws ValidationException {
+        UserFollow userFollow = findUserFollow(user);
+        if (userFollow == null) return;
+        following.add(new UserFollow(user, this));
     }
 
 
@@ -375,6 +391,13 @@ public class User implements Serializable, ValidationExceptionThrower {
     private UserGameScore findGameScore(Game game) {
         List<UserGameScore> list = scoredGames.stream()
                 .filter(each -> each.getGame().equals(game) && each.getUser().equals(this))
+                .collect(Collectors.toList());
+        return list.isEmpty() ? null : list.get(0);
+    }
+
+    private UserFollow findUserFollow(User user) {
+        List<UserFollow> list = following.stream()
+                .filter(each -> each.getFollowed().equals(user) && each.getFollower().equals(this))
                 .collect(Collectors.toList());
         return list.isEmpty() ? null : list.get(0);
     }
