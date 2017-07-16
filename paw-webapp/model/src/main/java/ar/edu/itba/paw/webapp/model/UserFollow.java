@@ -12,7 +12,7 @@ import java.util.Calendar;
 @Table(name = "user_follow",
         indexes = {@Index(name = "user_follow_pkey",
                 columnList = "follower_id, followed_id", unique = true)})
-public class UserFollow{
+public class UserFollow {
 
     @Id
     @SequenceGenerator(name = "user_follow_seq", sequenceName = "user_follow_id_seq", allocationSize = 1)
