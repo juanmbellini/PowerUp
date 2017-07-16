@@ -19,6 +19,9 @@ public class UserFollow {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_follow_seq")
     private long id;
 
+    /**
+     * The {@link User} being followed.
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             columnDefinition = "integer",
@@ -28,6 +31,9 @@ public class UserFollow {
     )
     private User followed;
 
+    /**
+     * The {@link User} following.
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             columnDefinition = "integer",
