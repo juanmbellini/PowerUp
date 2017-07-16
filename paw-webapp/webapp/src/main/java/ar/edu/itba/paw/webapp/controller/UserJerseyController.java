@@ -507,7 +507,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     /* ========== Follow ========= */
 
     @GET
-    @Path("/{id : \\d+}/users-following")
+    @Path("/{id : \\d+}/following")
     public Response getUserFollowing(@PathParam("id") final long userId,
                                   // Pagination and Sorting
                                   @QueryParam("orderBy") @DefaultValue("id")
@@ -530,7 +530,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/{id : \\d+}/users-followed-by")
+    @Path("/{id : \\d+}/followers")
     public Response getUserFollowedBy(@PathParam("id") final long userId,
                                      // Pagination and Sorting
                                      @QueryParam("orderBy") @DefaultValue("id")
@@ -553,7 +553,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @PUT
-    @Path("/{id : \\d+}/follow/")
+    @Path("/{id : \\d+}/follow")
     public Response followUser(@PathParam("id") final long followedId) {
         if (followedId <= 0) {
             throw new IllegalParameterValueException("id");
@@ -564,7 +564,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/{id : \\d+}/unfollow/")
+    @Path("/{id : \\d+}/follow")
     public Response unFollowUser(@PathParam("id") final long followedId) {
         if (followedId <= 0) {
             throw new IllegalParameterValueException("id");

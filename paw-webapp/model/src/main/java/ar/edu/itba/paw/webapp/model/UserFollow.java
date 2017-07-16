@@ -48,6 +48,9 @@ public class UserFollow {
     @Access(value = AccessType.FIELD)
     private Calendar date;
 
+    public UserFollow() {
+    }
+
     public UserFollow(User followed, User follower) {
         this.followed = followed;
         this.follower = follower;

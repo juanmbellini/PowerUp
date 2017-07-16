@@ -7,6 +7,7 @@ import ar.edu.itba.paw.webapp.model.ThreadLike;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.UserFollow;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +15,8 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by julian on 16/07/17.
  */
+
+@Repository
 public class UserFollowHibernateDao implements UserFollowDao {
 
     @PersistenceContext
