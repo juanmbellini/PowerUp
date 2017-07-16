@@ -3,16 +3,12 @@ package ar.edu.itba.paw.webapp.dto;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.UserGameStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +35,7 @@ public class UserGameStatusDto extends EntityDto {
     private String gameName;
 
     @XmlElement
-    @JsonDeserialize(using = PlayStatusEnumDeserializer.class)
+    @JsonDeserialize(using = DtoHelper.PlayStatusEnumDeserializer.class)
     private PlayStatus status;
 
 
@@ -78,19 +74,4 @@ public class UserGameStatusDto extends EntityDto {
     public static List<UserGameStatusDto> createList(Collection<UserGameStatus> statuses) {
         return statuses.stream().map(UserGameStatusDto::new).collect(Collectors.toList());
     }
-
-
-    /**
-     * {@link JsonDeserializer} used to deserialize {@link PlayStatus}.
-     */
-    private final static class PlayStatusEnumDeserializer extends JsonDeserializer<PlayStatus> {
-
-        @Override
-        public PlayStatus deserialize(JsonParser p, DeserializationContext ctxt)
-                throws IOException {
-            return PlayStatus.fromString(p.getText());
-        }
-    }
-
-
 }

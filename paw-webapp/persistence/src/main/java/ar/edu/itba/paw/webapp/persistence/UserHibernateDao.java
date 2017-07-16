@@ -1,7 +1,7 @@
 package ar.edu.itba.paw.webapp.persistence;
 
+import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.interfaces.GenreDao;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.*;
@@ -12,6 +12,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,7 @@ public class UserHibernateDao implements UserDao {
     private final GameDao gameDao;
 
     @Autowired
-    public UserHibernateDao(GameDao gameDao, GenreDao genreDao) {
+    public UserHibernateDao(GameDao gameDao) {
         this.gameDao = gameDao;
     }
 
@@ -120,7 +122,7 @@ public class UserHibernateDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException();
         }
-        user.setPlayStatus(game, playStatus);
+        user.setPlayStatus(game, playStatus); // TODO: make it through queries
         em.merge(user);
     }
 
@@ -129,7 +131,7 @@ public class UserHibernateDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException();
         }
-        UserGameStatus gameStatus = user.removePlayStatus(game);
+        UserGameStatus gameStatus = user.removePlayStatus(game); // TODO: make it through queries
         if (gameStatus == null) {
             return;
         }
@@ -153,7 +155,7 @@ public class UserHibernateDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException();
         }
-        UserGameScore gameScore = user.scoreGame(game, score);
+        UserGameScore gameScore = user.scoreGame(game, score); // TODO: make it through queries
 //        if (gameScore != null) {
 //            em.remove(em.merge(gameScore)); // Removes relationship between user and game.
 //        }
@@ -165,7 +167,7 @@ public class UserHibernateDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException();
         }
-        UserGameScore gameScore = user.unscoreGame(game);
+        UserGameScore gameScore = user.unscoreGame(game); // TODO: make it through queries
         if (gameScore == null) {
             return;
         }
@@ -209,9 +211,41 @@ public class UserHibernateDao implements UserDao {
     }
 
     @Override
-    public Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection) {
-        return getPageOfRelationObject(user, null, null, pageNumber, pageSize, sortingType.getFieldName(), sortDirection, UserGameStatus.class, em);
+    public Page<Game> getGameList(User user, List<Shelf> shelves, List<PlayStatus> statuses,
+                                  int pageNumber, int pageSize,
+                                  ListGameSortingType sortingType, SortDirection sortDirection) {
+
+        if (shelves == null || statuses == null) {
+            throw new IllegalArgumentException();
+        }
+
+        final List<String> statusesString = statuses.stream().map(PlayStatus::asInDatabase).map(String::toLowerCase)
+                .collect(Collectors.toList());
+        final List<Long> shelfIds = shelves.stream().map(Shelf::getId).collect(Collectors.toList());
+
+
+        // Count and filtering
+        final String subQuery = getListSubQuery(!shelfIds.isEmpty(), !statusesString.isEmpty());
+        final long count = countList(subQuery, user, shelfIds, statusesString, em);
+        if (count == 0) {
+            return Page.emptyPage();
+        }
+
+        int totalAmountOfPages = Math.max((int) Math.ceil((double) count / pageSize), 1);
+        // Avoid making the query if pageSize is wrong
+        if (pageNumber > totalAmountOfPages) {
+            throw new NumberOfPageBiggerThanTotalAmountException();
+        }
+
+        // Data extraction, paging and sorting
+        final String query = getListQuery(sortingType == ListGameSortingType.SCORE, subQuery,
+                sortingType.getFieldName(), sortDirection.getQLKeyword());
+        final List<Game> games = getList(query, pageNumber, pageSize, user, shelfIds, statusesString, em);
+
+
+        return DaoHelper.createPage(games, pageSize, pageNumber, totalAmountOfPages, count);
     }
+
 
     @Override
     public Collection<Game> recommendGames(long userId) {
@@ -317,6 +351,7 @@ public class UserHibernateDao implements UserDao {
 
     // ======== Helpers ========
 
+
     /**
      * Returns the relationship object of type {@code T}, applying filtering, sorting and pagination.
      *
@@ -358,5 +393,125 @@ public class UserHibernateDao implements UserDao {
         }
         return DaoHelper.findPageWithConditions(em, klass, query, "relationObject", "id", conditions,
                 pageNumber, pageSize, sortingField, sortDirection, false);
+    }
+
+
+    // ==== User list  ====
+
+
+    /**
+     * Prepares the {@link String} holding the sub-query used to count and get matching games
+     * to build the {@link User}'s list.
+     *
+     * @param includeShelvesFilter  A flag indicating if {@link Shelf} filtering must be applied
+     * @param includeStatusesFilter A flag indicating if {@link PlayStatus} filtering must be applied
+     * @return The {@link String} holding the sub-query used to count and get matching games
+     * to build the {@link User}'s list
+     */
+    private static String getListSubQuery(boolean includeShelvesFilter, boolean includeStatusesFilter) {
+        final StringBuilder selectAndFromStatements = new StringBuilder().append("SELECT DISTINCT g.id FROM games g");
+        final StringBuilder statusesPart = new StringBuilder()
+                .append(" INNER JOIN game_play_statuses gps ON g.id = gps.game_id AND gps.user_id = :userId");
+        final StringBuilder shelvesPart = new StringBuilder()
+                .append(" INNER JOIN shelf_games sh ON g.id = sh.game_id")
+                .append(" INNER JOIN shelves s1 ON s1.id = sh.shelf_id AND s1.user_id = :userId");
+
+        if (includeStatusesFilter) {
+            statusesPart.append(" WHERE lower(status) IN :statuses");
+        }
+        if (includeShelvesFilter) {
+            shelvesPart.append(" WHERE NOT EXISTS(")
+                    .append("SELECT * FROM shelves s2 WHERE id IN :shelves AND NOT EXISTS(")
+                    .append("SELECT * FROM shelf_games aux WHERE s2.id = aux.shelf_id AND aux.game_id = sh.game_id))");
+        }
+
+        //noinspection StringBufferReplaceableByString
+        return new StringBuilder()
+                .append(selectAndFromStatements).append(statusesPart)
+                .append(" UNION ")
+                .append(selectAndFromStatements).append(shelvesPart)
+                .toString();
+    }
+
+    /**
+     * Prepares the {@link String} holding the query used to build the {@link User}'s list.
+     *
+     * @param joinWithScore A flag indicating if a join must be done with the {@link UserGameScore} table.
+     * @param subQuery      The {@link String} holding the sub-query used to count and filter.
+     * @param orderBy       Indicates how the result must be filtered.
+     * @param sortDirection Indicates if sorting must be done asc or desc.
+     * @return The {@link String} holding the query used to build the {@link User}'s list.
+     */
+    private static String getListQuery(boolean joinWithScore, String subQuery, String orderBy, String sortDirection) {
+        final StringBuilder query = new StringBuilder()
+                .append("SELECT games.id")
+                .append(", games.name")
+                .append(", games.summary")
+                .append(", games.avg_score")
+                .append(", games.release")
+                .append(", games.cover_picture_cloudinary_id")
+                .append(", games.counter")
+                .append(" FROM games");
+        if (joinWithScore) {
+            query.append(" LEFT JOIN game_scores ON games.id = game_scores.game_id AND game_scores.user_id = :userId");
+        }
+        query.append(" WHERE games.id IN (").append(subQuery).append(")")
+                .append(" ORDER BY ").append(orderBy).append(" ").append(sortDirection);
+        return query.toString();
+    }
+
+    /**
+     * Counts the amount of {@link Game} does the given {@link User} holds,
+     * according to filtering set in the given {@code subQuery}.
+     *
+     * @param subQuery       The {@link String} holding the SQL query.
+     * @param user           The {@link User} owning the list.
+     * @param shelfIds       A {@link List} of ids of {@link Shelf} to be used for filtering.
+     * @param statusesString A {@link List} of {@link PlayStatus} to be used for filtering.
+     * @param em             The {@link EntityManager} used to perform the query.
+     * @return The amount of {@link Game}s the list holds.
+     */
+    private static long countList(String subQuery, User user, List<Long> shelfIds, List<String> statusesString,
+                                  EntityManager em) {
+        final Query countQuery = em.createNativeQuery("SELECT COUNT(*) FROM (" + subQuery + ") AS c")
+                .setParameter("userId", user.getId());
+        if (!shelfIds.isEmpty()) {
+            countQuery.setParameter("shelves", shelfIds);
+        }
+        if (!statusesString.isEmpty()) {
+            countQuery.setParameter("statuses", statusesString);
+        }
+        return ((BigInteger) countQuery.getSingleResult()).longValue();
+    }
+
+    /**
+     * Returns the {@link List} of games that belongs to the {@link Page} with the given {@code pageNumber}
+     * (whose size is the given {@code pageSize}) of the list of games being owned by the given {@link User},
+     * according to filtering set in the given {@code subQuery}.
+     *
+     * @param query          The {@link String} holding the SQL query.
+     * @param pageNumber     The {@link Page} number.
+     * @param pageSize       The {@link Page} size.
+     * @param user           The {@link User} owning the list.
+     * @param shelfIds       A {@link List} of ids of {@link Shelf} to be used for filtering.
+     * @param statusesString A {@link List} of {@link PlayStatus} to be used for filtering.
+     * @param em             The {@link EntityManager} used to perform the query.
+     * @return The {@link List} of games that will be included in the resulting {@link Page}.
+     */
+    private static List<Game> getList(String query, int pageNumber, int pageSize,
+                                      User user, List<Long> shelfIds, List<String> statusesString, EntityManager em) {
+        // Data extraction, paging and sorting query
+        final Query dataQuery = em.createNativeQuery(query, Game.class)
+                .setFirstResult((pageNumber - 1) * pageSize)
+                .setMaxResults(pageSize)
+                .setParameter("userId", user.getId());
+        if (!shelfIds.isEmpty()) {
+            dataQuery.setParameter("shelves", shelfIds.isEmpty() ? "''" : shelfIds);
+        }
+        if (!statusesString.isEmpty()) {
+            dataQuery.setParameter("statuses", statusesString.isEmpty() ? "''" : statusesString);
+        }
+        //noinspection unchecked
+        return dataQuery.getResultList();
     }
 }

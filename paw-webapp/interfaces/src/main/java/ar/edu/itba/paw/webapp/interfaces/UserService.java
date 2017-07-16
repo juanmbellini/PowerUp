@@ -2,12 +2,11 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * User service class. Exposes all functionality available to users.
@@ -215,13 +214,21 @@ public interface UserService {
     Collection<Game> recommendGames(long userId, List<String> shelfNameFilters);
 
     /**
-     * Gets all games in this user's main game list (games they have marked as playing, played, etc.).
+     * Returns a {@link User}'s list (i.e games in a {@link Shelf} or with {@link PlayStatus}).
+     * Filtering and sorting can be applied.
      *
-     * @param userId The ID of the user whose list to fetch.
-     * @param sortingType
-     * @return
+     * @param userId        The {@link User} owning the list's id.
+     * @param shelfNames    A {@link List} of names of {@link Shelf} to apply filtering.
+     * @param statuses      A {@link List} of {@link PlayStatus} to apply filtering.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
      */
-    Page<UserGameStatus> getGameList(long userId, int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection);
+    Page<GameWithUserShelvesWrapper> getGameList(long userId, List<String> shelfNames, List<PlayStatus> statuses,
+                                                 int pageNumber, int pageSize,
+                                                 UserDao.ListGameSortingType sortingType, SortDirection sortDirection);
 
 
     /**

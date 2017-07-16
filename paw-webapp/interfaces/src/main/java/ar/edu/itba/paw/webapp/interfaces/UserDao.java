@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -99,9 +100,12 @@ public interface UserDao extends FindByIdDao<User> {
     void delete(User user);
 
     /**
-     * @see UserService#getGameList(long, int, int, PlayStatusAndGameScoresSortingType, SortDirection)
+     * @see UserService#getGameList(long, List, List, int, int, ListGameSortingType, SortDirection)
      */
-    Page<UserGameStatus> getGameList(User user, int pageNumber, int pageSize, PlayStatusAndGameScoresSortingType sortingType, SortDirection sortDirection);
+    Page<Game> getGameList(User user, List<Shelf> shelves, List<PlayStatus> statuses,
+                                     int pageNumber, int pageSize,
+                                     ListGameSortingType sortingType, SortDirection sortDirection);
+
 
     /**
      * @see UserService#recommendGames(long)
@@ -109,7 +113,7 @@ public interface UserDao extends FindByIdDao<User> {
     Collection<Game> recommendGames(long userId);
 
     /**
-     * @see UserService#recommendGames(long, Set)
+     * @see UserService#recommendGames(long, List)
      */
     Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
 
@@ -163,6 +167,7 @@ public interface UserDao extends FindByIdDao<User> {
     /**
      * Enum indicating the sorting type for the get play statuses / get scored games methods.
      */
+    // TODO: split between statuses and scores (to add support for sorting by score)
     enum PlayStatusAndGameScoresSortingType {
         GAME_ID {
             @Override
@@ -197,6 +202,45 @@ public interface UserDao extends FindByIdDao<User> {
          * @return The enum value.
          */
         public static PlayStatusAndGameScoresSortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
+
+
+    enum ListGameSortingType {
+        GAME_NAME {
+            @Override
+            public String getFieldName() {
+                return "games.name";
+            }
+        },
+        SCORE {
+            @Override
+            public String getFieldName() {
+                return "COALESCE(score, 0)";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static ListGameSortingType fromString(String name) {
             return valueOf(name.replace("-", "_").toUpperCase());
         }
     }
