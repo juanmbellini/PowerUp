@@ -33,30 +33,44 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
 		});
 		$scope.feed = [];
 		var feedObj;
-		$scope.feedNeeded = 0;
 		if (AuthService.isLoggedIn()) {
 			feedObj = FeedService.initialize(AuthService.getCurrentUser().id);
-			$scope.feedNeeded = 10;
+            $scope.loadingFeed = true;
 		}
 
+        $scope.needFeed = function() {
+        	if (feedObj === null) {
+        		return null;
+        	}
+        	return FeedService.isReady(feedObj) + '' + $scope.loadingFeed;
+        };
+
+
 		$scope.$watch('needFeed()', function () {
-			if (AuthService.isLoggedIn() && feedObj !== null) {
-				while ($scope.feedNeeded > 0 && FeedService.isReady(feedObj)) {
-					$scope.feedNeeded--;
-					var element = FeedService.getFeedElement(feedObj);
-					if (element !== null) {
-						$scope.feed.push(element);
-					}
-				}
-			}
+            if (AuthService.isLoggedIn() && feedObj !== null && FeedService.isReady(feedObj) && $scope.loadingFeed) {
+                var feedArray = FeedService.getFeed(feedObj);
+                feedArray.forEach(function (element, index, array) {
+                    $scope.feed.push(array[index]);
+                });
+                $scope.thereAreMore = feedObj.thereAreMore;
+                $scope.loadingFeed = false;
+            }
 		});
 
-		$scope.needFeed = function() {
-			if (feedObj === null) {
-				return null;
-			}
-			return $scope.feedNeeded + '#' + FeedService.isReady(feedObj);
-		};
+        $scope.loadMoreFeed = function () {
+            $scope.loadingFeed = true;
+            // if (AuthService.isLoggedIn() && feedObj !== null) {
+            //     while ($scope.feedNeeded > 0 && FeedService.isReady(feedObj)) {
+            //         $scope.feedNeeded--;
+            //         var element = FeedService.getFeedElement(feedObj);
+            //         if (element !== null) {
+            //
+            //         }
+            //     }
+            // }
+        };
+
+
 
 
 		// Threads
@@ -101,7 +115,27 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
                     // $scope.checkCanWriteReview();
                 });
         };
-        // TODO swal
+
+
+        // Follow friend
+        $scope.followFriend = function () {
+            $scope.loadingFollowFriend = true;
+            $scope.followFriendSend = true;
+            Restangular.all('users').one('username',$scope.friendName).get().then(function (response) {
+                var user = response.data;
+                Restangular.one('users', user.id).all('follow').put().then(function (response) {
+                    $scope.followFriendError = false;
+                    $scope.loadingFollowFriend = false;
+                }, function () {
+                    $scope.followFriendError = true;
+                    $scope.loadingFollowFriend = false;
+                });
+            }, function () {
+                $scope.followFriendError = true;
+                $scope.loadingFollowFriend = false;
+            })
+        };
+
 
 
 	});

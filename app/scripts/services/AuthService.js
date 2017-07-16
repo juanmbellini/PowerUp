@@ -135,7 +135,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          */
         function logOut(successCallback, failureCallback) {
             Restangular.all('auth/logout').post(undefined, undefined).then(function (response) {
-                data = response.data;
+                var data = response.data;
                 setCurrentUser(null);
                 setToken(null);
                 $log.info('Successfully logged out');
