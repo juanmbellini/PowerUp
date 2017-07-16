@@ -106,8 +106,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource());
         flyway.setLocations("classpath:migration");
-        flyway.setBaselineOnMigrate(true);
-        flyway.setBaselineVersion(MigrationVersion.fromVersion("0.2"));
         return flyway;
     }
 
