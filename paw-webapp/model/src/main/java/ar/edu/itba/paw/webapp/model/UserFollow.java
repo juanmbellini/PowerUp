@@ -14,6 +14,11 @@ import java.util.Calendar;
                 columnList = "follower_id, followed_id", unique = true)})
 public class UserFollow{
 
+    @Id
+    @SequenceGenerator(name = "user_follow_seq", sequenceName = "user_follow_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_follow_seq")
+    private long id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             columnDefinition = "integer",
