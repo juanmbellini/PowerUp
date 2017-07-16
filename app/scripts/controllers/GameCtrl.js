@@ -8,6 +8,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
         $scope.gameId = $location.search().id;
         $scope.game = null;
 
+        var noPlayStatusString = 'no-play-status';
+
         $scope.canWriteReview = false;
 
         $scope.findGame = function(gameId) {
@@ -43,7 +45,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
             Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
                 $scope.playStatusOptions = playStatuses;
                 $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
-                    return playStatusToFilter !== 'no play status';
+                    return playStatusToFilter !== noPlayStatusString;
                 });
 
             }, function (response) {
@@ -53,14 +55,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'authService
                 if (playStatus.length > 0) {
                     $scope.gamePlayStatus = playStatus[0].status;
                 } else {
-                    $scope.gamePlayStatus = 'no play status';
+                    $scope.gamePlayStatus = noPlayStatusString;
                 }
             }, function (response) {
                 $log.error('Could not get play status from game', response);
             });
             $scope.updatePlayStatus = function () {
                 $scope.loadingStatus = true;
-                if ($scope.gamePlayStatus === 'no play status') {
+                if ($scope.gamePlayStatus === noPlayStatusString) {
                     Restangular.one('users', userId).one('play-status',$scope.gameId).remove().then(function (response) {
                         $log.info('removed play status from game', response);
                         $scope.updatedStatus = true;
