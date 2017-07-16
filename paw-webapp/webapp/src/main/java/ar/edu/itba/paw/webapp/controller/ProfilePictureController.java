@@ -51,25 +51,26 @@ public class ProfilePictureController extends BaseController {
 
     @RequestMapping(value = "/profile-picture", method = RequestMethod.GET)
     public ResponseEntity getProfilePicture(@RequestParam(value = "username") String username) {
-        User user = userService.findByUsername(username);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        HttpHeaders responseHeaders = new HttpHeaders();
-        if (user.getProfilePicture() == null) {
-            //No profile picture, redirect to default picture URL
-            try {
-                responseHeaders.setLocation(new URI(Game.DEFAULT_COVER_PICTURE_URL));
-                return new ResponseEntity(responseHeaders, HttpStatus.TEMPORARY_REDIRECT);
-            } catch (URISyntaxException e) {
-                LOG.error("Couldn't retrieve default profile picture: {}", e);
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } else {
-            byte[] data = user.getProfilePicture();
-            responseHeaders.setContentLength(data.length);
-            return new ResponseEntity<>(data, responseHeaders, HttpStatus.OK);
-        }
+//        User user = userService.findByUsername(username);
+//        if (user == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        HttpHeaders responseHeaders = new HttpHeaders();
+//        if (user.getProfilePicture() == null) {
+//            //No profile picture, redirect to default picture URL
+//            try {
+//                responseHeaders.setLocation(new URI(Game.DEFAULT_COVER_PICTURE_URL));
+//                return new ResponseEntity(responseHeaders, HttpStatus.TEMPORARY_REDIRECT);
+//            } catch (URISyntaxException e) {
+//                LOG.error("Couldn't retrieve default profile picture: {}", e);
+//                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        } else {
+//            byte[] data = user.getProfilePicture();
+//            responseHeaders.setContentLength(data.length);
+//            return new ResponseEntity<>(data, responseHeaders, HttpStatus.OK);
+//        }
+        return null;
     }
 
     @RequestMapping(value = "/remove-profile-picture", method = RequestMethod.POST)

@@ -9,6 +9,7 @@ import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,26 +50,29 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
 
     @Override
-    public Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
-                               int pageNumber, int pageSize,
-                               UserDao.SortingType sortingType, SortDirection sortDirection) {
-        return userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
+    public Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter,
+                                                      Authority authorityFilter,
+                                                      int pageNumber, int pageSize,
+                                                      UserDao.SortingType sortingType, SortDirection sortDirection) {
+        Page<User> page = userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        // TODO: implement method to avoid multiple queries
+        return ServiceHelper.fromAnotherPage(page, UserWithFollowCountsWrapper::new).build();
     }
 
     @Override
-    public User findById(long id) {
-        return userDao.findById(id);
+    public UserWithFollowCountsWrapper findById(long id) {
+        return Optional.ofNullable(userDao.findById(id)).map(UserWithFollowCountsWrapper::new).orElse(null);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+    public UserWithFollowCountsWrapper findByUsername(String username) {
+        return Optional.ofNullable(userDao.findByUsername(username)).map(UserWithFollowCountsWrapper::new).orElse(null);
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public UserWithFollowCountsWrapper findByEmail(String email) {
+        return Optional.ofNullable(userDao.findByEmail(email)).map(UserWithFollowCountsWrapper::new).orElse(null);
     }
 
 

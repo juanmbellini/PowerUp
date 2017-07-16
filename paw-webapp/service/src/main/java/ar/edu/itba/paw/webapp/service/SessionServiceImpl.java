@@ -3,12 +3,15 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.interfaces.SessionService;
 import ar.edu.itba.paw.webapp.interfaces.UserService;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Spring-based implementation of the {@link SessionService session service}.
@@ -46,12 +49,14 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public User getCurrentUser() {
         String username = getCurrentUsername();
-        if(username == null) {
+        if (username == null) {
             return null;
         }
         // Avoid unnecessary extra DB calls by caching the current user.
-        if(currentUser == null || !currentUser.getUsername().equals(username)) {
-            currentUser = userService.findByUsername(username);
+        if (currentUser == null || !currentUser.getUsername().equals(username)) {
+            currentUser = Optional.ofNullable(userService.findByUsername(username))
+                    .map(UserWithFollowCountsWrapper::getUser)
+                    .orElse(null);
         }
         return currentUser;
     }

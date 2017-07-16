@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
@@ -26,8 +27,9 @@ public interface UserService {
      * @param sortDirection   The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
-                        int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+    Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
+                                               int pageNumber, int pageSize,
+                                               UserDao.SortingType sortingType, SortDirection sortDirection);
 
 
     /**
@@ -36,7 +38,7 @@ public interface UserService {
      * @param id The user ID.
      * @return The found user or {@code null} if not found.
      */
-    User findById(long id);
+    UserWithFollowCountsWrapper findById(long id);
 
     /**
      * Finds a {@link User} by username.
@@ -44,7 +46,7 @@ public interface UserService {
      * @param username The username. Case-sensitive.
      * @return The found user or {@code null} if not found.
      */
-    User findByUsername(String username);
+    UserWithFollowCountsWrapper findByUsername(String username);
 
     /**
      * Finds a {@link User} by email.
@@ -52,7 +54,7 @@ public interface UserService {
      * @param email The email. Case-<strong>in</strong>sensitive.
      * @return The found user or {@code null} if not found.
      */
-    User findByEmail(String email);
+    UserWithFollowCountsWrapper findByEmail(String email);
 
 
     /**

@@ -93,7 +93,8 @@ public abstract class BaseController {
     @ModelAttribute("currentUser")
     protected User getCurrentUser() {
         String username = getCurrentUsername();
-        return username == null ? null : userService.findByUsername(username);
+//        return username == null ? null : userService.findByUsername(username);
+        return null;
     }
 
     /**
