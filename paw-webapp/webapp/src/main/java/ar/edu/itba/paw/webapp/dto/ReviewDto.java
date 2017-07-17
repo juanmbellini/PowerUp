@@ -98,6 +98,8 @@ public class ReviewDto extends EntityDto {
         this.audioScore = wrapper.getEntity().getAudioScore();
         this.controlsScore = wrapper.getEntity().getControlsScore();
         this.funScore = wrapper.getEntity().getFunScore();
+        this.likeCount = wrapper.getLikeCount();
+        this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
 
         // Urls
         this.userUrl = baseUri.clone()
