@@ -82,5 +82,35 @@ public interface ReviewService {
      */
     void delete(long reviewId, User deleter);
 
+    /**
+     * Marks a like for a given review by a given user, if not already liked.
+     *
+     * @param reviewId The ID of the review to like.
+     * @param liker    The {@link User} performing the operation.
+     */
+    void likeReview(long reviewId, User liker);
+
+    /**
+     * Removes a like from a given review by a given user, if liked.
+     *
+     * @param reviewId The ID of the review to unlike.
+     * @param unliker  The {@link User} performing the operation.
+     */
+    void unlikeReview(long reviewId, User unliker);
+
+
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId      The ID of the {@link Review}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheReview(long reviewId, int pageNumber, int pageSize,
+                                       ReviewLikeDao.SortingType sortingType, SortDirection sortDirection);
+
 
 }

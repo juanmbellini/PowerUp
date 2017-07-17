@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -38,7 +39,6 @@ public interface ReviewDao {
      * @see ReviewService#findById(long)
      */
     Review findById(long reviewId);
-
 
     /**
      * Enum indicating the sorting type for the "get reviews" method.

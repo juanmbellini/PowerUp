@@ -2,13 +2,10 @@ package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
-import ar.edu.itba.paw.webapp.interfaces.ReviewService;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.interfaces.*;
+import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
@@ -33,11 +30,14 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
 
     private final GameDao gameDao;
 
+    private final ReviewLikeDao reviewLikeDao;
+
 
     @Autowired
-    public ReviewServiceImpl(ReviewDao reviewDao, GameDao gameDao) {
+    public ReviewServiceImpl(ReviewDao reviewDao, GameDao gameDao, ReviewLikeDao reviewLikeDao) {
         this.reviewDao = reviewDao;
         this.gameDao = gameDao;
+        this.reviewLikeDao = reviewLikeDao;
     }
 
 
@@ -71,6 +71,36 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     }
 
     @Override
+    public void likeReview(long reviewId, User liker) {
+        if (liker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Review review = getReview(reviewId);
+        // If already liked, do nothing and be idempotent
+        if (!reviewLikeDao.exists(review, liker)) {
+            reviewLikeDao.create(review, liker);
+        }
+    }
+
+    @Override
+    public void unlikeReview(long reviewId, User unliker) {
+        if (unliker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Review review = getReview(reviewId);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(reviewLikeDao.find(review, unliker)).ifPresent(reviewLikeDao::delete);
+    }
+
+    @Override
+    public Page<User> getUsersLikingTheReview(long reviewId, int pageNumber, int pageSize,
+                                              ReviewLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Review thread = getReview(reviewId);
+        final Page<ReviewLike> page = reviewLikeDao.getLikes(thread, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
+    }
+
+    @Override
     public void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
                        Integer controlsScore, Integer funScore, User updater) {
         if (updater == null) {
@@ -92,6 +122,9 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         });
     }
 
+    private Page<User> createLikersPage(Page<? extends Like> oldPage) {
+        return ServiceHelper.fromAnotherPage(oldPage, Like::getUser).build();
+    }
 
     /**
      * Returns an optional holding a possible {@link Game} (if it exists and if {@code gameId} is not null).
