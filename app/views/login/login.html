@@ -30,9 +30,9 @@
                     <p>Password:</p>
                     <input type="password" ng-model="password" name="password" />
                   </div>
-                  <!--<label style='float: right;'>-->
-                    <!--<a id="forgot-password" class='light-blue-text' href='#!'><b>Forgot Password?</b></a>-->
-                  <!--</label>-->
+                  <label style='float: right;'>
+                    <a class='light-blue-text' href='' ng-click="resetPassword()"><b>Forgot Password?</b></a>
+                  </label>
                 </div>
                 <div class="row">
                   <p ng-if="loginError" class="center formError"  style="font-size: larger;">Invalid username/password</p>

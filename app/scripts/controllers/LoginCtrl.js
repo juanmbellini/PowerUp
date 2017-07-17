@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
 
     powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
@@ -18,6 +18,59 @@ define(['powerUp', 'AuthService'], function(powerUp) {
                     $scope.loginError = true;
                 }
             );
+        };
+
+        var resettingPassword = false;
+        $scope.resetPassword = function() {
+            if (resettingPassword) {
+                return;
+            }
+            swal({
+                title: 'Password Reset',
+                text: 'Please enter your account email',
+                type: 'input',
+                inputType: 'email',
+                inputPlaceholder: 'Email',
+                showCancelButton: true,
+                closeOnConfirm: false,
+                confirmButtonText: 'Reset Password'
+            },
+            function(inputValue) {
+                if (inputValue === false) {
+                    return false;
+                } else if (inputValue === '') {
+                    swal.showInputError('Please write your account email');
+                    return false;
+                }
+                // Regex obtained from https://html.spec.whatwg.org/#e-mail-state-(type=email)
+                else if (!inputValue.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+                    swal.showInputError('Please enter a valid email address');
+                    return false;
+                }
+
+                resettingPassword = true;
+                var user = null;
+                swal.disableButtons();
+                Restangular.all('users').one('email', inputValue).get().then(function(response) {
+                    user = response.data || response;
+                    Restangular.one('users', user.id).all('password').remove().then(function(response) {
+                        swal('Password Reset!', 'Please check your email for reset instructions', 'success');
+                        resettingPassword = false;
+                    }, function(error) {
+                        swal.showInputError('Server error, please try again');
+                        resettingPassword = false;
+                    });
+                }, function(error) {
+                    if (error.status === 404) {
+                        swal.showInputError('No user with that email address');
+                    } else {
+                        swal.showInputError('Server error, please try again');
+                        $log.error('Error getting user by email: ', error);
+                    }
+                    swal.enableButtons();
+                    resettingPassword = false;
+                });
+            });
         };
     }]);
 });
