@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll) {
 
@@ -77,20 +77,6 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         //         $log.error('Could not get play status from game', response);
         //     });
         // }
-        $scope.deleteGame = function(game) { // TODO re pensar si va a existir exto en el nuevo contexto
-            SweetAlert.swal({
-                    title: 'Are you sure?',
-                    text: 'You are about to delete ' + game.name + ' from all your shelves.',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Delete',
-                    closeOnConfirm: false
-                },
-                function () {
-                    $log.debug('Now your game should be deleted');
-                });
-        };
 
         // PlayStatuses
         $scope.playStatuses = [];
@@ -148,31 +134,33 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             });
         });
         $scope.deleteShelf = function(shelf) {
-            SweetAlert.swal({
-                    title: 'Are you sure?',
-                    text: 'You are about to permanently delete shelf \"' + shelf.name + '\"',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Delete',
-                    closeOnConfirm: true
-                },
-                function () {
-                    // //Disable submit button to prevent multiple submissions
-                    // $('.confirm').attr('disabled', 'disabled');
-                    userURL.one('shelves',shelf.name).remove().then(function(response) {
-                        $log.debug('Now your shelf should be deleted');
-                    },function(error) {
-                        $log.error('Couldn\'t delete shelf ', error);
-                    });
-              });
+            swal({
+                title: 'Are you sure?',
+                text: 'You are about to permanently delete shelf \"' + shelf.name + '\"',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Delete',
+                closeOnConfirm: false
+            },
+            function (inputValue) {
+                if (inputValue === false) {
+                    return false;
+                }
+                swal.disableButtons();
+                userURL.one('shelves',shelf.name).remove().then(function(response) {
+                    swal('Success', 'Shelf "' + shelf.name + '" successfully deleted', 'success');
+                },function(error) {
+                    swal('Sever error', 'Sorry, please try again', 'error');
+                });
+            });
         };
         $scope.editShelf = function(shelf) {
-            SweetAlert.swal({
+            swal({
                     title: 'Rename \"' + shelf.name + '\" to...',
                     type: 'input',
                     showCancelButton: true,
-                    closeOnConfirm: true,
+                    closeOnConfirm: false,
                     confirmButtonText: 'Rename',
                     inputPlaceholder: 'New name'
                 },
@@ -186,32 +174,15 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
                         swal.showInputError('Please write between 1 and 25 characters');
                         return false;
                     }
-                    // Disable submit button to prevent multiple submissions
-                    // $('.confirm').attr('disabled', 'disabled');
-                    // Create an inline form and submit it to redirect with POST
-                    // TODO viejo pero tal vez hay que seguir usandolo. Creo que era boludeces de backend que no van a servir más.
-                    // escapeHtml(inputValue)
-                    // var entityMap = {
-                    //     '&': '&amp;',
-                    //     '<': '&lt;',
-                    //     '>': '&gt;',
-                    //     '"': '&quot;',
-                    //     "'": '&#39;',
-                    //     '/': '&#x2F;'
-                    // };
-                    // function escapeHtml(string) {
-                    //     return String(string).replace(/[&<>"'\/]/g, function (s) {
-                    //         return entityMap[s];
-                    //     });
-                    // }
                     var oldName = shelf.name;
                     shelf.name = inputValue;
                     userURL.one('shelves',oldName).customPUT(shelf).then(function (response) {
                         $log.debug('Updated Shelf. Now your shelf should be called ' + inputValue);
+                        swal('Success', 'Shelf "' + oldName + '" renamed to "'+ shelf.name +'"', 'success');
                     }, function(response) {
-                        $log.error('Error creating shelf. Error with status code', response.status);
+                        $log.error('Error renaming shelf. Error with status code', response.status);
                         shelf.name = oldName;
-                        // TODO handle error. show error or something
+                        swal.showInputError('Server error, please try again');
                     });
                 });
         };
@@ -223,6 +194,7 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
             userURL.all('shelves').post(shelf).then(function(response) {
                 $log.debug('Created Shelf');
                 $scope.getShelves();
+                $scope.newShelfName = '';
                 // $scope.shelves.push(response);
             }, function(response) {
                 $log.error('Error creating shelf. Error with status code', response.status); // TODO handle error
