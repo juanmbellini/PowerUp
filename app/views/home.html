@@ -194,14 +194,14 @@
                             <div ng-if="feedElement.type === 'status'">
                                 <div class="row">
                                     <div class="col s9">
-                                        <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
                                         <span class="title wrap-text">
-                                            <a ng-href="#profile?username={{feedElement.data.userId}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">changed </span>
+                                            <a ng-href="#profile?username={{feedElement.data.userId}}">{{feedElement.data.username}}</a> <span class="mediumText">changed </span>
                                             <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
                                         </span>
                                     </div>
                                     <div class="col s3">
-                                        <p>
+                                        <p class="right-align">
                                             {{feedElement.data.date | date: 'mediumDate'}}
                                         </p>
                                     </div>
