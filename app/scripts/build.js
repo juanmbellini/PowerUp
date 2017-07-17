@@ -5,7 +5,7 @@ require.config({
     paths: {
         requirejs: '../../bower_components/requirejs/require',
         jquery: '../../bower_components/jquery/dist/jquery',
-        'jquery-ui': 'jquery-ui',
+        'jquery-ui': '../../bower_components/jquery-ui/jquery-ui',
         json3: '../../bower_components/json3/lib/json3',
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
@@ -25,7 +25,7 @@ require.config({
         onComplete: 'directives/onComplete',
         AuthService: 'services/AuthService',
         loadingCircle: 'directives/loadingCircle',
-        'loadingCircleSmall': 'directives/loadingCircleSmall',
+        loadingCircleSmall: 'directives/loadingCircleSmall',
         'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
