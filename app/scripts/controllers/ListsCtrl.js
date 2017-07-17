@@ -46,39 +46,32 @@ define(['powerUp', 'slick-carousel', 'onComplete'], function(powerUp) {
         // Games
         $scope.games = [];
         function updateGameList() {
-            // {shelves: $scope.selectedShelves, statuses: $scope.selectedPlayStatuses}
-            userURL.all('game-list').getList().then(function(games) {
-                angular.forEach(games, function (gameRef, index, gameArray) {
-                    $scope.games = games;
-                    Restangular.one('games', gameRef.gameId).get().then(function (game) {
-                        gameArray[index] = game;
-                        addInformationToGame(gameRef, index, gameArray);
-                    });
-                });
+            userURL.all('game-list').getList({shelfName: $scope.selectedShelves, status: $scope.selectedPlayStatuses}).then(function(games) {
+                $scope.games = games;
             }, function(response) {
                 $log.error('Error with status code', response.status);
             });
         }
-        function addInformationToGame(gameRef, index, gameArray) {
-            var game = gameArray[index];
-            Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
-                if (gameScore.length > 0) {
-                    game.userScore = gameScore[0].score;
-                }
-            }, function (response) {
-                $log.error('Could not get score from game', response);
-            });
-            Restangular.one('users',$scope.userId).all('shelves').getList({gameId: game.id}).then(function (shelvesWithGame) {
-                game.shelves = shelvesWithGame;
-            });
-            Restangular.one('users', $scope.userId).one('play-status', game.id).get().then(function (playStatus) {
-                if (playStatus.length > 0) {
-                    game.status = playStatus[0].status;
-                }
-            }, function (response) {
-                $log.error('Could not get play status from game', response);
-            });
-        }
+        // function addInformationToGame(gameRef, index, gameArray) {
+        //     var game = gameArray[index];
+        //     Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
+        //         if (gameScore.length > 0) {
+        //             game.userScore = gameScore[0].score;
+        //         }
+        //     }, function (response) {
+        //         $log.error('Could not get score from game', response);
+        //     });
+        //     Restangular.one('users',$scope.userId).all('shelves').getList({gameId: game.id}).then(function (shelvesWithGame) {
+        //         game.shelves = shelvesWithGame;
+        //     });
+        //     Restangular.one('users', $scope.userId).one('play-status', game.id).get().then(function (playStatus) {
+        //         if (playStatus.length > 0) {
+        //             game.status = playStatus[0].status;
+        //         }
+        //     }, function (response) {
+        //         $log.error('Could not get play status from game', response);
+        //     });
+        // }
         $scope.deleteGame = function(game) { // TODO re pensar si va a existir exto en el nuevo contexto
             SweetAlert.swal({
                     title: 'Are you sure?',
