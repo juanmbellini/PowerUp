@@ -119,6 +119,12 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
 
         // Follow friend
         $scope.followFriend = function () {
+			if ($scope.friendName === $scope.user.username) {
+				$scope.followFriendError = true;
+				$scope.followFriendErrorMsj = 'You can\'t follow yourself!';
+				return;
+			}
+			$scope.followFriendErrorMsj = 'User doesn\'t exist';
             $scope.loadingFollowFriend = true;
             $scope.followFriendSend = true;
             Restangular.all('users').one('username',$scope.friendName).get().then(function (response) {
@@ -133,7 +139,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
             }, function () {
                 $scope.followFriendError = true;
                 $scope.loadingFollowFriend = false;
-            })
+            });
         };
 
 
