@@ -543,8 +543,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @GET
-    @Path("/{id : \\d+}/followers")
-    public Response getUserFollowedBy(@PathParam("id") final long userId,
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response getUserFollowedBy(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
                                       // Pagination and Sorting
                                       @QueryParam("orderBy") @DefaultValue("id")
                                       final UserDao.SortingType sortingType,
