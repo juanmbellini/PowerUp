@@ -148,7 +148,7 @@
 									</a>
 								</p>
 								<p ng-if="isLoggedIn && !canDeleteReview(review)">
-									<button ng-if="canFollow(review.id)" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow(review.id)">{{review.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
+									<button class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow(review)">{{review.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
 								</p>
 							</div>
 						</li>
