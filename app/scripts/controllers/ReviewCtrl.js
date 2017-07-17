@@ -69,11 +69,11 @@ define(['powerUp', 'LikesService'], function(powerUp) {
        }
 
         /**
-         * Calculates the overallReviewcore of a review and returns it
+         * Calculates the overallReviewScore of a review and returns it
          * @param review
          * @returns {number}
          */
-       $scope.overallReviewcore = function(review) {
+       $scope.overallReviewScore = function(review) {
             var fields = ['storyScore', 'graphicsScore', 'audioScore', 'controlsScore', 'funScore'];
             var result = 0;
             fields.forEach(function(field) {
@@ -94,15 +94,15 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                 $scope.canWriteReview = false;
             } else {
                 var currentUserUsername = AuthService.getCurrentUser().username;
-                Restangular.all('review').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
-                    var review = response.data;
-                    if (review.length > 0) {
+                Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
+                    var reviews = response.data;
+                    if (reviews.length > 0) {
                         $scope.canWriteReview = false;
                     } else {
                         $scope.canWriteReview = true;
                     }
                 }, function(response) {
-                    console.log('There was an error getting review, ', response);
+                    console.log('There was an error getting reviews, ', response);
                     $scope.canWriteReview = false;
                 });
             }
@@ -128,11 +128,11 @@ define(['powerUp', 'LikesService'], function(powerUp) {
             });
         };
 
-        Restangular.all('review').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
+        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
             // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay review para ese usuario.
-            var review = response.data;
-            $scope.review = review;
-            console.log('foundReview', review);
+            var reviews = response.data;
+            $scope.reviews = reviews;
+            console.log('foundReviews', reviews);
             $scope.headersPagination = response.headers();
             console.log($scope.headersPagination);
             angular.forEach(reviews, function (reviewRef, index, reviewArray) {
@@ -157,7 +157,7 @@ define(['powerUp', 'LikesService'], function(powerUp) {
             $scope.checkCanWriteReview();
             $scope.updatePagination();
         }, function() {
-            console.log('There was an error getting review');
+            console.log('There was an error getting reviews');
             $location.search('pageNumber', 1);
         });
 
