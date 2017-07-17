@@ -45,6 +45,8 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String FOLLOWERS_END_POINT = "followers";
 
+    public static final String FEED_END_POINT = "feed";
+
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
         this.userService = userService;
@@ -272,6 +274,73 @@ public class UserJerseyController implements UpdateParamsChecker {
         userService.unFollowUser(followedId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
+    }
+
+
+    // ==== Feed ====
+
+    @GET
+    @Path("/{id : \\d+}/" + FEED_END_POINT + "/" + ThreadJerseyController.END_POINT)
+    public Response getFeedThreads(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                   // Pagination
+                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+
+        final User user = Optional.ofNullable(sessionService.getCurrentUser())
+                .orElseThrow(UnauthenticatedException::new);
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", null,
+                        userService.getThreadsForFeed(user, pageNumber, pageSize),
+                        (page) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(page.getData(),
+                                uriInfo.getBaseUriBuilder())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear().build());
+    }
+
+    @GET
+    @Path("/{id : \\d+}/" + FEED_END_POINT + "/" + ReviewJerseyController.END_POINT)
+    public Response getFeedReviews(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                   // Pagination
+                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+
+        final User user = Optional.ofNullable(sessionService.getCurrentUser())
+                .orElseThrow(UnauthenticatedException::new);
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", null,
+                        userService.getReviewsForFeed(user, pageNumber, pageSize),
+                        (page) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(page.getData(),
+                                uriInfo.getBaseUriBuilder())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear().build());
+    }
+
+
+    @GET
+    @Path("/{id : \\d+}/" + FEED_END_POINT + "/" + "statuses")
+    public Response getFeedPlayStatuses(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                        // Pagination
+                                        @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                        @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+
+        final User user = Optional.ofNullable(sessionService.getCurrentUser())
+                .orElseThrow(UnauthenticatedException::new);
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", null,
+                        userService.getPlayStatusesForFeed(user, pageNumber, pageSize),
+                        (page) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
+                                .createList(page.getData())) {
+                        },
+                        JerseyControllerHelper.getParameterMapBuilder().clear().build());
     }
 
 
