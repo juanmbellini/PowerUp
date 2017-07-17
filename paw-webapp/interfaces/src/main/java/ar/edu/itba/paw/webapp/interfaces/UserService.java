@@ -240,19 +240,50 @@ public interface UserService {
      */
     String generateNewPassword();
 
-    Page<User> getUsersFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
-
-    void followUser(User follower, long followed);
-
-    Page<User> getUserFollowedBy(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
-
-
-    void unFollowUser(User unFollower, long unFollowed);
+    /**
+     * Returns a paginated collection of {@link User} being followed by the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} being followed must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
+     */
+    Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
 
     /**
-     * Change the user's password with a new randomly generated one.
-     * @param id The ID of the user whose password to reset.
-     * @return The generated password.
+     * Makes the given {@code follower} {@link User} follow the {@link User} with the given {@code followedId}.
+     *
+     * @param followedId The id of the {@link User} being followed.
+     * @param follower   The {@link User} performing the operation
+     *                   (i.e the one following the {@link User} with the given {@code followedId}).
      */
+    void followUser(long followedId, User follower);
+
+    /**
+     * Makes the given {@code unFollower} {@link User} unfollow the {@link User} with the given {@code unFollowedId}.
+     *
+     * @param unFollowedId The id of the {@link User} being unfollowed.
+     * @param unFollower   The {@link User} performing the operation
+     *                     (i.e the one unfollowing the {@link User} with the given {@code unFollowedId}).
+     */
+    void unFollowUser(long unFollowedId, User unFollower);
+
+    /**
+     * Returns a paginated collection of {@link User} following the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} following it must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
+     */
+    Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
+
+//    /**
+//     * Change the user's password with a new randomly generated one.
+//     * @param id The ID of the user whose password to reset.
+//     * @return The generated password.
+//     */
 //    void resetPassword(long id);
 }

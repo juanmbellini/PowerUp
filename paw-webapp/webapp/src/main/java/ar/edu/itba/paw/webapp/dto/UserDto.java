@@ -125,12 +125,12 @@ public class UserDto extends EntityDto {
         public SocialDto(UserWithFollowCountsWrapper wrapper, UriBuilder baseUri) {
             this.followingCount = wrapper.getFollowingCount();
             this.followersCount = wrapper.getFollowersCount();
-            this.followingUrl= baseUri.clone()
+            this.followingUrl = baseUri.clone()
                     .path(UserJerseyController.END_POINT)
                     .path(Long.toString(wrapper.getUser().getId()))
                     .path(UserJerseyController.FOLLOWING_END_POINT)
                     .build().toString();
-             this.followersUrl= baseUri.clone()
+            this.followersUrl = baseUri.clone()
                     .path(UserJerseyController.END_POINT)
                     .path(Long.toString(wrapper.getUser().getId()))
                     .path(UserJerseyController.FOLLOWERS_END_POINT)

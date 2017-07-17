@@ -237,57 +237,39 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public Page<User> getUsersFollowing(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
-        Page <UserFollow> us = userFollowDao.getUserFollowing(checkUserExistence(userId), pageNumber, pageSize, UserFollowDao.SortingType.ID, sortDirection);
-        Collection<User> usersFollowing = new ArrayList<>();
-        for(UserFollow userFollow : us.getData()){
-            usersFollowing.add(userFollow.getFollowed());
-        }
-        return new Page.Builder<User>()
-                .setPageSize(pageSize)
-                .setPageNumber(pageNumber)
-                .setOverAllAmountOfElements(us.getOverAllAmountOfElements())
-                .setTotalPages(us.getTotalPages())
-                .setData(usersFollowing)
-                .build();
-
+    public Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
+        final User follower = getUser(userId); // Will throw NoSuchEntityException if not present
+        final Page<UserFollow> page = userFollowDao.getFollowing(follower, pageNumber, pageSize, sortDirection);
+        return ServiceHelper.fromAnotherPage(page, UserFollow::getFollowed).build();
     }
 
     @Override
-    public Page<User> getUserFollowedBy(long userId, int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection) {
-        Page <UserFollow> us = userFollowDao.getUserFollowedBy(checkUserExistence(userId), pageNumber, pageSize, UserFollowDao.SortingType.ID, sortDirection);
-        Collection<User> usersFollowing = new ArrayList<>();
-        for(UserFollow userFollow : us.getData()){
-            usersFollowing.add(userFollow.getFollower());
-        }
-        return new Page.Builder<User>()
-                .setPageSize(pageSize)
-                .setPageNumber(pageNumber)
-                .setOverAllAmountOfElements(us.getOverAllAmountOfElements())
-                .setTotalPages(us.getTotalPages())
-                .setData(usersFollowing)
-                .build();
+    public Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
+        final User followed = getUser(userId); // Will throw NoSuchEntityException if not present
+        final Page<UserFollow> page = userFollowDao.getFollowers(followed, pageNumber, pageSize, sortDirection);
+        return ServiceHelper.fromAnotherPage(page, UserFollow::getFollower).build();
     }
 
+
     @Override
-    public void followUser(User follower, long followed) {
+    public void followUser(long followedId, User follower) {
         if (follower == null) {
             throw new IllegalArgumentException();
         }
-        final User user = getUser(followed);
-        // If already liked, do nothing and be idempotent
-        if (!userFollowDao.exists(follower, user)) {
-            userFollowDao.create(follower, user);
+        final User followed = getUser(followedId);
+        // If already followed, do nothing and be idempotent
+        if (!userFollowDao.exists(follower, followed)) {
+            userFollowDao.create(followed, follower);
         }
     }
 
     @Override
-    public void unFollowUser(User unFollower, long unFollowed) {
+    public void unFollowUser(long unFollowedId, User unFollower) {
         if (unFollower == null) {
             throw new IllegalArgumentException();
         }
-        final User user = getUser(unFollowed);
-        // If not liked, do nothing and be idempotent
+        final User user = getUser(unFollowedId);
+        // If not followed, do nothing and be idempotent
         Optional.ofNullable(userFollowDao.find(unFollower, user)).ifPresent(userFollowDao::delete);
     }
 

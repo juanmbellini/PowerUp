@@ -27,7 +27,6 @@ import java.io.*;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 
@@ -206,6 +205,72 @@ public class UserJerseyController implements UpdateParamsChecker {
                                 .createList(gamesPage.getData(), uriInfo.getBaseUriBuilder())) {
                         }, parametersBuilder.build());
 
+    }
+
+    // ==== Follow ====
+
+    @GET
+    @Path("/{id : \\d+}/" + FOLLOWING_END_POINT)
+    public Response getUserFollowing(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                     // Pagination and Sorting
+                                     @QueryParam("sortDirection") @DefaultValue("asc")
+                                     final SortDirection sortDirection,
+                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", sortDirection,
+                        userService.getFollowing(userId, pageNumber, pageSize, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(usersFollowingPage.getData(),
+                                        uriInfo.getBaseUriBuilder())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
+    @GET
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response getUserFollowedBy(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                      // Pagination and Sorting
+                                      @QueryParam("sortDirection") @DefaultValue("asc")
+                                      final SortDirection sortDirection,
+                                      @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                      @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", sortDirection,
+                        userService.getFollowers(userId, pageNumber, pageSize, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(usersFollowingPage.getData(),
+                                        uriInfo.getBaseUriBuilder())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
+    @PUT
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response followUser(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.followUser(followedId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response unFollowUser(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.unFollowUser(followedId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
     }
 
 
@@ -516,76 +581,6 @@ public class UserJerseyController implements UpdateParamsChecker {
         return Response.ok().build();
     }
 
-    /* ========== Follow ========= */
-
-    @GET
-    @Path("/{id : \\d+}/" + FOLLOWING_END_POINT)
-    public Response getUserFollowing(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
-                                     // Pagination and Sorting
-                                     @QueryParam("orderBy") @DefaultValue("id")
-                                     final UserDao.SortingType sortingType,
-                                     @QueryParam("sortDirection") @DefaultValue("asc")
-                                     final SortDirection sortDirection,
-                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
-                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
-        if (userId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
-        return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUsersFollowing(userId, pageNumber, pageSize, sortingType, sortDirection),
-                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
-                                .createListWithoutFollowCount(usersFollowingPage.getData(),
-                                        uriInfo.getBaseUriBuilder())) {
-                        },
-                        scoreAndStatusMap(null, null));
-    }
-
-    @GET
-    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
-    public Response getUserFollowedBy(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
-                                      // Pagination and Sorting
-                                      @QueryParam("orderBy") @DefaultValue("id")
-                                      final UserDao.SortingType sortingType,
-                                      @QueryParam("sortDirection") @DefaultValue("asc")
-                                      final SortDirection sortDirection,
-                                      @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
-                                      @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
-        if (userId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
-        return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUserFollowedBy(userId, pageNumber, pageSize, sortingType, sortDirection),
-                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
-                                .createListWithoutFollowCount(usersFollowingPage.getData(),
-                                        uriInfo.getBaseUriBuilder())) {
-                        },
-                        scoreAndStatusMap(null, null));
-    }
-
-    @PUT
-    @Path("/{id : \\d+}/follow")
-    public Response followUser(@PathParam("id") final long followedId) {
-        if (followedId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
-        userService.followUser(Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new), followedId);
-        final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(followedId)).build();
-        return Response.created(uri).status(Response.Status.CREATED).build();
-    }
-
-    @DELETE
-    @Path("/{id : \\d+}/follow")
-    public Response unFollowUser(@PathParam("id") final long followedId) {
-        if (followedId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
-        userService.unFollowUser(Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new), followedId);
-        return Response.noContent().build();
-    }
 
     /**
      * Creates a temporary File from an input stream.

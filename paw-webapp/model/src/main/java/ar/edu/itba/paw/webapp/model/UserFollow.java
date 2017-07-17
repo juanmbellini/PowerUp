@@ -1,9 +1,14 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by julian on 16/07/17.
@@ -12,10 +17,10 @@ import java.util.Calendar;
 @Table(name = "user_follow",
         indexes = {@Index(name = "user_follow_pkey",
                 columnList = "follower_id, followed_id", unique = true)})
-public class UserFollow {
+public class UserFollow implements ValidationExceptionThrower {
 
     @Id
-    @SequenceGenerator(name = "user_follow_seq", sequenceName = "user_follow_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_follow_seq", sequenceName = "user_follow_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_follow_seq")
     private long id;
 
@@ -49,9 +54,22 @@ public class UserFollow {
     private Calendar date;
 
     public UserFollow() {
+        // For Hibernate
     }
 
     public UserFollow(User followed, User follower) {
+        final List<ValueError> errorList = new LinkedList<>();
+        if (followed == null) {
+            errorList.add(MISSING_FOLLOWED);
+        }
+        if (follower == null) {
+            errorList.add(MISSING_FOLLOWER);
+        }
+        throwValidationException(errorList); // Throws ValidationException if any is null
+        //noinspection ConstantConditions
+        if (followed.getId() == follower.getId()) {
+            throwValidationException(Collections.singletonList(AUTO_FOLLOW));
+        }
         this.followed = followed;
         this.follower = follower;
     }
@@ -82,4 +100,13 @@ public class UserFollow {
         result = 31 * result + (followed != null ? followed.hashCode() : 0);
         return result;
     }
+
+    final private static ValueError MISSING_FOLLOWER = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "follower", "Missing follower");
+
+    final private static ValueError MISSING_FOLLOWED = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "followed", "Missing followed");
+
+    final private static ValueError AUTO_FOLLOW = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "followed", "Can't auto-follow");
 }
