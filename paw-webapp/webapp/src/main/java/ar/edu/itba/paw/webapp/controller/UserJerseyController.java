@@ -176,7 +176,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         String newPassword = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(newPassword);
         userService.changePassword(userId, hashedPassword, userId);
-        mailService.sendEmailResetPassword(userService.findById(userId), newPassword);
+        mailService.sendEmailResetPassword(userService.findById(userId).getUser(), newPassword);
         return Response.noContent().build();
     }
 
