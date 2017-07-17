@@ -24,11 +24,12 @@
             <!--&lt;!&ndash; Modal Trigger &ndash;&gt;-->
             <!--<a id="change-password-trigger" class="waves-effect waves-light btn" href="#change-password-modal">Change Password</a>-->
             <!--TODO enable change password functionality-->
+            <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow()">{{requestedUser.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
             <br />
             <h5>Profile Stats</h5>
-            <p>Played <b>{{profile.playedCount}}</b> <ng-pluralize count="profile.playedCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
-            <p>Playing <b>{{profile.playingCount}}</b> <ng-pluralize count="profile.playingCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
-            <p>Plans to play <b>{{profile.planToPlayCount}}</b> <ng-pluralize count="profile.planToPlayCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
+            <p><ng-pluralize count="requestedUser.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.followersCount}}</b></p>
+            <p><ng-pluralize count="requestedUser.followingCount" when="{'one': 'Following', 'other': 'Followig'}"></ng-pluralize>: <b>{{requestedUser.followingCount}}</b></p>
+            <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
         </div>
         <div class="col s8">
             <h4 class="center">Top 10 games</h4>
