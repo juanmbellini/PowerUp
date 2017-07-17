@@ -142,6 +142,10 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                         reviewArray[index].overallScore = gameScore[0].score;
                     }
                 });
+                Restangular.one('users', reviewRef.userId).get().then(function (response) {
+                    var reviewCreator = response.data;
+                    reviewArray[index].followedByCurrentUser = reviewCreator.social.followedByCurrentUser;
+                });
             });
             angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                 Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {

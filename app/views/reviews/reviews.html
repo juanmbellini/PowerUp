@@ -100,7 +100,7 @@
 									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
 								</div>
 							</div>
-							<div class="row">
+							<div class="row" style="margin-bottom: 0">
 								<p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
 								<div class="col s2">
 									<div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
@@ -137,15 +137,19 @@
 										<br/>
 										<!--<b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>-->
 									</p>
-									<br/>
-									<p class="right-align">
-										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
-										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
-										   class="material-icons red-text text-lighten-1 delete-button ">
-											<i class="material-icons right">delete</i>
-										</a>
-									</p>
 								</div>
+							</div>
+							<div class="row" style="margin-bottom: 0">
+								<p class="right-align">
+									<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+									<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
+									   class="material-icons red-text text-lighten-1 delete-button ">
+										<i class="material-icons right">delete</i>
+									</a>
+								</p>
+								<p ng-if="isLoggedIn && !canDeleteReview(review)">
+									<button ng-if="canFollow(review.id)" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow(review.id)">{{review.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
+								</p>
 							</div>
 						</li>
 					</ul>
