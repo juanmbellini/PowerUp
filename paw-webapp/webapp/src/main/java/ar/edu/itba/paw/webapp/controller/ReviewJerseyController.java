@@ -2,6 +2,7 @@ package ar.edu.itba.paw.webapp.controller;
 
 
 import ar.edu.itba.paw.webapp.dto.ReviewDto;
+import ar.edu.itba.paw.webapp.dto.ThreadDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
@@ -30,6 +31,8 @@ import static ar.edu.itba.paw.webapp.controller.ReviewJerseyController.END_POINT
 public class ReviewJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "reviews";
+
+    public static final String LIKES_END_POINT = "likes";
 
 
     @Autowired
@@ -72,7 +75,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         reviewService.getReviews(gameId, gameName, userId, username, pageNumber, pageSize,
-                                sortingType, sortDirection),
+                                sortingType, sortDirection, sessionService.getCurrentUser()),
                         (reviewPage) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(reviewPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
                         },
@@ -88,11 +91,11 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}")
     public Response getById(@PathParam("id") final long id) {
         if (id <= 0) {
-            throw new IllegalParameterValueException("id");
+            throw new IllegalParameterValueException("threadId");
         }
-        final Review review = reviewService.findById(id);
-        return review == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new ReviewDto(review, uriInfo.getBaseUriBuilder())).build();
+        return Optional.ofNullable(reviewService.findById(id, sessionService.getCurrentUser()))
+                .map(review -> Response.ok(new ReviewDto(review, uriInfo.getBaseUriBuilder())).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @POST

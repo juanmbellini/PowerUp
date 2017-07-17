@@ -2,7 +2,6 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -36,7 +35,7 @@ public interface ReviewDao {
     void delete(Review review);
 
     /**
-     * @see ReviewService#findById(long)
+     * @see ReviewService#findById(long, User)
      */
     Review findById(long reviewId);
 

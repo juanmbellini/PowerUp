@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -26,17 +27,18 @@ public interface ReviewService {
      * @param sortDirection  The sort direction (i.e ASC or DESC).
      * @return The resulting page.
      */
-    Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
-                            int pageNumber, int pageSize,
-                            ReviewDao.SortingType sortingType, SortDirection sortDirection);
+    Page<LikeableWrapper<Review>> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
+                                             int pageNumber, int pageSize,
+                                             ReviewDao.SortingType sortingType, SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a review by ID.
      *
      * @param reviewId The ID to match.
+     * @param currentUser
      * @return The matching review or {@code null} if not found.
      */
-    Review findById(long reviewId);
+    LikeableWrapper<Review> findById(long reviewId, User currentUser);
 
     /**
      * Creates a new review with the specified data.

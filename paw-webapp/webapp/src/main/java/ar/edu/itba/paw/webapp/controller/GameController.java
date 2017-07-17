@@ -389,7 +389,7 @@ public class GameController extends BaseController {
     }
     @RequestMapping(value = "/delete-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
-        Review review = reviewService.findById(reviewId);
+        Review review = reviewService.findById(reviewId, sessionService.getCurrentUser());
         if(!review.getUser().equals(getCurrentUser())){
             return new ModelAndView("error400");
         }
