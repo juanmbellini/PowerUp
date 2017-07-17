@@ -1,0 +1,7 @@
+ALTER TABLE reviews
+  ALTER COLUMN date
+  TYPE TIMESTAMP WITH TIME ZONE
+  USING to_timestamp(to_char(date, 'DD/MM/YYYY'), 'DD/MM/YYYY'),
+
+  ALTER COLUMN DATE
+  SET DEFAULT now();

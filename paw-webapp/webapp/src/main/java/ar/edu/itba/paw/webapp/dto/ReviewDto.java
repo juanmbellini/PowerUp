@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,7 +78,7 @@ public class ReviewDto extends EntityDto {
         this.gameId = review.getGame().getId();
         this.gameName = review.getGame().getName();
         this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
-        this.date = review.getDate().toString();
+        this.date = LocalDateTime.ofInstant(review.getDate().toInstant(), ZoneId.systemDefault()).toString();
         this.body = review.getReview();
         this.storyScore = review.getStoryScore();
         this.graphicsScore = review.getGraphicsScore();

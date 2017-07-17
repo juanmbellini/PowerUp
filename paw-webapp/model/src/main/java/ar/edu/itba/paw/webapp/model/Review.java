@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.model;
 import ar.edu.itba.paw.webapp.model.validation.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class Review implements ValidationExceptionThrower {
     private Game game;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private Calendar date;
 
     @Column(nullable = false)
     private String review;
@@ -76,7 +76,7 @@ public class Review implements ValidationExceptionThrower {
         update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.user = user;
         this.game = game;
-        this.date = LocalDate.now();
+        this.date = Calendar.getInstance();
     }
 
 
@@ -208,7 +208,7 @@ public class Review implements ValidationExceptionThrower {
      *
      * @return The date (i.e. Date at which the review was created).
      */
-    public LocalDate getDate() {
+    public Calendar getDate() {
         return date;
     }
 
