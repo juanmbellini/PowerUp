@@ -53,26 +53,50 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     public Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter,
                                                       Authority authorityFilter,
                                                       int pageNumber, int pageSize,
-                                                      UserDao.SortingType sortingType, SortDirection sortDirection) {
+                                                      UserDao.SortingType sortingType, SortDirection sortDirection,
+                                                      User currentUser) {
         Page<User> page = userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
-        // TODO: implement method to avoid multiple queries
-        return ServiceHelper.fromAnotherPage(page, UserWithFollowCountsWrapper::new).build();
+        final Map<User, Long> followingCounts = userFollowDao.countFollowing(page.getData());
+        final Map<User, Long> followersCounts = userFollowDao.countFollowers(page.getData());
+        final Map<User, Boolean> following = Optional.ofNullable(currentUser)
+                .map(user -> userFollowDao.following(page.getData(), user)).orElse(new HashMap<>());
+        final Map<User, Boolean> followedBy = Optional.ofNullable(currentUser)
+                .map(user -> userFollowDao.followedBy(page.getData(), user)).orElse(new HashMap<>());
+        return ServiceHelper.fromAnotherPage(page, user ->
+                new UserWithFollowCountsWrapper(user, followingCounts.get(user), followersCounts.get(user),
+                        user.getId() == currentUser.getId() ? null : following.get(user),
+                        user.getId() == currentUser.getId() ? null : followedBy.get(user))).build();
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findById(long id, User currentUser) {
+        return getWithSocialStuff(userDao.findById(id), currentUser);
     }
 
     @Override
     public UserWithFollowCountsWrapper findById(long id) {
-        return Optional.ofNullable(userDao.findById(id)).map(UserWithFollowCountsWrapper::new).orElse(null);
+        return getWithoutSocialStuff(userDao.findById(id));
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findByUsername(String username, User currentUser) {
+        return getWithSocialStuff(userDao.findByUsername(username), currentUser);
     }
 
     @Override
     public UserWithFollowCountsWrapper findByUsername(String username) {
-        return Optional.ofNullable(userDao.findByUsername(username)).map(UserWithFollowCountsWrapper::new).orElse(null);
+        return getWithoutSocialStuff(userDao.findByUsername(username));
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findByEmail(String email, User currentUser) {
+        return getWithSocialStuff(userDao.findByEmail(email), currentUser);
     }
 
     @Override
     public UserWithFollowCountsWrapper findByEmail(String email) {
-        return Optional.ofNullable(userDao.findByEmail(email)).map(UserWithFollowCountsWrapper::new).orElse(null);
+        return getWithoutSocialStuff(userDao.findByEmail(email));
     }
 
 
@@ -316,6 +340,48 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return Optional.ofNullable(shelfDao.findByName(user, shelfName));
     }
 
+    /**
+     * Returns a {@link UserWithFollowCountsWrapper} without social stuff being wrapped.
+     *
+     * @param retrievedUser he wrapped {@link User}.
+     * @return The created {@link UserWithFollowCountsWrapper}.
+     */
+    private UserWithFollowCountsWrapper getWithoutSocialStuff(User retrievedUser) {
+        return getRetrieveOptional(retrievedUser, null, null).orElse(null);
+    }
+
+    /**
+     * Returns a {@link UserWithFollowCountsWrapper} with social stuff being wrapped.
+     *
+     * @param retrievedUser The wrapped {@link User}.
+     * @param currentUser   The current {@link User}.
+     * @return The created {@link UserWithFollowCountsWrapper}.
+     */
+    private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
+        return getRetrieveOptional(retrievedUser, Optional.ofNullable(currentUser)
+                        .map(current -> current.getId() == retrievedUser.getId() ? null :
+                                userFollowDao.exists(current, retrievedUser)).orElse(null),
+                Optional.ofNullable(currentUser)
+                        .map(current -> current.getId() == retrievedUser.getId() ? null :
+                                userFollowDao.exists(retrievedUser, current)).orElse(null))
+                .orElse(null);
+    }
+
+    /**
+     * Returns an {@link Optional} of {@link UserWithFollowCountsWrapper} according to the given params.
+     *
+     * @param retrievedUser The {@link User} to wrap in the {@link UserWithFollowCountsWrapper}.
+     * @param followed      The flag indicating if the wrapped {@link User} is being followed by
+     *                      the current {@link User}.
+     * @param following     The flag indicating if the wrapped {@link User} is following the current {@link User}.
+     * @return The {@link Optional}.
+     */
+    private Optional<UserWithFollowCountsWrapper> getRetrieveOptional(User retrievedUser,
+                                                                      Boolean followed, Boolean following) {
+        return Optional.ofNullable(retrievedUser)
+                .map(user -> new UserWithFollowCountsWrapper(user, followed, following));
+    }
+    
 
     /*
      * Helpers

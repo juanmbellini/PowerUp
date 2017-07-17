@@ -86,7 +86,8 @@ public class UserJerseyController implements UpdateParamsChecker {
                              @QueryParam("authority") @DefaultValue("") final Authority authority) {
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUsers(username, email, authority, pageNumber, pageSize, sortingType, sortDirection),
+                        userService.getUsers(username, email, authority, pageNumber, pageSize,
+                                sortingType, sortDirection, sessionService.getCurrentUser()),
                         (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
                         },
@@ -104,7 +105,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (id <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        return Optional.ofNullable(userService.findById(id))
+        return Optional.ofNullable(userService.findById(id, sessionService.getCurrentUser()))
                 .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
                 .orElse(Response.status(Response.Status.NOT_FOUND))
                 .build();
@@ -116,7 +117,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (username == null) {
             throw new IllegalParameterValueException("username");
         }
-        return Optional.ofNullable(userService.findByUsername(username))
+        return Optional.ofNullable(userService.findByUsername(username, sessionService.getCurrentUser()))
                 .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
                 .orElse(Response.status(Response.Status.NOT_FOUND))
                 .build();
@@ -128,7 +129,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (email == null) {
             throw new IllegalParameterValueException("email");
         }
-        return Optional.ofNullable(userService.findByEmail(email))
+        return Optional.ofNullable(userService.findByEmail(email, sessionService.getCurrentUser()))
                 .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
                 .orElse(Response.status(Response.Status.NOT_FOUND))
                 .build();

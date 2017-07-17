@@ -116,6 +116,12 @@ public class UserDto extends EntityDto {
         @XmlElement
         private String followersUrl;
 
+        @XmlElement
+        private Boolean followedByCurrentUser;
+
+        @XmlElement
+        private Boolean followingCurrentUser;
+
 
         public SocialDto() {
             // For Jax-RS
@@ -135,6 +141,8 @@ public class UserDto extends EntityDto {
                     .path(Long.toString(wrapper.getUser().getId()))
                     .path(UserJerseyController.FOLLOWERS_END_POINT)
                     .build().toString();
+            this.followedByCurrentUser = wrapper.getFollowedByCurrentUser();
+            this.followingCurrentUser= wrapper.getFollowingCurrentUser();
         }
 
         public Long getFollowingCount() {
@@ -151,6 +159,14 @@ public class UserDto extends EntityDto {
 
         public String getFollowersUrl() {
             return followersUrl;
+        }
+
+        public Boolean getFollowingCurrentUser() {
+            return followingCurrentUser;
+        }
+
+        public Boolean getFollowedByCurrentUser() {
+            return followedByCurrentUser;
         }
     }
 }

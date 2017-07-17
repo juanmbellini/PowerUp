@@ -53,11 +53,11 @@ public class User implements Serializable, ValidationExceptionThrower {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<UserGameStatus> playedGames;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "followed", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "follower", orphanRemoval = true, cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<UserFollow> following;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "follower", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "followed", orphanRemoval = true, cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<UserFollow> followers;
 

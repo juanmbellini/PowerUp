@@ -4,6 +4,9 @@ import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.UserFollow;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
+import java.util.Collection;
+import java.util.Map;
+
 /**
  * This class represents a follow from a {@link User} to another {@link User}.
  */
@@ -45,7 +48,7 @@ public interface UserFollowDao {
      *
      * @param following The User that followed the User.
      * @param followed  The followed User
-     * @return Whether the user has followed the specified thread.
+     * @return Whether the user has followed the specified user.
      */
     boolean exists(User following, User followed);
 
@@ -64,4 +67,40 @@ public interface UserFollowDao {
      * @param UserFollow The {@link UserFollow} representing the relation of following.
      */
     void delete(UserFollow UserFollow);
+
+    /**
+     * Counts the amount of {@link User}s each {@link User} in the given collection is following.
+     *
+     * @param users The {@link Collection} of {@link User} to count their followings.
+     * @return A {@link Map} holding the amount of {@link User}s being followed by each {@link User}.
+     */
+    Map<User, Long> countFollowing(Collection<User> users);
+
+    /**
+     * Counts the amount of {@link User}s following each {@link User} in the given collection.
+     *
+     * @param users The {@link Collection} of {@link User} to count their amount of followers.
+     * @return A {@link Map} holding the amount of {@link User}s following each {@link User}.
+     */
+    Map<User, Long> countFollowers(Collection<User> users);
+
+    /**
+     * Indicates whether the given {@link User} is following the given {@code users}.
+     *
+     * @param users The {@link User}s that must be checked if the given {@link User} is following.
+     * @param user  The {@link User} following (or not) the {@link User}s.
+     * @return A {@link Map} holding a flag for each {@link User},
+     * which indicates if the given {@link User} is following them, or not
+     */
+    Map<User, Boolean> following(Collection<User> users, User user);
+
+    /**
+     * Indicates whether the given {@link User} is being followed by the given {@code users}.
+     *
+     * @param users The {@link User}s that must be checked if are following the given {@link User}.
+     * @param user  The {@link User} being followed (or not) by the {@link User}s.
+     * @return A {@link Map} holding a flag for each {@link User},
+     * which indicates if the given {@link User} is being followed by them, or not
+     */
+    Map<User, Boolean> followedBy(Collection<User> users, User user);
 }

@@ -24,30 +24,48 @@ public class UserWithFollowCountsWrapper {
      */
     private final long followersCount;
 
+    /**
+     * Indicates whether the current {@link User} is following the wrapped {@link User}.
+     */
+    private final Boolean followedByCurrentUser;
+
+    /**
+     * Indicates whether the current {@link User} is followed the wrapped {@link User}.
+     */
+    private final Boolean followingCurrentUser;
+
 
     /**
      * Constructor.
      *
-     * @param user The {@link User} to wrap.
-     * @implNote This method uses {@link UserWithFollowCountsWrapper#UserWithFollowCountsWrapper(User, long, long)},
+     * @param user                  The {@link User} to wrap.
+     * @param followedByCurrentUser Indicates whether the current {@link User} is following the wrapped {@link User}.
+     * @param followingCurrentUser  Indicates whether the current {@link User} is followed the wrapped {@link User}.
+     * @implNote This method uses
+     * {@link UserWithFollowCountsWrapper#UserWithFollowCountsWrapper(User, Boolean, Boolean)}
      * using {@link User#getFollowingCount()} and {@link User#getFollowersCount()}.
      */
-    public UserWithFollowCountsWrapper(User user) {
-        this(user, user.getFollowingCount(), user.getFollowersCount());
+    public UserWithFollowCountsWrapper(User user, Boolean followedByCurrentUser, Boolean followingCurrentUser) {
+        this(user, user.getFollowingCount(), user.getFollowersCount(), followedByCurrentUser, followingCurrentUser);
     }
 
 
     /**
      * Constructor.
      *
-     * @param user           The {@link User} to wrap.
-     * @param followingCount The amount of {@link User} being followed by the given {@code user} to wrap.
-     * @param followersCount The amount of {@link User} following the given {@code user} to wrap.
+     * @param user                  The {@link User} to wrap.
+     * @param followingCount        The amount of {@link User} being followed by the given {@code user} to wrap.
+     * @param followersCount        The amount of {@link User} following the given {@code user} to wrap.
+     * @param followedByCurrentUser Indicates whether the current {@link User} is following the wrapped {@link User}.
+     * @param followingCurrentUser  Indicates whether the current {@link User} is followed the wrapped {@link User}.
      */
-    public UserWithFollowCountsWrapper(User user, long followingCount, long followersCount) {
+    public UserWithFollowCountsWrapper(User user, long followingCount, long followersCount,
+                                       Boolean followedByCurrentUser, Boolean followingCurrentUser) {
         this.user = user;
         this.followingCount = followingCount;
         this.followersCount = followersCount;
+        this.followedByCurrentUser = followedByCurrentUser;
+        this.followingCurrentUser = followingCurrentUser;
     }
 
     /**
@@ -69,5 +87,19 @@ public class UserWithFollowCountsWrapper {
      */
     public long getFollowersCount() {
         return followersCount;
+    }
+
+    /**
+     * @return Indicates whether the current {@link User} is following the wrapped {@link User}.
+     */
+    public Boolean getFollowedByCurrentUser() {
+        return followedByCurrentUser;
+    }
+
+    /**
+     * @return Indicates whether the current {@link User} is followed the wrapped {@link User}.
+     */
+    public Boolean getFollowingCurrentUser() {
+        return followingCurrentUser;
     }
 }

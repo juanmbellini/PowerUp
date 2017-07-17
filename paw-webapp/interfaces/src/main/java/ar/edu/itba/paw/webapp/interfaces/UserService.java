@@ -25,12 +25,23 @@ public interface UserService {
      * @param pageSize        The page size.
      * @param sortingType     The sorting type (id, game id, or creation date).
      * @param sortDirection   The sort direction (i.e ASC or DESC).
+     * @param currentUser     The {@link User} performing the operation.
      * @return The resulting page.
      */
     Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                                                int pageNumber, int pageSize,
-                                               UserDao.SortingType sortingType, SortDirection sortDirection);
+                                               UserDao.SortingType sortingType, SortDirection sortDirection,
+                                               User currentUser);
 
+
+    /**
+     * Finds a {@link User} by id.
+     *
+     * @param id          The user ID.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findById(long id, User currentUser);
 
     /**
      * Finds a {@link User} by id.
@@ -43,10 +54,28 @@ public interface UserService {
     /**
      * Finds a {@link User} by username.
      *
+     * @param username    The username. Case-sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findByUsername(String username, User currentUser);
+
+    /**
+     * Finds a {@link User} by username.
+     *
      * @param username The username. Case-sensitive.
      * @return The found user or {@code null} if not found.
      */
     UserWithFollowCountsWrapper findByUsername(String username);
+
+    /**
+     * Finds a {@link User} by email.
+     *
+     * @param email       The email. Case-<strong>in</strong>sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findByEmail(String email, User currentUser);
 
     /**
      * Finds a {@link User} by email.
