@@ -424,12 +424,13 @@ public class UserHibernateDao implements UserDao {
                     .append("SELECT * FROM shelf_games aux WHERE s2.id = aux.shelf_id AND aux.game_id = sh.game_id))");
         }
 
-        //noinspection StringBufferReplaceableByString
-        return new StringBuilder()
-                .append(selectAndFromStatements).append(statusesPart)
-                .append(" UNION ")
-                .append(selectAndFromStatements).append(shelvesPart)
-                .toString();
+        StringBuilder result = new StringBuilder().append(selectAndFromStatements).append(statusesPart);
+        if (includeShelvesFilter) {
+            result.append(" INTERSECT ").append(selectAndFromStatements).append(shelvesPart);
+        } else if (!includeStatusesFilter) {
+            result.append(" UNION ").append(selectAndFromStatements).append(shelvesPart);
+        }
+        return result.toString();
     }
 
     /**
