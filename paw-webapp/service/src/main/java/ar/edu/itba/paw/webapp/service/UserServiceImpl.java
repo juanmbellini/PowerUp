@@ -65,8 +65,9 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
                 .map(user -> userFollowDao.followedBy(page.getData(), user)).orElse(new HashMap<>());
         return ServiceHelper.fromAnotherPage(page, user ->
                 new UserWithFollowCountsWrapper(user, followingCounts.get(user), followersCounts.get(user),
-                        user.getId() == currentUser.getId() ? null : following.get(user),
-                        user.getId() == currentUser.getId() ? null : followedBy.get(user))).build();
+                        currentUser != null && user.getId() == currentUser.getId() ? null : following.get(user),
+                        currentUser != null && user.getId() == currentUser.getId() ? null : followedBy.get(user)))
+                .build();
     }
 
     @Override
