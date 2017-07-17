@@ -5,7 +5,7 @@ require.config({
     paths: {
         requirejs: '../../bower_components/requirejs/require',
         jquery: '../../bower_components/jquery/dist/jquery',
-        'jquery-ui': '../../bower_components/jquery-ui/jquery-ui',
+        'jquery-ui': 'jquery-ui',
         json3: '../../bower_components/json3/lib/json3',
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
@@ -55,8 +55,7 @@ require.config({
         'materialize.character_counter': '../../bower_components/materialize/js/character_counter',
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
-        'materialize.chips': '../../bower_components/materialize/js/chips',
-        materialize: '../../bower_components/materialize/bin/materialize'
+        'materialize.chips': '../../bower_components/materialize/js/chips'
     },
     shim: {
         jquery: {
