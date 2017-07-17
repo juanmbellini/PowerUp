@@ -7,8 +7,9 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         // Endpoints for which authentication is optional, and for which authentication will be sent
         // if the user is logged in
         var optionalAuthenticationEndpoints = [
-            /\/threads\/?/
+            /.*/
         ];
+        // /\/threads\/?/
 
         /* ********************************************
          *              Private functions

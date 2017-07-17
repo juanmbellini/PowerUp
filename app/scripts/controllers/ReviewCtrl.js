@@ -153,7 +153,6 @@ define(['powerUp'], function(powerUp) {
         }, function() {
             console.log('There was an error getting reviews');
             $location.search('pageNumber', 1);
-
         });
 
         /**

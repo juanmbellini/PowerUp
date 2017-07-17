@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'paginationService'], function(powerUp) {
+define(['powerUp', 'PaginationService'], function(powerUp) {
 
     powerUp.service('FeedService', ['$log', 'Restangular', 'AuthService', 'PaginationService', function($log, Restangular, AuthService, PaginationService) {
 // TODO limpiar lo que no se usa
@@ -17,7 +17,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var threadFeedProvider = {};
             threadFeedProvider.array = [];
             threadFeedProvider.pointer = 0;
-            threadFeedProvider.paginator = PaginationService.initialize(Restangular.all('threads'), undefined, undefined, 10);
+            threadFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('threads'), undefined, undefined, 2);
             threadFeedProvider.type = 'thread';
             threadFeedProvider.dateName = 'createdAt';
             feedProviders.push(threadFeedProvider);
@@ -26,7 +26,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
             var reviewFeedProvider = {};
             reviewFeedProvider.array = [];
             reviewFeedProvider.pointer = 0;
-            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.all('reviews'), undefined, undefined, 10);
+            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('reviews'), undefined, undefined, 2);
             reviewFeedProvider.type = 'review';
             reviewFeedProvider.dateName = 'date';
             feedProviders.push(reviewFeedProvider);
@@ -114,7 +114,7 @@ define(['powerUp', 'paginationService'], function(powerUp) {
                                     newestDate = newDate;
                                     newestElementProvider = array[index];
                                 }
-                                if (newDate < newestDate) {// TODO bien >
+                                if (newDate > newestDate) {
                                     newestDate = newDate;
                                     newestElementProvider = array[index];
                                 }

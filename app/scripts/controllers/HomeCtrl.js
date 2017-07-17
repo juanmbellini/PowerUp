@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'LikesService'], function(powerUp) {
 
 	powerUp.controller('HomeCtrl', function($scope, $location, Data, searchedTitleService, Restangular, SweetAlert, AuthService, FeedService, LikesService, $log, $route) {
 	    // SweetAlert.swal("BAM!");
@@ -82,14 +82,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
         };
 
         $scope.likeThread = function(thread) {
-            LikesService.like(thread, undefined, function() {
+            LikesService.like(Restangular.one('threads',thread.id), thread, function() {
             }, function(error) {
                 $log.error('Error liking thread #', thread.id, ': ', error);
             });
         };
 
         $scope.unlikeThread = function(thread) {
-            LikesService.unlike(thread, undefined, function() {
+            LikesService.unlike(Restangular.one('threads',thread.id), thread, function() {
             }, function(error) {
                 $log.error('Error unliking thread #', thread.id, ': ', error);
             });
@@ -129,7 +129,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'likesService'
             $scope.followFriendSend = true;
             Restangular.all('users').one('username',$scope.friendName).get().then(function (response) {
                 var user = response.data;
-                Restangular.one('users', user.id).all('follow').put().then(function (response) {
+                Restangular.one('users', user.id).one('followers').put().then(function (response) {
                     $scope.followFriendError = false;
                     $scope.loadingFollowFriend = false;
                 }, function () {
