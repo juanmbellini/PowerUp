@@ -387,16 +387,16 @@ public class GameController extends BaseController {
         mav.addObject("criteria", new String[] {"story", "graphics", "audio", "controls", "fun"});
         return mav;
     }
-    @RequestMapping(value = "/delete-review", method = RequestMethod.POST) // DONE
-    public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
-        Review review = reviewService.findById(reviewId, sessionService.getCurrentUser());
-        if(!review.getUser().equals(getCurrentUser())){
-            return new ModelAndView("error400");
-        }
-        long gameId = review.getGame().getId();
-//        reviewService.delete(reviewId, null);
-        return new ModelAndView("redirect:/game?id=" + gameId);
-    }
+//    @RequestMapping(value = "/delete-review", method = RequestMethod.POST) // DONE
+//    public ModelAndView submitReview(@RequestParam(name = "reviewId") long reviewId) {
+//        Review review = reviewService.findById(reviewId, sessionService.getCurrentUser());
+//        if(!review.getUser().equals(getCurrentUser())){
+//            return new ModelAndView("error400");
+//        }
+//        long gameId = review.getGame().getId();
+////        reviewService.delete(reviewId, null);
+//        return new ModelAndView("redirect:/game?id=" + gameId);
+//    }
 
     @RequestMapping(value = "/write-review", method = RequestMethod.POST) // DONE
     public ModelAndView submitReview(@RequestParam(name = "id") long gameId,

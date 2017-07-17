@@ -55,6 +55,12 @@ public interface ReviewDao {
                 return "game.id";
             }
         },
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(review.likes)";
+            }
+        },
         DATE {
             @Override
             public String getFieldName() {
