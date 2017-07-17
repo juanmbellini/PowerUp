@@ -22,6 +22,11 @@
 						<select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
 							<option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
 						</select>
+						<!--<a class="btn waves-effect waves-light {{(order == 'date')? '' : 'inactive'}}"-->
+						   <!--ng-click="sortNewest()">Newest</a>-->
+						<!---->
+						 <!--<a class="btn waves-effect waves-light {{(order == 'best')? '' : 'inactive'}}"-->
+							<!--ng-click="sortBest()">Highest Scoring</a>-->
 					</div>
 					<label>Reviews per page</label>
 				</span>
@@ -75,12 +80,22 @@
 									</p>
 								</div>
 								<div class="col s2">
-									<p class="right-align">
-										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
-										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
-										   class="material-icons red-text text-lighten-1 delete-button ">
-											<i class="material-icons right">delete</i>
-										</a>
+									<p class="right-align b">
+										<!--Un/like section-->
+										<span>
+											<b style="vertical-align: text-bottom">{{review.likeCount}}</b>
+											<!--Not logged in - black actionless thumbs up-->
+											<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+											<!--Logged in and liked - green thumbs up with action to unlike-->
+											<a ng-if="isLoggedIn && isLikedByCurrentUser(review)" ng-click="unlikeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+												<i class="material-icons green-text">thumb_up</i>
+											</a>
+											<!--Logged in and not liked - black thumbs up with action to like-->
+											<a ng-if="isLoggedIn && !isLikedByCurrentUser(review)" ng-click="likeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+												<i class="material-icons black-text">thumb_up</i>
+											</a>
+										</span>
+										<!--End un/like section-->
 									</p>
 									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
 								</div>
@@ -121,6 +136,14 @@
 										Fun: <span class="right">{{review.funScore}}</span>
 										<br/>
 										<!--<b>Overall: <span class="right">{{overallReviewScore(review) | number : 2}}</span></b>-->
+									</p>
+									<br/>
+									<p class="right-align">
+										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
+										   class="material-icons red-text text-lighten-1 delete-button ">
+											<i class="material-icons right">delete</i>
+										</a>
 									</p>
 								</div>
 							</div>
@@ -173,7 +196,7 @@
 
 				<!--NO REVIEWS-->
 				<h5  ng-if="reviews.length == 0" class="center">No reviews yet!
-					<div ng-if="!isLoggedIn()"><a href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!</div>
+					<div ng-if="!isLoggedIn"><a href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!</div>
 				</h5>
 
 				<!--Review button-->

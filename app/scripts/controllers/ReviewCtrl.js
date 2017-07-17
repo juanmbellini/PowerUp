@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'LikesService'], function(powerUp) {
 
-    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route) {
+    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route, LikesService) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
@@ -26,6 +26,8 @@ define(['powerUp'], function(powerUp) {
             $scope.pageSize = pageSizeSelected;
             $location.search('pageSize', $scope.pageSize);
         };
+
+        $scope.isLoggedIn = AuthService.isLoggedIn();
 
 
         // TODO delete duplicated
@@ -194,5 +196,28 @@ define(['powerUp'], function(powerUp) {
                $scope.rangePagination.push(i);
            }
        };
+
+        // Likes
+        $scope.isLikedByCurrentUser = function(review) {
+            if (!$scope.isLoggedIn || !review.hasOwnProperty('likedByCurrentUser')) {
+                return false;
+            }
+            return review.likedByCurrentUser;
+        };
+        $scope.likeReview = function(review) {
+            LikesService.like(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error liking review #', review.id, ': ', error);
+            });
+        };
+        $scope.unlikeReview = function(review) {
+            LikesService.unlike(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error unliking review #', review.id, ': ', error);
+            });
+        };
+
     });
 });
