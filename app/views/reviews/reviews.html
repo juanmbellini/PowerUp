@@ -80,22 +80,10 @@
 									</p>
 								</div>
 								<div class="col s2">
-									<p class="right-align b">
-										<!--Un/like section-->
-										<span>
-											<b style="vertical-align: text-bottom">{{review.likeCount}}</b>
-											<!--Not logged in - black actionless thumbs up-->
-											<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
-											<!--Logged in and liked - green thumbs up with action to unlike-->
-											<a ng-if="isLoggedIn && isLikedByCurrentUser(review)" ng-click="unlikeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
-												<i class="material-icons green-text">thumb_up</i>
-											</a>
-											<!--Logged in and not liked - black thumbs up with action to like-->
-											<a ng-if="isLoggedIn && !isLikedByCurrentUser(review)" ng-click="likeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
-												<i class="material-icons black-text">thumb_up</i>
-											</a>
-										</span>
-										<!--End un/like section-->
+									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+									<p class="right-align">
+										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{review.gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+										<a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
 									</p>
 								</div>
 							</div>
@@ -122,18 +110,6 @@
 										Fun: <span class="right">{{review.funScore}}</span>
 									</p>
 								</div>
-							</div>
-							<div class="row" style="margin-bottom: 0">
-								<p class="right-align">
-									<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
-									<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
-									   class="material-icons red-text text-lighten-1 delete-button ">
-										<i class="material-icons right">delete</i>
-									</a>
-								</p>
-								<p ng-if="isLoggedIn && !canDeleteReview(review)">
-									<button class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow(review)">{{review.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
-								</p>
 							</div>
 						</li>
 					</ul>
