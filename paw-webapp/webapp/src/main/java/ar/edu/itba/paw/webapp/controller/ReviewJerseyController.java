@@ -190,7 +190,8 @@ public class ReviewJerseyController implements UpdateParamsChecker {
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         reviewService
                                 .getUsersLikingTheReview(reviewId, pageNumber, pageSize, sortingType, sortDirection),
-                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .build());

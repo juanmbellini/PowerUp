@@ -115,6 +115,22 @@ public class ReviewDto extends EntityDto {
                 .build().toString();
     }
 
+    public ReviewDto(Review review, UriBuilder baseUri) {
+        super(review.getId());
+        this.userId = review.getUser().getId();
+        this.username = review.getUser().getUsername();
+        this.gameId = review.getGame().getId();
+        this.gameName = review.getGame().getName();
+        this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
+        this.date = LocalDateTime.ofInstant(review.getDate().toInstant(), ZoneId.systemDefault()).toString();
+        this.body = review.getReview();
+        this.storyScore = review.getStoryScore();
+        this.graphicsScore = review.getGraphicsScore();
+        this.audioScore = review.getAudioScore();
+        this.controlsScore = review.getControlsScore();
+        this.funScore = review.getFunScore();
+    }
+
 
     public Long getUserId() {
         return userId;
@@ -191,6 +207,16 @@ public class ReviewDto extends EntityDto {
      * @return A list of {@link ReviewDto}.
      */
     public static List<ReviewDto> createList(Collection<LikeableWrapper<Review>> reviews, UriBuilder uriBuilder) {
+        return reviews.stream().map(review -> new ReviewDto(review, uriBuilder.clone())).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a list of {@link ReviewDto} based on the given collection of {@link Review}.
+     *
+     * @param reviews The collection of {@link Review}
+     * @return A list of {@link ReviewDto}.
+     */
+    public static List<ReviewDto> createListWithoutCount(Collection<Review> reviews, UriBuilder uriBuilder) {
         return reviews.stream().map(review -> new ReviewDto(review, uriBuilder.clone())).collect(Collectors.toList());
     }
 

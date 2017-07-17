@@ -315,7 +315,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, "", null,
                         userService.getReviewsForFeed(user, pageNumber, pageSize),
-                        (page) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(page.getData(),
+                        (page) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createListWithoutCount(page.getData(),
                                 uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear().build());
