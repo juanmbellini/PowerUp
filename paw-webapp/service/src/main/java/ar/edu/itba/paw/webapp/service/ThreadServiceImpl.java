@@ -354,9 +354,10 @@ public class ThreadServiceImpl implements ThreadService {
      * @param <T>        The type of elements in the {@link Page}.
      * @return The new {@link Page}.
      */
-    private <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
-                                                                                Map<T, Long> likeCounts,
-                                                                                Map<T, Boolean> likes) {
+    /* package */
+    static <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
+                                                                               Map<T, Long> likeCounts,
+                                                                               Map<T, Boolean> likes) {
         return ServiceHelper.fromAnotherPage(oldPage, entity ->
                 new LikeableWrapper<>(entity, likeCounts.get(entity), likes.get(entity)))
                 .build();
