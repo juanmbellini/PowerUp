@@ -2,7 +2,9 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -308,6 +310,41 @@ public interface UserService {
      * @return The resulting page.
      */
     Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
+
+
+    /**
+     * Returns a paginated collection of {@link Thread}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<LikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize);
+
+    /**
+     * Returns a paginated collection of {@link Review}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<Review> getReviewsForFeed(User user, int pageNumber, int pageSize);
+
+
+    /**
+     * Returns a paginated collection of {@link UserGameStatus}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<UserGameStatus> getPlayStatusesForFeed(User user, int pageNumber, int pageSize);
 
 //    /**
 //     * Change the user's password with a new randomly generated one.

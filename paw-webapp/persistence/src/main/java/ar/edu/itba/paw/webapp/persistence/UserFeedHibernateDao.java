@@ -45,7 +45,8 @@ public class UserFeedHibernateDao implements UserFeedDao {
 
         //noinspection StringBufferReplaceableByString
         final String query = new StringBuilder()
-                .append("SELECT * FROM threads WHERE id IN (").append(subQuery).append(")").toString();
+                .append("SELECT * FROM threads WHERE id IN (").append(subQuery).append(")")
+                .append(" ORDER BY created_at desc").toString();
 
         // Data extraction, paging and sorting
         final List<Thread> threads = getList(query, pageNumber, pageSize, user, em, Thread.class);
@@ -74,7 +75,8 @@ public class UserFeedHibernateDao implements UserFeedDao {
 
         //noinspection StringBufferReplaceableByString
         final String query = new StringBuilder()
-                .append("SELECT * FROM reviews WHERE id IN (").append(subQuery).append(")").toString();
+                .append("SELECT * FROM reviews WHERE id IN (").append(subQuery).append(")")
+                .append(" ORDER BY date desc").toString();
 
         // Data extraction, paging and sorting
         final List<Review> reviews = getList(query, pageNumber, pageSize, user, em, Review.class);
@@ -102,7 +104,8 @@ public class UserFeedHibernateDao implements UserFeedDao {
 
         //noinspection StringBufferReplaceableByString
         final String query = new StringBuilder()
-                .append("SELECT * FROM game_play_statuses WHERE id IN (").append(subQuery).append(")").toString();
+                .append("SELECT * FROM game_play_statuses WHERE id IN (").append(subQuery).append(")")
+                .append(" ORDER BY date desc").toString();
 
         // Data extraction, paging and sorting
         final List<UserGameStatus> statuses = getList(query, pageNumber, pageSize, user, em, UserGameStatus.class);
@@ -113,7 +116,7 @@ public class UserFeedHibernateDao implements UserFeedDao {
     private static <T> String subQuery(User user, String tableName, String tableUserFieldName) {
         //noinspection StringBufferReplaceableByString
         return new StringBuilder()
-                .append("SELECT DISTINCT ").append(tableName).append(".id")
+                .append("SELECT DISTINCT other.id")
                 .append(" FROM ").append(tableName).append(" other")
                 .append(" INNER JOIN user_follow uf ON uf.followed_id = other.").append(tableUserFieldName)
                 .append(" WHERE follower_id = :userId").toString();

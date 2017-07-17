@@ -5,10 +5,12 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,20 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final UserFollowDao userFollowDao;
 
+    private final UserFeedDao feedDao;
+
+    private final ThreadLikeDao threadLikeDao;
+
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao) {
+    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
+                           UserFeedDao feedDao, ThreadLikeDao threadLikeDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
         this.userFollowDao = userFollowDao;
+        this.feedDao = feedDao;
+        this.threadLikeDao = threadLikeDao;
     }
 
 
@@ -298,6 +307,25 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         Optional.ofNullable(userFollowDao.find(unFollower, user)).ifPresent(userFollowDao::delete);
     }
 
+    @Override
+    public Page<LikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize) {
+
+        final Page<Thread> page = feedDao.getThreads(user, pageNumber, pageSize);
+        final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
+        final Map<Thread, Boolean> userLikes = Optional.ofNullable(user)
+                .map(userOpt -> threadLikeDao.likedBy(page.getData(), userOpt)).orElse(new HashMap<>());
+        return ThreadServiceImpl.createLikeableNewPage(page, likeCounts, userLikes);
+    }
+
+    @Override
+    public Page<Review> getReviewsForFeed(User user, int pageNumber, int pageSize) {
+        return feedDao.getReviews(user, pageNumber, pageSize);
+    }
+
+    @Override
+    public Page<UserGameStatus> getPlayStatusesForFeed(User user, int pageNumber, int pageSize) {
+        return feedDao.getPlayStatuses(user, pageNumber, pageSize);
+    }
 
     // =====================
 
