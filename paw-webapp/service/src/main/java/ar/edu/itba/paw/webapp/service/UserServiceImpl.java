@@ -9,6 +9,7 @@ import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,36 +37,67 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final ShelfDao shelfDao;
 
+    private final UserFollowDao userFollowDao;
+
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao) {
+    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
+        this.userFollowDao = userFollowDao;
     }
 
 
     @Override
-    public Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
-                               int pageNumber, int pageSize,
-                               UserDao.SortingType sortingType, SortDirection sortDirection) {
-        return userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
+    public Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter,
+                                                      Authority authorityFilter,
+                                                      int pageNumber, int pageSize,
+                                                      UserDao.SortingType sortingType, SortDirection sortDirection,
+                                                      User currentUser) {
+        Page<User> page = userDao.getUsers(usernameFilter, emailFilter, authorityFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        final Map<User, Long> followingCounts = userFollowDao.countFollowing(page.getData());
+        final Map<User, Long> followersCounts = userFollowDao.countFollowers(page.getData());
+        final Map<User, Boolean> following = Optional.ofNullable(currentUser)
+                .map(user -> userFollowDao.following(page.getData(), user)).orElse(new HashMap<>());
+        final Map<User, Boolean> followedBy = Optional.ofNullable(currentUser)
+                .map(user -> userFollowDao.followedBy(page.getData(), user)).orElse(new HashMap<>());
+        return ServiceHelper.fromAnotherPage(page, user ->
+                new UserWithFollowCountsWrapper(user, followingCounts.get(user), followersCounts.get(user),
+                        currentUser != null && user.getId() == currentUser.getId() ? null : following.get(user),
+                        currentUser != null && user.getId() == currentUser.getId() ? null : followedBy.get(user)))
+                .build();
     }
 
     @Override
-    public User findById(long id) {
-        return userDao.findById(id);
+    public UserWithFollowCountsWrapper findById(long id, User currentUser) {
+        return getWithSocialStuff(userDao.findById(id), currentUser);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+    public UserWithFollowCountsWrapper findById(long id) {
+        return getWithoutSocialStuff(userDao.findById(id));
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public UserWithFollowCountsWrapper findByUsername(String username, User currentUser) {
+        return getWithSocialStuff(userDao.findByUsername(username), currentUser);
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findByUsername(String username) {
+        return getWithoutSocialStuff(userDao.findByUsername(username));
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findByEmail(String email, User currentUser) {
+        return getWithSocialStuff(userDao.findByEmail(email), currentUser);
+    }
+
+    @Override
+    public UserWithFollowCountsWrapper findByEmail(String email) {
+        return getWithoutSocialStuff(userDao.findByEmail(email));
     }
 
 
@@ -229,6 +261,43 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return new BigInteger(130, random).toString(8);
     }
 
+    @Override
+    public Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
+        final User follower = getUser(userId); // Will throw NoSuchEntityException if not present
+        final Page<UserFollow> page = userFollowDao.getFollowing(follower, pageNumber, pageSize, sortDirection);
+        return ServiceHelper.fromAnotherPage(page, UserFollow::getFollowed).build();
+    }
+
+    @Override
+    public Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
+        final User followed = getUser(userId); // Will throw NoSuchEntityException if not present
+        final Page<UserFollow> page = userFollowDao.getFollowers(followed, pageNumber, pageSize, sortDirection);
+        return ServiceHelper.fromAnotherPage(page, UserFollow::getFollower).build();
+    }
+
+
+    @Override
+    public void followUser(long followedId, User follower) {
+        if (follower == null) {
+            throw new IllegalArgumentException();
+        }
+        final User followed = getUser(followedId);
+        // If already followed, do nothing and be idempotent
+        if (!userFollowDao.exists(follower, followed)) {
+            userFollowDao.create(followed, follower);
+        }
+    }
+
+    @Override
+    public void unFollowUser(long unFollowedId, User unFollower) {
+        if (unFollower == null) {
+            throw new IllegalArgumentException();
+        }
+        final User user = getUser(unFollowedId);
+        // If not followed, do nothing and be idempotent
+        Optional.ofNullable(userFollowDao.find(unFollower, user)).ifPresent(userFollowDao::delete);
+    }
+
 
     // =====================
 
@@ -272,12 +341,48 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return Optional.ofNullable(shelfDao.findByName(user, shelfName));
     }
 
+    /**
+     * Returns a {@link UserWithFollowCountsWrapper} without social stuff being wrapped.
+     *
+     * @param retrievedUser he wrapped {@link User}.
+     * @return The created {@link UserWithFollowCountsWrapper}.
+     */
+    private UserWithFollowCountsWrapper getWithoutSocialStuff(User retrievedUser) {
+        return getRetrieveOptional(retrievedUser, null, null).orElse(null);
+    }
 
+    /**
+     * Returns a {@link UserWithFollowCountsWrapper} with social stuff being wrapped.
+     *
+     * @param retrievedUser The wrapped {@link User}.
+     * @param currentUser   The current {@link User}.
+     * @return The created {@link UserWithFollowCountsWrapper}.
+     */
+    private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
+        return getRetrieveOptional(retrievedUser, Optional.ofNullable(currentUser)
+                        .map(current -> current.getId() == retrievedUser.getId() ? null :
+                                userFollowDao.exists(current, retrievedUser)).orElse(null),
+                Optional.ofNullable(currentUser)
+                        .map(current -> current.getId() == retrievedUser.getId() ? null :
+                                userFollowDao.exists(retrievedUser, current)).orElse(null))
+                .orElse(null);
+    }
 
-
-
-
-
+    /**
+     * Returns an {@link Optional} of {@link UserWithFollowCountsWrapper} according to the given params.
+     *
+     * @param retrievedUser The {@link User} to wrap in the {@link UserWithFollowCountsWrapper}.
+     * @param followed      The flag indicating if the wrapped {@link User} is being followed by
+     *                      the current {@link User}.
+     * @param following     The flag indicating if the wrapped {@link User} is following the current {@link User}.
+     * @return The {@link Optional}.
+     */
+    private Optional<UserWithFollowCountsWrapper> getRetrieveOptional(User retrievedUser,
+                                                                      Boolean followed, Boolean following) {
+        return Optional.ofNullable(retrievedUser)
+                .map(user -> new UserWithFollowCountsWrapper(user, followed, following));
+    }
+    
 
     /*
      * Helpers

@@ -87,13 +87,13 @@ public class UserController extends BaseController {
                 return new ModelAndView("redirect:/");
             }
         }
-        User user = userService.findByUsername(username);
-        if(user == null) {
-            return new ModelAndView("redirect:error400");
-        }
+//        User user = userService.findByUsername(username);
+//        if(user == null) {
+//            return new ModelAndView("redirect:error400");
+//        }
         //Safe to render Profile page
         ModelAndView mav = new ModelAndView("profile");
-        mav.addObject("user", user);
+//        mav.addObject("user", user);
         mav.addObject("formHasErrors", errors.hasErrors());
 //        Map<PlayStatus, Set<Game>> gameList = userService.getGameList(user.getId());
 //        mav.addObject("playedGames", gameList.get(PlayStatus.PLAYED));
@@ -292,11 +292,11 @@ public class UserController extends BaseController {
             return profile(username, form, errors);
         }
 
-        User user = userService.findByUsername(username);
-        String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
-//        userService.changePassword(user.getId(),hashedNewPassword);
-        mailService.sendEmailChangePassword(user);
-        LOG.info("Your password was changed");
+//        User user = userService.findByUsername(username);
+//        String hashedNewPassword = passwordEncoder.encode(form.getNewPassword());
+////        userService.changePassword(user.getId(),hashedNewPassword);
+//        mailService.sendEmailChangePassword(user);
+//        LOG.info("Your password was changed");
 
 
         return new ModelAndView("redirect:/profile");
@@ -307,20 +307,20 @@ public class UserController extends BaseController {
 
         //hace un findByEmail, si lo encontraas resetea, listo
 
-        User user;
-        try {
-            user = userService.findByEmail(email);
-        } catch (NoSuchEntityException e) {
-            LOG.warn("No user found associated to that email");
-            return new ModelAndView("redirect:/login");
-        }
-        if(user==null) return new ModelAndView("redirect:/login");
-        String password = userService.generateNewPassword();
-        String hashedPassword = passwordEncoder.encode(password);
-        if(hashedPassword==null) return new ModelAndView("redirect:/login");
-//        userService.changePassword(user.getId(), hashedPassword);
-        mailService.sendEmailResetPassword(user,password);
-        LOG.info("Password has been reseted. Your new password has been sent to your email.");
+//        User user;
+//        try {
+////            user = userService.findByEmail(email);
+//        } catch (NoSuchEntityException e) {
+//            LOG.warn("No user found associated to that email");
+//            return new ModelAndView("redirect:/login");
+//        }
+//        if(user==null) return new ModelAndView("redirect:/login");
+//        String password = userService.generateNewPassword();
+//        String hashedPassword = passwordEncoder.encode(password);
+//        if(hashedPassword==null) return new ModelAndView("redirect:/login");
+////        userService.changePassword(user.getId(), hashedPassword);
+//        mailService.sendEmailResetPassword(user,password);
+//        LOG.info("Password has been reseted. Your new password has been sent to your email.");
         return new ModelAndView("redirect:/");
     }
 }

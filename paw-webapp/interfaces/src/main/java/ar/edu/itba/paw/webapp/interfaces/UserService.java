@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
@@ -24,11 +25,23 @@ public interface UserService {
      * @param pageSize        The page size.
      * @param sortingType     The sorting type (id, game id, or creation date).
      * @param sortDirection   The sort direction (i.e ASC or DESC).
+     * @param currentUser     The {@link User} performing the operation.
      * @return The resulting page.
      */
-    Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
-                        int pageNumber, int pageSize, UserDao.SortingType sortingType, SortDirection sortDirection);
+    Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
+                                               int pageNumber, int pageSize,
+                                               UserDao.SortingType sortingType, SortDirection sortDirection,
+                                               User currentUser);
 
+
+    /**
+     * Finds a {@link User} by id.
+     *
+     * @param id          The user ID.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findById(long id, User currentUser);
 
     /**
      * Finds a {@link User} by id.
@@ -36,7 +49,16 @@ public interface UserService {
      * @param id The user ID.
      * @return The found user or {@code null} if not found.
      */
-    User findById(long id);
+    UserWithFollowCountsWrapper findById(long id);
+
+    /**
+     * Finds a {@link User} by username.
+     *
+     * @param username    The username. Case-sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findByUsername(String username, User currentUser);
 
     /**
      * Finds a {@link User} by username.
@@ -44,7 +66,16 @@ public interface UserService {
      * @param username The username. Case-sensitive.
      * @return The found user or {@code null} if not found.
      */
-    User findByUsername(String username);
+    UserWithFollowCountsWrapper findByUsername(String username);
+
+    /**
+     * Finds a {@link User} by email.
+     *
+     * @param email       The email. Case-<strong>in</strong>sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
+     */
+    UserWithFollowCountsWrapper findByEmail(String email, User currentUser);
 
     /**
      * Finds a {@link User} by email.
@@ -52,7 +83,7 @@ public interface UserService {
      * @param email The email. Case-<strong>in</strong>sensitive.
      * @return The found user or {@code null} if not found.
      */
-    User findByEmail(String email);
+    UserWithFollowCountsWrapper findByEmail(String email);
 
 
     /**
@@ -239,9 +270,49 @@ public interface UserService {
     String generateNewPassword();
 
     /**
-     * Change the user's password with a new randomly generated one.
-     * @param id The ID of the user whose password to reset.
-     * @return The generated password.
+     * Returns a paginated collection of {@link User} being followed by the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} being followed must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
      */
+    Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
+
+    /**
+     * Makes the given {@code follower} {@link User} follow the {@link User} with the given {@code followedId}.
+     *
+     * @param followedId The id of the {@link User} being followed.
+     * @param follower   The {@link User} performing the operation
+     *                   (i.e the one following the {@link User} with the given {@code followedId}).
+     */
+    void followUser(long followedId, User follower);
+
+    /**
+     * Makes the given {@code unFollower} {@link User} unfollow the {@link User} with the given {@code unFollowedId}.
+     *
+     * @param unFollowedId The id of the {@link User} being unfollowed.
+     * @param unFollower   The {@link User} performing the operation
+     *                     (i.e the one unfollowing the {@link User} with the given {@code unFollowedId}).
+     */
+    void unFollowUser(long unFollowedId, User unFollower);
+
+    /**
+     * Returns a paginated collection of {@link User} following the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} following it must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
+     */
+    Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
+
+//    /**
+//     * Change the user's password with a new randomly generated one.
+//     * @param id The ID of the user whose password to reset.
+//     * @return The generated password.
+//     */
 //    void resetPassword(long id);
 }

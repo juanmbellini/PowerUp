@@ -3,8 +3,10 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.*;
 import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
+import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -25,7 +27,6 @@ import java.io.*;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 
@@ -39,6 +40,10 @@ import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String END_POINT = "users";
+
+    public static final String FOLLOWING_END_POINT = "following";
+
+    public static final String FOLLOWERS_END_POINT = "followers";
 
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
@@ -81,8 +86,10 @@ public class UserJerseyController implements UpdateParamsChecker {
                              @QueryParam("authority") @DefaultValue("") final Authority authority) {
         return JerseyControllerHelper
                 .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        userService.getUsers(username, email, authority, pageNumber, pageSize, sortingType, sortDirection),
-                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        userService.getUsers(username, email, authority, pageNumber, pageSize,
+                                sortingType, sortDirection, sessionService.getCurrentUser()),
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData(),
+                                uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .addParameter("username", username)
@@ -98,11 +105,10 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (id <= 0) {
             throw new IllegalParameterValueException("id");
         }
-        final User user = userService.findById(id);
-        //TODO borrar esto de agregar headers a mano
-        // return Response.ok(new UserDto(user)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Expose-Headers", "*").build();
-        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new UserDto(user)).build();
+        return Optional.ofNullable(userService.findById(id, sessionService.getCurrentUser()))
+                .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
     @GET
@@ -111,9 +117,10 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (username == null) {
             throw new IllegalParameterValueException("username");
         }
-        final User user = userService.findByUsername(username);
-        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new UserDto(user)).build();
+        return Optional.ofNullable(userService.findByUsername(username, sessionService.getCurrentUser()))
+                .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
     @GET
@@ -122,9 +129,10 @@ public class UserJerseyController implements UpdateParamsChecker {
         if (email == null) {
             throw new IllegalParameterValueException("email");
         }
-        final User user = userService.findByEmail(email);
-        return user == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new UserDto(user)).build();
+        return Optional.ofNullable(userService.findByEmail(email, sessionService.getCurrentUser()))
+                .map(wrapper -> Response.ok(new UserDto(wrapper, uriInfo.getBaseUriBuilder())))
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
 
@@ -145,9 +153,13 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response changePassword(@PathParam("id") final long userId,
                                    final UserDto userDto) {
         checkUpdateValues(userId, "id", userDto);
+        final UserWithFollowCountsWrapper wrapper = userService.findById(userId);
+        if (wrapper == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         String newPassword = passwordEncoder.encode(userDto.getPassword());
         userService.changePassword(userId, newPassword, userId); // TODO: updater
-        mailService.sendEmailChangePassword(userService.findById(userId));
+        mailService.sendEmailChangePassword(wrapper.getUser());
         return Response.noContent().build();
     }
 
@@ -194,6 +206,72 @@ public class UserJerseyController implements UpdateParamsChecker {
                                 .createList(gamesPage.getData(), uriInfo.getBaseUriBuilder())) {
                         }, parametersBuilder.build());
 
+    }
+
+    // ==== Follow ====
+
+    @GET
+    @Path("/{id : \\d+}/" + FOLLOWING_END_POINT)
+    public Response getUserFollowing(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                     // Pagination and Sorting
+                                     @QueryParam("sortDirection") @DefaultValue("asc")
+                                     final SortDirection sortDirection,
+                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", sortDirection,
+                        userService.getFollowing(userId, pageNumber, pageSize, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(usersFollowingPage.getData(),
+                                        uriInfo.getBaseUriBuilder())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
+    @GET
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response getUserFollowedBy(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
+                                      // Pagination and Sorting
+                                      @QueryParam("sortDirection") @DefaultValue("asc")
+                                      final SortDirection sortDirection,
+                                      @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
+                                      @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+        if (userId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        return JerseyControllerHelper
+                .createCollectionGetResponse(uriInfo, "", sortDirection,
+                        userService.getFollowers(userId, pageNumber, pageSize, sortDirection),
+                        (usersFollowingPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(usersFollowingPage.getData(),
+                                        uriInfo.getBaseUriBuilder())) {
+                        },
+                        scoreAndStatusMap(null, null));
+    }
+
+    @PUT
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response followUser(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.followUser(followedId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response unFollowUser(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long followedId) {
+        if (followedId <= 0) {
+            throw new IllegalParameterValueException("id");
+        }
+        userService.unFollowUser(followedId,
+                Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
+        return Response.noContent().build();
     }
 
 
@@ -373,10 +451,11 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id}/picture")
     @Produces("image/*")
     public Response getProfilePicture(@PathParam("id") final long id) {
-        final User user = userService.findById(id);
-        if (user == null) {
+        final UserWithFollowCountsWrapper wrapper = userService.findById(id);
+        if (wrapper == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+        final User user = wrapper.getUser();
         if (user.hasProfilePicture()) {
             InputStream pictureStream = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
             String mimeType = user.getProfilePictureMimeType();
@@ -502,6 +581,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         LOG.info("Deleted profile picture for {}", sessionService.getCurrentUsername());
         return Response.ok().build();
     }
+
 
     /**
      * Creates a temporary File from an input stream.

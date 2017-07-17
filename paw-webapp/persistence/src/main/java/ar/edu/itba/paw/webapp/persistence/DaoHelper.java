@@ -469,7 +469,7 @@ import java.util.stream.IntStream;
      * @return A page built from the given params.
      */
     public static <T> Page<T> createPage(Collection<T> data, int pageSize, int pageNumber, int totalPages,
-                                          long overAllAmountOfElements) {
+                                         long overAllAmountOfElements) {
         return new Page.Builder<T>()
                 .setPageSize(pageSize)
                 .setPageNumber(pageNumber)

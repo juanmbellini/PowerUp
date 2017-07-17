@@ -320,7 +320,7 @@ public class GameController extends BaseController {
                 if(userId != -1) {
                     //Find by both
 //                    mav.addObject("reviews", Page.singleElementPage(reviewService.find(userId, gameId))); // TODO: ReviewService#find
-                    mav.addObject("user", userService.findById(userId));
+//                    mav.addObject("user", userService.findById(userId));
                 } else {
                     //Find by game ID
 //                    mav.addObject("reviews", reviewService.findPageByGameId(gameId, pageNumber, pageSize));
@@ -330,7 +330,7 @@ public class GameController extends BaseController {
             } else {
                 //Find by user ID
 //                mav.addObject("reviews", reviewService.findPageByUserId(userId, pageNumber, pageSize));
-                mav.addObject("user", userService.findById(userId));
+//                mav.addObject("user", userService.findById(userId));
             }
 //            mav.addObject("canSubmitReview", isLoggedIn() && userId == -1 && reviewService.find(getCurrentUser().getId(), gameId) == null); // TODO: ReviewService#find
         } catch(IllegalPageException e) {

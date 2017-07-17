@@ -193,7 +193,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         threadService
                                 .getUsersLikingTheThread(threadId, pageNumber, pageSize, sortingType, sortDirection),
-                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .build());
@@ -395,7 +396,8 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                         uriInfo, sortingType.toString().toLowerCase(), sortDirection,
                         threadService
                                 .getUsersLikingTheComment(commentId, pageNumber, pageSize, sortingType, sortDirection),
-                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto.createList(userPage.getData())) {
+                        (userPage) -> new GenericEntity<List<UserDto>>(UserDto
+                                .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear()
                                 .build());
