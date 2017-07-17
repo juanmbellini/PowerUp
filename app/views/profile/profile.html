@@ -31,7 +31,7 @@
                 <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
             </div>
             <div class="col s8">
-                <h4 class="center">Top 10 games</h4>
+                <h4 class="center" ng-if="profile.top10.length > 0">Top 10 games</h4>
                 <p class="center" ng-if="profile.top10.length === 0">
                     No scored games. <span ng-if="isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
                 </p>
