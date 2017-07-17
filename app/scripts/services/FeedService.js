@@ -31,6 +31,15 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
             reviewFeedProvider.dateName = 'date';
             feedProviders.push(reviewFeedProvider);
 
+            // status
+            var statusFeedProvider = {};
+            statusFeedProvider.array = [];
+            statusFeedProvider.pointer = 0;
+            statusFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('status'), undefined, undefined, 2);
+            statusFeedProvider.type = 'status';
+            statusFeedProvider.dateName = 'date';
+            feedProviders.push(statusFeedProvider);
+
             feedProviders.forEach(function (providerCopy, index, array) {
                 var feedProvider = array[index];
                 feedProvider.isReady = false;
