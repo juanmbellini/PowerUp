@@ -123,14 +123,14 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         $scope.updateFollow = function () {
             $scope.followDisable = true;
             if (!$scope.requestedUser.social.followedByCurrentUser) {
-                Restangular.one('users',$scope.requestedUser.id).one('followed').put().then(function () {
+                Restangular.one('users',$scope.requestedUser.id).one('followers').put().then(function () {
                     $scope.followDisable = false;
                     $scope.requestedUser.social.followedByCurrentUser = true;
                 }, function () {
                     $scope.followDisable = false;
                 });
             } else {
-                Restangular.one('users',$scope.requestedUser.id).one('followed').remove().then(function () {
+                Restangular.one('users',$scope.requestedUser.id).one('followers').remove().then(function () {
                     $scope.followDisable = false;
                     $scope.requestedUser.social.followedByCurrentUser = false;
                 }, function () {
