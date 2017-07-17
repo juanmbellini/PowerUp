@@ -1,8 +1,12 @@
 package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.controller.GameJerseyController;
+import ar.edu.itba.paw.webapp.controller.ReviewJerseyController;
+import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -66,34 +70,48 @@ public class ReviewDto extends EntityDto {
     @XmlElement
     private String gameUrl;
 
+    @XmlElement
+    private Long likeCount;
+
+    @XmlElement
+    private Boolean likedByCurrentUser;
+
+    @XmlElement
+    private String likesUrl;
+
 
     public ReviewDto() {
         // For Jax-RS
     }
 
-    public ReviewDto(Review review, UriBuilder baseUri) {
-        super(review.getId());
-        this.userId = review.getUser().getId();
-        this.username = review.getUser().getUsername();
-        this.gameId = review.getGame().getId();
-        this.gameName = review.getGame().getName();
-        this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
-        this.date = LocalDateTime.ofInstant(review.getDate().toInstant(), ZoneId.systemDefault()).toString();
-        this.body = review.getReview();
-        this.storyScore = review.getStoryScore();
-        this.graphicsScore = review.getGraphicsScore();
-        this.audioScore = review.getAudioScore();
-        this.controlsScore = review.getControlsScore();
-        this.funScore = review.getFunScore();
+    public ReviewDto(LikeableWrapper<Review> wrapper, UriBuilder baseUri) {
+        super(wrapper.getEntity().getId());
+        this.userId = wrapper.getEntity().getUser().getId();
+        this.username = wrapper.getEntity().getUser().getUsername();
+        this.gameId = wrapper.getEntity().getGame().getId();
+        this.gameName = wrapper.getEntity().getGame().getName();
+        this.gameCoverPictureUrl = wrapper.getEntity().getGame().getCoverPictureUrl();
+        this.date = LocalDateTime.ofInstant(wrapper.getEntity().getDate().toInstant(), ZoneId.systemDefault()).toString();
+        this.body = wrapper.getEntity().getReview();
+        this.storyScore = wrapper.getEntity().getStoryScore();
+        this.graphicsScore = wrapper.getEntity().getGraphicsScore();
+        this.audioScore = wrapper.getEntity().getAudioScore();
+        this.controlsScore = wrapper.getEntity().getControlsScore();
+        this.funScore = wrapper.getEntity().getFunScore();
 
         // Urls
         this.userUrl = baseUri.clone()
                 .path(UserJerseyController.END_POINT)
-                .path(String.valueOf(review.getUser().getId()))
+                .path(String.valueOf(wrapper.getEntity().getUser().getId()))
                 .build().toString();
         this.gameUrl = baseUri.clone()
                 .path(GameJerseyController.END_POINT)
-                .path(String.valueOf(review.getGame().getId()))
+                .path(String.valueOf(wrapper.getEntity().getGame().getId()))
+                .build().toString();
+        this.likesUrl = baseUri.clone()
+                .path(ReviewJerseyController.END_POINT)
+                .path(Long.toString(wrapper.getEntity().getId()))
+                .path(ReviewJerseyController.LIKES_END_POINT)
                 .build().toString();
     }
 
@@ -154,13 +172,25 @@ public class ReviewDto extends EntityDto {
         return gameUrl;
     }
 
+    public Long getLikeCount() {
+        return likeCount;
+    }
+
+    public String getLikesUrl() {
+        return likesUrl;
+    }
+
+    public Boolean getLikedByCurrentUser() {
+        return likedByCurrentUser;
+    }
+
     /**
      * Returns a list of {@link ReviewDto} based on the given collection of {@link Review}.
      *
      * @param reviews The collection of {@link Review}
      * @return A list of {@link ReviewDto}.
      */
-    public static List<ReviewDto> createList(Collection<Review> reviews, UriBuilder uriBuilder) {
+    public static List<ReviewDto> createList(Collection<LikeableWrapper<Review>> reviews, UriBuilder uriBuilder) {
         return reviews.stream().map(review -> new ReviewDto(review, uriBuilder.clone())).collect(Collectors.toList());
     }
 

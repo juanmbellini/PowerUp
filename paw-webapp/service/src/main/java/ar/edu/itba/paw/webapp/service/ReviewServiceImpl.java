@@ -2,21 +2,21 @@ package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
-import ar.edu.itba.paw.webapp.interfaces.ReviewDao;
-import ar.edu.itba.paw.webapp.interfaces.ReviewService;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.interfaces.*;
+import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
@@ -33,25 +33,36 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
 
     private final GameDao gameDao;
 
+    private final ReviewLikeDao reviewLikeDao;
+
 
     @Autowired
-    public ReviewServiceImpl(ReviewDao reviewDao, GameDao gameDao) {
+    public ReviewServiceImpl(ReviewDao reviewDao, GameDao gameDao, ReviewLikeDao reviewLikeDao) {
         this.reviewDao = reviewDao;
         this.gameDao = gameDao;
+        this.reviewLikeDao = reviewLikeDao;
     }
 
 
     @Override
-    public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
-                                   int pageNumber, int pageSize,
-                                   ReviewDao.SortingType sortingType, SortDirection sortDirection) {
-        return reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, usernameFilter,
+    public Page<LikeableWrapper<Review>> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
+                                                    int pageNumber, int pageSize,
+                                                    ReviewDao.SortingType sortingType, SortDirection sortDirection, User currentUser) {
+        final Page<Review> page = reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        final Map<Review, Long> likeCounts = reviewLikeDao.countLikes(page.getData());
+        final Map<Review, Boolean> userLikes = Optional.ofNullable(currentUser)
+                .map(user -> reviewLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+        return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
     @Override
-    public Review findById(long reviewId) {
-        return reviewDao.findById(reviewId);
+    public LikeableWrapper<Review> findById(long reviewId, User currentUser) {
+        return Optional.ofNullable(reviewDao.findById(reviewId))
+                .map(review -> new LikeableWrapper<>(review,
+                        // If currentUser is present check if it liked the review. If not present, get null.
+                        Optional.ofNullable(currentUser).map(user -> reviewLikeDao.exists(review, user)).orElse(null)))
+                .orElse(null);
     }
 
     @Override
@@ -68,6 +79,36 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         // If optional holds null, ask for null. Else ask for the game it holds.
         return reviewDao.create(reviewer, gameOptional.orElse(null),
                 reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+    }
+
+    @Override
+    public void likeReview(long reviewId, User liker) {
+        if (liker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Review review = getReview(reviewId);
+        // If already liked, do nothing and be idempotent
+        if (!reviewLikeDao.exists(review, liker)) {
+            reviewLikeDao.create(review, liker);
+        }
+    }
+
+    @Override
+    public void unlikeReview(long reviewId, User unliker) {
+        if (unliker == null) {
+            throw new IllegalArgumentException();
+        }
+        final Review review = getReview(reviewId);
+        // If not liked, do nothing and be idempotent
+        Optional.ofNullable(reviewLikeDao.find(review, unliker)).ifPresent(reviewLikeDao::delete);
+    }
+
+    @Override
+    public Page<User> getUsersLikingTheReview(long reviewId, int pageNumber, int pageSize,
+                                              ReviewLikeDao.SortingType sortingType, SortDirection sortDirection) {
+        final Review thread = getReview(reviewId);
+        final Page<ReviewLike> page = reviewLikeDao.getLikes(thread, pageNumber, pageSize, sortingType, sortDirection);
+        return createLikersPage(page);
     }
 
     @Override
@@ -92,6 +133,26 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         });
     }
 
+    private Page<User> createLikersPage(Page<? extends Like> oldPage) {
+        return ServiceHelper.fromAnotherPage(oldPage, Like::getUser).build();
+    }
+
+    /**
+     * Creates a new {@link Page} of {@link LikeableWrapper} according to the given {@code oldPage}
+     * and the {@link Map} of {@code likeCounts}.
+     *
+     * @param oldPage    The old {@link Page} from which data is taken.
+     * @param likeCounts The {@link Map} containing the amount of likes.
+     * @param <T>        The type of elements in the {@link Page}.
+     * @return The new {@link Page}.
+     */
+    private <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
+                                                                                Map<T, Long> likeCounts,
+                                                                                Map<T, Boolean> likes) {
+        return ServiceHelper.fromAnotherPage(oldPage, entity ->
+                new LikeableWrapper<>(entity, likeCounts.get(entity), likes.get(entity)))
+                .build();
+    }
 
     /**
      * Returns an optional holding a possible {@link Game} (if it exists and if {@code gameId} is not null).

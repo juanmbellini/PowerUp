@@ -1,18 +1,24 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Models a review made by a specific user for a specific game.
  */
 @Entity
 @Table(name = "reviews")
-public class Review implements ValidationExceptionThrower {
+public class Review implements ValidationExceptionThrower, Likeable {
 
     @Id
     @SequenceGenerator(name = "reviews_seq", sequenceName = "reviews_id_seq", allocationSize = 1)
@@ -48,7 +54,12 @@ public class Review implements ValidationExceptionThrower {
     @Column(nullable = false, name = "fun_score")
     private int funScore;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "review", orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<ReviewLike> likes;
+
     /*package*/  Review() {
+        this.likes = new HashSet<>();
         // For Hibernate
     }
 
@@ -129,6 +140,11 @@ public class Review implements ValidationExceptionThrower {
      */
     public long getId() {
         return id;
+    }
+
+    @Override
+    public long getLikeCount() {
+        return likes.size();
     }
 
     /**
