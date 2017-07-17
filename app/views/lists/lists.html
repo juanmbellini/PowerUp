@@ -62,43 +62,43 @@
                 </div>
                 <ul ng-show="games.length != 0" class="collection games-list">
                     <!--TODO limit number of shown games, create link to show more-->
-                    <li ng-repeat="game in games" class="collection-item avatar col s12">
+                    <li ng-repeat="item in games" class="collection-item avatar col s12">
                         <div class="col s2 cover-pic-container valign-wrapper">
-                            <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                            <img class="cover-picture valign" ng-src="{{item.game.coverPictureUrl}}" alt="{{item.game.name}}">
                         </div>
                         <div class="col primary-content s3">
-                            <p class="title wrap-text"><a ng-href="#game?id={{game.id}}">{{game.name}}</a></p>
+                            <p class="title wrap-text"><a ng-href="#game?id={{item.game.id}}">{{item.game.name}}</a></p>
                         </div>
                         <div class="col s1 center">
-                            <p style="margin-top: 33px;"><b>{{game.status || 'No Status'}}</b></p>
+                            <p style="margin-top: 33px;"><b>{{item.status || 'No Status'}}</b></p>
                         </div>
                         <div class="col s2 center">
                             <p class=wrap-text style="margin-top: 33px;"><b>
-                                <span ng-repeat="shelf in game.shelves"> {{shelf.name}}<span ng-hide="$last">,</span></span>
-                                <span ng-hide="game.shelves.length">  No shelves</span>
+                                <span ng-repeat="shelf in item.shelvesHolding"> {{shelf.name}}<span ng-hide="$last">,</span></span>
+                                <span ng-hide="item.shelvesHolding.length">  No shelves</span>
                             </b></p>
                         </div>
                         <div class="col s1 center">
                             <p style="margin-top: 33px;"><b>
-                                {{(game.avgScore === null || game.avgScore == 0)?'No avg rating':(game.avgScore |
+                                {{(item.game.avgScore === null || item.game.avgScore == 0)?'No avg rating':(item.game.avgScore |
                                 number:2)}}
                             </b>  </p>
                         </div>
                         <div class="col s2 center">
-                            <div ng-switch="(game.userScore<=10 && game.userScore>0)">
+                            <div ng-switch="(item.score<=10 && item.score>0)">
                                 <div ng-switch-when="true" style="margin-top: 33px;">
                                     <!--<p class="rating-number center">-->
-                                        <!--<b><span>{{game.userScore | number:2}}</span></b>-->
+                                        <!--<b><span>{{item.score | number:2}}</span></b>-->
                                     <!--</p>-->
                                     <span class="rating-stars hide-on-small-and-down">
                                         <span ng-repeat="i in [0,1,2,3,4]">
-                                            <span ng-if="(game.userScore - (i * 2) - 1 ) < 0">
+                                            <span ng-if="(item.score - (i * 2) - 1 ) < 0">
                                                 <i class="material-icons">star_border</i>
                                             </span>
-                                            <span ng-if="(game.userScore - (i * 2) - 1 ) == 0">
+                                            <span ng-if="(item.score - (i * 2) - 1 ) == 0">
                                                 <i class="material-icons">star_half</i>
                                             </span>
-                                            <span ng-if="(game.userScore - (i * 2) - 1) > 0">
+                                            <span ng-if="(item.score - (i * 2) - 1) > 0">
                                                 <i class="material-icons">star</i>
                                             </span>
                                         </span>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col s1">
                             <div class="secondary-content">
-                                <a ng-click="deleteGame(game)"
+                                <a ng-click="deleteGame(item)"
                                    class=" delete-game material-icons red-text text-lighten-1" style="vertical-align: middle;">delete</a>
                             </div>
                         </div>
