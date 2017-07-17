@@ -338,7 +338,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                 .createCollectionGetResponse(uriInfo, "", null,
                         userService.getPlayStatusesForFeed(user, pageNumber, pageSize),
                         (page) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
-                                .createList(page.getData())) {
+                                .createList(page.getData(), uriInfo.getBaseUriBuilder())) {
                         },
                         JerseyControllerHelper.getParameterMapBuilder().clear().build());
     }
@@ -367,7 +367,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                         userService.getPlayStatuses(userId, gameIdFilter, gameNameFilter,
                                 pageNumber, pageSize, sortingType, sortDirection),
                         (statusesPage) -> new GenericEntity<List<UserGameStatusDto>>(UserGameStatusDto
-                                .createList(statusesPage.getData())) {
+                                .createList(statusesPage.getData(), uriInfo.getBaseUriBuilder())) {
                         },
                         scoreAndStatusMap(gameIdFilter, gameNameFilter));
 

@@ -95,7 +95,7 @@ public class UserDto extends EntityDto {
      * @return A list of {@link UserDto}.
      */
     public static List<UserDto> createListWithoutFollowCount(Collection<User> users, UriBuilder uriBuilder) {
-        return users.stream().map(user -> new UserDto(user, uriBuilder)).collect(Collectors.toList());
+        return users.stream().map(user -> new UserDto(user, uriBuilder.clone())).collect(Collectors.toList());
     }
 
 

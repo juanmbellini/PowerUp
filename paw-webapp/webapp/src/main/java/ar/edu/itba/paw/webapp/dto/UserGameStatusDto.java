@@ -1,10 +1,12 @@
 package ar.edu.itba.paw.webapp.dto;
 
+import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.PlayStatus;
 import ar.edu.itba.paw.webapp.model.UserGameStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -37,6 +39,18 @@ public class UserGameStatusDto extends EntityDto {
     private String gameName;
 
     @XmlElement
+    private String username;
+
+    @XmlElement
+    private String profilePictureUrl;
+
+    @XmlElement
+    private String userUrl;
+
+    @XmlElement
+    private String gameCoverPictureUrl;
+
+    @XmlElement
     @JsonDeserialize(using = DtoHelper.PlayStatusEnumDeserializer.class)
     private PlayStatus status;
 
@@ -48,12 +62,23 @@ public class UserGameStatusDto extends EntityDto {
         // For Jax-RS
     }
 
-    public UserGameStatusDto(UserGameStatus gameStatus) {
+    public UserGameStatusDto(UserGameStatus gameStatus, UriBuilder baseUri) {
         super(gameStatus.getUser().getId());
         this.gameId = gameStatus.getGame().getId();
         this.gameName = gameStatus.getGame().getName();
         this.status = gameStatus.getPlayStatus();
         this.date = LocalDateTime.ofInstant(gameStatus.getDate().toInstant(), ZoneId.systemDefault()).toString();
+        this.username = gameStatus.getUser().getUsername();
+        this.profilePictureUrl = baseUri.clone()
+                .path(UserJerseyController.END_POINT)
+                .path(Long.toString(gameStatus.getUser().getId()))
+                .path("picture")
+                .build().toString();
+        this.userUrl = baseUri.clone()
+                .path(UserJerseyController.END_POINT)
+                .path(Long.toString(gameStatus.getUser().getId()))
+                .build().toString();
+        this.gameCoverPictureUrl = gameStatus.getGame().getCoverPictureUrl();
 
     }
 
@@ -74,13 +99,29 @@ public class UserGameStatusDto extends EntityDto {
         return date;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getUserUrl() {
+        return userUrl;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public String getGameCoverPictureUrl() {
+        return gameCoverPictureUrl;
+    }
+
     /**
      * Returns a list of {@link UserGameStatusDto} based on the given collection of {@link UserGameStatus}.
      *
      * @param statuses The collection of {@link UserGameStatus}
      * @return A list of {@link UserGameStatusDto}.
      */
-    public static List<UserGameStatusDto> createList(Collection<UserGameStatus> statuses) {
-        return statuses.stream().map(UserGameStatusDto::new).collect(Collectors.toList());
+    public static List<UserGameStatusDto> createList(Collection<UserGameStatus> statuses, UriBuilder uriBuilder) {
+        return statuses.stream().map(status -> new UserGameStatusDto(status, uriBuilder)).collect(Collectors.toList());
     }
 }
