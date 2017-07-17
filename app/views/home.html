@@ -192,48 +192,30 @@
                                 <p class="truncate">{{feedElement.data.body}}</p>
                             </div>
                             <div ng-if="feedElement.type === 'status'">
-                                <!--<div class="row">-->
-                                    <!--<div class="col s9">-->
-                                        <!--<img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">-->
-                                        <!--<span class="title wrap-text">-->
-                                    <!--<a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">started the thread </span>-->
-                                    <!--<a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>-->
-                                <!--</span>-->
-                                        <!--&lt;!&ndash;<p>Submitted {{feedElement.data.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a></p>&ndash;&gt;-->
-                                    <!--</div>-->
-                                    <!--<div class="col s3">-->
-                                        <!--&lt;!&ndash;Un/like section&ndash;&gt;-->
-                                        <!--<div class="right-align">-->
-                                            <!--<p>-->
-                                                <!--{{feedElement.data.createdAt | date: 'mediumDate'}}-->
-                                            <!--</p>-->
-                                            <!--<p>-->
-                                                <!--<b style="vertical-align: text-bottom">{{feedElement.data.likeCount}}</b>-->
-                                                <!--&lt;!&ndash;Not logged in - black actionless thumbs up&ndash;&gt;-->
-                                                <!--<i ng-if="!isLoggedIn()" class="material-icons black-text">thumb_up</i>-->
-                                                <!--&lt;!&ndash;Logged in and liked - green thumbs up with action to unlike&ndash;&gt;-->
-                                                <!--<a ng-if="isLoggedIn() && isLikedByCurrentUser(feedElement.data)" ng-click="unlikeThread(feedElement.data)" ng-class="{disabled: feedElement.data.likesDisabled}" href="">-->
-                                                    <!--<i class="material-icons green-text">thumb_up</i>-->
-                                                <!--</a>-->
-                                                <!--&lt;!&ndash;Logged in and not liked - black thumbs up with action to like&ndash;&gt;-->
-                                                <!--<a ng-if="isLoggedIn() && !isLikedByCurrentUser(feedElement.data)" ng-click="likeThread(feedElement.data)" ng-class="{disabled: feedElement.data.likesDisabled}" href="">-->
-                                                    <!--<i class="material-icons black-text">thumb_up</i>-->
-                                                <!--</a>-->
-                                            <!--</p>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<p class="truncate">{{feedElement.data.body}}</p>-->
+                                <div class="row">
+                                    <div class="col s9">
+                                        <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        <span class="title wrap-text">
+                                            <a ng-href="#profile?username={{feedElement.data.userId}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">changed </span>
+                                            <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="col s3">
+                                        <p>
+                                            {{feedElement.data.date | date: 'mediumDate'}}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <h5 ng-if="!loadingFeed && thereAreMore" class="center"><a href="" ng-click="loadMoreFeed()" class="center">Load More</a></h5>
                 <h5 ng-if="loadingFeed" class="center">Loading...</h5>
-                <h5 ng-if="!loadingFeed && !thereAreMore" class="center">Congrats! You've reached the end!</h5>
+                <h5 ng-if="!loadingFeed && !thereAreMore && feed.length > 0" class="center">Congrats! You've reached the end!</h5>
+                <h5 ng-if="!loadingFeed && !thereAreMore && feed.length <= 0" class="center">This is your feed. Follow users to be updated!</h5>
             </div>
         </div>
-
 
         <div class="row"><div class="col s12 divider" style="margin-top: 5px;"></div></div>
         <!--TODO show loading-->

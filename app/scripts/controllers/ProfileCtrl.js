@@ -118,21 +118,21 @@ define(['powerUp', 'AuthService'], function(powerUp) {
 
         // Follow
         $scope.canFollow = function () {
-            return $scope.requestedUser && !AuthService.isCurrentUser($scope.requestedUser);
+            return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
         };
         $scope.updateFollow = function () {
             $scope.followDisable = true;
-            if (!$scope.requestedUser.followedByCurrentUser) {
+            if (!$scope.requestedUser.social.followedByCurrentUser) {
                 Restangular.one('users',$scope.requestedUser.id).one('followed').put().then(function () {
                     $scope.followDisable = false;
-                    $scope.requestedUser.followedByCurrentUser = true;
+                    $scope.requestedUser.social.followedByCurrentUser = true;
                 }, function () {
                     $scope.followDisable = false;
                 });
             } else {
                 Restangular.one('users',$scope.requestedUser.id).one('followed').remove().then(function () {
                     $scope.followDisable = false;
-                    $scope.requestedUser.followedByCurrentUser = false;
+                    $scope.requestedUser.social.followedByCurrentUser = false;
                 }, function () {
                     $scope.followDisable = false;
                 });

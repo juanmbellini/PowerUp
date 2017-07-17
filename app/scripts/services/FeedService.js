@@ -17,7 +17,7 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
             var threadFeedProvider = {};
             threadFeedProvider.array = [];
             threadFeedProvider.pointer = 0;
-            threadFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('threads'), undefined, undefined, 2);
+            threadFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('threads'), undefined, undefined, 10);
             threadFeedProvider.type = 'thread';
             threadFeedProvider.dateName = 'createdAt';
             feedProviders.push(threadFeedProvider);
@@ -26,7 +26,7 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
             var reviewFeedProvider = {};
             reviewFeedProvider.array = [];
             reviewFeedProvider.pointer = 0;
-            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('reviews'), undefined, undefined, 2);
+            reviewFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('reviews'), undefined, undefined, 10);
             reviewFeedProvider.type = 'review';
             reviewFeedProvider.dateName = 'date';
             feedProviders.push(reviewFeedProvider);
@@ -35,7 +35,7 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
             var statusFeedProvider = {};
             statusFeedProvider.array = [];
             statusFeedProvider.pointer = 0;
-            statusFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('status'), undefined, undefined, 2);
+            statusFeedProvider.paginator = PaginationService.initialize(Restangular.one('users',userId).all('feed').all('statuses'), undefined, undefined, 10);
             statusFeedProvider.type = 'status';
             statusFeedProvider.dateName = 'date';
             feedProviders.push(statusFeedProvider);
