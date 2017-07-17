@@ -6,12 +6,11 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         $scope.loginError = false;
         $scope.logIn = function(form) {
             var logInAccount = {username: $scope.username, password: $scope.password};
-            // $log.debug('Logging in with', logInAccount);
             AuthService.authenticate($scope.username, $scope.password,
                 function() {
                     $scope.loginError = false;
-                    $location.search();
-                    $location.path('');
+                    var redirect = $scope.loginRedirect || '/';
+                    $location.url(redirect);
                 },
                 function(error) {
                     // TODO do something more useful, e.g. show the error

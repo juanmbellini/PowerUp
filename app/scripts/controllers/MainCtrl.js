@@ -26,7 +26,7 @@ define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', ['$scope', '$log', 'Restangular', 'AuthService', 'localStorageService', function($scope, $log, Restangular, AuthService, LocalStorageService) {
+    powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService) {
         Restangular.setFullResponse(false);
 
         AuthService.trackToken();
@@ -35,6 +35,15 @@ define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
         $scope.apiLocation = 'http://localhost:8080/api';
         $scope.isLoggedIn = AuthService.isLoggedIn;
         $scope.currentUser = AuthService.getCurrentUser();
+
+        // Track current page to redirect user back to where they were after logging in
+        $scope.loginRedirect = '/';
+        // Update current page URL on page change, except when in login page
+        $scope.$on('$viewContentLoaded', function() {
+            if($location.path() !== '/login') {
+                $scope.loginRedirect = $location.url();
+            }
+        });
 
         // Watch the current user to always keep it updated
         $scope.$watch(
