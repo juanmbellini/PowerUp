@@ -24,11 +24,12 @@
             <!--&lt;!&ndash; Modal Trigger &ndash;&gt;-->
             <!--<a id="change-password-trigger" class="waves-effect waves-light btn" href="#change-password-modal">Change Password</a>-->
             <!--TODO enable change password functionality-->
+            <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
             <br />
             <h5>Profile Stats</h5>
-            <p>Played <b>{{profile.playedCount}}</b> <ng-pluralize count="profile.playedCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
-            <p>Playing <b>{{profile.playingCount}}</b> <ng-pluralize count="profile.playingCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
-            <p>Plans to play <b>{{profile.planToPlayCount}}</b> <ng-pluralize count="profile.planToPlayCount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize></p>
+            <p><ng-pluralize count="requestedUser.social.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.social.followersCount}}</b></p>
+            <p><ng-pluralize count="requestedUser.social.followingCount" when="{'one': 'Following', 'other': 'Following'}"></ng-pluralize>: <b>{{requestedUser.social.followingCount}}</b></p>
+            <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
         </div>
         <div class="col s8">
             <h4 class="center">Top 10 games</h4>
@@ -36,11 +37,10 @@
                 No scored games. <span ng-if="AuthService.isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
             </p>
             <ul class="collection games-list" ng-if="profile.top10.length > 0">
-                <c_forEach var="entry" items="${topGames}">
-                    <c_set var="game" value="${entry.key}" />
-                    <c_set var="score" value="${entry.value}" />
-                </c_forEach>
-
+                <!--<c_forEach var="entry" items="${topGames}">-->
+                    <!--<c_set var="game" value="${entry.key}" />-->
+                    <!--<c_set var="score" value="${entry.value}" />-->
+                <!--</c_forEach>-->
 
                 <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
                     <!--TODO make this into a directive-->

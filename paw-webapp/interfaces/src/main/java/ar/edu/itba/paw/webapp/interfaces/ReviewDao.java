@@ -35,10 +35,9 @@ public interface ReviewDao {
     void delete(Review review);
 
     /**
-     * @see ReviewService#findById(long)
+     * @see ReviewService#findById(long, User)
      */
     Review findById(long reviewId);
-
 
     /**
      * Enum indicating the sorting type for the "get reviews" method.
@@ -54,6 +53,12 @@ public interface ReviewDao {
             @Override
             public String getFieldName() {
                 return "game.id";
+            }
+        },
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(review.likes)";
             }
         },
         DATE {

@@ -7,8 +7,9 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
         // Endpoints for which authentication is optional, and for which authentication will be sent
         // if the user is logged in
         var optionalAuthenticationEndpoints = [
-            /\/threads\/?/
+            /.*/
         ];
+        // /\/threads\/?/
 
         /* ********************************************
          *              Private functions
@@ -107,7 +108,8 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          */
         function authenticate(username, password, successCallback, failureCallback) {
             Restangular.all('auth/login').post({username: username, password: password})
-                .then(function(data) {
+                .then(function(response) {
+                    var data = response.data;
                     setCurrentUser(data);   // TODO only copy fields to object? i.e. don't copy full Restangularized object
                     // TODO pass parameters to callback?
                     $log.info('Successfully authenticated as ', getCurrentUser().username);
@@ -133,7 +135,8 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          * @param failureCallback (Optional) Function to call on failure.
          */
         function logOut(successCallback, failureCallback) {
-            Restangular.all('auth/logout').post(undefined, undefined).then(function (data) {
+            Restangular.all('auth/logout').post(undefined, undefined).then(function (response) {
+                var data = response.data;
                 setCurrentUser(null);
                 setToken(null);
                 $log.info('Successfully logged out');

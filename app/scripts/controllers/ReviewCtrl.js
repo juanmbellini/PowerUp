@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'LikesService'], function(powerUp) {
 
-    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route) {
+    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route, LikesService) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
@@ -27,6 +27,8 @@ define(['powerUp'], function(powerUp) {
             $location.search('pageSize', $scope.pageSize);
         };
 
+        $scope.isLoggedIn = AuthService.isLoggedIn();
+
 
         // TODO delete duplicated
         if ($scope.gameId) {
@@ -35,7 +37,7 @@ define(['powerUp'], function(powerUp) {
                 $scope.game = game;
                 console.log('Game: ', game);
                 if ($scope.game !== null) {
-                    // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+                    // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. review)
                 } else {
                     // TODO show 'game not found'
                     $location.search({});
@@ -53,7 +55,7 @@ define(['powerUp'], function(powerUp) {
                $scope.user = user;
                console.log('User: ', user);
                if ($scope.user !== null) {
-                   // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+                   // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. review)
                } else {
                    // TODO show 'user not found'
                    $location.search({});
@@ -115,7 +117,7 @@ define(['powerUp'], function(powerUp) {
                 var data = response.data;
                 $log.info('Success: ', data);
                 $route.reload();
-                // $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                // $scope.review = $scope.review.filter(function(reviewToFilter) {
                 //     return reviewToFilter.id !== review.id;
                 // });
             },
@@ -127,22 +129,26 @@ define(['powerUp'], function(powerUp) {
         };
 
         Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
-            // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay reviews para ese usuario.
+            // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay review para ese usuario.
             var reviews = response.data;
             $scope.reviews = reviews;
             console.log('foundReviews', reviews);
             $scope.headersPagination = response.headers();
             console.log($scope.headersPagination);
             angular.forEach(reviews, function (reviewRef, index, reviewArray) {
-                Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: reviewRef.gameId}).then(function (response) {
                     var gameScore = response.data;
                     if (gameScore.length > 0) {
                         reviewArray[index].overallScore = gameScore[0].score;
                     }
                 });
+                Restangular.one('users', reviewRef.userId).get().then(function (response) {
+                    var reviewCreator = response.data;
+                    reviewArray[index].followedByCurrentUser = reviewCreator.social.followedByCurrentUser;
+                });
             });
             angular.forEach(reviews, function (reviewRef, index, reviewArray) {
-                Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: reviewRef.gameId}).then(function (response) {
                     var shelvesWithGame = response.data;
                     reviewArray[index].shelves = shelvesWithGame;
                 });
@@ -153,7 +159,6 @@ define(['powerUp'], function(powerUp) {
         }, function() {
             console.log('There was an error getting reviews');
             $location.search('pageNumber', 1);
-
         });
 
         /**
@@ -194,5 +199,49 @@ define(['powerUp'], function(powerUp) {
                $scope.rangePagination.push(i);
            }
        };
+
+        // Likes
+        $scope.isLikedByCurrentUser = function(review) {
+            if (!$scope.isLoggedIn || !review.hasOwnProperty('likedByCurrentUser')) {
+                return false;
+            }
+            return review.likedByCurrentUser;
+        };
+        $scope.likeReview = function(review) {
+            LikesService.like(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error liking review #', review.id, ': ', error);
+            });
+        };
+        $scope.unlikeReview = function(review) {
+            LikesService.unlike(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error unliking review #', review.id, ': ', error);
+            });
+        };
+
+        // Follow
+        $scope.updateFollow = function (review) {
+            $scope.followDisable = true;
+            if (!review.followedByCurrentUser) {
+                Restangular.one('users',review.userId).one('followed').put().then(function () {
+                    $scope.followDisable = false;
+                    review.followedByCurrentUser = true;
+                }, function () {
+                    $scope.followDisable = false;
+                });
+            } else {
+                Restangular.one('users',review.userId).one('followed').remove().then(function () {
+                    $scope.followDisable = false;
+                    review.followedByCurrentUser = false;
+                }, function () {
+                    $scope.followDisable = false;
+                });
+            }
+        };
+
+
     });
 });

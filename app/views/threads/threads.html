@@ -36,7 +36,7 @@
                             <img ng-src="{{thread.creator.profilePictureUrl}}" alt="{{thread.creator.username}}" class="circle">
                             <a class="title truncate" ng-href="#thread/{{thread.id}}">{{thread.title}}</a>
 
-                            <p>Submitted {{thread.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></p>
+                            <p>Submitted {{thread.createdAt | date: 'mediumDate'}} by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></p>
                             <br>
                             <p class="truncate">{{thread.body}}</p>
 

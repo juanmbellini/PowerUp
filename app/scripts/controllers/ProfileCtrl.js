@@ -2,7 +2,7 @@
 define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
-        Restangular.setFullResponse(false);
+        Restangular.setFullResponse(true);
         $scope.Restangular = Restangular;
         $scope.AuthService = AuthService;
 
@@ -12,9 +12,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
 
         // All profile-specific info will go here
         $scope.profile = {
-            playedCount: 0,
-            playingCount: 0,
-            planToPlayCount: 0,
+            gamesInList:0,
             picture: {
                 url: null,
                 data: null,
@@ -28,16 +26,22 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         var deleteProfilePictureDisabled = false;
         var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
-        Restangular.one('users').one('username', $scope.username).get().then(function(user) {
+        Restangular.one('users').one('username', $scope.username).get().then(function(response) {
+            var user = response.data;
             if (!user) {
                 $log.warn('Received null user, redirecting to home');
                 $location.search({});
                 $location.path('');
             }
             $scope.requestedUser = user;
+            Restangular.one('users', user.id).getList('game-list').then(function(response) {
+                $scope.profile.gamesAmount = parseInt(response.headers()['x-total-pages'], 10);
+                if (!$scope.profile.gamesAmount) {
+                    $scope.profile.gamesAmount = 0;
+                }
+            });
             $scope.profile.picture.url = getProfilePictureUrl(user.id);
             $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url);
-            getPlayStatuses();
             getTopGames();
         }, function(response) {
             $log.error('Error retrieving user: ', response); // TODO handle error
@@ -112,6 +116,29 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             return $scope.requestedUser && AuthService.isCurrentUser($scope.requestedUser);
         };
 
+        // Follow
+        $scope.canFollow = function () {
+            return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
+        };
+        $scope.updateFollow = function () {
+            $scope.followDisable = true;
+            if (!$scope.requestedUser.social.followedByCurrentUser) {
+                Restangular.one('users',$scope.requestedUser.id).one('followers').put().then(function () {
+                    $scope.followDisable = false;
+                    $scope.requestedUser.social.followedByCurrentUser = true;
+                }, function () {
+                    $scope.followDisable = false;
+                });
+            } else {
+                Restangular.one('users',$scope.requestedUser.id).one('followers').remove().then(function () {
+                    $scope.followDisable = false;
+                    $scope.requestedUser.social.followedByCurrentUser = false;
+                }, function () {
+                    $scope.followDisable = false;
+                });
+            }
+        };
+
         /* ******************************************
          *              PRIVATE FUNCTIONS
          * *****************************************/
@@ -124,32 +151,6 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             return profilePictureUrl !== DEFAULT_PROFILE_PICTURE_URL;
         }
 
-        function getPlayStatuses() {
-            var userId = $scope.requestedUser.id;
-            if (!userId) {
-                return;
-            }
-
-            Restangular.one('users', userId).getList('play-statuses').then(function(response) {
-                $scope.profile.playStatuses = response;
-                angular.forEach(response, function(value, key) {
-                    switch (value.status) {
-                        case 'played':
-                            $scope.profile.playedCount++;
-                            break;
-                        case 'playing':
-                            $scope.profile.playingCount++;
-                            break;
-                        case 'plan to play':
-                            $scope.profile.planToPlayCount++;
-                            break;
-                        default:
-                            $log.warn('Unrecognized play status ', value.status, ', ignoring.');
-                            break;
-                    }
-                });
-            });
-        }
 
         function getTopGames() {
             var userId = $scope.requestedUser.id;

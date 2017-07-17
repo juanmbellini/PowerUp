@@ -15,7 +15,7 @@
 					<li class="collection-item avatar">
 						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
 						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
-						<p>{{thread.createdAt | date: 'medium'}}</p>
+						<p>{{thread.createdAt | date: 'mediumDate'}}</p>
 						<br>
 						<p ng-if="!changeThreadBodyFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
 
@@ -86,7 +86,7 @@
 							<span class="title wrap-text">
 								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 							</span>
-							<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
+							<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
 							<br />
 							<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 							<!--End comment info-->
@@ -177,7 +177,7 @@
 									<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-									<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
+									<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
 									<br />
 									<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 									<!--End comment info-->
@@ -263,7 +263,7 @@
 											<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-											<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
+											<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
 											<br />
 											<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 											<!--End comment info-->
@@ -340,7 +340,7 @@
 													<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-													<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
+													<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
 													<br />
 													<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 													<!--End comment info-->
@@ -425,7 +425,7 @@
 															<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
-															<p class="wrap-text">{{comment.createdAt | date: 'medium'}}</p>
+															<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
 															<br />
 															<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
 															<!--End comment info-->

@@ -585,6 +585,11 @@ public class UserJerseyController implements UpdateParamsChecker {
         return playStatusOptions();
     }
 
+    @OPTIONS
+    @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
+    public Response followOptions() {
+        return playStatusOptions();
+    }
 
     @PUT
     @Path("/picture")
