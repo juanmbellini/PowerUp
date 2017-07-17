@@ -273,7 +273,7 @@ public class UserController extends BaseController {
             LOG.warn("Registration form validated but UserExists exception still thrown during registration of {} / {}: {}", username, email, e);
             return registerGet(form);
         }
-        mailService.sendEmailWelcome(user);
+        mailService.sendWelcomeEmail(user);
         LOG.info("Registered user {} with email {}, logging them in and redirecting to home", user.getUsername(), user.getEmail());
 
         //Log the new user in

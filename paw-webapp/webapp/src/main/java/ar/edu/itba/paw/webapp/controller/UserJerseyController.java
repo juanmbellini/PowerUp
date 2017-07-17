@@ -151,28 +151,44 @@ public class UserJerseyController implements UpdateParamsChecker {
 
 
     @PUT
-    @Path("/{id : \\d+}/password-change")
-    public Response changePassword(@PathParam("id") final long userId,
-                                   final UserDto userDto) {
-        checkUpdateValues(userId, "id", userDto);
-        final UserWithFollowCountsWrapper wrapper = userService.findById(userId);
-        if (wrapper == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+    @Path("/password")
+    public Response changePassword(final UserDto userDto) {
         String newPassword = passwordEncoder.encode(userDto.getPassword());
-        userService.changePassword(userId, newPassword, userId); // TODO: updater
-        mailService.sendEmailChangePassword(wrapper.getUser());
+        userService.changePassword(sessionService.getCurrentUserId(), newPassword, sessionService.getCurrentUserId());
+        mailService.sendPasswordChangedEmail(sessionService.getCurrentUser());
         return Response.noContent().build();
     }
 
-    @POST
-    @Path("/{id : \\d+}/password-reset")
+    @OPTIONS
+    @Path("/password")
+    public Response passwordChangeOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                             //Required by CORS
+                .header("Access-Control-Allow-Methods", "PUT")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
+    }
+
+    @DELETE
+    @Path("/{id : \\d+}/password")
     public Response resetPassword(@PathParam("id") final long userId) {
         String newPassword = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(newPassword);
-        userService.changePassword(userId, hashedPassword, userId); // TODO: updater
-//        mailService.sendEmailResetPassword(userService.findById(userId), newPassword);
+        userService.changePassword(userId, hashedPassword, userId);
+        mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
         return Response.noContent().build();
+    }
+
+    @OPTIONS
+    @Path("/{id : \\d+}/password")
+    public Response passwordResetOptions() {
+        Response.ResponseBuilder result = Response
+                .ok()
+                .type(MediaType.TEXT_HTML)                                             //Required by CORS
+                .header("Access-Control-Allow-Methods", "DELETE")
+                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+        return result.build();
     }
 
 

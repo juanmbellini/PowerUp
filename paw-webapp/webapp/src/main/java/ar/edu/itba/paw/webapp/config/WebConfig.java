@@ -2,9 +2,11 @@ package ar.edu.itba.paw.webapp.config;
 
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.MigrationVersion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -34,7 +36,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config", "ar.edu.itba.paw.webapp.scheduled"})
+@ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config", "ar.edu.itba.paw.webapp.scheduled", "ar.edu.itba.paw.webapp.mail"})
 @EnableScheduling
 @PropertySources({
     @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
@@ -43,6 +45,9 @@ import java.util.Properties;
     //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    private Environment environment;
 
     @Bean
     public ViewResolver viewResolver() {
@@ -145,14 +150,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("powerappcontact@gmail.com");
-        mailSender.setPassword("pawpawpaw");
+        mailSender.setUsername(environment.getRequiredProperty("email.username"));
+        mailSender.setPassword(environment.getRequiredProperty("email.password"));
 
         Properties javaMailProperties = new Properties();
         javaMailProperties.put("mail.smtp.starttls.enable", "true");
         javaMailProperties.put("mail.smtp.auth", "true");
         javaMailProperties.put("mail.transport.protocol", "smtp");
-        //javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
+        javaMailProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");    //Trust Gmail's SSL certificate
+//        javaMailProperties.put("mail.debug", "true"); //Prints out everything on screen
 
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;

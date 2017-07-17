@@ -1,143 +1,91 @@
-<div class="section container" >
-    <h1 class="center orange-text">{{username}}'s Profile</h1>
-    <div class="row">
-        <div class="col s4">
-            <img ng-if="requestedUser" ng-src="{{profile.picture.url || profile.picture.data}}" style="max-width: 100%; height:auto;"/>
-            <div ng-if="canChangePicture()">
-                <form id="pictureForm">
-                    <div class="file-field input-field">
-                        <div class="btn waves-effect waves-light">
-                            <span>Upload picture</span>
-                            <input type="file" accept=".jpeg, .jpg, .png, .gif" ngf-select="parseProfilePicture($file)" required>
+<main>
+    <div class="section container" >
+        <h1 class="center orange-text">{{username}}'s Profile</h1>
+        <div class="row">
+            <div class="col s4">
+                <img ng-if="requestedUser" ng-src="{{profile.picture.url || profile.picture.data}}" style="max-width: 100%; height:auto;"/>
+                <div ng-if="canChangePicture()">
+                    <form id="pictureForm">
+                        <div class="file-field input-field">
+                            <div class="btn waves-effect waves-light">
+                                <span>Upload picture</span>
+                                <input type="file" accept=".jpeg, .jpg, .png, .gif" ngf-select="parseProfilePicture($file)" required>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path" type="text" />
+                            </div>
                         </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path" type="text" />
-                        </div>
-                    </div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" ng-disabled="pictureSubmitDisabled" ng-click="uploadProfilePicture()">{{pictureSubmitDisabled ? "Processing..." : "Submit"}} <i class="material-icons right">send</i></button>
-                    <span ng-if="profile.picture.canDelete">
-                        or <a class="red-text" ng-click="deleteProfilePicture()">delete profile picture</a>
+                        <button class="btn waves-effect waves-light" type="submit" name="action" ng-disabled="pictureSubmitDisabled" ng-click="uploadProfilePicture()">{{pictureSubmitDisabled ? "Processing..." : "Submit"}} <i class="material-icons right">send</i></button>
+                        <span ng-if="profile.picture.canDelete">
+                        or <a href="" class="red-text" ng-click="deleteProfilePicture()">delete profile picture</a>
                     </span>
-                </form>
-            </div>
-            <!--<br />-->
-            <!--&lt;!&ndash; Modal Trigger &ndash;&gt;-->
-            <!--<a id="change-password-trigger" class="waves-effect waves-light btn" href="#change-password-modal">Change Password</a>-->
-            <!--TODO enable change password functionality-->
-            <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
+                    </form>
+                </div>
+                <br />
+                <button ng-if="isCurrentUser(requestedUser)" class="btn waves-effect waves-light" ng-click="changePassword()">Change Password</button>
+                <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
             <br />
-            <h5>Profile Stats</h5>
-            <p><ng-pluralize count="requestedUser.social.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.social.followersCount}}</b></p>
-            <p><ng-pluralize count="requestedUser.social.followingCount" when="{'one': 'Following', 'other': 'Following'}"></ng-pluralize>: <b>{{requestedUser.social.followingCount}}</b></p>
-            <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
-        </div>
-        <div class="col s8">
-            <h4 class="center">Top 10 games</h4>
-            <p class="center" ng-if="profile.top10.length === 0">
-                No scored games. <span ng-if="AuthService.isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
-            </p>
-            <ul class="collection games-list" ng-if="profile.top10.length > 0">
-                <!--<c_forEach var="entry" items="${topGames}">-->
-                    <!--<c_set var="game" value="${entry.key}" />-->
-                    <!--<c_set var="score" value="${entry.value}" />-->
-                <!--</c_forEach>-->
+                <h5>Profile Stats</h5>
+                <p><ng-pluralize count="requestedUser.social.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.social.followersCount}}</b></p>
+                <p><ng-pluralize count="requestedUser.social.followingCount" when="{'one': 'Following', 'other': 'Following'}"></ng-pluralize>: <b>{{requestedUser.social.followingCount}}</b></p>
+                <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
+            </div>
+            <div class="col s8">
+                <h4 class="center">Top 10 games</h4>
+                <p class="center" ng-if="profile.top10.length === 0">
+                    No scored games. <span ng-if="isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
+                </p>
+                <ul class="collection games-list" ng-if="profile.top10.length > 0">
+                    <!--<c_forEach var="entry" items="${topGames}">-->
+                        <!--<c_set var="game" value="${entry.key}" />-->
+                        <!--<c_set var="score" value="${entry.value}" />-->
+                    <!--</c_forEach>-->
 
-                <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
-                    <!--TODO make this into a directive-->
-                    <div class="col s2 cover-pic-container valign-wrapper">
-                        <img class="cover-picture valign" ng-src="{{entry.gameCoverPictureUrl}}" alt="{{entry.gameName}}">
-                    </div>
-                    <div class="col primary-content s7">
-                        <p class="title">
-                            <a ng-href="#game?id={{entry.gameId}}">{{entry.entryName}}</a>
-                        </p>
-                        <p class="summary" style="display: -webkit-box">{{entry.gameSummary || "No summary"}}</p>
-                    </div>
-                    <div class="col s1 center">
-                        <p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}</p>
-                    </div>
-                    <div class="col s2">
-                        <div class="secondary-content">
-                            <div ng-switch="(entry.score <= 10 && entry.score > 0)">
-                                <div ng-switch-when="true">
-                                    <!--TODO get score by user, not general score-->
-                                    <p class="rating-number center"><b><span>{{entry.score | number:2}}</span></b>
-                                    </p>
-                                    <p class="rating-stars hide-on-small-and-down">
-                                        <!--range(0,4)-->
-                                    <div ng-repeat="i in [0,1,2,3,4]">
-                                        <div ng-if="(entry.score - (i * 2) - 1 ) < 0">
-                                            <i class="material-icons">star_border</i>
+                    <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
+                        <!--TODO make this into a directive-->
+                        <div class="col s2 cover-pic-container valign-wrapper">
+                            <img class="cover-picture valign" ng-src="{{entry.gameCoverPictureUrl}}" alt="{{entry.gameName}}">
+                        </div>
+                        <div class="col primary-content s7">
+                            <p class="title">
+                                <a ng-href="#game?id={{entry.gameId}}">{{entry.entryName}}</a>
+                            </p>
+                            <p class="summary" style="display: -webkit-box">{{entry.gameSummary || "No summary"}}</p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}</p>
+                        </div>
+                        <div class="col s2">
+                            <div class="secondary-content">
+                                <div ng-switch="(entry.score <= 10 && entry.score > 0)">
+                                    <div ng-switch-when="true">
+                                        <!--TODO get score by user, not general score-->
+                                        <p class="rating-number center"><b><span>{{entry.score | number:2}}</span></b>
+                                        </p>
+                                        <p class="rating-stars hide-on-small-and-down">
+                                            <!--range(0,4)-->
+                                        <div ng-repeat="i in [0,1,2,3,4]">
+                                            <div ng-if="(entry.score - (i * 2) - 1 ) < 0">
+                                                <i class="material-icons">star_border</i>
+                                            </div>
+                                            <div ng-if="(entry.score - (i * 2) - 1 ) == 0">
+                                                <i class="material-icons">star_half</i>
+                                            </div>
+                                            <div ng-if="(entry.score - (i * 2) - 1) > 0">
+                                                <i class="material-icons">star</i>
+                                            </div>
                                         </div>
-                                        <div ng-if="(entry.score - (i * 2) - 1 ) == 0">
-                                            <i class="material-icons">star_half</i>
-                                        </div>
-                                        <div ng-if="(entry.score - (i * 2) - 1) > 0">
-                                            <i class="material-icons">star</i>
-                                        </div>
+                                        </p>
                                     </div>
-                                    </p>
-                                </div>
-                                <div ng-switch-default>
-                                    <p class="rating-number center"><b>Unrated</b></p>
+                                    <div ng-switch-default>
+                                        <p class="rating-number center"><b>Unrated</b></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-
-<!--&lt;!&ndash; PASSWORD RESET MODAL &ndash;&gt;-->
-<!--<div id="change-password-modal" class="modal">-->
-    <!--<c_url value="/change-password" var="postUrl" />-->
-    <!--<form_form id="change-password-form" method="POST" modelAttribute="changePasswordForm" action="${postUrl}">-->
-        <!--<input type="hidden" value="${user.username}" name="username" />-->
-        <!--<div class="modal-content">-->
-            <!--<h4 class="center">Change Your Password</h4>-->
-            <!--<div class='input-field'>-->
-                <!--<form_input type="password" path="newPassword" required="required" />-->
-                <!--<form_errors path="" cssClass="formError" element="p" Style="size: 1px"/>-->
-                <!--<form_label path="newPassword">New Password</form_label>-->
-            <!--</div>-->
-            <!--<div class='input-field'>-->
-                <!--<form_input type="password" path="repeatNewPassword" required="required"/>-->
-                <!--<form_errors path="" cssClass="formError" element="p" Style="size: 1px"/>-->
-                <!--<form_label path="repeatNewPassword">Repeat New Password</form_label>-->
-            <!--</div>-->
-            <!--<div class="row">-->
-                <!--<button type="button" class="btn waves-effect waves-light col s3 offset-s1 red lighten-1">Cancel<i class="material-icons right">close</i></button>-->
-                <!--<button type="submit" class="btn waves-effect waves-light col s3 offset-s4">Submit<i class="material-icons right">send</i></button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</form_form>-->
-<!--</div>-->
-<!--&lt;!&ndash; END PASSWORD RESET MODAL &ndash;&gt;-->
-<!--<script type="text/javascript">-->
-    <!--$(function(){-->
-        <!--$('#change-password-trigger').on("click", function() {-->
-            <!--$("#change-password-modal").openModal({-->
-                <!--dismissible: false-->
-            <!--});-->
-        <!--});-->
-
-        <!--$('#change-password-form').on("submit", function() {-->
-            <!--$(this).find("button").attr("disabled", "disabled");-->
-        <!--});-->
-
-        <!--$('#change-password-modal button[type=button]').on("click", function() {-->
-            <!--$("#change-password-modal").closeModal();-->
-        <!--});-->
-
-        <!--<c_if test="${formHasErrors}">-->
-                <!--$('#change-password-trigger').trigger("click");-->
-        <!--</c_if>-->
-
-<!--//        $("#change-password-form").on("submit", function(event) {-->
-<!--//            var errorState = false;-->
-<!--//            //TODO validate matching new password-->
-<!--//        });-->
-    <!--});-->
-<!--</script>-->
+</main>

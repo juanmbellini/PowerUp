@@ -22,11 +22,6 @@
 						<select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
 							<option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
 						</select>
-						<!--<a class="btn waves-effect waves-light {{(order == 'date')? '' : 'inactive'}}"-->
-						   <!--ng-click="sortNewest()">Newest</a>-->
-						<!---->
-						 <!--<a class="btn waves-effect waves-light {{(order == 'best')? '' : 'inactive'}}"-->
-							<!--ng-click="sortBest()">Highest Scoring</a>-->
 					</div>
 					<label>Reviews per page</label>
 				</span>
@@ -80,10 +75,12 @@
 									</p>
 								</div>
 								<div class="col s2">
-									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
 									<p class="right-align">
-										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{review.gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
-										<a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
+										<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+										<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
+										   class="material-icons red-text text-lighten-1 delete-button ">
+											<i class="material-icons right">delete</i>
+										</a>
 									</p>
 								</div>
 							</div>
