@@ -155,7 +155,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response changePassword(final UserDto userDto) {
         String newPassword = passwordEncoder.encode(userDto.getPassword());
         userService.changePassword(sessionService.getCurrentUserId(), newPassword, sessionService.getCurrentUserId());
-        mailService.sendEmailChangePassword(sessionService.getCurrentUser());
+        mailService.sendPasswordChangedEmail(sessionService.getCurrentUser());
         return Response.noContent().build();
     }
 
@@ -176,7 +176,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         String newPassword = userService.generateNewPassword();
         String hashedPassword = passwordEncoder.encode(newPassword);
         userService.changePassword(userId, hashedPassword, userId);
-        mailService.sendEmailResetPassword(userService.findById(userId).getUser(), newPassword);
+        mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
         return Response.noContent().build();
     }
 
