@@ -18,13 +18,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -33,7 +26,6 @@ import java.util.Properties;
 
 
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan({"ar.edu.itba.paw.webapp.controller",
         "ar.edu.itba.paw.webapp.persistence",
@@ -49,19 +41,10 @@ import java.util.Properties;
         @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
         //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
 })
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig {
 
     @Autowired
     private Environment environment;
-
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("WEB-INF/jsp/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
 
     @Bean
     public DataSource dataSource() {
@@ -117,21 +100,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return dsi;
     }
 
-    @Bean(initMethod = "migrate") // Migrate DB on app start
+    @Bean(initMethod = "migrate")
+        // Migrate DB on app start
     Flyway flyway() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource());
         flyway.setLocations("classpath:migration");
         return flyway;
-    }
-
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
-        registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
-        registry.addResourceHandler("/slick/**").addResourceLocations("/slick/");
     }
 
     @Bean
@@ -143,12 +118,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
 
-    //Disabled for now since an equivalent filter is added on Jersey
+    //Disabled for now since an equivalent filter is added on Jersey // TODO: remove this?
 //  @Override
 //  public void addCorsMappings(CorsRegistry registry) {
 //      registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").exposedHeaders("Link", "X-Supported-Media-Types" /*"*" is not allowed here =(*/);
