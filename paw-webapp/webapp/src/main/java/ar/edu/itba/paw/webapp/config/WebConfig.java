@@ -17,7 +17,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -85,14 +84,6 @@ public class WebConfig {
         return new JpaTransactionManager(emf);
     }
 
-    @Bean(name = "multipartResolver")
-    public CommonsMultipartResolver createMultipartResolver() {
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setDefaultEncoding("UTF-8");
-        resolver.setMaxUploadSize(2097152); //Limit uploads to 2MiB
-        return resolver;
-    }
-
     @Bean
     public DataSourceInitializer dataSourceInitializer(final DataSource ds) {
         final DataSourceInitializer dsi = new DataSourceInitializer();
@@ -118,13 +109,6 @@ public class WebConfig {
         return messageSource;
     }
 
-
-    //Disabled for now since an equivalent filter is added on Jersey // TODO: remove this?
-//  @Override
-//  public void addCorsMappings(CorsRegistry registry) {
-//      registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").exposedHeaders("Link", "X-Supported-Media-Types" /*"*" is not allowed here =(*/);
-//  }
-
     @Bean
     public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -144,9 +128,4 @@ public class WebConfig {
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;
     }
-
-//    @Bean
-//    public PlatformTransactionManager transactionManager(final DataSource ds) {
-//        return new DataSourceTransactionManager(ds);
-//    }
 }
