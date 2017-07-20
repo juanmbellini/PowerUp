@@ -1,7 +1,6 @@
 package ar.edu.itba.paw.webapp.config;
 
 import org.flywaydb.core.Flyway;
-import org.flywaydb.core.api.MigrationVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
@@ -36,14 +35,19 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan({"ar.edu.itba.paw.webapp.controller", "ar.edu.itba.paw.webapp.persistence", "ar.edu.itba.paw.webapp.service", "ar.edu.itba.paw.webapp.config", "ar.edu.itba.paw.webapp.scheduled", "ar.edu.itba.paw.webapp.mail"})
+@ComponentScan({"ar.edu.itba.paw.webapp.controller",
+        "ar.edu.itba.paw.webapp.persistence",
+        "ar.edu.itba.paw.webapp.service",
+        "ar.edu.itba.paw.webapp.config",
+        "ar.edu.itba.paw.webapp.scheduled",
+        "ar.edu.itba.paw.webapp.mail"})
 @EnableScheduling
 @PropertySources({
-    @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
-    @PropertySource(value = "classpath:config/passwords.properties", ignoreResourceNotFound = false),
-    @PropertySource(value = "classpath:config/production.properties", ignoreResourceNotFound = true),
-    @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
-    //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
+        @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
+        @PropertySource(value = "classpath:config/passwords.properties", ignoreResourceNotFound = false),
+        @PropertySource(value = "classpath:config/production.properties", ignoreResourceNotFound = true),
+        @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
+        //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -61,11 +65,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        final String hostName = environment.getRequiredProperty("db.host");
+        final Integer port = environment.getRequiredProperty("db.port", Integer.class);
+        final String dbName = environment.getRequiredProperty("db.name");
+        final String username = environment.getRequiredProperty("db.username");
+        final String password = environment.getRequiredProperty("db.password");
+        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost/paw-2016b-02");
-        dataSource.setUsername("paw-2016b-02");
-        dataSource.setPassword("Zae0lohT");
+        dataSource.setUrl("jdbc:postgresql://" + hostName + ":" + port + "/" + dbName);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
 
         return dataSource;
     }
@@ -87,6 +96,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         factoryBean.setJpaProperties(properties);
         return factoryBean;
     }
+
     @Bean
     public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
@@ -107,7 +117,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return dsi;
     }
 
-    @Bean(initMethod = "migrate")   // Migrate DB on app start
+    @Bean(initMethod = "migrate") // Migrate DB on app start
     Flyway flyway() {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource());
@@ -125,8 +135,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public MessageSource messageSource()
-    {
+    public MessageSource messageSource() {
         final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:i18n/errorMessages");
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
@@ -145,8 +154,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //      registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "PUT", "DELETE").exposedHeaders("Link", "X-Supported-Media-Types" /*"*" is not allowed here =(*/);
 //  }
 
-  @Bean
-    public JavaMailSender getMailSender(){
+    @Bean
+    public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         mailSender.setHost("smtp.gmail.com");
