@@ -2,6 +2,9 @@
 .idea/
 paw-webapp.iml
 
+# Sensitive files
+**passwords.properties
+
 ###------------------------------------------------------------------
 ### Auto-generated rules created by .ignore support plugin (hsz.mobi)
 ###------------------------------------------------------------------
@@ -128,4 +131,3 @@ nbdist/
 nbactions.xml
 .nb-gradle/
 model/java/
-paw-webapp.iml

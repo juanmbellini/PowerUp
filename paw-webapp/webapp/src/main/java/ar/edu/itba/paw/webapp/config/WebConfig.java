@@ -40,6 +40,7 @@ import java.util.Properties;
 @EnableScheduling
 @PropertySources({
     @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
+    @PropertySource(value = "classpath:config/passwords.properties", ignoreResourceNotFound = false),
     @PropertySource(value = "classpath:config/production.properties", ignoreResourceNotFound = true),
     @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
     //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
