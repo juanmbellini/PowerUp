@@ -75,15 +75,4 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <jsp-config>
-        <taglib>
-            <taglib-uri>
-                http://paw.edu.itba.edu.ar/taglibs
-            </taglib-uri>
-            <taglib-location>
-                /WEB-INF/myTags/pawTags.tld
-            </taglib-location>
-        </taglib>
-    </jsp-config>
 </web-app>

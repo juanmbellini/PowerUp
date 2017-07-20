@@ -120,7 +120,6 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
             .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**", "/favicon.ico", "/403")
             .antMatchers(HttpMethod.POST, "/api/users");
     }
 }
