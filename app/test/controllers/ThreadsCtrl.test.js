@@ -1,7 +1,7 @@
 'use strict';
 
 // TODO do I need to require loading circles here? They're only used in the view
-define(['powerUp', 'angular-mocks', 'authService', 'loadingCircle', 'loadingCircle-small', 'likesService', 'paginationService', 'threadsCtrl'], function () {
+define(['powerUp', 'angular-mocks', 'AuthService', 'loadingCircle', 'loadingCircleSmall', 'LikesService', 'PaginationService', 'ThreadsCtrl'], function () {
 
     describe('ThreadsCtrl', function () {
 

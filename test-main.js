@@ -1,5 +1,7 @@
-var allTestFiles = []
-var TEST_REGEXP = /(spec|test)\.js$/i
+'use strict';
+
+var allTestFiles = [];
+var TEST_REGEXP = /(spec|test)\.js$/i;
 
 // Get a list of all the test files to include
 Object.keys(window.__karma__.files).forEach(function (file) {
@@ -7,10 +9,10 @@ Object.keys(window.__karma__.files).forEach(function (file) {
     // Normalize paths to RequireJS module names.
     // If you require sub-dependencies of test files to be loaded as-is (requiring file extension)
     // then do not normalize the paths
-    var normalizedTestModule = file.replace(/^\/base\/|\.js$/g, '')
-    allTestFiles.push(normalizedTestModule)
+    var normalizedTestModule = file.replace(/^\/base\/|\.js$/g, '');
+    allTestFiles.push(normalizedTestModule);
   }
-})
+});
 
 require.config({
   // Karma serves files under /base, which is the basePath from your config file
@@ -45,15 +47,15 @@ require.config({
     'sweetalert.angular': 'bower_components/ngSweetAlert/SweetAlert',
     'slick-carousel': 'bower_components/slick-carousel/slick/slick',
     lightbox2: 'bower_components/lightbox2/dist/js/lightbox',
-    onComplete: 'app/scripts/directives/on-complete',
-    authService: 'app/scripts/services/AuthService',
-    loadingCircle: 'app/scripts/directives/loading-circle',
-    'loadingCircle-small': 'app/scripts/directives/loading-circle-small',
+    onComplete: 'app/scripts/directives/onComplete',
+    AuthService: 'app/scripts/services/AuthService',
+    loadingCircle: 'app/scripts/directives/loadingCircle',
+    loadingCircleSmall: 'app/scripts/directives/loadingCircleSmall',
     'csrf-service': 'app/scripts/services/CsrfService',
     'ng-file-upload': 'bower_components/ng-file-upload/ng-file-upload',
-    likesService: 'app/scripts/services/LikesService',
-    paginationService: 'app/scripts/services/PaginationService',
-    threadsCtrl: 'app/scripts/controllers/ThreadsCtrl',
+    LikesService: 'app/scripts/services/LikesService',
+    PaginationService: 'app/scripts/services/PaginationService',
+    ThreadsCtrl: 'app/scripts/controllers/ThreadsCtrl',
     'materialize.global': 'bower_components/materialize/js/global',
     'materialize.animation': 'bower_components/materialize/js/animation',
     'materialize.toasts': 'bower_components/materialize/js/toasts',
@@ -162,12 +164,12 @@ require.config({
         'angular'
       ]
     },
-    'loadingCircle-small': {
+    loadingCircleSmall: {
       deps: [
         'angular'
       ]
     },
-    authService: {
+    AuthService: {
       deps: [
         'angular'
       ]
@@ -316,12 +318,12 @@ require.config({
         'jquery'
       ]
     },
-    likesService: {
+    LikesService: {
       deps: [
         'angular'
       ]
     },
-    paginationService: {
+    PaginationService: {
       deps: [
         'angular'
       ]

@@ -10,7 +10,7 @@
  * If you want to require something that is not in test-main.js, you need to add it there AND in karma.conf.js if it's
  * not already there.
  */
-define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'authService'], function () {
+define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'AuthService'], function () {
 
     // What you are testing
     describe('AuthService', function () {
@@ -27,7 +27,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'aut
             AuthService;    // Actual AuthService
 
         // Other variables
-        var user = {id: 1, username: "paw", email: "paw@paw.paw"};
+        var user = {id: 1, username: 'paw', email: 'paw@paw.paw'};
 
         // Have angular inject everything
         beforeEach(inject(function (_$httpBackend_, _$log_, _$location_, _Restangular_, _localStorageService_, _AuthService_) {

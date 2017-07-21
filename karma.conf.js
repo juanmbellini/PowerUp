@@ -1,3 +1,4 @@
+'use strict';
 // Karma configuration
 // Generated on Fri Jul 14 2017 18:13:58 GMT-0300 (ART)
 
@@ -13,12 +14,12 @@ module.exports = function(config) {
     frameworks: ['jasmine', 'requirejs'],
 
     plugins: [
-        require("karma-jasmine"),
-        require("karma-requirejs"),
-        require("karma-ng-html2js-preprocessor"),
-        require("karma-jasmine-html-reporter"),
-        require("karma-chrome-launcher"),
-        require("karma-phantomjs-launcher")
+        require('karma-jasmine'),
+        require('karma-requirejs'),
+        require('karma-ng-html2js-preprocessor'),
+        require('karma-jasmine-html-reporter'),
+        require('karma-chrome-launcher'),
+        require('karma-phantomjs-launcher')
     ],
 
     // list of files / patterns to load in the browser
@@ -83,7 +84,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'kjhtml'/*, 'coverage'*/],
+    reporters: ['progress', 'kjhtml'/* , 'coverage'*/],
 
 
     // web server port
@@ -105,7 +106,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [/*'Chrome', */'PhantomJS'],
+    browsers: [/* 'Chrome', */'PhantomJS'],
 
 
     // Continuous Integration mode
@@ -115,5 +116,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
