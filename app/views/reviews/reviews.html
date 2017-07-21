@@ -131,48 +131,44 @@
 						</li>
 					</ul>
 					<!--END REVIEWS LIST-->
-					<!--PAGINATION-->
-					<div ng-if="totalPages > 1" class="row">
+					<!-- Page numbers -->
+					<div ng-if="reviewsPaginator.pagination.totalPages > 1" class="row">
 						<ul class="pagination center">
-							<!--Left chevron - only shown when there are > 1 pages -->
-							<div ng-if="totalPages > 1">
-
-								<li ng-if="pageNumber > 1" class="waves-effect">
-									 <!--TODO borrar. asi era antes: <a ng-href="${changePageUrl}pageNumber=${reviews.pageNumber - 1}&pageSize=${reviews.pageSize}">-->
-									<a ng-click="changePageNumber(pageNumber-1)">
-										<i class="material-icons">chevron_left</i>
-									</a>
-								</li>
-
-								<li ng-if="pageNumber <= 1" class="disabled">
-									<a href="#!">
-										<i class="material-icons">chevron_left</i>
-									</a>
-								</li>
-							</div>
+							<!-- Left chevrons - only shown when there are > 1 pages -->
+							<!--First page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber > 1 ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(1)">
+									<i class="material-icons">first_page</i>
+								</a>
+							</li>
+							<!--Previous page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber > 1 ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(searchParams.pageNumber - 1)">
+									<i class="material-icons">chevron_left</i>
+								</a>
+							</li>
 
 							<!--Page numbers - always shown-->
-
-							<li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == pageNumber ? 'active' : 'waves-effect'">
-								<a ng-if="pageIt == pageNumber"> {{pageIt}} </a>
-								<a ng-if="pageIt != pageNumber" ng-click="changePageNumber(pageIt)"> {{pageIt}} </a>
+							<li ng-repeat="pageIt in getPageRange()"  ng-class="pageIt == reviewsPaginator.pagination.pageNumber ? 'active' : 'waves-effect'">
+								<a href="" ng-click="setPageNumber(pageIt)">{{pageIt}}</a>
 							</li>
-							<!--Right chevron - only shown if there are > 1 pages-->
 
-							<div ng-if="totalPages > 1">
-								<li class="disabled" ng-if="pageNumber == totalPages">
-									<a href="#!"> <i class="material-icons">chevron_right</i> </a>
-								</li>
-
-								<li class="waves-effect" ng-if="pageNumber != totalPages">
-									<a ng-click="changePageNumber(pageNumber+1)">
-										<i class="material-icons">chevron_right</i>
-									</a>
-								</li>
-							</div>
+							<!--Right chevrons - only shown if there are > 1 pages-->
+							<!--Next page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber < reviewsPaginator.pagination.totalPages ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(reviewsPaginator.pagination.pageNumber + 1)">
+									<i class="material-icons">chevron_right</i>
+								</a>
+							</li>
+							<!--Last page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber < reviewsPaginator.pagination.totalPages ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(reviewsPaginator.pagination.totalPages)">
+									<i class="material-icons">last_page</i>
+								</a>
+							</li>
 						</ul>
 					</div>
-					<!--END PAGINATION-->
+					<!-- End page numbers -->
 				</div>
 
 				<!--NO REVIEWS-->
