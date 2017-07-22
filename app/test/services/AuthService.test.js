@@ -66,8 +66,28 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
         });
 
-        // Same shit
         describe('#getCurrentUser', function () {
+
+            describe('When not logged in', function () {
+                it('Should return null', function () {
+                    expect(AuthService.getCurrentUser()).toBeNull();
+                });
+            });
+
+            describe('When logged in', function () {
+                beforeEach(mockCurrentUser);
+
+                it('Should NOT return null', function () {
+                    expect(AuthService.getCurrentUser()).not.toBeNull();
+                });
+
+                it('Should match the current user', function () {
+                    expect(AuthService.getCurrentUser()).toEqual(user);
+                });
+            });
+        });
+
+        describe('#isCurrentUser', function () {
 
             describe('When not logged in', function () {
                 it('Should not match the current user by object', function () {
@@ -106,6 +126,12 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
         });
 
         // TODO test other exported methods
+
+        /*
+         trackToken: trackToken,
+         authenticate: authenticate,
+         logOut: logOut,
+         */
 
         /**
          * Mocks user stored in local storage
