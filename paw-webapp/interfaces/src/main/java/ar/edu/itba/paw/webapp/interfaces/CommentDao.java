@@ -5,8 +5,10 @@ import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
+import java.util.Collection;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Data Access Object for {@link ar.edu.itba.paw.webapp.model.Comment Comments}.
@@ -88,6 +90,23 @@ public interface CommentDao {
      * @return The new {@link Comment} (i.e the reply to the given {@link Comment}).
      */
     Comment reply(Comment comment, String body, User replier);
+
+
+    /**
+     * Counts the amount of {@link Comment}s the given {@link Thread}s have.
+     *
+     * @param threads A {@link Collection} of {@link Thread} to count their comments.
+     * @return A {@link Map} containing each {@link Thread} as keys, and the amount of {@link Comment}s each has.
+     */
+    Map<Thread, Long> countComments(Collection<Thread> threads);
+
+    /**
+     * Counts the amount of {@link Comment}s in reply to the given {@link Comment}s each one has.
+     *
+     * @param comments A {@link Collection} of {@link Comment} to count their replies.
+     * @return A {@link Map} containing each {@link Comment} as keys, and the amount of {@link Comment}s each has.
+     */
+    Map<Comment, Long> countReplies(Collection<Comment> comments);
 
 
     /**
