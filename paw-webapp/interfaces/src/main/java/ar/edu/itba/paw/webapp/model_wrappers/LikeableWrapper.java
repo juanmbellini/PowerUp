@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 
 /**
- * This class wraps {@link Likeable} together with the amount of likes it has.
+ * This class wraps a {@link Likeable} together with the amount of likes it has.
  */
 public class LikeableWrapper<T extends Likeable> {
 

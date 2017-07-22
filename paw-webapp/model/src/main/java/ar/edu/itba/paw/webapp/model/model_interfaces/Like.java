@@ -3,7 +3,7 @@ package ar.edu.itba.paw.webapp.model.model_interfaces;
 import ar.edu.itba.paw.webapp.model.User;
 
 /**
- * This class does not implement any method, but defines a type of entity that represents a like.
+ * This interface defines a type of entity that represents a like.
  */
 public interface Like {
 
