@@ -125,10 +125,31 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
         });
 
+        describe('#trackToken', function() {
+            var debugSpy, warningSpy;
+            beforeEach(function() {
+                debugSpy = spyOn($log, 'debug').and.callThrough();
+                warningSpy = spyOn($log, 'warn').and.callThrough();
+            });
+
+            it('Should allow one call', function() {
+                AuthService.trackToken();
+                expect(debugSpy).toHaveBeenCalledTimes(2);
+                expect(debugSpy).toHaveBeenCalledWith('Adding auth token RESPONSE interceptor');
+                expect(debugSpy).toHaveBeenCalledWith('Adding auth token REQUEST interceptor');
+            });
+
+            it('Should disregard further calls', function() {
+                AuthService.trackToken();
+                AuthService.trackToken();
+                expect(warningSpy).toHaveBeenCalled();
+                expect(warningSpy).toHaveBeenCalledWith('AuthService is already tracking the auth token. Ignoring call to trackToken().');
+            });
+        });
+
         // TODO test other exported methods
 
         /*
-         trackToken: trackToken,
          authenticate: authenticate,
          logOut: logOut,
          */
