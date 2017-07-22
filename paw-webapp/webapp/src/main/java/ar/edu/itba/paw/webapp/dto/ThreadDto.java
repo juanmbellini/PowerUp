@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
@@ -36,6 +37,9 @@ public class ThreadDto extends EntityDto {
     private String createdAt;
 
     @XmlElement
+    private Long commentCount;
+
+    @XmlElement
     private Long likeCount;
 
     @XmlElement
@@ -56,13 +60,14 @@ public class ThreadDto extends EntityDto {
     }
 
 
-    public ThreadDto(LikeableWrapper<Thread> wrapper, UriBuilder baseUri) {
+    public ThreadDto(CommentableAndLikeableWrapper<Thread> wrapper, UriBuilder baseUri) {
         super(wrapper.getEntity().getId());
         this.title = wrapper.getEntity().getTitle();
         this.body = wrapper.getEntity().getBody();
         this.createdAt = LocalDateTime.ofInstant(wrapper.getEntity().getCreatedAt().toInstant(),
                 ZoneId.systemDefault()).toString();
         this.creator = new CreatorDto(wrapper.getEntity().getCreator(), baseUri.clone());
+        this.commentCount = wrapper.getCommentCount();
         this.likeCount = wrapper.getLikeCount();
         this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
         this.commentsUrl = baseUri.clone()
@@ -110,13 +115,17 @@ public class ThreadDto extends EntityDto {
         return likedByCurrentUser;
     }
 
+    public Long getCommentCount() {
+        return commentCount;
+    }
+
     /**
      * Returns a list of {@link ThreadDto} based on the given collection of {@link Thread}.
      *
      * @param threads The collection of {@link Thread}
      * @return A list of {@link ThreadDto}.
      */
-    public static List<ThreadDto> createList(Collection<LikeableWrapper<Thread>> threads,
+    public static List<ThreadDto> createList(Collection<CommentableAndLikeableWrapper<Thread>> threads,
                                              UriBuilder uriBuilder) {
         return threads.stream().map(thread -> new ThreadDto(thread, uriBuilder.clone())).collect(Collectors.toList());
     }

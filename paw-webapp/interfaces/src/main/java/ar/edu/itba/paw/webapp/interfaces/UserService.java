@@ -3,8 +3,8 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -321,7 +321,7 @@ public interface UserService {
      * @param pageSize   The page size.
      * @return The resulting {@link Page}.
      */
-    Page<LikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize);
+    Page<CommentableAndLikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize);
 
     /**
      * Returns a paginated collection of {@link Review}, according to the given {@link User}.

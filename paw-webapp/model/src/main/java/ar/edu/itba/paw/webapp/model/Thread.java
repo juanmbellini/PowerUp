@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Commentable;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.*;
@@ -18,7 +19,7 @@ import java.util.*;
  */
 @Entity
 @Table(name = "threads")
-public class Thread implements ValidationExceptionThrower, Likeable {
+public class Thread implements ValidationExceptionThrower, Likeable, Commentable {
 
     @Id
     @SequenceGenerator(name = "threads_seq", sequenceName = "threads_id_seq", allocationSize = 1)
