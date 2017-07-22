@@ -130,14 +130,14 @@ public class CommentHibernateDao implements CommentDao {
         final Map<Long, Comment> ids = comments.stream()
                 .collect(Collectors.toMap(Commentable::getId, Function.identity()));
         //noinspection unchecked, JpaQlInspection
-        final List<Object[]> likes = em.createQuery("SELECT comment.parentComment.id, count(comment)" +
+        final List<Object[]> replies = em.createQuery("SELECT comment.parentComment.id, count(comment)" +
                 " FROM Comment comment" +
                 " WHERE comment.parentComment IN :comments" +
                 " GROUP BY comment.parentComment.id")
                 .setParameter("comments", comments)
                 .getResultList();
-        // The likes list holds Object arrays with two elements each: entity id and likes count
-        final Map<Comment, Long> result = likes.stream()
+        // The replies list holds Object arrays with two elements each: entity id and replies count
+        final Map<Comment, Long> result = replies.stream()
                 .collect(Collectors.toMap(each -> ids.get((Long) each[0]), each -> (Long) each[1]));
         comments.forEach(comment -> result.putIfAbsent(comment, 0L));
         return result;
