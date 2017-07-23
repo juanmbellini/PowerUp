@@ -28,8 +28,8 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
 
         // Other variables
         var user = {id: 1, username: 'paw', email: 'paw@paw.paw'};
-        var credentials = {username: 'paw', password: 'superSecretPassword'};
         var token = 'blah.blah._blah_-blah';
+        var credentials = {username: 'paw', password: 'superSecretPassword'};
 
         // Have angular inject everything
         beforeEach(inject(function (_$httpBackend_, _$log_, _$location_, _Restangular_, _localStorageService_, _AuthService_) {
@@ -162,6 +162,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
 
             describe('When not logged in', function() {
                 it('Does nothing', function() {
+                    AuthService.logOut();
                     // afterEach() will ensure no requests are made
                 });
             });
