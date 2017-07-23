@@ -28,6 +28,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
 
         // Other variables
         var user = {id: 1, username: 'paw', email: 'paw@paw.paw'};
+        var token = 'blah.blah._blah_-blah';
 
         // Have angular inject everything
         beforeEach(inject(function (_$httpBackend_, _$log_, _$location_, _Restangular_, _localStorageService_, _AuthService_) {
@@ -38,6 +39,15 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             LocalStorage = _localStorageService_;
             AuthService = _AuthService_;
         }));
+
+        afterEach(function() {
+            // Verify we made EXACTLY the number of network requests we expected - not more and not less
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+
+            // Clear local storage
+            LocalStorage.clearAll();
+        });
 
         /*
          * Test the isLoggedIn function. You can organize your tests however you want (e.g. before I was testing when
@@ -58,7 +68,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             describe('When logged in', function () {
                 // Pass a function to run before each test in this "describe" block. Since I want the user to be logged
                 // in, I need to mock the current user being stored in local storage.
-                beforeEach(mockCurrentUser);
+                beforeEach(mockLoggedIn);
 
                 it('Should show logged in', function () {
                     expect(AuthService.isLoggedIn()).toBe(true);
@@ -75,7 +85,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
 
             describe('When logged in', function () {
-                beforeEach(mockCurrentUser);
+                beforeEach(mockLoggedIn);
 
                 it('Should NOT return null', function () {
                     expect(AuthService.getCurrentUser()).not.toBeNull();
@@ -104,7 +114,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
 
             describe('When logged in', function () {
-                beforeEach(mockCurrentUser);
+                beforeEach(mockLoggedIn);
 
                 it('Should match the current user by object', function () {
                     expect(AuthService.isCurrentUser(user)).toBe(true);
@@ -147,30 +157,67 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
         });
 
-        // TODO test other exported methods
+        describe('#logOut', function() {
+
+            describe('When not logged in', function() {
+                it('Does nothing', function() {});
+            });
+
+            describe('When logged in', function() {
+                beforeEach(function() {
+                    mockLoggedIn();
+                    AuthService.trackToken();
+                    Restangular.setFullResponse(true);
+                });
+
+                // Extracted to variable because ESLint
+                var hasAuthorizationHeader = function(headers) {
+                    return headers.hasOwnProperty('Authorization');
+                };
+
+                it('Logs out on 204', function () {
+                    // When POSTing to auth/logout with no data and authorization token, respond 204 No Content
+                    $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/logout'), [], hasAuthorizationHeader).respond(204);
+
+                    AuthService.logOut();
+
+                    // Flush all mocked network requests. The afterEach() will make sure we made exactly the number of calls we expected - no more and no less.
+                    $httpBackend.flush();
+
+                    expect(AuthService.isLoggedIn()).toBe(false);
+                });
+
+                it('Logs out on 401', function() {
+                    $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/logout'), [], hasAuthorizationHeader).respond(401);
+
+                    AuthService.logOut();
+                    $httpBackend.flush();
+
+                    expect(AuthService.isLoggedIn()).toBe(false);
+                });
+
+                it('Does NOT log out on another 4xx', function() {
+                    $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/logout'), [], hasAuthorizationHeader).respond(404);
+
+                    AuthService.logOut();
+                    $httpBackend.flush();
+
+                    expect(AuthService.isLoggedIn()).toBe(true);
+                });
+            });
+        });
+
 
         /*
          authenticate: authenticate,
-         logOut: logOut,
          */
 
         /**
-         * Mocks user stored in local storage
+         * Mocks user and JWT stored in local storage
          */
-        function mockCurrentUser() {
-            /*
-             * spyOn lets you override or mock methods for an object, track how many times they've been called, or tell
-             * them to return something. In here I'm mocking LocalStorage.get, and having LocalStorage.get('currentUser')
-             * return the mocked user, null otherwise.
-             * If you always want to return the same thing, use .and.returnValue(yourValue)
-             */
-            spyOn(LocalStorage, 'get').and.callFake(function (key) {
-                if (key === 'currentUser') {
-                    return user;
-                } else {
-                    return null;
-                }
-            });
+        function mockLoggedIn() {
+            LocalStorage.set('currentUser', user);
+            LocalStorage.set('jwt', token);
         }
     });
 });

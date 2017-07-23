@@ -92,7 +92,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
                             headers: headers
                         };
                     } else {
-                        // $log.debug('No saved auth token, not adding to request headers');
+                        $log.warn('Attempted to add JWT to request headers but there is no saved auth token, doing nothing. Authentication may fail for this request.');
                     }
                 }
             });
@@ -135,6 +135,9 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          * @param failureCallback (Optional) Function to call on failure.
          */
         function logOut(successCallback, failureCallback) {
+            if (!isLoggedIn()) {
+                return;
+            }
             Restangular.all('auth/logout').post(undefined, undefined).then(function (response) {
                 var data = response.data;
                 setCurrentUser(null);
