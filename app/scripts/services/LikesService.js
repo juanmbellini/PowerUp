@@ -31,6 +31,9 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             if (likeableObject.hasOwnProperty('likesDisabled') && likeableObject.likesDisabled) {
                 return;
             }
+            if (likeableObject.hasOwnProperty('likedByCurrentUser') && likeableObject.likedByCurrentUser === true) {
+                return;
+            }
             likeableObject.likesDisabled = true;
 
             restangularizedObject.one('likes').put().then(function() {
