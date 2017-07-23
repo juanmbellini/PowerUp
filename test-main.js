@@ -51,7 +51,6 @@ require.config({
     AuthService: 'app/scripts/services/AuthService',
     loadingCircle: 'app/scripts/directives/loadingCircle',
     loadingCircleSmall: 'app/scripts/directives/loadingCircleSmall',
-    'csrf-service': 'app/scripts/services/CsrfService',
     'ng-file-upload': 'bower_components/ng-file-upload/ng-file-upload',
     LikesService: 'app/scripts/services/LikesService',
     PaginationService: 'app/scripts/services/PaginationService',
@@ -338,6 +337,6 @@ require.config({
   // we have to kickoff jasmine, as it is asynchronous
   callback: function() {
     // console.log('KARMA LOAD COMPLETE, starting tests');
-    window.__karma__.start()
+    window.__karma__.start();
   }
-})
+});
