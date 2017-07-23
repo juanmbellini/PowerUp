@@ -41,6 +41,8 @@ module.exports = function(config) {
       {pattern: 'bower_components/requirejs/require.js', included: false},
       {pattern: 'bower_components/restangular/dist/restangular.js', included: false},
       {pattern: 'bower_components/lodash/dist/lodash.js', included: false},
+      // Polyfill for Object.assign in PhantomJS
+      {pattern: 'node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js', included: true},
 
       // UI
       {pattern: 'bower_components/jquery/dist/jquery.js', included: false},
