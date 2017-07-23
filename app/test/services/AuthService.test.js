@@ -59,6 +59,10 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
 
             // Context for a test
             describe('When not logged in', function () {
+                beforeEach(function() {
+                    LocalStorage.clearAll();
+                });
+
                 // What you're testing
                 it('Should show not logged in', function () {
                     // Actual test, kind of like jUnit but prettier. See syntax at https://jasmine.github.io/api/2.6/
