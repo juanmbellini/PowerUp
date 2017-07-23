@@ -28,6 +28,7 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
 
         // Other variables
         var user = {id: 1, username: 'paw', email: 'paw@paw.paw'};
+        var credentials = {username: 'paw', password: 'superSecretPassword'};
         var token = 'blah.blah._blah_-blah';
 
         // Have angular inject everything
@@ -160,7 +161,9 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
         describe('#logOut', function() {
 
             describe('When not logged in', function() {
-                it('Does nothing', function() {});
+                it('Does nothing', function() {
+                    // afterEach() will ensure no requests are made
+                });
             });
 
             describe('When logged in', function() {
@@ -207,10 +210,38 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
             });
         });
 
+        describe('#authenticate', function() {
+            beforeEach(function() {
+                AuthService.trackToken();
+                Restangular.setFullResponse(true);
+            });
 
-        /*
-         authenticate: authenticate,
-         */
+            it('Logs in correctly', function () {
+                $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/login'), credentials).respond(200, user);
+                AuthService.authenticate(credentials.username, credentials.password);
+                $httpBackend.flush();
+
+                expect(AuthService.isLoggedIn()).toBe(true);
+            });
+
+            it('Sets the current user', function () {
+                $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/login'), credentials).respond(200, user);
+                AuthService.authenticate(credentials.username, credentials.password);
+                $httpBackend.flush();
+
+                expect(AuthService.getCurrentUser().id).toEqual(user.id);
+                expect(AuthService.getCurrentUser().username).toEqual(user.username);
+                expect(AuthService.getCurrentUser().email).toEqual(user.email);
+            });
+
+            it('Does NOT log in on 4xx', function() {
+                $httpBackend.expectPOST(Restangular.configuration.baseUrl.concat('/auth/login'), credentials).respond(401);
+                AuthService.authenticate(credentials.username, credentials.password);
+                $httpBackend.flush();
+
+                expect(AuthService.isLoggedIn()).toBe(false);
+            });
+        });
 
         /**
          * Mocks user and JWT stored in local storage
