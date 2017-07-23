@@ -27,7 +27,6 @@ require.config({
         feedService: 'services/FeedService',
         loadingCircle: 'directives/loadingCircle',
         loadingCircleSmall: 'directives/loadingCircleSmall',
-        'csrf-service': 'services/CsrfService',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
@@ -145,11 +144,6 @@ require.config({
             ]
         },
         feedService: {
-            deps: [
-                'angular'
-            ]
-        },
-        'csrf-service': {
             deps: [
                 'angular'
             ]
