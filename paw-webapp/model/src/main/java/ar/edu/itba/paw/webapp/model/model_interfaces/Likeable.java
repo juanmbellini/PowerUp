@@ -1,7 +1,7 @@
 package ar.edu.itba.paw.webapp.model.model_interfaces;
 
 /**
- * This interface does not implements any method, but it defines a type of entity that can be liked.
+ * This interface defines methods for an entity that can be liked.
  */
 public interface Likeable {
 

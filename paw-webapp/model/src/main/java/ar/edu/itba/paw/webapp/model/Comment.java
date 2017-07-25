@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Commentable;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
  */
 @Entity
 @Table(name = "comments")
-public class Comment implements ValidationExceptionThrower, Likeable {
+public class Comment implements ValidationExceptionThrower, Likeable, Commentable {
 
 
     @Id
@@ -205,6 +206,11 @@ public class Comment implements ValidationExceptionThrower, Likeable {
      */
     public Comment getParentComment() {
         return parentComment;
+    }
+
+    @Override
+    public long getCommentCount() {
+        return replies.size();
     }
 
     /**

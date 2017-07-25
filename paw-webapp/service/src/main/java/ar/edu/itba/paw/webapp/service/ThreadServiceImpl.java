@@ -6,17 +6,17 @@ import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
-import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -56,25 +56,38 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                                    int pageNumber, int pageSize,
-                                                    ThreadDao.SortingType sortingType,
-                                                    SortDirection sortDirection, User currentUser) {
+    public Page<CommentableAndLikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter,
+                                                                  String usernameFilter, int pageNumber, int pageSize,
+                                                                  ThreadDao.SortingType sortingType,
+                                                                  SortDirection sortDirection, User currentUser) {
         final Page<Thread> page = threadDao.getThreads(titleFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
+        final Map<Thread, Long> commentCounts = commentDao.countComments(page.getData());
         final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
         final Map<Thread, Boolean> userLikes = Optional.ofNullable(currentUser)
                 .map(user -> threadLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
-        return createLikeableNewPage(page, likeCounts, userLikes);
+
+        return ServiceHelper.fromAnotherPage(page, (thread) -> new CommentableAndLikeableWrapper.Builder<Thread>()
+                .setEntity(thread)
+                .setCommentCount(commentCounts.get(thread))
+                .setLikeCount(likeCounts.get(thread))
+                .setLikedByCurrentUser(userLikes.get(thread))
+                .build()
+        ).build();
     }
 
     @Override
-    public LikeableWrapper<Thread> findById(long threadId, User currentUser) {
+    public CommentableAndLikeableWrapper<Thread> findById(long threadId, User currentUser) {
         return Optional.ofNullable(threadDao.findById(threadId))
-                .map(thread -> new LikeableWrapper<>(thread,
-                        // If currentUser is present check if it liked the thread. If not present, get null.
-                        Optional.ofNullable(currentUser).map(user -> threadLikeDao.exists(thread, user)).orElse(null)))
+                .map(thread -> new CommentableAndLikeableWrapper.Builder<Thread>()
+                        .setEntity(thread)
+                        .setCommentCount(Optional.ofNullable(commentDao
+                                .countComments(Collections.singletonList(thread)))
+                                .map(map -> map.get(thread)).orElseThrow(IllegalStateException::new))
+                        .setLikedByCurrentUser(Optional.ofNullable(currentUser)
+                                .map(user -> threadLikeDao.exists(thread, user)).orElse(null)).build())
                 .orElse(null);
+
     }
 
     @Override
@@ -142,24 +155,37 @@ public class ThreadServiceImpl implements ThreadService {
      */
 
     @Override
-    public Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
-                                                            CommentDao.SortingType sortingType,
-                                                            SortDirection sortDirection, User currentUser) {
+    public Page<CommentableAndLikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                                          CommentDao.SortingType sortingType,
+                                                                          SortDirection sortDirection,
+                                                                          User currentUser) {
         final Thread thread = getThread(threadId); // Throws NoSuchEntityException if not exists
         final Page<Comment> page = commentDao.getThreadComments(thread, pageNumber, pageSize,
                 sortingType, sortDirection);
+        final Map<Comment, Long> commentCounts = commentDao.countReplies(page.getData());
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
         final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
                 .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
-        return createLikeableNewPage(page, likeCounts, userLikes);
+        return ServiceHelper.fromAnotherPage(page, (comment) -> new CommentableAndLikeableWrapper.Builder<Comment>()
+                .setEntity(comment)
+                .setCommentCount(commentCounts.get(comment))
+                .setLikeCount(likeCounts.get(comment))
+                .setLikedByCurrentUser(userLikes.get(comment))
+                .build()
+        ).build();
+
     }
 
     @Override
-    public LikeableWrapper<Comment> findCommentById(long commentId, User currentUser) {
+    public CommentableAndLikeableWrapper<Comment> findCommentById(long commentId, User currentUser) {
         return Optional.ofNullable(commentDao.findById(commentId))
-                .map(comment -> new LikeableWrapper<>(comment,
-                        // If currentUser is present check if it liked the thread. If not present, get null.
-                        Optional.ofNullable(currentUser).map(user -> commentLikeDao.exists(comment, user)).orElse(null)))
+                .map(comment -> new CommentableAndLikeableWrapper.Builder<Comment>()
+                        .setEntity(comment)
+                        .setCommentCount(Optional.ofNullable(commentDao
+                                .countReplies(Collections.singletonList(comment)))
+                                .map(map -> map.get(comment)).orElseThrow(IllegalStateException::new))
+                        .setLikedByCurrentUser(Optional.ofNullable(currentUser)
+                                .map(user -> commentLikeDao.exists(comment, user)).orElse(null)).build())
                 .orElse(null);
     }
 
@@ -189,17 +215,26 @@ public class ThreadServiceImpl implements ThreadService {
     }
 
     @Override
-    public Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
-                                                            CommentDao.SortingType sortingType,
-                                                            SortDirection sortDirection, User currentUser) {
+    public Page<CommentableAndLikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                                          CommentDao.SortingType sortingType,
+                                                                          SortDirection sortDirection,
+                                                                          User currentUser) {
         final Comment comment = getComment(commentId); // Throws NoSuchEntityException if not exists
-        // TODO: is liked by...
         final Page<Comment> page = commentDao.getCommentReplies(comment, pageNumber, pageSize,
                 sortingType, sortDirection);
+        final Map<Comment, Long> commentCounts = commentDao.countReplies(page.getData());
         final Map<Comment, Long> likeCounts = commentLikeDao.countLikes(page.getData());
         final Map<Comment, Boolean> userLikes = Optional.ofNullable(currentUser)
                 .map(user -> commentLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
-        return createLikeableNewPage(page, likeCounts, userLikes);
+
+        return ServiceHelper.fromAnotherPage(page, (commentLambda) ->
+                new CommentableAndLikeableWrapper.Builder<Comment>()
+                        .setEntity(commentLambda)
+                        .setCommentCount(commentCounts.get(commentLambda))
+                        .setLikeCount(likeCounts.get(commentLambda))
+                        .setLikedByCurrentUser(userLikes.get(commentLambda))
+                        .build()
+        ).build();
     }
 
     @Override
@@ -342,25 +377,6 @@ public class ThreadServiceImpl implements ThreadService {
      */
     private Optional<Comment> getCommentOptional(long commentId) {
         return Optional.ofNullable(commentDao.findById(commentId));
-    }
-
-
-    /**
-     * Creates a new {@link Page} of {@link LikeableWrapper} according to the given {@code oldPage}
-     * and the {@link Map} of {@code likeCounts}.
-     *
-     * @param oldPage    The old {@link Page} from which data is taken.
-     * @param likeCounts The {@link Map} containing the amount of likes.
-     * @param <T>        The type of elements in the {@link Page}.
-     * @return The new {@link Page}.
-     */
-    /* package */
-    static <T extends Likeable> Page<LikeableWrapper<T>> createLikeableNewPage(Page<T> oldPage,
-                                                                               Map<T, Long> likeCounts,
-                                                                               Map<T, Boolean> likes) {
-        return ServiceHelper.fromAnotherPage(oldPage, entity ->
-                new LikeableWrapper<>(entity, likeCounts.get(entity), likes.get(entity)))
-                .build();
     }
 
     /**

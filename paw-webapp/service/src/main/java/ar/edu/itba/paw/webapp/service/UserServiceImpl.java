@@ -9,8 +9,8 @@ import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +43,20 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final UserFeedDao feedDao;
 
+    private final CommentDao commentDao;
+
     private final ThreadLikeDao threadLikeDao;
 
 
     @Autowired
     public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
-                           UserFeedDao feedDao, ThreadLikeDao threadLikeDao) {
+                           UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
         this.userFollowDao = userFollowDao;
         this.feedDao = feedDao;
+        this.commentDao = commentDao;
         this.threadLikeDao = threadLikeDao;
     }
 
@@ -308,13 +311,20 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public Page<LikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize) {
+    public Page<CommentableAndLikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize) {
 
         final Page<Thread> page = feedDao.getThreads(user, pageNumber, pageSize);
+        final Map<Thread, Long> commentCounts = commentDao.countComments(page.getData());
         final Map<Thread, Long> likeCounts = threadLikeDao.countLikes(page.getData());
         final Map<Thread, Boolean> userLikes = Optional.ofNullable(user)
                 .map(userOpt -> threadLikeDao.likedBy(page.getData(), userOpt)).orElse(new HashMap<>());
-        return ThreadServiceImpl.createLikeableNewPage(page, likeCounts, userLikes);
+        return ServiceHelper.fromAnotherPage(page, (thread) -> new CommentableAndLikeableWrapper.Builder<Thread>()
+                .setEntity(thread)
+                .setCommentCount(commentCounts.get(thread))
+                .setLikeCount(likeCounts.get(thread))
+                .setLikedByCurrentUser(userLikes.get(thread))
+                .build()
+        ).build();
     }
 
     @Override

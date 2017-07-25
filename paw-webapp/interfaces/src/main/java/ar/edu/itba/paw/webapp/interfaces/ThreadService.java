@@ -4,7 +4,7 @@ import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
@@ -26,10 +26,10 @@ public interface ThreadService {
      * @param currentUser    The {@link User} performing the operation.
      * @return The resulting {@link Page}.
      */
-    Page<LikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
-                                             int pageNumber, int pageSize,
-                                             ThreadDao.SortingType sortingType, SortDirection sortDirection,
-                                             User currentUser);
+    Page<CommentableAndLikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter,
+                                                           String usernameFilter, int pageNumber, int pageSize,
+                                                           ThreadDao.SortingType sortingType,
+                                                           SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a thread by ID.
@@ -38,7 +38,7 @@ public interface ThreadService {
      * @param currentUser The {@link User} performing the operation.
      * @return The matching thread or {@code null} if not found.
      */
-    LikeableWrapper<Thread> findById(long threadId, User currentUser);
+    CommentableAndLikeableWrapper<Thread> findById(long threadId, User currentUser);
 
     /**
      * Creates a new {@link Thread} with the specified data.
@@ -117,9 +117,9 @@ public interface ThreadService {
      * @param currentUser   The {@link User} performing the operation.
      * @return The resulting page.
      */
-    Page<LikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
-                                                     CommentDao.SortingType sortingType,
-                                                     SortDirection sortDirection, User currentUser);
+    Page<CommentableAndLikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                                   CommentDao.SortingType sortingType,
+                                                                   SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a comment by ID.
@@ -128,7 +128,7 @@ public interface ThreadService {
      * @param currentUser The {@link User} performing the operation.
      * @return The matching comment or {@code null} if not found.
      */
-    LikeableWrapper<Comment> findCommentById(long commentId, User currentUser);
+    CommentableAndLikeableWrapper<Comment> findCommentById(long commentId, User currentUser);
 
 
     /**
@@ -171,9 +171,9 @@ public interface ThreadService {
      * @param currentUser   The {@link User} performing the operation.
      * @return The resulting page.
      */
-    Page<LikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
-                                                     CommentDao.SortingType sortingType,
-                                                     SortDirection sortDirection, User currentUser);
+    Page<CommentableAndLikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                                   CommentDao.SortingType sortingType,
+                                                                   SortDirection sortDirection, User currentUser);
 
     /**
      * Adds a reply to a given comment.

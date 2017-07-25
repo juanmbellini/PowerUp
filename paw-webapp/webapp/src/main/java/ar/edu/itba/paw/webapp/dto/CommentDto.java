@@ -2,7 +2,7 @@ package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.model.Comment;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -38,6 +38,9 @@ public class CommentDto extends EntityDto {
     private String inReplyToUrl;
 
     @XmlElement
+    private Long replyCount;
+
+    @XmlElement
     private Long likeCount;
 
     @XmlElement
@@ -63,7 +66,7 @@ public class CommentDto extends EntityDto {
         // For Jax-RS
     }
 
-    public CommentDto(LikeableWrapper<Comment> wrapper, UriBuilder baseUri) {
+    public CommentDto(CommentableAndLikeableWrapper<Comment> wrapper, UriBuilder baseUri) {
         super(wrapper.getEntity().getId());
         this.body = wrapper.getEntity().getBody();
         this.createdAt = LocalDateTime.ofInstant(wrapper.getEntity().getCreatedAt().toInstant(),
@@ -76,6 +79,7 @@ public class CommentDto extends EntityDto {
                         .path(Long.toString(comment.getId()))
                         .build().toString())
                 .orElse(null);
+        this.replyCount = wrapper.getCommentCount();
         this.likeCount = wrapper.getLikeCount();
         this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
         this.commenter = new ThreadDto.CreatorDto(wrapper.getEntity().getCommenter(), baseUri);
@@ -142,13 +146,17 @@ public class CommentDto extends EntityDto {
         return inReplyToUrl;
     }
 
+    public Long getReplyCount() {
+        return replyCount;
+    }
+
     /**
      * Returns a list of {@link CommentDto} based on the given collection of {@link Comment}.
      *
      * @param comments The collection of {@link Comment}
      * @return A list of {@link CommentDto}.
      */
-    public static List<CommentDto> createList(Collection<LikeableWrapper<Comment>> comments,
+    public static List<CommentDto> createList(Collection<CommentableAndLikeableWrapper<Comment>> comments,
                                               UriBuilder uriBuilder) {
         return comments.stream().map(wrapper -> new CommentDto(wrapper, uriBuilder.clone()))
                 .collect(Collectors.toList());
