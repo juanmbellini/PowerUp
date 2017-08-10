@@ -191,6 +191,22 @@ define(['powerUp', 'angular-mocks', 'restangular', 'AuthService', 'LikesService'
             // TODO test threads?
         });
 
+        describe('#isLikedByCurrentUser', function() {
+            describe('On invalid calls', function() {
+                it('Ignores if not logged in', function () {
+                    expect(LikesService.isLikedByCurrentUser(Object.assign({likedByCurrentUser: true}, thread))).toBe(false);
+                    // Also see afterEach()
+                });
+
+                it('Ignores with an invalid object', function () {
+                    mockLoggedIn(); // Make sure it doesn't fail because we're not logged in
+                    expect(LikesService.isLikedByCurrentUser({})).toBe(false);
+                });
+            });
+
+
+        });
+
         /*
         TODO: Test
             isLikedByCurrentUser: isLikedByCurrentUser,
