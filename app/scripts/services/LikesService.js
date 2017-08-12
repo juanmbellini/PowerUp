@@ -123,6 +123,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
 
         /**
          * Sets whether a likeable object is liked by the current user. Requires to be logged in.
+         * TODO: Unused, remove?
          *
          * @param {object} object       The object on which to set liked. Not modified if not logged in.
          * @param {boolean} isLiked     Whether the object is liked by the current user.
@@ -145,8 +146,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         return {
             like: like,
             unlike: unlike,
-            isLikedByCurrentUser: isLikedByCurrentUser,
-            setLikedByCurrentUser: setLikedByCurrentUser
+            isLikedByCurrentUser: isLikedByCurrentUser
         };
     }]);
 });

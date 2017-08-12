@@ -204,14 +204,22 @@ define(['powerUp', 'angular-mocks', 'restangular', 'AuthService', 'LikesService'
                 });
             });
 
+            describe('On valid call', function() {
+                beforeEach(mockLoggedIn);
 
+                it('Returns true when liked', function() {
+                    expect(LikesService.isLikedByCurrentUser(Object.assign({}, thread, {likedByCurrentUser: true}))).toBe(true);
+                });
+
+                it('Returns false when not liked', function() {
+                    expect(LikesService.isLikedByCurrentUser(Object.assign({}, thread, {likedByCurrentUser: false}))).toBe(false);
+                });
+
+                it('Returns null when unknown', function() {
+                    expect(LikesService.isLikedByCurrentUser(Object.assign({}, thread, {likedByCurrentUser: null}))).toBeNull();
+                });
+            });
         });
-
-        /*
-        TODO: Test
-            isLikedByCurrentUser: isLikedByCurrentUser,
-            setLikedByCurrentUser: setLikedByCurrentUser
-         */
 
         /**
          * Mocks user and JWT stored in local storage
