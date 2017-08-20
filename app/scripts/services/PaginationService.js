@@ -96,7 +96,13 @@ define(['powerUp'], function(powerUp) {
             if (!isInitialized(object)) {
                 return;
             }
-            getPage(object, object.pagination.pageNumber + 1, successCallback, errorCallback);
+            var newPageNumber = object.pagination.pageNumber + 1;
+            // Avoid going out of range if we have the last page number
+            if (typeof object.pagination.lastPageNumber === 'number') {
+                newPageNumber = Math.max(object.pagination.lastPageNumber, object.pagination.pageNumber + 1);
+            }
+
+            getPage(object, newPageNumber, successCallback, errorCallback);
         }
 
         /**
@@ -110,7 +116,7 @@ define(['powerUp'], function(powerUp) {
             if (!isInitialized(object)) {
                 return;
             }
-            getPage(object, object.pagination.pageNumber - 1, successCallback, errorCallback);
+            getPage(object, Math.max(1, object.pagination.pageNumber - 1), successCallback, errorCallback);
         }
 
         /**
@@ -153,28 +159,14 @@ define(['powerUp'], function(powerUp) {
          * Checks whether the given object has more pages that can be fetched.
          *
          * @param object                The object to check for pages. Must be initialized.
-         * @param fetchIfNecessary      (Optional) Whether to fetch the object from the API for metadata, if the object
-         *                              hasn't been fetched yet. Defaults to false.
-         * @return {boolean|undefined}  Returns undefined when:
-         *
-         *                                - Receiving invalid params
-         *                                - The object hasn't been fetched and fetchIfNecessary is false.
-         *                                - There's an error fetching the object
-         *                              Otherwise returns a boolean.
+         * @return {boolean|undefined}  Returns undefined on invalid params. Otherwise returns a boolean.
          */
-        function hasMorePages(object, fetchIfNecessary) {
+        function hasMorePages(object) {
             if (!isInitialized(object)) {
                 return undefined;
             }
             if (!object.pagination.pageNumber) {
-                if (fetchIfNecessary === true) {
-                    get(object, hasMorePages(object, false), function(error) {
-                        $log.error('Error getting ', object, ': ', error);
-                        return undefined;
-                    });
-                } else {
-                    return undefined;
-                }
+                return undefined;
             } else {
                 return object.pagination.pageNumber < object.pagination.totalPages;
             }
