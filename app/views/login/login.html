@@ -39,7 +39,10 @@
                   <p ng-if="!loginError" class="center formError"  style="font-size: larger;"><br/></p>
                 </div>
                 <div class="row">
-                  <button type='submit' ng-click="logIn(form)" name='btn_login' class='col s12 btn btn-large waves-effect light-blue'>Log In</button>
+                  <button type='submit' ng-click="logIn(form)" name='btn_login' class='col s12 btn btn-large waves-effect light-blue' ng-class="{'disabled': isLoggingIn}">
+                    {{isLoggingIn ? 'Logging In...' : 'Log In'}}
+                    <i ng-show="!isLoggingIn" class="material-icons right">send</i>
+                  </button>
                 </div>
               </div>
             </form>

@@ -4,12 +4,18 @@ define(['powerUp'], function(powerUp) {
     powerUp.controller('RegisterCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', function($scope, $location, $log, AuthService, Restangular) {
 
         $scope.submitted = false;
+        $scope.isRegistering = false;
+        $scope.userToSubmit = {};
 
         /**
          * Register User and returns true if it could be registered. False if not.
          * @param form
          */
         $scope.register = function(form) {
+            if ($scope.isRegistering) {
+                return;
+            }
+            $scope.isRegistering = true;
             $scope.submitted = true;
             $log.debug($scope.userToSubmit);
             if (validate($scope.userToSubmit)) {
@@ -27,8 +33,11 @@ define(['powerUp'], function(powerUp) {
                         });
                 }, function (response) {
                     $log.error('There was an error registering user', response);
+                    $scope.isRegistering = false;
                     return false;
                 });
+            } else {
+                $scope.isRegistering = false;
             }
         };
 

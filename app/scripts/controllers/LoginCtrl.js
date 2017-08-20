@@ -4,7 +4,13 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
     powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
         $scope.loginError = false;
+
+        $scope.isLoggingIn = false;
         $scope.logIn = function(form) {
+            if ($scope.isLoggingIn) {
+                return;
+            }
+            $scope.isLoggingIn = true;
             var logInAccount = {username: $scope.username, password: $scope.password};
             AuthService.authenticate($scope.username, $scope.password,
                 function() {
@@ -16,6 +22,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
                     // TODO do something more useful, e.g. show the error
                     $log.error('There was an error logging in: ', error);
                     $scope.loginError = true;
+                    $scope.isLoggingIn = false;
                 }
             );
         };
@@ -41,9 +48,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
                 } else if (inputValue === '') {
                     swal.showInputError('Please write your account email');
                     return false;
-                }
-                // Regex obtained from https://html.spec.whatwg.org/#e-mail-state-(type=email)
-                else if (!inputValue.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+                } else if (!inputValue.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+                    // Regex obtained from https://html.spec.whatwg.org/#e-mail-state-(type=email)
                     swal.showInputError('Please enter a valid email address');
                     return false;
                 }
