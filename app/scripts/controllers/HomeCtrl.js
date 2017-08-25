@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'feedService', 'LikesService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'], function(powerUp) {
 
 	powerUp.controller('HomeCtrl', function($scope, $location, Data, searchedTitleService, Restangular, SweetAlert, AuthService, FeedService, LikesService, $log, $route) {
 	    // SweetAlert.swal("BAM!");

@@ -25,7 +25,7 @@ require.config({
         lightbox2: '../../bower_components/lightbox2/dist/js/lightbox',
         onComplete: 'directives/onComplete',
         AuthService: 'services/AuthService',
-        feedService: 'services/FeedService',
+        FeedService: 'services/FeedService',
         loadingCircle: 'directives/loadingCircle',
         loadingCircleSmall: 'directives/loadingCircleSmall',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
@@ -149,7 +149,7 @@ require.config({
                 'angular'
             ]
         },
-        feedService: {
+        FeedService: {
             deps: [
                 'angular'
             ]
