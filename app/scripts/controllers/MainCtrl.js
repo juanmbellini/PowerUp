@@ -72,21 +72,27 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
         } else {
-            $log.debug('Querying API for filters');
-            $scope.filterCategories.forEach(function(filterType) {
-                Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
-                    $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
-                    remainingRequests--;
-                    $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
-                    if (remainingRequests <= 0) {
-                        $log.debug('Done fetching all filters, saving to local storage');
-                        LocalStorageService.set('filters', $scope.filters);
-                        $scope.filtersReady = true;
-                    }
-                }, function(error) {
-                    $log.error('ERROR getting filters for type ' + filterType + ': ', error);
+            if (!envService.is('production')) {
+                // FIXME optimize API call so we can use filters in production
+                $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
+                    'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
+            } else {
+                $log.debug('Querying API for filters');
+                $scope.filterCategories.forEach(function(filterType) {
+                    Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
+                        $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
+                        remainingRequests--;
+                        $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
+                        if (remainingRequests <= 0) {
+                            $log.debug('Done fetching all filters, saving to local storage');
+                            LocalStorageService.set('filters', $scope.filters);
+                            $scope.filtersReady = true;
+                        }
+                    }, function(error) {
+                        $log.error('ERROR getting filters for type ' + filterType + ': ', error);
+                    });
                 });
-            });
+            }
         }
 	}]);
 });
