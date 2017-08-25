@@ -6,6 +6,7 @@ define(['routes',
     'angular-route',
     'angular-translate',
     'angular-cookies',
+    'angular-environment',
     'restangular',
     'sweetalert.angular',
     'angular-local-storage',
@@ -15,8 +16,9 @@ define(['routes',
     var powerUp = angular.module('powerUp', [
       'ngRoute',
       'pascalprecht.translate',
-      'restangular',
       'ngCookies',
+      'environment',
+      'restangular',
       'oitozero.ngSweetAlert',
       'LocalStorageModule',
       'ngFileUpload'
@@ -33,7 +35,8 @@ define(['routes',
           'RestangularProvider',
           '$sceDelegateProvider',
           'localStorageServiceProvider',
-          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider, localStorageServiceProvider) {
+          'envServiceProvider',
+          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider, localStorageServiceProvider, envServiceProvider) {
 
             powerUp.controller = $controllerProvider.register;
             powerUp.directive = $compileProvider.directive;
@@ -75,16 +78,48 @@ define(['routes',
             $translateProvider.translations('preferredLanguage', i18n);
             $translateProvider.preferredLanguage('preferredLanguage');
 
-            RestangularProvider.setBaseUrl('http://localhost:8080/api');
-            RestangularProvider.setDefaultHttpFields({
-              withCredentials: true                                       // To allow authentication via CORS
+            // Set environment-dependent configuration
+            envServiceProvider.config({
+              domains: {
+                  development: ['localhost:9000'],
+                  staging: ['localhost:8080', 'localhost:80'],
+                  production: ['pawserver.it.itba.edu.ar', 'pawserver.itba.edu.ar', '200.5.121.138']   // TODO check whether IP should stay, we don't know if it's static
+              },
+              vars: {
+                  development: {
+                      apiUrl: 'http://localhost:8080/api'
+                  },
+                  staging: {
+                      apiUrl: './api'  // TODO test whether this works, and whether it works for both ports
+                  },
+                  production: {
+                      apiUrl: 'http://pawserver.it.itba.edu.ar/paw-2016b-02/api'
+                  },
+                  defaults: {
+                      // Defaults go here when no environment matches
+                  }
+              }
             });
+            // Set the current environment
+            envServiceProvider.check();
 
+            // Configure Restangular
+            RestangularProvider.setBaseUrl(envServiceProvider.read('apiUrl'));
+            if (!envServiceProvider.is('production')) {
+                RestangularProvider.setDefaultHttpFields({
+                    // To allow authentication via CORS
+                    withCredentials: true
+                });
+            }
 
+            // TODO remove
+            console.log('Current environment is', envServiceProvider.get(), ', API url is', RestangularProvider.configuration.baseUrl);
+
+            // Configure local storage
             localStorageServiceProvider
                 .setPrefix('paw')
                 .setStorageType('localStorage')     // Use local storage (no expiration)
-                .setDefaultToCookie(true)           // Fall back to cookies (shouldn't need this)
+                .setDefaultToCookie(false)          // DON'T fall back to cookies for security, users won't get to use the page
                 .setNotify(false, false);           // Don't broadcast setItem and removeItem events
 
           }]);

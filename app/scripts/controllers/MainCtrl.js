@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
+define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'], function (powerUp) {
 
     // TODO BORRAR
     powerUp.factory('Data', function() {
@@ -26,13 +26,13 @@ define(['powerUp', 'AuthService', 'angular-local-storage'], function (powerUp) {
     });
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService) {
+    powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', 'envService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService, envService) {
         Restangular.setFullResponse(false);
 
         AuthService.trackToken();
 
         $scope.logOut = AuthService.logOut;
-        $scope.apiLocation = 'http://localhost:8080/api';
+        $scope.apiLocation = envService.read('apiUrl');
         $scope.isLoggedIn = AuthService.isLoggedIn;
         $scope.currentUser = AuthService.getCurrentUser();
 

@@ -11,6 +11,7 @@ require.config({
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-translate': '../../bower_components/angular-translate/angular-translate',
         'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
+        'angular-environment': '../../bower_components/angular-environment/dist/angular-environment',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         moment: '../../bower_components/moment/moment',
         restangular: '../../bower_components/restangular/dist/restangular',
@@ -82,6 +83,11 @@ require.config({
             ]
         },
         'angular-translate': {
+            deps: [
+                'angular'
+            ]
+        },
+        'angular-environment': {
             deps: [
                 'angular'
             ]
