@@ -82,7 +82,7 @@ define(['routes',
             envServiceProvider.config({
               domains: {
                   development: ['localhost:9000'],
-                  staging: ['localhost:8080', 'localhost:80'],
+                  staging: ['localhost:8080', 'localhost:80', '192.168.1.42', 'lipusal.redirectme.net'],
                   production: ['pawserver.it.itba.edu.ar', 'pawserver.itba.edu.ar', '200.5.121.138']   // TODO check whether IP should stay, we don't know if it's static
               },
               vars: {
@@ -90,13 +90,14 @@ define(['routes',
                       apiUrl: 'http://localhost:8080/api'
                   },
                   staging: {
-                      apiUrl: './api'  // TODO test whether this works, and whether it works for both ports
+                      apiUrl: '/paw-2016b-02/api'
                   },
                   production: {
                       apiUrl: 'http://pawserver.it.itba.edu.ar/paw-2016b-02/api'
                   },
                   defaults: {
                       // Defaults go here when no environment matches
+                      apiURl: './api'
                   }
               }
             });
