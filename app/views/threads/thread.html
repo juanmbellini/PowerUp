@@ -139,15 +139,11 @@
 							<!--End comment action links-->
 
 							<!--Comment replies action links-->
-							<!--TODO ng-if has replies-->
-							<div class="action-links">
-								<a ng-if="!comment.replies" href="" ng-click="getCommentReplies(comment)">Load replies</a>
-								<a ng-if="comment.replies && hasMorePages(comment.replies)" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
-								<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
-								<!--Loading circles don't play well with ul .collection-item .avatar li =( -->
-								<!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
-									<!--<loading-circle-small></loading-circle-small>-->
-								<!--</div>-->
+							<div class="action-links reply-action-links">
+								<p ng-if="comment.replyCount > 0">
+                                    <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                    <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                </p>
 							</div>
 							<!--End comment replies action links-->
 
@@ -169,7 +165,7 @@
 
 							<!--Comment replies-->
 							<!--TODO FOR COMMENT RECURSION CHANGE FROM HERE-->
-							<ul class="collection" ng-if="comment.replies.length > 0">
+							<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
 								<li ng-repeat="comment in comment.replies" class="collection-item avatar">
 									<!--Comment info-->
 									<a name="{{comment.id}}"></a>
@@ -230,13 +226,12 @@
 									<!--End comment action links-->
 
 									<!--Comment replies action links-->
-									<!--TODO ng-if has replies-->
-									<div class="action-links" ng-if="!comment.deleted">
-										<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
-										<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
-										<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
-									</div>
-									<!--End comment replies action links-->
+                                    <div class="action-links reply-action-links">
+                                        <p ng-if="comment.replyCount > 0">
+                                            <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                            <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                        </p>
+                                    </div>
 
 									<!--Comment un/like section-->
 									<span class="secondary-content">
@@ -255,7 +250,7 @@
 									<!--End comment un/like section-->
 
 									<!--Comment replies-2 TODO make everything the same directive and call it recursively-->
-									<ul class="collection" ng-if="comment.replies.length > 0">
+									<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
 										<li ng-repeat="comment in comment.replies" class="collection-item avatar">
 											<!--Comment info-->
 											<a name="{{comment.id}}"></a>
@@ -315,6 +310,15 @@
 											</div>
 											<!--End comment action links-->
 
+                                            <!--Comment replies action links-->
+                                            <div class="action-links reply-action-links">
+                                                <p ng-if="comment.replyCount > 0">
+                                                    <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                                    <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                                </p>
+                                            </div>
+                                            <!--End comment replies action links-->
+
 											<!--Comment un/like section-->
 											<span class="secondary-content">
 										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
@@ -332,7 +336,7 @@
 											<!--End comment un/like section-->
 
 											<!--Comment replies-3 TODO make everything the same directive and call it recursively-->
-											<ul class="collection" ng-if="comment.replies.length > 0">
+											<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
 												<li ng-repeat="comment in comment.replies" class="collection-item avatar">
 													<!--Comment info-->
 													<a name="{{comment.id}}"></a>
@@ -393,12 +397,12 @@
 													<!--End comment action links-->
 
 													<!--Comment replies action links-->
-													<!--TODO ng-if has replies-->
-													<div class="action-links" ng-if="!comment.deleted">
-														<a ng-if="!comment.replies && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load replies</a>
-														<a ng-if="comment.replies && hasMorePages(comment.replies) && !comment.repliesBusy" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
-														<p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
-													</div>
+                                                    <div class="action-links reply-action-links">
+                                                        <p ng-if="comment.replyCount > 0">
+                                                            <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                                            <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                                        </p>
+                                                    </div>
 													<!--End comment replies action links-->
 
 													<!--Comment un/like section-->
@@ -417,7 +421,7 @@
 									</span>
 													<!--End comment un/like section-->
 													<!--Comment replies-4 TODO make everything the same directive and call it recursively-->
-													<ul class="collection" ng-if="comment.replies.length > 0">
+													<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
 														<li ng-repeat="comment in comment.replies" class="collection-item avatar">
 															<!--Comment info-->
 															<a name="{{comment.id}}"></a>
@@ -478,17 +482,47 @@
 														</li>
 													</ul>
 													<!--End comment replies-4-->
+                                                    <div class="action-links reply-action-links">
+                                                        <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                                        <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                                        <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                                        <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                                        <!--<loading-circle-small></loading-circle-small>-->
+                                                        <!--</div>-->
+                                                    </div>
 												</li>
 											</ul>
 											<!--End comment replies-3-->
-
-
+                                            <div class="action-links reply-action-links">
+                                                <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                                <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                                <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                                <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                                <!--<loading-circle-small></loading-circle-small>-->
+                                                <!--</div>-->
+                                            </div>
 										</li>
 									</ul>
 									<!--End comment replies-2-->
+                                    <div class="action-links reply-action-links">
+                                        <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                        <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                        <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                        <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                        <!--<loading-circle-small></loading-circle-small>-->
+                                        <!--</div>-->
+                                    </div>
 								</li>
 							</ul>
 							<!--End comment replies-->
+                            <div class="action-links reply-action-links">
+                                <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                <!--<loading-circle-small></loading-circle-small>-->
+                                <!--</div>-->
+                            </div>
 							<!--TODO FOR COMMENT RECURSION CHANGE UP TO HERE-->
 						</li>
 					</ul>
