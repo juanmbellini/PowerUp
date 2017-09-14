@@ -182,7 +182,27 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
             });
         };
 
+        /**
+         * Toggles showing replies for a given comment. Loads replies if necessary. If comment.replyCount == 0, does
+         * nothing.
+         *
+         * @param comment The comment to toggle replies for.
+         */
+        $scope.toggleReplies = function(comment) {
+            if (comment.replyCount === 0) {
+                return;
+            }
+            if (!comment.hasOwnProperty('replies')) {
+                $scope.getCommentReplies(comment);
+            } else {
+                comment.replies.show = !comment.replies.show;
+            }
+        };
+
         $scope.getCommentReplies = function(comment) {
+            if (comment.repliesBusy === true) {
+                return;
+            }
             if (!PaginationService.isInitialized(comment.paginatedReplies)) {
                 comment.paginatedReplies = PaginationService.initialize(Restangular.all('threads').one('comments', comment.id), 'replies', 0);  // Initialize on page 0 so the first call to nextPage will get page 1
             }
@@ -192,7 +212,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
                     comment.replies = [];
                 }
                 comment.replies = comment.replies.concat(response.data);
-                comment.replies.hasMoreReplies = PaginationService.hasMorePages(comment.paginatedReplies);
+                comment.replies.hasMorePages = PaginationService.hasMorePages(comment.paginatedReplies);
+                comment.replies.show = true;
                 comment.repliesBusy = false;
 
                 // comment.replies.forEach(function(comment) {
@@ -236,6 +257,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
                         parentComment.replies = [];
                     }
                     parentComment.replies.push(response.data);
+                    parentComment.replyCount++;
+                    parentComment.replies.show = true;
                     // TODO also consider that this may throw off future results, because we have an element that is not
                     // being considered in pagination
                     parentComment.repliesDisabled = false;
@@ -351,7 +374,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
         }
 
         /**
-         * Reecursively loops through the initial comment's replies and their replies to mark them all as logically
+         * Recursively loops through the initial comment's replies and their replies to mark them all as logically
          * deleted.
          *
          * @param initialComment The initially deleted comment

@@ -183,6 +183,14 @@ div.sweet-alert.show-input.showSweetAlert > h2 {
   margin: 5px !important;
 }
 
+.reply-action-links, a.toggle-replies {
+  color: #808080;
+}
+
+a.toggle-replies:hover {
+  text-decoration: underline;
+}
+
 button#clear-filters, button#submit-search {
   height:47px;
 }
