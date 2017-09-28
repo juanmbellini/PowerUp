@@ -2,13 +2,14 @@ package ar.edu.itba.paw.webapp.controller;
 
 
 import ar.edu.itba.paw.webapp.dto.ReviewDto;
-import ar.edu.itba.paw.webapp.dto.ThreadDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static ar.edu.itba.paw.webapp.controller.ReviewJerseyController.END_POINT;
@@ -57,9 +59,6 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     // ======== Basic review operation ========
 
 
-
-
-
     @GET
     public Response getReviews(@QueryParam("orderBy") @DefaultValue("id") final ReviewDao.SortingType sortingType,
                                @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
@@ -72,27 +71,28 @@ public class ReviewJerseyController implements UpdateParamsChecker {
                                @QueryParam("username") @DefaultValue("") final String username) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+
+        final Page<LikeableWrapper<Review>> reviews = reviewService.getReviews(gameId, gameName, userId, username,
+                pageNumber, pageSize, sortingType, sortDirection, sessionService.getCurrentUser());
+        final Map<String, Object> paramsForPaginationMap = JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("gameId", gameId)
+                .addParameter("gameName", gameName)
+                .addParameter("userId", userId)
+                .addParameter("username", username)
+                .build();
         return JerseyControllerHelper
-                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        reviewService.getReviews(gameId, gameName, userId, username, pageNumber, pageSize,
-                                sortingType, sortDirection, sessionService.getCurrentUser()),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, reviews,
                         (reviewPage) -> new GenericEntity<List<ReviewDto>>(ReviewDto.createList(reviewPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .addParameter("gameId", gameId)
-                                .addParameter("gameName", gameName)
-                                .addParameter("userId", userId)
-                                .addParameter("username", username)
-                                .build());
+                        }, paramsForPaginationMap);
     }
 
     @GET
     @Path("/{id : \\d+}")
     public Response getById(@PathParam("id") final long id) {
-        if (id <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("id", id, idLambda -> idLambda <= 0));
+
         return Optional.ofNullable(reviewService.findById(id, sessionService.getCurrentUser()))
                 .map(review -> Response.ok(new ReviewDto(review, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
@@ -104,7 +104,8 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         if (reviewDto == null) {
             throw new MissingJsonException();
         }
-        Review review = reviewService.create(reviewDto.getGameId(), reviewDto.getBody(),
+
+        final Review review = reviewService.create(reviewDto.getGameId(), reviewDto.getBody(),
                 reviewDto.getStoryScore(), reviewDto.getGraphicsScore(), reviewDto.getAudioScore(),
                 reviewDto.getControlsScore(), reviewDto.getFunScore(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
@@ -117,6 +118,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     @Consumes(value = {MediaType.APPLICATION_JSON})
     public Response updateReview(@PathParam("id") final long reviewId, final ReviewDto reviewDto) {
         checkUpdateValues(reviewId, "id", reviewDto);
+
         reviewService.update(reviewId, reviewDto.getBody(), reviewDto.getStoryScore(), reviewDto.getGraphicsScore(),
                 reviewDto.getAudioScore(), reviewDto.getControlsScore(), reviewDto.getFunScore(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
@@ -126,9 +128,9 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     @DELETE
     @Path("/{id : \\d+}")
     public Response deleteReview(@PathParam("id") final long reviewId) {
-        if (reviewId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("id", reviewId, id -> id <= 0));
+
         reviewService.delete(reviewId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -138,9 +140,9 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     public Response reviewsOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
-                .type(MediaType.TEXT_HTML)                                              //Required by CORS
-                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
-                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+                .type(MediaType.TEXT_HTML)
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET") // TODO: PUT and DELETE are not supported methods for /reviews
+                .header("Access-Control-Allow-Headers", "Content-Type");  // Required by CORS
         return result.build();
     }
 
@@ -152,57 +154,52 @@ public class ReviewJerseyController implements UpdateParamsChecker {
 
 
     @PUT
-    @Path("/{reviewId : \\d+}/likes")
-    public Response likeReview(@SuppressWarnings("RSReferenceInspection") @PathParam("reviewId") final long reviewId) {
-        if (reviewId <= 0) {
-            throw new IllegalParameterValueException("reviewId");
-        }
+    @Path("/{id : \\d+}/likes")
+    public Response likeReview(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long reviewId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("id", reviewId, id -> id <= 0));
+
         reviewService.likeReview(reviewId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
     @DELETE
-    @Path("/{reviewId : \\d+}/likes")
-    public Response unlikeReview(@SuppressWarnings("RSReferenceInspection") @PathParam("reviewId") final long reviewId) {
-        if (reviewId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+    @Path("/{id : \\d+}/likes")
+    public Response unlikeReview(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long reviewId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("id", reviewId, id -> id <= 0));
+
         reviewService.unlikeReview(reviewId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
     @GET
-    @Path("/{reviewId : \\d+}/likes")
-    public Response getReviewLikers(@QueryParam("orderBy") @DefaultValue("id")
-                                    final ReviewLikeDao.SortingType sortingType,
-                                    @QueryParam("sortDirection") @DefaultValue("ASC")
-                                    final SortDirection sortDirection,
+    @Path("/{id : \\d+}/likes")
+    public Response getReviewLikers(@QueryParam("orderBy") @DefaultValue("id") final ReviewLikeDao.SortingType sortingType,
+                                    @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                    @SuppressWarnings("RSReferenceInspection") @PathParam("reviewId")
-                                    final long reviewId) {
+                                    @SuppressWarnings("RSReferenceInspection") @PathParam("id") final long reviewId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+
+        final Page<User> likers = reviewService
+                .getUsersLikingTheReview(reviewId, pageNumber, pageSize, sortingType, sortDirection);
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        reviewService
-                                .getUsersLikingTheReview(reviewId, pageNumber, pageSize, sortingType, sortDirection),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, likers,
                         (userPage) -> new GenericEntity<List<UserDto>>(UserDto
                                 .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .build());
+                        });
     }
 
     @OPTIONS
-    @Path("/{reviewId : \\d+}/likes")
-    public Response reviewLikeOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("reviewId") final long reviewId) {
+    @Path("/{id : \\d+}/likes")
+    public Response reviewLikeOptions(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long reviewId) {
         return Response.noContent()
                 .type(MediaType.TEXT_HTML)  // Required by CORS
-                .header("Access-Control-Allow-Methods", "PUT,DELETE")
+                .header("Access-Control-Allow-Methods", "PUT,DELETE,GET")
                 .header("Access-Control-Allow-Headers", "Content-Type")    // Required by CORS
                 .build();
     }
