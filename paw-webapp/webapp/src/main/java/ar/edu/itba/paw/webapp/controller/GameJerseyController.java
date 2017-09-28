@@ -2,17 +2,19 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static ar.edu.itba.paw.webapp.controller.GameJerseyController.END_POINT;
 
@@ -59,21 +61,22 @@ public class GameJerseyController {
 
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+
+        final Page<Game> games = gameService.searchGames(name,
+                createFiltersMap(publishers, developers, genres, keywords, platforms),
+                orderCategory, sortDirection == SortDirection.ASC, pageSize, pageNumber);
+        final Map<String, Object> paramsForPaginationMap = JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("name", name)
+                .addParameter("publisher", publishers.toArray())
+                .addParameter("developer", developers.toArray())
+                .addParameter("genre", genres.toArray())
+                .addParameter("keyword", keywords.toArray())
+                .addParameter("platform", platforms.toArray())
+                .build();
         return JerseyControllerHelper
-                .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection,
-                        gameService.searchGames(name,
-                                createFiltersMap(publishers, developers, genres, keywords, platforms),
-                                orderCategory, sortDirection == SortDirection.ASC, pageSize, pageNumber),
+                .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection, games,
                         (gamePage) -> new GenericEntity<List<GameDto>>(GameDto.createList(gamePage.getData())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .addParameter("name", name)
-                                .addParameter("publisher", publishers.toArray())
-                                .addParameter("developer", developers.toArray())
-                                .addParameter("genre", genres.toArray())
-                                .addParameter("keyword", keywords.toArray())
-                                .addParameter("platform", platforms.toArray())
-                                .build());
+                        }, paramsForPaginationMap);
 
     }
 
@@ -81,33 +84,23 @@ public class GameJerseyController {
     @Path("/{id : \\d+}")
     public Response findById(@PathParam("id") final long id) {
         JerseyControllerHelper.checkParameter("id", id, value -> value <= 0);
-        final Game game = gameService.findById(id);
-        return game == null ?
-                Response.status(Response.Status.NOT_FOUND).build() : Response.ok(new GameDto(game)).build();
+
+        return Optional.ofNullable(gameService.findById(id))
+                .map(game -> Response.ok(new GameDto(game)).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @GET
     @Path("/{id : \\d+}/related-games")
     public Response getRelatedGames(@PathParam("id") final long gameId) {
-        if (gameId <= 0) {
-            throw new IllegalParameterValueException("id");
-        }
-        Set<FilterCategory> filters = new HashSet<>();
-        filters.add(FilterCategory.platform);
-        filters.add(FilterCategory.genre);
-        Collection<Game> relatedGames = gameService.findRelatedGames(gameId, filters);
+        JerseyControllerHelper.checkParameter("id", gameId, value -> value <= 0);
+
+        final Set<FilterCategory> filters = Stream.of(FilterCategory.platform, FilterCategory.genre)
+                .collect(Collectors.toSet());
+        final Collection<Game> relatedGames = gameService.findRelatedGames(gameId, filters);
         return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(relatedGames)) {
         }).build();
     }
-
-
-//    @GET
-//    @Path("/filters")
-//    public Response getFilters() {
-//        return Response
-//                .ok(new GenericEntity<List<FilterCategoryDto>>(FilterCategoryDto.createList(uriInfo)) {
-//                }).build();
-//    }
 
     @GET
     @Path("/filters/{type}")
