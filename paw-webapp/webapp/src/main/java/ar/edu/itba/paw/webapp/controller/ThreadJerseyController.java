@@ -4,13 +4,14 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.CommentDto;
 import ar.edu.itba.paw.webapp.dto.ThreadDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.Comment;
-import ar.edu.itba.paw.webapp.model.CommentLike;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static ar.edu.itba.paw.webapp.controller.ThreadJerseyController.END_POINT;
@@ -72,27 +74,27 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                                @QueryParam("username") @DefaultValue("") final String username) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+
+        final Page<CommentableAndLikeableWrapper<Thread>> threads = threadService.getThreads(title, userId, username,
+                pageNumber, pageSize, sortingType, sortDirection, sessionService.getCurrentUser());
+        final Map<String, Object> paramsForPaginationMap = JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("title", title)
+                .addParameter("userId", userId)
+                .addParameter("username", username)
+                .build();
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getThreads(title, userId, username,
-                                pageNumber, pageSize, sortingType, sortDirection, sessionService.getCurrentUser()),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, threads,
                         (threadPage) -> new GenericEntity<List<ThreadDto>>(ThreadDto.createList(threadPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .addParameter("title", title)
-                                .addParameter("userId", userId)
-                                .addParameter("username", username)
-                                .build());
+                        }, paramsForPaginationMap);
     }
 
     @GET
     @Path("/{threadId : \\d+}")
     public Response getById(@PathParam("threadId") final long id) {
-        if (id <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("threadId", id, idLambda -> idLambda <= 0));
+
         return Optional.ofNullable(threadService.findById(id, sessionService.getCurrentUser()))
                 .map(thread -> Response.ok(new ThreadDto(thread, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
@@ -104,18 +106,19 @@ public class ThreadJerseyController implements UpdateParamsChecker {
         if (threadDto == null) {
             throw new MissingJsonException();
         }
+
         final Thread thread = threadService.create(threadDto.getTitle(), threadDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(thread.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
-
     @PUT
     @Path("/{threadId : \\d+}")
     public Response updateThread(@PathParam("threadId") final long threadId,
                                  final ThreadDto threadDto) {
         checkUpdateValues(threadId, "threadId", threadDto);
+
         threadService.update(threadId, threadDto.getTitle(), threadDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -124,9 +127,9 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     @DELETE
     @Path("/{threadId : \\d+}")
     public Response deleteThread(@PathParam("threadId") final long threadId) {
-        if (threadId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("threadId", threadId, idLambda -> idLambda <= 0));
+
         threadService.delete(threadId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -157,9 +160,9 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     @PUT
     @Path("/{threadId : \\d+}/" + LIKES_END_POINT)
     public Response likeThread(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId) {
-        if (threadId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("threadId", threadId, idLambda -> idLambda <= 0));
+
         threadService.likeThread(threadId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -168,9 +171,9 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     @DELETE
     @Path("/{threadId : \\d+}/" + LIKES_END_POINT)
     public Response unlikeThread(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId) {
-        if (threadId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("threadId", threadId, idLambda -> idLambda <= 0));
+
         threadService.unlikeThread(threadId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -178,26 +181,22 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     @GET
     @Path("/{threadId : \\d+}/" + LIKES_END_POINT)
-    public Response getThreadLikers(@QueryParam("orderBy") @DefaultValue("id")
-                                    final ThreadLikeDao.SortingType sortingType,
-                                    @QueryParam("sortDirection") @DefaultValue("ASC")
-                                    final SortDirection sortDirection,
+    public Response getThreadLikers(@QueryParam("orderBy") @DefaultValue("id") final ThreadLikeDao.SortingType sortingType,
+                                    @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                     @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                    @SuppressWarnings("RSReferenceInspection") @PathParam("threadId")
-                                    final long threadId) {
+                                    @SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
-                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
+                .addParameter("threadId", threadId, idLambda -> idLambda <= 0));
+
+        final Page<User> usersLiking = threadService
+                .getUsersLikingTheThread(threadId, pageNumber, pageSize, sortingType, sortDirection);
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService
-                                .getUsersLikingTheThread(threadId, pageNumber, pageSize, sortingType, sortDirection),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, usersLiking,
                         (userPage) -> new GenericEntity<List<UserDto>>(UserDto
                                 .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .build());
+                        });
     }
 
     @OPTIONS
@@ -213,37 +212,33 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     // ======== Thread comments ========
 
-
     @GET
     @Path("/{threadId : \\d+}/" + COMMENTS_END_POINT)
-    public Response getThreadComments(@QueryParam("orderBy") @DefaultValue("date")
-                                      final CommentDao.SortingType sortingType,
-                                      @QueryParam("sortDirection") @DefaultValue("ASC")
-                                      final SortDirection sortDirection,
+    public Response getThreadComments(@QueryParam("orderBy") @DefaultValue("date") final CommentDao.SortingType sortingType,
+                                      @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                       @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                       @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                      @SuppressWarnings("RSReferenceInspection") @PathParam("threadId")
-                                      final long threadId) {
+                                      @SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("threadId", threadId, id -> id <= 0));
+
+        final Page<CommentableAndLikeableWrapper<Comment>> comments = threadService
+                .getThreadComments(threadId, pageNumber, pageSize, sortingType, sortDirection,
+                        sessionService.getCurrentUser());
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getThreadComments(threadId, pageNumber, pageSize, sortingType, sortDirection,
-                                sessionService.getCurrentUser()),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, comments,
                         (commentPage) -> new GenericEntity<List<CommentDto>>(CommentDto
                                 .createList(commentPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        }, JerseyControllerHelper.getParameterMapBuilder().clear().build());
+                        });
     }
 
     @GET
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}")
-    public Response getCommentById(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                   final long commentId) {
-        if (commentId <= 0) {
-            throw new IllegalParameterValueException("commentId");
-        }
+    public Response getCommentById(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("commentId", commentId, idLambda -> idLambda <= 0));
+
         return Optional.ofNullable(threadService.findCommentById(commentId, sessionService.getCurrentUser()))
                 .map(thread -> Response.ok(new CommentDto(thread, uriInfo.getBaseUriBuilder())).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
@@ -252,12 +247,12 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     @POST
     @Path("/{threadId : \\d+}/" + COMMENTS_END_POINT)
     @Consumes(value = {MediaType.APPLICATION_JSON})
-    public Response createComment(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId")
-                                  final long threadId,
+    public Response createComment(@SuppressWarnings("RSReferenceInspection") @PathParam("threadId") final long threadId,
                                   final CommentDto commentDto) {
         if (commentDto == null) {
             throw new MissingJsonException();
         }
+
         final Comment comment = threadService.comment(threadId, commentDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = getNewCommentLocation(uriInfo.getBaseUriBuilder(), comment);
@@ -269,6 +264,7 @@ public class ThreadJerseyController implements UpdateParamsChecker {
     public Response editComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId,
                                 final CommentDto commentDto) {
         checkUpdateValues(commentId, "commentId", commentDto);
+
         threadService.editComment(commentId, commentDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -276,11 +272,10 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     @DELETE
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}")
-    public Response deleteComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                  final long commentId) {
-        if (commentId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+    public Response deleteComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("commentId", commentId, idLambda -> idLambda <= 0));
+
         threadService.deleteComment(commentId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -312,30 +307,30 @@ public class ThreadJerseyController implements UpdateParamsChecker {
                                @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                               @SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                               final long commentId) {
+                               @SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("commentId", commentId, id -> id <= 0));
+
+        final Page<CommentableAndLikeableWrapper<Comment>> replies = threadService
+                .getCommentReplies(commentId, pageNumber, pageSize, sortingType, sortDirection,
+                        sessionService.getCurrentUser());
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService.getCommentReplies(commentId, pageNumber, pageSize, sortingType, sortDirection,
-                                sessionService.getCurrentUser()),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, replies,
                         (commentPage) -> new GenericEntity<List<CommentDto>>(CommentDto
                                 .createList(commentPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        }, JerseyControllerHelper.getParameterMapBuilder().clear().build());
+                        });
     }
 
 
     @POST
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + REPLIES_END_POINT)
-    public Response replyComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                 final long commentId,
+    public Response replyComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId,
                                  final CommentDto commentDto) {
         if (commentDto == null) {
             throw new MissingJsonException();
         }
+
         final Comment reply = threadService.replyToComment(commentId, commentDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = getNewCommentLocation(uriInfo.getBaseUriBuilder(), reply);
@@ -357,11 +352,10 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     @PUT
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
-    public Response likeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                final long commentId) {
-        if (commentId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+    public Response likeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("commentId", commentId, idLambda -> idLambda <= 0));
+
         threadService.likeComment(commentId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -369,11 +363,10 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     @DELETE
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
-    public Response unlikeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                  final long commentId) {
-        if (commentId <= 0) {
-            throw new IllegalParameterValueException("threadId");
-        }
+    public Response unlikeComment(@SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
+        JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
+                .addParameter("commentId", commentId, idLambda -> idLambda <= 0));
+
         threadService.unlikeComment(commentId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -381,26 +374,22 @@ public class ThreadJerseyController implements UpdateParamsChecker {
 
     @GET
     @Path("/" + COMMENTS_END_POINT + "/{commentId : \\d+}" + "/" + LIKES_END_POINT)
-    public Response getCommentLikers(@QueryParam("orderBy") @DefaultValue("id")
-                                     final CommentLikeDao.SortingType sortingType,
-                                     @QueryParam("sortDirection") @DefaultValue("ASC")
-                                     final SortDirection sortDirection,
+    public Response getCommentLikers(@QueryParam("orderBy") @DefaultValue("id") final CommentLikeDao.SortingType sortingType,
+                                     @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                      @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                      @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
-                                     @SuppressWarnings("RSReferenceInspection") @PathParam("commentId")
-                                     final long commentId) {
+                                     @SuppressWarnings("RSReferenceInspection") @PathParam("commentId") final long commentId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
-                .getPaginationReadyParametersWrapper(pageSize, pageNumber));
+                .getPaginationReadyParametersWrapper(pageSize, pageNumber)
+                .addParameter("commentId", commentId, idLambda -> idLambda <= 0));
+
+        final Page<User> usersLiking = threadService
+                .getUsersLikingTheComment(commentId, pageNumber, pageSize, sortingType, sortDirection);
         return JerseyControllerHelper
-                .createCollectionGetResponse(
-                        uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        threadService
-                                .getUsersLikingTheComment(commentId, pageNumber, pageSize, sortingType, sortDirection),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, usersLiking,
                         (userPage) -> new GenericEntity<List<UserDto>>(UserDto
                                 .createListWithoutFollowCount(userPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .build());
+                        });
     }
 
     @OPTIONS
