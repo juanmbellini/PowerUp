@@ -26,7 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return Optional.ofNullable(us.findByUsername(username))
                 .map(UserWithFollowCountsWrapper::getUser)
                 .map(user -> new org.springframework.security.core.userdetails.User(username, user.getHashedPassword(),
-                        user.getAuthorities().stream().map(Enum::name).map(SimpleGrantedAuthority::new)
+                        user.getAuthorities().stream()
+                                .map(Enum::name)
+                                .map(SimpleGrantedAuthority::new)
                                 .collect(Collectors.toList())))
                 .orElseThrow(() -> new UsernameNotFoundException("User " + username + " does not exist"));
     }
