@@ -60,25 +60,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
             $location.path('search');
         };
 
-        /**
-         * Gets the range of pages to include in the pagination links on the bottom of the page. Ensures that no link
-         * will go out of range of total page count (either left or right).
-         *
-         * @return {Array}
-         */
-        $scope.getPageRange = function () {
-            if (!$scope.gamesPaginator.pagination.totalPages) {
-                return [];
-            }
-            var deltaPages = 4; // How many pages before and after to show
-            var result = [];
-            for (var i = -deltaPages; i <= deltaPages; i++) {
-                var page = $scope.gamesPaginator.pagination.pageNumber + i;
-                if (page >= 1 && page <= $scope.gamesPaginator.pagination.totalPages) {
-                    result.push(page);
-                }
-            }
-            return result;
+        $scope.getPageRange = function(deltaPages) {
+            return PaginationService.getPageRange($scope.gamesPaginator, deltaPages);
         };
 
         $scope.clearFilters = function () {

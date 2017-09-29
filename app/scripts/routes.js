@@ -51,7 +51,7 @@ define([], function() {
             },
             '/reviews': {
                 templateUrl: 'views/reviews/reviews.html',
-                controller: 'ReviewCtrl'
+                controller: 'ReviewsCtrl'
             }
             /* ===== yeoman hook ===== */
             /* Do not remove these commented lines! Needed for auto-generation */

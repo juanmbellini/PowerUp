@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'LikesService'], function(powerUp) {
+define(['powerUp', 'LikesService', 'AuthService', 'PaginationService'], function(powerUp) {
 
-    powerUp.controller('ReviewCtrl', function($scope, Restangular, $location, AuthService, $log, $route, LikesService) {
+    powerUp.controller('ReviewsCtrl', function($scope, Restangular, $location, AuthService, $log, $route, LikesService, PaginationService) {
 
         Restangular.setFullResponse(true);
         $scope.canWriteReview = false;
@@ -18,7 +18,7 @@ define(['powerUp', 'LikesService'], function(powerUp) {
         $scope.userId = $location.search().userId;
         $scope.gameId = $location.search().gameId;
         if (!$scope.userId && !$scope.gameId) {
-            console.log('No gameId nor userId');
+            $log.warn('No gameId nor userId, redirecting to home');
             $location.search({});
             $location.path('');
         }
@@ -29,13 +29,20 @@ define(['powerUp', 'LikesService'], function(powerUp) {
 
         $scope.isLoggedIn = AuthService.isLoggedIn();
 
+        /*
+         * TODO: Game/User and reviews are fetched independently, but we need both requests to complete before rendering
+         * anything. Consider using a counter or something to show a loading circle until everything is ready.
+         *
+         * Also see if anything can be done about the 3N requests being fired to show extra data; consider adding this
+         * information to the original reviews API call.
+         */
 
         // TODO delete duplicated
         if ($scope.gameId) {
             Restangular.one('games', $scope.gameId).get().then(function(response) {
                 var game = response.data;
                 $scope.game = game;
-                console.log('Game: ', game);
+                $log.debug('Game: ', game);
                 if ($scope.game !== null) {
                     // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. review)
                 } else {
@@ -44,16 +51,16 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                     $location.path('');
                 }
             }, function(response) {
-                console.log('Error with status code', response.status); // TODO handle error
+                $log.error('Error with status code', response.status); // TODO handle error
                 $location.search({});
                 $location.path('');
             });
         }
        if ($scope.userId) {
-           Restangular.one('users', $scope.userId).get().then(function(response) {
+            Restangular.one('users', $scope.userId).get().then(function(response) {
                var user = response.data;
                $scope.user = user;
-               console.log('User: ', user);
+                $log.debug('User: ', user);
                if ($scope.user !== null) {
                    // $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. review)
                } else {
@@ -62,18 +69,71 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                    $location.path('');
                }
            }, function(response) {
-               console.log('Error with status code', response.status); // TODO handle error
+               $log.error('Error with status code', response.status); // TODO handle error
                $location.search({});
                $location.path('');
            });
        }
+
+       // Pagination control
+        $scope.reviewsPaginator = PaginationService.initialize(Restangular.all('reviews'), undefined, $scope.pageNumber, $scope.pageSize, $scope.orderBy, $scope.sortDirection);
+
+        PaginationService.setRequestParams($scope.reviewsPaginator, {gameId: $scope.gameId, userId: $scope.userId});
+
+        $scope.getPageRange = function(deltaPages) {
+            return PaginationService.getPageRange($scope.reviewsPaginator, deltaPages);
+        };
+
+        // Automatically get requested reviews
+        PaginationService.get($scope.reviewsPaginator, function(response) {
+            // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay review para ese usuario.
+            $scope.reviews = response.data;
+            $log.debug('Found reviews: ', $scope.reviews);
+            $scope.headersPagination = response.headers();  // TODO remove, use $scope.reviewsPaginator.pagination
+
+            $scope.checkCanWriteReview();
+            // $scope.updatePagination();   // TODO remove or merge code with PaginationService.getPageRange()
+
+            // Get extra info for each review
+            angular.forEach($scope.reviews, function (review, i, array) {
+                // The score that the creator left for the game
+                // TODO include this in API response? Why may the API not return any data for this?
+                Restangular.one('users', review.userId).all('game-scores').getList({gameId: review.gameId}).then(function (response) {
+                    var gameScore = response.data;
+                    if (gameScore.length > 0) {
+                        array[i].overallScore = gameScore[0].score;
+                    }
+                }, function(error) {
+                    $log.error("Couldn't get user #" + review.userId + "'s score for game #" + review.gameId + ': ', error);
+                });
+
+                // Whether the creator is followed by the current user
+                // TODO include this in API response?
+                if (AuthService.isLoggedIn()) {
+                    Restangular.one('users', review.userId).get().then(function (response) {
+                        var reviewCreator = response.data;
+                        array[i].followedByCurrentUser = reviewCreator.social.followedByCurrentUser;
+                    }, function(error) {
+                        $log.error("Couldn't get user #" + review.userId + "'s social info for review #" + review.id + ': ', error);
+                    });
+                }
+
+                // All the creator's shelves that the reviewed game belongs to
+                Restangular.one('users', review.userId).all('shelves').getList({gameId: review.gameId}).then(function (response) {
+                    array[i].shelves = response.data;
+                });
+            });
+        }, function(error) {
+            $log.error('There was an error getting reviews: ', error, '; setting page number to 1');
+            $location.search('pageNumber', 1);
+        });
 
         /**
          * Calculates the overallReviewScore of a review and returns it
          * @param review
          * @returns {number}
          */
-       $scope.overallReviewScore = function(review) {
+        $scope.overallReviewScore = function(review) {
             var fields = ['storyScore', 'graphicsScore', 'audioScore', 'controlsScore', 'funScore'];
             var result = 0;
             fields.forEach(function(field) {
@@ -86,8 +146,8 @@ define(['powerUp', 'LikesService'], function(powerUp) {
         };
 
         /**
-         * Check if the user is logged. If he is, check if he can write a review by checking if he has another review already written.
-         * Set the variable $scope.canWriteReview to true if he can write a review and to false if he cannot.
+         * Checks if logged in. If so, checks whether current user can write a review by checking if they have another
+         * review already written. Sets result as boolean to $scope.canWriteReview.
          */
         $scope.checkCanWriteReview = function() {
             if ($scope.userId || !AuthService.isLoggedIn() || !$scope.gameId) {
@@ -96,13 +156,9 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                 var currentUserUsername = AuthService.getCurrentUser().username;
                 Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
                     var reviews = response.data;
-                    if (reviews.length > 0) {
-                        $scope.canWriteReview = false;
-                    } else {
-                        $scope.canWriteReview = true;
-                    }
+                    $scope.canWriteReview = reviews.length === 0;
                 }, function(response) {
-                    console.log('There was an error getting reviews, ', response);
+                    $log.error('There was an error checking whether the current user can write a review: ', response, '; assuming false');
                     $scope.canWriteReview = false;
                 });
             }
@@ -116,6 +172,8 @@ define(['powerUp', 'LikesService'], function(powerUp) {
             review.remove().then(function(response) {
                 var data = response.data;
                 $log.info('Success: ', data);
+                // TODO revise this, reloading the page with one result less may result in an out-of-range error.
+                // Consider resetting to page 1, or at least trying to go 1 page back if there's an error after the reload
                 $route.reload();
                 // $scope.review = $scope.review.filter(function(reviewToFilter) {
                 //     return reviewToFilter.id !== review.id;
@@ -128,46 +186,18 @@ define(['powerUp', 'LikesService'], function(powerUp) {
             });
         };
 
-        Restangular.all('reviews').getList({gameId: $scope.gameId, userId: $scope.userId, pageSize: $scope.pageSize, pageNumber: $scope.pageNumber}).then(function (response) {
-            // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay review para ese usuario.
-            var reviews = response.data;
-            $scope.reviews = reviews;
-            console.log('foundReviews', reviews);
-            $scope.headersPagination = response.headers();
-            console.log($scope.headersPagination);
-            angular.forEach(reviews, function (reviewRef, index, reviewArray) {
-                Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: reviewRef.gameId}).then(function (response) {
-                    var gameScore = response.data;
-                    if (gameScore.length > 0) {
-                        reviewArray[index].overallScore = gameScore[0].score;
-                    }
-                });
-                Restangular.one('users', reviewRef.userId).get().then(function (response) {
-                    var reviewCreator = response.data;
-                    reviewArray[index].followedByCurrentUser = reviewCreator.social.followedByCurrentUser;
-                });
-            });
-            angular.forEach(reviews, function (reviewRef, index, reviewArray) {
-                Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: reviewRef.gameId}).then(function (response) {
-                    var shelvesWithGame = response.data;
-                    reviewArray[index].shelves = shelvesWithGame;
-                });
-            });
-
-            $scope.checkCanWriteReview();
-            $scope.updatePagination();
-        }, function() {
-            console.log('There was an error getting reviews');
-            $location.search('pageNumber', 1);
-        });
-
         /**
          * Changes the pageNumber query parameter using the newPageNumber
          * @param newPageNumber
          */
-        $scope.changePageNumber = function(newPageNumber) {
-            $scope.pageNumber = newPageNumber;
-            $location.search('pageNumber', $scope.pageNumber);
+        $scope.setPageNumber = function(newPageNumber) {
+            if (!$scope.reviewsPaginator.pagination.totalPages) {
+                return;
+            }
+            if (newPageNumber >= 1 && newPageNumber <= $scope.reviewsPaginator.pagination.totalPages) {
+                $scope.pageNumber = newPageNumber;
+                $location.search('pageNumber', $scope.pageNumber);
+            }
         };
 
         /**
@@ -201,12 +231,7 @@ define(['powerUp', 'LikesService'], function(powerUp) {
        };
 
         // Likes
-        $scope.isLikedByCurrentUser = function(review) {
-            if (!$scope.isLoggedIn || !review.hasOwnProperty('likedByCurrentUser')) {
-                return false;
-            }
-            return review.likedByCurrentUser;
-        };
+        $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
         $scope.likeReview = function(review) {
             LikesService.like(review, undefined, function() {
 
@@ -222,7 +247,7 @@ define(['powerUp', 'LikesService'], function(powerUp) {
             });
         };
 
-        // Follow
+        // Follows
         $scope.updateFollow = function (review) {
             $scope.followDisable = true;
             if (!review.followedByCurrentUser) {
@@ -241,7 +266,5 @@ define(['powerUp', 'LikesService'], function(powerUp) {
                 });
             }
         };
-
-
     });
 });

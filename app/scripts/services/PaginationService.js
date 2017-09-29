@@ -172,6 +172,13 @@ define(['powerUp'], function(powerUp) {
             }
         }
 
+        /**
+         * Checks whether a given object has been initialized with this service. An object is considered initialized
+         * when it has all the properties that  the {@link initialize} function sets, regardless of their values.
+         *
+         * @param object                The object to check.
+         * @return {boolean}            Whether the object is initialized.
+         */
         function isInitialized(object) {
             return object !== null && typeof object === 'object'
                 && object.hasOwnProperty('restangularized') && object.restangularized
@@ -181,6 +188,31 @@ define(['powerUp'], function(powerUp) {
                 && object.pagination.hasOwnProperty('pageSize')
                 && object.pagination.hasOwnProperty('orderBy')
                 && object.pagination.hasOwnProperty('sortDirection');
+        }
+
+        /**
+         * Helper function, returns an array of page numbers adjacent to the current page for the given initialized
+         * object. Ensures that no page will go out of range.
+         * NOTE: Pagination information must be set for the passed object.
+         *
+         * @param object        The initialized object. Must have pagination information set.
+         * @param deltaPages    (Optional) How many pages at most to render for each side. E.g. if passed 4 and current
+         *                      page is 6, will return [2...10]; if current page is 2 will return [1...10]. Default is 4.
+         * @return {Array|null} The page range, or null on invalid parameters.
+         */
+        function getPageRange(object, deltaPages) {
+            if (!isInitialized(object) || !object.pagination.totalPages || parseInt(deltaPages, 10) < 0) {
+                return null;
+            }
+            deltaPages = deltaPages || 4;
+            var result = [];
+            for (var i = -deltaPages; i <= deltaPages; i++) {
+                var page = object.pagination.pageNumber + i;
+                if (page >= 1 && page <= object.pagination.totalPages) {
+                    result.push(page);
+                }
+            }
+            return result;
         }
 
         /* ********************************************
@@ -261,7 +293,8 @@ define(['powerUp'], function(powerUp) {
             getPreviousPage: getPreviousPage,
             getFirstPage: getFirstPage,
             getLastPage: getLastPage,
-            hasMorePages: hasMorePages
+            hasMorePages: hasMorePages,
+            getPageRange: getPageRange
         };
     }]);
 });
