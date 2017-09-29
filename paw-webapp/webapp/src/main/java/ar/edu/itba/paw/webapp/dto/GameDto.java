@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,7 +91,7 @@ public class GameDto {
                 game.getKeywords().stream().map(Keyword::getName).collect(Collectors.toList());
 
         this.pictureUrls = !Hibernate.isInitialized(game.getPictureIds()) ? null :
-                game.getPictureUrls().stream().collect(Collectors.toList());
+                new ArrayList<>(game.getPictureUrls());
         this.videoUrls = !Hibernate.isInitialized(game.getVideos()) ? null :
                 game.getVideos().keySet().stream().map(each -> "https://www.youtube.com/embed/" + each) // TODO: move url to model?
                         .collect(Collectors.toList());

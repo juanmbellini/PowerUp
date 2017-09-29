@@ -7,8 +7,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -56,7 +58,10 @@ public class UserGameScoreDto extends EntityDto {
         this.score = gameStatus.getScore();
         this.gameCoverPictureUrl = gameStatus.getGame().getCoverPictureUrl();
         this.gameSummary = gameStatus.getGame().getSummary();
-        this.gameReleaseDate = gameStatus.getGame().getReleaseDate() == null ? null : gameStatus.getGame().getReleaseDate().toString();
+        this.gameReleaseDate = Optional.ofNullable(gameStatus.getGame().getReleaseDate())
+                .map(LocalDate::toString)
+                .orElse(null);
+
     }
 
     public Long getGameId() {
