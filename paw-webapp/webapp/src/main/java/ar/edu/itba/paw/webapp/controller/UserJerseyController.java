@@ -197,8 +197,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @GET
     @Path("/{userId : \\d+}/game-list")
     public Response listShelfGames(@PathParam("userId") final long userId,
-                                   @QueryParam("orderBy") @DefaultValue("game-name")
-                                   final UserDao.ListGameSortingType sortingType,
+                                   @QueryParam("orderBy") @DefaultValue("game-name") final UserDao.ListGameSortingType sortingType,
                                    @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                    @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                    @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
@@ -232,8 +231,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/" + FOLLOWING_END_POINT)
     public Response getUserFollowing(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
                                      // Pagination and Sorting
-                                     @QueryParam("sortDirection") @DefaultValue("asc")
-                                     final SortDirection sortDirection,
+                                     @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                                      @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                      @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
         if (userId <= 0) {
@@ -253,8 +251,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/" + FOLLOWERS_END_POINT)
     public Response getUserFollowedBy(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long userId,
                                       // Pagination and Sorting
-                                      @QueryParam("sortDirection") @DefaultValue("asc")
-                                      final SortDirection sortDirection,
+                                      @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                                       @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                       @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
         if (userId <= 0) {
@@ -367,10 +364,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response getPlayStatus(@PathParam("id") final long userId,
                                   @PathParam("gameId") Long gameIdFilter,
                                   // Pagination and Sorting
-                                  @QueryParam("orderBy") @DefaultValue("game-id")
-                                  final UserDao.PlayStatusAndGameScoresSortingType sortingType,
-                                  @QueryParam("sortDirection") @DefaultValue("asc")
-                                  final SortDirection sortDirection,
+                                  @QueryParam("orderBy") @DefaultValue("game-id") final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                  @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                                   @QueryParam("gameName") String gameNameFilter) {
@@ -434,10 +429,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/game-scores")
     public Response getGameScores(@PathParam("id") final long userId,
                                   // Pagination and Sorting
-                                  @QueryParam("orderBy") @DefaultValue("game-id")
-                                  final UserDao.PlayStatusAndGameScoresSortingType sortingType,
-                                  @QueryParam("sortDirection") @DefaultValue("asc")
-                                  final SortDirection sortDirection,
+                                  @QueryParam("orderBy") @DefaultValue("game-id") final UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                  @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                                   @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                   @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
                                   // Filters
@@ -490,16 +483,6 @@ public class UserJerseyController implements UpdateParamsChecker {
     private void deleteFromGameList(long userId, long gameId) {
         userService.removePlayStatus(userId, gameId, userId);
     }
-
-
-//    @DELETE
-//    @Path("/{id}")
-//    @Produces(value = {MediaType.APPLICATION_JSON})
-//    public Response deleteById(@PathParam("id") final long id) {
-//        //TODO remove ID parameter, get current user and only allow current user to delete their own account
-//        userService.deleteById(id);
-//        return Response.noContent().build();
-//    } TODO: redo this method
 
 
     // ================ Helper methods ================

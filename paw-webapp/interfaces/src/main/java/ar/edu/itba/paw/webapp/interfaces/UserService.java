@@ -223,14 +223,6 @@ public interface UserService {
     void removeAuthority(long userId, Authority authority, long updaterId);
 
     /**
-     * Removes the {@link User} with the given {@code userId}.
-     *
-     * @param userId    The user id.
-     * @param deleterId THe id of the user performing the operation.
-     */
-    void delete(long userId, long deleterId);
-
-    /**
      * Recommends games for user based on the scores of the games he has scored
      *
      * @param userId The ID of the user who is getting the recommendations

@@ -202,11 +202,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public void delete(long userId, long deleterId) {
-
-    }
-
-    @Override
     public Collection<Game> recommendGames(long userId) {
         return userDao.recommendGames(userId);
     }
