@@ -1,7 +1,5 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
