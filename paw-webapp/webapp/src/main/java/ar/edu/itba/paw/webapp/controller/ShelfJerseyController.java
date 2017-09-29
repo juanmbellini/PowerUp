@@ -6,6 +6,7 @@ import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import static ar.edu.itba.paw.webapp.controller.ShelfJerseyController.END_POINT;
@@ -53,9 +56,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
     // ================ API methods ================
 
-
     // ======== Basic shelf operation ========
-
 
     @GET
     public Response getShelves(@QueryParam("orderBy") @DefaultValue("name") final ShelfDao.SortingType sortingType,
@@ -68,36 +69,35 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                                @QueryParam("gameName") @DefaultValue("") final String gameName,
                                // This path param is declared at class level
                                @SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId) {
-
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("userId", userId, id -> id <= 0));
+
+        final Page<Shelf> shelves = shelfService.getUserShelves(userId, name, gameId, gameName,
+                pageNumber, pageSize, sortingType, sortDirection);
+        final Map<String, Object> paramsForPaginationMap = JerseyControllerHelper.getParameterMapBuilder().clear()
+                .addParameter("name", name)
+                .addParameter("gameId", gameId)
+                .addParameter("gameName", gameName)
+                .build();
         return JerseyControllerHelper
-                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection,
-                        shelfService.getUserShelves(userId, name, gameId, gameName, pageNumber, pageSize,
-                                sortingType, sortDirection),
+                .createCollectionGetResponse(uriInfo, sortingType.toString().toLowerCase(), sortDirection, shelves,
                         (shelfPage) -> new GenericEntity<List<ShelfDto>>(ShelfDto.createList(shelfPage.getData(),
                                 uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .addParameter("name", name)
-                                .addParameter("gameId", gameId)
-                                .addParameter("gameName", gameName)
-                                .build());
+                        }, paramsForPaginationMap);
     }
 
     @GET
     @Path("/{shelfName : .+}")
     public Response getByName(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
                               @PathParam("shelfName") final String shelfName) {
-
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
 
-        final Shelf shelf = shelfService.findByName(userId, shelfName);
-        return shelf == null ? Response.status(Response.Status.NOT_FOUND).build()
-                : Response.ok(new ShelfDto(shelf, uriInfo.getBaseUriBuilder())).build();
+        return Optional.ofNullable(shelfService.findByName(userId, shelfName))
+                .map(shelf -> Response.ok(new ShelfDto(shelf, uriInfo.getBaseUriBuilder())).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @POST
@@ -109,6 +109,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         if (shelfDto == null) {
             throw new MissingJsonException();
         }
+
         final Shelf shelf = shelfService.create(userId, shelfDto.getName(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelf.getName())).build();
@@ -129,7 +130,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         // The shelfName string is just checked if its null because dto and path names will probably be different
         // (The name is the only editable field for a shelf)
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
 
         shelfService.update(userId, shelfName, shelfDto.getName(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
@@ -150,7 +151,8 @@ public class ShelfJerseyController implements UpdateParamsChecker {
                                 @PathParam("shelfName") final String shelfName) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
+
         shelfService.delete(userId, shelfName,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
@@ -162,46 +164,41 @@ public class ShelfJerseyController implements UpdateParamsChecker {
     @GET
     @Path("/{shelfName : .+}/" + GAMES_END_POINT)
     public Response listShelfGames(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
-                                   final String shelfName,
+                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName") final String shelfName,
                                    @QueryParam("orderBy") @DefaultValue("name") final OrderCategory orderCategory,
                                    @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                    @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                    @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
-
         JerseyControllerHelper.checkParameters(JerseyControllerHelper
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
 
+        final Page<Game> games = shelfService.getShelfGames(userId, shelfName,
+                pageNumber, pageSize, orderCategory, sortDirection);
         return JerseyControllerHelper
-                .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection,
-                        shelfService.getShelfGames(userId, shelfName,
-                                pageNumber, pageSize, orderCategory, sortDirection),
+                .createCollectionGetResponse(uriInfo, orderCategory.toString().toLowerCase(), sortDirection, games,
                         (gamesPage) -> new GenericEntity<List<ShelfDto.ShelfGameDto>>(ShelfDto.ShelfGameDto
                                 .createList(gamesPage.getData(), uriInfo.getBaseUriBuilder())) {
-                        },
-                        JerseyControllerHelper.getParameterMapBuilder().clear()
-                                .build());
+                        });
     }
 
     @POST
     @Path("/{shelfName : .+}/" + GAMES_END_POINT)
     public Response addGameToShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
-                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
-                                   final String shelfName,
+                                   @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName") final String shelfName,
                                    final ShelfDto.ShelfGameDto shelfGameDto) {
         if (shelfGameDto == null) {
             throw new MissingJsonException();
         }
-
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
 
         shelfService.addGameToShelf(userId, shelfName, shelfGameDto.getGameId(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
-        if(userService.getPlayStatuses(userId, shelfGameDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()){
+        // TODO: move this logic to service
+        if (userService.getPlayStatuses(userId, shelfGameDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()) {
             userService.setPlayStatus(userId, shelfGameDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
         }
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelfGameDto.getGameId())).build();
@@ -210,21 +207,18 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
     @DELETE
     @Path("/{shelfName : .+}/" + GAMES_END_POINT + "/{gameId : \\d+}")
-    public Response removeGameFromShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId")
-                                        final long userId,
-                                        @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
-                                        final String shelfName,
-                                        @SuppressWarnings("RSReferenceInspection") @PathParam("gameId")
-                                        final long gameId) {
-
+    public Response removeGameFromShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
+                                        @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName") final String shelfName,
+                                        @SuppressWarnings("RSReferenceInspection") @PathParam("gameId") final long gameId) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null)
+                .addParameter("shelfName", shelfName, Objects::isNull)
                 .addParameter("gameId", gameId, id -> id <= 0));
 
         shelfService.removeGameFromShelf(userId, shelfName, gameId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
-        if(!belongsToGameList(userId, gameId)){
+        // TODO: move this logic to service
+        if (!belongsToGameList(userId, gameId)) {
             deleteFromGameList(userId, gameId);
         }
         return Response.noContent().build();
@@ -232,32 +226,29 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
     @DELETE
     @Path("/{shelfName : .+}/" + GAMES_END_POINT)
-    public Response clearShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId")
-                               final long userId,
-                               @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName")
-                               final String shelfName) {
+    public Response clearShelf(@SuppressWarnings("RSReferenceInspection") @PathParam("userId") final long userId,
+                               @SuppressWarnings("RSReferenceInspection") @PathParam("shelfName") final String shelfName) {
         JerseyControllerHelper.checkParameters(JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("shelfName", shelfName, name -> name == null));
+                .addParameter("shelfName", shelfName, Objects::isNull));
+
         shelfService.clearShelf(userId, shelfName,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }
 
     /**
-     *
      * @return whether or not the game belongs to the User's GameList.
      */
-
-    private boolean belongsToGameList(final long userId, final long gameId){
+    private boolean belongsToGameList(final long userId, final long gameId) {
         boolean hasPlayStatus = false;
-        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().iterator().next();
-        if(ugs == null ) {
+        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().iterator().next();
+        if (ugs == null) {
             userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
         } else {
-            if( !ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+            if (!ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
         }
-        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID,SortDirection.ASC).getData().isEmpty()
+        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()
                 || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
                 || hasPlayStatus;
     }
@@ -266,14 +257,13 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         userService.removePlayStatus(userId, gameId, userId);
     }
 
-    // TODO verificar si no se puede soluciar el problema de permitir OPTIONS de otra manera
     @OPTIONS
     public Response shelvesOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
-                .type(MediaType.TEXT_HTML)                                              //Required by CORS
+                .type(MediaType.TEXT_HTML)                                              // Required by CORS
                 .header("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS,POST,GET")
-                .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
+                .header("Access-Control-Allow-Headers", "Content-Type");  // Required by CORS
         return result.build();
     }
 
