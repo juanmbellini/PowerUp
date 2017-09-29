@@ -397,12 +397,16 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      * @return The created {@link UserWithFollowCountsWrapper}.
      */
     private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
-        return getRetrieveOptional(retrievedUser, Optional.ofNullable(currentUser)
-                        .map(current -> current.getId() == retrievedUser.getId() ? null :
-                                userFollowDao.exists(current, retrievedUser)).orElse(null),
+
+        return getRetrieveOptional(retrievedUser,
                 Optional.ofNullable(currentUser)
-                        .map(current -> current.getId() == retrievedUser.getId() ? null :
-                                userFollowDao.exists(retrievedUser, current)).orElse(null))
+                        .filter(current -> current.getId() != retrievedUser.getId())
+                        .map(current -> userFollowDao.exists(current, retrievedUser))
+                        .orElse(null),
+                Optional.ofNullable(currentUser)
+                        .filter(current -> current.getId() != retrievedUser.getId())
+                        .map(current -> userFollowDao.exists(retrievedUser, current))
+                        .orElse(null))
                 .orElse(null);
     }
 
