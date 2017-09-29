@@ -1,9 +1,6 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
 import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
-import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -182,12 +179,6 @@ public class GameHibernateDao implements GameDao {
     @Override
     public boolean existsWithTitle(String title) {
         return DaoHelper.findSingleWithConditions(em, Game.class, "FROM Game AS G WHERE G.name = ?1", title) != null;
-    }
-
-    @Override
-    @Deprecated
-    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        throw new notImplementedException();
     }
 
     @Override
