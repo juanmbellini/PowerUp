@@ -217,7 +217,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         final Set<Shelf> shelves = Optional.ofNullable(shelfNameFilters)
                 .map(list -> list.stream()
                         .map(name -> shelfDao.findByName(user, name)) // Map each name to a shelf
-                        .filter(each -> each != null) // Remove those that are null
+                        .filter(Objects::nonNull) // Remove those that are null
                         .collect(Collectors.toSet())) // Store shelves into set
                 .orElse(new HashSet<>()); // If list of names is null, return an empty hash set.
         return userDao.recommendGames(userId, shelves);
