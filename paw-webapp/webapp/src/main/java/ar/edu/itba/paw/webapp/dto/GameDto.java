@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GameDto {
 
-    public static final int MAX_LENGTH_OF_SUMMARY_IN_LIST = 200;
     @XmlElement(required = true)
     private Long id;
 
@@ -104,12 +103,7 @@ public class GameDto {
      * @return A list of {@link GameDto}.
      */
     public static List<GameDto> createList(Collection<Game> games) {
-        return games.stream().map(game -> {
-            GameDto gameDto = new GameDto(game);
-            gameDto.summary = gameDto.summary == null ? null : gameDto.summary
-                    .substring(0, Math.min(gameDto.getSummary().length(), MAX_LENGTH_OF_SUMMARY_IN_LIST)); // TODO: make it a bit more pro, cutting the string at the end of a word
-            return gameDto;
-        }).collect(Collectors.toList());
+        return games.stream().map(GameDto::new).collect(Collectors.toList());
     }
 
 
