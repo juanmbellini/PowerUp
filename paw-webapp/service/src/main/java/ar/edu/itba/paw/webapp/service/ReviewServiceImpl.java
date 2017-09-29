@@ -45,14 +45,17 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
 
 
     @Override
-    public Page<LikeableWrapper<Review>> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
+    public Page<LikeableWrapper<Review>> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter,
+                                                    String usernameFilter,
                                                     int pageNumber, int pageSize,
-                                                    ReviewDao.SortingType sortingType, SortDirection sortDirection, User currentUser) {
+                                                    ReviewDao.SortingType sortingType, SortDirection sortDirection,
+                                                    User currentUser) {
         final Page<Review> page = reviewDao.getReviews(gameIdFilter, gameNameFilter, userIdFilter, usernameFilter,
                 pageNumber, pageSize, sortingType, sortDirection);
         final Map<Review, Long> likeCounts = reviewLikeDao.countLikes(page.getData());
         final Map<Review, Boolean> userLikes = Optional.ofNullable(currentUser)
-                .map(user -> reviewLikeDao.likedBy(page.getData(), user)).orElse(new HashMap<>());
+                .map(user -> reviewLikeDao.likedBy(page.getData(), user))
+                .orElse(new HashMap<>());
         return createLikeableNewPage(page, likeCounts, userLikes);
     }
 
@@ -61,7 +64,9 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         return Optional.ofNullable(reviewDao.findById(reviewId))
                 .map(review -> new LikeableWrapper<>(review,
                         // If currentUser is present check if it liked the review. If not present, get null.
-                        Optional.ofNullable(currentUser).map(user -> reviewLikeDao.exists(review, user)).orElse(null)))
+                        Optional.ofNullable(currentUser)
+                                .map(user -> reviewLikeDao.exists(review, user))
+                                .orElse(null)))
                 .orElse(null);
     }
 
