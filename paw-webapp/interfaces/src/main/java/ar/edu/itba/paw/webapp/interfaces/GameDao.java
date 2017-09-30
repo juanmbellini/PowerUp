@@ -51,14 +51,6 @@ public interface GameDao {
      */
     boolean existsWithTitle(String title);
 
-    //TODO: Move this to a FilterDao or to service layer, based on a search result
-    //TODO move what? ^ why? Y u no explain? - Juen
-
-    /**
-     * @see GameService#getFiltersByType(FilterCategory)
-     */
-    Collection<String> getFiltersByType(FilterCategory filterCategory);
-
     /**
      * Update the avgScore of the game with id gameId.
      *
