@@ -490,16 +490,6 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
 
-//    @DELETE
-//    @Path("/{id}")
-//    @Produces(value = {MediaType.APPLICATION_JSON})
-//    public Response deleteById(@PathParam("id") final long id) {
-//        //TODO remove ID parameter, get current user and only allow current user to delete their own account
-//        userService.deleteById(id);
-//        return Response.noContent().build();
-//    } TODO: redo this method
-
-
     // ================ Helper methods ================
 
 
