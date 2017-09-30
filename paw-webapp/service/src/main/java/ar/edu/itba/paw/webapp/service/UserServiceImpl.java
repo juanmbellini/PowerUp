@@ -217,7 +217,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         final Set<Shelf> shelves = Optional.ofNullable(shelfNameFilters)
                 .map(list -> list.stream()
                         .map(name -> shelfDao.findByName(user, name)) // Map each name to a shelf
-                        .filter(each -> each != null) // Remove those that are null
+                        .filter(Objects::nonNull) // Remove those that are null
                         .collect(Collectors.toSet())) // Store shelves into set
                 .orElse(new HashSet<>()); // If list of names is null, return an empty hash set.
         return userDao.recommendGames(userId, shelves);
@@ -397,12 +397,16 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      * @return The created {@link UserWithFollowCountsWrapper}.
      */
     private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
-        return getRetrieveOptional(retrievedUser, Optional.ofNullable(currentUser)
-                        .map(current -> current.getId() == retrievedUser.getId() ? null :
-                                userFollowDao.exists(current, retrievedUser)).orElse(null),
+
+        return getRetrieveOptional(retrievedUser,
                 Optional.ofNullable(currentUser)
-                        .map(current -> current.getId() == retrievedUser.getId() ? null :
-                                userFollowDao.exists(retrievedUser, current)).orElse(null))
+                        .filter(current -> current.getId() != retrievedUser.getId())
+                        .map(current -> userFollowDao.exists(current, retrievedUser))
+                        .orElse(null),
+                Optional.ofNullable(currentUser)
+                        .filter(current -> current.getId() != retrievedUser.getId())
+                        .map(current -> userFollowDao.exists(retrievedUser, current))
+                        .orElse(null))
                 .orElse(null);
     }
 

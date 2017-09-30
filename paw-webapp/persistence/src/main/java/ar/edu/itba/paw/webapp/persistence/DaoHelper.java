@@ -89,7 +89,7 @@ import java.util.stream.IntStream;
         }
 
         final TypedQuery<T> query = em.createQuery(str.toString(), klass);
-        params.entrySet().forEach(entry -> query.setParameter(entry.getKey(), entry.getValue()));
+        params.forEach(query::setParameter);
         List<T> result = query.getResultList();
         return result.isEmpty() ? null : result.get(0);
     }

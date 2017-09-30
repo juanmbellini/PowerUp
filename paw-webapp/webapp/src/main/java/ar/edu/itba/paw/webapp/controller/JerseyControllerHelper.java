@@ -70,20 +70,50 @@ import java.util.stream.Collectors;
         }
     }
 
+    /**
+     * Returns a {@link Response} to be used in a get collection resource method.
+     * This method does not provide the option of adding other query params in the response
+     * to be included in the pagination headers.
+     *
+     * @param uriInfo            The object that provides access to the requests information.
+     * @param sortingTypeString  A string that will be included as value for the "orderBy" parameter
+     *                           in the {@link URI}s that may be included in the final {@link Response}.
+     * @param sortDirection      A {@link SortDirection} value that will be included as a value for the
+     *                           "sortDirection" parameter in the {@link URI}s that may be included
+     *                           in the final {@link Response}.
+     * @param page               The page containing pagination information.
+     * @param pageToListFunction Function that takes a {@link Page} and returns a
+     *                           {@link GenericEntity} of {@link List} of type {@code T}, which contains the collection
+     *                           to be returned in the response.
+     *                           {@link URI}s that may be included in the final {@link Response}.
+     * @param <T>                The type of entity that will be included in the body of the {@link Response}.
+     * @return The final {@link Response}.
+     */
+    static /* package */ <T, R> Response createCollectionGetResponse(UriInfo uriInfo, String sortingTypeString,
+                                                                     SortDirection sortDirection, Page<T> page,
+                                                                     Function<Page<T>, GenericEntity<List<R>>>
+                                                                             pageToListFunction) {
+        return createCollectionGetResponse(pageToListFunction.apply(page),
+                uriInfo, sortingTypeString, sortDirection, page, new HashMap<>());
+    }
+
 
     /**
      * Returns a {@link Response} to be used in a get collection resource method.
      *
-     * @param uriInfo           The object that provides access to the requests information.
-     * @param sortingTypeString A string that will be included as value for the "orderBy" parameter
-     *                          in the {@link URI}s that may be included in the final {@link Response}.
-     * @param sortDirection     A {@link SortDirection} value that will be included as a value for the
-     *                          "sortDirection" parameter in the {@link URI}s that may be included
-     *                          in the final {@link Response}.
-     * @param page              The page containing pagination information.
-     * @param otherQueryParams  A map containing more parameters (with the given value) to add to the final
-     *                          {@link URI}s that may be included in the final {@link Response}.
-     * @param <T>               The type of entity that will be included in the body of the {@link Response}.
+     * @param uriInfo            The object that provides access to the requests information.
+     * @param sortingTypeString  A string that will be included as value for the "orderBy" parameter
+     *                           in the {@link URI}s that may be included in the final {@link Response}.
+     * @param sortDirection      A {@link SortDirection} value that will be included as a value for the
+     *                           "sortDirection" parameter in the {@link URI}s that may be included
+     *                           in the final {@link Response}.
+     * @param page               The page containing pagination information.
+     * @param pageToListFunction Function that takes a {@link Page} and returns a
+     *                           {@link GenericEntity} of {@link List} of type {@code T}, which contains the collection
+     *                           to be returned in the response.
+     * @param otherQueryParams   A map containing more parameters (with the given value) to add to the final
+     *                           {@link URI}s that may be included in the final {@link Response}.
+     * @param <T>                The type of entity that will be included in the body of the {@link Response}.
      * @return The final {@link Response}.
      */
     static /* package */ <T, R> Response createCollectionGetResponse(UriInfo uriInfo, String sortingTypeString,
@@ -521,7 +551,7 @@ import java.util.stream.Collectors;
 
 
     /**
-     * Class that contains logic to create a map with {@link String} as key object and {@link String} as value object,
+     * Class that contains logic to create a map with {@link String} as key object and {@link Object} as value object,
      * than can be used as an "otherQueryParams" container to be used in the
      * {@link JerseyControllerHelper#createCollectionResponseUri(UriInfo, String, SortDirection, Integer, Integer, Map)}
      * method.
