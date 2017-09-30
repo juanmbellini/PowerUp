@@ -35,16 +35,6 @@ public class ValueErrorConstants {
     public static final ValueError INVALID_E_MAIL = new ValueError(ILLEGAL_VALUE, "email", "The email is not valid.");
 
 
-    public static final ValueError MISSING_PASSWORD = new ValueError(MISSING_VALUE, "password",
-            "The password is missing.");
-
-    public static final ValueError PASSWORD_TOO_SHORT = new ValueError(ILLEGAL_VALUE, "password",
-            "The password is too short.");
-
-    public static final ValueError PASSWORD_TOO_LONG = new ValueError(ILLEGAL_VALUE, "password",
-            "The password is too long.");
-
-
     public static final ValueError MISSING_AUTHORITY = new ValueError(MISSING_VALUE, "authority",
             "The authority is missing");
 

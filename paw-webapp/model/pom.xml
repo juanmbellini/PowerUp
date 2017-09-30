@@ -17,11 +17,6 @@
     </properties>
 
     <dependencies>
-
-        <!-- Project modules -->
-        <!-- Nothing here... -->
-
-        <!-- External libraries -->
         <!-- Hibernate Stuff -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -42,11 +37,6 @@
             <artifactId>commons-validator</artifactId>
         </dependency>
 
-        <!-- Spring Security (for password encryption) -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

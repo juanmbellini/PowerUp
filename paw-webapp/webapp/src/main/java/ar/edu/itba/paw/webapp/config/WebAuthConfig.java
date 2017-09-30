@@ -19,7 +19,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -44,10 +43,9 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JsonAuthenticationFailureHandler jsonAuthenticationFailureHandler;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Bean
     public JwtAuthenticationFilter jwtAuthFilter() throws Exception {
@@ -62,11 +60,11 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RequestMatcher protectedEndpointsMatcher() {
         return new OrRequestMatcher(
-            new AntPathRequestMatcher("/**", "POST"),
-            new AntPathRequestMatcher("/**", "PUT"),
-            new AntPathRequestMatcher("/**", "DELETE"),
-            new AntPathRequestMatcher("/**", "PATCH"),
-            optionallyAuthenticatedEndpointsMatcher()
+                new AntPathRequestMatcher("/**", "POST"),
+                new AntPathRequestMatcher("/**", "PUT"),
+                new AntPathRequestMatcher("/**", "DELETE"),
+                new AntPathRequestMatcher("/**", "PATCH"),
+                optionallyAuthenticatedEndpointsMatcher()
         );
     }
 
@@ -80,16 +78,16 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RequestMatcher optionallyAuthenticatedEndpointsMatcher() {
         return new OrRequestMatcher(
-            // TODO hacer la lista más específica para no procesar endpoints de más
-            new AntPathRequestMatcher("/**", "GET"),
-            new RegexRequestMatcher("/api/users/\\d+/password", "DELETE")
+                // TODO hacer la lista más específica para no procesar endpoints de más
+                new AntPathRequestMatcher("/**", "GET"),
+                new RegexRequestMatcher("/api/users/\\d+/password", "DELETE")
         );
     }
 
     @Bean
     public JsonAuthenticationFilter jsonAuthFilter() throws Exception {
         JsonAuthenticationFilter filter = new JsonAuthenticationFilter();
-        filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/login","POST"));
+        filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/login", "POST"));
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(jsonAuthenticationSuccessHandler);
         filter.setAuthenticationFailureHandler(jsonAuthenticationFailureHandler);
@@ -99,27 +97,27 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService)
-            .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class) //Use JSON login for initial authentication
-            .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)  //Protect all other necessary endpoints with JWT
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().logout().disable()
-            .rememberMe().disable()
-            .csrf().disable();
+                .addFilterBefore(jsonAuthFilter(), UsernamePasswordAuthenticationFilter.class) // Use JSON login for initial authentication
+                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)  // Protect all other necessary endpoints with JWT
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().logout().disable()
+                .rememberMe().disable()
+                .csrf().disable();
     }
 
     @Autowired
     @Override
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(jwtAuthProvider)
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder());
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder);
     }
 
     @Override
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
-            .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers(HttpMethod.POST, "/api/users");
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers(HttpMethod.POST, "/api/users");
     }
 }

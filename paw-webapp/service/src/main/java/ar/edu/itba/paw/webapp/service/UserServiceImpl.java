@@ -6,14 +6,13 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.validation.ValidationException;
-import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
-import ar.edu.itba.paw.webapp.model.validation.ValueError;
+import ar.edu.itba.paw.webapp.model.validation.*;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,10 +46,13 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final ThreadLikeDao threadLikeDao;
 
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
     public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
-                           UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao) {
+                           UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao,
+                           PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
@@ -58,6 +60,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         this.feedDao = feedDao;
         this.commentDao = commentDao;
         this.threadLikeDao = threadLikeDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -125,13 +128,17 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         // TODO: create methods to check existence using count instead of select
         throwValidationException(errorList);
 
-        return userDao.create(username, email, password);
+        validatePassword(password);
+        final String hashedPassword = passwordEncoder.encode(password);
+        return userDao.create(username, email, hashedPassword);
     }
 
 
     @Override
     public void changePassword(long userId, String newPassword, long updaterId) {
-        userDao.changePassword(checkUserValuesAndAuthoring(userId, updaterId), newPassword);
+        validatePassword(newPassword);
+        final String newHashedPassword = passwordEncoder.encode(newPassword);
+        userDao.changePassword(checkUserValuesAndAuthoring(userId, updaterId), newHashedPassword);
     }
 
     @Override
@@ -263,6 +270,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      *
      * @return The generated password.
      */
+    @Override
     public String generateNewPassword() {
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(8);
@@ -333,6 +341,22 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     // =====================
+
+
+    /**
+     * Validates the given {@code rawPassword}.
+     * Note: This validation is made in service layer because the password will be hashed here.
+     *
+     * @param rawPassword The password to be validated.
+     * @throws ValidationException If the password is not valid.
+     */
+    private void validatePassword(String rawPassword) throws ValidationException {
+        final List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(rawPassword, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH,
+                errors, MISSING_PASSWORD, PASSWORD_TOO_SHORT, PASSWORD_TOO_LONG);
+        throwValidationException(errors);
+    }
+
 
     /**
      * Retrieves the {@link User} with the given {@code userId}.
@@ -419,12 +443,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return Optional.ofNullable(retrievedUser)
                 .map(user -> new UserWithFollowCountsWrapper(user, followed, following));
     }
-    
-
-    /*
-     * Helpers
-     */
-
 
     /**
      * Checks that the game id is not missing.
@@ -505,4 +523,18 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
             new ValueError(ValueError.ErrorCause.MISSING_VALUE, "gameId", "The game id is missing.");
 
 
+    // ==== Password validation stuff ====
+
+    private final static int PASSWORD_MIN_LENGTH = 6;
+
+    private final static int PASSWORD_MAX_LENGTH = 100;
+
+    private static final ValueError MISSING_PASSWORD = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "password", "The password is missing.");
+
+    private static final ValueError PASSWORD_TOO_SHORT = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "password", "The password is too short.");
+
+    private static final ValueError PASSWORD_TOO_LONG = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "password", "The password is too long.");
 }

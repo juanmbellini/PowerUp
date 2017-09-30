@@ -12,8 +12,6 @@ public class NumericConstants {
 
     public final static int EMAIL_MAX_LENGTH = 254;
 
-    public final static int PASSWORD_MAX_LENGTH = 100;
-
     public final static int PROFILE_PICTURE_MAX_SIZE = 2 * 1000000;   //2MB
 
     public final static int MIME_TYPE_MAX_LENGTH = 256;
@@ -27,8 +25,6 @@ public class NumericConstants {
     public final static int USERNAME_MIN_LENGTH = 1;
 
     public final static int EMAIL_MIN_LENGTH = 1;
-
-    public final static int PASSWORD_MIN_LENGTH = 6;
 
     public final static int PROFILE_PICTURE_MIN_SIZE = 1;
 

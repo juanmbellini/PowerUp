@@ -3,8 +3,6 @@ package ar.edu.itba.paw.webapp.model;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,11 +12,6 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "users")
 public class User implements Serializable, ValidationExceptionThrower {
-
-    /**
-     * Contains a {@link PasswordEncoder} used for hashing the password when creating a new user.
-     */
-    private final static PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
 
     // ==== User stuff ===
@@ -87,19 +80,19 @@ public class User implements Serializable, ValidationExceptionThrower {
     /**
      * Creates a new user.
      *
-     * @param username The username.
-     * @param email    The user's email.
-     * @param password The raw password (will be encoded using BCrypt)
+     * @param username       The username.
+     * @param email          The user's email.
+     * @param hashedPassword The hashed password
      * @throws ValidationException If any value is wrong.
      */
-    public User(String username, String email, String password) throws ValidationException {
+    public User(String username, String email, String hashedPassword) throws ValidationException {
         this();
         List<ValueError> errorList = new LinkedList<>();
-        checkValues(username, email, password, errorList);
+        checkValues(username, email, hashedPassword, errorList);
 
         this.username = username;
         this.email = email;
-        this.hashedPassword = PASSWORD_ENCODER.encode(password);
+        this.hashedPassword = hashedPassword;
     }
 
 
@@ -108,12 +101,10 @@ public class User implements Serializable, ValidationExceptionThrower {
     /**
      * Changes the password
      *
-     * @param newPassword The new password.
-     * @throws ValidationException If the password is not valid.
+     * @param newHashedPassword The new password.
      */
-    public void changePassword(String newPassword) throws ValidationException {
-        checkPassword(newPassword);
-        this.hashedPassword = PASSWORD_ENCODER.encode(newPassword);
+    public void changePassword(String newHashedPassword) {
+        this.hashedPassword = newHashedPassword;
     }
 
     /**
@@ -334,15 +325,6 @@ public class User implements Serializable, ValidationExceptionThrower {
         return profilePicture != null && profilePicture.length > 0;
     }
 
-    /**
-     * Checks if the given {@code rawPassword} is correct.
-     *
-     * @param rawPassword The password to be checked.
-     * @return {@code true} if the given {@code rawPassword} is correct, or {@code false} otherwise.
-     */
-    public boolean matchesPassword(String rawPassword) {
-        return PASSWORD_ENCODER.matches(rawPassword, hashedPassword);
-    }
 
 
     // ======== Equals and hashcode ========
@@ -430,31 +412,6 @@ public class User implements Serializable, ValidationExceptionThrower {
                 NumericConstants.EMAIL_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_E_MAIL,
                 ValueErrorConstants.E_MAIL_TOO_SHORT, ValueErrorConstants.E_MAIL_TOO_LONG,
                 ValueErrorConstants.INVALID_E_MAIL);
-        checkPassword(password, errorList);
-        throwValidationException(errorList);
-    }
-
-    /**
-     * Checks the given {@code password}.
-     *
-     * @param password  The password to be checked.
-     * @param errorList A list containing possible detected errors before calling this method.
-     */
-    private void checkPassword(String password, List<ValueError> errorList) {
-        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(password, NumericConstants.PASSWORD_MIN_LENGTH,
-                NumericConstants.PASSWORD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_PASSWORD,
-                ValueErrorConstants.PASSWORD_TOO_SHORT, ValueErrorConstants.PASSWORD_TOO_LONG);
-    }
-
-    /**
-     * Checks the given {@code password}.
-     *
-     * @param password The password to be checked.
-     * @throws ValidationException If it's not a valid password.
-     */
-    private void checkPassword(String password) throws ValidationException {
-        List<ValueError> errorList = new LinkedList<>();
-        checkPassword(password, errorList);
         throwValidationException(errorList);
     }
 
