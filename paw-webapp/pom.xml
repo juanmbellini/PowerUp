@@ -27,6 +27,7 @@
         <io.jsonwebtoken.jjwt.version>0.7.0</io.jsonwebtoken.jjwt.version>
         <junit.version>RELEASE</junit.version>
         <org.mockito.version>1.9.5</org.mockito.version>
+        <com.github.javafaker.version>0.13</com.github.javafaker.version>
         <apache-commons-io.version>2.4</apache-commons-io.version>
         <apache-tika.version>1.14</apache-tika.version>
         <apache-httpcore.version>4.4.6</apache-httpcore.version>
@@ -245,6 +246,13 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
                 <version>${org.mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Java Faker: Generates Fake Data used for testing -->
+            <dependency>
+                <groupId>com.github.javafaker</groupId>
+                <artifactId>javafaker</artifactId>
+                <version>${com.github.javafaker.version}</version>
                 <scope>test</scope>
             </dependency>
 

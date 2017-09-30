@@ -3,23 +3,27 @@ package ar.edu.itba.paw.webapp.model;
 import ar.edu.itba.paw.webapp.model.validation.NumericConstants;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValueErrorConstants;
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.Objects;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 /**
  * Performs testing over the {@link Comment} class.
  */
 public class CommentTest {
 
-    private static final int MAGIC_RANDOM = 0xFF;
+    /**
+     * A {@link Faker} instance to create random comment bodies.
+     */
+    private final static Faker FAKER = new Faker();
+
     private static final String MISSING_VALUE_ERRORS_MESSAGE =
             "The exception thrown when creating/updating a comment/reply with illegal values" +
                     " did not included the corresponding errors";
+
 
     // ==== Valid arguments ====
 
@@ -311,35 +315,20 @@ public class CommentTest {
         final int randomBodyLength = new Random()
                 .nextInt(NumericConstants.TEXT_FIELD_MAX_LENGTH - NumericConstants.COMMENT_BODY_MIN_LENGTH)
                 + NumericConstants.COMMENT_BODY_MIN_LENGTH;
-        return generateRandomString(randomBodyLength);
-
+        return FAKER.lorem().fixedString(randomBodyLength);
     }
 
     /**
      * @return A random body whose length is below the valid limit.
      */
     private static String generateShortBody() {
-        return generateRandomString(NumericConstants.COMMENT_BODY_MIN_LENGTH - 1);
+        return FAKER.lorem().fixedString(NumericConstants.COMMENT_BODY_MIN_LENGTH - 1);
     }
 
     /**
      * @return A random body whose length is above the valid limit.
      */
     private static String generateLongBody() {
-        return generateRandomString(NumericConstants.TEXT_FIELD_MAX_LENGTH + 1);
-    }
-
-    /**
-     * Generated a random string with the given {@code length}.
-     *
-     * @param length The length of the random string.
-     * @return The randomly generated string.
-     */
-    private static String generateRandomString(Integer length) {
-        Objects.requireNonNull(length);
-        return IntStream.range(0, length)
-                .mapToObj(i -> (char) (new Random().nextInt('z' - 'a') + 'a'))
-                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-                .toString();
+        return FAKER.lorem().fixedString(NumericConstants.TEXT_FIELD_MAX_LENGTH + 1);
     }
 }
