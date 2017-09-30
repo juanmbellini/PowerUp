@@ -1,6 +1,5 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
@@ -95,7 +94,6 @@ public interface UserService {
      * @param email    The user's email. Must be unique.
      * @param password The user's password.
      * @return The created user.
-     * @throws UserExistsException If a user with {@code email} or {@code username} already exists.
      */
     User create(String username, String email, String password);
 
