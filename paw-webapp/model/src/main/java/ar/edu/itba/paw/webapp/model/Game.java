@@ -284,22 +284,9 @@ public class Game {
 
     }
 
-
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
-    }
-
-    /**
-     * @deprecated There's no use for this method, and it's probably slower than its alternatives. Instead, use either
-     * <p>{@code new MyCollection(originalCollection)} which already adds all elements from the original collection</p>
-     * or <p>{@link Collections#unmodifiableCollection(Collection)}</p>
-     * and its variants as appropriate.
-     */
-    private <T> List<T> cloneCollection(Collection<T> original) {
-        List<T> list = new ArrayList<>();
-        list.addAll(original);
-        return list;
     }
 
     /**
