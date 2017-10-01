@@ -161,32 +161,6 @@ public class Thread implements ValidationExceptionThrower, Likeable, Commentable
         return hotValue;
     }
 
-
-// TODO: move to query
-//    /**
-//     * All comments getter.
-//     *
-//     * @return A collection containing all the comments of this thread.
-//     */
-//    public Collection<Comment> getAllComments() {
-//        return allComments;
-//    }
-//
-//    /**
-//     * Top level comments getter.
-//     *
-//     * @return A collection containing top level comments of this thread.
-//     */
-//    @Transient
-//    public Collection<Comment> getTopLevelComments() {
-//        // Not caching into a variable since allComments may change and we have no way of tracking when this happens
-//        // to recompute all top-level comments.
-//        return allComments.stream()
-//                .filter(c -> c.getParentComment() == null)
-//                .collect(Collectors.toCollection(LinkedHashSet::new));
-//    }
-//
-
     /**
      * Likes count getter.
      *
@@ -204,26 +178,6 @@ public class Thread implements ValidationExceptionThrower, Likeable, Commentable
     public long getCommentCount() {
         return allComments.size();
     }
-
-
-// TODO: move to query
-//    /**
-//     * Indicates whether this thread is liked by the given {@link User}.
-//     *
-//     * @param user The {@link User} to be checked whether they liked the thread.
-//     * @return {@code true} if the given {@link User} liked the thread, or {@code false} otherwise.
-//     */
-//    public boolean isLikedBy(User user) {
-//        // TODO: what if one thread has 3M of likes and the given user's like is the last one?
-//        // TODO: what if the user didn't like the thread, and it has 40M likes?
-//        // TODO: I think it's better to do this using a query
-////        return likes.parallelStream().map(ThreadLike::getUser).collect(Collectors.toSet()).contains(user);
-//        return likes.contains(new ThreadLike(user, this));
-//    }
-//
-//    public boolean isLikedBy(ThreadLike threadLike) {
-//        return likes.contains(threadLike);
-//    }
 
     /**
      * Created at getter.
