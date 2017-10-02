@@ -1202,9 +1202,8 @@ public class ReviewTest {
      * @return A random body whose length is between the valid limits.
      */
     private static String generateRandomBodyWithCorrectLength() {
-        final int randomBodyLength = new Random()
-                .nextInt(NumericConstants.TEXT_FIELD_MAX_LENGTH - NumericConstants.COMMENT_BODY_MIN_LENGTH)
-                + NumericConstants.REVIEW_BODY_MIN_LENGTH;
+        final int randomBodyLength = FAKER.number()
+                .numberBetween(NumericConstants.REVIEW_BODY_MIN_LENGTH, NumericConstants.TEXT_FIELD_MAX_LENGTH + 1);
         return FAKER.lorem().fixedString(randomBodyLength);
     }
 
