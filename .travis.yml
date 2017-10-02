@@ -1,0 +1,15 @@
+language: java
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install ruby
+install:
+    - gem install sass
+    - gem install compass
+before_script:
+    - cd paw-webapp
+cache:
+    directories:
+        - $HOME/.m2
+        - node
+        - node_modules
+        - bower_components
