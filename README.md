@@ -1,4 +1,4 @@
-# PowerUp!
+# PowerUp! [![Build Status](https://travis-ci.org/juanmbellini/PowerUp.svg?branch=master)](https://travis-ci.org/juanmbellini/PowerUp)
 
 Web Applications Course Project
 
