@@ -10,3 +10,6 @@ before_script:
 cache:
     directories:
         - $HOME/.m2
+        - node
+        - node_modules
+        - bower_components
