@@ -1,0 +1,7 @@
+language: java
+before_install:
+    - sudo apt-get install ruby
+install:
+    - gem install compass
+before_script:
+    - cd paw-webapp
