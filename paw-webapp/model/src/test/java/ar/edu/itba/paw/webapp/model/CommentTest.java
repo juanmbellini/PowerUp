@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.Random;
-
 /**
  * Performs testing over the {@link Comment} class.
  */
