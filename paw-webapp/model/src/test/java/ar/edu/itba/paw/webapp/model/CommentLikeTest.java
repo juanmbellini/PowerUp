@@ -2,7 +2,6 @@ package ar.edu.itba.paw.webapp.model;
 
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValueErrorConstants;
-import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -11,11 +10,6 @@ import org.mockito.Mockito;
  * Performs testing over the {@link CommentLike} class.
  */
 public class CommentLikeTest {
-
-    /**
-     * A {@link Faker} instance to create random comment bodies.
-     */
-    private final static Faker FAKER = new Faker();
 
     private static final String MISSING_VALUE_ERRORS_MESSAGE =
             "The exception thrown when creating a comment like with illegal values" +
