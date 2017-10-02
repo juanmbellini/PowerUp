@@ -7,33 +7,37 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>paw-webapp</name>
-
     <properties>
-        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-        <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
+        <!-- Dependencies versions -->
         <servlet-api.version>2.5</servlet-api.version>
         <jstl.version>1.2</jstl.version>
-        <org.postgresql.version>9.3-1102-jdbc41</org.postgresql.version>
-        <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
-        <org.atteo.evo-inflector.version>1.2</org.atteo.evo-inflector.version>
-        <org.hsqldb.version>2.3.1</org.hsqldb.version>
-        <com.mashape.unirest-java.version>1.4.9</com.mashape.unirest-java.version>
-        <javax.validation-api.version>1.0.0.GA</javax.validation-api.version>
-        <org.hibernate.validator>4.3.1.Final</org.hibernate.validator>
+        <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
         <spring-security.version>4.0.4.RELEASE</spring-security.version>
+        <org.springframework.session.version>1.3.0.RELEASE</org.springframework.session.version>
+        <jersey.version>3.0-SNAPSHOT</jersey.version>
+        <com.fasterxml.jackson.version>2.7.4</com.fasterxml.jackson.version>
+        <org.postgresql.version>9.3-1102-jdbc41</org.postgresql.version>
+        <org.hsqldb.version>2.3.1</org.hsqldb.version>
         <org.hibernate.version>5.1.0.Final</org.hibernate.version>
         <org.hibernate.jpa.version>1.0.0.Final</org.hibernate.jpa.version>
-        <se.malkusch.validation.version>0.3.0</se.malkusch.validation.version>
-        <org.slf4j.version>1.7.5</org.slf4j.version>
-        <logback.version>1.1.2</logback.version>
-        <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
-        <maven-war-plugin.version>2.6</maven-war-plugin.version>
         <hibernate-java8-version>5.0.4.Final</hibernate-java8-version>
         <org.slf4j.version>1.7.5</org.slf4j.version>
         <logback.version>1.1.2</logback.version>
         <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
-        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <io.jsonwebtoken.jjwt.version>0.7.0</io.jsonwebtoken.jjwt.version>
+        <junit.version>RELEASE</junit.version>
+        <apache-commons-io.version>2.4</apache-commons-io.version>
+        <apache-tika.version>1.14</apache-tika.version>
+        <apache-httpcore.version>4.4.6</apache-httpcore.version>
+        <commons-validator.version>1.6</commons-validator.version>
+        <org.flywaydb.version>4.1.2</org.flywaydb.version>
         <javax.mail.version>1.4.7</javax.mail.version>
+
+        <!-- Plugins versions -->
+        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <frontend-maven-plugin.version>1.4</frontend-maven-plugin.version>
+        <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     </properties>
 
     <modules>
@@ -44,10 +48,33 @@
         <module>model</module>
     </modules>
 
+    <!-- Snapshot repository for Jersey -->
+    <repositories>
+        <repository>
+            <id>jersey-snapshot</id>
+            <url>https://maven.java.net/content/repositories/snapshots/</url>
+            <name>Jersey Snapshots</name>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
-
-            <!-- Spring stuff -->
+            <!-- Servlets stuff -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
+            </dependency>
+            <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
@@ -80,11 +107,20 @@
                 <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>${javax.mail.version}</version>
-        </dependency>
-
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session</artifactId>
+                <version>${org.springframework.session.version}</version>
+            </dependency>
             <!--Spring security-->
             <dependency>
                 <groupId>org.springframework.security</groupId>
@@ -101,13 +137,47 @@
                 <artifactId>spring-security-config</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
-
-            <!-- Hibernate stuff -->
+            <!-- Jersey -->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
-                <version>${org.springframework.version}</version>
+                <groupId>org.glassfish.jersey.containers</groupId>
+                <artifactId>jersey-container-servlet-core</artifactId>
+                <version>${jersey.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.ext</groupId>
+                <artifactId>jersey-spring4</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.core</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>${jersey.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.validation</groupId>
+                        <artifactId>validation-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- Jersey JSON Providers -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-json-provider</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
+            </dependency>
+            <!-- Database -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${org.postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>${org.hsqldb.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
@@ -123,54 +193,11 @@
                 <artifactId>hibernate-jpa-2.1-api</artifactId>
                 <version>${org.hibernate.jpa.version}</version>
             </dependency>
-            <!--Hibernate support for Java 8 time-->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-java8</artifactId>
                 <version>${hibernate-java8-version}</version>
             </dependency>
-
-            <!-- Servlets stuff -->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>${servlet-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>${jstl.version}</version>
-            </dependency>
-
-            <!-- JUnit stuff -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>RELEASE</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!-- Database stuff -->
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${org.postgresql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>${org.hsqldb.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <!--AOP-->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${org.springframework.version}</version>
-            </dependency>
-
             <!--Logging-->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -198,65 +225,124 @@
                 <version>${logback-ext-spring.version}</version>
                 <scope>runtime</scope>
             </dependency>
-
-            <!-- Others -->
-            <!-- Apache Commons FileUpload -->
+            <!-- JSON Web Tokens-->
             <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>1.3.1</version>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${io.jsonwebtoken.jjwt.version}</version>
+            </dependency>
+            <!-- JUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
 
+            <!-- Others -->
             <!-- Apache Commons IO -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.4</version>
+                <version>${apache-commons-io.version}</version>
             </dependency>
-
-            <!-- Jackson: The standard JSON library for Java (or best JSON parser for Java) -->
+            <!-- Apache Tika, for detecting file types -->
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${com.fasterxml.jackson.version}</version>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${apache-tika.version}</version>
             </dependency>
-            <!-- Evo-Inflector: A library that implements English pluralization algorithm-->
-            <!--based on Damian Conway's paper: "An Algorithmic Approach to English Pluralization -->
+            <!-- Apache HTTP Components -->
             <dependency>
-                <groupId>org.atteo</groupId>
-                <artifactId>evo-inflector</artifactId>
-                <version>${org.atteo.evo-inflector.version}</version>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${apache-httpcore.version}</version>
             </dependency>
-            <!-- Unirest: Lightweight HTTP Request Client libraries -->
+            <!-- Apache Commons Validator -->
             <dependency>
-                <groupId>com.mashape.unirest</groupId>
-                <artifactId>unirest-java</artifactId>
-                <version>${com.mashape.unirest-java.version}</version>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${commons-validator.version}</version>
             </dependency>
-            <!-- Form Stuff -->
+            <!--Flyway - database migration management and versioning-->
             <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>${javax.validation-api.version}</version>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${org.flywaydb.version}</version>
             </dependency>
+            <!-- EMails -->
             <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${org.hibernate.validator}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jboss.logging</groupId>
-                        <artifactId>jboss-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>de.malkusch.validation</groupId>
-                <artifactId>validation</artifactId>
-                <version>${se.malkusch.validation.version}</version>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${javax.mail.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>Frontend Build</id>
+            <activation>
+                <file>
+                    <exists>../Gruntfile.js</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-maven-plugin.version}</version>
+                        <configuration>
+                            <workingDirectory>../</workingDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>Install Node and NPM</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v6.9.4</nodeVersion>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>bower install</id>
+                                <goals>
+                                    <goal>bower</goal>
+                                </goals>
+                            </execution>
+                            <!--TODO uncomment this when we have tests-->
+                            <!--<execution>-->
+                            <!--<id>javascript tests</id>-->
+                            <!--<goals>-->
+                            <!--<goal>karma</goal>-->
+                            <!--</goals>-->
+                            <!--<configuration>-->
+                            <!--<karmaConfPath>karma.conf.js</karmaConfPath>-->
+                            <!--</configuration>-->
+                            <!--</execution>-->
+                            <execution>
+                                <id>grunt build</id>
+                                <goals>
+                                    <goal>grunt</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>clean build --verbose</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -268,20 +354,46 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--Logging configuration - exclude development logging configuration when packaging WAR-->
+            <!--Packaging configuration - exclude development configuration when packaging WAR-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven-war-plugin.version}</version>
                 <configuration>
-                    <packagingExcludes>**/logback-test.xml</packagingExcludes>
+                    <packagingExcludes>**/logback-test.xml, **/development.properties</packagingExcludes>
+                    <webResources>
+                        <resource>
+                            <!-- Relative to WEBAPP MODULE pom -->
+                            <directory>../../dist</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
+            </plugin>
+            <!--Flyway maven plugin for running migrations from the command line in development-->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${org.flywaydb.version}</version>
+                <configuration>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost/paw-2016b-02</url>
+                    <user>paw-2016b-02</user>
+                    <password>Zae0lohT</password>
+                    <locations>filesystem:persistence/src/main/resources/migration</locations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${org.postgresql.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

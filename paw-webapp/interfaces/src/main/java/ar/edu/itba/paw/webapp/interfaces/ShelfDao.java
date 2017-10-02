@@ -1,39 +1,23 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
 import ar.edu.itba.paw.webapp.model.Shelf;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Data Access Object for game reviews.
  */
 public interface ShelfDao {
 
-    /**
-     * @see ShelfService#create(String, long, long...)
-     */
-    Shelf create(String name, long creatorUserId, long... initialGameIds) throws NoSuchEntityException;
 
     /**
-     * @see ShelfService#findByGameId(long)
+     * @see ShelfService#getShelves(String, Long, String, Long, String, int, int, SortingType, SortDirection)
      */
-    Set<Shelf> findByGameId(long id);
-
-    /**
-     * @see ShelfService#findByGameName(String)
-     */
-    Set<Shelf> findByGameName(String name);
-
-    /**
-     * @see ShelfService#findByUserId(long)
-     */
-    Set<Shelf> findByUserId(long id);
-
-    /**
-     * @see ShelfService#findByUsername(String)
-     */
-    Set<Shelf> findByUsername(String name);
+    Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
+                           Long userIdFilter, String usernameFilter,
+                           int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
      * @see ShelfService#findById(long)
@@ -41,39 +25,90 @@ public interface ShelfDao {
     Shelf findById(long shelfId);
 
     /**
-     * @see ShelfService#belongsTo(long, long)
+     * @see ShelfService#findByName(long, String)
      */
-    boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException;
+    Shelf findByName(User owner, String name);
 
     /**
-     * @see ShelfService#rename(long, String)
+     * @see ShelfService#create(long, String, User)
      */
-    void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException;
+    Shelf create(String name, User creator);
 
     /**
-     * @see ShelfService#update(long, long...)
+     * @see ShelfService#update(long, String, String, User)
      */
-    void update(long shelfId, long... newGameIds) throws NoSuchEntityException;
+    void update(Shelf shelf, String name);
 
     /**
-     * @see ShelfService#findByName(String)
+     * @see ShelfService#delete(long, String, User)
      */
-    Set<Shelf> findByName(String shelfName);
-
-    void addGame(long shelfId, long gameId) throws NoSuchEntityException;
+    void delete(Shelf shelf);
 
     /**
-     * @see ShelfService#removeGame(long, long)
+     * @see ShelfService#getShelfGames(long, String, int, int, OrderCategory, SortDirection)
      */
-    void removeGame(long shelfId, long gameId) throws NoSuchEntityException;
+    Page<Game> getShelfGames(Shelf shelf, int pageNumber, int pageSize, OrderCategory orderCategory, SortDirection sortDirection);
+
 
     /**
-     * @see ShelfService#clear(long)
+     * @see ShelfService#addGameToShelf(long, String, long, User)
      */
-    void clear(long shelfId) throws NoSuchEntityException;
+    void addGameToShelf(Shelf shelf, Game game);
 
     /**
-     * @see ShelfService#delete(long)
+     * @see ShelfService#removeGameFromShelf(long, String, long, User)
      */
-    void delete(long shelfId) throws NoSuchEntityException;
+    void removeGameFromShelf(Shelf shelf, Game game);
+
+    /**
+     * @see ShelfService#clearShelf(long, String, User)
+     */
+    void clearShelf(Shelf shelf);
+
+
+    /**
+     * Enum indicating the sorting type for the "get shelves" method.
+     */
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return toString();
+            }
+        },
+        NAME {
+            @Override
+            public String getFieldName() {
+                return toString();
+            }
+        },
+        UPDATED {
+            @Override
+            public String getFieldName() {
+                return "updatedAt";
+            }
+        };
+
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
+
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
+        }
+
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.toUpperCase());
+        }
+    }
 }

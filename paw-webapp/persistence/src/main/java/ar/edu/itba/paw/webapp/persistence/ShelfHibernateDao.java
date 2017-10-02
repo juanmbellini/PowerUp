@@ -1,24 +1,14 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
-import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class ShelfHibernateDao implements ShelfDao {
@@ -26,85 +16,48 @@ public class ShelfHibernateDao implements ShelfDao {
     @PersistenceContext
     private EntityManager em;
 
-    private final UserDao userDao;
-
-    private final GameDao gameDao;
-
-    @Autowired
-    public ShelfHibernateDao(GameDao gameDao, UserDao userDao) {
-        this.gameDao = gameDao;
-        this.userDao = userDao;
-    }
 
     @Override
-    public Shelf create(String name, long creatorUserId, long... initialGameIds) throws NoSuchEntityException {
-        User creator = userDao.findById(creatorUserId);
-        if(creator == null) {
-            throw new NoSuchUserException(creatorUserId);
+    public Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
+                                  Long userIdFilter, String usernameFilter,
+                                  int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
+
+
+        final StringBuilder query = new StringBuilder()
+                .append("FROM Shelf shelf LEFT JOIN shelf.games shelfGame");
+
+        // Conditions
+        final List<DaoHelper.ConditionAndParameterWrapper> conditions = new LinkedList<>();
+        int conditionNumber = 0;
+        if (nameFilter != null && !nameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.name) LIKE ?" + conditionNumber,
+                    "%" + nameFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
-        for(Shelf shelf: findByUserId(creatorUserId)){
-            if(shelf.getName().equals(name)){
-                //Shelf already exists
-                return shelf;
-            }
+        if (gameIdFilter != null) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelfGame.game.id = ?" + conditionNumber,
+                    gameIdFilter, conditionNumber));
+            conditionNumber++;
         }
-        Set<Game> games = new LinkedHashSet<>();
-        for(long id : initialGameIds) {
-            Game g = gameDao.findById(id);
-            if(g == null) {
-                throw new NoSuchGameException(id);
-            }
-            games.add(g);
+        if (gameNameFilter != null && !gameNameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelfGame.game.name) LIKE ?" + conditionNumber,
+                    "%" + gameNameFilter.toLowerCase() + "%", conditionNumber));
+            conditionNumber++;
         }
-        Shelf result = new Shelf(name, creator, games);
-        em.persist(result);
-        return result;
+        if (userIdFilter != null) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("shelf.user.id = ?" + conditionNumber,
+                    userIdFilter, conditionNumber));
+            conditionNumber++;
+        }
+        if (usernameFilter != null && !usernameFilter.isEmpty()) {
+            conditions.add(new DaoHelper.ConditionAndParameterWrapper("LOWER(shelf.user.username) LIKE ?" + conditionNumber,
+                    "%" + usernameFilter.toLowerCase() + "%", conditionNumber));
+        }
+
+        return DaoHelper.findPageWithConditions(em, Shelf.class, query, "shelf", "shelf.id", conditions,
+                pageNumber, pageSize, "shelf." + sortingType.getFieldName(), sortDirection, true);
     }
 
-    @Override
-    public Set<Shelf> findByGameId(long id) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S JOIN S.games AS game WHERE game.id = :id", Shelf.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Shelf> findByGameName(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S JOIN S.games AS game WHERE LOWER(game.name) = LOWER(:name)", Shelf.class);
-        baseQuery.setParameter("name", name);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Shelf> findByUserId(long id) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE S.user.id = :id", Shelf.class);
-        baseQuery.setParameter("id", id);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(Exception e) {
-            e.printStackTrace();
-            return Collections.emptySet();
-        }
-    }
-
-    @Override
-    public Set<Shelf> findByUsername(String name) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE LOWER(S.user.name) = LOWER(:name)", Shelf.class);
-        baseQuery.setParameter("name", name);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
-        }
-    }
 
     @Override
     public Shelf findById(long shelfId) {
@@ -112,99 +65,95 @@ public class ShelfHibernateDao implements ShelfDao {
     }
 
     @Override
-    public boolean belongsTo(long shelfId, long userId) throws NoSuchEntityException {
-        return getFreshShelf(shelfId).getUser().getId() == userId;
+    public Shelf findByName(User owner, String name) {
+        return DaoHelper.findByFields(em, Shelf.class, createSearchingMap(owner, name));
     }
 
     @Override
-    public void rename(long shelfId, String newName) throws NoSuchEntityException, IllegalArgumentException {
-        if(newName == null || newName.isEmpty()) {
-            throw new IllegalArgumentException("Invalid new name for Shelf #" + shelfId + ": " + newName);
-        }
-        Shelf shelf = getFreshShelf(shelfId);
-        for(Shelf newShelf: findByUserId(shelf.getUser().getId())){
-            if(newShelf.getName().equals(newName)){
-                //Shelf already exists
-                return;
-            }
-        }
-        shelf.setName(newName);
+    public Shelf create(String name, User creator) {
+        Shelf shelf = new Shelf(name, creator);
         em.persist(shelf);
+        return shelf;
     }
 
     @Override
-    public void update(long shelfId, long... newGameIds) throws NoSuchEntityException {
-        Shelf shelf = getFreshShelf(shelfId);
-        shelf.clear();
-        for(long id : newGameIds) {
-            Game g = gameDao.findById(id);
-            if(g == null) {
-                throw new NoSuchGameException(id);
-            }
-            shelf.addGame(g);
+    public void update(Shelf shelf, String name) {
+        if (shelf == null) {
+            throw new IllegalArgumentException();
         }
-        em.persist(shelf);
+        shelf.update(name);
+        em.merge(shelf);
     }
 
     @Override
-    public Set<Shelf> findByName(String shelfName) {
-        TypedQuery<Shelf> baseQuery = em.createQuery("FROM Shelf AS S WHERE LOWER(S.name) = LOWER(:name)", Shelf.class);
-        baseQuery.setParameter("name", shelfName);
-        try {
-            return new LinkedHashSet<>(baseQuery.getResultList());
-        } catch(NoResultException e) {
-            return Collections.emptySet();
+    public void delete(Shelf shelf) {
+        if (shelf == null) {
+            throw new IllegalArgumentException();
         }
+        em.remove(shelf);
     }
 
     @Override
-    public void addGame(long shelfId, long gameId) throws NoSuchEntityException {
-        Shelf shelf = getFreshShelf(shelfId);
-        Game g = gameDao.findById(gameId);
-        if(g == null) {
-            throw new NoSuchGameException(gameId);
+    public Page<Game> getShelfGames(Shelf shelf, int pageNumber, int pageSize, OrderCategory orderCategory,
+                                    SortDirection sortDirection) {
+
+        return DaoHelper.findPageWithConditions(em, Game.class, "FROM ShelfGame shelfGame", "shelfGame.game", "game.id",
+                Collections.singletonList(new DaoHelper.ConditionAndParameterWrapper("shelfGame.shelf = ?0", shelf, 0)),
+                pageNumber, pageSize, "shelfGame.game." + orderCategory.getFieldName(), sortDirection, true);
+
+    }
+
+    @Override
+    public void addGameToShelf(Shelf shelf, Game game) {
+        if (shelf == null) {
+            throw new IllegalArgumentException();
         }
-        shelf.addGame(g);
-        em.persist(shelf);
+        shelf.addGame(game == null ? null : em.merge(game));
+        em.merge(shelf);
     }
 
     @Override
-    public void removeGame(long shelfId, long gameId) throws NoSuchEntityException {
-        Shelf shelf = getFreshShelf(shelfId);
-        Game g = gameDao.findById(gameId);
-        if(g == null) {
-            throw new NoSuchGameException(gameId);
+    public void removeGameFromShelf(Shelf shelf, Game game) {
+        if (shelf == null) {
+            throw new IllegalArgumentException();
         }
-        shelf.removeGame(g);
-        em.persist(shelf);
+        ShelfGame shelfGame = shelf.removeGame(game);
+        if (shelfGame == null) {
+            return;
+        }
+        em.remove(em.merge(shelfGame));
+        em.merge(shelf);
     }
 
     @Override
-    public void clear(long shelfId) throws NoSuchEntityException {
-        Shelf shelf = getFreshShelf(shelfId);
-        shelf.clear();
-        em.persist(shelf);
+    public void clearShelf(Shelf shelf) {
+        if (shelf == null) {
+            throw new IllegalArgumentException();
+        }
+        shelf.getGames().forEach(game -> em.remove(em.merge(shelf.removeGame(game))));
+        em.merge(shelf);
     }
 
-    @Override
-    public void delete(long shelfId) throws NoSuchEntityException {
-        em.remove(getFreshShelf(shelfId));
-    }
+
+    // ==============
+    // Helpers
+    // ==============
 
     /**
-     * Gets a shelf by the specified ID that is transaction-safe (i.e. lazily-initialized collections can be accessed)
-     * and throws exception if not found. If present in current transaction context, the shelf is returned from there
-     * instead of querying the database.
+     * Creates a map to be used for searching a Shelf in the {@link ShelfHibernateDao#findByName(User, String)} method.
      *
-     * @param shelfId The ID of the shelf to fetch.
-     * @return The found shelf.
-     * @throws NoSuchEntityException If no such shelf exists.
+     * @param user The user
+     * @param name The shelf name.
+     * @return The created map.
      */
-    private Shelf getFreshShelf(long shelfId) {
-        Shelf result = em.find(Shelf.class, shelfId);
-        if (result == null) {
-            throw new NoSuchEntityException(Shelf.class, shelfId);
+    private static Map<String, Object> createSearchingMap(User user, String name) {
+        if (user == null || name == null) {
+            throw new IllegalArgumentException();
         }
-        return result;
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", user);
+        map.put("name", name);
+        return map;
     }
+
 }

@@ -1,115 +1,110 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Data Access Object for {@link Thread Threads}.
  */
 public interface ThreadDao {
 
-    /**
-     * @see ThreadService#create(String, long, String)
-     */
-    Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException;
 
     /**
-     * @see ThreadService#create(String, long)
+     * @see ThreadService#getThreads(String, Long, String, int, int, SortingType, SortDirection) .
      */
-    default Thread create(String title, long creatorUserId) throws NoSuchEntityException {
-        return create(title, creatorUserId, "");
-    }
+    Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
+                            int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
+
 
     /**
-     * @see ThreadService#findRecent(int)
+     * @see ThreadService#create(String, String, User)
      */
-    Set<Thread> findRecent(int limit);
+    Thread create(String title, String creatorComment, User creator);
+
 
     /**
-     * @see ThreadService#findBestPointed(int)
+     * Updates the given {@link Thread}.
+     *
+     * @param thread         The thread to be updated.
+     * @param title          The new title for the thread.
+     * @param initialComment The new initial comment.
      */
-    Set<Thread> findBestPointed(int limit);
+    void update(Thread thread, String title, String initialComment);
+
 
     /**
-     * @see ThreadService#findHottest(int)
+     * Updates the given {@link Thread}'s hot value.
+     *
+     * @param thread The thread to be updated.
      */
-    Set<Thread> findHottest(int limit);
+    void updateHotValue(Thread thread);
+
 
     /**
-     * @see ThreadService#findByUserId(long id)
+     * Removes the given {@link Thread} from the database.
+     *
+     * @param thread The thread to be removed.
      */
-    Set<Thread> findByUserId(long id);
-
-    /**
-     * @see ThreadService#findByTitle(String title)
-     */
-    Set<Thread> findByTitle(String title);
+    void delete(Thread thread);
 
     /**
      * @see ThreadService#findById(long threadId)
      */
     Thread findById(long threadId);
 
-    /**
-     * @see ThreadService#changeTitle(long, long, String)
-     */
-    void changeTitle(long threadId, String newTitle) throws NoSuchEntityException, IllegalArgumentException;
 
     /**
-     * @see ThreadService#changeInitialComment(long, long, String)
+     * Enum indicating the sorting type for the "get threads" method.
      */
-    void changeInitialCommentTitle(long threadId, String newInitialComment);
+    enum SortingType {
+        ID {
+            @Override
+            public String getFieldName() {
+                return "id";
+            }
+        },
+        HOT {
+            @Override
+            public String getFieldName() {
+                return "hotValue";
+            }
+        },
+        BEST {
+            @Override
+            public String getFieldName() {
+                return "SIZE(thread.likes)";
+            }
+        },
+        DATE {
+            @Override
+            public String getFieldName() {
+                return "createdAt";
+            }
+        };
 
-    /**
-     * @see ThreadService#likeThread(long threadId, long userId)
-     */
-    int likeThread(long threadId, long userId);
+        /**
+         * Returns the "sorting by" field name.
+         *
+         * @return The name.
+         */
+        abstract public String getFieldName();
 
-    /**
-     * @see ThreadService#unlikeThread(long threadId, long userId)
-     */
-    int unlikeThread(long threadId, long userId);
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase().replace("_", "-");
+        }
 
-    /**
-     * @see ThreadService#comment(long threadId, long commenterId, String comment)
-     */
-    Comment comment(long threadId, long commenterId, String comment);
+        /**
+         * Creates an enum from the given {@code name} (can be upper, lower or any case)
+         *
+         * @param name The value of the enum as a string.
+         * @return The enum value.
+         */
+        public static SortingType fromString(String name) {
+            return valueOf(name.replace("-", "_").toUpperCase());
+        }
+    }
 
-    /**
-     * @see ThreadService#replyToComment(long commentId, long commenterId, String reply)
-     */
-    Comment replyToComment(long commentId, long replierId, String reply);
 
-    /**
-     * @see ThreadService#likeComment(long commentId, long userId)
-     */
-    int likeComment(long commentId, long userId);
-
-    /**
-     * @see ThreadService#unlikeComment(long commentId, long userId)
-     */
-    int unlikeComment(long commentId, long userId);
-
-    /**
-     * @see ThreadService#editComment(long, long, String)
-     */
-    void editComment(long commentId, String newComment);
-
-    /**
-     * @see ThreadService#deleteComment(long, long)
-     */
-    void deleteComment(long commentId) throws NoSuchEntityException;
-
-    /**
-     * @see ThreadService#deleteThread(long, long)
-     */
-    void deleteThread(long threadId) throws NoSuchEntityException;
-
-    /**
-     * @see ThreadService#updateHotValue(long)
-     */
-    void updateHotValue(long threadId);
 }

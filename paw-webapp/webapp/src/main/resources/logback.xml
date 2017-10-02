@@ -4,27 +4,25 @@
     <appender name="root-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <maxHistory>5</maxHistory>
-            <fileNamePattern>logs/2016b-02/warnings/%d{yyyy-MM-dd}.log
-            </fileNamePattern>
+            <fileNamePattern>logs/root.2016b-02.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>${defaultPattern:-}</pattern>
         </encoder>
     </appender>
-    <appender name="paw-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="warn-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <maxHistory>5</maxHistory>
-            <fileNamePattern>logs/2016b-02/%d{yyyy-MM-dd}.log
-            </fileNamePattern>
+            <fileNamePattern>logs/warn.2016b-02.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>${defaultPattern:-}</pattern>
         </encoder>
     </appender>
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="root-appender"/>
     </root>
-    <logger name="ar.edu.itba" level="INFO" additivity="false">
-        <appender-ref ref="paw-appender"/>
+    <logger name="ar.edu.itba" level="WARN" additivity="false">
+        <appender-ref ref="warn-appender"/>
     </logger>
 </configuration>

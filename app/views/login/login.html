@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Starter Template - PowerUp</title>
+</head>
+<body>
+<main>
+  <div class="section">
+    <h1 class="orange-text center">Log In to Your Account</h1>
+  </div>
+  <div class="section">
+    <div class="row">
+      <div class="col s4 offset-s4">
+        <div class="card-panel grey lighten-3 col s12">
+            <div ng-controller="LoginCtrl">
+            <form name="logInForm" class="css-form" novalidate>
+              <div>
+                <div class='row'>
+                  <div class='col s12'>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <p>Username:</p>
+                    <input type="text" ng-model="username" name="username"/>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <p>Password:</p>
+                    <input type="password" ng-model="password" name="password" />
+                  </div>
+                  <label style='float: right;'>
+                    <a class='light-blue-text' href='' ng-click="resetPassword()"><b>Forgot Password?</b></a>
+                  </label>
+                </div>
+                <div class="row">
+                  <p ng-if="loginError" class="center formError"  style="font-size: larger;">Invalid username/password</p>
+                  <p ng-if="!loginError" class="center formError"  style="font-size: larger;"><br/></p>
+                </div>
+                <div class="row">
+                  <button type='submit' ng-click="logIn(form)" name='btn_login' class='col s12 btn btn-large waves-effect light-blue' ng-class="{'disabled': isLoggingIn}">
+                    {{isLoggingIn ? 'Logging In...' : 'Log In'}}
+                    <i ng-show="!isLoggingIn" class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <h5 class="center"><a ng-href="#register">Create account</a></h5>
+  </div>
+</main>
+
+<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
+<!--<script type="text/javascript">-->
+        <!--//Rename links-->
+        <!--$("#forgot-password").on('click', function (event) {-->
+          <!--swal({-->
+                    <!--title: "Enter your email",-->
+                    <!--type: "input",-->
+                    <!--showCancelButton: true,-->
+                    <!--closeOnConfirm: false,-->
+                    <!--confirmButtonText: "Reset Password",-->
+                    <!--inputPlaceholder: "Email"-->
+                  <!--},-->
+                  <!--function (inputValue) {-->
+                    <!--if (inputValue === false) return false;-->
+
+                    <!--if (inputValue === "") {-->
+                      <!--swal.showInputError("You need to write something!");-->
+                      <!--return false;-->
+                    <!--}-->
+
+                    <!--//Disable submit button to prevent multiple submissions-->
+                    <!--$(".confirm").attr('disabled', 'disabled');-->
+                    <!--<c:url value="/reset-password" var="url" />-->
+                    <!--//Create an inline form and submit it to redirect with POST-->
+                    <!--$("<form action='${url}' method='POST'><input type='hidden' name='email' value='" + inputValue + "' /></form>").submit();-->
+                  <!--});-->
+        <!--});-->
+<!--</script>-->
+</body>
+</html>

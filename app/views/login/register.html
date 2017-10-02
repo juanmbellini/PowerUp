@@ -1,0 +1,79 @@
+    <div class="section">
+        <h2 class="orange-text center">Register</h2>
+    </div>
+    <div class="section">
+        <div class=" row">
+            <div class="container">
+                <div class="col s8 offset-s2">
+                    <div class="card-panel grey lighten-3 col s12">
+                        <form name="registerForm" class="css-form" ng-submit="register(registerForm)" novalidate>
+                            <div class='row'>
+                                <div class='input-field col s6'>
+                                    <p>Email:</p>
+                                    <input type="email" ng-model="userToSubmit.email" name="uEmail" ng-maxlength="254" required unique-email="" ng-class="{invalid: registerForm.uEmail.$invalid && (registerForm.uEmail.$error.maxlength || registerForm.uEmail.$touched) , valid: registerForm.uEmail.$dirty && registerForm.uEmail.$valid}" />
+                                    <div ng-show=" submitted || registerForm.uEmail.$dirty">
+                                        <div class="hide-while-in-focus" ng-show="!registerForm.uEmail.$error.required && !registerForm.uEmail.$error.email && !registerForm.uEmail.$error.maxlength" >
+                                            <span ng-show="registerForm.uEmail.$loading">Loading...</span>
+                                            <span class="formError" ng-show="registerForm.uEmail.$error.unique">Email taken!</span>
+                                        </div>
+                                        <span ng-show="registerForm.uEmail.$error.maxlength">Email needs to be 254 characters long or less.</span>
+                                    </div>
+                                    <div ng-show="submitted || registerForm.uEmail.$touched">
+                                        <span class="formError" ng-show="registerForm.uEmail.$error.required">Tell us your email.</span>
+                                        <span class="formError" ng-show="registerForm.uEmail.$error.email">This is not a valid email.</span>
+                                    </div>
+                                </div>
+                                <div class='input-field col s6'>
+                                    <p>Username:</p>
+                                    <input type="text" ng-model="userToSubmit.username" name="uName" required unique-username="" ng-maxlength="25" ng-class="{invalid: (registerForm.uName.$dirty || registerForm.uName.$touched) && registerForm.uName.$invalid, valid: registerForm.uName.$dirty && registerForm.uName.$valid}" />
+                                    <div ng-show="registerForm.uName.$dirty">
+                                        <div class="hide-while-in-focus" ng-show="
+                                         !registerForm.uName.$error.maxlength && !registerForm.uName.$error.required" >
+                                            <span  ng-show="registerForm.uName.$loading">Loading...</span>
+                                            <span class="formError" ng-show="registerForm.uName.$error.unique">Username taken!</span>
+                                        </div>
+                                        <span class="formError" ng-show="registerForm.uName.$error.maxlength">Username needs to be 25 characters long or less.</span>
+                                    </div>
+                                    <div ng-show=" submitted || registerForm.uName.$touched">
+                                        <span class="formError" ng-show="registerForm.uName.$error.required">Tell us your username.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='input-field col s6'>
+                                    <p>Password:</p>
+                                    <input type="password" id="passwordId" ng-minlength="6" ng-maxlength="100" ng-model="userToSubmit.password" name="uPassword" required ng-class="{invalid: registerForm.uPassword.$invalid && (registerForm.uPassword.$touched || registerForm.uPassword.$error.maxlength), valid: registerForm.uPassword.$dirty && registerForm.uPassword.$valid}" />
+                                    <div ng-show=" submitted || registerForm.uPassword.$dirty">
+                                        <span class="formError" ng-show="registerForm.uPassword.$error.maxlength">Password needs to be 100 characters long or less.</span>
+                                    </div>
+                                    <div ng-show=" submitted || registerForm.uPassword.$touched">
+                                        <span class="formError" ng-show="registerForm.uPassword.$error.required">Choose a password.</span>
+                                        <span class="formError" ng-show="registerForm.uPassword.$error.minlength">Password needs to be at least 6 characters long.</span>
+                                    </div>
+                                </div>
+                                <div class='input-field col s6'>
+                                    <p>Repeat Password:</p>
+                                    <input type="password" id="passwordId2" ng-model="userToSubmit.repeatPassword" name="uRepeatPassword" required pw-check="passwordId" ng-class="{invalid:  registerForm.uRepeatPassword.$invalid && registerForm.uRepeatPassword.$touched, valid: registerForm.uRepeatPassword.$dirty && registerForm.uRepeatPassword.$valid}" />
+                                    <div ng-show=" submitted || registerForm.uRepeatPassword.$touched">
+                                        <span class="formError" ng-show='registerForm.uRepeatPassword.$error.pwmatch'>
+                                            Passwords don't match.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class="col s3"></div>
+                                <button type='submit' name='btn_register' class='col s6 btn btn-large waves-effect light-blue' ng-class="{'disabled': isRegistering}">
+                                    {{isRegistering ? 'Registering...' : 'Submit'}}
+                                    <i ng-show="!isRegistering" class="material-icons right">send</i>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5 class="center"><a ng-href="#/login">Log In</a></h5>
+    </div>

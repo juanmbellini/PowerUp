@@ -1,0 +1,26 @@
+//@import "materialize/sass/materialize";
+// bower:scss
+@import 'slick-carousel/slick/slick.scss';
+// endbower
+
+// Materialize
+$roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
+@import '../../bower_components/materialize/sass/materialize';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+// Swal
+@import '../../bower_components/sweetalert/dist/sweetalert.css';
+// Slick
+@import '../../bower_components/slick-carousel/slick/slick';
+@import '../../bower_components/slick-carousel/slick/slick-theme';
+// Lightbox
+@import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
+
+@import 'partials/home';
+@import 'style';
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}

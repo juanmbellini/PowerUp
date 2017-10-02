@@ -4,12 +4,14 @@ import ar.edu.itba.paw.webapp.exceptions.IllegalPageException;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Class representing a search result page.
  * <p>
- * In order to use this class, {@code totalPages}, {@code pageNumber}, and {@code pageSize}
- * must be set with values different than {@code 0} before setting data.
+ * Implements the Builder pattern in order to create consistent and well formed Pages.
  * <p>
  * Created by Juan Marcos Bellini on 11/10/16.
  */
@@ -18,23 +20,7 @@ public class Page<T> {
     /**
      * Contains an empty page, configured to have no elements, and only one page.
      */
-    private static final Page EMPTY_PAGE = new Page();
-
-    /**
-     * Returns an empty page (i.e. with no data, but with page number and total pages equals to 1)
-     *
-     * @param <T> The type of data that the page would store
-     * @return An empty page.
-     */
-    public static <T> Page<T> emptyPage() {
-        EMPTY_PAGE.overAllAmountOfElements = 0;
-        EMPTY_PAGE.pageSize = 0;
-        EMPTY_PAGE.pageNumber = 1;
-        EMPTY_PAGE.totalPages = 1;
-        EMPTY_PAGE.data = Collections.emptyList();
-
-        return (Page<T>) EMPTY_PAGE;
-    }
+    private static final Page EMPTY_PAGE = new Page<>(1, 1, 0, 0, Collections.unmodifiableList(new LinkedList<>()));
 
 
     /**
@@ -60,20 +46,37 @@ public class Page<T> {
 
 
     /**
-     * Returns a single-element page. Convenience method.
+     * Private constructor used for the {@link Builder}.
      *
-     * @param element The single element in the page.
-     * @param <T>     The element type.
-     * @return A page with 1 element.
+     * @param totalPages              The total amount of pages.
+     * @param pageNumber              The page number.
+     * @param pageSize                The page size.
+     * @param overAllAmountOfElements The total amount of elements in all pages.
+     * @param data                    The data in this page.
      */
-    public static <T> Page<T> singleElementPage(T element) {
-        Page<T> page = new Page<>();
-        page.setTotalPages(1);
-        page.setPageSize(1);
-        page.setPageNumber(1);
-        page.setOverAllAmountOfElements(1);
-        page.setData(Collections.singleton(element));
-        return page;
+    public Page(int totalPages, int pageNumber, int pageSize, long overAllAmountOfElements, Collection<T> data) {
+
+        if (totalPages <= 0) {
+            throw new IllegalPageException("The total amount of pages must be a positive number.");
+        }
+        if (pageNumber <= 0 || pageNumber > totalPages) {
+            throw new IllegalPageException("The page number is bigger than the total amount of pages.");
+        }
+        if (pageSize < 0) {
+            throw new IllegalPageException("The page size can't be negative.");
+        }
+        if (overAllAmountOfElements > pageSize * totalPages) {
+            throw new IllegalPageException("The overall amount of data can't be greater than the overall space.");
+        }
+        if (data.size() > pageSize) {
+            throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
+        }
+
+        this.totalPages = totalPages;
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
+        this.overAllAmountOfElements = overAllAmountOfElements;
+        this.data = data;
     }
 
 
@@ -131,76 +134,116 @@ public class Page<T> {
         return data;
     }
 
-    /**
-     * Total pages setter.
-     *
-     * @param totalPages The total amount of pages there are in the search done to obtain the data of in this page.
-     */
-    public void setTotalPages(int totalPages) {
-        if (totalPages < 0) {
-            throw new IllegalPageException();
-        }
-        this.totalPages = totalPages;
+
+    public boolean isEmpty() {
+        return pageSize == 0;
     }
 
     /**
-     * Page number setter.
-     * <p>
-     * If page number is greater than {@code totalPages}, an {@IllegalPageException} is thrown.
-     * Note: {@code totalPages} is set to {@code 0} initially.
-     * </p>
+     * Returns an empty page (i.e. with no data, but with page number and total pages equals to 1)
      *
-     * @param pageNumber This page's number.
+     * @param <T> The type of data that the page would store
+     * @return An empty page.
      */
-    public void setPageNumber(int pageNumber) {
-        if (pageNumber <= 0 || pageNumber > totalPages) {
-            throw new IllegalPageException("The page number is bigger than the total amount of pages.");
-        }
-        this.pageNumber = pageNumber;
+    public static <T> Page<T> emptyPage() {
+        //noinspection unchecked
+        return (Page<T>) EMPTY_PAGE;
     }
 
     /**
-     * Page size setter.
+     * Returns a single-element page. Convenience method.
      *
-     * @param pageSize This page's size.
+     * @param element The single element in the page.
+     * @param <T>     The element type.
+     * @return A page with 1 element.
      */
-    public void setPageSize(int pageSize) {
-        if (pageSize <= 0) {
-            throw new IllegalPageException();
-        }
-        this.pageSize = pageSize;
+    public static <T> Page<T> singleElementPage(T element) {
+        return new Page<>(1, 1, 1, 1, Stream.of(element).collect(Collectors.toList()));
     }
 
     /**
-     * Overall amount of elements setter
+     * Page builder.
      *
-     * @param overAllAmountOfElements The number of elements in all the pages
+     * @param <T> The type of data the page will store.
      */
-    public void setOverAllAmountOfElements(long overAllAmountOfElements) {
-        if (overAllAmountOfElements > pageSize * totalPages) {
-            throw new IllegalPageException();
-        }
-        this.overAllAmountOfElements = overAllAmountOfElements;
-    }
+    public static class Builder<T> {
 
-    /**
-     * Data setter.
-     * <p>
-     * Note: If the total amount of data in the collection is smaller than {@code pageSize},
-     * then this field is overwritten.
-     * </p>
-     *
-     * @param data The data to be added into this page.
-     */
-    public void setData(Collection<T> data) {
-        if (pageSize == 0 || pageNumber == 0 || totalPages == 0) {
-            throw new IllegalPageException("Illegal state.");
+
+        private int totalPages = 0;
+        private int pageNumber = 0;
+        private int pageSize = 0;
+        private long overAllAmountOfElements = 0;
+        private Collection<T> data = null;
+
+
+        /**
+         * Sets the total amount of pages.
+         *
+         * @param totalPages The total amount of pages.
+         * @return This builder.
+         */
+        public Builder<T> setTotalPages(int totalPages) {
+            this.totalPages = totalPages;
+            return this;
         }
-        if (data.size() > pageSize) {
-            throw new IllegalPageException("Page size is smaller than the amount of data in the collection.");
+
+        /**
+         * Sets the page number.
+         *
+         * @param pageNumber The page number.
+         * @return This builder.
+         */
+        public Builder<T> setPageNumber(int pageNumber) {
+            this.pageNumber = pageNumber;
+            return this;
         }
-        this.data = data;
-//        this.pageSize = data.size();
+
+        /**
+         * Sets the page size (how many elements the future built page will have).
+         *
+         * @param pageSize The page size.
+         * @return This builder.
+         */
+        public Builder<T> setPageSize(int pageSize) {
+            this.pageSize = pageSize;
+            return this;
+        }
+
+        /**
+         * Sets the overall amount of elements (all elements all pages will have)
+         *
+         * @param overAllAmountOfElements The overall amount of elements.
+         * @return This builder.
+         */
+        public Builder<T> setOverAllAmountOfElements(long overAllAmountOfElements) {
+            this.overAllAmountOfElements = overAllAmountOfElements;
+            return this;
+        }
+
+        /**
+         * Sets the data of this page.
+         *
+         * @param data The data of this page.
+         * @return This builder.
+         */
+        public Builder<T> setData(Collection<T> data) {
+            this.data = data;
+            return this;
+        }
+
+
+        /**
+         * Builds the page using the configured values,
+         * without throwing an exception because of not setting those values in the correct order.
+         *
+         * @return The built page.
+         * @throws IllegalPageException If some value is wrong or inconsistent.
+         */
+        public Page<T> build() throws IllegalPageException {
+            return new Page<>(totalPages, pageNumber, pageSize, overAllAmountOfElements, data);
+        }
+
+
     }
 
 

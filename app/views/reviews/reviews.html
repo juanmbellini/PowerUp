@@ -1,0 +1,199 @@
+<main>
+	<div class="container">
+		<div class="section no-pad-bot">
+			<!--TITLE-->
+			<h2 class="header center orange-text wrap-text">
+				<span>
+					<a ng-if="game" ng-href="#game?id={{game.id}}"> {{game.name}} </a>
+				 	Reviews
+					<span ng-if="user">
+						by <a ng-href="#profile?username={{user.username}}"> {{user.username}} <img
+							class="circle" style="width:50px; height:50px; vertical-align: middle;"
+							ng-src="{{apiLocation}}/users/{{user.id}}/picture"/></a>
+					</span>
+				</span>
+			</h2>
+			<!--PAGE SIZE-->
+			<div ng-if="reviews.length > 0" class="row">
+				<span>
+					<div class="input-field col s2 offset-s5">
+						<!--<select ng-change="updatePageSize()" ng-model="pageSizeSelected" ng-options="pageSizeValue for pageSizeValue in pageSizes" class="browser-default"></select>-->
+						<!--<select class="browser-default" ng-options="pageSizeValue for pageSizeValue in pageSizes" ng-model="pageSizeSelected" ng-change="updatePageSize()"></select>-->
+						<select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
+							<option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
+						</select>
+					</div>
+					<label>Reviews per page</label>
+				</span>
+			</div>
+		</div>
+		<!--REVIEWS-->
+		<div class="section no-pad-top">
+			<div class="row">
+				<div ng-if="reviews.length > 0">
+					<!--REVIEWS LIST-->
+					<ul class="collection reviews-list">
+						<li ng-repeat="review in reviews" class="collection-item avatar">
+							<div class="row" style="margin-bottom: 0">
+								<div class="col s10">
+									<div ng-if="!user && game">
+										<!--Viewing reviews by game, variable is user-->
+										<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+											 alt="{{review.username}}" class="circle"/>
+										<span class="title wrap-text">
+                                                <a ng-href="#profile?username={{review.username}}">{{review.username}}</a>
+                                            </span>
+									</div>
+									<div ng-if="user && !game">
+										<img ng-src="{{review.gameCoverPictureUrl}}" alt="{{review.gameName}}" class="circle"/>
+										<span class="title wrap-text">
+											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
+										</span>
+									</div>
+									<div ng-if="user && game">
+										<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
+										<img ng-src="{{apiLocation}}/users/{{review.userId}}/picture"
+											 alt="{{review.username}}" class="circle">
+										<span class="title wrap-text">
+											<a ng-href="#profile?username={{review.username}}">{{review.username}}</a> |
+											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
+										</span>
+									</div>
+									<p class="wrap-text smallText">
+										<a ng-if="!user && game" ng-href="#reviews?userId={{review.userId}}">Other reviews by
+											{{review.username}}</a>
+										<a ng-if="user && !game" ng-href="#reviews?gameId={{review.gameId}}">Other
+											{{review.gameName}} reviews</a>
+										<span ng-if="user && game">
+												<a ng-href="#reviews?userId={{review.userId}}">Other
+												reviews by {{review.username}}</a> | <a ng-href="#reviews?gameId={{review.gameId}}">Other
+												{{review.gameName}} reviews</a>
+											</span>
+									</p>
+									<p ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:
+										<span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
+									</p>
+								</div>
+								<div class="col s2">
+									<p class="right-align b">
+										<!--Un/like section-->
+										<span>
+											<b style="vertical-align: text-bottom">{{review.likeCount}}</b>
+											<!--Not logged in - black actionless thumbs up-->
+											<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+											<!--Logged in and liked - green thumbs up with action to unlike-->
+											<a ng-if="isLoggedIn && isLikedByCurrentUser(review)" ng-click="unlikeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+												<i class="material-icons green-text">thumb_up</i>
+											</a>
+											<!--Logged in and not liked - black thumbs up with action to like-->
+											<a ng-if="isLoggedIn && !isLikedByCurrentUser(review)" ng-click="likeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+												<i class="material-icons black-text">thumb_up</i>
+											</a>
+										</span>
+										<!--End un/like section-->
+									<p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+									</p>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 0">
+								<p class="col s10 wrap-text preserve-newlines">{{review.body}}</p>
+								<div class="col s2">
+									<div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
+										<div ng-switch-when="true">
+											<p class="rating-number"><b>Overall: <span class="right">{{review.overallScore}}</span></b></p>
+										</div>
+										<div ng-switch-default>
+											<p class="rating-number center"><b>Unrated</b></p>
+										</div>
+									</div>
+									<p style="color: #26a69a;">
+										Story: <span class="right">{{review.storyScore}}</span>
+										<br/>
+										Graphics: <span class="right">{{review.graphicsScore}}</span>
+										<br/>
+										Audio: <span class="right">{{review.audioScore}}</span>
+										<br/>
+										Controls: <span class="right">{{review.controlsScore}}</span>
+										<br/>
+										Fun: <span class="right">{{review.funScore}}</span>
+									</p>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom: 0;">
+								<p class="right-align">
+									<a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{review.gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+									<a ng-if="canDeleteReview(review)" ng-click="deleteReview(review)" href=""
+									   class="material-icons red-text text-lighten-1 delete-button ">
+										<i class="material-icons right">delete</i>
+									</a>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<!--END REVIEWS LIST-->
+					<!-- Page numbers -->
+					<div ng-if="reviewsPaginator.pagination.totalPages > 1" class="row">
+						<ul class="pagination center">
+							<!-- Left chevrons - only shown when there are > 1 pages -->
+							<!--First page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber > 1 ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(1)">
+									<i class="material-icons">first_page</i>
+								</a>
+							</li>
+							<!--Previous page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber > 1 ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(searchParams.pageNumber - 1)">
+									<i class="material-icons">chevron_left</i>
+								</a>
+							</li>
+
+							<!--Page numbers - always shown-->
+							<li ng-repeat="pageIt in getPageRange()"  ng-class="pageIt == reviewsPaginator.pagination.pageNumber ? 'active' : 'waves-effect'">
+								<a href="" ng-click="setPageNumber(pageIt)">{{pageIt}}</a>
+							</li>
+
+							<!--Right chevrons - only shown if there are > 1 pages-->
+							<!--Next page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber < reviewsPaginator.pagination.totalPages ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(reviewsPaginator.pagination.pageNumber + 1)">
+									<i class="material-icons">chevron_right</i>
+								</a>
+							</li>
+							<!--Last page-->
+							<li ng-if="reviewsPaginator.pagination.totalPages > 1" ng-class="reviewsPaginator.pagination.pageNumber < reviewsPaginator.pagination.totalPages ? 'waves-effect' : 'disabled'">
+								<a href="" ng-click="setPageNumber(reviewsPaginator.pagination.totalPages)">
+									<i class="material-icons">last_page</i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- End page numbers -->
+				</div>
+
+				<!--NO REVIEWS-->
+				<h5  ng-if="reviews.length == 0" class="center">No reviews yet!
+					<div ng-if="!isLoggedIn"><a href="#register">Sign up</a> or <a href="#login">log in</a> to write the first one!</div>
+				</h5>
+
+				<!--Review button-->
+				<div ng-if="!user && canWriteReview" class="row">
+					<div class="col s12 center">
+						<a ng-href="#write-review?id={{game.id}}"
+						   class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+								class="material-icons right">send</i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--END REVIEWS-->
+	</div>
+</main>
+
+<script type="text/javascript">
+	//	$(function() {
+	//		$("#pageSize").on("change", function() {
+	//			window.location = "${changePageUrl}pageSize=" + $(this).val();
+	//		});
+	//	});
+</script>

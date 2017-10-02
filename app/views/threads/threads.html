@@ -1,0 +1,85 @@
+<main class="section">
+    <div class="container row" ng-init="getThreads()">
+        <!--Title-->
+        <h1 class="center">PowerUp Threads</h1>
+
+        <!--Threads-->
+        <div class="row">
+            <div ng-if="threads === null" class="center">
+                <h5>Fetching threads...</h5>
+                <loading-circle></loading-circle>
+            </div>
+
+            <h5 ng-if="threads && threads.length == 0" class="center">
+                No threads to show.
+                <span ng-if="isLoggedIn">Why not <a href="#threads/create">create one?</a></span>
+            </h5>
+            <div ng-if="threads && threads.length > 0">
+                <!--Sorting buttons-->
+                <div class="row">
+                    <div class="col s12">
+                        <a class="btn waves-effect waves-light {{(order == 'hot')? '' : 'inactive'}}"
+                           ng-href="#threads?order=hot">Hottest</a>
+                        <a class="btn waves-effect waves-light {{(order == 'date')? '' : 'inactive'}}"
+                           ng-href="#threads?order=date&sortDirection=desc">Newest</a>
+                        <a class="btn waves-effect waves-light {{(order == 'best')? '' : 'inactive'}}"
+                           ng-href="#threads?order=best">Highest Scoring</a>
+                    </div>
+                </div>
+                <!--End sorting buttons-->
+
+                <!--Threads list-->
+                <div class="row">
+                    <ul ng-if="threads.length > 0" class="collection">
+                        <li ng-repeat="thread in threads" class="collection-item avatar">
+
+                            <img ng-src="{{thread.creator.profilePictureUrl}}" alt="{{thread.creator.username}}" class="circle">
+                            <a class="title truncate" ng-href="#thread/{{thread.id}}">{{thread.title}}</a>
+
+                            <p>Submitted {{thread.createdAt | date: 'mediumDate'}} by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></p>
+                            <br>
+                            <p class="truncate">{{thread.body}}</p>
+
+                            <!--Un/like section-->
+                            <span class="secondary-content">
+                                <b style="vertical-align: text-bottom">{{thread.likeCount}}</b>
+                                <!--Not logged in - black actionless thumbs up-->
+                                <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                                <!--Logged in and liked - green thumbs up with action to unlike-->
+                                <a ng-if="isLoggedIn && isLikedByCurrentUser(thread)" ng-click="unlikeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                    <i class="material-icons green-text">thumb_up</i>
+                                </a>
+                                <!--Logged in and not liked - black thumbs up with action to like-->
+                                <a ng-if="isLoggedIn && !isLikedByCurrentUser(thread)" ng-click="likeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                    <i class="material-icons black-text">thumb_up</i>
+                                </a>
+                            </span>
+                            <!--End un/like section-->
+                        </li>
+                    </ul>
+                </div>
+                <!--End threads list-->
+
+                <!--Load more-->
+                <!--TODO consider auto-loading more when reaching end of page with scrollspy or something like that, in Thread comments too-->
+                <div>
+                    <p ng-if="threads.length > 0 && !hasMorePages">No more threads</p>
+                    <a ng-if="hasMorePages && !pendingRequests.threads" href="" ng-click="getMoreThreads()">Load more threads</a>
+                    <p style="display:inline-block" ng-if="pendingRequests.threads">Fetching more threads...</p>
+                    <div ng-if="pendingRequests.threads" style="display: inline-block; vertical-align: middle">
+                        <loading-circle-small></loading-circle-small>
+                    </div>
+                </div>
+                <!--End load more-->
+            </div>
+
+        </div>
+        <!--FAB-->
+        <div ng-if="isLoggedIn" class="fixed-action-btn" style="bottom:10%;">
+            <a href="#threads/create" id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+        </div>
+        <!--END FAB-->
+    </div>
+</main>

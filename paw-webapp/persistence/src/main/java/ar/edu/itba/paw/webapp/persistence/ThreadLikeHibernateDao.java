@@ -1,75 +1,76 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.ThreadLikeDao;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.ThreadLike;
 import ar.edu.itba.paw.webapp.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import java.util.Collection;
+import java.util.Map;
 
 @Repository
 public class ThreadLikeHibernateDao implements ThreadLikeDao {
+
     @PersistenceContext
     private EntityManager em;
 
-    private final UserDao userDao;
+    /**
+     * Holds the base query for searching and checking existence of {@link ThreadLike}.
+     */
+    private static final String BASE_QUERY = "FROM ThreadLike _like" +
+            " WHERE _like.thread = ?1 AND _like.user = ?2";
 
-    @Autowired
-    public ThreadLikeHibernateDao(UserDao userDao) {
-        this.userDao = userDao;
+    @Override
+    public Page<ThreadLike> getLikes(Thread thread, int pageNumber, int pageSize,
+                                     SortingType sortingType, SortDirection sortDirection) {
+
+        return DaoHelper.getLikesPage(em, pageNumber, pageSize, sortingType.getFieldName(), sortDirection,
+                ThreadLike.class,
+                new DaoHelper.ConditionAndParameterWrapper("_like.thread = ?0", thread, 0));
     }
 
     @Override
-    public ThreadLike find(long threadId, long userId) {
-        TypedQuery<ThreadLike> baseQuery = em.createQuery("FROM ThreadLike AS L where L.thread.id = :threadId AND L.user.id = :userId", ThreadLike.class);
-        baseQuery.setParameter("threadId", threadId);
-        baseQuery.setParameter("userId", userId);
-        try {
-            return baseQuery.getSingleResult();
-        } catch(NoResultException e) {
-            return null;
-        }
+    public ThreadLike find(Thread thread, User user) {
+        return DaoHelper.findSingleWithConditions(em, ThreadLike.class, "SELECT _like " + BASE_QUERY, thread, user);
     }
 
     @Override
-    public boolean exists(long threadId, long userId) {
-        return find(threadId, userId) != null;
+    public boolean exists(Thread thread, User user) {
+        return DaoHelper.exists(em, "SELECT COUNT(_like) " + BASE_QUERY, thread, user);
+    }
+
+
+    @Override
+    public ThreadLike create(Thread thread, User user) {
+        if (thread == null || user == null) {
+            throw new IllegalArgumentException("Thread and user must not be null");
+        }
+        final ThreadLike threadLike = new ThreadLike(user, thread);
+        em.persist(threadLike);
+        return threadLike;
     }
 
     @Override
-    public int create(long threadId, long userId) {
-        User user = userDao.findById(userId);
-        if(user == null) {
-            throw new NoSuchUserException(userId);
+    public void delete(ThreadLike threadLike) {
+        if (threadLike == null) {
+            throw new IllegalArgumentException("The threadLike must not be null");
         }
-        Thread thread = em.find(Thread.class, threadId);
-        if(thread == null) {
-            throw new NoSuchEntityException(Thread.class, threadId);
-        }
-        if(!exists(threadId, userId)) {
-            //TODO is this check necessary? What happens with the @Table annotation?
-//            LoggerFactory.logger(this.getClass()).errorf("{} couldn't like thread {}: {}", user.getUsername(), thread.getId(), e);
-            em.persist(new ThreadLike(user, thread));
-        }
-        return thread.getLikeCount();
+        em.remove(threadLike);
     }
 
     @Override
-    public int delete(long threadId, long userId) {
-        int result = -1;
-        ThreadLike like = find(threadId, userId);
-        if(like != null) {
-            result = like.getThread().getLikeCount() - 1;
-            em.remove(like);
-        }
-        return result;
+    public Map<Thread, Long> countLikes(Collection<Thread> threads) {
+        return DaoHelper.countLikes(threads, em, "thread", ThreadLike.class);
+    }
+
+
+    @Override
+    public Map<Thread, Boolean> likedBy(Collection<Thread> threads, User user) {
+        return DaoHelper.likedBy(threads, user, em, Thread.class);
     }
 }

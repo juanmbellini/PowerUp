@@ -1,10 +1,10 @@
 package ar.edu.itba.paw.webapp.persistence;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.notImplementedException;
+import ar.edu.itba.paw.webapp.exceptions.NumberOfPageBiggerThanTotalAmountException;
 import ar.edu.itba.paw.webapp.interfaces.GameDao;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.utilities.Page;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -64,10 +64,10 @@ public class GameHibernateDao implements GameDao {
         Query queryCount = em.createQuery(countString + fromString.toString());
 
         fromString.append(" order by ")
-                .append(orderCategory==OrderCategory.avg_score?"NULLIF(":"")
+                .append(orderCategory==OrderCategory.AVG_SCORE?"NULLIF(":"")
                 .append("g.")
-                .append(Game.getOrderField(orderCategory))
-                .append(orderCategory==OrderCategory.avg_score?",0)":"")
+                .append(orderCategory.getFieldName())
+                .append(orderCategory==OrderCategory.AVG_SCORE?",0)":"")
                 .append(ascending ? " ASC NULLS LAST" : " DESC NULLS LAST");
 
         TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
@@ -88,18 +88,21 @@ public class GameHibernateDao implements GameDao {
             return Page.emptyPage();
         }
         int actualPageSize = pageSize == 0 ? count : pageSize;
-
-        querySelect.setFirstResult(actualPageSize * (pageNumber - 1));
-        querySelect.setMaxResults(actualPageSize);
-        Page<Game> pageResult = new Page<>();
-        pageResult.setTotalPages(Math.max((int) Math.ceil((double) count / actualPageSize), 1));
-        pageResult.setPageNumber(pageNumber);
-        pageResult.setPageSize(actualPageSize);
-        pageResult.setOverAllAmountOfElements(count);
-
-        List<Game> list = querySelect.getResultList();
-        pageResult.setData(list);
-        return pageResult;
+        int totalAmountOfPages = Math.max((int) Math.ceil((double) count / actualPageSize), 1);
+        // Avoid making the query if pageSize is wrong
+        if (pageNumber > totalAmountOfPages) {
+            throw new NumberOfPageBiggerThanTotalAmountException();
+        }
+        return new Page.Builder<Game>()
+                .setTotalPages(totalAmountOfPages)
+                .setPageNumber(pageNumber)
+                .setPageSize(actualPageSize)
+                .setOverAllAmountOfElements(count)
+                .setData(querySelect
+                        .setFirstResult(actualPageSize * (pageNumber - 1))
+                        .setMaxResults(actualPageSize)
+                        .getResultList())
+                .build();
     }
 
     @Override
@@ -153,7 +156,19 @@ public class GameHibernateDao implements GameDao {
 
     @Override
     public Game findById(long id) {
-        return DaoHelper.findSingle(em, Game.class, id);
+        Game game = DaoHelper.findSingle(em, Game.class, id);
+        if (game == null) {
+            return null;
+        }
+        // TODO: move to service layer?
+        loadGenres(game);
+        loadPlatforms(game);
+        loadDevelopers(game);
+        loadPublishers(game);
+        loadKeywords(game);
+        loadPictures(game);
+        loadVideos(game);
+        return game;
     }
 
     @Override
@@ -164,12 +179,6 @@ public class GameHibernateDao implements GameDao {
     @Override
     public boolean existsWithTitle(String title) {
         return DaoHelper.findSingleWithConditions(em, Game.class, "FROM Game AS G WHERE G.name = ?1", title) != null;
-    }
-
-    @Override
-    @Deprecated
-    public Collection<String> getFiltersByType(FilterCategory filterCategory) {
-        throw new notImplementedException();
     }
 
     @Override
@@ -235,7 +244,7 @@ public class GameHibernateDao implements GameDao {
                 ArrayList<String> filterArrayParameter = new ArrayList<>();
                 filterArrayParameter.add(filter);
                 filterParameterMap.put(filterCategory, filterArrayParameter);
-                Collection<Game> resultGames = searchGames("", filterParameterMap, OrderCategory.avg_score, false);
+                Collection<Game> resultGames = searchGames("", filterParameterMap, OrderCategory.AVG_SCORE, false);
                 for (Game game : resultGames) {
                     if (!excludedGameIds.contains(game.getId())) {
                         if (!gamesWeightMap.containsKey(game)) {
@@ -294,5 +303,47 @@ public class GameHibernateDao implements GameDao {
     @Override
     public Map<Long, Integer> getScores(long gameId) {
         return DaoHelper.findSingleOrThrow(em, Game.class, gameId).getScores();
+    }
+
+    @Override
+    public GameDao loadGenres(Game game) {
+        Hibernate.initialize(game.getGenres());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPlatforms(Game game) {
+        Hibernate.initialize(game.getPlatforms());
+        return this;
+    }
+
+    @Override
+    public GameDao loadDevelopers(Game game) {
+        Hibernate.initialize(game.getDevelopers());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPublishers(Game game) {
+        Hibernate.initialize(game.getPublishers());
+        return this;
+    }
+
+    @Override
+    public GameDao loadKeywords(Game game) {
+        Hibernate.initialize(game.getKeywords());
+        return this;
+    }
+
+    @Override
+    public GameDao loadPictures(Game game) {
+        Hibernate.initialize(game.getPictureIds());
+        return this;
+    }
+
+    @Override
+    public GameDao loadVideos(Game game) {
+        Hibernate.initialize(game.getVideos());
+        return this;
     }
 }

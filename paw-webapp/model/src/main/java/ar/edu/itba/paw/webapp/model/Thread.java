@@ -1,11 +1,14 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.model_interfaces.Commentable;
+import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
+import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -16,7 +19,7 @@ import java.util.*;
  */
 @Entity
 @Table(name = "threads")
-public class Thread {
+public class Thread implements ValidationExceptionThrower, Likeable, Commentable {
 
     @Id
     @SequenceGenerator(name = "threads_seq", sequenceName = "threads_id_seq", allocationSize = 1)
@@ -31,14 +34,15 @@ public class Thread {
     private String title;
 
     @Column(name = "initial_comment")
-    private String initialComment;
+    private String body;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
-    @OrderBy("createdAt ASC")
-    private Set<Comment> allComments;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "thread", orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<Comment> allComments; // Used just for counting
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "thread")
-    private Set<ThreadLike> likes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "thread", orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private Set<ThreadLike> likes; // Used just for counting
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -53,102 +57,153 @@ public class Thread {
     @Column(name = "hot_value")
     private double hotValue;
 
-    /*package*/  Thread() {
-        //for hibernate
+
+    /* package */  Thread() {
+        this.allComments = new HashSet<>();
+        this.likes = new HashSet<>();
+        // For Hibernate
     }
 
     /**
      * Creates a new thread.
      *
-     * @param creator        The thread's creator.
-     * @param title          The thread's title.
-     * @param initialComment The thread's initial comment. May be empty, but not null.
+     * @param creator The thread's creator.
+     * @param title   The thread's title.
+     * @param body    The thread's initial comment. May be empty, but not null.
+     * @throws ValidationException If any value is wrong.
      */
-    public Thread(User creator, String title, String initialComment) {
-        this.creator = creator;
-        this.title = title;
-        this.initialComment = initialComment;
-        allComments = new HashSet();
-        likes = new HashSet<>();
-        LocalDate ldt = LocalDate.parse("2016-01-01");
-        ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
-        long epoch = ldt.atStartOfDay(zoneId).toEpochSecond();
-        setHotValue((Math.log10(1)+(System.currentTimeMillis())/1000 - epoch)/45000);
+    public Thread(User creator, String title, String body) throws ValidationException {
+        this();
+        final List<ValueError> errorList = new LinkedList<>();
+        ValidationHelper.objectNotNull(creator, errorList, ValueErrorConstants.MISSING_CREATOR);
 
+        update(title, body, errorList);
+        this.creator = creator;
+        updateHotValue();
     }
 
     /**
-     * Creates a new thread with an empty initial comment.
+     * Updates the thread.
      *
-     * @param creator The thread's creator.
-     * @param title   The thread's title.
+     * @param title The new title.
+     * @param body  The initial comment (i.e. body of the thread).
+     * @throws ValidationException If any value is wrong.
      */
-    public Thread(User creator, String title) {
-        this(creator, title, "");
+    public void update(String title, String body) throws ValidationException {
+        update(title, body, new LinkedList<>());
     }
 
+    /**
+     * Updates the thread, receiving a list of detected errors before executing this method.
+     *
+     * @param title The new title.
+     * @param body  The initial comment (i.e. body of the thread).
+     * @throws ValidationException If any value is wrong.
+     */
+    private void update(String title, String body, List<ValueError> errorList) throws ValidationException {
+        checkValues(title, body, errorList);
+        this.title = title;
+        this.body = body;
+    }
+
+
+    // TODO: javadoc, diego?
+    public void updateHotValue() {
+        long epoch = LocalDate.parse("2016-01-01").atStartOfDay(ZoneId.systemDefault()).toEpochSecond();
+        int likeSize = (likes == null ? 0 : likes.size()) + 1;
+        long millis = updatedAt == null ? System.currentTimeMillis() : updatedAt.getTimeInMillis();
+        hotValue = (Math.log10(likeSize) + (millis / 1000 - epoch) / 45000.0);
+    }
+
+    /**
+     * Id getter.
+     *
+     * @return The id.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Creator getter.
+     *
+     * @return The creator.
+     */
     public User getCreator() {
         return creator;
     }
 
+    /**
+     * Title getter.
+     *
+     * @return The title.
+     */
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    /**
+     * Initial comment getter.
+     *
+     * @return The initial comment (i.e the thread's body).
+     */
+    public String getBody() {
+        return body;
     }
 
-    public String getInitialComment() {
-        return initialComment;
+
+    /**
+     * Hot value getter.
+     *
+     * @return The hot value.
+     */
+    public double getHotValue() {
+        return hotValue;
     }
 
-    public void setInitialComment(String initialComment) {
-        this.initialComment = initialComment;
-    }
-
-    public Collection<Comment> getAllComments() {
-        return allComments;
-    }
-
-    @Transient
-    public Collection<Comment> getTopLevelComments() {
-        //Not caching this into a variable since allComments may change and we have no way of tracking when this happens
-        //to recompute all top-level comments.
-        Set<Comment> result = new LinkedHashSet<>();
-        for(Comment c : allComments) {
-            if(c.getParentComment() == null) {
-                result.add(c);
-            }
-        }
-        return result;
-    }
-
-    public int getLikeCount() {
+    /**
+     * Likes count getter.
+     *
+     * @return The amount of likes.
+     */
+    public long getLikeCount() {
         return likes.size();
     }
 
-    public boolean isLikedBy(User user) {
-        for(ThreadLike like : likes) {
-            if(like.getUser().equals(user)) {
-                return true;
-            }
-        }
-        return false;
+    /**
+     * Comments count getter.
+     *
+     * @return The amount of comments.
+     */
+    public long getCommentCount() {
+        return allComments.size();
     }
 
+    /**
+     * Created at getter.
+     *
+     * @return The moment at which this comment was created.
+     */
     public Calendar getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Updated at getter.
+     *
+     * @return The moment at which this comment was updated.
+     */
     public Calendar getUpdatedAt() {
         return updatedAt;
     }
 
+
+    /**
+     * Equals based on the id.
+     *
+     * @param o The object to be compared with.
+     * @return {@code true} if they are the same, or {@code false} otherwise.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -159,6 +214,11 @@ public class Thread {
         return id == thread.id;
     }
 
+    /**
+     * Hashcode based on the id.
+     *
+     * @return The hashcode.
+     */
     @Override
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
@@ -166,14 +226,29 @@ public class Thread {
 
     @Override
     public String toString() {
-        return "Thread #" +
-                id +
-                ", creator=" + creator.getUsername() +
-                ", title='" + title + '\'' +
-                ", initialComment='" + initialComment + '\'';
+        return "Thread #" + id + ", creator=" + creator.getUsername()
+                + ", title='" + title + "', body='" + body + "'";
     }
 
-    public void setHotValue(double hotValue) {
-        this.hotValue = hotValue;
+
+    /**
+     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
+     *
+     * @param title          The title to be checked.
+     * @param initialComment The initial comment to be checked.
+     * @param errorList      A list containing possible detected errors before calling this method.
+     * @throws ValidationException If any value is wrong.
+     */
+    private void checkValues(String title, String initialComment, List<ValueError> errorList)
+            throws ValidationException {
+        errorList = errorList == null ? new LinkedList<>() : errorList;
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(title, NumericConstants.TITLE_MIN_LENGTH,
+                NumericConstants.TITLE_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_TITLE,
+                ValueErrorConstants.TITLE_TOO_SHORT, ValueErrorConstants.TITLE_TOO_LONG);
+        ValidationHelper.stringNullOrLengthBetweenTwoValues(initialComment, NumericConstants.THREAD_BODY_MIN_LENGTH,
+                NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.THREAD_BODY_TOO_SHORT,
+                ValueErrorConstants.THREAD_BODY_TOO_LONG);
+        throwValidationException(errorList);
     }
+
 }

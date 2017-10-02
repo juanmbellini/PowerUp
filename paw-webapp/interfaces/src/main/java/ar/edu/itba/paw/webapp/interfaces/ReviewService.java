@@ -1,136 +1,118 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchGameException;
-import ar.edu.itba.paw.webapp.exceptions.NoSuchUserException;
+import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
-
-import java.util.Set;
 
 /**
  * Service layer for game reviews. Exposes functionality available to reviews.
  */
 public interface ReviewService {
 
-    /**
-     * Creates a new review with the specified data.
-     *
-     * @param reviewerId The ID of the user who created the review.
-     * @param gameId The ID of the game getting reviewed.
-     * @param review The textual review.
-     * @param storyScore The story score.
-     * @param graphicsScore The graphics score.
-     * @param audioScore The audio score.
-     * @param controlsScore The controls score.
-     * @param funScore The fun score.
-     * @return The created review.
-     * @throws NoSuchEntityException If no such user or game exists.
-     * //TODO throw exception if said review already exists.
-     */
-    Review create(long reviewerId, long gameId, String review, int storyScore, int graphicsScore, int audioScore, int controlsScore, int funScore) throws NoSuchEntityException;
 
     /**
-     * Returns a set of reviews for a specified game.
+     * Returns a {@link Page} with the reviews, applying filters, pagination and sorting.
      *
-     * @param id The ID of the game whose reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchGameException When an invalid game ID is provided.
+     * @param gameIdFilter   Filter for game id.
+     * @param gameNameFilter Filter for game name.
+     * @param userIdFilter   Filter for user id.
+     * @param usernameFilter Filter for username.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type (id, game id, or creation date).
+     * @param sortDirection  The sort direction (i.e ASC or DESC).
+     * @return The resulting page.
      */
-    Set<Review> findByGameId(long id) throws NoSuchGameException;
-
-    /**
-     * Returns a page of reviews for a specified game.
-     *
-     * @param id The ID of the game whose reviews to fetch.
-     * @param pageNumber The page number.
-     * @param pageSize The page size.
-     * @return The resulting page of reviews.
-     * @throws NoSuchGameException When an invalid game ID is provided.
-     */
-    Page<Review> findPageByGameId(long id, int pageNumber, int pageSize) throws NoSuchGameException;
-
-    /**
-     * Returns a set of recent reviews, ordered by descending date, for a specified game, identified by ID.
-     *
-     * @param id The ID of the game whose reviews to fetch.
-     * @param limit The maximum number of reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchGameException When an invalid game ID is provided.
-     */
-    Set<Review> findRecentByGameId(long id, int limit) throws NoSuchGameException;
-
-    /**
-     * Returns a set of reviews created by a specified user.
-     *
-     * @param id The ID of the user whose reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchUserException When an invalid user ID is provided.
-     */
-    Set<Review> findByUserId(long id) throws NoSuchUserException;
-
-    /**
-     * Returns a page of reviews by a specified user.
-     *
-     * @param id The ID of the user whose reviews to fetch.
-     * @param pageNumber The page number.
-     * @param pageSize The page size.
-     * @return The resulting page of reviews.
-     * @throws NoSuchGameException When an invalid game ID is provided.
-     */
-    Page<Review> findPageByUserId(long id, int pageNumber, int pageSize) throws NoSuchGameException;
-
-    /**
-     * Returns a set of recent reviews, ordered by descending date, created by a specified user, identified by ID.
-     *
-     * @param id The ID of the user whose reviews to fetch.
-     * @param limit The maximum number of reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchUserException When an invalid user ID is provided.
-     */
-    Set<Review> findRecentByUserId(long id, int limit) throws NoSuchUserException;
-
-    /**
-     * Returns a set of reviews created by a specified user.
-     *
-     * @param username The name of the user whose reviews to fetch. Case <b>in</b>sensitive.
-     * @return The resulting set of reviews.
-     * @throws NoSuchUserException When an invalid username is provided.
-     */
-    Set<Review> findByUsername(String username) throws NoSuchUserException;
-
-    /**
-     * Returns a set of recent reviews, ordered by descending date, created by a specified user, identified by username.
-     *
-     * @param username The username of the user whose reviews to fetch.
-     * @param limit The maximum number of reviews to fetch.
-     * @return The resulting set of reviews.
-     * @throws NoSuchUserException When an invalid user title is provided.
-     */
-    Set<Review> findRecentByUsername(String username, int limit) throws NoSuchUserException;
+    Page<LikeableWrapper<Review>> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
+                                             int pageNumber, int pageSize,
+                                             ReviewDao.SortingType sortingType, SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a review by ID.
      *
      * @param reviewId The ID to match.
+     * @param currentUser
      * @return The matching review or {@code null} if not found.
      */
-    Review findById(long reviewId);
+    LikeableWrapper<Review> findById(long reviewId, User currentUser);
 
     /**
-     * Finds a review given a user ID and user ID.
+     * Creates a new review with the specified data.
      *
-     * @param userId The user ID.
-     * @param gameId The game ID.
-     * @return The matching review, or {@code null} if not found.
-     * @throws NoSuchUserException If an invalid user ID is provided.
-     * @throws NoSuchUserException If an invalid game ID is provided.
+     * @param gameId        The id of the game getting reviewed.
+     * @param reviewBody    The textual review.
+     * @param storyScore    The story score.
+     * @param graphicsScore The graphics score.
+     * @param audioScore    The audio score.
+     * @param controlsScore The controls score.
+     * @param funScore      The fun score.
+     * @param reviewer      The {@link User} writing the {@link Review}.
+     * @return The created review.
+     * @throws NoSuchEntityException If no such user or game exists.
+     * @throws ValidationException   If the {@link User} with the given {@code reviewerId}
+     *                               has already reviewed the {@link Game} with the given {@code gameId}.
      */
-    Review find(long userId, long gameId) throws NoSuchUserException, NoSuchGameException;
+    Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                  Integer controlsScore, Integer funScore, User reviewer)
+            throws NoSuchEntityException, ValidationException;
+
 
     /**
-     * Deletes review from user.
-     * @param reviewId
+     * Updates the {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId      The review id.
+     * @param reviewBody    The new review body.
+     * @param storyScore    The new story score.
+     * @param graphicsScore The new graphics score.
+     * @param audioScore    The new audio score.
+     * @param controlsScore The new controls score.
+     * @param funScore      The new fun score.
+     * @param updater       The {@link User} updating the {@link Review}.
      */
-    void delete(long reviewId);
+    void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
+                Integer controlsScore, Integer funScore, User updater);
+
+    /**
+     * Deletes {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId The id of the review to be deleted.
+     * @param deleter  The {@link User} deleting the {@link Review}.
+     */
+    void delete(long reviewId, User deleter);
+
+    /**
+     * Marks a like for a given review by a given user, if not already liked.
+     *
+     * @param reviewId The ID of the review to like.
+     * @param liker    The {@link User} performing the operation.
+     */
+    void likeReview(long reviewId, User liker);
+
+    /**
+     * Removes a like from a given review by a given user, if liked.
+     *
+     * @param reviewId The ID of the review to unlike.
+     * @param unliker  The {@link User} performing the operation.
+     */
+    void unlikeReview(long reviewId, User unliker);
+
+
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Review} with the given {@code reviewId}.
+     *
+     * @param reviewId      The ID of the {@link Review}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheReview(long reviewId, int pageNumber, int pageSize,
+                                       ReviewLikeDao.SortingType sortingType, SortDirection sortDirection);
+
+
 }

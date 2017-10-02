@@ -1,179 +1,224 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
-import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.UserExistsException;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.PlayStatus;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
+import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 /**
  * User service class. Exposes all functionality available to users.
  */
 public interface UserService {
 
-    /**
-     * Creates a new user with a specified email and (optionally) a specified username.
-     *
-     * @param email    The user's email. Must be unique.
-     * @param password The user's password.
-     * @param username The user's username. Must be unique.
-     * @return The created user.
-     * @throws UserExistsException If a user with {@code email} or {@code username} already exists.
-     */
-    User create(String email, String password, String username) throws UserExistsException;
 
     /**
-     * Finds a user by username.
+     * Returns a {@link Page} with the users, applying filters, pagination and sorting.
      *
-     * @param username The username. Case-sensitive.
+     * @param usernameFilter  Filter for username.
+     * @param emailFilter     Filter for email.
+     * @param authorityFilter Filter for authority.
+     * @param pageNumber      The page number.
+     * @param pageSize        The page size.
+     * @param sortingType     The sorting type (id, game id, or creation date).
+     * @param sortDirection   The sort direction (i.e ASC or DESC).
+     * @param currentUser     The {@link User} performing the operation.
+     * @return The resulting page.
+     */
+    Page<UserWithFollowCountsWrapper> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
+                                               int pageNumber, int pageSize,
+                                               UserDao.SortingType sortingType, SortDirection sortDirection,
+                                               User currentUser);
+
+
+    /**
+     * Finds a {@link User} by id.
+     *
+     * @param id          The user ID.
+     * @param currentUser The {@link User} performing the operation.
      * @return The found user or {@code null} if not found.
      */
-    User findByUsername(String username);
+    UserWithFollowCountsWrapper findById(long id, User currentUser);
 
     /**
-     * Finds a user by email.
-     *
-     * @param email The email. Case-<strong>in</strong>sensitive.
-     * @return The found user or {@code null} if not found.
-     */
-    User findByEmail(String email);
-
-    /**
-     * Finds a user by id.
+     * Finds a {@link User} by id.
      *
      * @param id The user ID.
      * @return The found user or {@code null} if not found.
      */
-    User findById(long id);
+    UserWithFollowCountsWrapper findById(long id);
 
     /**
-     * Checks whether a user with a given ID exists.
+     * Finds a {@link User} by username.
      *
-     * @param id The ID of the user to check.
-     * @return Whether such a user exists.
+     * @param username    The username. Case-sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
      */
-    boolean existsWithId(long id);
+    UserWithFollowCountsWrapper findByUsername(String username, User currentUser);
 
     /**
-     * Checks whether a user with a given username exists.
+     * Finds a {@link User} by username.
      *
-     * @param username The username to check. Case sensitive.
-     * @return Whether such a user exists.
+     * @param username The username. Case-sensitive.
+     * @return The found user or {@code null} if not found.
      */
-    boolean existsWithUsername(String username);
+    UserWithFollowCountsWrapper findByUsername(String username);
 
     /**
-     * Checks whether a user with a given email exists.
+     * Finds a {@link User} by email.
      *
-     * @param email The username to check. Case <strong>in-</strong>sensitive.
-     * @return Whether such a user exists.
+     * @param email       The email. Case-<strong>in</strong>sensitive.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The found user or {@code null} if not found.
      */
-    boolean existsWithEmail(String email);
+    UserWithFollowCountsWrapper findByEmail(String email, User currentUser);
 
     /**
-     * Sets or updates a score for a specified game by a specified user.
+     * Finds a {@link User} by email.
      *
-     * @param userId The ID of user who is scoring the game.
-     * @param gameId The scored game's ID.
-     * @param score  The score, where 1 <= {@code score} <= 10
+     * @param email The email. Case-<strong>in</strong>sensitive.
+     * @return The found user or {@code null} if not found.
      */
-    void scoreGame(long userId, long gameId, int score);
+    UserWithFollowCountsWrapper findByEmail(String email);
+
 
     /**
-     * Gets the games in the specified user's game list that are marked with the specified play status.
+     * Creates a new {@link User} with the specified data.
      *
-     * @param userId The ID of the user whose game list to look in.
-     * @param status The status for games to match.
-     * @return The matching games.
+     * @param username The user's username. Must be unique.
+     * @param email    The user's email. Must be unique.
+     * @param password The user's password.
+     * @return The created user.
      */
-    Set<Game> getGamesByStatus(long userId, PlayStatus status);
+    User create(String username, String email, String password);
 
     /**
-     * Gets a map of all games scored by this user with their corresponding score.
+     * Changes the user's password.
      *
-     * @param userId The ID of the user whose scored games to check.
-     * @return The resulting map.
+     * @param userId      The user id.
+     * @param newPassword The new password.
+     * @param updaterId   The id of the user performing the operation.
      */
-    Map<Game, Integer> getScoredGames(long userId);
+    void changePassword(long userId, String newPassword, long updaterId);
 
     /**
-     * Gets the specified user's scored games in reverse indexing - instead of mapping <gameId, score>, the mapping is
-     * of <score, gameIds>.
+     * Changes the user's profile picture.
      *
-     * @return An unmodifiable map containing the same information as {@link #getScoredGames(long)} but with reverse
-     * indexing.
+     * @param userId    The user id.
+     * @param picture   The new picture.
+     * @param mimeType  The new picture's mime type.
+     * @param updaterId The id of the user performing the operation.
      */
-    Map<Integer, Set<Long>> getScoredGamesRev(long userId);
+    void changeProfilePicture(long userId, byte[] picture, String mimeType, long updaterId);
 
     /**
-     * Checks whether the specified user has scored the game with the specified ID.
+     * Removes the profile picture for a user.
      *
-     * @param userId The ID of the user who should have rated the game.
-     * @param gameId The ID of the game to check.
-     * @return Whether the specified user has scored the game with ID {@code gameId}.
+     * @param userId    The user id.
+     * @param updaterId The id of the user performing the operation.
      */
-    boolean hasScoredGame(long userId, long gameId);
+    void removeProfilePicture(long userId, long updaterId);
 
     /**
-     * Gets the score that this user gave to a specified game.
+     * Returns the play statuses made by the {@link User} with the given {@code userId},
+     * applying filtering, sorting and pagination.
      *
-     * @param userId The ID of the user whose scores to check.
-     * @param gameId The ID of the game for which to get score.
-     * @return The score that this user gave to the game with ID {@code gameId}.
-     * @throws IllegalArgumentException If this user hasn't scored the specified game.
-     * @see #hasScoredGame(long, long)
+     * @param userId         The user id.
+     * @param gameIdFilter   The filter for game id.
+     * @param gameNameFilter The filter for game name.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type.
+     * @param sortDirection  The sort direction.
+     * @return The resulting page.
      */
-    int getGameScore(long userId, long gameId);
+    Page<UserGameStatus> getPlayStatuses(long userId, Long gameIdFilter, String gameNameFilter,
+                                         int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                         SortDirection sortDirection);
 
-    /**
-     * Checks whether this user has recorded a play status for the game with the specified ID.
-     *
-     * @param userId The ID of the user to check.
-     * @param gameId The ID of the game to check.
-     * @return Whether this user has registered a play status for the game with ID {@code gameId}.
-     */
-    boolean hasPlayStatus(long userId, long gameId);
-
-    /**
-     * Gets the play status that this user set for a specified game.
-     *
-     * @param userId The ID of the user to check.
-     * @param gameId The ID of the game for which to get a play status.
-     * @return The registered play status.
-     * @throws IllegalArgumentException If this user hasn't set a play status for the game with ID {@code gameId}.
-     * @see #hasPlayStatus(long, long)
-     */
-    PlayStatus getPlayStatus(long userId, long gameId);
 
     /**
      * Sets or updates a play status for a specified game for a specified user.
      *
-     * @param userId The ID of the user who is setting or updating status.
-     * @param gameId The ID of the game whose status is being registered.
-     * @param status The status.
+     * @param userId    The ID of the user who is setting or updating status.
+     * @param gameId    The ID of the game whose status is being registered.
+     * @param status    The status.
+     * @param updaterId The id of the user performing the operation.
      */
-    void setPlayStatus(long userId, long gameId, PlayStatus status);
-
-    /**
-     * Removes a score recorded by a specified user for a specified game.
-     *
-     * @param userId The ID of the user who is getting a score removed.
-     * @param gameId The ID of the game whose score is getting removed.
-     */
-    void removeScore(long userId, long gameId);
+    void setPlayStatus(long userId, Long gameId, PlayStatus status, long updaterId);
 
     /**
      * Removes status from user u to game id.
      *
-     * @param userId The ID of the user who is getting a gameStatus removed
-     * @param gameId The ID of the game whose gameStatus is getting removed
+     * @param userId    The ID of the user who is getting a gameStatus removed
+     * @param gameId    The ID of the game whose gameStatus is getting removed
+     * @param updaterId The id of the user performing the operation.
      */
-    void removeStatus(long userId, long gameId);
+    void removePlayStatus(long userId, Long gameId, long updaterId);
+
+
+    /**
+     * Returns the scores made by the {@link User} with the given {@code userId},
+     * applying filtering, sorting and pagination.
+     *
+     * @param userId         The user id.
+     * @param gameIdFilter   The filter for game id.
+     * @param gameNameFilter The filter for game name.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type.
+     * @param sortDirection  The sort direction.
+     * @return The resulting page.
+     */
+    Page<UserGameScore> getGameScores(long userId, Long gameIdFilter, String gameNameFilter,
+                                      int pageNumber, int pageSize, UserDao.PlayStatusAndGameScoresSortingType sortingType,
+                                      SortDirection sortDirection);
+
+
+    /**
+     * Sets or updates a score for the {@link Game} with the given {@code gameId},
+     * for the {@link User} with the given {@code userId}
+     *
+     * @param userId    The user id.
+     * @param gameId    The scored game's id.
+     * @param score     The score.
+     * @param updaterId The id of the user performing the operation.
+     */
+    void setGameScore(long userId, long gameId, Integer score, long updaterId);
+
+    /**
+     * Removes the score for the {@link Game} with the given {@code gameId},
+     * for the {@link User} with the given {@code userId}
+     *
+     * @param userId    The user id.
+     * @param gameId    The scored game's id.
+     * @param updaterId The id of the user performing the operation.
+     */
+    void removeGameScore(long userId, long gameId, long updaterId);
+
+
+    /**
+     * Adds an {@link Authority} to the user with the given {@code userId}.
+     *
+     * @param userId    The user's id.
+     * @param authority The authority.
+     * @param updaterId The id of the user performing the operation.
+     */
+    void addAuthority(long userId, Authority authority, long updaterId);
+
+    /**
+     * Removes an {@link Authority} to the user with the given {@code userId}.
+     *
+     * @param userId    The user's id.
+     * @param authority The authority.
+     * @param updaterId The id of the user performing the operation.
+     */
+    void removeAuthority(long userId, Authority authority, long updaterId);
 
     /**
      * Recommends games for user based on the scores of the games he has scored
@@ -184,72 +229,117 @@ public interface UserService {
 
     /**
      * Recommends games for user based on the scores of the games he has scored for the shelf selected
-     * @param userId
-     * @param shelves
-     * @return
+     *
+     * @param userId           The id of the {@link User} to which the recommendation must be done.
+     * @param shelfNameFilters A {@link List} of names of {@link Shelf} to be included in the recommendation process.
+     * @return A {@link Collection} of recommended {@link Game}s.
      */
-    Collection<Game> recommendGames(long userId, Set<Shelf> shelves);
+    Collection<Game> recommendGames(long userId, List<String> shelfNameFilters);
 
     /**
-     * Gets all games in this user's main game list (games they have marked as playing, played, etc.).
+     * Returns a {@link User}'s list (i.e games in a {@link Shelf} or with {@link PlayStatus}).
+     * Filtering and sorting can be applied.
      *
-     * @param userId The ID of the user whose list to fetch.
-     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
+     * @param userId        The {@link User} owning the list's id.
+     * @param shelfNames    A {@link List} of names of {@link Shelf} to apply filtering.
+     * @param statuses      A {@link List} of {@link PlayStatus} to apply filtering.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
      */
-    Map<PlayStatus, Set<Game>> getGameList(long userId);
+    Page<GameWithUserShelvesWrapper> getGameList(long userId, List<String> shelfNames, List<PlayStatus> statuses,
+                                                 int pageNumber, int pageSize,
+                                                 UserDao.ListGameSortingType sortingType, SortDirection sortDirection);
 
-    /**
-     *
-     *
-     * @param userId The ID of the user whose list to fetch.
-     * @return The user's game list, mapping each {@link PlayStatus} to a set of games.
-     */
-
-//    /**
-//     * Gets all games in this user's main game list (games they have marked as playing, played, etc.), using playStatusFilter and shelvesFilters.
-//     * @param id
-//     * @param playStatusesFilter
-//     * @param shelvesFilter
-//     * @return
-//     */
-//    Map<Game, PlayStatus>  getGameList(long id, Set<String> playStatusesFilter, Set<String> shelvesFilter);
-
-    /**
-     * Sets the profile picture for a user. Only authenticated users may set their own pictures.
-     *
-     * @param userId  The ID of the user whose profile picture to set.
-     * @param picture The picture's binary data.
-     * @throws NoSuchEntityException If no such user exists.
-     */
-    void setProfilePicture(long userId, byte[] picture) throws NoSuchEntityException;
-
-    /**
-     * Removes the profile picture for a user. Only authenticated users may remove their own pictures.
-     *
-     * @param userId  The ID of the user whose profile picture to remove.
-     * @throws NoSuchEntityException If no such user exists.
-     */
-    void removeProfilePicture(long userId) throws NoSuchEntityException;
-
-    /**
-     * Changes the user's hashed password for the provided one.
-     * @param newHashedPassword new password. Must be hashed.
-     * @param userId  The ID of the user whose password to change.
-     * @throws NoSuchEntityException If no such user exists.
-     */
-    void changePassword(long userId, String newHashedPassword) throws NoSuchEntityException;
 
     /**
      * Returns a new randomly generated password.
+     *
      * @return The generated password.
      */
     String generateNewPassword();
 
     /**
-     * Removes a game from a user list, removing the scores, playStatues and from the shelves it was on.
-     * @param userId
-     * @param gameId
+     * Returns a paginated collection of {@link User} being followed by the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} being followed must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
      */
-    void removeFromList(long userId, long gameId);
+    Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
 
+    /**
+     * Makes the given {@code follower} {@link User} follow the {@link User} with the given {@code followedId}.
+     *
+     * @param followedId The id of the {@link User} being followed.
+     * @param follower   The {@link User} performing the operation
+     *                   (i.e the one following the {@link User} with the given {@code followedId}).
+     */
+    void followUser(long followedId, User follower);
+
+    /**
+     * Makes the given {@code unFollower} {@link User} unfollow the {@link User} with the given {@code unFollowedId}.
+     *
+     * @param unFollowedId The id of the {@link User} being unfollowed.
+     * @param unFollower   The {@link User} performing the operation
+     *                     (i.e the one unfollowing the {@link User} with the given {@code unFollowedId}).
+     */
+    void unFollowUser(long unFollowedId, User unFollower);
+
+    /**
+     * Returns a paginated collection of {@link User} following the {@link User} with the given {@code userId}.
+     *
+     * @param userId        The id of {@link User} being whose list of {@link User} following it must be returned.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortDirection The sort direction.
+     * @return The resulting page.
+     */
+    Page<User> getFollowers(long userId, int pageNumber, int pageSize, SortDirection sortDirection);
+
+
+    /**
+     * Returns a paginated collection of {@link Thread}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<CommentableAndLikeableWrapper<Thread>> getThreadsForFeed(User user, int pageNumber, int pageSize);
+
+    /**
+     * Returns a paginated collection of {@link Review}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<Review> getReviewsForFeed(User user, int pageNumber, int pageSize);
+
+
+    /**
+     * Returns a paginated collection of {@link UserGameStatus}, according to the given {@link User}.
+     * The collection has chronological desc. order
+     *
+     * @param user       The {@link User} owning the list of {@link Thread} for its feed.
+     * @param pageNumber The page number.
+     * @param pageSize   The page size.
+     * @return The resulting {@link Page}.
+     */
+    Page<UserGameStatus> getPlayStatusesForFeed(User user, int pageNumber, int pageSize);
+
+//    /**
+//     * Change the user's password with a new randomly generated one.
+//     * @param id The ID of the user whose password to reset.
+//     * @return The generated password.
+//     */
+//    void resetPassword(long id);
 }

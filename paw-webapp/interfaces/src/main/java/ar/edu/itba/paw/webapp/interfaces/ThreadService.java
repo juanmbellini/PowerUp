@@ -1,198 +1,218 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.model.Comment;
 import ar.edu.itba.paw.webapp.model.Thread;
-
-import java.util.Set;
+import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Service layer for {@link ar.edu.itba.paw.webapp.model.Thread Threads}. Exposes functionality available to threads.
  */
 public interface ThreadService {
 
-    /**
-     * Creates a thread with a given name, created by a given user, with a given initial comment.
-     *
-     * @param title          The thread's title.
-     * @param creatorUserId  The user ID of the creator of the thread.
-     * @param creatorComment The creator's initial thread comment, to start discussion.
-     * @return The created thread.
-     * @throws NoSuchEntityException If the creator doesn't exist.
-     */
-    Thread create(String title, long creatorUserId, String creatorComment) throws NoSuchEntityException;
 
     /**
-     * Creates a thread with an empty initial comment.
+     * Returns a {@link Page} with the threads, applying filters, pagination and sorting.
      *
-     * @see #create(String, long, String)
+     * @param titleFilter    Filter for the title.
+     * @param userIdFilter   Filter for user id.
+     * @param usernameFilter Filter for username.
+     * @param pageNumber     The page number.
+     * @param pageSize       The page size.
+     * @param sortingType    The sorting type (id, hot, best, or creation date).
+     * @param sortDirection  The sort direction (i.e ASC or DESC).
+     * @param currentUser    The {@link User} performing the operation.
+     * @return The resulting {@link Page}.
      */
-    default Thread create(String title, long creatorUserId) throws NoSuchEntityException {
-        return create(title, creatorUserId, "");
-    }
-
-    /**
-     * Finds up to a specified amount of recently updated threads.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findRecent(int limit);
-
-    /**
-     * Finds up to a specified amount of best pointed threads.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findBestPointed(int limit);
-
-    /**
-     * Finds up to a specified amount of the most relevant thread in the relation point/lastUpdated.
-     *
-     * @param limit The maximum number of threads to get.
-     * @return Up to {@code limit} threads.
-     */
-    Set<Thread> findHottest(int limit);
-
-    /**
-     * Returns a set of shelves created by a specified user, identified by ID.
-     *
-     * @param id The ID of the user whose shelves to fetch.
-     * @return The resulting set of shelves.
-     */
-    Set<Thread> findByUserId(long id);
-
-    /**
-     * Finds threads by title.
-     *
-     * @param title The thread title. Case <b>in</b>sensitive.
-     * @return The matching threads.
-     */
-    Set<Thread> findByTitle(String title);
+    Page<CommentableAndLikeableWrapper<Thread>> getThreads(String titleFilter, Long userIdFilter,
+                                                           String usernameFilter, int pageNumber, int pageSize,
+                                                           ThreadDao.SortingType sortingType,
+                                                           SortDirection sortDirection, User currentUser);
 
     /**
      * Finds a thread by ID.
      *
-     * @param threadId The ID to match.
+     * @param threadId    The ID to match.
+     * @param currentUser The {@link User} performing the operation.
      * @return The matching thread or {@code null} if not found.
      */
-    Thread findById(long threadId);
+    CommentableAndLikeableWrapper<Thread> findById(long threadId, User currentUser);
 
     /**
-     * Changes the title of a thread.
+     * Creates a new {@link Thread} with the specified data.
      *
-     * @param threadId The ID of the thread whose title to change.
-     * @param userId   The ID of the user attempting to change the title.
-     * @param newTitle The thread's new title.
-     * @throws NoSuchEntityException    If the thread doesn't exist.
-     * @throws UnauthorizedException    If the user isn't allowed to change the thread's title.
-     * @throws IllegalArgumentException If the name is null or invalid (e.g. empty).
+     * @param title      The thread's title.
+     * @param threadBody The thread's body (i.e. initial comment).
+     * @param creator    The {@link User} creating the {@link Thread}.
+     * @return The created thread.
+     * @throws NoSuchEntityException If the creator doesn't exist.
      */
-    void changeTitle(long threadId, long userId, String newTitle) throws NoSuchEntityException, UnauthorizedException, IllegalArgumentException;
+    Thread create(String title, String threadBody, User creator) throws NoSuchEntityException;
 
     /**
-     * Changes the initial comment of a thread.
+     * Updates the {@link Thread} with the given {@code threadId}.
      *
-     * @param threadId          The ID of the thread whose initial comment to change.
-     * @param userId            The ID of the user attempting to change the initial comment.
-     * @param newInitialComment The thread's new initial comment. May be empty but not null.
-     * @throws NoSuchEntityException    If the thread doesn't exist.
-     * @throws UnauthorizedException    If the user isn't allowed to change the thread's initial comment.
-     * @throws IllegalArgumentException If the new initial comment is {@code null}. Note that an empty content is allowed.
+     * @param threadId   The thread's id.
+     * @param title      The new title.
+     * @param threadBody The body of the thread.
+     * @param updater    The {@link User} performing the operation.
      */
-    void changeInitialComment(long threadId, long userId, String newInitialComment) throws NoSuchEntityException, UnauthorizedException, IllegalArgumentException;
-
-    /**
-     * Marks a like for a given thread by a given user, if not already liked.
-     *
-     * @param threadId The ID of the thread to like.
-     * @param userId   The ID of the user liking the thread.
-     * @return The new like count.
-     */
-    int likeThread(long threadId, long userId);
-
-    /**
-     * Removes a like from a given thread by a given user, if liked.
-     *
-     * @param threadId The ID of the thread to unlike.
-     * @param userId   The ID of the user unliking the thread.
-     * @return The new like count.
-     */
-    int unlikeThread(long threadId, long userId);
-
-    /**
-     * Adds a top-level comment to a given thread, created by a given user.
-     *
-     * @param threadId    The ID of the thread to which the comment belongs.
-     * @param commenterId The ID of the commenter.
-     * @param comment     The comment.
-     * @return The created comment.
-     */
-    Comment comment(long threadId, long commenterId, String comment);
-
-    /**
-     * Adds a reply to a given comment, created by a given user.
-     *
-     * @param commentId The ID of the comment being replied.
-     * @param replierId The ID of the replier.
-     * @param reply     The reply.
-     * @return The created reply.
-     */
-    Comment replyToComment(long commentId, long replierId, String reply);
-
-    /**
-     * Marks a like for a given comment or reply by a given user, if not already liked.
-     *
-     * @param id     The ID of the comment or reply to like.
-     * @param userId The ID of the user liking the comment.
-     * @return The new like count.
-     */
-    int likeComment(long id, long userId);
-
-    /**
-     * Removes a like from a given comment or reply by a given user, if liked.
-     *
-     * @param id     The ID of the comment or reply to unlike.
-     * @param userId The ID of the user unliking the comment.
-     * @return The new like count.
-     */
-    int unlikeComment(long id, long userId);
-
-    /**
-     * Edits a comment. Only the original commenter may edit their comment.
-     *
-     * @param commentId  The comment ID.
-     * @param userId     The commenter ID.
-     * @param newComment The new comment.
-     */
-    void editComment(long commentId, long userId, String newComment);
-
-    /**
-     * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
-     *
-     * @param commentId The ID of the comment to delete.
-     * @param userId    The ID of the user attempting to delete the comment.
-     * @throws NoSuchEntityException If the comment doesn't exist.
-     */
-    void deleteComment(long commentId, long userId) throws NoSuchEntityException;
+    void update(long threadId, String title, String threadBody, User updater);
 
     /**
      * Deletes a thread along with all its comments. Only the thread's creator may delete threads.
      *
      * @param threadId The ID of the thread to delete.
-     * @param userId   The ID of the user attempting to delete the thread.
-     * @throws NoSuchEntityException If the thread doesn't exist.
-     * @throws UnauthorizedException If the user isn't allowed to delete the thread.
+     * @param deleter  The {@link User} performing the operation.
      */
-    void deleteThread(long threadId, long userId) throws NoSuchEntityException, UnauthorizedException;
+    void delete(long threadId, User deleter);
+
 
     /**
-     * Updates the HotValue of the thread.
+     * Marks a like for a given thread by a given user, if not already liked.
      *
-     * @param threadId The ID of the thread to update.
-     * @throws NoSuchEntityException If the thread doesn't exist.
+     * @param threadId The ID of the thread to like.
+     * @param liker    The {@link User} performing the operation.
      */
-    void updateHotValue(long threadId) throws NoSuchEntityException;
+    void likeThread(long threadId, User liker);
+
+    /**
+     * Removes a like from a given thread by a given user, if liked.
+     *
+     * @param threadId The ID of the thread to unlike.
+     * @param unliker  The {@link User} performing the operation.
+     */
+    void unlikeThread(long threadId, User unliker);
+
+
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Thread} with the given {@code threadId}.
+     *
+     * @param threadId      The ID of the {@link Thread}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheThread(long threadId, int pageNumber, int pageSize,
+                                       ThreadLikeDao.SortingType sortingType, SortDirection sortDirection);
+
+    /*
+     * Comments
+     */
+
+
+    /**
+     * Finds a {@link Page} of top level {@link Comment}s to the {@link Thread} with the given {@code threadId}.
+     * Sorting and Pagination can be applied.
+     *
+     * @param threadId      The commented {@link Thread} ID.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, game id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param currentUser   The {@link User} performing the operation.
+     * @return The resulting page.
+     */
+    Page<CommentableAndLikeableWrapper<Comment>> getThreadComments(long threadId, int pageNumber, int pageSize,
+                                                                   CommentDao.SortingType sortingType,
+                                                                   SortDirection sortDirection, User currentUser);
+
+    /**
+     * Finds a comment by ID.
+     *
+     * @param commentId   The ID to match.
+     * @param currentUser The {@link User} performing the operation.
+     * @return The matching comment or {@code null} if not found.
+     */
+    CommentableAndLikeableWrapper<Comment> findCommentById(long commentId, User currentUser);
+
+
+    /**
+     * Adds a top-level comment to a given thread, created by a given user.
+     *
+     * @param threadId  The ID of the thread to which the {@link Comment} belongs.
+     * @param body      The comment's body.
+     * @param commenter The {@link User} commenting.
+     * @return The created comment.
+     */
+    Comment comment(long threadId, String body, User commenter);
+
+    /**
+     * Edits a comment. Only the original commenter may update their comment.
+     *
+     * @param commentId The comment ID.
+     * @param newBody   The new comment.
+     * @param updater   The {@link User} performing the operation.
+     */
+    void editComment(long commentId, String newBody, User updater);
+
+    /**
+     * Deletes a comment along with all its replies. Only the original commenter may delete their comments.
+     *
+     * @param commentId The ID of the comment to delete.
+     * @param deleter   The {@link User} performing the operation.
+     * @throws NoSuchEntityException If the comment doesn't exist.
+     */
+    void deleteComment(long commentId, User deleter) throws NoSuchEntityException;
+
+    /**
+     * Finds a {@link Page} of {@link Comment}s that are immediate reply to the {@link Comment}
+     * with the given {@code commentId}.
+     *
+     * @param commentId     The replied {@link Comment} ID.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (date or best).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param currentUser   The {@link User} performing the operation.
+     * @return The resulting page.
+     */
+    Page<CommentableAndLikeableWrapper<Comment>> getCommentReplies(long commentId, int pageNumber, int pageSize,
+                                                                   CommentDao.SortingType sortingType,
+                                                                   SortDirection sortDirection, User currentUser);
+
+    /**
+     * Adds a reply to a given comment.
+     *
+     * @param commentId The ID of the comment being replied.
+     * @param body      The reply content.
+     * @param replier   The {@link User} replying.
+     * @return The created reply.
+     */
+    Comment replyToComment(long commentId, String body, User replier);
+
+
+    /**
+     * Marks a like for a given comment or reply by a given user, if not already liked.
+     *
+     * @param commentId The ID of the comment to be liked.
+     * @param liker     The {@link User} performing the operation.
+     */
+    void likeComment(long commentId, User liker);
+
+    /**
+     * Removes a like from a given comment or reply by a given user, if liked.
+     *
+     * @param commentId The ID of the comment to be unliked.
+     * @param unliker   The {@link User} performing the operation.
+     */
+    void unlikeComment(long commentId, User unliker);
+
+    /**
+     * Returns a {@link Page} of {@link User} liking the {@link Comment} with the given {@code commentId}.
+     *
+     * @param commentId     The ID of the {@link Comment}.
+     * @param pageNumber    The page number.
+     * @param pageSize      The page size.
+     * @param sortingType   The sorting type (id, or creation date).
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @return The resulting {@link Page}.
+     */
+    Page<User> getUsersLikingTheComment(long commentId, int pageNumber, int pageSize,
+                                        CommentLikeDao.SortingType sortingType, SortDirection sortDirection);
+
 }

@@ -1,0 +1,235 @@
+<main class="section">
+    <div class="row">
+        <div class="col s1"></div> <!-- TODO borrar esto y reparar offset -->
+        <div class="col s2">
+            <form name="shelfForm" class="css-form"  ng-submit="submitSearch()" novalidate>
+                <h5>Filter by Status</h5>
+                <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
+                    <input   ng-click="toggleSelectionPlayStatus(playStatus)" type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"  ng-checked="selectedPlayStatuses.indexOf(playStatus) > -1"/>
+                    <!--{{((containsPlayStatusesFilter(playStatus))? 'checked' : '')}} TODO droche-->
+                    <label class="wrap-text" for="{{playStatus}}">{{playStatus}}</label>
+                </p>
+                <h5>Filter by Shelf</h5>
+                <p ng-repeat="shelf in shelves" class="checkbox-list">
+                    <input  ng-click="toggleSelectionShelves(shelf.name)" type="checkbox" name="shelvesCheckbox" id="{{shelf.id}}" value="{{shelf.name}}" ng-checked="selectedShelves.indexOf(shelf.name) > -1"/>
+                    <!--<c:if test="${shelvesFilter.contains(shelf.name)}">checked</c:if>-->
+                    <label class="wrap-text" for="{{shelf.id}}">
+                        {{shelf.name}}
+                        <a href="" ng-if="isUserLoggedOwner" ng-click="editShelf(shelf)"
+                           class="rename material-icons black-text" style="vertical-align: middle;">mode_edit</a>
+                        <a href="" ng-if="isUserLoggedOwner" ng-click="deleteShelf(shelf)"
+                           class="delete-shelf material-icons red-text text-lighten-1" style="vertical-align: middle;">delete</a>
+                    </label>
+                </p>
+                <!--<button type='submit' class='btn waves-effect'>Filter <i class="material-icons right">filter_list</i></button>-->
+            </form>
+            <br/>
+            <!--<%&#45;&#45;<c:if test="${fn:length(shelves) == 0}">&#45;&#45;%>-->
+            <!--<%&#45;&#45;<h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>&#45;&#45;%>-->
+            <!--<%&#45;&#45;</c:if>&#45;&#45;%>-->
+            <div ng-hide = "!isUserLoggedOwner">
+                <div class="col s12 divider"></div>
+                <h5 style="margin-bottom:0;">Create a Shelf</h5>
+                <form ng-submit="createShelf()">
+                    <!--<form class="css-form" novalidate id="new-shelf-form">-->
+                    <div class="input-field col s12" style="margin-top: 0; padding:0;">
+                        <input type="text" name="name" ng-model="newShelfName" autocomplete="off"/>
+                        <!--length="25" required-->
+                        <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col s9">
+            <div class="row">
+                <h1 class="center">{{user.username}}'s Game List</h1>
+                <h5 ng-if="isUserLoggedOwner" class="center"><a ng-href="#search">Search games</a> to add them to
+                    your list!</h5>
+                <div class="col s12 divider"></div>
+                <br/>
+                <h5 ng-if="games.length == 0" class="center">No results</h5>
+                <!--Games list header-->
+                <div ng-if="games.length != 0" class="col s12 center" id="games-list-header">
+                    <p class="col s2">Cover Picture</p>
+                    <p class="col s3 ">Title</p>
+                    <p class="col s1 ">Play Status</p>
+                    <p class="col s2 ">Shelves</p>
+                    <p class="col s1 ">Avg. Rating</p>
+                    <p class="col s2 ">Own score</p>
+                    <p class="col s1"></p>
+                </div>
+                <ul ng-show="games.length != 0" class="collection games-list">
+                    <!--TODO limit number of shown games, create link to show more-->
+                    <li ng-repeat="item in games" class="collection-item avatar col s12">
+                        <div class="col s2 cover-pic-container valign-wrapper">
+                            <img class="cover-picture valign" ng-src="{{item.game.coverPictureUrl}}" alt="{{item.game.name}}">
+                        </div>
+                        <div class="col primary-content s3">
+                            <p class="title wrap-text"><a ng-href="#game?id={{item.game.id}}">{{item.game.name}}</a></p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;"><b>{{item.status || 'No Status'}}</b></p>
+                        </div>
+                        <div class="col s2 center">
+                            <p class=wrap-text style="margin-top: 33px;"><b>
+                                <span ng-repeat="shelf in item.shelvesHolding"> {{shelf.name}}<span ng-hide="$last">,</span></span>
+                                <span ng-hide="item.shelvesHolding.length">  No shelves</span>
+                            </b></p>
+                        </div>
+                        <div class="col s1 center">
+                            <p style="margin-top: 33px;"><b>
+                                {{(item.game.avgScore === null || item.game.avgScore == 0)?'No avg rating':(item.game.avgScore |
+                                number:2)}}
+                            </b>  </p>
+                        </div>
+                        <div class="col s2 center">
+                            <div ng-switch="(item.score<=10 && item.score>0)">
+                                <div ng-switch-when="true" style="margin-top: 33px;">
+                                    <!--<p class="rating-number center">-->
+                                        <!--<b><span>{{item.score | number:2}}</span></b>-->
+                                    <!--</p>-->
+                                    <span class="rating-stars hide-on-small-and-down">
+                                        <span ng-repeat="i in [0,1,2,3,4]">
+                                            <span ng-if="(item.score - (i * 2) - 1 ) < 0">
+                                                <i class="material-icons">star_border</i>
+                                            </span>
+                                            <span ng-if="(item.score - (i * 2) - 1 ) == 0">
+                                                <i class="material-icons">star_half</i>
+                                            </span>
+                                            <span ng-if="(item.score - (i * 2) - 1) > 0">
+                                                <i class="material-icons">star</i>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div ng-switch-default style="margin-top: 33px;">
+                                    <p class="rating-number center"><b>Unrated</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s1">
+                            <div class="secondary-content">
+                                <!--Nothing to see here-->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!--&lt;!&ndash;Page size controller&ndash;&gt;-->
+            <!--<div ng-show="gamesPaginator.pagination.totalElements > pageSizes[0]" class="row">-->
+                <!--<div class="col s2 offset-s5">-->
+                    <!--<label for="page-size">Page Size</label>-->
+                    <!--<select id="page-size" class="browser-default" ng-model="searchParams.pageSize">-->
+                        <!--<option ng-repeat="pageSize in validPageSizes()" ng-value="pageSize">{{pageSize}}</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;End page size&ndash;&gt;-->
+
+            <!--PAGE SIZE-->
+            <div ng-if="games.length > 0" class="row">
+				<span>
+					<div class="input-field col s2 offset-s5">
+						<select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
+							<option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
+						</select>
+					</div>
+					<label>Games per page</label>
+				</span>
+            </div>
+
+            <!--PAGINATION-->
+            <div ng-if="totalPages > 1" class="row">
+                <ul class="pagination center">
+                    <!--Left chevron - only shown when there are > 1 pages -->
+                    <div ng-if="totalPages > 1">
+
+                        <li ng-if="pageNumber > 1" class="waves-effect">
+                            <a href="" ng-click="changePageNumber(pageNumber-1)">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+
+                        <li ng-if="pageNumber <= 1" class="disabled">
+                            <a href="">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                    </div>
+
+                    <!--Page numbers - always shown-->
+
+                    <li ng-repeat="pageIt in rangePagination"  ng-class="pageIt == pageNumber ? 'active' : 'waves-effect'">
+                        <a href="" ng-if="pageIt == pageNumber"> {{pageIt}} </a>
+                        <a href="" ng-if="pageIt != pageNumber" ng-click="changePageNumber(pageIt)"> {{pageIt}} </a>
+                    </li>
+                    <!--Right chevron - only shown if there are > 1 pages-->
+
+                    <div ng-if="totalPages > 1">
+                        <li class="disabled" ng-if="pageNumber == totalPages">
+                            <a href=""> <i class="material-icons">chevron_right</i> </a>
+                        </li>
+
+                        <li class="waves-effect" ng-if="pageNumber != totalPages">
+                            <a href="" ng-click="changePageNumber(pageNumber+1)">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            <!--END PAGINATION-->
+
+
+            <div class="row col s12 divider"></div>
+
+            <div class="container">
+                <div class="section">
+                        <div ng-if="games.length > 0 && recommendedGames.length > 0" class="row">
+                            <h5 class="center">Recommended Games for
+                                    <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
+                                <span ng-if="isUserLoggedOwner">you</span>
+                                <span ng-if="!isUserLoggedOwner">{{user.username}}</span>
+                                <span ng-if="selectedShelves.length > 0"> using selected shelves</span>
+                                !</h5>
+                            <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
+                                <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
+                                    <a ng-href="#game?id={{game.id}}">
+                                        <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
+                                        <!--data-lazy-->
+                                    </a>
+                                    <h5 class="center slide-text">
+                                        <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s1">
+
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    require(['slick-carousel'], function() {
+        //TODO consider only doing this if there are picture or videos
+        $(function() {
+            $('.slick-carousel').slick({
+                infinite: false,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: true,
+                lazyload: 'ondemand'
+            });
+        });
+
+        //TODO initialize Slick for related games
+    });
+</script>

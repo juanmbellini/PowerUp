@@ -1,0 +1,1 @@
+ALTER TABLE ONLY game_play_statuses ADD COLUMN date timestamp with time zone DEFAULT now() NOT NULL;

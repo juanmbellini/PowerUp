@@ -1,15 +1,45 @@
 package ar.edu.itba.paw.webapp.exceptions;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Exception thrown when an entity user was looked up by a primary key but no matching entity was found.
  */
 public class NoSuchEntityException extends RuntimeException {
+
+
+    /**
+     * Stores the key names of the missing entities.
+     */
+    private List<String> missingEntitiesKeyNames = new LinkedList<>();
+
+    public NoSuchEntityException(String message, List<String> missingEntities) {
+        super(message);
+        this.missingEntitiesKeyNames = missingEntities;
+    }
+
+
     public NoSuchEntityException() {
-        super("No such entity");
+        this("No such entity", new LinkedList<>());
     }
 
     public NoSuchEntityException(Class entity, Object primaryKey) {
-        super("No " + entity.getSimpleName() + " found with primary key " + primaryKey);
+        this("No " + entity.getSimpleName() + " found with primary key " + primaryKey, new LinkedList<>());
+    }
+
+
+    public NoSuchEntityException(List<String> missingEntitiesKeyNames) {
+        this("", missingEntitiesKeyNames);
+    }
+
+    /**
+     * Returns the list of missing entities' names.
+     *
+     * @return The list of missing entities names.
+     */
+    public List<String> getMissingEntitiesKeyNames() {
+        return missingEntitiesKeyNames;
     }
 
     public NoSuchEntityException(String message) {

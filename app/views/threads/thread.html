@@ -1,0 +1,572 @@
+<main class="section">
+	<div class="container row">
+        <div ng-if="thread === null" class="center">
+            <h5>Fetching thread...</h5>
+            <loading-circle></loading-circle>
+        </div>
+
+		<div ng-if="thread !== null">
+			<!--Title-->
+			<h1 class="center wrap-text"> {{thread.title}} </h1>
+
+			<!--Original comment-->
+			<div class="row">
+				<ul class="collection">
+					<li class="collection-item avatar">
+						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
+						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
+						<p>{{thread.createdAt | date: 'mediumDate'}}</p>
+						<br>
+						<p ng-if="!changeThreadBodyFormVisible" class="preserve-newlines wrap-text">{{thread.body}}</p>
+
+						<form ng-if="changeThreadBodyFormVisible" id="change-thread-comment-form" ng-submit="changeThreadBody()" style="margin-top: 10px;">
+							<div class="row">
+								<div class="input-field col s12">
+									<textarea id="change-thread-comment-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="thread.body">{{thread.body}}</textarea>
+									<label for="change-thread-comment-textarea" class="active">New initial comment</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col s4 offset-s5">
+									<button type="submit" class="col s6 btn btn-large waves-effect light-blue">
+										Submit <i class="material-icons right">send</i>
+									</button>
+								</div>
+							</div>
+						</form>
+
+						<!--Thread action links-->
+						<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
+							<!--Rename link-->
+							<a ng-click="changeThreadTitle()">Change Title</a>
+							<!--Edit link-->
+							| <a ng-click="showChangeThreadBodyForm()">Change Comment</a>
+							<!--Delete link-->
+							| <a ng-click="deleteThread()" class="red-text">Delete</a>
+						</div>
+
+						<div class="action-form"></div>
+
+                        <!--Thread un/like section-->
+                        <span class="secondary-content">
+                            <b style="vertical-align: text-bottom">{{thread.likeCount}}</b>
+                            <!--Not logged in - black actionless thumbs up-->
+                            <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                            <!--Logged in and liked - green thumbs up with action to unlike-->
+                            <a ng-if="isLoggedIn && isLikedByCurrentUser(thread)" ng-click="unlikeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                <i class="material-icons green-text">thumb_up</i>
+                            </a>
+                            <!--Logged in and not liked - black thumbs up with action to like-->
+                            <a ng-if="isLoggedIn && !isLikedByCurrentUser(thread)" ng-click="likeThread(thread)" ng-class="{disabled: thread.likesDisabled}" href="">
+                                <i class="material-icons black-text">thumb_up</i>
+                            </a>
+                            </span>
+                        <!--End thread un/like section-->
+					</li>
+				</ul>
+			</div>
+
+			<div class="row col s12 divider"></div>
+
+			<!--COMMENTS-->
+			<div ng-if="comments === null" class="center">
+				<h5>Fetching thread comments...</h5>
+				<loading-circle></loading-circle>
+			</div>
+			<div ng-if="comments !== null">
+				<div class="row">
+					<h5 ng-if="comments.length == 0" class="center">No comments. Leave the first comment!</h5>
+					<h5 ng-if="comments.length > 0" class="center">Comments</h5>
+
+					<ul class="collection" ng-if="comments.length > 0">
+						<li ng-repeat="comment in comments" class="collection-item avatar">
+							<!--Comment info-->
+							<a name="{{comment.id}}"></a>
+							<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+							<span class="title wrap-text">
+								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+							</span>
+							<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
+							<br />
+							<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
+							<!--End comment info-->
+
+                            <!--Change comment form-->
+                            <form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+                                        <label for="change-comment-{{comment.id}}-textarea" class="active">New comment body</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s4 offset-s5">
+                                        <button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+                                            Submit <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--End change comment form-->
+
+							<!--Reply to comment form-->
+							<form ng-if="comment.showReplyForm" ng-submit="replyToComment(comment)" style="margin-top: 10px;">
+								<div class="row">
+									<div class="input-field col s12">
+										<textarea id="reply-to-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.newReply.body"></textarea>
+										<label for="reply-to-comment-{{comment.id}}-textarea" class="active">Reply</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col s4 offset-s5">
+										<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.repliesDisabled}">
+											Submit <i class="material-icons right">send</i>
+										</button>
+									</div>
+								</div>
+							</form>
+							<!--End reply to comment form-->
+
+							<!--Comment action links-->
+							<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
+								<!--Reply link-->
+								<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
+								<!--Edit link-->
+								| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+								<!--Delete link-->
+								| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+							</div>
+							<!--End comment action links-->
+
+							<!--Comment replies action links-->
+							<div class="action-links reply-action-links">
+								<p ng-if="comment.replyCount > 0">
+                                    <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                    <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                </p>
+							</div>
+							<!--End comment replies action links-->
+
+							<!--Comment un/like section-->
+                            <span class="secondary-content">
+                                <b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+                                    <!--Not logged in - black actionless thumbs up-->
+                                <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                                    <!--Logged in and liked - green thumbs up with action to unlike-->
+                                <a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+                                    <i class="material-icons green-text">thumb_up</i>
+                                </a>
+                                    <!--Logged in and not liked - black thumbs up with action to like-->
+                                <a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+                                    <i class="material-icons black-text">thumb_up</i>
+                                </a>
+                            </span>
+                            <!--End comment un/like section-->
+
+							<!--Comment replies-->
+							<!--TODO FOR COMMENT RECURSION CHANGE FROM HERE-->
+							<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
+								<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+									<!--Comment info-->
+									<a name="{{comment.id}}"></a>
+									<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+									<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+									<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
+									<br />
+									<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
+									<!--End comment info-->
+
+									<!--Change comment form-->
+									<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+										<div class="row">
+											<div class="input-field col s12">
+												<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+												<label for="change-comment-{{comment.id}}-textarea" class="active">New comment body</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col s4 offset-s5">
+												<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+													Submit <i class="material-icons right">send</i>
+												</button>
+											</div>
+										</div>
+									</form>
+									<!--End change comment form-->
+
+									<!--Reply to comment form-->
+									<form ng-if="comment.showReplyForm" ng-submit="replyToComment(comment)" style="margin-top: 10px;">
+										<div class="row">
+											<div class="input-field col s12">
+												<textarea id="reply-to-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.newReply.body"></textarea>
+												<label for="reply-to-comment-{{comment.id}}-textarea" class="active">Reply</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col s4 offset-s5">
+												<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.repliesDisabled}">
+													Submit <i class="material-icons right">send</i>
+												</button>
+											</div>
+										</div>
+									</form>
+									<!--End reply to comment form-->
+
+									<!--Comment action links-->
+									<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
+										<!--Reply link-->
+										<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
+										<!--Edit link-->
+										| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+										<!--Delete link-->
+										| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+									</div>
+									<!--End comment action links-->
+
+									<!--Comment replies action links-->
+                                    <div class="action-links reply-action-links">
+                                        <p ng-if="comment.replyCount > 0">
+                                            <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                            <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                        </p>
+                                    </div>
+
+									<!--Comment un/like section-->
+									<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+										<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+										<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+										<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+									<!--End comment un/like section-->
+
+									<!--Comment replies-2 TODO make everything the same directive and call it recursively-->
+									<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
+										<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+											<!--Comment info-->
+											<a name="{{comment.id}}"></a>
+											<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+											<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+											<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
+											<br />
+											<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
+											<!--End comment info-->
+
+											<!--Change comment form-->
+											<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+												<div class="row">
+													<div class="input-field col s12">
+														<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+														<label for="change-comment-{{comment.id}}-textarea" class="active">New comment body</label>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col s4 offset-s5">
+														<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+															Submit <i class="material-icons right">send</i>
+														</button>
+													</div>
+												</div>
+											</form>
+											<!--End change comment form-->
+
+											<!--Reply to comment form-->
+											<form ng-if="comment.showReplyForm" ng-submit="replyToComment(comment)" style="margin-top: 10px;">
+												<div class="row">
+													<div class="input-field col s12">
+														<textarea id="reply-to-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.newReply.body"></textarea>
+														<label for="reply-to-comment-{{comment.id}}-textarea" class="active">Reply</label>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col s4 offset-s5">
+														<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.repliesDisabled}">
+															Submit <i class="material-icons right">send</i>
+														</button>
+													</div>
+												</div>
+											</form>
+											<!--End reply to comment form-->
+
+											<!--Comment action links-->
+											<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
+												<!--Reply link-->
+												<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
+												<!--Edit link-->
+												| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+												<!--Delete link-->
+												| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+											</div>
+											<!--End comment action links-->
+
+                                            <!--Comment replies action links-->
+                                            <div class="action-links reply-action-links">
+                                                <p ng-if="comment.replyCount > 0">
+                                                    <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                                    <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                                </p>
+                                            </div>
+                                            <!--End comment replies action links-->
+
+											<!--Comment un/like section-->
+											<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+												<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+												<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+												<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+											<!--End comment un/like section-->
+
+											<!--Comment replies-3 TODO make everything the same directive and call it recursively-->
+											<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
+												<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+													<!--Comment info-->
+													<a name="{{comment.id}}"></a>
+													<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+													<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+													<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
+													<br />
+													<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
+													<!--End comment info-->
+
+													<!--Change comment form-->
+													<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+														<div class="row">
+															<div class="input-field col s12">
+																<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+																<label for="change-comment-{{comment.id}}-textarea" class="active">New comment body</label>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col s4 offset-s5">
+																<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+																	Submit <i class="material-icons right">send</i>
+																</button>
+															</div>
+														</div>
+													</form>
+													<!--End change comment form-->
+
+													<!--Reply to comment form-->
+													<form ng-if="comment.showReplyForm" ng-submit="replyToComment(comment)" style="margin-top: 10px;">
+														<div class="row">
+															<div class="input-field col s12">
+																<textarea id="reply-to-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.newReply.body"></textarea>
+																<label for="reply-to-comment-{{comment.id}}-textarea" class="active">Reply</label>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col s4 offset-s5">
+																<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.repliesDisabled}">
+																	Submit <i class="material-icons right">send</i>
+																</button>
+															</div>
+														</div>
+													</form>
+													<!--End reply to comment form-->
+
+													<!--Comment action links-->
+													<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
+														<!--Reply link-->
+														<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
+														<!--Edit link-->
+														| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+														<!--Delete link-->
+														| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+													</div>
+													<!--End comment action links-->
+
+													<!--Comment replies action links-->
+                                                    <div class="action-links reply-action-links">
+                                                        <p ng-if="comment.replyCount > 0">
+                                                            <a href="" ng-click="toggleReplies(comment)" class="toggle-replies"><span>[{{comment.replies.show ? '-' : '+'}}]</span></a>
+                                                            <span>{{comment.replyCount}} repl{{comment.replyCount === 1 ? 'y' : 'ies'}}</span>
+                                                        </p>
+                                                    </div>
+													<!--End comment replies action links-->
+
+													<!--Comment un/like section-->
+													<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+														<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+														<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+														<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+													<!--End comment un/like section-->
+													<!--Comment replies-4 TODO make everything the same directive and call it recursively-->
+													<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
+														<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+															<!--Comment info-->
+															<a name="{{comment.id}}"></a>
+															<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+															<span class="title wrap-text">
+										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
+									</span>
+															<p class="wrap-text">{{comment.createdAt | date: 'mediumDate'}}</p>
+															<br />
+															<p ng-if="!comment.showChangeForm" class="preserve-newlines wrap-text">{{comment.body}}</p>
+															<!--End comment info-->
+
+															<!--Change comment form-->
+															<form ng-if="comment.showChangeForm" ng-submit="changeComment(comment)">
+																<div class="row">
+																	<div class="input-field col s12">
+																		<textarea id="change-comment-{{comment.id}}-textarea" class="materialize-textarea" required="required" style="height: 22px;" ng-model="comment.body">{{comment.body}}</textarea>
+																		<label for="change-comment-{{comment.id}}-textarea" class="active">New comment body</label>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col s4 offset-s5">
+																		<button type="submit" class="col s6 btn btn-large waves-effect light-blue" ng-class="{disabled: comment.editsDisabled}">
+																			Submit <i class="material-icons right">send</i>
+																		</button>
+																	</div>
+																</div>
+															</form>
+															<!--End change comment form-->
+
+															<!--Comment action links-->
+															<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
+																<!--NO reply link-->
+																<!--Edit link-->
+																<a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+																<!--Delete link-->
+																| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+															</div>
+															<!--End comment action links-->
+
+															<!--NO Comment replies action links-->
+
+															<!--Comment un/like section-->
+															<span class="secondary-content">
+										<b style="vertical-align: text-bottom">{{comment.likeCount}}</b>
+																<!--Not logged in - black actionless thumbs up-->
+										<i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+																<!--Logged in and liked - green thumbs up with action to unlike-->
+										<a ng-if="isLoggedIn && isLikedByCurrentUser(comment)" ng-click="unlikeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons green-text">thumb_up</i>
+										</a>
+																<!--Logged in and not liked - black thumbs up with action to like-->
+										<a ng-if="isLoggedIn && !isLikedByCurrentUser(comment)" ng-click="likeComment(comment)" ng-class="{disabled: comment.likesDisabled || comment.deleted}" href="">
+											<i class="material-icons black-text">thumb_up</i>
+										</a>
+									</span>
+															<!--End comment un/like section-->
+														</li>
+													</ul>
+													<!--End comment replies-4-->
+                                                    <div class="action-links reply-action-links">
+                                                        <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                                        <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                                        <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                                        <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                                        <!--<loading-circle-small></loading-circle-small>-->
+                                                        <!--</div>-->
+                                                    </div>
+												</li>
+											</ul>
+											<!--End comment replies-3-->
+                                            <div class="action-links reply-action-links">
+                                                <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                                <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                                <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                                <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                                <!--<loading-circle-small></loading-circle-small>-->
+                                                <!--</div>-->
+                                            </div>
+										</li>
+									</ul>
+									<!--End comment replies-2-->
+                                    <div class="action-links reply-action-links">
+                                        <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                        <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                        <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                        <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                        <!--<loading-circle-small></loading-circle-small>-->
+                                        <!--</div>-->
+                                    </div>
+								</li>
+							</ul>
+							<!--End comment replies-->
+                            <div class="action-links reply-action-links">
+                                <a ng-if="comment.replies && comment.replies.hasMorePages" href="" ng-click="getCommentReplies(comment)">Load more replies</a>
+                                <p style="display:inline-block" ng-if="comment.repliesBusy">Fetching replies...</p>
+                                <!--Loading circles don't play well with ul .collection-item .avatar li =( -->
+                                <!--<div ng-if="comment.repliesBusy" style="display: inline-block; vertical-align: middle">-->
+                                <!--<loading-circle-small></loading-circle-small>-->
+                                <!--</div>-->
+                            </div>
+							<!--TODO FOR COMMENT RECURSION CHANGE UP TO HERE-->
+						</li>
+					</ul>
+					<!--Load more comments-->
+					<div>
+						<p ng-if="comments.length > 0 && !hasMoreComments">No more comments</p>
+						<a ng-if="hasMoreComments && !pendingRequests.comments.getTopLevel" href="" ng-click="getMoreTopLevelComments()">Load more comments</a>
+						<p style="display:inline-block" ng-if="pendingRequests.comments.getTopLevel">Fetching more comments...</p>
+						<div ng-if="pendingRequests.comments.getTopLevel" style="display: inline-block; vertical-align: middle">
+							<loading-circle-small></loading-circle-small>
+						</div>
+					</div>
+					<!--End load more comments-->
+				</div>
+
+				<!--Add a comment form-->
+				<div ng-if="isLoggedIn" class="row">
+					<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
+						<div class='row'>
+							<div class='input-field col s12'>
+								<textarea id="new-comment-textarea" type="text" ng-model="newComment.body" required="required" class="materialize-textarea"></textarea>
+								<label for="new-comment-textarea">New comment</label>
+							</div>
+						</div>
+						<div class='row'>
+							<div class="col s4 offset-s5">
+								<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
+									Submit <i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--End comment form-->
+			</div>
+		</div>
+		<!--END COMMENTS-->
+
+		<!--FAB-->
+		<div ng-if="isLoggedIn" class="fixed-action-btn" style="bottom:10%;">
+			<a href="#threads/create" id="create-thread-fab" class="btn-floating btn-large waves-effect waves-light red">
+				<i class="large material-icons">mode_edit</i>
+			</a>
+		</div>
+		<!--END FAB-->
+	</div>
+</main>
