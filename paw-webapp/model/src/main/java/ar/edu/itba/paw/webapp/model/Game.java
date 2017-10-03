@@ -162,8 +162,7 @@ public class Game {
     /**
      * Gets this game's picture URLs.
      *
-     * @return An set containing this game's picture URLs.
-     * @see #addPicture(String)
+     * @return A set containing this game's picture URLs.
      */
     public Set<String> getPictureUrls() {
         return pictureIds.stream()
@@ -189,74 +188,11 @@ public class Game {
         return videos;
     }
 
-    // Setters
-    //TODO remove setters, the builder has access to these fields and these shouldn't be changed once built
-    private void setId(long id) {
-        this.id = id;
-    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
-
-    private void setSummary(String summary) {
-        this.summary = summary;
-    }
 
     public void setAvgScore(double avg_score) {
         this.avgScore = avg_score;
     }
 
-    private void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    private void setCoverPictureId(String cloudinaryId) {
-        if (cloudinaryId != null && !cloudinaryId.equals("")) {
-            coverPictureId = cloudinaryId;
-        }
-    }
-
-    // Adders
-    //TODO also consider removing these, or at least those that we're sure won't change after the game is built
-    public void addGenre(Genre genre) {
-        genres.add(genre);
-    }
-
-    public void addPlatform(Platform platform, GamePlatformReleaseDate date) {
-        platforms.put(platform, date);
-    }
-
-    public void addPublisher(Company publisher) {
-        publishers.add(publisher);
-    }
-
-    public void addDeveloper(Company developer) {
-        developers.add(developer);
-    }
-
-    public void addKeyword(Keyword keyword) {
-        keywords.add(keyword);
-    }
-
-
-    /**
-     * Adds a picture to this game, populating both its picture IDs collection and its picture URLs collection.
-     *
-     * @param cloudinaryId The Cloudinary ID of the picture to add.
-     */
-    public void addPicture(String cloudinaryId) {
-        if (cloudinaryId != null) {
-            pictureIds.add(cloudinaryId);
-            pictureUrls.add(buildCloudinaryURL(cloudinaryId));
-        }
-    }
-
-    public void addVideo(String videoId, String videoName) {
-        if (videoId != null && !videoId.isEmpty() && videoName != null && !videoName.isEmpty()) {
-            videos.put(videoId, videoName);
-        }
-    }
 
     @Override
     public boolean equals(Object o) {
