@@ -87,8 +87,11 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
      */
     public User(String username, String email, String hashedPassword) throws ValidationException {
         this();
+        if (hashedPassword == null) {
+            throw new IllegalArgumentException("A hashed password must be set");
+        }
         List<ValueError> errorList = new LinkedList<>();
-        checkValues(username, email, hashedPassword, errorList);
+        checkValues(username, email, errorList);
 
         this.username = username;
         this.email = email;
@@ -104,6 +107,9 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
      * @param newHashedPassword The new password.
      */
     public void changePassword(String newHashedPassword) {
+        if (newHashedPassword == null) {
+            throw new IllegalArgumentException("A hashed password must be set");
+        }
         this.hashedPassword = newHashedPassword;
     }
 
@@ -398,11 +404,10 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
      *
      * @param username  The username be checked.
      * @param email     The email to be checked.
-     * @param password  The password to be checked.
      * @param errorList A list containing possible detected errors before calling this method.
      * @throws ValidationException If any value is wrong.
      */
-    private void checkValues(String username, String email, String password, List<ValueError> errorList) throws ValidationException {
+    private void checkValues(String username, String email, List<ValueError> errorList) throws ValidationException {
         errorList = errorList == null ? new LinkedList<>() : errorList;
         ValidationHelper.stringNotNullAndLengthBetweenTwoValues(username, NumericConstants.USERNAME_MIN_LENGTH,
                 NumericConstants.USERNAME_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_USERNAME,
@@ -499,6 +504,4 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
 
         throwValidationException(errorList);
     }
-
-
 }
