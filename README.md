@@ -14,27 +14,45 @@ These instructions will install the development environment into your local mach
 	$ git clone https://github.com/juanmbellini/PowerUp.git
 	```
 	or
-	
+
 	```
 	$ wget https://github.com/juanmbellini/PowerUp/archive/master.zip
 	```
+2. Install Ruby (used to build the front end)
+	#### Mac OS X
+	```
+	$ brew install ruby
+	```
 
-2. Install Maven
+	#### Ubuntu
+	```
+	$ sudo apt-get install ruby
+	```
+3. Install Sass gem
 
+	```
+	$ gem install sass
+	```
+4. Install Compass gem
+
+	```
+	$ gem install compass
+	```
+5. Install Maven
 	#### Mac OS X
 	```
 	$ brew install maven
 	```
-	
+
 	#### Ubuntu
 	```
 	$ sudo apt-get install maven
 	```
-	
+
 	#### Other OSes
 	Check https://maven.apache.org/install.html.
 	
-3. Create a ```passwords.properties``` file under ```<PROJECT-ROOT>/paw-webapp/webapp/src/main/resources/config``` with the following information:
+6. Create a ```passwords.properties``` file under ```<PROJECT-ROOT>/paw-webapp/webapp/src/main/resources/config``` with the following information:
 
 	``` properties
 	jwt.secret=<jwt-hash-key>
@@ -43,37 +61,34 @@ These instructions will install the development environment into your local mach
 	```	
 
 
-4. (Optional) Install PostgreSQL
+7. (Optional) Install PostgreSQL
 
 	#### Mac OS X
 	```
 	$ brew install postgresql
 	```
-	
+
 	#### Ubuntu
 	```
 	$ sudo apt-get install postgresql
 	```
-
-5. (Optional) Create a Postgres User
+8. (Optional) Create a Postgres User
 
 	```
 	$ createuser -d -W <database-username>
 	```	
-
-6. (Optional) Create a Postgres Database
+9. (Optional) Create a Postgres Database
 
 	```
 	$ createdb -O <database-username> -U <database-creation-permission-username> <database-name>
 	```	
-
-7. Add (or change) the following properties in ```common.properties``` file under ```<PROJECT-ROOT>/paw-webapp/webapp/src/main/resources/config``` with the following information:
+10. Add (or change) the following properties in ```common.properties``` file under ```<PROJECT-ROOT>/paw-webapp/webapp/src/main/resources/config``` with the following information:
 
 	``` properties
 	db.host=<database-hostname>		# Should be "localhost" for local database
 	db.port=<database-listening-port>	# Should be 5432 if using Postgresql default settings
-	db.username=<database-username>		# Should match the username chosen in step 5 for local database
-	db.name=<database-name>			# Should match the name chosen in step 6 for local database
+	db.username=<database-username>		# Should match the username chosen in step 8 for local database
+	db.name=<database-name>			# Should match the name chosen in step 9 for local database
 	```	
 
 ### Build
@@ -83,27 +98,22 @@ These instructions will install the development environment into your local mach
 	```
 	$ cd <PROJECT-ROOT>/paw-webapp
 	```
-	
 2. Install project modules
 
 	```
 	$ mvn install
 	```
-	
 3. Resolve dependencies
 
 	```
 	$ mvn dependency:resolve
 	```
-	
 4. Build ```war``` file
 
 	```
 	$ mvn clean package
 	```
 	This file will be located under ```<PROJECT-ROOT>/paw-webapp/webapp/target```.
-
-
 
 
 ## Authors
