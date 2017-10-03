@@ -182,7 +182,7 @@ public class Game {
         return pictureIds.stream()
                 .filter(id -> !id.equals(coverPictureId))
                 .map(Game::buildCloudinaryURL)
-                .collect(Collectors.toCollection(LinkedHashSet::new)); // TODO: why linked hash set?
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public Set<String> getPictureIds() {
