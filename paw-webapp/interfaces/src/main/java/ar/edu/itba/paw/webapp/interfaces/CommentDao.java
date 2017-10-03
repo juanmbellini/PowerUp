@@ -6,8 +6,6 @@ import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.util.Collection;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -126,34 +124,6 @@ public interface CommentDao {
      * @return The found reply, or {@code null} if not found.
      */
     Comment findReply(long commentId, long userId);
-
-    /**
-     * Finds a reply to a given root comment by a given user, searching down the reply tree until the first match is
-     * found.
-     *
-     * @param rootCommentId The root comment ID.
-     * @param userId        The user ID.
-     * @return The found reply, or {@code null} if not found.
-     */
-    default Comment deepFindReply(long rootCommentId, long userId) {
-        Deque<Comment> queue = new LinkedList<>();
-        Comment root = findById(rootCommentId);
-        if (root == null) return null;
-        queue.addFirst(root);
-        while (!queue.isEmpty()) {
-            for (Comment reply : root.getReplies()) {
-                if (reply.getCommenter().getId() == userId) {
-                    return reply;
-                }
-                //TODO check if this is necessary
-//                for(Comment replyReply : reply.getCommentReplies()) {
-//                    queue.offer(replyReply);
-//                }
-                queue.addAll(reply.getReplies());
-            }
-        }
-        return null;
-    }
 
 
     /**
