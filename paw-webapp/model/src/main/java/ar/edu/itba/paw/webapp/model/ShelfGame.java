@@ -1,9 +1,6 @@
 package ar.edu.itba.paw.webapp.model;
 
-import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
-import ar.edu.itba.paw.webapp.model.validation.ValidationHelper;
-import ar.edu.itba.paw.webapp.model.validation.ValueError;
-import ar.edu.itba.paw.webapp.model.validation.ValueErrorConstants;
+import ar.edu.itba.paw.webapp.model.validation.*;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -53,8 +50,9 @@ public class ShelfGame implements ValidationExceptionThrower {
      *
      * @param game  The game.
      * @param shelf The shelf.
+     * @throws ValidationException If there are validation errors with the given params.
      */
-    public ShelfGame(Game game, Shelf shelf) {
+    public ShelfGame(Game game, Shelf shelf) throws ValidationException {
         List<ValueError> errors = new LinkedList<>();
         ValidationHelper.objectNotNull(game, errors, ValueErrorConstants.MISSING_GAME);
         ValidationHelper.objectNotNull(shelf, errors, ValueErrorConstants.MISSING_SHELF);
