@@ -190,4 +190,14 @@ public class ValueErrorConstants {
 
     public static final ValueError FUN_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "funScore",
             ILLEGAL_SCORE_ERROR_MESSAGE);
+
+
+    public final static ValueError MISSING_FOLLOWER = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "follower", "Missing follower");
+
+    public final static ValueError MISSING_FOLLOWED = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "followed", "Missing followed");
+
+    public final static ValueError AUTO_FOLLOW = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "followed", "Can't auto-follow");
 }
