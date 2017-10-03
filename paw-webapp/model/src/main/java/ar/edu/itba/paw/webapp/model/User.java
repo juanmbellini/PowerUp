@@ -87,9 +87,8 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
      */
     public User(String username, String email, String hashedPassword) throws ValidationException {
         this();
-        if (hashedPassword == null) {
-            throw new IllegalArgumentException("A hashed password must be set");
-        }
+        checkPasswordNotNull(hashedPassword); // Throws exception if null
+
         List<ValueError> errorList = new LinkedList<>();
         checkValues(username, email, errorList);
 
@@ -107,9 +106,8 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
      * @param newHashedPassword The new password.
      */
     public void changePassword(String newHashedPassword) {
-        if (newHashedPassword == null) {
-            throw new IllegalArgumentException("A hashed password must be set");
-        }
+        checkPasswordNotNull(newHashedPassword); // Throws exception if null
+
         this.hashedPassword = newHashedPassword;
     }
 
@@ -503,5 +501,17 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
                 ValueErrorConstants.MIME_TYPE_TOO_LONG);
 
         throwValidationException(errorList);
+    }
+
+    /**
+     * Checks that the given {@code password} is not {@code null}.
+     *
+     * @param password The password to validate.
+     * @throws IllegalArgumentException If The given {@code password} is null.
+     */
+    private static void checkPasswordNotNull(String password) throws IllegalArgumentException {
+        if (password == null) {
+            throw new IllegalArgumentException("A hashed password must be set");
+        }
     }
 }
