@@ -130,7 +130,11 @@ public class ValueErrorConstants {
             "A cycle was detected when updating the parent");
 
 
-    public static final ValueError MISSING_GAME = new ValueError(MISSING_VALUE, "game", "The game is missing.");
+    public static final ValueError MISSING_GAME = new ValueError(MISSING_VALUE, "game",
+            "The game is missing.");
+
+    public static final ValueError MISSING_SHELF = new ValueError(MISSING_VALUE, "shelf",
+            "The shelf is missing.");
 
 
     public static final ValueError MISSING_REVIEW_BODY = new ValueError(MISSING_VALUE, "review",

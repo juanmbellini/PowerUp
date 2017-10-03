@@ -1,18 +1,22 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValidationHelper;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
+import ar.edu.itba.paw.webapp.model.validation.ValueErrorConstants;
+
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class representing a relationship between a {@link Shelf} and a {@link Game}.
- * <p>
- * Created by Juan Marcos Bellini on 14/4/17.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
 @Entity
 @Table(name = "shelf_games",
         indexes = {@Index(name = "shelf_games_shelf_id_game_id_key",
                 columnList = "shelf_id, game_id", unique = true)})
-public class ShelfGame {
+public class ShelfGame implements ValidationExceptionThrower {
 
     @Id
     @SequenceGenerator(name = "shelves_games_seq", sequenceName = "shelf_games_id_seq", allocationSize = 1)
@@ -51,6 +55,11 @@ public class ShelfGame {
      * @param shelf The shelf.
      */
     public ShelfGame(Game game, Shelf shelf) {
+        List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(game, errors, ValueErrorConstants.MISSING_GAME);
+        ValidationHelper.objectNotNull(shelf, errors, ValueErrorConstants.MISSING_SHELF);
+        throwValidationException(errors);
+
         this.game = game;
         this.shelf = shelf;
     }
