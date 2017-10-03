@@ -66,13 +66,13 @@ public class ValueErrorConstants {
             "The given user already set a play status for the given game. Remove first.");
 
 
-    public static final ValueError MISSING_SCORE = new ValueError(MISSING_VALUE, "score",
+    public static final ValueError MISSING_GAME_SCORE = new ValueError(MISSING_VALUE, "score",
             "The score is missing");
 
-    public static final ValueError SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "score",
+    public static final ValueError GAME_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "score",
             ILLEGAL_SCORE_ERROR_MESSAGE);
 
-    public static final ValueError SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "score",
+    public static final ValueError GAME_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "score",
             ILLEGAL_SCORE_ERROR_MESSAGE);
 
 

@@ -6,19 +6,14 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Models a review made by a specific user for a specific game.
  */
 @Entity
 @Table(name = "reviews")
-public class Review implements ValidationExceptionThrower, Likeable {
+public class Review implements ValidationExceptionThrower, Likeable, ScoreChecker {
 
     @Id
     @SequenceGenerator(name = "reviews_seq", sequenceName = "reviews_id_seq", allocationSize = 1)
@@ -309,24 +304,6 @@ public class Review implements ValidationExceptionThrower, Likeable {
                 ValueErrorConstants.FUN_SCORE_BELOW_MIN, ValueErrorConstants.FUN_SCORE_ABOVE_MAX, errorList);
 
         throwValidationException(errorList);
-    }
-
-
-    /**
-     * Checks if the given {@code score} is valid.
-     *
-     * @param score        The score to be checked.
-     * @param missingError The {@link ValueError} representing the missing value error.
-     * @param belowError   The {@link ValueError} representing a below 0 error.
-     * @param aboveError   The {@link ValueError} representing an above 10 error.
-     * @param errorList    The list containing errors.
-     */
-    private static void checkScore(Integer score, ValueError missingError,
-                                   ValueError belowError, ValueError aboveError,
-                                   List<ValueError> errorList) {
-        ValidationHelper.intNotNullAndLengthBetweenTwoValues(score, NumericConstants.MIN_SCORE, NumericConstants.MAX_SCORE,
-                errorList, missingError, belowError, aboveError);
-
     }
 
 }

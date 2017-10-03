@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable, ValidationExceptionThrower {
+public class User implements Serializable, ValidationExceptionThrower, ScoreChecker {
 
 
     // ==== User stuff ===
@@ -326,7 +326,6 @@ public class User implements Serializable, ValidationExceptionThrower {
     }
 
 
-
     // ======== Equals and hashcode ========
 
     /**
@@ -469,9 +468,8 @@ public class User implements Serializable, ValidationExceptionThrower {
     private void checkScoreGameValues(Game game, Integer score) throws ValidationException {
         List<ValueError> errorList = new LinkedList<>();
         ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
-        ValidationHelper.intNotNullAndLengthBetweenTwoValues(score, NumericConstants.MIN_SCORE,
-                NumericConstants.MAX_SCORE, errorList, ValueErrorConstants.MISSING_SCORE,
-                ValueErrorConstants.SCORE_BELOW_MIN, ValueErrorConstants.SCORE_ABOVE_MAX);
+        checkScore(score, ValueErrorConstants.MISSING_GAME_SCORE,
+                ValueErrorConstants.GAME_SCORE_BELOW_MIN, ValueErrorConstants.GAME_SCORE_ABOVE_MAX, errorList);
         throwValidationException(errorList);
     }
 
