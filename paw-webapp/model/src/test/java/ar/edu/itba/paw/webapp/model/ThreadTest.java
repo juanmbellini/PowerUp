@@ -10,8 +10,7 @@ import org.mockito.Mockito;
 
 
 /**
- * Created by Juan Marcos Bellini on 3/10/17.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
+ * Performs testing over the {@link Thread} class.
  */
 public class ThreadTest {
 

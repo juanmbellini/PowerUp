@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Performs testing over the {@link CommentLike} class.
+ * Performs testing over the {@link ReviewLike} class.
  */
 public class ReviewLikeTest {
 

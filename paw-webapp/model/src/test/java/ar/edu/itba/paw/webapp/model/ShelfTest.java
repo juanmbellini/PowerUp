@@ -9,8 +9,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Created by Juan Marcos Bellini on 2/10/17.
- * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
+ * Performs testing over the {@link Shelf} class.
  */
 public class ShelfTest {
 
