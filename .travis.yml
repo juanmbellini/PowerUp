@@ -27,7 +27,7 @@ notifications:
             - juanlipuma94@gmail.com
             - ddegrimaudetderocheb@itba.edu.ar
             - julrodriguez@itba.edu.ar
-        on_sucess: always
+        on_success: never
         on_failure: always
         on_error: always
         on_cancel: always
