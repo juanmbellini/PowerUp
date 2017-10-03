@@ -6,8 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Stores basic information about a game as well as its reviews and ratings.
- * This class communicates with the database adding, removing and modifying information.
+ * This class represents a game.
  */
 @Entity
 @Table(name = "games")
@@ -61,13 +60,6 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "keyword_id", referencedColumnName = "id"))
     private Collection<Keyword> keywords;
 
-//    @ElementCollection
-//    @CollectionTable(
-//            name = "reviews",
-//            joinColumns=@JoinColumn(name = "game_id")
-//    )
-//    private Collection<Review> reviews;
-
     @ElementCollection
     @CollectionTable(
             name = "game_scores",
@@ -117,7 +109,6 @@ public class Game {
         publishers = new HashSet<>();
         developers = new HashSet<>();
         keywords = new HashSet<>();
-//        reviews = new HashSet<>();
         avgScore = INITIAL_AVG_SCORE;
         releaseDate = LocalDate.now();
         coverPictureId = null;
@@ -159,10 +150,6 @@ public class Game {
     public Collection<Keyword> getKeywords() {
         return keywords;
     }
-
-//    public Collection<Review> getReviews() {
-//        return cloneCollection(reviews);
-//    }//TODO add review table in db
 
     public double getAvgScore() {
         return avgScore;
@@ -252,9 +239,6 @@ public class Game {
         keywords.add(keyword);
     }
 
-//    public void addReview(Review review) {
-//        reviews.add(review);
-//    }
 
     /**
      * Adds a picture to this game, populating both its picture IDs collection and its picture URLs collection.
