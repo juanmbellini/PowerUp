@@ -13,3 +13,21 @@ cache:
         - node
         - node_modules
         - bower_components
+notifications:
+    webhooks:
+        urls:
+            - https://fathomless-fjord-24024.herokuapp.com/notify
+        on_success: never
+        on_failure: always
+        on_error: always
+        on_cancel: always
+    email:
+        recipients:
+            - juanmbellini@gmail.com
+            - juanlipuma94@gmail.com
+            - ddegrimaudetderocheb@itba.edu.ar
+            - julrodriguez@itba.edu.ar
+        on_success: never
+        on_failure: always
+        on_error: always
+        on_cancel: always
