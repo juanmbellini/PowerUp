@@ -225,25 +225,6 @@ public class Review implements ValidationExceptionThrower, Likeable, ScoreChecke
 
 
     /**
-     * Overall score getter.
-     *
-     * @return The overall score (i.e average of scores).
-     */
-    @Transient
-    public double getOverallScore() {
-        return (storyScore + graphicsScore + audioScore + controlsScore + funScore) / 5.0;
-    }
-
-    /**
-     * Rating getter.
-     *
-     * @return The rating (i.e average of scores)
-     */
-    public double getRating() {
-        return (double) (this.audioScore + this.controlsScore + this.funScore + this.graphicsScore + this.storyScore) / 5;
-    }
-
-    /**
      * Equals based on the id.
      *
      * @param o The object to be compared with.
