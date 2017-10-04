@@ -139,7 +139,7 @@ public class ReviewTest {
                 review.getFunScore()
         );
 
-        // Assert the review has the new story score
+        // Assert the review has the new graphics score
         Assert.assertEquals(GRAPHICS_WRONG_CHANGE_MESSAGE, newGraphicsScore, review.getGraphicsScore());
 
         // Assert the review did not changed other values
@@ -170,7 +170,7 @@ public class ReviewTest {
                 review.getFunScore()
         );
 
-        // Assert the review has the new story score
+        // Assert the review has the new audio score
         Assert.assertEquals(AUDIO_WRONG_CHANGE_MESSAGE, newAudioScore, review.getAudioScore());
 
         // Assert the review did not changed other values
@@ -201,7 +201,7 @@ public class ReviewTest {
                 review.getFunScore()
         );
 
-        // Assert the review has the new story score
+        // Assert the review has the new controls score
         Assert.assertEquals(CONTROLS_WRONG_CHANGE_MESSAGE, newControlsScore, review.getControlsScore());
 
         // Assert the review did not changed other values
@@ -232,7 +232,7 @@ public class ReviewTest {
                 newFunScore
         );
 
-        // Assert the review has the new story score
+        // Assert the review has the new fun score
         Assert.assertEquals(FUN_WRONG_CHANGE_MESSAGE, newFunScore, review.getFunScore());
 
         // Assert the review did not changed other values
