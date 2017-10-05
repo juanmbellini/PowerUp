@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable, ValidationExceptionThrower {
+public class User implements Serializable, ValidationExceptionThrower, ScoreChecker {
 
 
     // ==== User stuff ===
@@ -87,8 +87,10 @@ public class User implements Serializable, ValidationExceptionThrower {
      */
     public User(String username, String email, String hashedPassword) throws ValidationException {
         this();
+        checkPasswordNotNull(hashedPassword); // Throws exception if null
+
         List<ValueError> errorList = new LinkedList<>();
-        checkValues(username, email, hashedPassword, errorList);
+        checkValues(username, email, errorList);
 
         this.username = username;
         this.email = email;
@@ -104,6 +106,8 @@ public class User implements Serializable, ValidationExceptionThrower {
      * @param newHashedPassword The new password.
      */
     public void changePassword(String newHashedPassword) {
+        checkPasswordNotNull(newHashedPassword); // Throws exception if null
+
         this.hashedPassword = newHashedPassword;
     }
 
@@ -326,7 +330,6 @@ public class User implements Serializable, ValidationExceptionThrower {
     }
 
 
-
     // ======== Equals and hashcode ========
 
     /**
@@ -399,11 +402,10 @@ public class User implements Serializable, ValidationExceptionThrower {
      *
      * @param username  The username be checked.
      * @param email     The email to be checked.
-     * @param password  The password to be checked.
      * @param errorList A list containing possible detected errors before calling this method.
      * @throws ValidationException If any value is wrong.
      */
-    private void checkValues(String username, String email, String password, List<ValueError> errorList) throws ValidationException {
+    private void checkValues(String username, String email, List<ValueError> errorList) throws ValidationException {
         errorList = errorList == null ? new LinkedList<>() : errorList;
         ValidationHelper.stringNotNullAndLengthBetweenTwoValues(username, NumericConstants.USERNAME_MIN_LENGTH,
                 NumericConstants.USERNAME_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_USERNAME,
@@ -469,9 +471,8 @@ public class User implements Serializable, ValidationExceptionThrower {
     private void checkScoreGameValues(Game game, Integer score) throws ValidationException {
         List<ValueError> errorList = new LinkedList<>();
         ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
-        ValidationHelper.intNotNullAndLengthBetweenTwoValues(score, NumericConstants.MIN_SCORE,
-                NumericConstants.MAX_SCORE, errorList, ValueErrorConstants.MISSING_SCORE,
-                ValueErrorConstants.SCORE_BELOW_MIN, ValueErrorConstants.SCORE_ABOVE_MAX);
+        checkScore(score, ValueErrorConstants.MISSING_GAME_SCORE,
+                ValueErrorConstants.GAME_SCORE_BELOW_MIN, ValueErrorConstants.GAME_SCORE_ABOVE_MAX, errorList);
         throwValidationException(errorList);
     }
 
@@ -502,5 +503,15 @@ public class User implements Serializable, ValidationExceptionThrower {
         throwValidationException(errorList);
     }
 
-
+    /**
+     * Checks that the given {@code password} is not {@code null}.
+     *
+     * @param password The password to validate.
+     * @throws IllegalArgumentException If The given {@code password} is null.
+     */
+    private static void checkPasswordNotNull(String password) throws IllegalArgumentException {
+        if (password == null) {
+            throw new IllegalArgumentException("A hashed password must be set");
+        }
+    }
 }

@@ -1,9 +1,12 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class representing a relationship between a {@link User} and a {@link Game}, including a {@link PlayStatus}.
@@ -15,7 +18,7 @@ import java.util.Calendar;
 @Table(name = "game_play_statuses",
         indexes = {@Index(name = "game_play_statuses_user_id_game_id_key",
                 columnList = "user_id, game_id", unique = true)})
-public class UserGameStatus {
+public class UserGameStatus implements ValidationExceptionThrower {
 
     /**
      * The id.
@@ -74,8 +77,15 @@ public class UserGameStatus {
      * @param game       The game.
      * @param user       The user.
      * @param playStatus The play status.
+     * @throws ValidationException If the given {@code playStatus} is not valid.
      */
-    public UserGameStatus(Game game, User user, PlayStatus playStatus) {
+    public UserGameStatus(Game game, User user, PlayStatus playStatus) throws ValidationException {
+        List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(game, errors, ValueErrorConstants.MISSING_GAME);
+        ValidationHelper.objectNotNull(user, errors, ValueErrorConstants.MISSING_USER);
+        ValidationHelper.objectNotNull(playStatus, errors, ValueErrorConstants.MISSING_PLAY_STATUS);
+        throwValidationException(errors);
+
         this.game = game;
         this.user = user;
         this.playStatus = playStatus;
@@ -119,6 +129,30 @@ public class UserGameStatus {
     }
 
     /**
+     * Date getter.
+     *
+     * @return The date.
+     */
+    public Calendar getDate() {
+        return date;
+    }
+
+    /**
+     * Sets a new play status.
+     *
+     * @param playStatus The new play status.
+     * @throws ValidationException If the given {@code playStatus} is not valid.
+     */
+    public void setPlayStatus(PlayStatus playStatus) throws ValidationException {
+        List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(playStatus, errors, ValueErrorConstants.MISSING_PLAY_STATUS);
+        throwValidationException(errors);
+
+        this.playStatus = playStatus;
+    }
+
+
+    /**
      * Equals based on the game and the user.
      *
      * @param o The object to be compared with.
@@ -137,8 +171,6 @@ public class UserGameStatus {
         }
         return game.equals(gameStatus.game)
                 && (user == null ? gameStatus.user == null : user.equals(gameStatus.user));
-
-
     }
 
     /**
@@ -151,17 +183,5 @@ public class UserGameStatus {
         int result = game == null ? 0 : game.hashCode();
         result = 31 * result + (user == null ? 0 : user.hashCode());
         return result;
-    }
-
-    public void setPlayStatus(PlayStatus playStatus) {
-        this.playStatus = playStatus;
-    }
-
-    public Calendar getDate() {
-        return date;
-    }
-
-    public void setDate(Calendar date) {
-        this.date = date;
     }
 }

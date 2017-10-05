@@ -1,6 +1,10 @@
 package ar.edu.itba.paw.webapp.model;
 
+import ar.edu.itba.paw.webapp.model.validation.*;
+
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class representing a relationship between a {@link User} and a {@link Game}, including a {@link PlayStatus}.
@@ -12,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "game_scores",
         indexes = {@Index(name = "game_scores_user_id_game_id_key",
                 columnList = "user_id, game_id", unique = true)})
-public class UserGameScore {
+public class UserGameScore implements ValidationExceptionThrower, ScoreChecker {
 
     /**
      * The id.
@@ -66,8 +70,16 @@ public class UserGameScore {
      * @param game  The game.
      * @param user  The user.
      * @param score The score.
+     * @throws ValidationException If the score is not valid.
      */
-    public UserGameScore(Game game, User user, int score) {
+    public UserGameScore(Game game, User user, int score) throws ValidationException {
+        List<ValueError> errors = new LinkedList<>();
+        ValidationHelper.objectNotNull(game, errors, ValueErrorConstants.MISSING_GAME);
+        ValidationHelper.objectNotNull(user, errors, ValueErrorConstants.MISSING_USER);
+        checkScore(score, ValueErrorConstants.MISSING_GAME_SCORE,
+                ValueErrorConstants.GAME_SCORE_BELOW_MIN, ValueErrorConstants.GAME_SCORE_ABOVE_MAX, errors);
+        throwValidationException(errors);
+
         this.game = game;
         this.user = user;
         this.score = score;
@@ -110,6 +122,21 @@ public class UserGameScore {
         return score;
     }
 
+    /**
+     * Sets a new score.
+     *
+     * @param score The new score.
+     * @throws ValidationException If the score is not valid.
+     */
+    public void setScore(int score) throws ValidationException {
+        List<ValueError> errors = new LinkedList<>();
+        checkScore(score, ValueErrorConstants.MISSING_GAME_SCORE,
+                ValueErrorConstants.GAME_SCORE_BELOW_MIN, ValueErrorConstants.GAME_SCORE_ABOVE_MAX, errors);
+        throwValidationException(errors);
+
+        this.score = score;
+    }
+
 
     /**
      * Equals based on the game and the user.
@@ -130,8 +157,6 @@ public class UserGameScore {
         }
         return game.equals(gameStatus.game)
                 && (user == null ? gameStatus.user == null : user.equals(gameStatus.user));
-
-
     }
 
     /**
@@ -144,9 +169,5 @@ public class UserGameScore {
         int result = game == null ? 0 : game.hashCode();
         result = 31 * result + (user == null ? 0 : user.hashCode());
         return result;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 }

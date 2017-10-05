@@ -66,13 +66,13 @@ public class ValueErrorConstants {
             "The given user already set a play status for the given game. Remove first.");
 
 
-    public static final ValueError MISSING_SCORE = new ValueError(MISSING_VALUE, "score",
+    public static final ValueError MISSING_GAME_SCORE = new ValueError(MISSING_VALUE, "score",
             "The score is missing");
 
-    public static final ValueError SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "score",
+    public static final ValueError GAME_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "score",
             ILLEGAL_SCORE_ERROR_MESSAGE);
 
-    public static final ValueError SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "score",
+    public static final ValueError GAME_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "score",
             ILLEGAL_SCORE_ERROR_MESSAGE);
 
 
@@ -130,7 +130,11 @@ public class ValueErrorConstants {
             "A cycle was detected when updating the parent");
 
 
-    public static final ValueError MISSING_GAME = new ValueError(MISSING_VALUE, "game", "The game is missing.");
+    public static final ValueError MISSING_GAME = new ValueError(MISSING_VALUE, "game",
+            "The game is missing.");
+
+    public static final ValueError MISSING_SHELF = new ValueError(MISSING_VALUE, "shelf",
+            "The shelf is missing.");
 
 
     public static final ValueError MISSING_REVIEW_BODY = new ValueError(MISSING_VALUE, "review",
@@ -186,4 +190,14 @@ public class ValueErrorConstants {
 
     public static final ValueError FUN_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "funScore",
             ILLEGAL_SCORE_ERROR_MESSAGE);
+
+
+    public final static ValueError MISSING_FOLLOWER = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "follower", "Missing follower");
+
+    public final static ValueError MISSING_FOLLOWED = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "followed", "Missing followed");
+
+    public final static ValueError AUTO_FOLLOW = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "followed", "Can't auto-follow");
 }

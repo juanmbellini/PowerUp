@@ -56,7 +56,6 @@ public class UserJerseyController implements UpdateParamsChecker {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
-        this.passwordEncoder = passwordEncoder;
         this.shelfService = shelfService;
     }
 
@@ -68,7 +67,6 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     private final SessionService sessionService;
 
-    private PasswordEncoder passwordEncoder;
 
     @Context
     private UriInfo uriInfo;
@@ -161,8 +159,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     @PUT
     @Path("/password")
     public Response changePassword(final UserDto userDto) {
-        String newPassword = passwordEncoder.encode(userDto.getPassword());
-        userService.changePassword(sessionService.getCurrentUserId(), newPassword, sessionService.getCurrentUserId());
+        userService.changePassword(sessionService.getCurrentUserId(), userDto.getPassword(),
+                sessionService.getCurrentUserId());
         mailService.sendPasswordChangedEmail(sessionService.getCurrentUser());
         return Response.noContent().build();
     }
@@ -182,8 +180,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/password")
     public Response resetPassword(@PathParam("id") final long userId) {
         String newPassword = userService.generateNewPassword();
-        String hashedPassword = passwordEncoder.encode(newPassword);
-        userService.changePassword(userId, hashedPassword, userId);
+        userService.changePassword(userId, newPassword, userId);
         mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
         return Response.noContent().build();
     }
