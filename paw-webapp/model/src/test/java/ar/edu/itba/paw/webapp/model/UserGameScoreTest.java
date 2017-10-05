@@ -192,14 +192,14 @@ public class UserGameScoreTest {
     /**
      * @return A random integer to be used as score. Will be in the valid range of score.
      */
-    private static int generateRandomScoreInCorrectRange() {
+    static /* package */ int generateRandomScoreInCorrectRange() {
         return FAKER.number().numberBetween(NumericConstants.MIN_SCORE, NumericConstants.MAX_SCORE + 1);
     }
 
     /**
      * @return A random integer below the lower limit to be used as score.
      */
-    private static int generateRandomScoreBelowLowerLimit() {
+    static /* package */ int generateRandomScoreBelowLowerLimit() {
         final int lowerLimit = NumericConstants.MIN_SCORE - new Random().nextInt(MAGIC_NUMBER) - 1;
         return FAKER.number().numberBetween(lowerLimit, NumericConstants.MIN_SCORE);
     }
@@ -207,7 +207,7 @@ public class UserGameScoreTest {
     /**
      * @return A random integer above the upper limit to be used as score.
      */
-    private static int generateRandomScoreAboveUpperLimit() {
+    static /* package */ int generateRandomScoreAboveUpperLimit() {
         final int upperLimit = NumericConstants.MAX_SCORE + new Random().nextInt(MAGIC_NUMBER) + 2;
         return FAKER.number().numberBetween(NumericConstants.MAX_SCORE + 1, upperLimit);
     }

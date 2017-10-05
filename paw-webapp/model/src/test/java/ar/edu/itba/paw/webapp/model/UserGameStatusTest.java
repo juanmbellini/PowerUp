@@ -140,7 +140,7 @@ public class UserGameStatusTest {
     /**
      * @return A randomly chosen {@link PlayStatus}.
      */
-    private static PlayStatus getRandomPlayStatus() {
+    static /* package */ PlayStatus getRandomPlayStatus() {
         final PlayStatus[] statuses = PlayStatus.values();
         final int amountOfStatuses = statuses.length;
         return statuses[new Random().nextInt(amountOfStatuses)];
