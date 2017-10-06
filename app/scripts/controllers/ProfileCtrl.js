@@ -38,7 +38,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
             }
             $scope.requestedUser = user;
             Restangular.one('users', user.id).getList('game-list').then(function(response) {
-                $scope.profile.gamesAmount = parseInt(response.headers()['x-total-pages'], 10);
+                // TODO use paginator
+                $scope.profile.gamesAmount = parseInt(response.headers()['x-overall-amount-of-elements'], 10);
                 if (!$scope.profile.gamesAmount) {
                     $scope.profile.gamesAmount = 0;
                 }
