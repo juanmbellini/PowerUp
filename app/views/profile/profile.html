@@ -28,7 +28,7 @@
                 <h5>Profile Stats</h5>
                 <p><ng-pluralize count="requestedUser.social.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.social.followersCount}}</b></p>
                 <p><ng-pluralize count="requestedUser.social.followingCount" when="{'one': 'Following', 'other': 'Following'}"></ng-pluralize>: <b>{{requestedUser.social.followingCount}}</b></p>
-                <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list=?id={{requestedUser.id}}">game list</a></p>
+                <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list?id={{requestedUser.id}}">game list</a></p>
             </div>
             <div class="col s8">
                 <h4 class="center" ng-if="profile.top10.length > 0">Top 10 games</h4>
