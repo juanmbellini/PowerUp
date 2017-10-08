@@ -14,7 +14,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
 
         // All profile-specific info will go here
         $scope.profile = {
-            gamesInList:0,
+            gamesInList: 0,
             picture: {
                 url: null,
                 data: null,
@@ -143,25 +143,38 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
                 });
         };
 
-        // Follow
+        /* *************************************************************************************************************
+                FOLLOWS
+         * ************************************************************************************************************/
+        $scope.followDisabled = false;
+
         $scope.canFollow = function () {
             return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
         };
+
         $scope.updateFollow = function () {
-            $scope.followDisable = true;
+            if ($scope.followDisabled) {
+                return;
+            }
+            $scope.followDisabled = true;
+
             if (!$scope.requestedUser.social.followedByCurrentUser) {
-                Restangular.one('users',$scope.requestedUser.id).one('followers').put().then(function () {
-                    $scope.followDisable = false;
+                // Follow
+                Restangular.one('users', $scope.requestedUser.id).one('followers').put().then(function () {
+                    $scope.followDisabled = false;
                     $scope.requestedUser.social.followedByCurrentUser = true;
+                    $scope.requestedUser.social.followersCount++;
                 }, function () {
-                    $scope.followDisable = false;
+                    $scope.followDisabled = false;
                 });
             } else {
+                // Unfollow
                 Restangular.one('users',$scope.requestedUser.id).one('followers').remove().then(function () {
-                    $scope.followDisable = false;
+                    $scope.followDisabled = false;
                     $scope.requestedUser.social.followedByCurrentUser = false;
+                    $scope.requestedUser.social.followersCount--;
                 }, function () {
-                    $scope.followDisable = false;
+                    $scope.followDisabled = false;
                 });
             }
         };
