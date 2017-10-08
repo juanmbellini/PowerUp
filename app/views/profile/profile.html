@@ -23,11 +23,11 @@
                 </div>
                 <br />
                 <button ng-if="isCurrentUser(requestedUser)" class="btn waves-effect waves-light" ng-click="changePassword()">Change Password</button>
-                <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisable" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
+                <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisabled" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
             <br />
                 <h5>Profile Stats</h5>
-                <p><ng-pluralize count="requestedUser.social.followersCount" when="{'one': 'Follower', 'other': 'Followers'}"></ng-pluralize>: <b>{{requestedUser.social.followersCount}}</b></p>
-                <p><ng-pluralize count="requestedUser.social.followingCount" when="{'one': 'Following', 'other': 'Following'}"></ng-pluralize>: <b>{{requestedUser.social.followingCount}}</b></p>
+                <p>Followers: <b>{{requestedUser.social.followersCount}}</b></p>
+                <p>Following: <b>{{requestedUser.social.followingCount}}</b></p>
                 <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list?id={{requestedUser.id}}">game list</a></p>
             </div>
             <div class="col s8">
