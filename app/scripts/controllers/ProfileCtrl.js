@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
         Restangular.setFullResponse(true);
@@ -12,6 +12,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
         $scope.username = $location.search().username;
         $scope.currentUser = AuthService.getCurrentUser();
 
+        $scope.requestedUser = null;
         // All profile-specific info will go here
         $scope.profile = {
             gamesInList: 0,

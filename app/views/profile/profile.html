@@ -1,5 +1,9 @@
-<main>
-    <div class="section container" >
+<main class="section container">
+    <div ng-if="requestedUser === null" class="center">
+        <h5>Fetching profile...</h5>
+        <loading-circle></loading-circle>
+    </div>
+    <div ng-if="requestedUser !== null">
         <h1 class="center orange-text">{{username}}'s Profile</h1>
         <div class="row">
             <div class="col s4">
