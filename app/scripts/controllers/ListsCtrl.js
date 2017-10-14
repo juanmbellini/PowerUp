@@ -2,9 +2,7 @@
 define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll, PaginationService) {
-
         Restangular.setFullResponse(true);
-
 
         // User
         $scope.checkCurrentUserLogged = function() { // TODO change name to isCurrentUserLoggedAndOwner
@@ -50,7 +48,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         $scope.ready = false;           // All data is loaded (games, statuses, etc. etc.) TODO this only contemplates games
         $scope.refreshingList = false;  // Refreshing list, only games section needs a spinner
 
-
         function updateGameList(resetPageNumber) {
             // Don't block new requests if others are running.
             // TODO cancel pending requests if any
@@ -79,9 +76,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 $scope.games = response.data;
                 $scope.ready = true;
                 $scope.refreshingList = false;
-                // TODO delet dis
-                $scope.headersPagination = response.headers();
-                $scope.updatePagination();
             }, function(error) {
                 $log.error('Error with status code', response.status);
                 $scope.ready = true;
@@ -134,6 +128,17 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         if ($scope.shelfQuery) {
             $scope.selectedShelves.push($scope.shelfQuery);
         }
+        $scope.shelves = null;
+
+        $scope.getShelves = function() {
+            userURL.all('shelves').getList({}).then(function(response) {
+                $scope.shelves = response.data;
+            }, function(error) {
+                $log.error('Could not get user shelves. Error with status code', error.status);
+            });
+        };
+        $scope.getShelves();
+
         $scope.toggleSelectionShelves = function (shelf) {
             var idx = $scope.selectedShelves.indexOf(shelf);
             if (idx > -1) {
@@ -145,26 +150,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             }
             $log.info($scope.selectedShelves);
         };
-        $scope.getShelves = function() {
-            userURL.all('shelves').getList({}).then(function(response) {
-                $scope.shelves = response.data;
-            }, function(error) {
-                $log.error('Could not get user shelves. Error with status code', error.status);
-            });
-        };
-        $scope.shelves = null;
-        $scope.getShelves();
-        $scope.$watchCollection('selectedShelves', function () {
-            $scope.searchParams.shelfName = $scope.selectedShelves;
-            updateGameList(true);
-            Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
-                $scope.recommendedGames = response.data;
-                $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
-            }, function (response) {
-                $log.error('Could not get recommended games', response);
-                $scope.recommendedGames = [];
-            });
-        });
+
         $scope.deleteShelf = function(shelf) {
             swal({
                 title: 'Are you sure?',
@@ -187,6 +173,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 });
             });
         };
+
         $scope.editShelf = function(shelf) {
             swal({
                     title: 'Rename \"' + shelf.name + '\" to...',
@@ -218,6 +205,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     });
                 });
         };
+
         $scope.newShelfName = null;
         $scope.createShelf = function() {
             console.log($scope.newShelfName);
@@ -233,7 +221,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             });
         };
 
-        // RecommendedGames
+        // Recommended games
         $scope.hasSlick = false;
         $scope.first = true;
         $scope.$on('recommendedRendered', function(event) {
@@ -250,13 +238,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
         });
 
-        $scope.$watchCollection('selectedPlayStatuses', function() {
-            $scope.searchParams.status = $scope.selectedPlayStatuses;
-            updateGameList(true);
-        });
-
-
-
 
         // Pagination control
         $scope.pageSizes = [25, 50, 100];
@@ -267,16 +248,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             pageSize: $scope.pageSizes[0]
         };
         $scope.gamesPaginator = PaginationService.initialize(Restangular.one('users', $scope.userId).all('game-list'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize);
-
-        // TODO delet dis
-        $scope.pageSize = 3;
-        $scope.pageSizeSelected = 3;
-        $scope.updatePageSize = function (pageSizeSelected) {
-            $scope.pageSize = pageSizeSelected;
-            $scope.pageNumber = 1;
-            // $location.search('pageSize', $scope.pageSize);
-        };
-
 
         $scope.setPageNumber = function (number) {
             if (!$scope.gamesPaginator.pagination.totalPages) {
@@ -291,47 +262,29 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             return PaginationService.getPageRange($scope.gamesPaginator, deltaPages);
         };
 
-
-
-
-        /**
-         * Changes the pageNumber query parameter using the newPageNumber
-         * @param newPageNumber
+        /*
+         *  Watchers; changes in these variables will refresh the game lists and possibly something else.
          */
-        $scope.changePageNumber = function(newPageNumber) {
-            $scope.pageNumber = newPageNumber;
-            // $location.search('pageNumber', $scope.pageNumber);
-        };
-        /**
-         * Updates pagination variables using the pagination headers
-         * TODO delet dis
-         */
-        $scope.updatePagination = function() {
-            $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);
-            $scope.totalPages = parseInt($scope.headersPagination['x-total-pages'], 10);
-            // Show the fist ten
-            $scope.paginationJustOne = ($scope.pageNumber - 4 <= 0) || ($scope.totalPages <= 10);
-            // Show the last ten
-            $scope.paginationNoMorePrev = ($scope.pageNumber + 5 > $scope.totalPages);
+        $scope.$watchCollection('selectedShelves', function () {
+            // Update shelves
+            $scope.searchParams.shelfName = $scope.selectedShelves;
+            updateGameList(true);
 
-            $scope.paginationTheFirstOnes = ($scope.pageNumber + 5 < 10);
-            $scope.paginationNoMoreNext = ($scope.pageNumber + 5 >= $scope.totalPages) || ($scope.totalPages < 10);
+            // Update game suggestions
+            Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
+                $scope.recommendedGames = response.data;
+                $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+            }, function (response) {
+                $log.error('Could not get recommended games', response);
+                $scope.recommendedGames = [];
+            });
+        });
 
-            if ($scope.paginationJustOne) {
-                $scope.paginationBegin = 1;
-            } else {
-                $scope.paginationBegin = $scope.paginationNoMorePrev ? $scope.totalPages - 9 : $scope.pageNumber - 4;
-            }
-            if ($scope.paginationNoMoreNext) {
-                $scope.paginationEnd = $scope.totalPages;
-            } else {
-                $scope.paginationEnd = $scope.paginationTheFirstOnes ? 10 : $scope.pageNumber + 5;
-            }
-            $scope.rangePagination = [];
-            for (var i = $scope.paginationBegin; i <= $scope.paginationEnd; i++) {
-                $scope.rangePagination.push(i);
-            }
-        };
+        $scope.$watchCollection('selectedPlayStatuses', function() {
+            $scope.searchParams.status = $scope.selectedPlayStatuses;
+            updateGameList(true);
+        });
+
         $scope.$watch('searchParams.pageNumber', function () {
             updateGameList(false);
         });
