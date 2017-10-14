@@ -262,6 +262,28 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             return PaginationService.getPageRange($scope.gamesPaginator, deltaPages);
         };
 
+        $scope.validPageSizes = function() {
+            var result = [];
+            var pagination = $scope.gamesPaginator.pagination;
+            if (!pagination.totalElements) {
+                return result;
+            }
+            $scope.pageSizes.forEach(function(pageSize, index, pageSizes) {
+                if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index - 1])) {
+                    result.push(pageSize);
+                }
+            });
+            var customPageSize = $scope.pageSizes.indexOf($scope.searchParams.pageSize) === -1 ? $scope.searchParams.pageSize : null;
+            if (customPageSize) {
+                result.push(customPageSize);
+                result.sort(function(a, b) {
+                    return a - b;
+                });
+            }
+            return result;
+        };
+
+
         /*
          *  Watchers; changes in these variables will refresh the game lists and possibly something else.
          */
@@ -289,6 +311,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             updateGameList(false);
         });
         $scope.$watchCollection('searchParams.pageSize', function() {
+            $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize, 10);
             updateGameList(false);
         });
     });

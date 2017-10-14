@@ -152,15 +152,13 @@
             <!--PAGINATION-->
             <div ng-if="!refreshingList">
                 <!--Page size-->
-                <div ng-if="games.length > 0" class="row">
-                    <span>
-                        <div class="input-field col s2 offset-s5">
-                            <select class="browser-default" ng-model="pageSizeSelected" ng-change="updatePageSize(pageSizeSelected)">
-                                <option ng-repeat="pageSizeValue in pageSizes" ng-value="pageSizeValue"> {{pageSizeValue}} </option>
-                            </select>
-                        </div>
-                        <label>Games per page</label>
-                    </span>
+                <div ng-show="gamesPaginator.pagination.totalElements > pageSizes[0]" class="row">
+                    <div class="col s2 offset-s5">
+                        <label for="page-size">Page Size</label>
+                        <select id="page-size" class="browser-default" ng-model="searchParams.pageSize">
+                            <option ng-repeat="pageSize in validPageSizes()" ng-value="pageSize">{{pageSize}}</option>
+                        </select>
+                    </div>
                 </div>
                 <!--END Page size-->
                 <!-- Page numbers -->
