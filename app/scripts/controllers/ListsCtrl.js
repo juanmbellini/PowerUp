@@ -82,6 +82,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 $scope.refreshingList = false;
             });
         }
+
         // function addInformationToGame(gameRef, index, gameArray) {
         //     var game = gameArray[index];
         //     Restangular.one('users', $scope.userId).all('game-scores').getList({gameId: game.id}).then(function (gameScore) {
@@ -288,9 +289,11 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
          *  Watchers; changes in these variables will refresh the game lists and possibly something else.
          */
         $scope.$watchCollection('selectedShelves', function () {
-            // Update shelves
-            $scope.searchParams.shelfName = $scope.selectedShelves;
-            updateGameList(true);
+            if ($scope.ready) {
+                // Update shelves
+                $scope.searchParams.shelfName = $scope.selectedShelves;
+                updateGameList(true);
+            }
 
             // Update game suggestions
             Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
@@ -303,16 +306,25 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         });
 
         $scope.$watchCollection('selectedPlayStatuses', function() {
-            $scope.searchParams.status = $scope.selectedPlayStatuses;
-            updateGameList(true);
+            if ($scope.ready) {
+                $scope.searchParams.status = $scope.selectedPlayStatuses;
+                updateGameList(true);
+            }
         });
 
         $scope.$watch('searchParams.pageNumber', function () {
-            updateGameList(false);
+            if ($scope.ready) {
+                updateGameList(false);
+            }
         });
         $scope.$watchCollection('searchParams.pageSize', function() {
-            $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize, 10);
-            updateGameList(false);
+            if ($scope.ready) {
+                $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize, 10);
+                updateGameList(false);
+            }
         });
+
+        // Now that everything is defined, trigger initial search!
+        updateGameList(false);
     });
 });
