@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll) {
 
@@ -47,14 +47,24 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular'], functi
 
         // Games
         $scope.games = [];
+        $scope.ready = false;
+        $scope.refreshingList = false;
         function updateGameList() {
+            // Don't block new requests if others are running.
+            // TODO cancel pending requests if any
+            $scope.refreshingList = true;
+
             $anchorScroll();
             userURL.all('game-list').getList({shelfName: $scope.selectedShelves, status: $scope.selectedPlayStatuses, pageNumber: $scope.pageNumber, pageSize: $scope.pageSize}).then(function(response) {
                 $scope.games = response.data;
                 $scope.headersPagination = response.headers();
                 $scope.updatePagination();
+                $scope.ready = true;
+                $scope.refreshingList = false;
             }, function(response) {
                 $log.error('Error with status code', response.status);
+                $scope.ready = true;
+                $scope.refreshingList = false;
             });
         }
         // function addInformationToGame(gameRef, index, gameArray) {
