@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle', 'PaginationService'], function(powerUp) {
 
-    powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll) {
+    powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll, PaginationService) {
 
         Restangular.setFullResponse(true);
 
@@ -47,21 +47,42 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
 
         // Games
         $scope.games = [];
-        $scope.ready = false;
-        $scope.refreshingList = false;
-        function updateGameList() {
+        $scope.ready = false;           // All data is loaded (games, statuses, etc. etc.) TODO this only contemplates games
+        $scope.refreshingList = false;  // Refreshing list, only games section needs a spinner
+
+
+        function updateGameList(resetPageNumber) {
             // Don't block new requests if others are running.
             // TODO cancel pending requests if any
             $scope.refreshingList = true;
 
             $anchorScroll();
-            userURL.all('game-list').getList({shelfName: $scope.selectedShelves, status: $scope.selectedPlayStatuses, pageNumber: $scope.pageNumber, pageSize: $scope.pageSize}).then(function(response) {
+
+            if (resetPageNumber === true) {
+                $scope.searchParams.pageNumber = 1;
+            }
+            // Update paginator
+            $scope.gamesPaginator.pagination.pageNumber = $scope.searchParams.pageNumber;
+            $scope.gamesPaginator.pagination.pageSize = $scope.searchParams.pageSize;
+
+            // Send only defined search params
+            var params = {};
+            for (var key in $scope.searchParams) {
+                if ($scope.searchParams.hasOwnProperty(key) && typeof $scope.searchParams[key] !== 'undefined') {
+                    params[key] = $scope.searchParams[key];
+                }
+            }
+            PaginationService.setRequestParams($scope.gamesPaginator, params);
+
+            // Fire request
+            PaginationService.get($scope.gamesPaginator, function(response) {
                 $scope.games = response.data;
-                $scope.headersPagination = response.headers();
-                $scope.updatePagination();
                 $scope.ready = true;
                 $scope.refreshingList = false;
-            }, function(response) {
+                // TODO delet dis
+                $scope.headersPagination = response.headers();
+                $scope.updatePagination();
+            }, function(error) {
                 $log.error('Error with status code', response.status);
                 $scope.ready = true;
                 $scope.refreshingList = false;
@@ -134,7 +155,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         $scope.shelves = null;
         $scope.getShelves();
         $scope.$watchCollection('selectedShelves', function () {
-            updateGameList();
+            $scope.searchParams.shelfName = $scope.selectedShelves;
+            updateGameList(true);
             Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
                 $scope.recommendedGames = response.data;
                 $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
@@ -188,7 +210,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     shelf.name = inputValue;
                     userURL.one('shelves',oldName).customPUT(shelf).then(function (response) {
                         $log.debug('Updated Shelf. Now your shelf should be called ' + inputValue);
-                        swal('Success', 'Shelf "' + oldName + '" renamed to "'+ shelf.name +'"', 'success');
+                        swal('Success', 'Shelf "' + oldName + '" renamed to "' + shelf.name + '"', 'success');
                     }, function(response) {
                         $log.error('Error renaming shelf. Error with status code', response.status);
                         shelf.name = oldName;
@@ -229,14 +251,24 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         });
 
         $scope.$watchCollection('selectedPlayStatuses', function() {
-            updateGameList();
+            $scope.searchParams.status = $scope.selectedPlayStatuses;
+            updateGameList(true);
         });
 
 
 
 
-        // Pagination
-        $scope.pageSizes = [1,3,5,10,15];
+        // Pagination control
+        $scope.pageSizes = [25, 50, 100];
+        $scope.searchParams = {
+            shelfName: undefined,
+            status: undefined,
+            pageNumber: 1,
+            pageSize: $scope.pageSizes[0]
+        };
+        $scope.gamesPaginator = PaginationService.initialize(Restangular.one('users', $scope.userId).all('game-list'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize);
+
+        // TODO delet dis
         $scope.pageSize = 3;
         $scope.pageSizeSelected = 3;
         $scope.updatePageSize = function (pageSizeSelected) {
@@ -244,6 +276,24 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             $scope.pageNumber = 1;
             // $location.search('pageSize', $scope.pageSize);
         };
+
+
+        $scope.setPageNumber = function (number) {
+            if (!$scope.gamesPaginator.pagination.totalPages) {
+                return;
+            }
+            if (number >= 1 && number <= $scope.gamesPaginator.pagination.totalPages) {
+                $scope.searchParams.pageNumber = number;
+            }
+        };
+
+        $scope.getPageRange = function(deltaPages) {
+            return PaginationService.getPageRange($scope.gamesPaginator, deltaPages);
+        };
+
+
+
+
         /**
          * Changes the pageNumber query parameter using the newPageNumber
          * @param newPageNumber
@@ -254,6 +304,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         };
         /**
          * Updates pagination variables using the pagination headers
+         * TODO delet dis
          */
         $scope.updatePagination = function() {
             $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);
@@ -281,11 +332,11 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 $scope.rangePagination.push(i);
             }
         };
-        $scope.$watch('pageNumber', function () {
-            updateGameList();
+        $scope.$watch('searchParams.pageNumber', function () {
+            updateGameList(false);
         });
-        $scope.$watchCollection('pageSize', function() {
-            updateGameList();
+        $scope.$watchCollection('searchParams.pageSize', function() {
+            updateGameList(false);
         });
     });
 });
