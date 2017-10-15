@@ -77,7 +77,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 $scope.ready = true;
                 $scope.refreshingList = false;
             }, function(error) {
-                $log.error('Error with status code', response.status);
+                $log.error('Error with status code', error.status);
                 $scope.ready = true;
                 $scope.refreshingList = false;
             });
