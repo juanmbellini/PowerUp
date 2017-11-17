@@ -1,5 +1,5 @@
 require 'json'
-require_relative 'query'
+require_relative '../query'
 
 q = Query.new("#{Query::API_URL}/games/?limit=50&scroll=0", 'user-key' => Query::KEY, 'Accept' => 'application/json')
 

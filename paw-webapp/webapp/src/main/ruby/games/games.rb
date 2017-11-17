@@ -1,5 +1,5 @@
 require 'json'
-require_relative 'query'
+require_relative '../query'
 
 game_ids = JSON.parse(File.read('game_ids.json')).map { |entry| entry['id'] }
 
@@ -12,6 +12,6 @@ game_ids.each_slice(500) do |slice|
 end
 
 puts "Done, writing result to file"
-File.open('games', 'w') do |f|
+File.open('games.json', 'w') do |f|
   f.write(big_result.to_json)
 end
