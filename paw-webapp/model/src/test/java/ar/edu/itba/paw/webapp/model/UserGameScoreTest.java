@@ -201,6 +201,9 @@ public class UserGameScoreTest {
      */
     static /* package */ int generateRandomScoreBelowLowerLimit() {
         final int lowerLimit = NumericConstants.MIN_SCORE - new Random().nextInt(MAGIC_NUMBER) - 1;
+        if (lowerLimit + 1 == NumericConstants.MIN_SCORE) {
+            return lowerLimit;
+        }
         return FAKER.number().numberBetween(lowerLimit, NumericConstants.MIN_SCORE);
     }
 
