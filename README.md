@@ -58,6 +58,7 @@ These instructions will install the development environment into your local mach
 	jwt.secret=<jwt-hash-key>
 	email.password=<email-password>
 	db.password=<database-password>
+	twitch.clientId=<Twitch-Client-ID>
 	```	
 
 
