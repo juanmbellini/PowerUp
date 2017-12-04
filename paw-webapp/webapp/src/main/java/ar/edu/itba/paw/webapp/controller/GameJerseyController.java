@@ -2,13 +2,17 @@ package ar.edu.itba.paw.webapp.controller;
 
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
+import ar.edu.itba.paw.webapp.dto.TwitchStreamDto;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.interfaces.TwitchService;
 import ar.edu.itba.paw.webapp.model.FilterCategory;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.TwitchStream;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -24,29 +28,38 @@ import static ar.edu.itba.paw.webapp.controller.GameJerseyController.END_POINT;
  */
 @Path(END_POINT)
 @Produces(value = {MediaType.APPLICATION_JSON})
+@Component
 public class GameJerseyController {
 
     public static final String END_POINT = "games";
 
-    private GameService gameService;
+    /**
+     * A {@link GameService} to operate with {@link Game}s.
+     */
+    private final GameService gameService;
+
+    /**
+     * A {@link TwitchService} that provides Twitch services.
+     */
+    private final TwitchService twitchService;
 
     @Context
     private UriInfo uriInfo;
 
     @Autowired
-    public GameJerseyController(GameService gameService) {
+    public GameJerseyController(GameService gameService, TwitchService twitchService) {
         this.gameService = gameService;
+        this.twitchService = twitchService;
     }
 
 
     // ================ API methods ================
 
 
-    // ======== Basic user operation ========
+    // ======== Basic game operation ========
 
 
     @GET
-    @Path("/")
     public Response getGames(@QueryParam("orderBy") @DefaultValue("name") final OrderCategory orderCategory,
                              @QueryParam("sortDirection") @DefaultValue("asc") final SortDirection sortDirection,
                              @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
@@ -110,6 +123,21 @@ public class GameJerseyController {
                         .createList(gameService.getFiltersByType(filterCategory))) {
                 })
                 .build();
+    }
+
+    // ======== Twitch ========
+
+    @GET
+    @Path("/{id : \\d+}/twitch")
+    public Response getGameTwitchStreams(@PathParam("id") final long id) {
+        JerseyControllerHelper.checkParameter("id", id, value -> value <= 0);
+
+        final List<TwitchStream> streams = twitchService.getStreamsByGameId(id);
+        final List<TwitchStreamDto> streamDtos = streams.stream()
+                .map(TwitchStreamDto::new)
+                .collect(Collectors.toList());
+
+        return Response.ok(streamDtos).build();
     }
 
 
