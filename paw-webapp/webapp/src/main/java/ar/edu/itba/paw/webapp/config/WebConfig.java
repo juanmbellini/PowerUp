@@ -19,6 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -31,6 +32,7 @@ import java.util.Properties;
 @ComponentScan({"ar.edu.itba.paw.webapp.controller",
         "ar.edu.itba.paw.webapp.persistence",
         "ar.edu.itba.paw.webapp.service",
+        "ar.edu.itba.paw.webapp.external",
         "ar.edu.itba.paw.webapp.config",
         "ar.edu.itba.paw.webapp.scheduled",
         "ar.edu.itba.paw.webapp.mail"})
@@ -134,5 +136,10 @@ public class WebConfig {
 
         mailSender.setJavaMailProperties(javaMailProperties);
         return mailSender;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

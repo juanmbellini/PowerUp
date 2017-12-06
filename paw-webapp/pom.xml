@@ -79,7 +79,7 @@
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
+                <artifactId>spring-web</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
@@ -232,6 +232,13 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${io.jsonwebtoken.jjwt.version}</version>
+            </dependency>
+            <!-- Other Jackson stuff -->
+            <!-- Jackson databind for consuming other REST APIs -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${com.fasterxml.jackson.version}</version>
             </dependency>
             <!-- Testing stuff -->
             <!-- JUnit -->
