@@ -42,7 +42,6 @@ public class GameServiceImpl implements GameService {
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) {
-        name = escapeUnsafeCharacters(name);
         Page<Game> page = gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
         page.getData().forEach(each -> gameDao.loadGenres(each).loadPlatforms(each));
         return page;
@@ -137,18 +136,4 @@ public class GameServiceImpl implements GameService {
     public Map<Long, Game> findByIds(Collection<Long> ids) {
         return gameDao.findByIds(ids);
     }
-
-    // TODO: Move to controller as this is a controller's task
-    public String escapeUnsafeCharacters(String name) {
-        char[] escape = new char[1];
-        StringBuilder nameEscaped = new StringBuilder();
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) == '%' || name.charAt(i) == '_' || name.charAt(i) == '\\') {
-                nameEscaped.append('\\');
-            }
-            nameEscaped.append(name.charAt(i));
-        }
-        return nameEscaped.toString();
-    }
-
 }
