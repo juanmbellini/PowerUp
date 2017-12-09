@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by juanlipuma on Nov/7/16.
@@ -27,6 +28,9 @@ public class ReviewHibernateDao implements ReviewDao {
     @Override
     public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
+        // First we sanitize the string values.
+        gameNameFilter = Optional.ofNullable(gameNameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        usernameFilter = Optional.ofNullable(usernameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
 
         final StringBuilder query = new StringBuilder()
