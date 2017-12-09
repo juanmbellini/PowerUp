@@ -110,18 +110,7 @@ public class GameServiceImpl implements GameService {
         // Get a random id from the list, and with it get a random game
         final int randomIndex = new Random().nextInt(gameIdList.size());
         final long randomId = gameIdList.get(randomIndex);
-        final Game randomGame = gameDao.findById(randomId);
-
-        // Load game stuff
-        gameDao.loadGenres(randomGame)
-                .loadPlatforms(randomGame)
-                .loadKeywords(randomGame)
-                .loadDevelopers(randomGame)
-                .loadPublishers(randomGame)
-                .loadPictures(randomGame)
-                .loadVideos(randomGame);
-
-        return randomGame;
+        return gameDao.findById(randomId);  // Only basic stuff loaded
     }
 
     @Override

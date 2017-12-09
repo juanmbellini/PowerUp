@@ -110,9 +110,7 @@ public class GameJerseyController {
         final Game game = gameService.getRandomGame(); // Will never be null.
         final URI gameUri = uriInfo.getBaseUriBuilder().path(END_POINT).path(Long.toString(game.getId())).build();
 
-        return Response.temporaryRedirect(gameUri)
-                .entity(new GameDto(game))
-                .build();
+        return Response.temporaryRedirect(gameUri).build();
     }
 
     @GET
