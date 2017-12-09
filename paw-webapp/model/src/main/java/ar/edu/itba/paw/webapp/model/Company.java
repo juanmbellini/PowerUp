@@ -24,11 +24,6 @@ public class Company {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "publishers")
     private Collection<Game> gamesPublished;
 
-    public Company(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     /*package*/ Company() {
         //for hibernate
     }

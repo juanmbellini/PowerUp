@@ -18,10 +18,6 @@ public class GamePlatformReleaseDate {
         //For Hibernate
     }
 
-    public GamePlatformReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public LocalDate getReleaseDate() {
         return releaseDate;
     }

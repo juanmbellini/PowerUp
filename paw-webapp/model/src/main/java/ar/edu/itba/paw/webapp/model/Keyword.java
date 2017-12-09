@@ -21,11 +21,6 @@ public class Keyword {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "keywords")
     private Collection<Game> games;
 
-    public Keyword(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     /*package*/  Keyword() {
         //for hibernate
     }
