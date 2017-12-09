@@ -218,6 +218,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         shelfService.removeGameFromShelf(userId, shelfName, gameId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         // TODO: move this logic to service
+        //  TODO: move this logic to service
         if (!belongsToGameList(userId, gameId)) {
             deleteFromGameList(userId, gameId);
         }

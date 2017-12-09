@@ -418,7 +418,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                 .addParameter("gameId", gameId, id -> id <= 0));
 
         userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
-        // TODO: move this logic to service
+        //  TODO: move this logic to service
         if (!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
         return Response.noContent().build();
     }
@@ -463,7 +463,7 @@ public class UserJerseyController implements UpdateParamsChecker {
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
 
-        // TODO: move this logic to service
+        //  TODO: move this logic to service
         if (userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()) {
             userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
         }
@@ -730,7 +730,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     /**
      * @return whether or not the game belongs to the User's GameList.
      */
-    // TODO: move logic to service
+    //  TODO: move logic to service
     private boolean belongsToGameList(final long userId, final long gameId) {
         boolean hasPlayStatus = false;
         Collection<UserGameStatus> playStatuses = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData();
