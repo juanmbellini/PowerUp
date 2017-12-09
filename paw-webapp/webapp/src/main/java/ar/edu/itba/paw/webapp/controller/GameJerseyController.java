@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -104,6 +105,17 @@ public class GameJerseyController {
     }
 
     @GET
+    @Path("/random")
+    public Response getRandomGame() {
+        final Game game = gameService.getRandomGame(); // Will never be null.
+        final URI gameUri = uriInfo.getBaseUriBuilder().path(END_POINT).path(Long.toString(game.getId())).build();
+
+        return Response.temporaryRedirect(gameUri)
+                .entity(new GameDto(game))
+                .build();
+    }
+
+    @GET
     @Path("/{id : \\d+}/related-games")
     public Response getRelatedGames(@PathParam("id") final long gameId) {
         JerseyControllerHelper.checkParameter("id", gameId, value -> value <= 0);
@@ -124,6 +136,7 @@ public class GameJerseyController {
                 })
                 .build();
     }
+
 
     // ======== Twitch ========
 
