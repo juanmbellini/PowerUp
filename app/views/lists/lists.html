@@ -94,30 +94,17 @@
                                     </b></p>
                                 </div>
                                 <div class="col s1 center">
-                                    <p style="margin-top: 33px;"><b>
-                                        {{(item.game.avgScore === null || item.game.avgScore == 0)?'No avg rating':(item.game.avgScore |
-                                        number:2)}}
-                                    </b>  </p>
+                                    <p style="margin-top: 33px;">
+                                        <b>{{(item.game.avgScore === null || item.game.avgScore == 0) ? 'Unrated' : (item.game.avgScore | limitTo:4)}}</b>
+                                    </p>
                                 </div>
                                 <div class="col s2 center">
                                     <div ng-switch="(item.score<=10 && item.score>0)">
                                         <div ng-switch-when="true" style="margin-top: 33px;">
-                                            <!--<p class="rating-number center">-->
-                                            <!--<b><span>{{item.score | limitTo:4}}</span></b>-->
-                                            <!--</p>-->
-                                            <span class="rating-stars hide-on-small-and-down">
-                                        <span ng-repeat="i in [0,1,2,3,4]">
-                                            <span ng-if="(item.score - (i * 2) - 1 ) < 0">
-                                                <i class="material-icons">star_border</i>
-                                            </span>
-                                            <span ng-if="(item.score - (i * 2) - 1 ) == 0">
-                                                <i class="material-icons">star_half</i>
-                                            </span>
-                                            <span ng-if="(item.score - (i * 2) - 1) > 0">
-                                                <i class="material-icons">star</i>
-                                            </span>
-                                        </span>
-                                    </span>
+                                            <p class="rating-number center">
+                                                <b><span>{{item.score | limitTo:4}}</span></b>
+                                            </p>
+                                            <rating-stars rating="item.score" class="rating-stars hide-on-small-and-down center"></rating-stars>
                                         </div>
                                         <div ng-switch-default style="margin-top: 33px;">
                                             <p class="rating-number center"><b>Unrated</b></p>
