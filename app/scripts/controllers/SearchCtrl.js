@@ -299,9 +299,12 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
 
                         $timeout(function () {
                             updateFilterTitle(filterCategory);      // Because we have to do this manually, do it once on page load
-                            $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
-                            angular.element('#' + filterCategory + '-autocomplete').material_chip({
+                          var element = angular.element('#' + filterCategory + '-autocomplete');
+                            $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', element);
+                            element.material_chip({
                                 data: initialChipData($scope.searchParams[filterCategory], filterCategory),
+                                placeholder: element.data('placeholder'),
+                                secondaryPlaceholder: element.data('secondary-placeholder'),
                                 autocompleteOptions: {
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
@@ -390,17 +393,21 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
         });
 
         // Chips for filters
-        angular.element('.chips').material_chip();
+        angular.forEach(angular.element('.chips'), function(element) {
+            element = angular.element(element);
 
-        angular.element('.chips').on('chip.delete', function (e, chip) {
-            removeFilter(chip.filterCategory, chip.tag);
-        });
+            // Handle delete
+            element.on('chip.delete', function (e, chip) {
+                removeFilter(chip.filterCategory, chip.tag);
+            });
 
-        angular.element('.chips').on('chip.add', function (e, chip) {
-            var $target = $(e.target);
-            if (!addFilter($target.data('category'), chip.tag)) {
+            // Handle add
+            element.on('chip.add', function (e, chip) {
+              var $target = $(e.target);
+              if (!addFilter($target.data('category'), chip.tag)) {
                 $target.find('.chip .close:last').trigger('click');  // Trigger clicking on remove button
-            }
+              }
+            });
         });
 
         $log.debug('Fired Materialize initializers');
