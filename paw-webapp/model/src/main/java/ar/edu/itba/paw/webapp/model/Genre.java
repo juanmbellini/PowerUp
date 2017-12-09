@@ -25,11 +25,6 @@ public class Genre {
         //for hibernate
     }
 
-    public Genre(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public long getId() {
         return id;
     }
