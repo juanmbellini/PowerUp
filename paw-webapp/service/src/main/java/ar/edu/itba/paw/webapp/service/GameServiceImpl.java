@@ -16,6 +16,12 @@ import java.util.stream.Collectors;
 @Transactional
 public class GameServiceImpl implements GameService {
 
+    /**
+     * A magic number to be used as a page size.
+     */
+    private final static int MAGIC_PAGE_SIZE = 100;
+
+
     private static List<String> KEYWORDS_EMPTY_LIST = new LinkedList<>();
 
     private GameDao gameDao;
@@ -86,6 +92,37 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    @Override
+    public Game getRandomGame() {
+        // Get a page to use it's metadata (i.e total amount of pages to be used as a max. random number)
+        final Page<Game> metadataDataPage = gameDao.searchGames("", Collections.emptyMap(), OrderCategory.NAME,
+                true, MAGIC_PAGE_SIZE, 1);
+        final int amountOfPages = metadataDataPage.getTotalPages();
+
+        // Get a random page an map it into a list of game ids.
+        final int randomPage = new Random().nextInt(amountOfPages + 1);
+        final List<Long> gameIdList = gameDao.searchGames("", Collections.emptyMap(), OrderCategory.NAME,
+                true, MAGIC_PAGE_SIZE, randomPage)
+                .getData().stream()
+                .map(Game::getId)
+                .collect(Collectors.toList());
+
+        // Get a random id from the list, and with it get a random game
+        final int randomIndex = new Random().nextInt(gameIdList.size());
+        final long randomId = gameIdList.get(randomIndex);
+        final Game randomGame = gameDao.findById(randomId);
+
+        // Load game stuff
+        gameDao.loadGenres(randomGame)
+                .loadPlatforms(randomGame)
+                .loadKeywords(randomGame)
+                .loadDevelopers(randomGame)
+                .loadPublishers(randomGame)
+                .loadPictures(randomGame)
+                .loadVideos(randomGame);
+
+        return randomGame;
+    }
 
     @Override
     public Collection<Genre> getGenres(long gameId) {

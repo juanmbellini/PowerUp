@@ -81,6 +81,12 @@ public interface GameService {
     List<String> getFiltersByType(FilterCategory filterCategory);
 
     /**
+     * @return A random game from the game database.
+     * @throws NoSuchEntityException In case a random game could not be retrieved after a given amount of tries.
+     */
+    Game getRandomGame();
+
+    /**
      * Gets all genres associated with a game.
      *
      * @param gameId The ID of the game to search.
