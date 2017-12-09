@@ -11,23 +11,20 @@ import ar.edu.itba.paw.webapp.utilities.Page;
 public interface ReviewDao {
 
     /**
-     * @see ReviewService#getReviews(Long, String, Long, String, int, int, SortingType, SortDirection).
+     * @see ReviewService#getReviews(Long, String, Long, String, int, int, SortingType, SortDirection, User).
      */
     Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                             int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection);
 
     /**
-     * @see ReviewService#create(Long, String, Integer, Integer, Integer, Integer, Integer, User)
+     * @see ReviewService#create(Long, String, User)
      */
-    Review create(User reviewer, Game game,
-                  String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                  Integer controlsScore, Integer funScore);
+    Review create(User reviewer, Game game, String reviewBody);
 
     /**
-     * @see ReviewService#update(long, String, Integer, Integer, Integer, Integer, Integer, User) .
+     * @see ReviewService#changeReviewBody(long, String, User).
      */
-    void update(Review review, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                Integer controlsScore, Integer funScore);
+    void changeReviewBOdy(Review review, String newBody);
 
     /**
      * @see ReviewService#delete(long, User)
