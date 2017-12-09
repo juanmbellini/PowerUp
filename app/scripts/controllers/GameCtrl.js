@@ -211,7 +211,29 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             });
             require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
         });
+      // (Re-)initialize Slick for game streams
+      $scope.$on('streamsRendered', function(event) {
+        angular.element('#streams-carousel').slick({
+          infinite: false,
+          arrows: true
+        });
+        require(['lightbox2']); // TODO ensure requirejs doesn't load this thrice
+      });
 
+
+      /* *****************************************
+       *                 TWITCH
+       * ****************************************/
+      $scope.twitchStreams = null;
+      $scope.$on('gameFound', function() {
+          $scope.game.all('twitch').getList({}).then(function(response) {
+            $scope.twitchStreams = response.slice(0, 4);    // Take at most 4 streams because the Twitch player is heavy TODO: Get a way to lazy load players to be able to show more?
+            $scope.streamsMin = Math.min($scope.twitchStreams.length, 4);   // How many streams to show per carousel page
+            $log.debug('First found Twitch stream: ', $scope.twitchStreams[0]);
+          }, function(error) {
+              $log.error('Error getting Twitch streams:', error);
+          });
+      });
 
         /* *****************************************
          *                 REVIEWS

@@ -130,8 +130,7 @@
                     <h4 class="center">Videos</h4>
                     <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
                         <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
-                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
-                                    height="360" ng-src="{{video}}" frameborder="0">
+                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true">
                             </iframe>
                         </div>
                     </div>
@@ -159,7 +158,39 @@
             </div>
             <!--END SCREENSHOTS AND VIDEOS-->
 
-			<!--REVIEWS-->
+            <!--TWITCH STREAMS-->
+            <div ng-if="game">
+                <div class="row">
+                    <div class="col s12 divider"></div>
+                </div>
+                <div class="row">
+                    <h4 class="center">Twitch Streams</h4>
+
+                    <div ng-if="twitchStreams === null" class="center">
+                        <p class="center">Finding Twitch streams...</p>
+                        <loading-circle></loading-circle>
+                    </div>
+
+                    <!--No streams-->
+                    <div ng-if="twitchStreams !== null && twitchStreams.length === 0">
+                        <p class="center">No streams found</p>
+                    </div>
+                    <!--End no reviews-->
+
+                    <!--Review list-->
+                    <div ng-if="twitchStreams !== null && twitchStreams.length > 0">
+                        <div class="slick-carousel center" id="streams-carousel" data-slick='{"slidesToShow": {{streamsMin}}, "slidesToScroll": {{streamsMin}}}'>
+                            <div class="slide-container" ng-repeat="stream in twitchStreams" on-complete="streamsRendered">
+                                <iframe width="{{twitchStreams.length > 1 ? '90%' : '640'}}" height="300" ng-src="{{stream.src}}" frameborder="0" allowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO view more link-->
+                </div>
+            </div>
+            <!--END TWITCH STREAMS-->
+
+            <!--REVIEWS-->
             <div ng-if="game">
                 <div class="row">
                     <div class="col s12 divider"></div>
