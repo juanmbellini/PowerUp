@@ -194,7 +194,8 @@ a.toggle-replies:hover {
 }
 
 button#clear-filters, button#submit-search {
-  height:47px;
+  height:56px;
+  box-shadow: none;
 }
 
 button#submit-search {
