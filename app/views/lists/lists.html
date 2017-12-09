@@ -103,7 +103,7 @@
                                     <div ng-switch="(item.score<=10 && item.score>0)">
                                         <div ng-switch-when="true" style="margin-top: 33px;">
                                             <!--<p class="rating-number center">-->
-                                            <!--<b><span>{{item.score | number:2}}</span></b>-->
+                                            <!--<b><span>{{item.score | limitTo:4}}</span></b>-->
                                             <!--</p>-->
                                             <span class="rating-stars hide-on-small-and-down">
                                         <span ng-repeat="i in [0,1,2,3,4]">

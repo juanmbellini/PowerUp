@@ -90,7 +90,7 @@
                     <div class="col s4">
                         <p><b>Rating</b></p>
                         <div ng-if="game.avgScore > 0">
-                            <p style="margin-top:0;"><span>{{game.avgScore | number:2}}</span></p>
+                            <p style="margin-top:0;"><span>{{game.avgScore | limitTo:4}}</span></p>
                         </div>
                         <div ng-if="game.avgScore <= 0">
                             <p style="margin-top:0;">unrated</p>

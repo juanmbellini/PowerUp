@@ -64,7 +64,7 @@
                                 <div ng-switch="(entry.score <= 10 && entry.score > 0)">
                                     <div ng-switch-when="true">
                                         <!--TODO get score by user, not general score-->
-                                        <p class="rating-number center"><b><span>{{entry.score | number:2}}</span></b>
+                                        <p class="rating-number center"><b><span>{{entry.score | limitTo:4}}</span></b>
                                         </p>
                                         <p class="rating-stars hide-on-small-and-down">
                                             <!--range(0,4)-->
