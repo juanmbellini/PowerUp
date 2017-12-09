@@ -27,7 +27,8 @@ import java.util.stream.IntStream;
      * @param value The value to be sanitized.
      * @return The given value, but sanitized.
      */
-    /* package */ static String escapeUnsafeCharacters(String value) {
+    /* package */
+    static String escapeUnsafeCharacters(String value) {
         final StringBuilder escapedValue = new StringBuilder();
         for (int i = 0; i < value.length(); i++) {
             final char character = value.charAt(i);
