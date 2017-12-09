@@ -107,10 +107,13 @@ public class GameJerseyController {
     @GET
     @Path("/random")
     public Response getRandomGame() {
-        final Game game = gameService.getRandomGame(); // Will never be null.
-        final URI gameUri = uriInfo.getBaseUriBuilder().path(END_POINT).path(Long.toString(game.getId())).build();
+        final long randomGameId = gameService.getRandomGameId();
+        final URI gameUri = uriInfo.getBaseUriBuilder().path(END_POINT).path(Long.toString(randomGameId)).build();
 
-        return Response.temporaryRedirect(gameUri).build();
+        return Response.ok()
+                .contentLocation(gameUri)
+                .entity(Collections.singletonMap("randomGameId", Long.toString(randomGameId)))
+                .build();
     }
 
     @GET

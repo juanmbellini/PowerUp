@@ -93,7 +93,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game getRandomGame() {
+    public long getRandomGameId() {
         // Get a page to use it's metadata (i.e total amount of pages to be used as a max. random number)
         final Page<Game> metadataDataPage = gameDao.searchGames("", Collections.emptyMap(), OrderCategory.NAME,
                 true, MAGIC_PAGE_SIZE, 1);
@@ -107,10 +107,9 @@ public class GameServiceImpl implements GameService {
                 .map(Game::getId)
                 .collect(Collectors.toList());
 
-        // Get a random id from the list, and with it get a random game
+        // Get a random id from the list
         final int randomIndex = new Random().nextInt(gameIdList.size());
-        final long randomId = gameIdList.get(randomIndex);
-        return gameDao.findById(randomId);  // Only basic stuff loaded
+        return gameIdList.get(randomIndex);
     }
 
     @Override
