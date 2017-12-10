@@ -28,6 +28,7 @@ require.config({
         FeedService: 'services/FeedService',
         loadingCircle: 'directives/loadingCircle',
         loadingCircleSmall: 'directives/loadingCircleSmall',
+        ratingStars: 'directives/ratingStars',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
@@ -143,6 +144,11 @@ require.config({
             deps: [
                 'angular'
             ]
+        },
+        'ratingStars': {
+          deps: [
+            'angular'
+          ]
         },
         AuthService: {
             deps: [

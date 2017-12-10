@@ -90,7 +90,7 @@
                     <div class="col s4">
                         <p><b>Rating</b></p>
                         <div ng-if="game.avgScore > 0">
-                            <p style="margin-top:0;"><span>{{game.avgScore | number:2}}</span></p>
+                            <p style="margin-top:0;"><span>{{game.avgScore | limitTo:4}}</span></p>
                         </div>
                         <div ng-if="game.avgScore <= 0">
                             <p style="margin-top:0;">unrated</p>
@@ -221,7 +221,7 @@
                                 <li class="collection-item avatar" ng-repeat="review in reviews">
                                     <div class="row" style="margin-bottom: 0">
                                         <div class="col s10">
-                                            <img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
+                                            <a ng-href="#profile?username={{review.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle"></a>
                                             <span class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
                                             <p class="smallText"><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
                                             <p ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:

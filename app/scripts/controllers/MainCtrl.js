@@ -40,7 +40,7 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         $scope.loginRedirect = '/';
         // Update current page URL on page change, except when in login page
         $scope.$on('$viewContentLoaded', function() {
-            if($location.path() !== '/login') {
+            if ($location.path() !== '/login') {
                 $scope.loginRedirect = $location.url();
             }
         });
@@ -71,28 +71,55 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             $log.debug('Loading filters from local storage');
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
+        } else if (!envService.is('production')) {
+          // FIXME optimize API call so we can use filters in production
+          $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
+            'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
         } else {
-            if (!envService.is('production')) {
-                // FIXME optimize API call so we can use filters in production
-                $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
-                    'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
-            } else {
-                $log.debug('Querying API for filters');
-                $scope.filterCategories.forEach(function(filterType) {
-                    Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
-                        $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
-                        remainingRequests--;
-                        $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
-                        if (remainingRequests <= 0) {
-                            $log.debug('Done fetching all filters, saving to local storage');
-                            LocalStorageService.set('filters', $scope.filters);
-                            $scope.filtersReady = true;
-                        }
-                    }, function(error) {
-                        $log.error('ERROR getting filters for type ' + filterType + ': ', error);
-                    });
-                });
-            }
+          $log.debug('Querying API for filters');
+          $scope.filterCategories.forEach(function(filterType) {
+              Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
+                  $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
+                  remainingRequests--;
+                  $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
+                  if (remainingRequests <= 0) {
+                      $log.debug('Done fetching all filters, saving to local storage');
+                      LocalStorageService.set('filters', $scope.filters);
+                      $scope.filtersReady = true;
+                  }
+              }, function(error) {
+                  $log.error('ERROR getting filters for type ' + filterType + ': ', error);
+              });
+          });
         }
+
+
+      /* **************************************************
+       *   Get a random game (used in various pages)
+       * **************************************************/
+      // TODO either use this in more pages (that's why it was added to MainCtrl) or move it to SearchCtrl
+      $scope.randomGameLoading = false;
+      $scope.randomGame = function(onSuccess, onError) {
+        if ($scope.randomGameLoading) {
+          return;
+        }
+        $scope.randomGameLoading = true;
+        Restangular.all('games').one('random').get().then(function(response) {
+          if (typeof onSuccess === 'function') {
+            onSuccess(response);
+          }
+          $scope.randomGameLoading = false;
+          // Redirect to appropriate game page
+          $location.path('/game');
+          $location.search({id: response.data.randomGameId});
+        }, function(error) {
+          if (typeof onError === 'function') {
+            onError(error);
+          } else {
+            $log.error('Error getting a random game: ', error);
+          }
+          $scope.randomGameLoading = false;
+        });
+      };
 	}]);
 });

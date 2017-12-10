@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle', 'PaginationService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle', 'ratingStars', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll, PaginationService) {
         Restangular.setFullResponse(true);

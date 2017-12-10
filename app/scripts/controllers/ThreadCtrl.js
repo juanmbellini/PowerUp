@@ -25,6 +25,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
         };
         $scope.hasMoreComments = false;
         $scope.newComment = {};
+        $scope.newCommentId = null;
 
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
@@ -234,7 +235,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
             $scope.thread.post('comments', newComment).then(function(response) {
                 // Fetch newly created comment
                 Restangular.oneUrl('routeName', response.headers('Location')).get().then(function(response) {
-                    $scope.comments.push(response.data);
+                    $scope.comments.unshift(response.data);
+                    $scope.newCommentId = response.data.id;
                     $scope.pendingRequests.comments.create = false;
                     $scope.newComment.body = '';
                 });
@@ -256,7 +258,8 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
                     if (!parentComment.replies) {
                         parentComment.replies = [];
                     }
-                    parentComment.replies.push(response.data);
+                    parentComment.replies.unshift(response.data);
+                    $scope.newCommentId = response.data.id;
                     parentComment.replyCount++;
                     parentComment.replies.show = true;
                     // TODO also consider that this may throw off future results, because we have an element that is not
