@@ -191,11 +191,11 @@ div.sweet-alert.show-input.showSweetAlert > h2 {
   margin: 5px !important;
 }
 
-.reply-action-links, a.toggle-replies {
-  color: #808080;
+.action-links a, .reply-action-links a.toggle-replies {
+  font-weight: 500
 }
 
-a.toggle-replies:hover {
+.reply-action-links a.toggle-replies:hover {
   text-decoration: underline;
 }
 
@@ -206,6 +206,10 @@ button#clear-filters, button#submit-search {
 
 button#submit-search {
   margin-left: 5px;
+}
+
+.new-comment {
+  // TODO what to do? Border color? Background color? If changing background or border, remember to use !important
 }
 
 .preserve-newlines {
