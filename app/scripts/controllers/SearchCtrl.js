@@ -209,17 +209,19 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
         /**
          * Builds an array of objects adhering to the format specified by Materialize chips for initial data.
          *
-         * @param data      The data to process.
-         * @return {Array}  The processed data, ready to use in Materialize chips initial data.
+         * @param data              The data to process.
+         * @param filterCategory    The filter category this data belongs to.
+         * @return {Array}          The processed data, ready to use in Materialize chips initial data.
          */
-        function initialChipData(data) {
+        function initialChipData(data, filterCategory) {
             var result = [];
             if (typeof data !== 'object' || !Array.isArray(data)) {
                 return result;
             }
             for (var i = 0; i < data.length; i++) {
                 result[i] = {
-                    tag: data[i]
+                    tag: data[i],
+                    filterCategory: filterCategory
                 };
             }
             return result;
@@ -261,6 +263,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
                 $log.debug('Adding ' + value + ' to ' + filterCategory + ' category');
                 $scope.searchParams[filterCategory].push(value);
                 $scope.resetPageNumberOnSubmit = true;
+                updateFilterTitle(filterCategory);
                 return true;
             } else {
                 return false;
@@ -278,6 +281,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
             $log.debug('Removing ' + value + ' from ' + filterCategory + ' category');
             $scope.searchParams[filterCategory].splice(index, 1);
             $scope.resetPageNumberOnSubmit = true;
+            updateFilterTitle(filterCategory);
         }
 
         function setUpFilters() {
@@ -294,9 +298,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
                         $scope.searchParams[filterCategory] = sanitizeFilters($scope.searchParams[filterCategory]);
 
                         $timeout(function () {
-                            $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', angular.element('#' + filterCategory + '-autocomplete'));
-                            angular.element('#' + filterCategory + '-autocomplete').material_chip({
-                                data: initialChipData($scope.searchParams[filterCategory]),
+                            updateFilterTitle(filterCategory);      // Because we have to do this manually, do it once on page load
+                          var element = angular.element('#' + filterCategory + '-autocomplete');
+                            $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', element);
+                            element.material_chip({
+                                data: initialChipData($scope.searchParams[filterCategory], filterCategory),
+                                placeholder: element.data('placeholder'),
+                                secondaryPlaceholder: element.data('secondary-placeholder'),
                                 autocompleteOptions: {
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
@@ -355,6 +363,17 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
             }, timeout);
         }
 
+        /**
+        * Manual update to the title of a specified fitler tab, to include in parentheses the number of applied filters
+         * for a specified category. Attempts to do this via $watchCollection, etc. have failed.
+         *
+        * @param filterCategory The filter category to update
+        */
+        function updateFilterTitle(filterCategory) {
+          var newCount = $scope.searchParams[filterCategory].length;
+          angular.element('#' + filterCategory + '-filter-count').html(newCount > 0 ? (' (' + newCount + ')') : '');
+        }
+
         /* ********************************************
          *          MATERIALIZE INITIALIZATION
          * *******************************************/
@@ -374,17 +393,21 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
         });
 
         // Chips for filters
-        angular.element('.chips').material_chip();
+        angular.forEach(angular.element('.chips'), function(element) {
+            element = angular.element(element);
 
-        angular.element('.chips').on('chip.delete', function (e, chip) {
-            removeFilter(chip.filterCategory, chip.tag);
-        });
+            // Handle delete
+            element.on('chip.delete', function (e, chip) {
+                removeFilter(chip.filterCategory, chip.tag);
+            });
 
-        angular.element('.chips').on('chip.add', function (e, chip) {
-            var $target = $(e.target);
-            if (!addFilter($target.data('category'), chip.tag)) {
+            // Handle add
+            element.on('chip.add', function (e, chip) {
+              var $target = $(e.target);
+              if (!addFilter($target.data('category'), chip.tag)) {
                 $target.find('.chip .close:last').trigger('click');  // Trigger clicking on remove button
-            }
+              }
+            });
         });
 
         $log.debug('Fired Materialize initializers');
