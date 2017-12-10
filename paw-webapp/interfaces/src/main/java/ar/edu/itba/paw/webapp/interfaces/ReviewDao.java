@@ -24,7 +24,7 @@ public interface ReviewDao {
     /**
      * @see ReviewService#changeReviewBody(long, String, User).
      */
-    void changeReviewBOdy(Review review, String newBody);
+    void changeReviewBody(Review review, String newBody);
 
     /**
      * @see ReviewService#delete(long, User)

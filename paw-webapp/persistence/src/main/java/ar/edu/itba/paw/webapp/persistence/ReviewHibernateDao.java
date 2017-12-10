@@ -78,7 +78,7 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
-    public void changeReviewBOdy(Review review, String newBody) {
+    public void changeReviewBody(Review review, String newBody) {
         if (review == null) {
             throw new IllegalArgumentException("The review can not be null.");
         }

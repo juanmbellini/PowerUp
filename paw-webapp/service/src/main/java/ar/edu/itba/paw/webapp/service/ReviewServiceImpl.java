@@ -124,7 +124,7 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         }
         final Review review = getReview(reviewId);
         validateUpdatePermission(review, updater);
-        reviewDao.changeReviewBOdy(review, newBody);
+        reviewDao.changeReviewBody(review, newBody);
     }
 
     @Override
