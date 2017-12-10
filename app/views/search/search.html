@@ -137,21 +137,9 @@
                             <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
                                 <div ng-switch-when="true" style="margin-top: 20px;">
                                     <p class="rating-number center">
-                                        <b><span>{{game.avgScore | number:2}}</span></b>
+                                        <b><span>{{game.avgScore | limitTo:4}}</span></b>
                                     </p>
-                                    <span class="rating-stars hide-on-small-and-down">
-                                        <span ng-repeat="i in [0,1,2,3,4]">
-                                            <span ng-if="(game.avgScore - (i * 2) - 1 ) < 0">
-                                                <i class="material-icons">star_border</i>
-                                            </span>
-                                            <span ng-if="(game.avgScore - (i * 2) - 1 ) == 0">
-                                                <i class="material-icons">star_half</i>
-                                            </span>
-                                            <span ng-if="(game.avgScore - (i * 2) - 1) > 0">
-                                                <i class="material-icons">star</i>
-                                            </span>
-                                        </span>
-                                    </span>
+                                    <rating-stars rating="game.avgScore" class="rating-stars hide-on-small-and-down center"></rating-stars>
                                 </div>
                                 <div ng-switch-default style="margin-top: 33px;">
                                     <p class="rating-number center"><b>Unrated</b></p>
