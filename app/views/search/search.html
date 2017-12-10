@@ -10,6 +10,10 @@
                         </div>
                     </form>
                 </div>
+                <div class="col s3" id="random-game-control">
+                    <span>or try a</span>
+                    <button class="btn" ng-click="randomGame()" ng-disabled="randomGameLoading">{{randomGameLoading ? 'Loading...' : 'Random game!'}}</button>
+                </div>
             </div>
         </div>
 
