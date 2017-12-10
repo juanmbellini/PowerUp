@@ -1,5 +1,6 @@
 package ar.edu.itba.paw.webapp.external;
 
+import ar.edu.itba.paw.webapp.exceptions.ExternalServiceException;
 import ar.edu.itba.paw.webapp.interfaces.TwitchClient;
 import ar.edu.itba.paw.webapp.model.TwitchStream;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -72,10 +73,14 @@ public class TwitchClientImpl implements TwitchClient {
                 .build()
                 .encode()
                 .toUri();
-        final ResponseEntity<StreamsCollectionResponse> response = restTemplate
-                .exchange(endpointUri, HttpMethod.GET, this.requestEntity, StreamsCollectionResponse.class);
+        try {
+            final ResponseEntity<StreamsCollectionResponse> response = restTemplate
+                    .exchange(endpointUri, HttpMethod.GET, this.requestEntity, StreamsCollectionResponse.class);
 
-        return fromStreamResponse(response.getBody());
+            return fromStreamResponse(response.getBody());
+        } catch (Throwable e) {
+            throw new ExternalServiceException("Could not access the Twitch API", e);
+        }
     }
 
 
@@ -86,15 +91,11 @@ public class TwitchClientImpl implements TwitchClient {
      * @return The {@link List} of {@link TwitchStream}.
      */
     private static List<TwitchStream> fromStreamResponse(StreamsCollectionResponse response) {
-        try {
-            return response.streams.stream()
-                    .map(each -> new TwitchStream(each.id, each.createdAt, each.preview.template, each.viewers,
-                            each.channel.name, each.channel.status, each.channel.url,
-                            each.channel.views, each.channel.followers, each.channel.description))
-                    .collect(Collectors.toList());
-        } catch (NullPointerException e) {
-            throw new RuntimeException();  // TODO: define custom exception (should then map into 502).
-        }
+        return response.streams.stream()
+                .map(each -> new TwitchStream(each.id, each.createdAt, each.preview.template, each.viewers,
+                        each.channel.name, each.channel.status, each.channel.url,
+                        each.channel.views, each.channel.followers, each.channel.description))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -202,7 +203,7 @@ public class TwitchClientImpl implements TwitchClient {
             try {
                 return ZonedDateTime.from(DateTimeFormatter.ISO_ZONED_DATE_TIME.parse(zonedDateTimeString));
             } catch (DateTimeParseException e) {
-                throw new RuntimeException(); // TODO: define custom exception (should then map into 502).
+                throw new RuntimeException("There was an error when deserializing date " + zonedDateTimeString, e);
             }
         }
     }
