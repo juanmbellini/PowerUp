@@ -185,11 +185,11 @@ div.sweet-alert.show-input.showSweetAlert > h2 {
   margin: 5px !important;
 }
 
-.reply-action-links, a.toggle-replies {
-  color: #808080;
+.action-links a, .reply-action-links a.toggle-replies {
+  font-weight: 500
 }
 
-a.toggle-replies:hover {
+.reply-action-links a.toggle-replies:hover {
   text-decoration: underline;
 }
 
