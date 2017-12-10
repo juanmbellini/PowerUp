@@ -22,6 +22,26 @@ import java.util.stream.IntStream;
 /*package*/ class DaoHelper {
 
     /**
+     * Sanitizes the given {@code value} (escaping unsafe characters) in order to be used in an HQL.
+     *
+     * @param value The value to be sanitized.
+     * @return The given value, but sanitized.
+     */
+    /* package */
+    static String escapeUnsafeCharacters(String value) {
+        final StringBuilder escapedValue = new StringBuilder();
+        for (int i = 0; i < value.length(); i++) {
+            final char character = value.charAt(i);
+            if (character == '%' || character == '_' || character == '\\') {
+                escapedValue.append('\\');
+            }
+            escapedValue.append(character);
+        }
+
+        return escapedValue.toString();
+    }
+
+    /**
      * Attempts to find an entity by ID. If found, returns it, otherwise returns {@code null}.
      *
      * @param entityManager An entity manager with which to perform queries.
@@ -486,8 +506,7 @@ import java.util.stream.IntStream;
      * @param query      The query.
      * @param conditions The conditions.
      */
-    /* package */
-    static void appendConditions(StringBuilder query, List<ConditionAndParameterWrapper> conditions) {
+    private static void appendConditions(StringBuilder query, List<ConditionAndParameterWrapper> conditions) {
         if (!conditions.isEmpty()) {
             int i = 0;
             query.append(" WHERE ").append(conditions.get(i++).getCondition());
@@ -510,9 +529,16 @@ import java.util.stream.IntStream;
          * Object to be used as parameter.
          */
         private final Object parameter;
+        /**
+         * Position of the parameters in the query.
+         */
+        private final int position;
 
-        private int position;
-
+        /**
+         * @param condition Contains the condition in HQL.
+         * @param parameter Object to be used as parameter.
+         * @param position  Position of the parameters in the query.
+         */
         /* package */ ConditionAndParameterWrapper(String condition, Object parameter, int position) {
             this.condition = condition;
             this.parameter = parameter;
@@ -525,7 +551,7 @@ import java.util.stream.IntStream;
          *
          * @return The condition in HQL.
          */
-        public String getCondition() {
+        private String getCondition() {
             return condition;
         }
 
@@ -534,11 +560,16 @@ import java.util.stream.IntStream;
          *
          * @return The object to be used as parameter.
          */
-        public Object getParameter() {
+        private Object getParameter() {
             return parameter;
         }
 
-        public int getPosition() {
+        /**
+         * Position getter.
+         *
+         * @return Position of the parameters in the query.
+         */
+        private int getPosition() {
             return position;
         }
     }

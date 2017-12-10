@@ -61,7 +61,8 @@ define(['routes',
             // Whitelist URLs for interpolations ('self' = the application's domain, i.e. localhost or pawserver.itba.edu.ar, etc.)
             $sceDelegateProvider.resourceUrlWhitelist([
                 'self',
-                'https://www.youtube.com/**'
+                'https://www.youtube.com/**',
+                'http://player.twitch.tv/**'
             ]);
 
             /*

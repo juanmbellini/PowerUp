@@ -16,6 +16,12 @@ import java.util.stream.Collectors;
 @Transactional
 public class GameServiceImpl implements GameService {
 
+    /**
+     * A magic number to be used as a page size.
+     */
+    private final static int MAGIC_PAGE_SIZE = 100;
+
+
     private static List<String> KEYWORDS_EMPTY_LIST = new LinkedList<>();
 
     private GameDao gameDao;
@@ -42,7 +48,6 @@ public class GameServiceImpl implements GameService {
     @Override
     public Page<Game> searchGames(String name, Map<FilterCategory, List<String>> filters,
                                   OrderCategory orderCategory, boolean ascending, int pageSize, int pageNumber) {
-        name = escapeUnsafeCharacters(name);
         Page<Game> page = gameDao.searchGames(name, filters, orderCategory, ascending, pageSize, pageNumber);
         page.getData().forEach(each -> gameDao.loadGenres(each).loadPlatforms(each));
         return page;
@@ -87,6 +92,25 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    @Override
+    public long getRandomGameId() {
+        // Get a page to use it's metadata (i.e total amount of pages to be used as a max. random number)
+        final Page<Game> metadataDataPage = gameDao.searchGames("", Collections.emptyMap(), OrderCategory.NAME,
+                true, MAGIC_PAGE_SIZE, 1);
+        final int amountOfPages = metadataDataPage.getTotalPages();
+
+        // Get a random page an map it into a list of game ids.
+        final int randomPage = new Random().nextInt(amountOfPages + 1);
+        final List<Long> gameIdList = gameDao.searchGames("", Collections.emptyMap(), OrderCategory.NAME,
+                true, MAGIC_PAGE_SIZE, randomPage)
+                .getData().stream()
+                .map(Game::getId)
+                .collect(Collectors.toList());
+
+        // Get a random id from the list
+        final int randomIndex = new Random().nextInt(gameIdList.size());
+        return gameIdList.get(randomIndex);
+    }
 
     @Override
     public Collection<Genre> getGenres(long gameId) {
@@ -137,18 +161,4 @@ public class GameServiceImpl implements GameService {
     public Map<Long, Game> findByIds(Collection<Long> ids) {
         return gameDao.findByIds(ids);
     }
-
-    // TODO: Move to controller as this is a controller's task
-    public String escapeUnsafeCharacters(String name) {
-        char[] escape = new char[1];
-        StringBuilder nameEscaped = new StringBuilder();
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) == '%' || name.charAt(i) == '_' || name.charAt(i) == '\\') {
-                nameEscaped.append('\\');
-            }
-            nameEscaped.append(name.charAt(i));
-        }
-        return nameEscaped.toString();
-    }
-
 }

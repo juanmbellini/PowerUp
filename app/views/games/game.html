@@ -1,165 +1,202 @@
 <main>
     <div class="container" >
-		<div class="section no-pad-bot">
-			<h1 class="header center orange-text">{{game.name}}</h1>
-			<h5 class="center orange-text">{{game.releaseDate}}</h5>
-		</div>
-		<!--ACTION FORMS-->
-        <!--class="section"-->
-		<div >
-			<div class="row">
-                <div class="col s1">
-                </div>
-                <div class="col s10 center-align">
-                    <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
-                        <div class="col s3 center-align">
-                            <label>Score: </label>
-                            <ng-input>
-                                <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
-                                    <option value="delete">Select score</option>
-                                    <option ng-repeat="score in rangeScore">{{score}}</option>
-                                </select>
-                                <span ng-if="loadingScore">Loading...</span>
-                                <span ng-if="updatedScore && !loadingScore">Updated!</span>
-                            </ng-input>
-                        </div>
-                        <div class="col s3 center-align">
-                            <label>PlayStatus: </label>
-                            <ng-input>
-                                <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
-                                    <option value="no-play-status">Select play status</option>
-                                    <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
-                                </select>
-                                <span ng-if="loadingStatus">Loading...</span>
-                                <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
-                            </ng-input>
-                        </div>
-                        <div class="col s6 center-align" class="divWithShelves">
-                            <label>Shelves: </label>
-                            <ng-input>
-                                <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
-                                <div ng-show="shelves.length > 0">
-                                    <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
-                                        <option value="" disabled selected>Select shelves</option>
-                                        <option ng-repeat="shelf in shelves" value="{{shelf.name}}" ng-selected="isInShelf(shelf.name)"> {{shelf.name}} </option>
+        <div ng-if="game === null" class="center">
+            <h5>Fetching game...</h5>
+            <loading-circle></loading-circle>
+        </div>
+
+        <div ng-if="game !== null">
+            <div class="section no-pad-bot">
+                <h1 class="header center orange-text">{{game.name}}</h1>
+                <h5 class="center orange-text">{{game.releaseDate}}</h5>
+            </div>
+            <!--ACTION FORMS-->
+            <!--class="section"-->
+            <div >
+                <div class="row">
+                    <div class="col s1">
+                    </div>
+                    <div class="col s10 center-align">
+                        <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
+                            <div class="col s3 center-align">
+                                <label>Score: </label>
+                                <ng-input>
+                                    <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
+                                        <option value="delete">Select score</option>
+                                        <option ng-repeat="score in rangeScore">{{score}}</option>
                                     </select>
-                                    <span ng-if="loadingShelves">Loading...</span>
-                                    <span ng-if="updatedShelves && !loadingShelves">Updated!</span>
-                                </div>
-                            </ng-input>
+                                    <span ng-if="loadingScore">Loading...</span>
+                                    <span ng-if="updatedScore && !loadingScore">Updated!</span>
+                                </ng-input>
+                            </div>
+                            <div class="col s3 center-align">
+                                <label>PlayStatus: </label>
+                                <ng-input>
+                                    <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
+                                        <option value="no-play-status">Select play status</option>
+                                        <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
+                                    </select>
+                                    <span ng-if="loadingStatus">Loading...</span>
+                                    <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
+                                </ng-input>
+                            </div>
+                            <div class="col s6 center-align" class="divWithShelves">
+                                <label>Shelves: </label>
+                                <ng-input>
+                                    <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
+                                    <div ng-show="shelves.length > 0">
+                                        <select id="shelves"  ng-model="shelvesWithGame" ng-change="updateShelfSelect()" multiple>
+                                            <option value="" disabled selected>Select shelves</option>
+                                            <option ng-repeat="shelf in shelves" value="{{shelf.name}}" ng-selected="isInShelf(shelf.name)"> {{shelf.name}} </option>
+                                        </select>
+                                        <span ng-if="loadingShelves">Loading...</span>
+                                        <span ng-if="updatedShelves && !loadingShelves">Updated!</span>
+                                    </div>
+                                </ng-input>
+                            </div>
+                        </div>
+                        <div ng-show="!isLoggedIn()" class="row" style="margin-bottom:0;">
+                            <p>
+                                <a ng-href="#/login">LogIn </a> to rate this game! To give it a play status! Or to add it to one of your shelves!
+                            </p>
                         </div>
                     </div>
-                    <div ng-show="!isLoggedIn()" class="row" style="margin-bottom:0;">
-                        <p>
-                            <a ng-href="#/login">LogIn </a> to rate this game! To give it a play status! Or to add it to one of your shelves!
+                    <!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
+                </div>
+            </div>
+            <!--END ACTION FORMS-->
+
+            <div class="section">
+                <!--<c:choose>-->
+                <!--<c:when test="${game == null}">-->
+                <!--<div class="row">-->
+                <!--<h3 class="center">No game found =(</h3>-->
+                <!--<h5 class="center">Go back <a href="<c:url value='/' />">home</a></h5>-->
+                <!--</div>-->
+                <!--</c:when>-->
+                <!--<c:otherwise>-->
+                <div class="row">
+                    <img class="col s3" ng-src="{{game.coverPictureUrl}}"  alt="{{game.name}}">
+                    <div class="col s5">
+                        <p style="margin-top: 0;">
+                            <!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
+                        <div ng-switch="game.summary">
+                            <div ng-switch-when="null">No summary =(</div>
+                            <div ng-switch-default>{{game.summary}}</div>
+                        </div>
+
                         </p>
                     </div>
+                    <div class="col s4">
+                        <p><b>Rating</b></p>
+                        <div ng-if="game.avgScore > 0">
+                            <p style="margin-top:0;"><span>{{game.avgScore | limitTo:4}}</span></p>
+                        </div>
+                        <div ng-if="game.avgScore <= 0">
+                            <p style="margin-top:0;">unrated</p>
+                        </div>
+                        <p><b>Genres</b></p>
+                        <div ng-repeat="genre in game.genres">
+                            <a href='#/search?genre={{genre}}'>
+                                {{genre}}
+                            </a>
+                        </div>
+                        <br/>
+                        <p><b>Platforms</b></p>
+                        <div ng-repeat="platform in game.platforms">
+                            <a href='#/search?platform={{platform.name}}'>
+                                {{platform.name}}
+                            </a>
+                            <span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
+                        </div>
+                        <br/>
+                        <p><b>Developers</b></p>
+                        <div ng-repeat="developer in game.developers">
+                            <a href='#/search?developer={{developer}}'>
+                                {{developer}}
+                            </a>
+                        </div>
+                        <br/>
+                        <p><b>Publishers</b></p>
+                        <div ng-repeat="publisher in game.publishers">
+                            <a href='#/search?publisher={{publisher}}'>
+                                {{publisher}}
+                            </a>
+                        </div>
+                        <!--<div class="col s12 divider"></div>-->
+                        <!--<br/>-->
+                    </div>
                 </div>
-                <!--<button id="delete-button" class="btn waves-effect waves-light red lighten-1">Remove <i class="material-icons right">delete</i></button>-->
-			</div>
-		</div>
-		<!--END ACTION FORMS-->
 
-		<div class="section">
-			<!--<c:choose>-->
-				<!--<c:when test="${game == null}">-->
-					<!--<div class="row">-->
-						<!--<h3 class="center">No game found =(</h3>-->
-						<!--<h5 class="center">Go back <a href="<c:url value='/' />">home</a></h5>-->
-					<!--</div>-->
-				<!--</c:when>-->
-				<!--<c:otherwise>-->
-			<div class="row">
-				<img class="col s3" ng-src="{{game.coverPictureUrl}}"  alt="{{game.name}}">
-				<div class="col s5">
-					<p style="margin-top: 0;">
-						<!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
-					<div ng-switch="game.summary">
-						<div ng-switch-when="null">No summary =(</div>
-						<div ng-switch-default>{{game.summary}}</div>
-					</div>
-
-					</p>
-				</div>
-				<div class="col s4">
-					<p><b>Rating</b></p>
-					<div ng-if="game.avgScore > 0">
-						<p style="margin-top:0;"><span>{{game.avgScore | number:2}}</span></p>
-					</div>
-					<div ng-if="game.avgScore <= 0">
-						<p style="margin-top:0;">unrated</p>
-					</div>
-					<p><b>Genres</b></p>
-					<div ng-repeat="genre in game.genres">
-						<a href='#/search?genre={{genre}}'>
-							{{genre}}
-						</a>
-					</div>
-					<br/>
-					<p><b>Platforms</b></p>
-					<div ng-repeat="platform in game.platforms">
-						<a href='#/search?platform={{platform.name}}'>
-							{{platform.name}}
-						</a>
-						<span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
-					</div>
-					<br/>
-					<p><b>Developers</b></p>
-					<div ng-repeat="developer in game.developers">
-						<a href='#/search?developer={{developer}}'>
-							{{developer}}
-						</a>
-					</div>
-					<br/>
-					<p><b>Publishers</b></p>
-					<div ng-repeat="publisher in game.publishers">
-						<a href='#/search?publisher={{publisher}}'>
-							{{publisher}}
-						</a>
-					</div>
-					<!--<div class="col s12 divider"></div>-->
-					<!--<br/>-->
-				</div>
-			</div>
-
-            <!--SCREENSHOTS AND VIDEOS-->
-            <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
-                <div class="col s12 divider"></div>
+                <!--SCREENSHOTS AND VIDEOS-->
+                <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
+                    <div class="col s12 divider"></div>
 
                 <div class="row" ng-if="game.videoUrls.length > 0">
                     <h4 class="center">Videos</h4>
                     <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
                         <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
-                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}"
-                                    height="360" ng-src="{{video}}" frameborder="0">
+                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true">
                             </iframe>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div ng-if="game.pictureUrls.length > 0">
-                <div class="row" ng-if="game.videoUrls.length > 0">
-                    <div class="col s12 divider"></div>
-                </div>
-                <div class="row" >
-                    <h4 class="center">Screenshots</h4>
-                    <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
-                        <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
-                            <div class="valign-wrapper slide-image">
-                                <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
-                                    <img ng-src="{{picture}}" class="valign"/>
-                                    <!--TODO re-enable lazy loading, a game can have a lot of images-->
-                                    <!--<img data-lazy="{{picture}}" class="valign"/>-->
-                                </a>
+                <div ng-if="game.pictureUrls.length > 0">
+                    <div class="row" ng-if="game.videoUrls.length > 0">
+                        <div class="col s12 divider"></div>
+                    </div>
+                    <div class="row" >
+                        <h4 class="center">Screenshots</h4>
+                        <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
+                            <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
+                                <div class="valign-wrapper slide-image">
+                                    <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
+                                        <img ng-src="{{picture}}" class="valign"/>
+                                        <!--TODO re-enable lazy loading, a game can have a lot of images-->
+                                        <!--<img data-lazy="{{picture}}" class="valign"/>-->
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--END SCREENSHOTS AND VIDEOS-->
+                <!--END SCREENSHOTS AND VIDEOS-->
 
-			<!--REVIEWS-->
+			<!--TWITCH STREAMS-->
+            <div ng-if="game">
+                <div class="row">
+                    <div class="col s12 divider"></div>
+                </div>
+                <div class="row">
+                    <h4 class="center">Twitch Streams</h4>
+
+                    <div ng-if="twitchStreams === null" class="center">
+                        <p class="center">Finding Twitch streams...</p>
+                        <loading-circle></loading-circle>
+                    </div>
+
+                    <!--No streams-->
+                    <div ng-if="twitchStreams !== null && twitchStreams.length === 0">
+                        <p class="center">No streams found</p>
+                    </div>
+                    <!--End no reviews-->
+
+                    <!--Review list-->
+                    <div ng-if="twitchStreams !== null && twitchStreams.length > 0">
+                        <div class="slick-carousel center" id="streams-carousel" data-slick='{"slidesToShow": {{streamsMin}}, "slidesToScroll": {{streamsMin}}}'>
+                            <div class="slide-container" ng-repeat="stream in twitchStreams" on-complete="streamsRendered">
+                                <iframe width="{{twitchStreams.length > 1 ? '90%' : '640'}}" height="300" ng-src="{{stream.src}}" frameborder="0" allowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO view more link-->
+                </div>
+            </div>
+            <!--END TWITCH STREAMS-->
+
+            <!--REVIEWS-->
             <div ng-if="game">
                 <div class="row">
                     <div class="col s12 divider"></div>
@@ -170,94 +207,96 @@
                         <loading-circle></loading-circle>
                     </div>
 
-                    <!--No reviews-->
-                    <div ng-if="reviews !== null && reviews.length === 0">
-                        <h5 class="center">Recent Reviews</h5>
-                        <p class="center">No reviews</p>
-                    </div>
-                    <!--End no reviews-->
+                        <!--No reviews-->
+                        <div ng-if="reviews !== null && reviews.length === 0">
+                            <h5 class="center">Recent Reviews</h5>
+                            <p class="center">No reviews</p>
+                        </div>
+                        <!--End no reviews-->
 
-                    <!--Review list-->
-                    <div ng-if="reviews !== null && reviews.length > 0">
-                        <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
-                        <ul class="collection">
-                            <li class="collection-item avatar" ng-repeat="review in reviews">
-                                <div class="row" style="margin-bottom: 0">
-                                    <div class="col s10">
-                                        <img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle">
-                                        <span class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
-                                        <p class="smallText"><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
-                                        <p ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:
-                                            <span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
-                                        </p>
-                                    </div>
-                                    <div class="col s2">
-                                        <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
-                                        <p class="right-align">
-                                            <a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
-                                            <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s10">
-                                        <p class="wrap-text preserve-newlines">{{review.body}}</p>
-                                    </div>
-                                    <div class="col s2">
-                                        <div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
-                                            <div ng-switch-when="true">
-                                                <p class="rating-number"><b>Overall: <span class="right">{{review.overallScore}}</span></b></p>
-                                            </div>
-                                            <div ng-switch-default>
-                                                <p class="rating-number center"><b>Unrated</b></p>
-                                            </div>
+                        <!--Review list-->
+                        <div ng-if="reviews !== null && reviews.length > 0">
+                            <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All</a></h5>
+                            <ul class="collection">
+                                <li class="collection-item avatar" ng-repeat="review in reviews">
+                                    <div class="row" style="margin-bottom: 0">
+                                        <div class="col s10">
+                                            <a ng-href="#profile?username={{review.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle"></a>
+                                            <span class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
+                                            <p class="smallText"><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
+                                            <p ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:
+                                                <span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
+                                            </p>
                                         </div>
-                                        <p style="color: #26a69a;">
-                                            Story: <span class="right">{{review.storyScore}}</span>
-                                            <br/>
-                                            Graphics: <span class="right">{{review.graphicsScore}}</span>
-                                            <br/>
-                                            Audio: <span class="right">{{review.audioScore}}</span>
-                                            <br/>
-                                            Controls: <span class="right">{{review.controlsScore}}</span>
-                                            <br/>
-                                            Fun: <span class="right">{{review.funScore}}</span>
-                                        </p>
+                                        <div class="col s2">
+                                            <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+                                            <p class="right-align">
+                                                <a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+                                                <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--End review list-->
-                    <div ng-if="canWriteReview" class="row">
-                        <div class="col s12 center">
-                            <a ng-href="#write-review?id={{game.id}}"
-                               class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
-                                    class="material-icons right">send</i></a>
+                                    <div class="row">
+                                        <div class="col s10">
+                                            <p class="wrap-text preserve-newlines">{{review.body}}</p>
+                                        </div>
+                                        <div class="col s2">
+                                            <div ng-switch="(review.overallScore<=10 && review.overallScore>0)">
+                                                <div ng-switch-when="true">
+                                                    <p class="rating-number"><b>Overall: <span class="right">{{review.overallScore}}</span></b></p>
+                                                </div>
+                                                <div ng-switch-default>
+                                                    <p class="rating-number center"><b>Unrated</b></p>
+                                                </div>
+                                            </div>
+                                            <p style="color: #26a69a;">
+                                                Story: <span class="right">{{review.storyScore}}</span>
+                                                <br/>
+                                                Graphics: <span class="right">{{review.graphicsScore}}</span>
+                                                <br/>
+                                                Audio: <span class="right">{{review.audioScore}}</span>
+                                                <br/>
+                                                Controls: <span class="right">{{review.controlsScore}}</span>
+                                                <br/>
+                                                Fun: <span class="right">{{review.funScore}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--End review list-->
+                        <div ng-if="canWriteReview" class="row">
+                            <div class="col s12 center">
+                                <a ng-href="#write-review?id={{game.id}}"
+                                   class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+                                        class="material-icons right">send</i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-			<!--END REVIEWS-->
+                <!--END REVIEWS-->
 
-            <!--RELATED GAMES-->
-            <div ng-if="relatedGames.length > 0" class="row">
-                <div class="row"><div class="col s12 divider"/></div>
-                <h5 class="center">Related Games</h5>
-                <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
-                    <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
-                        <a ng-href="#game?id={{game.id}}">
-                            <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
-                            <!--data-lazy-->
-                        </a>
-                        <h5 class="center slide-text">
-                            <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
-                        </h5>
+                <!--RELATED GAMES-->
+                <div ng-if="relatedGames.length > 0" class="row">
+                    <div class="row"><div class="col s12 divider"/></div>
+                    <h5 class="center">Related Games</h5>
+                    <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
+                        <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
+                            <a ng-href="#game?id={{game.id}}">
+                                <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
+                                <!--data-lazy-->
+                            </a>
+                            <h5 class="center slide-text">
+                                <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                            </h5>
+                        </div>
                     </div>
                 </div>
+                <!--END RELATED-->
             </div>
-            <!--END RELATED-->
-		</div>
+        </div>
+
 	</div>
 </main>
 

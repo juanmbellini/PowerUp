@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by juanlipuma on Nov/7/16.
@@ -27,6 +28,9 @@ public class ReviewHibernateDao implements ReviewDao {
     @Override
     public Page<Review> getReviews(Long gameIdFilter, String gameNameFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
+        // First we sanitize the string values.
+        gameNameFilter = Optional.ofNullable(gameNameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        usernameFilter = Optional.ofNullable(usernameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
 
         final StringBuilder query = new StringBuilder()
@@ -66,23 +70,19 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
-    public Review create(User reviewer, Game game,
-                         String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                         Integer controlsScore, Integer funScore) {
+    public Review create(User reviewer, Game game, String reviewBody) {
         final Review review =
-                new Review(reviewer, game, reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+                new Review(reviewer, game, reviewBody);
         em.persist(review);
         return review;
     }
 
     @Override
-    public void update(Review review,
-                       String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                       Integer controlsScore, Integer funScore) {
+    public void changeReviewBody(Review review, String newBody) {
         if (review == null) {
             throw new IllegalArgumentException("The review can not be null.");
         }
-        review.update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        review.changeBody(newBody);
         em.merge(review);
     }
 
@@ -93,6 +93,4 @@ public class ReviewHibernateDao implements ReviewDao {
         }
         em.remove(review);
     }
-
-
 }
