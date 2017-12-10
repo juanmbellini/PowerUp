@@ -30,7 +30,8 @@
         <com.github.javafaker.version>0.13</com.github.javafaker.version>
         <apache-commons-io.version>2.4</apache-commons-io.version>
         <apache-tika.version>1.14</apache-tika.version>
-        <apache-httpcore.version>4.4.6</apache-httpcore.version>
+        <apache-httpcomponents-core.version>4.4.6</apache-httpcomponents-core.version>
+        <apache-httpcomponents-client.version>4.4.1</apache-httpcomponents-client.version>
         <commons-validator.version>1.6</commons-validator.version>
         <org.flywaydb.version>4.1.2</org.flywaydb.version>
         <javax.mail.version>1.4.7</javax.mail.version>
@@ -280,7 +281,12 @@
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
-                <version>${apache-httpcore.version}</version>
+                <version>${apache-httpcomponents-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache-httpcomponents-client.version}</version>
             </dependency>
             <!-- Apache Commons Validator -->
             <dependency>
