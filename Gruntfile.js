@@ -291,6 +291,27 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      fonts: {
+        files: [{
+          expand: true,
+          cwd: 'bower_components/materialize/fonts',
+          src: '**/*',
+          dest: '.tmp/styles/fonts/materialize'
+        }, {
+          expand: true,
+          cwd: 'bower_components/slick-carousel/slick/fonts',
+          src: '**/*',
+          dest: '.tmp/styles/fonts'
+        }]
+      },
+      images: {
+        files: [{
+          expand: true,
+          cwd: 'bower_components/slick-carousel/slick',
+          src: 'ajax-loader.gif',
+          dest: '.tmp/images'
+        }]
+      },
       styles: {
         files: [{
           expand: true,
@@ -318,13 +339,7 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, /* {
-          TODO remove this Bootstrap configuration if Bootstrap isn't used
-          expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/!*',
-          dest: '<%= yeoman.dist %>'
-        } */ {
+        }, {
           expand: true,
           cwd: '.',
           src: 'bower_components/requirejs/require.js',
@@ -462,6 +477,9 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'copy:styles',
+      'copy:fonts',
+      'copy:images',
       'wiredep:serve',
       'concurrent:server',
       'autoprefixer',
@@ -481,6 +499,10 @@ module.exports = function (grunt) {
       'clean:dist',
       // copy stylesheets, in: app/styles/ out: .tmp/styles
       'copy:styles',
+      // copy fonts, out: .tmp/styles/fonts
+      'copy:fonts',
+      // copy some images that aren't properly copied beforehand
+      'copy:images',
       // Wires in bower dependencies where they belong in: <<>> out: <<>>
       'wiredep:dist',
       // In theory avoids problems related to name mangling by minifiers in: app/scripts out: .tmp/scripts
