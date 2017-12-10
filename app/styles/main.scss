@@ -11,25 +11,8 @@ $roboto-font-path: "fonts/materialize/roboto/";
 // With path overrides because wiredep messes this up
 @import 'slick-theme.css';
 
-
-// Lightbox
-@import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
-// Lightbox path overrides
-body:after {
-    content: url(../images/close.png) url(../images/loading.gif) url(../images/prev.png) url(../images/next.png) !important;
-}
-.lb-cancel {
-    background: url(../images/loading.gif) no-repeat !important;
-}
-.lb-nav a.lb-prev {
-    background: url(../images/prev.png) left 48% no-repeat !important;
-}
-.lb-nav a.lb-next {
-    background: url(../images/next.png) right 48% no-repeat !important;
-}
-.lb-data .lb-close {
-    background: url(../images/close.png) top right no-repeat !important;
-}
+// Lightbox (also path overrides)
+@import 'lightbox.css';
 
 @import 'partials/home';
 @import 'style';
