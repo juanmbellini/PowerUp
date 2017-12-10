@@ -3,7 +3,10 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.Review;
+import ar.edu.itba.paw.webapp.model.ReviewLike;
+import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Like;
 import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
@@ -71,8 +74,7 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     }
 
     @Override
-    public Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                         Integer controlsScore, Integer funScore, User reviewer)
+    public Review create(Long gameId, String reviewBody, User reviewer)
             throws NoSuchEntityException, ValidationException {
         if (reviewer == null) {
             throw new IllegalArgumentException();
@@ -82,8 +84,7 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
         // Will check existence if game exists.
         gameOptional.ifPresent(game -> validateReviewExistence(game, reviewer));
         // If optional holds null, ask for null. Else ask for the game it holds.
-        return reviewDao.create(reviewer, gameOptional.orElse(null),
-                reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        return reviewDao.create(reviewer, gameOptional.orElse(null), reviewBody);
     }
 
     @Override
@@ -117,14 +118,13 @@ public class ReviewServiceImpl implements ReviewService, ValidationExceptionThro
     }
 
     @Override
-    public void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                       Integer controlsScore, Integer funScore, User updater) {
+    public void changeReviewBody(long reviewId, String newBody, User updater) {
         if (updater == null) {
             throw new IllegalArgumentException();
         }
         final Review review = getReview(reviewId);
         validateUpdatePermission(review, updater);
-        reviewDao.update(review, reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        reviewDao.changeReviewBody(review, newBody);
     }
 
     @Override

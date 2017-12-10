@@ -126,7 +126,7 @@ public class User implements Serializable, ValidationExceptionThrower, ScoreChec
 
 
     /**
-     * Changes the play status of the given {@link Game}, returning the previous status for the game.
+     * Changes the play status of the given {@link Game}.
      *
      * @param game       The game whose status must be changed.
      * @param playStatus The new status.

@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ThreadHibernateDao implements ThreadDao {
@@ -24,7 +25,9 @@ public class ThreadHibernateDao implements ThreadDao {
     public Page<Thread> getThreads(String titleFilter, Long userIdFilter, String usernameFilter,
                                    int pageNumber, int pageSize,
                                    SortingType sortingType, SortDirection sortDirection) {
-
+        // First we sanitize the string values.
+        titleFilter = Optional.ofNullable(titleFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        usernameFilter = Optional.ofNullable(usernameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
         final StringBuilder query = new StringBuilder()
                 .append("FROM Thread thread");

@@ -146,52 +146,6 @@ public class ValueErrorConstants {
             "The review body is too long.");
 
 
-    public static final ValueError MISSING_STORY_SCORE = new ValueError(MISSING_VALUE, "storyScore",
-            "The story score is missing");
-
-    public static final ValueError STORY_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "storyScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError STORY_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "storyScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError MISSING_GRAPHICS_SCORE = new ValueError(MISSING_VALUE, "graphicsScore",
-            "The graphics score is missing");
-
-    public static final ValueError GRAPHICS_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "graphicsScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError GRAPHICS_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "graphicsScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError MISSING_AUDIO_SCORE = new ValueError(MISSING_VALUE, "audioScore",
-            "The audio score is missing");
-
-    public static final ValueError AUDIO_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "audioScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError AUDIO_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "audioScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError MISSING_CONTROLS_SCORE = new ValueError(MISSING_VALUE, "controlsScore",
-            "The controls score is missing");
-
-    public static final ValueError CONTROLS_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "controlsScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError CONTROLS_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "controlsScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError MISSING_FUN_SCORE = new ValueError(MISSING_VALUE, "funScore",
-            "The fun score is missing");
-
-    public static final ValueError FUN_SCORE_BELOW_MIN = new ValueError(ILLEGAL_VALUE, "funScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-    public static final ValueError FUN_SCORE_ABOVE_MAX = new ValueError(ILLEGAL_VALUE, "funScore",
-            ILLEGAL_SCORE_ERROR_MESSAGE);
-
-
     public final static ValueError MISSING_FOLLOWER = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
             "follower", "Missing follower");
 

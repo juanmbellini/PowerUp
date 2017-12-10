@@ -4,6 +4,7 @@ import ar.edu.itba.paw.webapp.model.model_interfaces.Likeable;
 import ar.edu.itba.paw.webapp.model.validation.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
  */
 @Entity
 @Table(name = "reviews")
-public class Review implements ValidationExceptionThrower, Likeable, ScoreChecker {
+public class Review implements ValidationExceptionThrower, Likeable {
 
     @Id
     @SequenceGenerator(name = "reviews_seq", sequenceName = "reviews_id_seq", allocationSize = 1)
@@ -34,21 +35,6 @@ public class Review implements ValidationExceptionThrower, Likeable, ScoreChecke
     @Column(nullable = false)
     private String review;
 
-    @Column(nullable = false, name = "story_score")
-    private int storyScore;
-
-    @Column(nullable = false, name = "graphics_score")
-    private int graphicsScore;
-
-    @Column(nullable = false, name = "audio_score")
-    private int audioScore;
-
-    @Column(nullable = false, name = "controls_score")
-    private int controlsScore;
-
-    @Column(nullable = false, name = "fun_score")
-    private int funScore;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "review", orphanRemoval = true, cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<ReviewLike> likes;
@@ -62,71 +48,38 @@ public class Review implements ValidationExceptionThrower, Likeable, ScoreChecke
     /**
      * Creates a review.
      *
-     * @param user          The user creating the review.
-     * @param game          The reviewed game.
-     * @param reviewBody    THe body of the review.
-     * @param storyScore    The new story score.
-     * @param graphicsScore The graphics score.
-     * @param audioScore    The audio score.
-     * @param controlsScore The control score.
-     * @param funScore      The fun score.
+     * @param user       The user creating the review.
+     * @param game       The reviewed game.
+     * @param reviewBody THe body of the review.
      * @throws ValidationException If any value is wrong.
      */
-    public Review(User user, Game game, String reviewBody, Integer storyScore, Integer graphicsScore,
-                  Integer audioScore, Integer controlsScore, Integer funScore)
+    public Review(User user, Game game, String reviewBody)
             throws ValidationException {
         List<ValueError> errorList = new LinkedList<>();
         ValidationHelper.objectNotNull(user, errorList, ValueErrorConstants.MISSING_USER);
         ValidationHelper.objectNotNull(game, errorList, ValueErrorConstants.MISSING_GAME);
+        validateReviewBody(reviewBody, errorList);
+        throwValidationException(errorList); // Throws exception in case the list is not empty.
 
-        update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
         this.user = user;
         this.game = game;
         this.date = Calendar.getInstance();
-    }
-
-
-    /**
-     * Updates the review.
-     *
-     * @param review        The new body of the review.
-     * @param storyScore    The new story score.
-     * @param graphicsScore The new graphics score.
-     * @param audioScore    The new audio score.
-     * @param controlsScore The new control score.
-     * @param funScore      The new fun score.
-     * @throws ValidationException If any value is wrong.
-     */
-    public void update(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                       Integer controlsScore, Integer funScore)
-            throws ValidationException {
-        update(review, storyScore, graphicsScore, audioScore, controlsScore, funScore, new LinkedList<>());
+        this.review = reviewBody;
     }
 
     /**
-     * Updates the review, receiving a list of detected errors before executing this method.
+     * Changes the body to this review.
      *
-     * @param review        The new body of the review.
-     * @param storyScore    The new story score.
-     * @param graphicsScore The new graphics score.
-     * @param audioScore    The new audio score.
-     * @param controlsScore The new control score.
-     * @param funScore      The new fun score.
-     * @param errorList     The list containing possible errors detected before executing the method.
-     * @throws ValidationException If any value is wrong.
+     * @param newReviewBody The new body for this review.
+     * @throws ValidationException In case the body is not valid.
      */
-    private void update(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                        Integer controlsScore, Integer funScore, List<ValueError> errorList)
-            throws ValidationException {
-        checkValues(review, storyScore, graphicsScore, audioScore, controlsScore, funScore, errorList);
-        this.review = review;
-        this.storyScore = storyScore;
-        this.graphicsScore = graphicsScore;
-        this.audioScore = audioScore;
-        this.controlsScore = controlsScore;
-        this.funScore = funScore;
-    }
+    public void changeBody(String newReviewBody) throws ValidationException {
+        List<ValueError> errorList = new LinkedList<>();
+        validateReviewBody(newReviewBody, errorList);
+        throwValidationException(errorList); // Throws exception in case the list is not empty.
 
+        this.review = newReviewBody;
+    }
 
     /**
      * Id getter.
@@ -149,51 +102,6 @@ public class Review implements ValidationExceptionThrower, Likeable, ScoreChecke
      */
     public Game getGame() {
         return game;
-    }
-
-    /**
-     * Story score getter.
-     *
-     * @return The story score.
-     */
-    public int getStoryScore() {
-        return storyScore;
-    }
-
-    /**
-     * Graphic score getter
-     *
-     * @return The graphic score.
-     */
-    public int getGraphicsScore() {
-        return graphicsScore;
-    }
-
-    /**
-     * Audio score getter.
-     *
-     * @return The audio score.
-     */
-    public int getAudioScore() {
-        return audioScore;
-    }
-
-    /**
-     * Control score getter.
-     *
-     * @return The control score.
-     */
-    public int getControlsScore() {
-        return controlsScore;
-    }
-
-    /**
-     * Fun score getter.
-     *
-     * @return The fun score.
-     */
-    public int getFunScore() {
-        return funScore;
     }
 
     /**
@@ -251,40 +159,18 @@ public class Review implements ValidationExceptionThrower, Likeable, ScoreChecke
         return (int) (id ^ (id >>> 32));
     }
 
-
     /**
-     * Checks the given values, throwing a {@link ValidationException} if any is wrong.
+     * Validates the given {@code reviewBody}, adding the corresponding {@link ValueError} to the given {@link List}
+     * in case the body is not valid.
      *
-     * @param review        The review to be checked.
-     * @param storyScore    The story score to be checked.
-     * @param graphicsScore The graphics score to be checked.
-     * @param audioScore    The audio score to be checked.
-     * @param controlsScore The control score to be checked.
-     * @param funScore      The fun score to be checked.
-     * @param errorList     A list containing possible detected errors before calling this method.
-     * @throws ValidationException If any value is wrong.
+     * @param reviewBody The review body to be validated.
+     * @param errorList  A list containing possible detected errors before calling this method.
      */
-    private void checkValues(String review, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                             Integer controlsScore, Integer funScore, List<ValueError> errorList)
-            throws ValidationException {
-        errorList = errorList == null ? new LinkedList<>() : errorList;
-
-        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(review, NumericConstants.REVIEW_BODY_MIN_LENGTH,
+    private void validateReviewBody(String reviewBody, List<ValueError> errorList) {
+        Assert.notNull(errorList, "The error list must not be null");
+        ValidationHelper.stringNotNullAndLengthBetweenTwoValues(reviewBody, NumericConstants.REVIEW_BODY_MIN_LENGTH,
                 NumericConstants.TEXT_FIELD_MAX_LENGTH, errorList, ValueErrorConstants.MISSING_REVIEW_BODY,
                 ValueErrorConstants.REVIEW_BODY_TOO_SHORT, ValueErrorConstants.REVIEW_BODY_TOO_LONG);
-
-        checkScore(storyScore, ValueErrorConstants.MISSING_STORY_SCORE,
-                ValueErrorConstants.STORY_SCORE_BELOW_MIN, ValueErrorConstants.STORY_SCORE_ABOVE_MAX, errorList);
-        checkScore(graphicsScore, ValueErrorConstants.MISSING_GRAPHICS_SCORE,
-                ValueErrorConstants.GRAPHICS_SCORE_BELOW_MIN, ValueErrorConstants.GRAPHICS_SCORE_ABOVE_MAX, errorList);
-        checkScore(audioScore, ValueErrorConstants.MISSING_AUDIO_SCORE,
-                ValueErrorConstants.AUDIO_SCORE_BELOW_MIN, ValueErrorConstants.AUDIO_SCORE_ABOVE_MAX, errorList);
-        checkScore(controlsScore, ValueErrorConstants.MISSING_CONTROLS_SCORE,
-                ValueErrorConstants.CONTROLS_SCORE_BELOW_MIN, ValueErrorConstants.CONTROLS_SCORE_ABOVE_MAX, errorList);
-        checkScore(funScore, ValueErrorConstants.MISSING_FUN_SCORE,
-                ValueErrorConstants.FUN_SCORE_BELOW_MIN, ValueErrorConstants.FUN_SCORE_ABOVE_MAX, errorList);
-
-        throwValidationException(errorList);
     }
 
 }
