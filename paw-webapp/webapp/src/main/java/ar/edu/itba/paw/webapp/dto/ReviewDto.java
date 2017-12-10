@@ -2,10 +2,8 @@ package ar.edu.itba.paw.webapp.dto;
 
 import ar.edu.itba.paw.webapp.controller.GameJerseyController;
 import ar.edu.itba.paw.webapp.controller.ReviewJerseyController;
-import ar.edu.itba.paw.webapp.controller.ThreadJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Review;
-import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
@@ -50,21 +48,6 @@ public class ReviewDto extends EntityDto {
     private String body;
 
     @XmlElement
-    private Integer storyScore;
-
-    @XmlElement
-    private Integer graphicsScore;
-
-    @XmlElement
-    private Integer audioScore;
-
-    @XmlElement
-    private Integer controlsScore;
-
-    @XmlElement
-    private Integer funScore;
-
-    @XmlElement
     private String userUrl;
 
     @XmlElement
@@ -93,11 +76,6 @@ public class ReviewDto extends EntityDto {
         this.gameCoverPictureUrl = wrapper.getEntity().getGame().getCoverPictureUrl();
         this.date = LocalDateTime.ofInstant(wrapper.getEntity().getDate().toInstant(), ZoneId.systemDefault()).toString();
         this.body = wrapper.getEntity().getReview();
-        this.storyScore = wrapper.getEntity().getStoryScore();
-        this.graphicsScore = wrapper.getEntity().getGraphicsScore();
-        this.audioScore = wrapper.getEntity().getAudioScore();
-        this.controlsScore = wrapper.getEntity().getControlsScore();
-        this.funScore = wrapper.getEntity().getFunScore();
         this.likeCount = wrapper.getLikeCount();
         this.likedByCurrentUser = wrapper.getLikedByCurrentUser();
 
@@ -117,7 +95,7 @@ public class ReviewDto extends EntityDto {
                 .build().toString();
     }
 
-    public ReviewDto(Review review, UriBuilder baseUri) {
+    private ReviewDto(Review review, UriBuilder baseUri) {
         super(review.getId());
         this.userId = review.getUser().getId();
         this.username = review.getUser().getUsername();
@@ -126,11 +104,6 @@ public class ReviewDto extends EntityDto {
         this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
         this.date = LocalDateTime.ofInstant(review.getDate().toInstant(), ZoneId.systemDefault()).toString();
         this.body = review.getReview();
-        this.storyScore = review.getStoryScore();
-        this.graphicsScore = review.getGraphicsScore();
-        this.audioScore = review.getAudioScore();
-        this.controlsScore = review.getControlsScore();
-        this.funScore = review.getFunScore();
     }
 
 
@@ -160,26 +133,6 @@ public class ReviewDto extends EntityDto {
 
     public String getBody() {
         return body;
-    }
-
-    public Integer getStoryScore() {
-        return storyScore;
-    }
-
-    public Integer getGraphicsScore() {
-        return graphicsScore;
-    }
-
-    public Integer getAudioScore() {
-        return audioScore;
-    }
-
-    public Integer getControlsScore() {
-        return controlsScore;
-    }
-
-    public Integer getFunScore() {
-        return funScore;
     }
 
     public String getUserUrl() {
@@ -221,6 +174,4 @@ public class ReviewDto extends EntityDto {
     public static List<ReviewDto> createListWithoutCount(Collection<Review> reviews, UriBuilder uriBuilder) {
         return reviews.stream().map(review -> new ReviewDto(review, uriBuilder.clone())).collect(Collectors.toList());
     }
-
-
 }

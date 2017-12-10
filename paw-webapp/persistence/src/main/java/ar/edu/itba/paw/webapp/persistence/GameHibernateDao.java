@@ -28,6 +28,7 @@ public class GameHibernateDao implements GameDao {
         if (name == null || filters == null || orderCategory == null || pageSize < 0 || pageNumber <= 0) {
             throw new IllegalArgumentException();
         }
+        name = DaoHelper.escapeUnsafeCharacters(name); // First we sanitize the string values.
 
         String selectString = "select g ";
         String countString = "select count(distinct g.id) ";
@@ -64,10 +65,10 @@ public class GameHibernateDao implements GameDao {
         Query queryCount = em.createQuery(countString + fromString.toString());
 
         fromString.append(" order by ")
-                .append(orderCategory==OrderCategory.AVG_SCORE?"NULLIF(":"")
+                .append(orderCategory == OrderCategory.AVG_SCORE ? "NULLIF(" : "")
                 .append("g.")
                 .append(orderCategory.getFieldName())
-                .append(orderCategory==OrderCategory.AVG_SCORE?",0)":"")
+                .append(orderCategory == OrderCategory.AVG_SCORE ? ",0)" : "")
                 .append(ascending ? " ASC NULLS LAST" : " DESC NULLS LAST");
 
         TypedQuery<Game> querySelect = em.createQuery(selectString + fromString.toString(), Game.class);
@@ -195,7 +196,7 @@ public class GameHibernateDao implements GameDao {
     public void updateAvgScore(long gameId) {
         Game game = findById(gameId);
         Double newAvg = DaoHelper.findSingleWithConditions(em, Double.class, "SELECT AVG(ELEMENTS(G.scores)) FROM Game AS G WHERE G.id = ?1", gameId);
-        if(newAvg==null) newAvg = 0d;
+        if (newAvg == null) newAvg = 0d;
         game.setAvgScore(newAvg);
     }
 

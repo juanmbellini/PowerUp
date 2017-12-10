@@ -34,7 +34,7 @@ public interface ReviewService {
     /**
      * Finds a review by ID.
      *
-     * @param reviewId The ID to match.
+     * @param reviewId    The ID to match.
      * @param currentUser
      * @return The matching review or {@code null} if not found.
      */
@@ -43,38 +43,25 @@ public interface ReviewService {
     /**
      * Creates a new review with the specified data.
      *
-     * @param gameId        The id of the game getting reviewed.
-     * @param reviewBody    The textual review.
-     * @param storyScore    The story score.
-     * @param graphicsScore The graphics score.
-     * @param audioScore    The audio score.
-     * @param controlsScore The controls score.
-     * @param funScore      The fun score.
-     * @param reviewer      The {@link User} writing the {@link Review}.
+     * @param gameId     The id of the game getting reviewed.
+     * @param reviewBody The textual review.
+     * @param reviewer   The {@link User} writing the {@link Review}.
      * @return The created review.
      * @throws NoSuchEntityException If no such user or game exists.
      * @throws ValidationException   If the {@link User} with the given {@code reviewerId}
      *                               has already reviewed the {@link Game} with the given {@code gameId}.
      */
-    Review create(Long gameId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                  Integer controlsScore, Integer funScore, User reviewer)
+    Review create(Long gameId, String reviewBody, User reviewer)
             throws NoSuchEntityException, ValidationException;
 
-
     /**
-     * Updates the {@link Review} with the given {@code reviewId}.
+     * Changes the body to a given {@link Review}.
      *
-     * @param reviewId      The review id.
-     * @param reviewBody    The new review body.
-     * @param storyScore    The new story score.
-     * @param graphicsScore The new graphics score.
-     * @param audioScore    The new audio score.
-     * @param controlsScore The new controls score.
-     * @param funScore      The new fun score.
-     * @param updater       The {@link User} updating the {@link Review}.
+     * @param reviewId The ID of the {@link Review} whose body will be updated.
+     * @param newBody  The new body.
+     * @param updater  The {@link User} performing the operation.
      */
-    void update(long reviewId, String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                Integer controlsScore, Integer funScore, User updater);
+    void changeReviewBody(long reviewId, String newBody, User updater);
 
     /**
      * Deletes {@link Review} with the given {@code reviewId}.
