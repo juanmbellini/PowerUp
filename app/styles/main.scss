@@ -14,6 +14,22 @@ $roboto-font-path: "fonts/materialize/roboto/";
 @import '../../bower_components/slick-carousel/slick/slick-theme';
 // Lightbox
 @import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
+// Lightbox image overrides
+body:after {
+    content: url(../images/close.png) url(../images/loading.gif) url(../images/prev.png) url(../images/next.png) !important;
+}
+.lb-cancel {
+    background: url(../images/loading.gif) no-repeat !important;
+}
+.lb-nav a.lb-prev {
+    background: url(../images/prev.png) left 48% no-repeat !important;
+}
+.lb-nav a.lb-next {
+    background: url(../images/next.png) right 48% no-repeat !important;
+}
+.lb-data .lb-close {
+    background: url(../images/close.png) top right no-repeat !important;
+}
 
 @import 'partials/home';
 @import 'style';

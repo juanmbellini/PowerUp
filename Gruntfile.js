@@ -170,7 +170,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/styles/**/*.css',
           '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*',
+          // '<%= yeoman.dist %>/styles/fonts/**/*.{woff,woff2,eot,svg,ttf}',
           '<%= yeoman.dist %>/views/**/*.html',
           '<%= yeoman.dist %>/scripts/**/*.js',
           '<%= yeoman.dist %>/bower_components/**/*.js',
@@ -310,6 +310,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/slick-carousel/slick',
           src: 'ajax-loader.gif',
           dest: '.tmp/images'
+        }, {
+          expand: true,
+          cwd: 'bower_components/lightbox2/dist/images',
+          src: '*',
+          dest: '.tmp/images'
         }]
       },
       styles: {
@@ -337,8 +342,14 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
+          src: ['**/*'],
+          dest: '<%= yeoman.dist %>/images'
+        }, {
+          expand: true,
+          cwd: '.tmp/styles/fonts',
+          src: ['**/*'],
+          dest: '<%= yeoman.dist %>/styles/fonts'
+
         }, {
           expand: true,
           cwd: '.',
