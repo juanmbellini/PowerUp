@@ -7,14 +7,14 @@ $roboto-font-path: "fonts/materialize/roboto/";
 @import '../../bower_components/sweetalert/dist/sweetalert.css';
 
 // Slick
-@import '../../bower_components/slick-carousel/slick/slick';
-$slick-loader-path: "images/";
-$slick-font-path: "styles/fonts/";
-@import '../../bower_components/slick-carousel/slick/slick-theme';
+@import '../../bower_components/slick-carousel/slick/slick.css';
+// With path overrides because wiredep messes this up
+@import 'slick-theme.css';
+
 
 // Lightbox
 @import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
-// Lightbox image overrides
+// Lightbox path overrides
 body:after {
     content: url(../images/close.png) url(../images/loading.gif) url(../images/prev.png) url(../images/next.png) !important;
 }
