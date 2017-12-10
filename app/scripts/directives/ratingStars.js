@@ -4,7 +4,7 @@ define(['powerUp'], function(powerUp) {
     powerUp.directive('ratingStars', function() {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directives/ratingStars.html',
+            templateUrl: 'views/directives/ratingStars.html',
             scope: {
                 rating: '='
             },
