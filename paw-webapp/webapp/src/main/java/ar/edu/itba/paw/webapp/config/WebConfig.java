@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -140,6 +141,8 @@ public class WebConfig {
 
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplate();
+        final HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setConnectTimeout(30 * 1000); // 30 secs to timeout.
+        return new RestTemplate(factory);
     }
 }
