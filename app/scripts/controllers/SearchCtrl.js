@@ -303,8 +303,10 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'PaginationService'], 
                             $log.debug('Attempting to find autocomplete element for ' + filterCategory + ': ', element);
                             element.material_chip({
                                 data: initialChipData($scope.searchParams[filterCategory], filterCategory),
-                                placeholder: element.data('placeholder'),
-                                secondaryPlaceholder: element.data('secondary-placeholder'),
+                                // Materialize v0.99.0 has these inverted, unlike v0.100.1 and this code was originally made with v0.100.1
+                                // Doing the inversion here because it looks nicer on the HTML.
+                                placeholder: element.data('secondary-placeholder'),
+                                secondaryPlaceholder: element.data('placeholder'),
                                 autocompleteOptions: {
                                     data: arrayToObj(filters),
                                     // Max amount of results that can be shown at once. Default: Infinity.
