@@ -354,7 +354,7 @@
                                     <goal>karma</goal>
                                 </goals>
                                 <configuration>
-                                    <karmaConfPath>karma.conf.js</karmaConfPath>
+                                    <karmaConfPath>karma.conf.build.js</karmaConfPath>
                                 </configuration>
                             </execution>
                             <execution>
