@@ -35,7 +35,9 @@ public class UserHibernateDao implements UserDao {
     @Override
     public Page<User> getUsers(String usernameFilter, String emailFilter, Authority authorityFilter,
                                int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
-
+        // First we sanitize the string values.
+        usernameFilter = Optional.ofNullable(usernameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        emailFilter = Optional.ofNullable(emailFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
         final StringBuilder query = new StringBuilder()
                 .append("FROM User user INNER JOIN user.authorities authority");
@@ -356,6 +358,8 @@ public class UserHibernateDao implements UserDao {
         if (user == null) {
             throw new IllegalArgumentException();
         }
+        // First we sanitize the string values.
+        gameNameFilter = Optional.ofNullable(gameNameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
         final StringBuilder query = new StringBuilder().append("FROM ").append(klass.getSimpleName())
                 .append(" relationObject");
