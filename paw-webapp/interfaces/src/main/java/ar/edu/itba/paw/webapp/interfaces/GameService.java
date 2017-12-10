@@ -81,6 +81,11 @@ public interface GameService {
     List<String> getFiltersByType(FilterCategory filterCategory);
 
     /**
+     * @return A random game id from the game database.
+     */
+    long getRandomGameId();
+
+    /**
      * Gets all genres associated with a game.
      *
      * @param gameId The ID of the game to search.
