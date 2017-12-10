@@ -200,7 +200,7 @@ div.sweet-alert.show-input.showSweetAlert > h2 {
 }
 
 button#clear-filters, button#submit-search {
-  height:56px;
+  height:47px;
   box-shadow: none;
 }
 
@@ -210,6 +210,16 @@ button#submit-search {
 
 .new-comment {
   // TODO what to do? Border color? Background color? If changing background or border, remember to use !important
+}
+
+#random-game-control {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+#random-game-control span {
+  margin-right: 1.25rem;
 }
 
 .preserve-newlines {
