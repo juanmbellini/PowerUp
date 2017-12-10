@@ -116,6 +116,17 @@ These instructions will install the development environment into your local mach
 	```
 	This file will be located under ```<PROJECT-ROOT>/paw-webapp/webapp/target```.
 
+## Usage
+
+The application can be used without being authenticated, but the actions that can be performed are limited. For example, you can search for games, but you won't be able to write a review.
+
+In order to get full access to the application features, you must be registered, and logged in.
+
+For testing purposes, there is dummy account registered in the system. The credentials for this account are:
+
+* **Username:** paw
+* **Password:** paw
+
 
 ## Authors
 * [Juan Marcos Bellini](https://github.com/juanmbellini)
