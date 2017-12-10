@@ -117,7 +117,7 @@
             <ul class="collection games-list" ng-if="games.length > 0">
                 <li class="collection-item avatar col s12" ng-repeat="game in games">
                     <div class="col s2 cover-pic-container valign-wrapper">
-                        <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                        <a ng-href="#game?id={{game.id}}" class="cover-pic valign"><img ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}"></a>
                     </div>
                     <div class="col primary-content s7">
                         <p class="title">

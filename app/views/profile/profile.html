@@ -48,7 +48,7 @@
                     <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
                         <!--TODO make this into a directive-->
                         <div class="col s2 cover-pic-container valign-wrapper">
-                            <img class="cover-picture valign" ng-src="{{entry.gameCoverPictureUrl}}" alt="{{entry.gameName}}">
+                            <a ng-href="#game?id={{entry.gameId}}" class="cover-pic valign"><img ng-src="{{entry.gameCoverPictureUrl}}" alt="{{item.gameName}}"></a>
                         </div>
                         <div class="col primary-content s7">
                             <p class="title">
