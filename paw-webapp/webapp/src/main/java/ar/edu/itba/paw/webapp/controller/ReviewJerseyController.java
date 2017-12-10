@@ -106,8 +106,6 @@ public class ReviewJerseyController implements UpdateParamsChecker {
         }
 
         final Review review = reviewService.create(reviewDto.getGameId(), reviewDto.getBody(),
-                reviewDto.getStoryScore(), reviewDto.getGraphicsScore(), reviewDto.getAudioScore(),
-                reviewDto.getControlsScore(), reviewDto.getFunScore(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(review.getId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
@@ -119,8 +117,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
     public Response updateReview(@PathParam("id") final long reviewId, final ReviewDto reviewDto) {
         checkUpdateValues(reviewId, "id", reviewDto);
 
-        reviewService.update(reviewId, reviewDto.getBody(), reviewDto.getStoryScore(), reviewDto.getGraphicsScore(),
-                reviewDto.getAudioScore(), reviewDto.getControlsScore(), reviewDto.getFunScore(),
+        reviewService.changeReviewBody(reviewId, reviewDto.getBody(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
     }

@@ -70,23 +70,19 @@ public class ReviewHibernateDao implements ReviewDao {
     }
 
     @Override
-    public Review create(User reviewer, Game game,
-                         String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                         Integer controlsScore, Integer funScore) {
+    public Review create(User reviewer, Game game, String reviewBody) {
         final Review review =
-                new Review(reviewer, game, reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+                new Review(reviewer, game, reviewBody);
         em.persist(review);
         return review;
     }
 
     @Override
-    public void update(Review review,
-                       String reviewBody, Integer storyScore, Integer graphicsScore, Integer audioScore,
-                       Integer controlsScore, Integer funScore) {
+    public void changeReviewBody(Review review, String newBody) {
         if (review == null) {
             throw new IllegalArgumentException("The review can not be null.");
         }
-        review.update(reviewBody, storyScore, graphicsScore, audioScore, controlsScore, funScore);
+        review.changeBody(newBody);
         em.merge(review);
     }
 
@@ -97,6 +93,4 @@ public class ReviewHibernateDao implements ReviewDao {
         }
         em.remove(review);
     }
-
-
 }
