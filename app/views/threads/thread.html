@@ -13,7 +13,7 @@
 			<div class="row">
 				<ul class="collection">
 					<li class="collection-item avatar">
-						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
+						<a ng-href="#profile?username={{thread.creator.username}}"><img ng-src="{{thread.creator.profilePictureUrl}}" alt="{{thread.creator.username}}" class="circle"></a>
 						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
 						<p>{{thread.createdAt | date: 'mediumDate'}}</p>
 						<br>
@@ -100,7 +100,7 @@
 						<li ng-repeat="comment in comments" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 							<!--Comment info-->
 							<a name="{{comment.id}}"></a>
-							<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+							<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 							<span class="title wrap-text">
 								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 							</span>
@@ -187,7 +187,7 @@
 								<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 									<!--Comment info-->
 									<a name="{{comment.id}}"></a>
-									<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+									<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 									<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -272,7 +272,7 @@
 										<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 											<!--Comment info-->
 											<a name="{{comment.id}}"></a>
-											<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+											<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 											<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -358,7 +358,7 @@
 												<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 													<!--Comment info-->
 													<a name="{{comment.id}}"></a>
-													<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+													<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 													<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -443,7 +443,7 @@
 														<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 															<!--Comment info-->
 															<a name="{{comment.id}}"></a>
-															<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+															<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 															<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
