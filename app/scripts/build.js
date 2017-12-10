@@ -10,7 +10,6 @@ require.config({
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-translate': '../../bower_components/angular-translate/angular-translate',
-        'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
         'angular-environment': '../../bower_components/angular-environment/dist/angular-environment',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         moment: '../../bower_components/moment/moment',
@@ -78,11 +77,6 @@ require.config({
                 'angular'
             ]
         },
-        'angular-cookies': {
-            deps: [
-                'angular'
-            ]
-        },
         'angular-translate': {
             deps: [
                 'angular'
@@ -145,10 +139,10 @@ require.config({
                 'angular'
             ]
         },
-        'ratingStars': {
-          deps: [
-            'angular'
-          ]
+        ratingStars: {
+            deps: [
+                'angular'
+            ]
         },
         AuthService: {
             deps: [

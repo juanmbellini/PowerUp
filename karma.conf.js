@@ -26,12 +26,11 @@ module.exports = function(config) {
     files: [
       // Angular
       {pattern: 'bower_components/angular/angular.js', included: false},
-      {pattern: 'bower_components/angular-local-storage/dist/angular-local-storage.js', included: false},
       {pattern: 'bower_components/angular-mocks/angular-mocks.js', included: false},
+      {pattern: 'bower_components/angular-environment/dist/angular-environment.js', included: false},
+      {pattern: 'bower_components/angular-local-storage/dist/angular-local-storage.js', included: false},
       {pattern: 'bower_components/angular-route/angular-route.js', included: false},
       {pattern: 'bower_components/angular-translate/angular-translate.js', included: false},
-      // TODO remove angular cookies, we shouldn't be using cookies
-      {pattern: 'bower_components/angular-cookies/angular-cookies.js', included: false},
       {pattern: 'bower_components/angular-route/angular-route.js', included: false},
       {pattern: 'bower_components/ng-file-upload/ng-file-upload.js', included: false},
       {pattern: 'bower_components/ngSweetAlert/SweetAlert.js', included: false},
@@ -45,7 +44,6 @@ module.exports = function(config) {
 
       // UI
       {pattern: 'bower_components/jquery/dist/jquery.js', included: false},
-      // TODO use custom jQuery-UI dist in deploy branch
       {pattern: 'bower_components/jquery-ui/jquery-ui.js', included: false},
       {pattern: 'bower_components/lightbox2/dist/js/lightbox.js', included: false},
       {pattern: 'bower_components/materialize/js/*.js', included: false},
