@@ -1,17 +1,17 @@
-//@import "materialize/sass/materialize";
-// bower:scss
-@import 'slick-carousel/slick/slick.scss';
-// endbower
-
 // Materialize
 $roboto-font-path: "fonts/materialize/roboto/";
 @import '../../bower_components/materialize/sass/materialize';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 // Swal
 @import '../../bower_components/sweetalert/dist/sweetalert.css';
+
 // Slick
 @import '../../bower_components/slick-carousel/slick/slick';
+$slick-loader-path: "images/";
+$slick-font-path: "styles/fonts/";
 @import '../../bower_components/slick-carousel/slick/slick-theme';
+
 // Lightbox
 @import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
 // Lightbox image overrides
