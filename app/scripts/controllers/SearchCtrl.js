@@ -108,6 +108,13 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'ratingStars', 'Pagina
 
         // Pagination control
         $scope.pageSizes = [25, 50, 100];
+        // Retry search if page size is too big
+        var maxValidPageSize = Math.max.apply(null, $scope.pageSizes);
+        if ($scope.searchParams.pageSize > maxValidPageSize) {
+          $scope.searchParams.pageSize = maxValidPageSize;
+          $scope.submitSearch(true);
+        }
+
         $scope.resetPageNumberOnSubmit = false;
         $scope.gamesPaginator = PaginationService.initialize(Restangular.all('games'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
         PaginationService.setRequestParams($scope.gamesPaginator, $scope.searchParams);
