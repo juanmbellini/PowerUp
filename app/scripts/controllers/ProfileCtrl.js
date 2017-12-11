@@ -14,6 +14,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
 
         $scope.requestedUser = null;
         $scope.uploadingPicture = false;
+        $scope.pictureUploaded = true;
         // All profile-specific info will go here
         $scope.profile = {
             gamesInList: 0,
@@ -67,6 +68,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 $timeout(function() {
                     $scope.pictureSubmitDisabled = false;
                     $scope.profile.picture.temp = pictureBase64;
+                    $scope.pictureUploaded = false;
                 });
             };
             r.readAsDataURL(file);
@@ -82,8 +84,10 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             $scope.uploadingPicture = true;
             Restangular.one('users').one('picture').customPUT(data).then(function (response) {
                 // Don't re-enable submit button, user should select a different picture to re-submit
+
                 $scope.uploadingPicture = false;
                 $scope.profile.picture.canDelete = true;
+                $scope.pictureUploaded = true;
 
                 // Load the profile picture from own computer, no need to re-retrieve picture
                 $scope.profile.picture.data = $scope.profile.picture.temp;

@@ -7,13 +7,13 @@
         <h1 class="center orange-text">{{username}}'s Profile</h1>
         <div class="row">
             <div class="col s4">
-                <img ng-if="requestedUser" ng-src="{{profile.picture.temp || profile.picture.data || profile.picture.url}}" style="max-width: 100%; height:auto;" ng-style="{opacity: pictureSubmitDisabled ? 1 : 0.5}"/>
+                <img ng-if="requestedUser" ng-src="{{profile.picture.temp || profile.picture.data || profile.picture.url}}" style="max-width: 100%; height:auto;" ng-style="{opacity: pictureUploaded ? 1 : 0.5}"/>
                 <div ng-if="canChangePicture()">
                     <form id="pictureForm">
                         <div class="row">
                             <div class="file-field input-field">
                                 <div class="btn waves-effect waves-light">
-                                    <span>Upload picture</span>
+                                    <span>Select picture</span>
                                     <input type="file" accept=".jpeg, .jpg, .png, .gif" ngf-select="parseProfilePicture($file)" required>
                                 </div>
                             </div>
