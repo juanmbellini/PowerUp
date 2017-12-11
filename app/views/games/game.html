@@ -93,7 +93,7 @@
                             <p style="margin-top:0;"><span>{{game.avgScore | limitTo:4}}</span></p>
                         </div>
                         <div ng-if="game.avgScore <= 0">
-                            <p style="margin-top:0;">unrated</p>
+                            <p style="margin-top:0;">Unrated</p>
                         </div>
                         <p><b>Genres</b></p>
                         <div ng-repeat="genre in game.genres">
@@ -101,7 +101,7 @@
                                 {{genre}}
                             </a>
                         </div>
-                        <br/>
+                        <p ng-if="!game.genres.length">Unknown</p>
                         <p><b>Platforms</b></p>
                         <div ng-repeat="platform in game.platforms">
                             <a href='#/search?platform={{platform.name}}'>
@@ -109,20 +109,21 @@
                             </a>
                             <span style="font-size: small; float: right;">{{platform.releaseDate}}</span>
                         </div>
-                        <br/>
+                        <span ng-if="!game.platforms.length">Unknown</span>
                         <p><b>Developers</b></p>
                         <div ng-repeat="developer in game.developers">
                             <a href='#/search?developer={{developer}}'>
                                 {{developer}}
                             </a>
                         </div>
-                        <br/>
+                        <p ng-if="!game.developers.length">Unknown</p>
                         <p><b>Publishers</b></p>
                         <div ng-repeat="publisher in game.publishers">
                             <a href='#/search?publisher={{publisher}}'>
                                 {{publisher}}
                             </a>
                         </div>
+                        <p ng-if="!game.publishers.length">Unknown</p>
                         <!--<div class="col s12 divider"></div>-->
                         <!--<br/>-->
                     </div>
