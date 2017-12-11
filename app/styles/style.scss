@@ -222,6 +222,16 @@ button#submit-search {
   margin-right: 1.25rem;
 }
 
+#pictureForm .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#pictureForm #profile-picture-loading-circle {
+  display: inline-block;
+  vertical-align: top;
+}
+
 .preserve-newlines {
   white-space: pre-line;
 }
