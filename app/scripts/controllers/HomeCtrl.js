@@ -61,7 +61,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
 		});
 
         $scope.loadMoreFeed = function () {
-            $log.error('Error unliking thread #', 1, ': ', error);
+            $scope.loadingFeed = true;
             // if (AuthService.isLoggedIn() && feedObj !== null) {
             //     while ($scope.feedNeeded > 0 && FeedService.isReady(feedObj)) {
             //         $scope.feedNeeded--;
