@@ -1,6 +1,6 @@
 'use strict';
 // Karma configuration
-// Generated on Fri Jul 14 2017 18:13:58 GMT-0300 (ART)
+// Copy of base configuration but has SINGLE-RUN enabled. This is meant to run on build/CI so the process stops once all test suites run.
 
 module.exports = function(config) {
   config.set({
@@ -110,7 +110,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

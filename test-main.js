@@ -33,8 +33,8 @@ require.config({
     angular: 'bower_components/angular/angular',
     'angular-route': 'bower_components/angular-route/angular-route',
     'angular-translate': 'bower_components/angular-translate/angular-translate',
-    'angular-cookies': 'bower_components/angular-cookies/angular-cookies',
     'angular-local-storage': 'bower_components/angular-local-storage/dist/angular-local-storage',
+    'angular-environment': 'bower_components/angular-environment/dist/angular-environment',
     'angular-mocks': 'bower_components/angular-mocks/angular-mocks',
     'es5-shim': 'bower_components/es5-shim/es5-shim',
     moment: 'bower_components/moment/moment',
@@ -101,12 +101,12 @@ require.config({
         'angular'
       ]
     },
-    'angular-route': {
+    'angular-environment': {
       deps: [
         'angular'
       ]
     },
-    'angular-cookies': {
+    'angular-route': {
       deps: [
         'angular'
       ]

@@ -348,16 +348,15 @@
                                     <goal>bower</goal>
                                 </goals>
                             </execution>
-                            <!--TODO uncomment this when we have tests-->
-                            <!--<execution>-->
-                            <!--<id>javascript tests</id>-->
-                            <!--<goals>-->
-                            <!--<goal>karma</goal>-->
-                            <!--</goals>-->
-                            <!--<configuration>-->
-                            <!--<karmaConfPath>karma.conf.js</karmaConfPath>-->
-                            <!--</configuration>-->
-                            <!--</execution>-->
+                            <execution>
+                                <id>javascript tests</id>
+                                <goals>
+                                    <goal>karma</goal>
+                                </goals>
+                                <configuration>
+                                    <karmaConfPath>karma.conf.build.js</karmaConfPath>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>grunt build</id>
                                 <goals>
