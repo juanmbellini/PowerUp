@@ -2,7 +2,6 @@
 define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'], function(powerUp) {
 
 	powerUp.controller('HomeCtrl', function($scope, $location, Data, searchedTitleService, Restangular, SweetAlert, AuthService, FeedService, LikesService, $log, $route) {
-	    // SweetAlert.swal("BAM!");
 		Restangular.setFullResponse(true);
 		$scope.homePageText = 'This is your homepage';
 		$scope.data = Data;
@@ -32,7 +31,9 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
 			require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
 		});
 
-      	// Feed:
+    /* ***********************************************************************
+     *                                FEED
+     * ***********************************************************************/
 		$scope.feed = [];
 		var feedObj;
 		if (AuthService.isLoggedIn()) {
