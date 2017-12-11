@@ -21,7 +21,10 @@ public class ShelfHibernateDao implements ShelfDao {
     public Page<Shelf> getShelves(String nameFilter, Long gameIdFilter, String gameNameFilter,
                                   Long userIdFilter, String usernameFilter,
                                   int pageNumber, int pageSize, SortingType sortingType, SortDirection sortDirection) {
-
+        // First we sanitize the string values.
+        nameFilter = Optional.ofNullable(nameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        gameNameFilter = Optional.ofNullable(gameNameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
+        usernameFilter = Optional.ofNullable(usernameFilter).map(DaoHelper::escapeUnsafeCharacters).orElse(null);
 
         final StringBuilder query = new StringBuilder()
                 .append("FROM Shelf shelf LEFT JOIN shelf.games shelfGame");

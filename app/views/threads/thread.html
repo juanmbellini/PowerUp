@@ -13,7 +13,7 @@
 			<div class="row">
 				<ul class="collection">
 					<li class="collection-item avatar">
-						<img ng-src="{{apiLocation}}/users/{{thread.creator.id}}/picture" alt="{{thread.creator.username}}" class="circle">
+						<a ng-href="#profile?username={{thread.creator.username}}"><img ng-src="{{thread.creator.profilePictureUrl}}" alt="{{thread.creator.username}}" class="circle"></a>
 						<span class="title wrap-text">Submitted by <a ng-href="#profile?username={{thread.creator.username}}">{{thread.creator.username}}</a></span>
 						<p>{{thread.createdAt | date: 'mediumDate'}}</p>
 						<br>
@@ -66,8 +66,6 @@
 				</ul>
 			</div>
 
-			<div class="row col s12 divider"></div>
-
 			<!--COMMENTS-->
 			<div ng-if="comments === null" class="center">
 				<h5>Fetching thread comments...</h5>
@@ -75,14 +73,34 @@
 			</div>
 			<div ng-if="comments !== null">
 				<div class="row">
-					<h5 ng-if="comments.length == 0" class="center">No comments. Leave the first comment!</h5>
-					<h5 ng-if="comments.length > 0" class="center">Comments</h5>
+					<h4 ng-if="comments.length == 0" class="center">No comments. Leave the first comment!</h4>
+					<h4 ng-if="comments.length > 0" class="center">Comments</h4>
+
+					<!--Add a comment form-->
+					<div ng-if="isLoggedIn" class="row">
+						<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
+							<div class='row'>
+								<div class='input-field col s12'>
+									<textarea id="new-comment-textarea" type="text" ng-model="newComment.body" required="required" class="materialize-textarea"></textarea>
+									<label for="new-comment-textarea">New comment</label>
+								</div>
+							</div>
+							<div class='row'>
+								<div class="col s4 offset-s5">
+									<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
+										Submit <i class="material-icons right">send</i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!--End comment form-->
 
 					<ul class="collection" ng-if="comments.length > 0">
-						<li ng-repeat="comment in comments" class="collection-item avatar">
+						<li ng-repeat="comment in comments" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 							<!--Comment info-->
 							<a name="{{comment.id}}"></a>
-							<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+							<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 							<span class="title wrap-text">
 								<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 							</span>
@@ -166,10 +184,10 @@
 							<!--Comment replies-->
 							<!--TODO FOR COMMENT RECURSION CHANGE FROM HERE-->
 							<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
-								<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+								<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 									<!--Comment info-->
 									<a name="{{comment.id}}"></a>
-									<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+									<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 									<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -251,10 +269,10 @@
 
 									<!--Comment replies-2 TODO make everything the same directive and call it recursively-->
 									<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
-										<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+										<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 											<!--Comment info-->
 											<a name="{{comment.id}}"></a>
-											<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+											<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 											<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -337,10 +355,10 @@
 
 											<!--Comment replies-3 TODO make everything the same directive and call it recursively-->
 											<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
-												<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+												<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 													<!--Comment info-->
 													<a name="{{comment.id}}"></a>
-													<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+													<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 													<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -422,10 +440,10 @@
 													<!--End comment un/like section-->
 													<!--Comment replies-4 TODO make everything the same directive and call it recursively-->
 													<ul class="collection" ng-if="comment.replies.length > 0" ng-show="comment.replies.show">
-														<li ng-repeat="comment in comment.replies" class="collection-item avatar">
+														<li ng-repeat="comment in comment.replies" class="collection-item avatar" ng-class="{'new-comment': comment.id === newCommentId}">
 															<!--Comment info-->
 															<a name="{{comment.id}}"></a>
-															<img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle">
+															<a ng-href="#profile?username={{comment.commenter.username}}"><img ng-src="{{comment.commenter.profilePictureUrl}}" alt="{{comment.commenter.username}}" class="circle"></a>
 															<span class="title wrap-text">
 										<a ng-href="#profile?username={{comment.commenter.username}}">{{comment.commenter.username}}</a>
 									</span>
@@ -537,26 +555,6 @@
 					</div>
 					<!--End load more comments-->
 				</div>
-
-				<!--Add a comment form-->
-				<div ng-if="isLoggedIn" class="row">
-					<form name="commentForm" class="css-form" ng-submit="createComment(newComment)">
-						<div class='row'>
-							<div class='input-field col s12'>
-								<textarea id="new-comment-textarea" type="text" ng-model="newComment.body" required="required" class="materialize-textarea"></textarea>
-								<label for="new-comment-textarea">New comment</label>
-							</div>
-						</div>
-						<div class='row'>
-							<div class="col s4 offset-s5">
-								<button type='submit' class='col s6 btn btn-large waves-effect light-blue' ng-disabled="pendingRequests.comments.create">
-									Submit <i class="material-icons right">send</i>
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<!--End comment form-->
 			</div>
 		</div>
 		<!--END COMMENTS-->

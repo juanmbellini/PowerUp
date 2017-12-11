@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'ratingStars'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
         Restangular.setFullResponse(true);

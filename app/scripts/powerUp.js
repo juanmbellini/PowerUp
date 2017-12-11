@@ -5,7 +5,6 @@ define(['routes',
     'angular',
     'angular-route',
     'angular-translate',
-    'angular-cookies',
     'angular-environment',
     'restangular',
     'sweetalert.angular',
@@ -16,7 +15,6 @@ define(['routes',
     var powerUp = angular.module('powerUp', [
       'ngRoute',
       'pascalprecht.translate',
-      'ngCookies',
       'environment',
       'restangular',
       'oitozero.ngSweetAlert',
@@ -61,7 +59,8 @@ define(['routes',
             // Whitelist URLs for interpolations ('self' = the application's domain, i.e. localhost or pawserver.itba.edu.ar, etc.)
             $sceDelegateProvider.resourceUrlWhitelist([
                 'self',
-                'https://www.youtube.com/**'
+                'https://www.youtube.com/**',
+                'http://player.twitch.tv/**'
             ]);
 
             /*

@@ -10,6 +10,10 @@
                         </div>
                     </form>
                 </div>
+                <div class="col s3" id="random-game-control">
+                    <span>or try a</span>
+                    <button class="btn" ng-click="randomGame()" ng-disabled="randomGameLoading">{{randomGameLoading ? 'Loading...' : 'Random game!'}}</button>
+                </div>
             </div>
         </div>
 
@@ -54,24 +58,24 @@
                         <div class="row" style="margin: 0 !important;">
                             <div class="col s12">
                                 <ul class="tabs">
-                                    <li class="tab col s3"><a href="#platform" class="active">Platforms</a></li>
-                                    <li class="tab col s3"><a href="#genre">Genres</a></li>
-                                    <li class="tab col s3"><a href="#developer">Developers</a></li>
-                                    <li class="tab col s3"><a href="#publisher">Publishers</a></li>
+                                    <li class="tab col s3"><a href="#platform" class="active">Platforms<span id="platform-filter-count"></span></a></li>
+                                    <li class="tab col s3"><a href="#genre">Genres<span id="genre-filter-count"></span></a></li>
+                                    <li class="tab col s3"><a href="#developer">Developers<span id="developer-filter-count"></span></a></li>
+                                    <li class="tab col s3"><a href="#publisher">Publishers<span id="publisher-filter-count"></span></a></li>
                                 </ul>
                             </div>
                             <!--Filter values-->
                             <div id="platform" class="col s12 filter">
-                                <div class="chips chips-autocomplete" id="platform-autocomplete" data-category="platform" style="margin-bottom: 5px;"></div>
+                                <div class="chips chips-placeholder chips-autocomplete" id="platform-autocomplete" data-category="platform" data-placeholder="Type a platform" data-secondary-placeholder="+ Platform" style="margin-bottom: 5px;"></div>
                             </div>
                             <div id="genre" class="col s12 filter">
-                                <div class="chips chips-autocomplete" id="genre-autocomplete" data-category="genre" style="margin-bottom: 5px;"></div>
+                                <div class="chips chips-placeholder chips-autocomplete" id="genre-autocomplete" data-category="genre" data-placeholder="Type a genre" data-secondary-placeholder="+ Genre" style="margin-bottom: 5px;"></div>
                             </div>
                             <div id="developer" class="col s12 filter">
-                                <div class="chips chips-autocomplete" id="developer-autocomplete" data-category="developer" style="margin-bottom: 5px;"></div>
+                                <div class="chips chips-placeholder chips-autocomplete" id="developer-autocomplete" data-category="developer" data-placeholder="Type a developer" data-secondary-placeholder="+ Developer" style="margin-bottom: 5px;"></div>
                             </div>
                             <div id="publisher" class="col s12 filter">
-                                <div class="chips chips-autocomplete" id="publisher-autocomplete" data-category="publisher" style="margin-bottom: 5px;"></div>
+                                <div class="chips chips-placeholder chips-autocomplete" id="publisher-autocomplete" data-category="publisher" data-placeholder="Type a publisher" data-secondary-placeholder="+ Publisher" style="margin-bottom: 5px;"></div>
                             </div>
                         </div>
                     </div>
@@ -117,7 +121,7 @@
             <ul class="collection games-list" ng-if="games.length > 0">
                 <li class="collection-item avatar col s12" ng-repeat="game in games">
                     <div class="col s2 cover-pic-container valign-wrapper">
-                        <img class="cover-picture valign" ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}">
+                        <a ng-href="#game?id={{game.id}}" class="cover-pic valign"><img ng-src="{{game.coverPictureUrl}}" alt="{{game.name}}"></a>
                     </div>
                     <div class="col primary-content s7">
                         <p class="title">
@@ -137,21 +141,9 @@
                             <div ng-switch="(game.avgScore<=10 && game.avgScore>0)">
                                 <div ng-switch-when="true" style="margin-top: 20px;">
                                     <p class="rating-number center">
-                                        <b><span>{{game.avgScore | number:2}}</span></b>
+                                        <b><span>{{game.avgScore | limitTo:4}}</span></b>
                                     </p>
-                                    <span class="rating-stars hide-on-small-and-down">
-                                        <span ng-repeat="i in [0,1,2,3,4]">
-                                            <span ng-if="(game.avgScore - (i * 2) - 1 ) < 0">
-                                                <i class="material-icons">star_border</i>
-                                            </span>
-                                            <span ng-if="(game.avgScore - (i * 2) - 1 ) == 0">
-                                                <i class="material-icons">star_half</i>
-                                            </span>
-                                            <span ng-if="(game.avgScore - (i * 2) - 1) > 0">
-                                                <i class="material-icons">star</i>
-                                            </span>
-                                        </span>
-                                    </span>
+                                    <rating-stars rating="game.avgScore" class="rating-stars hide-on-small-and-down center"></rating-stars>
                                 </div>
                                 <div ng-switch-default style="margin-top: 33px;">
                                     <p class="rating-number center"><b>Unrated</b></p>

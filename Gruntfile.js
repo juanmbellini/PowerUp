@@ -169,8 +169,8 @@ module.exports = function (grunt) {
       dist: {
         src: [
           '<%= yeoman.dist %>/styles/**/*.css',
-          '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*',
+          // '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+          // '<%= yeoman.dist %>/styles/fonts/**/*.{woff,woff2,eot,svg,ttf}',
           '<%= yeoman.dist %>/views/**/*.html',
           '<%= yeoman.dist %>/scripts/**/*.js',
           '<%= yeoman.dist %>/bower_components/**/*.js',
@@ -291,11 +291,37 @@ module.exports = function (grunt) {
 
     // Copies remaining files to places other tasks can use
     copy: {
+      fonts: {
+        files: [{
+          expand: true,
+          cwd: 'bower_components/materialize/fonts',
+          src: '**/*',
+          dest: '.tmp/styles/fonts/materialize'
+        }, {
+          expand: true,
+          cwd: 'bower_components/slick-carousel/slick/fonts',
+          src: '**/*',
+          dest: '.tmp/styles/fonts'
+        }]
+      },
+      images: {
+        files: [{
+          expand: true,
+          cwd: 'bower_components/slick-carousel/slick',
+          src: 'ajax-loader.gif',
+          dest: '.tmp/images'
+        }, {
+          expand: true,
+          cwd: 'bower_components/lightbox2/dist/images',
+          src: '*',
+          dest: '.tmp/images'
+        }]
+      },
       styles: {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/styles',
-          src: ['**/*.scss'],
+          src: ['**/*.{css,scss}'],
           dest: '.tmp/styles'
         }]
       },
@@ -316,15 +342,15 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
-        }, /* {
-          TODO remove this Bootstrap configuration if Bootstrap isn't used
+          src: ['**/*'],
+          dest: '<%= yeoman.dist %>/images'
+        }, {
           expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/!*',
-          dest: '<%= yeoman.dist %>'
-        } */ {
+          cwd: '.tmp/styles/fonts',
+          src: ['**/*'],
+          dest: '<%= yeoman.dist %>/styles/fonts'
+
+        }, {
           expand: true,
           cwd: '.',
           src: 'bower_components/requirejs/require.js',
@@ -462,6 +488,9 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'copy:styles',
+      'copy:fonts',
+      'copy:images',
       'wiredep:serve',
       'concurrent:server',
       'autoprefixer',
@@ -481,6 +510,10 @@ module.exports = function (grunt) {
       'clean:dist',
       // copy stylesheets, in: app/styles/ out: .tmp/styles
       'copy:styles',
+      // copy fonts, out: .tmp/styles/fonts
+      'copy:fonts',
+      // copy some images that aren't properly copied beforehand
+      'copy:images',
       // Wires in bower dependencies where they belong in: <<>> out: <<>>
       'wiredep:dist',
       // In theory avoids problems related to name mangling by minifiers in: app/scripts out: .tmp/scripts

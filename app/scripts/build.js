@@ -10,7 +10,6 @@ require.config({
         angular: '../../bower_components/angular/angular',
         'angular-route': '../../bower_components/angular-route/angular-route',
         'angular-translate': '../../bower_components/angular-translate/angular-translate',
-        'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
         'angular-environment': '../../bower_components/angular-environment/dist/angular-environment',
         'es5-shim': '../../bower_components/es5-shim/es5-shim',
         moment: '../../bower_components/moment/moment',
@@ -28,6 +27,7 @@ require.config({
         FeedService: 'services/FeedService',
         loadingCircle: 'directives/loadingCircle',
         loadingCircleSmall: 'directives/loadingCircleSmall',
+        ratingStars: 'directives/ratingStars',
         'angular-local-storage': '../../bower_components/angular-local-storage/dist/angular-local-storage',
         'ng-file-upload': '../../bower_components/ng-file-upload/ng-file-upload',
         ngSweetAlert: '../../bower_components/ngSweetAlert/SweetAlert',
@@ -72,11 +72,6 @@ require.config({
             ]
         },
         'angular-route': {
-            deps: [
-                'angular'
-            ]
-        },
-        'angular-cookies': {
             deps: [
                 'angular'
             ]
@@ -139,6 +134,11 @@ require.config({
             ]
         },
         'loadingCircle-small': {
+            deps: [
+                'angular'
+            ]
+        },
+        ratingStars: {
             deps: [
                 'angular'
             ]

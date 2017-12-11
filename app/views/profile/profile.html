@@ -48,7 +48,7 @@
                     <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
                         <!--TODO make this into a directive-->
                         <div class="col s2 cover-pic-container valign-wrapper">
-                            <img class="cover-picture valign" ng-src="{{entry.gameCoverPictureUrl}}" alt="{{entry.gameName}}">
+                            <a ng-href="#game?id={{entry.gameId}}" class="cover-pic valign"><img ng-src="{{entry.gameCoverPictureUrl}}" alt="{{item.gameName}}"></a>
                         </div>
                         <div class="col primary-content s7">
                             <p class="title">
@@ -64,22 +64,8 @@
                                 <div ng-switch="(entry.score <= 10 && entry.score > 0)">
                                     <div ng-switch-when="true">
                                         <!--TODO get score by user, not general score-->
-                                        <p class="rating-number center"><b><span>{{entry.score | number:2}}</span></b>
-                                        </p>
-                                        <p class="rating-stars hide-on-small-and-down">
-                                            <!--range(0,4)-->
-                                        <div ng-repeat="i in [0,1,2,3,4]">
-                                            <div ng-if="(entry.score - (i * 2) - 1 ) < 0">
-                                                <i class="material-icons">star_border</i>
-                                            </div>
-                                            <div ng-if="(entry.score - (i * 2) - 1 ) == 0">
-                                                <i class="material-icons">star_half</i>
-                                            </div>
-                                            <div ng-if="(entry.score - (i * 2) - 1) > 0">
-                                                <i class="material-icons">star</i>
-                                            </div>
-                                        </div>
-                                        </p>
+                                        <p class="rating-number center"><b><span>{{entry.score | limitTo:4}}</span></b></p>
+                                        <rating-stars rating="entry.score" class="rating-stars hide-on-small-and-down center"></rating-stars>
                                     </div>
                                     <div ng-switch-default>
                                         <p class="rating-number center"><b>Unrated</b></p>

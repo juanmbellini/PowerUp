@@ -1,19 +1,18 @@
-//@import "materialize/sass/materialize";
-// bower:scss
-@import 'slick-carousel/slick/slick.scss';
-// endbower
-
 // Materialize
-$roboto-font-path: "../../bower_components/materialize/fonts/roboto/";
+$roboto-font-path: "fonts/materialize/roboto/";
 @import '../../bower_components/materialize/sass/materialize';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 // Swal
 @import '../../bower_components/sweetalert/dist/sweetalert.css';
+
 // Slick
-@import '../../bower_components/slick-carousel/slick/slick';
-@import '../../bower_components/slick-carousel/slick/slick-theme';
-// Lightbox
-@import '../../bower_components/lightbox2/dist/css/lightbox.min.css';
+@import '../../bower_components/slick-carousel/slick/slick.css';
+// With path overrides because wiredep messes this up
+@import 'slick-theme.css';
+
+// Lightbox (also path overrides)
+@import 'lightbox.css';
 
 @import 'partials/home';
 @import 'style';
