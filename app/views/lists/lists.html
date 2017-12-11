@@ -85,7 +85,8 @@
                                     <p class="title wrap-text"><a ng-href="#game?id={{item.game.id}}">{{item.game.name}}</a></p>
                                 </div>
                                 <div class="col s1 center">
-                                    <p style="margin-top: 33px;"><b>{{item.status || 'No Status'}}</b></p>
+                                    <p style="margin-top: 33px;" ng-if="item.status == 'no-play-status'"><b>{{'No Status'}}</b></p>
+                                    <p style="margin-top: 33px;" ng-if="item.status != 'no-play-status'"><b>{{item.status ||'No Status'}}</b></p>
                                 </div>
                                 <div class="col s2 center">
                                     <p class=wrap-text style="margin-top: 33px;"><b>
