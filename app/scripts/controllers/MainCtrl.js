@@ -40,7 +40,7 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         $scope.loginRedirect = '/';
         // Update current page URL on page change, except when in login page
         $scope.$on('$viewContentLoaded', function() {
-            if($location.path() !== '/login') {
+            if ($location.path() !== '/login') {
                 $scope.loginRedirect = $location.url();
             }
         });

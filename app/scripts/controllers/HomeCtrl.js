@@ -31,6 +31,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
 			});
 			require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
 		});
+
+      	// Feed:
 		$scope.feed = [];
 		var feedObj;
 		if (AuthService.isLoggedIn()) {
@@ -58,7 +60,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
 		});
 
         $scope.loadMoreFeed = function () {
-            $scope.loadingFeed = true;
+            $log.error('Error unliking thread #', 1, ': ', error);
             // if (AuthService.isLoggedIn() && feedObj !== null) {
             //     while ($scope.feedNeeded > 0 && FeedService.isReady(feedObj)) {
             //         $scope.feedNeeded--;
@@ -69,6 +71,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
             //     }
             // }
         };
+        $scope.reloadFeed = function () {
+            $scope.feed = [];
+            if (AuthService.isLoggedIn()) {
+                feedObj = FeedService.initialize(AuthService.getCurrentUser().id);
+                $scope.loadingFeed = true;
+            }
+        };
+
 
 
 

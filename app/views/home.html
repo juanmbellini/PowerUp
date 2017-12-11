@@ -90,7 +90,7 @@
                             </form>
                             <p ng-if="loadingFollowFriend">Loading...</p>
                             <p ng-if="!loadingFollowFriend && followFriendError" class="formError">{{followFriendErrorMsj}}</p>
-                            <p ng-if="!loadingFollowFriend && !followFriendError && followFriendSend">User added!</p>
+                            <p ng-if="!loadingFollowFriend && !followFriendError && followFriendSend" ng-init="reloadFeed()">User added!</p>
                         </li>
                     </ul>
                 </div>
@@ -158,13 +158,13 @@
                                 </div>
                             </div>
                             <div ng-if="feedElement.type === 'thread'">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 0">
                                     <div class="col s9">
                                         <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
                                         <span class="title wrap-text">
-                                    <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">started the thread </span>
-                                    <a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>
-                                </span>
+                                            <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">started the thread </span>
+                                            <a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>
+                                        </span>
                                         <!--<p>Submitted {{feedElement.data.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a></p>-->
                                     </div>
                                     <div class="col s3">
@@ -196,7 +196,7 @@
                                     <div class="col s9">
                                         <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
                                         <span class="title wrap-text">
-                                            <a ng-href="#profile?username={{feedElement.data.userId}}">{{feedElement.data.username}}</a> <span class="mediumText">changed </span>
+                                            <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> <span class="mediumText">changed </span>
                                             <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
                                         </span>
                                     </div>
