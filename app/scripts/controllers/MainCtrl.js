@@ -71,7 +71,7 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             $log.debug('Loading filters from local storage');
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
-        } else if (!envService.is('production')) {
+        } else if (envService.is('production')) {
           // FIXME optimize API call so we can use filters in production
           $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
             'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
