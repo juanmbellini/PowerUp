@@ -154,9 +154,7 @@
                             <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
                                 <div class="valign-wrapper slide-image">
                                     <a href="{{picture}}" data-lightbox="screenshot-{{$index}}">
-                                        <img ng-src="{{picture}}" class="valign"/>
-                                        <!--TODO re-enable lazy loading, a game can have a lot of images-->
-                                        <!--<img data-lazy="{{picture}}" class="valign"/>-->
+                                        <img ng-attr-data-lazy="{{picture}}" class="valign"/>
                                     </a>
                                 </div>
                             </div>
@@ -285,8 +283,7 @@
                     <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
                         <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
                             <a ng-href="#game?id={{game.id}}">
-                                <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
-                                <!--data-lazy-->
+                                <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
                             </a>
                             <h5 class="center slide-text">
                                 <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
