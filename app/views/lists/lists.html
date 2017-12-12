@@ -192,17 +192,16 @@
 
             <div class="row col s12 divider"></div>
 
-            <!--RECOMMENDED GAMES-->
-            <div class="container">
-                <div class="section">
-                    <div ng-if="games.length > 0 && recommendedGames.length > 0" class="row">
-                        <h5 class="center">Recommended Games for
-                                <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
-                            <span ng-if="isUserLoggedOwner">you</span>
-                            <span ng-if="!isUserLoggedOwner">{{user.username}}</span>
-                            <span ng-if="selectedShelves.length > 0"> using selected shelves</span>
-                            !</h5>
-                        <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
+            <!-- RECOMMENDED GAMES -->
+            <div class="row container">
+                <div class="center">
+                    <div ng-show="loadingRecommended">
+                        <h5>Getting game recommendations for {{recommendedText()}}...</h5>
+                        <loading-circle></loading-circle>
+                    </div>
+                    <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
+                        <h5>Recommended games for {{recommendedText()}}</h5>
+                        <div class="slick-carousel" id="recommended-carousel">
                             <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
                                 <a ng-href="#game?id={{game.id}}">
                                     <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
@@ -217,9 +216,7 @@
             </div>
             <!--END RECOMMENDED GAMES-->
         </div>
-        <div class="col s1">
-
-        </div>
+        <div class="col s1"></div>
     </div>
 </main>
 

@@ -278,25 +278,44 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             });
         };
 
+        /* ***************************************************************************
+         *                          RECOMMENDED GAMES CONTROL
+         * ***************************************************************************/
         // Recommended games
-        $scope.hasSlick = false;
-        $scope.first = true;
-        $scope.$on('recommendedRendered', function(event) {
-            $scope.first = false;
-            if ($scope.hasSlick) {
-                $scope.hasSlick = false;
-                angular.element('#recommended-carousel').slick('unslick');
+        $scope.hasSlick = false;    // TODO NOW delete everything using this
+        $scope.first = true;        // TODO NOW volar esto tb?
+        $scope.loadingRecommended = false;
+
+        $scope.recommendedText = function() {
+            var result = $scope.isUserLoggedOwner ? 'you' : ($scope.user && $scope.user.username);
+            if ($scope.selectedShelves.length > 0) {
+                result += ' using selected shelves';
             }
-             angular.element('#recommended-carousel').slick({
+            return result;
+        };
+
+        $scope.$on('recommendedReady', function(event) {
+            $scope.first = false;
+            $scope.loadingRecommended = false;
+            if ($scope.hasSlick) {
+                // Un-slick first
+                angular.element('#recommended-carousel').slick('unslick');
+                $scope.hasSlick = false;
+            }
+            if ($scope.recommendedGames.length) {
+              angular.element('#recommended-carousel').slick({
+                slidesToShow: $scope.recommendedMin,
+                slidesToScroll: $scope.recommendedMin,
                 infinite: false,
                 arrows: true
-            });
-            $scope.hasSlick = true;
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+              });
+              $scope.hasSlick = true;
+            }
         });
 
-
-        // Pagination control
+      /* ***************************************************************************
+       *                          PAGINATION CONTROL
+       * ***************************************************************************/
         $scope.pageSizes = [25, 50, 100];
         $scope.searchParams = {
             shelfName: undefined,
@@ -352,12 +371,28 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             }
 
             // Update game suggestions
+            $scope.loadingRecommended = true;
+            $timeout(function() {
+              if ($scope.hasSlick) {
+                // Un-slick
+                angular.element('#recommended-carousel').slick('unslick');
+                $scope.recommendedGames = [];
+                $scope.hasSlick = false;
+              }
+            });
             Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
                 $scope.recommendedGames = response.data;
                 $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+                $timeout(function() {
+                    $scope.$broadcast('recommendedReady');
+                });
             }, function (response) {
-                $log.error('Could not get recommended games', response);
-                $scope.recommendedGames = [];
+              $log.error('Could not get recommended games', response);
+              $scope.loadingRecommended = false;
+              $scope.recommendedGames = [];
+              $timeout(function() {
+                $scope.$broadcast('recommendedReady');
+              });
             });
         });
 
