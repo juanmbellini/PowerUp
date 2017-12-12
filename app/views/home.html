@@ -102,19 +102,21 @@
                             <div ng-if="feedElement.type === 'review' ">
                                 <div  class="row" style="margin-bottom: 0">
                                     <div class="col s10">
-                                        <img ng-src="{{apiLocation}}/users/{{feedElement.data.userId}}/picture"
-                                             alt="{{feedElement.data.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">
+                                            <img ng-src="{{apiLocation}}/users/{{feedElement.data.userId}}/picture" alt="{{feedElement.data.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                    <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> <span class="mediumText">reviewed</span>
-                                    <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
-                                </span>
-                                        <p class="wrap-text smallText">
-                                    <span>
-                                        <a ng-href="#reviews?userId={{feedElement.data.userId}}">Other
-                                        reviews by {{feedElement.data.username}}</a> | <a ng-href="#reviews?gameId={{feedElement.data.gameId}}">Other
-                                        {{feedElement.data.gameName}} reviews</a>
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
+                                        <span class="mediumText">reviewed</span>
+                                        <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
                                     </span>
-                                        </p>
+                                    <p class="wrap-text smallText">
+                                        <span>
+                                            <a ng-href="#reviews?userId={{feedElement.data.userId}}">Other
+                                            reviews by {{feedElement.data.username}}</a> | <a ng-href="#reviews?gameId={{feedElement.data.gameId}}">Other
+                                            {{feedElement.data.gameName}} reviews</a>
+                                        </span>
+                                    </p>
                                         <p ng-show="feedElement.data.shelves.length > 0" class="wrap-text smallText"> Shelves:
                                             <span ng-repeat="shelf in feedElement.data.shelves"><a ng-href="#list?id={{feedElement.data.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
                                         </p>
@@ -160,9 +162,12 @@
                             <div ng-if="feedElement.type === 'thread'">
                                 <div class="row" style="margin-bottom: 0">
                                     <div class="col s9">
-                                        <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.creator.username}}">
+                                            <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                            <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">started the thread </span>
+                                            <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a>
+                                            <span class="mediumText">started the thread </span>
                                             <a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>
                                         </span>
                                         <!--<p>Submitted {{feedElement.data.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a></p>-->
@@ -194,9 +199,12 @@
                             <div ng-if="feedElement.type === 'status'">
                                 <div class="row">
                                     <div class="col s9">
-                                        <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">
+                                            <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                            <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> <span class="mediumText">changed </span>
+                                            <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
+                                            <span class="mediumText">changed </span>
                                             <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
                                         </span>
                                     </div>
