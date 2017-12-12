@@ -20,7 +20,6 @@ import org.apache.tika.parser.ParseContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -51,8 +50,11 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String FEED_END_POINT = "feed";
 
+    public static final String PICTURE_END_POINT = "picture";
+
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
+    private UserJerseyController(UserService userService, SessionService sessionService,
+                                 MailService mailService, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
@@ -71,7 +73,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Context
     private UriInfo uriInfo;
 
-    private Logger LOG = LoggerFactory.getLogger(getClass());
+    private final static Logger LOG = LoggerFactory.getLogger(UserJerseyController.class);
 
 
     // ================ API methods ================
@@ -518,26 +520,25 @@ public class UserJerseyController implements UpdateParamsChecker {
     private static final List<String> SUPPORTED_PICTURE_TYPES = Arrays.asList("image/jpeg", "image/jpg", "image/png", "image/gif");
 
     @GET
-    @Path("/{id}/picture")
+    @Path("/{id : \\d+}/" + PICTURE_END_POINT)
     @Produces("image/*")
-    public Response getProfilePicture(@PathParam("id") final long id) {
-        final UserWithFollowCountsWrapper wrapper = userService.findById(id);
-        if (wrapper == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        final User user = wrapper.getUser();
-        if (user.hasProfilePicture()) {
-            InputStream pictureStream = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
-            String mimeType = user.getProfilePictureMimeType();
-            return Response.ok(pictureStream, mimeType).build();
-        } else {
-            //Serve default profile picture
-            return Response.temporaryRedirect(URI.create(Game.DEFAULT_COVER_PICTURE_URL)).build();
-        }
+    public Response getProfilePicture(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long id) {
+        return Optional.ofNullable(userService.findById(id))
+                .map(UserWithFollowCountsWrapper::getUser)
+                .filter(User::hasProfilePicture)
+                .map(user -> {
+                    final InputStream byteArrayStream = new ByteArrayInputStream(user.getProfilePicture());
+                    final InputStream imageStream = new BufferedInputStream(byteArrayStream);
+                    final String mimeType = user.getProfilePictureMimeType();
+
+                    return Response.ok(imageStream, mimeType);
+                })
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
     @OPTIONS
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     public Response pictureOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
@@ -593,7 +594,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @PUT
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadProfilePicture(String base64Input) {
         long userId = sessionService.getCurrentUserId();
@@ -650,17 +651,15 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     @Produces("text/html")
     public Response deleteProfilePicture() {
-        long userId = sessionService.getCurrentUserId();
-        if (userId == -1) {
-            LOG.error("Couldn't get current user on profile picture DELETE");
-            return Response.serverError().build();
-        }
+        final long userId = Optional.ofNullable(sessionService.getCurrentUser())
+                .map(User::getId)
+                .orElseThrow(UnauthenticatedException::new);
         userService.removeProfilePicture(userId, userId);   //The current user may only remove their own profile picture
-        LOG.info("Deleted profile picture for {}", sessionService.getCurrentUsername());
-        return Response.ok().build();
+
+        return Response.noContent().build();
     }
 
 
