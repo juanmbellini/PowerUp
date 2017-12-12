@@ -57,8 +57,7 @@ require.config({
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
         'materialize.chips': '../../bower_components/materialize/js/chips',
-        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks',
-        materialize: '../../bower_components/materialize/bin/materialize'
+        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks'
     },
     shim: {
         jquery: {
