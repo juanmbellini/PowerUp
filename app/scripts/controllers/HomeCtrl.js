@@ -23,6 +23,10 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
           $timeout(function () {
             $scope.$broadcast('recommendedReady');
           });
+        }, function(error) {
+          $log.error("Couldn't get recommended games:", error);
+          $scope.loadingRecommended = false;
+          $scope.recommendedGames = [];
         });
       });
     }
