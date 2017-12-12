@@ -34,7 +34,7 @@
                                 <ng-input>
                                     <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
                                         <option value="no-play-status">Select play status</option>
-                                        <option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
+                                        <option ng-repeat="playStatus in playStatusOptions" value="{{playStatus}}">{{namesOfStatuses[playStatus]}}</option>
                                     </select>
                                     <span ng-if="loadingStatus">Loading...</span>
                                     <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
