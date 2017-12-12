@@ -333,13 +333,16 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public void requireResetPassword(long userId, String urlTemplate) {
+    public String requireResetPassword(long userId, String urlTemplate) {
+        //remove this
+        String url = "";
         // TODO: create token
         // TODO: base64url encode the nonce of the token (replace 1234 with the nonce)
         final String base64UrlNonce = Base64Utils.encodeToUrlSafeString(Long.toString(1234).getBytes());
         // TODO: generate url to be sent in the email:
         final String resetPasswordUrl = String.format(urlTemplate, base64UrlNonce);
         // TODO: Send email
+        return url;
     }
 
     @Override

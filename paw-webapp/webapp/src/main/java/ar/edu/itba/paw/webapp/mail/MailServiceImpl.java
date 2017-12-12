@@ -43,7 +43,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Async
-    public void sendPasswordResetEmail(User user, String newPassword) {
+    public void sendPasswordResetEmail(User user, String url) {
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -52,9 +52,9 @@ public class MailServiceImpl implements MailService {
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear "
                         + user.getUsername()
-                        + ", \nYour new password is: "
-                        + newPassword
-                        + "\nPlease log in with your new password, and if you wish, head to your profile page and change your password to something easier to remember.");
+                        + ", \nThis email was sent to you because someone requested a password reset on your account. \n\n Visit the following URL to set a new password: "
+                        + url +
+                        "\n Your sincerely, \n PowerUp team.");
                 mimeMessage.setSubject("PowerUp password reset");
             }
         };
