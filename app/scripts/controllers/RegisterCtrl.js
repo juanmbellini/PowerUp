@@ -1,11 +1,15 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'validator-js'], function(powerUp) {
 
     powerUp.controller('RegisterCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', function($scope, $location, $log, AuthService, Restangular) {
 
         $scope.submitted = false;
         $scope.isRegistering = false;
         $scope.userToSubmit = {};
+
+        // TODO DIEGO CODE HERE. La que usé es esta https://github.com/chriso/validator.js fijate el README
+        var validator = require('validator-js');
+        console.log(validator.isEmail('foo@bar.com'));
 
         /**
          * Register User and returns true if it could be registered. False if not.
