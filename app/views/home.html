@@ -210,8 +210,13 @@
                         </li>
                     </ul>
                 </div>
-                <h5 ng-if="!loadingFeed && thereAreMore" class="center"><a href="" ng-click="loadMoreFeed()" class="center">Load More</a></h5>
-                <h5 ng-if="loadingFeed" class="center">Loading...</h5>
+                <div class="center">
+                    <button class="btn" ng-show="thereAreMore" ng-disabled="loadingFeed || !thereAreMore" ng-click="loadMoreFeed()">Load More</button>
+                </div>
+                <div ng-show="loadingFeed" class="center">
+                    <loading-circle></loading-circle>
+                    <h5>Loading more...</h5>
+                </div>
                 <h5 ng-if="!loadingFeed && !thereAreMore && feed.length > 0" class="center">Congrats! You've reached the end!</h5>
                 <h5 ng-if="!loadingFeed && !thereAreMore && feed.length <= 0" class="center">This is your feed. Follow users to be updated!</h5>
             </div>

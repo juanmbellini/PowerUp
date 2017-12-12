@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'], function (powerUp) {
+define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesService'], function (powerUp) {
 
   powerUp.controller('HomeCtrl', ['$scope', '$location', '$log', '$route', 'searchedTitleService', 'Restangular', 'AuthService', 'FeedService', 'LikesService', function ($scope, $location, $log, $route, searchedTitleService, Restangular, AuthService, FeedService, LikesService) {
     Restangular.setFullResponse(true);
