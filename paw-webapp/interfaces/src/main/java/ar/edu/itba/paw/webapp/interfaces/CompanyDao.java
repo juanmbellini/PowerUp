@@ -1,10 +1,7 @@
 package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Company;
-import ar.edu.itba.paw.webapp.model.Game;
-
-import java.util.List;
-import java.util.Set;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 /**
  * Data Access Object for Game Developers
@@ -12,9 +9,22 @@ import java.util.Set;
 public interface CompanyDao {
 
     /**
-     * @see CompanyService#all()
+     * Retrieves a paginated view of the stored developers.
+     *
+     * @param pageNumber The number of the {@link Page}.
+     * @param pageSize   The size of the {@link Page}.
+     * @return A Paginated view of the list of developers.
      */
-    List<Company> all();
+    Page<Company> developersPaginated(int pageNumber, int pageSize);
+
+    /**
+     * Retrieves a paginated view of the stored publishers.
+     *
+     * @param pageNumber The number of the {@link Page}.
+     * @param pageSize   The size of the {@link Page}.
+     * @return A Paginated view of the list of publishers.
+     */
+    Page<Company> publishersPaginated(int pageNumber, int pageSize);
 
     /**
      * @see CompanyService#findById(long)
@@ -25,14 +35,4 @@ public interface CompanyDao {
      * @see CompanyService#findByName(String)
      */
     Company findByName(String name);
-
-    /**
-     * @see CompanyService#gamesDevelopedBy(Company)
-     */
-    Set<Game> gamesDevelopedBy(Company p);
-
-    /**
-     * @see CompanyService#gamesPublishedBy(Company)
-     */
-    Set<Game> gamesPublishedBy(Company p);
 }

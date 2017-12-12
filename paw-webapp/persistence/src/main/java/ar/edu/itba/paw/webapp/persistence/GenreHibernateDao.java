@@ -1,8 +1,10 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.GenreDao;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Genre;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,7 +13,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,8 +26,10 @@ public class GenreHibernateDao implements GenreDao {
     private EntityManager em;
 
     @Override
-    public List<Genre> all() {
-        return DaoHelper.findAll(em, Genre.class);
+    public Page<Genre> paginated(int pageNumber, int pageSize) {
+        return DaoHelper.findPageWithoutConditions(em, Genre.class,
+                "From Genre as genre", "genre", "id",
+                pageNumber, pageSize, "id", SortDirection.ASC, true);
     }
 
     @Override

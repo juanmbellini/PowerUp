@@ -22,7 +22,7 @@ public class GameServiceImpl implements GameService {
     private final static int MAGIC_PAGE_SIZE = 100;
 
 
-    private static List<String> KEYWORDS_EMPTY_LIST = new LinkedList<>();
+    private static Page<String> KEYWORDS_EMPTY_PAGE = Page.emptyPage();
 
     private GameDao gameDao;
 
@@ -73,22 +73,30 @@ public class GameServiceImpl implements GameService {
         return gameDao.existsWithTitle(title);
     }
 
-    public List<String> getFiltersByType(FilterCategory filterCategory) {
+    @Override
+    public Page<String> getFiltersByType(FilterCategory filterCategory, int pageNumber, int pageSize) {
         switch (filterCategory) {
-            case genre:
-                return genreDao.all().stream().map(Genre::getName).collect(Collectors.toList());
-            case keyword:
-                return KEYWORDS_EMPTY_LIST;
-            case platform:
-                return platformDao.all().stream().map(Platform::getName).collect(Collectors.toList());
-            case developer:
-                return companyDao.all().stream().filter(each -> !each.getGamesDeveloped().isEmpty())
-                        .map(Company::getName).collect(Collectors.toList());
-            case publisher:
-                return companyDao.all().stream().filter(each -> !each.getGamesPublished().isEmpty())
-                        .map(Company::getName).collect(Collectors.toList());
+            case genre: {
+                final Page<Genre> original = genreDao.paginated(pageNumber, pageSize);
+                return ServiceHelper.fromAnotherPage(original, Genre::getName).build();
+            }
+            case keyword: {
+                return KEYWORDS_EMPTY_PAGE;
+            }
+            case platform: {
+                final Page<Platform> original = platformDao.paginated(pageNumber, pageSize);
+                return ServiceHelper.fromAnotherPage(original, Platform::getName).build();
+            }
+            case developer: {
+                final Page<Company> original = companyDao.developersPaginated(pageNumber, pageSize);
+                return ServiceHelper.fromAnotherPage(original, Company::getName).build();
+            }
+            case publisher: {
+                final Page<Company> original = companyDao.publishersPaginated(pageNumber, pageSize);
+                return ServiceHelper.fromAnotherPage(original, Company::getName).build();
+            }
             default:
-                throw new RuntimeException("Something went wrong");
+                throw new RuntimeException("Something went wrong"); // Won't never reach here.
         }
     }
 
