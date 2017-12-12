@@ -214,11 +214,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
 
                         });
                     });
-
-                   // for(var i=0; i<shelves.length(); i++){
-                    //    var shelf = shelves[i];
-//
-                   // }
                     // delete review
                     Restangular.all('reviews').getList({gameId: game.id, userId: $scope.userId}).then(function (response) {
                         var reviews = response.data;
