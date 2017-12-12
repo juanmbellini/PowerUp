@@ -14,22 +14,17 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(game) {
-                $scope.game = game;
-                $scope.gameId = game.id;
-                $log.debug('Found game:', game);
-                if ($scope.gameId > 0 && $scope.game !== null) {
-                    $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
-                    $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
-                    $timeout(function() {
-                      $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
-                    });
-                } else {
-                    // TODO show 'game not found'
-                    $location.search({});
-                    $location.path('');
-                }
+              $scope.game = game;
+              $log.debug('Found game:', game);
+
+              $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
+              $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
+
+              $timeout(function() {
+                $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+              });
             }, function(response) {
-                console.log('Error with status code', response.status); // TODO handle error
+                $log.error("Couldn't get game:", response.status, 'Redirecting to home'); // TODO handle error
                 $location.search({});
                 $location.path('');
             });
@@ -149,7 +144,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 }
             });
             $scope.updateShelfSelect = function () {
-                // console.log(shelfUpdated);
                 $scope.loadingShelves = true;
                 angular.forEach($scope.shelvesWithGame, function (shelfName) {
                     if ($scope.oldShelvesWithGame.indexOf(shelfName) === -1) {
@@ -193,7 +187,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
               $scope.$broadcast('relatedReady');
             });
         }, function (response) {
-            console.log("Couldn't load related games:", response);
+            $log.error("Couldn't load related games:", response);
             $scope.loadingRelated = false;
         });
 
@@ -281,8 +275,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                     });
                 });
                 $scope.checkCanWriteReview();
-            }, function() {
-                console.log('There was an error getting reviews');
+            }, function(error) {
+                $log.error('There was an error getting game reviews:', error);
             });
         });
 
@@ -292,15 +286,10 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             } else {
                 var currentUserUsername = AuthService.getCurrentUser().username;
                 Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
-                    if (reviews.length > 0) {
-                        $scope.canWriteReview = false;
-                    } else {
-                        $scope.canWriteReview = true;
-                    }
-                }, function(response) {
-                    console.log('There was an error getting reviews, ', response);
+                    $scope.canWriteReview = reviews.length === 0;
+                }, function(error) {
+                    $log.error('There was an error checking whether the current user can write a review:', error, "Assuming user can't write review");
                     $scope.canWriteReview = false;
-                    return;
                 });
             }
         };
