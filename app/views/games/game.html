@@ -179,17 +179,17 @@
                     <div ng-if="twitchStreams !== null && twitchStreams.length === 0">
                         <p class="center">No streams found</p>
                     </div>
-                    <!--End no reviews-->
+                    <!--End no streams-->
 
-                    <!--Review list-->
+                    <!--Streams-->
                     <div ng-if="twitchStreams !== null && twitchStreams.length > 0">
-                        <div class="slick-carousel center" id="streams-carousel" data-slick='{"slidesToShow": {{streamsMin}}, "slidesToScroll": {{streamsMin}}}'>
+                        <div class="slick-carousel center" id="streams-carousel">
                             <div class="slide-container" ng-repeat="stream in twitchStreams" on-complete="streamsRendered">
                                 <iframe width="{{twitchStreams.length > 1 ? '90%' : '640'}}" height="300" ng-src="{{stream.src}}" frameborder="0" allowfullscreen="true"></iframe>
                             </div>
                         </div>
                     </div>
-                    <!-- TODO view more link-->
+                    <!-- TODO view more link?-->
                 </div>
             </div>
             <!--END TWITCH STREAMS-->
@@ -328,75 +328,3 @@
 
 	</div>
 </main>
-
-
-<script type="text/javascript">
-    // require(['slick-carousel'], function() {
-    //     //TODO consider only doing this if there are picture or videos or relatedGames
-    //     $(function() {
-    //         $('.slick-carousel').slick({
-    //             infinite: false,
-    //             slidesToShow: 4,
-    //             slidesToScroll: 4,
-    //             arrows: true,
-    //             lazyload: 'ondemand'
-    //         });
-    //     });
-    // });
-</script>
-
-<!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
-<!--<script type="text/javascript">-->
-		<!--$(function () {-->
-			<!--$("#delete-button").on('click', function (event) {-->
-				<!--swal({-->
-							<!--title: "Are you sure?",-->
-							<!--text: "This game will be removed from all your shelves.",-->
-							<!--type: "warning",-->
-							<!--showCancelButton: true,-->
-							<!--confirmButtonColor: "#DD6B55",-->
-							<!--confirmButtonText: "Remove",-->
-							<!--closeOnConfirm: false-->
-						<!--},-->
-						<!--function () {-->
-							<!--//Disable submit button to prevent multiple submissions-->
-							<!--$(".confirm").attr('disabled', 'disabled');-->
-							<!--<c:url value="/delete-shelf" var="deleteUrl" />-->
-							<!--//Create an inline form and submit it to redirect with POST-->
-							<!--$("<form action='<c:url value="/remove-from-list" />' method='POST'> \-->
-                    <!--<input type='hidden' name='gameId' value='${game.id}' /> \-->
-                    <!--<input type='hidden' name='userId' value='${currentUser.id}' /> \-->
-                    <!--<input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \-->
-                   <!--</form>").submit();-->
-						<!--});-->
-			<!--});-->
-
-			<!--$(".delete-button").on('click', function (event) {-->
-				<!--var reviewId = $(this).data('reviewId');-->
-				<!--//Create an inline form and submit it to redirect with POST-->
-				<!--$("<form action='<c:url value="/delete-review" />' method='POST'> \-->
-                <!--<input type='hidden' name='reviewId' value='" + reviewId + "' /> \-->
-                <!--<input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \-->
-               <!--</form>").submit();-->
-			<!--});-->
-
-			<!--$("#shelves").on("change", function (event) {-->
-				<!--//$(this).material_select();-->
-				<!--var selectedShelves = $(this).val();-->
-				<!--if (selectedShelves.length == 0) {-->
-					<!--//No selected shelves, set everything to false-->
-					<!--$(".shelfHidden").val("false");-->
-				<!--} else {-->
-					<!--$(".shelfHidden").each(function (i, element) {-->
-						<!--element = $(element);-->
-						<!--element.val(selectedShelves.indexOf(element.attr("name")) != -1);-->
-					<!--});-->
-				<!--}-->
-				<!--$("#shelvesForm").find("button[type=submit]").removeAttr('disabled');-->
-			<!--});-->
-		<!--});-->
-<!--</script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/lightbox.js" />"></script>-->

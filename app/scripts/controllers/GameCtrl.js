@@ -188,7 +188,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
         Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(relatedGames) {
             $scope.relatedGames = relatedGames;
             $scope.relatedMin = Math.min($scope.relatedGames.length, 5);
-            $log.debug('Found', $scope.relatedGames.length, 'games');
+            $log.debug('Found', $scope.relatedGames.length, 'related games');
             $timeout(function () {
               $scope.$broadcast('relatedReady');
             });
@@ -228,17 +228,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
           });
         });
 
-      // (Re-)initialize Slick for game streams
-      // TODO broadcast this
-      $scope.$on('streamsRendered', function(event) {
-        angular.element('#streams-carousel').slick({
-          infinite: false,
-          arrows: true
-        });
-        require(['lightbox2']); // TODO ensure requirejs doesn't load this thrice
-      });
-
-
       /* *****************************************
        *                 TWITCH
        * ****************************************/
@@ -247,10 +236,26 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
           $scope.game.all('twitch').getList({}).then(function(response) {
             $scope.twitchStreams = response.slice(0, 4);    // Take at most 4 streams because the Twitch player is heavy TODO: Get a way to lazy load players to be able to show more?
             $scope.streamsMin = Math.min($scope.twitchStreams.length, 4);   // How many streams to show per carousel page
-            $log.debug('First found Twitch stream: ', $scope.twitchStreams[0]);
+            if ($scope.twitchStreams.length) {
+              $log.debug('First found Twitch stream:', $scope.twitchStreams[0]);
+              $timeout(function() {
+                $scope.$broadcast('streamsFound');
+              });
+            } else {
+              $log.debug('No Twitch streams found');
+            }
           }, function(error) {
               $log.error('Error getting Twitch streams:', error);
           });
+      });
+
+      $scope.$on('streamsFound', function(event) {
+        angular.element('#streams-carousel').slick({
+          slidesToShow: $scope.streamsMin,
+          slidesToScroll: $scope.streamsMin,
+          infinite: false,
+          arrows: true
+        });
       });
 
         /* *****************************************
@@ -260,7 +265,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
         $scope.$on('gameFound', function() {
             Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (reviews) {
                 $scope.reviews = reviews;
-                console.log('found review ', $scope.reviews);
+                $log.debug('Found', $scope.reviews.length, 'reviews');
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
                         var gameScore = response;
