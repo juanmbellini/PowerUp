@@ -654,14 +654,12 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/" + PICTURE_END_POINT)
     @Produces("text/html")
     public Response deleteProfilePicture() {
-        long userId = sessionService.getCurrentUserId();
-        if (userId == -1) {
-            LOG.error("Couldn't get current user on profile picture DELETE");
-            return Response.serverError().build();
-        }
+        final long userId = Optional.ofNullable(sessionService.getCurrentUser())
+                .map(User::getId)
+                .orElseThrow(UnauthenticatedException::new);
         userService.removeProfilePicture(userId, userId);   //The current user may only remove their own profile picture
-        LOG.info("Deleted profile picture for {}", sessionService.getCurrentUsername());
-        return Response.ok().build();
+
+        return Response.noContent().build();
     }
 
 
