@@ -187,18 +187,27 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         // Related Games
         $scope.relatedGames = [];
+        $scope.loadingRelated = true;
         Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(relatedGames) {
             $scope.relatedGames = relatedGames;
             $scope.relatedMin = Math.min($scope.relatedGames.length, 5);
-        }, function (response) {
-            console.log('Error with status code', response.status); // TODO handle error
-        });
-        $scope.$on('relatedRendered', function(event) {
-            angular.element('#related-carousel').slick({
-                infinite: false,
-                arrows: true
+            $log.debug('Found', $scope.relatedGames.length, 'games');
+            $timeout(function () {
+              $scope.$broadcast('relatedReady');
             });
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+        }, function (response) {
+            console.log("Couldn't load related games:", response);
+            $scope.loadingRelated = false;
+        });
+
+        $scope.$on('relatedReady', function(event) {
+          $scope.loadingRelated = false;
+          angular.element('#related-carousel').slick({
+            slidesToShow: $scope.relatedMin,
+            slidesToScroll: $scope.relatedMin,
+            infinite: false,
+            arrows: true
+          });
         });
 
         // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})

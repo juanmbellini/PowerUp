@@ -277,17 +277,49 @@
                 <!--END REVIEWS-->
 
                 <!--RELATED GAMES-->
-                <div ng-if="relatedGames.length > 0" class="row">
-                    <div class="row"><div class="col s12 divider"/></div>
-                    <h5 class="center">Related Games</h5>
-                    <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
-                        <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
-                            <a ng-href="#game?id={{game.id}}">
-                                <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
-                            </a>
-                            <h5 class="center slide-text">
-                                <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
-                            </h5>
+                <div class="row container">
+                    <div class="col offset-s2 s10 center">
+                        <div ng-show="loadingRecommended">
+                            <h5>Getting game recommendations for you...</h5>
+                            <loading-circle></loading-circle>
+                        </div>
+                        <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
+                            <h5>Recommended games for you</h5>
+                            <div class="slick-carousel" id="recommended-carousel">
+                                <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
+                                    <a ng-href="#game?id={{game.id}}">
+                                        <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
+                                    </a>
+                                    <h5 class="center slide-text">
+                                        <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row" ng-show="loadingRelated || relatedGames.length > 0">
+                    <div class="col s12 divider"></div>
+                </div>
+                <div ng-show="loadingRelated" class="center">
+                    <h5>Getting related games...</h5>
+                    <loading-circle></loading-circle>
+                </div>
+                <div ng-show="relatedGames.length > 0">
+                    <div ng-show="relatedGames.length > 0" class="center">
+                        <h5>Related Games</h5>
+                        <div class="slick-carousel" id="related-carousel">
+                            <div class="slide-container" ng-repeat="game in relatedGames">
+                                <a ng-href="#game?id={{game.id}}">
+                                    <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
+                                </a>
+                                <h5 class="center slide-text">
+                                    <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -300,18 +332,18 @@
 
 
 <script type="text/javascript">
-    require(['slick-carousel'], function() {
-        //TODO consider only doing this if there are picture or videos or relatedGames
-        $(function() {
-            $('.slick-carousel').slick({
-                infinite: false,
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-        });
-    });
+    // require(['slick-carousel'], function() {
+    //     //TODO consider only doing this if there are picture or videos or relatedGames
+    //     $(function() {
+    //         $('.slick-carousel').slick({
+    //             infinite: false,
+    //             slidesToShow: 4,
+    //             slidesToScroll: 4,
+    //             arrows: true,
+    //             lazyload: 'ondemand'
+    //         });
+    //     });
+    // });
 </script>
 
 <!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
