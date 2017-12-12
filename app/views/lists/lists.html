@@ -3,7 +3,7 @@
         <h5>Fetching lists...</h5>
         <loading-circle></loading-circle>
     </div>
-    <div class="row" ng-if="ready">
+    <div class="row" ng-show="ready">
         <div class="col s1"></div> <!-- TODO borrar esto y reparar offset -->
         <div class="col s2">
             <form name="shelfForm" class="css-form"  ng-submit="submitSearch()" novalidate>
@@ -11,7 +11,7 @@
                 <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
                     <input   ng-click="toggleSelectionPlayStatus(playStatus)" type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"  ng-checked="selectedPlayStatuses.indexOf(playStatus) > -1"/>
                     <!--{{((containsPlayStatusesFilter(playStatus))? 'checked' : '')}} TODO droche-->
-                    <label class="wrap-text" for="{{playStatus}}">{{playStatus}}</label>
+                    <label class="wrap-text" for="{{playStatus}}">{{namesOfStatuses[playStatus]}}</label>
                 </p>
                 <h5>Filter by Shelf</h5>
                 <p ng-repeat="shelf in shelves" class="checkbox-list">
@@ -85,7 +85,7 @@
                                     <p class="title wrap-text"><a ng-href="#game?id={{item.game.id}}">{{item.game.name}}</a></p>
                                 </div>
                                 <div class="col s1 center">
-                                    <p style="margin-top: 33px;"><b>{{item.status || 'No Status'}}</b></p>
+                                    <p style="margin-top: 33px;"><b>{{namesOfStatuses[item.status] ||'No Status'}}</b></p>
                                 </div>
                                 <div class="col s2 center">
                                     <p class=wrap-text style="margin-top: 33px;"><b>
@@ -113,7 +113,8 @@
                                 </div>
                                 <div class="col s1">
                                     <div class="secondary-content">
-                                        <!--Nothing to see here-->
+                                        <a ng-if="isUserLoggedOwner" ng-href="#write-review?id={{item.game.id}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+                                        <a ng-if="isUserLoggedOwner" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(item.game)"><i class="material-icons right">delete</i></a>
                                     </div>
                                 </div>
                             </li>

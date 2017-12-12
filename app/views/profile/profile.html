@@ -1,11 +1,11 @@
 <main class="section container">
-    <div ng-if="requestedUser === null" class="center">
+    <div ng-show="requestedUser === null" class="center">
         <h5>Fetching profile...</h5>
         <loading-circle></loading-circle>
     </div>
-    <div ng-if="requestedUser !== null">
+    <div ng-show="requestedUser !== null">
         <h1 class="center orange-text">{{username}}'s Profile</h1>
-        <div class="row">
+        <div class="row" style="margin-bottom: 0">
             <div class="col s4">
                 <img ng-if="requestedUser" ng-src="{{profile.picture.temp || profile.picture.data || profile.picture.url}}" style="max-width: 100%; height:auto;" ng-style="{opacity: pictureUploaded ? 1 : 0.5}"/>
                 <div ng-if="canChangePicture()">
@@ -35,13 +35,10 @@
                 <br />
                 <button ng-if="isCurrentUser(requestedUser)" class="btn waves-effect waves-light" ng-click="changePassword()">Change Password</button>
                 <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisabled" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
-            <br />
-                <h5>Profile Stats</h5>
-                <p>Followers: <b>{{requestedUser.social.followersCount}}</b></p>
-                <p>Following: <b>{{requestedUser.social.followingCount}}</b></p>
+                <br />
                 <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list?id={{requestedUser.id}}">game list</a></p>
             </div>
-            <div class="col s8">
+            <div class="col s5">
                 <h4 class="center" ng-if="profile.top10.length > 0">Top 10 games</h4>
                 <p class="center" ng-if="profile.top10.length === 0">
                     No scored games. <span ng-if="isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
@@ -82,6 +79,33 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="col s3">
+                <h5>Profile Stats</h5>
+                <p>Followers: <b>{{requestedUser.social.followersCount}}</b></p>
+                <span ng-repeat="follower in followers" title="{{follower.username}}">
+                    <a ng-href="#profile?username={{follower.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{follower.id}}/picture" alt="{{follower.username}}" class="circle">
+                    </a>
+                </span>
+                <p>Following: <b>{{requestedUser.social.followingCount}}</b></p>
+                <span ng-repeat="followed in following" title="{{followed.username}}">
+                    <a ng-href="#profile?username={{followed.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{followed.id}}/picture" alt="{{followed.username}}" class="circle">
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col 12">
+                <span>
+                    <span ng-if="shelves.length==0">No Shelves</span>
+                    <span ng-if="shelves.length==1"><b>1</b> Shelf:</span>
+                    <span ng-if="shelves.length>1"><b>{{shelves.length}}</b> Shelves:</span>
+                </span>
+                <span ng-repeat="shelf in shelves">
+                    <a ng-href="#list?id={{shelf.userId}}&shelf={{shelf.name}}"> {{shelf.name}}
+                    </a>
+                    <span ng-if="!$last">, </span>
+                </span>
             </div>
         </div>
     </div>

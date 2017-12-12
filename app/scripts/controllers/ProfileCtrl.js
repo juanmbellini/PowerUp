@@ -49,7 +49,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             });
             $scope.profile.picture.url = getProfilePictureUrl(user);
             $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url); // FIXME get this from user JSON
-            getTopGames();
+            getFollowerData();
+            getShelvesData();
         }, function(response) {
             $log.error('Error retrieving user: ', response); // TODO handle error
             $location.search({});
@@ -180,9 +181,36 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         };
 
         /* *************************************************************************************************************
+               Shelves
+        * ************************************************************************************************************/
+        $scope.shelves = [];
+        var getShelvesData = function() {
+            var userId = $scope.requestedUser.id;
+            Restangular.one('users', userId).all('shelves').getList({}).then(function (response) {
+                $scope.shelves = response.data;
+                // TODO get the number of elements in each shelf. users/:userId/shelves/:shelfName/games Or get it from back.
+            });
+        };
+
+
+
+
+        /* *************************************************************************************************************
                 FOLLOWS
          * ************************************************************************************************************/
         $scope.followDisabled = false;
+        $scope.followers = [];
+        $scope.following = [];
+
+        var getFollowerData = function() {
+            var userId = $scope.requestedUser.id;
+            Restangular.one('users', userId).all('followers').getList({}).then(function (response) {
+                $scope.followers = response.data;
+            });
+            Restangular.one('users', userId).all('following').getList({}).then(function (response) {
+                $scope.following = response.data;
+            });
+        };
 
         $scope.canFollow = function () {
             return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
@@ -215,6 +243,10 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             }
         };
 
+
+
+
+
         /* ******************************************
          *              PRIVATE FUNCTIONS
          * *****************************************/
@@ -226,6 +258,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         function canDeleteProfilePicture(profilePictureUrl) {
             return profilePictureUrl !== DEFAULT_PROFILE_PICTURE_URL;
         }
+
 
 
         function getTopGames() {

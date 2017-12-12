@@ -26,9 +26,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 $location.search({});
                 $location.path('');
             });
-        // } else if ($scope.username) {
-            // userURL =  Restangular.all('users').one(username,$scope.username);
-            // TODO username. Paja porque todo lo otro depende de la userURL que no podria armar. tendria que hacer que todo espere
         } else if (AuthService.isLoggedIn()) {
             $location.search({id: $scope.currentUser.id});
             $location.path('list');
@@ -42,6 +39,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         $scope.checkUserLoggedOwner = function () {
             $scope.isUserLoggedOwner = $scope.user && $scope.currentUser && $scope.user.username === $scope.currentUser.username; // AuthService.isCurrentUser($scope.user);
         };
+
 
         // Games
         $scope.games = [];
@@ -173,6 +171,64 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     swal('Sever error', 'Sorry, please try again', 'error');
                 });
             });
+        };
+
+        /**
+         *  function that deletes the game from your list. Removing everything you did.
+         */
+        $scope.deleteGame = function(item) {
+            swal({
+                    title: 'Are you sure?',
+                    text: 'You are about to permanently delete your score, reviews and play status from \"' + item.game.name + '\" and remove it from all your shelves!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Delete',
+                    closeOnConfirm: false
+                },
+                function (inputValue) {
+                    swal.disableButtons();
+                    var game = item.game;
+                    var shelves = item.shelvesHolding;
+                    $scope.games = $scope.games.filter(function(gameToFilter) {
+                        return gameToFilter.game.id !== game.id;
+                    });
+                    // delete score:
+                    Restangular.one('users', $scope.userId).one('game-scores',game.id).remove().then(function (response) {
+                        $log.debug('removed score from game', response);
+                    }, function (response) {
+                        $log.error('Could not remove score from game', response);
+                    });
+                    // delete status
+                    Restangular.one('users', $scope.userId).one('play-status',game.id).remove().then(function (response) {
+                        $log.debug('removed play status from game', response);
+                    }, function (response) {
+                        $log.error('Could not remove play status from game', response);
+                    });
+                    // delete from shelves:
+                    angular.forEach(shelves,function(shelf) {
+                        Restangular.one('users',$scope.userId).one('shelves',shelf.name).one('games',game.id).remove().then(function () {
+                        }, function (response) {
+                            $log.error('could not remove game from shelf', response);
+
+                        });
+                    });
+                    // delete review
+                    Restangular.all('reviews').getList({gameId: game.id, userId: $scope.userId}).then(function (response) {
+                        var reviews = response.data;
+                        if (reviews.length > 0) {
+                            reviews[0].remove().then(function(data) {
+                                $log.debug('Success: ', data);
+                            },
+                            function(error) {
+                                $log.error('Error: ', error);
+                            });
+                        }
+                    }, function() {
+                        console.log('There was an error getting reviews');
+                    });
+                    swal('Success', 'Game" ' + item.game.name + ' " successfully deleted from your list!', 'success');
+                });
         };
 
         $scope.editShelf = function(shelf) {
