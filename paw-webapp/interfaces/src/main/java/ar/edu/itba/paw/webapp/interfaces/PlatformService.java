@@ -4,20 +4,12 @@ import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Platform;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Service layer for game platforms. Exposes functionality available to platforms.
  */
 public interface PlatformService {
-
-    /**
-     * Finds all platforms.
-     *
-     * @return An <b>unmodifiable</b> set containing all platforms.
-     */
-    List<Platform> all();
 
     /**
      * Finds a platform by ID.

@@ -1,13 +1,11 @@
 package ar.edu.itba.paw.webapp.dto;
 
-import ar.edu.itba.paw.webapp.model.FilterCategory;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -32,7 +30,6 @@ public class FilterValueDto {
     }
 
 
-
     public String getValue() {
         return value;
     }
@@ -43,8 +40,7 @@ public class FilterValueDto {
      *
      * @return A list of {@link FilterValueDto}.
      */
-    public static List<FilterValueDto> createList(List<String> values) {
+    public static List<FilterValueDto> createList(Collection<String> values) {
         return values.stream().map(FilterValueDto::new).collect(Collectors.toList());
     }
-
 }

@@ -2,9 +2,9 @@ package ar.edu.itba.paw.webapp.interfaces;
 
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.Platform;
+import ar.edu.itba.paw.webapp.utilities.Page;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,9 +13,13 @@ import java.util.Set;
 public interface PlatformDao {
 
     /**
-     * @see PlatformService#all()
+     * Retrieves a paginated view of the stored platforms.
+     *
+     * @param pageNumber The number of the {@link Page}.
+     * @param pageSize   The size of the {@link Page}.
+     * @return A Paginated view of the list of platforms.
      */
-    List<Platform> all();
+    Page<Platform> paginated(int pageNumber, int pageSize);
 
     /**
      * @see PlatformService#findById(long)
