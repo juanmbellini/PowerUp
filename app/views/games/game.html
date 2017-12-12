@@ -276,30 +276,6 @@
                 <!--END REVIEWS-->
 
                 <!--RELATED GAMES-->
-                <div class="row container">
-                    <div class="col offset-s2 s10 center">
-                        <div ng-show="loadingRecommended">
-                            <h5>Getting game recommendations for you...</h5>
-                            <loading-circle></loading-circle>
-                        </div>
-                        <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
-                            <h5>Recommended games for you</h5>
-                            <div class="slick-carousel" id="recommended-carousel">
-                                <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
-                                    <a ng-href="#game?id={{game.id}}">
-                                        <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
-                                    </a>
-                                    <h5 class="center slide-text">
-                                        <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
                 <div class="row" ng-show="loadingRelated || relatedGames.length > 0">
                     <div class="col s12 divider"></div>
                 </div>
