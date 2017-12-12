@@ -1,10 +1,10 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService'], function(powerUp) {
+define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars', 'AuthService'], function(powerUp) {
 
     powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, $timeout, $anchorScroll) {
 
         $anchorScroll();
-        Restangular.setFullResponse(false);
+        Restangular.setFullResponse(true);
         $scope.gameId = $location.search().id;
         $scope.game = null;
 
@@ -13,7 +13,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
         $scope.canWriteReview = false;
 
         $scope.findGame = function(gameId) {
-            Restangular.one('games', gameId).get().then(function(game) {
+            Restangular.one('games', gameId).get().then(function(response) {
+                var game = response.data;
                 $scope.game = game;
                 $scope.gameId = game.id;
                 console.log('Game: ', game);
@@ -42,7 +43,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
             // Play Status
             $scope.playStatusOptions = [];
-            Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
+            Restangular.all('users').all('play-statuses').getList({}).then(function (response) {
+                var playStatuses = response.data;
                 $scope.playStatusOptions = playStatuses;
                 $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
                     return playStatusToFilter !== noPlayStatusString;
@@ -51,7 +53,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             }, function (response) {
                 $log.error('Could not get playStatuses', response);
             });
-            Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (playStatus) {
+            Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (response) {
+                var playStatus = response.data;
                 if (playStatus.length > 0) {
                     $scope.gamePlayStatus = playStatus[0].status;
                 } else {
@@ -64,7 +67,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $scope.loadingStatus = true;
                 if ($scope.gamePlayStatus === noPlayStatusString) {
                     Restangular.one('users', userId).one('play-status',$scope.gameId).remove().then(function (response) {
-                        $log.info('removed play status from game', response);
+                        $log.info('removed play status from game', response.data);
                         $scope.updatedStatus = true;
                         $scope.loadingStatus = false;
                     }, function (response) {
@@ -73,7 +76,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                     });
                 } else {
                     Restangular.one('users', userId).all('play-status').post({gameId: $scope.gameId, status: $scope.gamePlayStatus}).then(function (response) {
-                        $log.info('added play status to game', response);
+                        $log.info('added play status to game', response.data);
                         $scope.updatedStatus = true;
                         $scope.loadingStatus = false;
                     }, function (response) {
@@ -90,7 +93,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $scope.rangeScore.push(i);
             }
             $scope.gameScore = null;
-            Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (gameScore) {
+            Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                var gameScore = response;
                 if (gameScore.length > 0) {
                     $scope.gameScore = gameScore[0].score;
                 } else {
@@ -103,7 +107,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $scope.loadingScore = true;
                 if ($scope.gameScore === 'delete') {
                     Restangular.one('users', userId).one('game-scores',$scope.gameId).remove().then(function (response) {
-                        $log.info('removed score from game', response);
+                        $log.info('removed score from game', response.data);
                         $scope.updatedScore = true;
                         $scope.loadingScore = false;
                     }, function (response) {
@@ -112,7 +116,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                     });
                 } else {
                     Restangular.one('users', userId).all('game-scores').post({gameId: $scope.gameId, score: $scope.gameScore}).then(function (response) {
-                        $log.info('added score to game', response);
+                        $log.info('added score to game', response.data);
                         $scope.updatedScore = true;
                         $scope.loadingScore = false;
                     }, function (response) {
@@ -126,13 +130,15 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             $scope.shelves = [];
             $scope.shelvesWithGame = []; // name array
             $scope.shelvesWithGameDirty = []; // name array
-            Restangular.one('users',userId).all('shelves').getList().then(function (shelves) {
+            Restangular.one('users',userId).all('shelves').getList().then(function (response) {
+                var shelves = response.data;
                 $scope.shelves = shelves;
                 $timeout(function () {
                     $('select').material_select();
                 },30);
             });
-            Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelvesWithGame) {
+            Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                var shelvesWithGame = response.data;
                 $scope.shelvesWithGame = [];
                 angular.forEach(shelvesWithGame, function (shelf) {
                     $scope.shelvesWithGame.push(shelf.name);
@@ -175,7 +181,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         // Related Games
         $scope.relatedGames = [];
-        Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(relatedGames) {
+        Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(response) {
+            var relatedGames = response.data;
             $scope.relatedGames = relatedGames;
             $scope.relatedMin = Math.min($scope.relatedGames.length, 5);
         }, function (response) {
@@ -227,7 +234,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
       $scope.twitchStreams = null;
       $scope.$on('gameFound', function() {
           $scope.game.all('twitch').getList({}).then(function(response) {
-            $scope.twitchStreams = response.slice(0, 4);    // Take at most 4 streams because the Twitch player is heavy TODO: Get a way to lazy load players to be able to show more?
+            $scope.twitchStreams = response.data.slice(0, 4);    // Take at most 4 streams because the Twitch player is heavy TODO: Get a way to lazy load players to be able to show more?
             $scope.streamsMin = Math.min($scope.twitchStreams.length, 4);   // How many streams to show per carousel page
             $log.debug('First found Twitch stream: ', $scope.twitchStreams[0]);
           }, function(error) {
@@ -239,22 +246,34 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
          *                 REVIEWS
          * ****************************************/
         $scope.reviews = null;
+        $scope.numReviews = 0;
         $scope.$on('gameFound', function() {
-            Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (reviews) {
+            Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (response) {
+                var reviews = response.data;
+                $scope.numReviews = parseInt(response.headers()['x-overall-amount-of-elements'], 10),
                 $scope.reviews = reviews;
                 console.log('found review ', $scope.reviews);
+                // Add scores
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
-                        var gameScore = response;
+                        var gameScore = response.data;
                         if (gameScore.length > 0) {
                             reviewArray[index].overallScore = gameScore[0].score;
                         }
                     });
                 });
+                // Add shelves
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
-                        var shelvesWithGame = response;
+                        var shelvesWithGame = response.data;
                         reviewArray[index].shelves = shelvesWithGame;
+                    });
+                });
+                // Add users
+                angular.forEach(reviews, function (reviewRef, index, reviewArray) {
+                    Restangular.one('users').one('username', reviewRef.username).get().then(function(response) {
+                        var user = response.data;
+                        reviewArray[index].user = user;
                     });
                 });
                 $scope.checkCanWriteReview();
@@ -268,7 +287,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $scope.canWriteReview = false;
             } else {
                 var currentUserUsername = AuthService.getCurrentUser().username;
-                Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
+                Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
+                    var reviews = response.data;
                     if (reviews.length > 0) {
                         $scope.canWriteReview = false;
                     } else {
@@ -302,7 +322,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         $scope.deleteReview = function(review) {
             review.remove().then(function(data) {
-                $log.info('Success: ', data);
+                $log.info('Success: ', data.data);
                 $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
                     return reviewToFilter.id !== review.id;
                 });
@@ -312,6 +332,43 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             },function () {
                     $scope.checkCanWriteReview();
             });
+        };
+
+
+        /* *************************************************************************************************************
+              FOLLOWS
+       * ************************************************************************************************************/
+        $scope.followDisabled = false;
+
+        $scope.canFollow = function (user) {
+            return user && AuthService.isLoggedIn() && !AuthService.isCurrentUser(user);
+        };
+
+        $scope.updateFollow = function (user) {
+            if ($scope.followDisabled) {
+                return;
+            }
+            $scope.followDisabled = true;
+
+            if (!user.social.followedByCurrentUser) {
+                // Follow
+                Restangular.one('users', user.id).one('followers').put().then(function () {
+                    $scope.followDisabled = false;
+                    user.social.followedByCurrentUser = true;
+                    user.social.followersCount++;
+                }, function () {
+                    $scope.followDisabled = false;
+                });
+            } else {
+                // Unfollow
+                Restangular.one('users',user.id).one('followers').remove().then(function () {
+                    $scope.followDisabled = false;
+                    user.social.followedByCurrentUser = false;
+                    user.social.followersCount--;
+                }, function () {
+                    $scope.followDisabled = false;
+                });
+            }
         };
 
 
