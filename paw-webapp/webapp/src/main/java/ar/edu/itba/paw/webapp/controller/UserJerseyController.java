@@ -523,19 +523,18 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Path("/{id : \\d+}/" + PICTURE_END_POINT)
     @Produces("image/*")
     public Response getProfilePicture(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long id) {
-        final UserWithFollowCountsWrapper wrapper = userService.findById(id);
-        if (wrapper == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        final User user = wrapper.getUser();
-        if (user.hasProfilePicture()) {
-            InputStream pictureStream = new BufferedInputStream(new ByteArrayInputStream(user.getProfilePicture()));
-            String mimeType = user.getProfilePictureMimeType();
-            return Response.ok(pictureStream, mimeType).build();
-        } else {
-            //Serve default profile picture
-            return Response.temporaryRedirect(URI.create(Game.DEFAULT_COVER_PICTURE_URL)).build();
-        }
+        return Optional.ofNullable(userService.findById(id))
+                .map(UserWithFollowCountsWrapper::getUser)
+                .filter(User::hasProfilePicture)
+                .map(user -> {
+                    final InputStream byteArrayStream = new ByteArrayInputStream(user.getProfilePicture());
+                    final InputStream imageStream = new BufferedInputStream(byteArrayStream);
+                    final String mimeType = user.getProfilePictureMimeType();
+
+                    return Response.ok(imageStream, mimeType);
+                })
+                .orElse(Response.status(Response.Status.NOT_FOUND))
+                .build();
     }
 
     @OPTIONS
