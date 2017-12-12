@@ -34,11 +34,11 @@ public class NumericConstants {
 
     public final static int THREAD_BODY_MIN_LENGTH = 0;
 
-    public final static int REVIEW_BODY_MIN_LENGTH = 5;
+    public final static int REVIEW_BODY_MIN_LENGTH = 1;
 
     public final static int TITLE_MIN_LENGTH = 5;
 
-    public final static int NAME_MIN_LENGTH = 5;
+    public final static int NAME_MIN_LENGTH = 1;
 
     public final static int MIN_SCORE = 0;
 
