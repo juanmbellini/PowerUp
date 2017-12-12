@@ -414,7 +414,9 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      * @return The created {@link UserWithFollowCountsWrapper}.
      */
     private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
-
+        if (retrievedUser == null) {
+            return null;
+        }
         return getRetrieveOptional(retrievedUser,
                 Optional.ofNullable(currentUser)
                         .filter(current -> current.getId() != retrievedUser.getId())

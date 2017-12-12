@@ -216,7 +216,7 @@ public class Game {
      * @return The picture URL.
      */
     private static String buildCloudinaryURL(String cloudinaryId) {
-        return String.format(CLOUDINARY_URL_FORMAT, "cover_big", cloudinaryId);
+        return String.format(CLOUDINARY_URL_FORMAT, "screenshot_huge", cloudinaryId);
     }
 
     /**

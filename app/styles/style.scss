@@ -222,12 +222,27 @@ button#submit-search {
   margin-right: 1.25rem;
 }
 
+#pictureForm .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#pictureForm #profile-picture-loading-circle {
+  display: inline-block;
+  vertical-align: top;
+}
+
 .preserve-newlines {
   white-space: pre-line;
 }
 
 .wrap-text {
   word-wrap: break-word;
+}
+
+.picture-follower{
+  height: 50px;
+  width: 50px;
 }
 
 /*#logo-container {*/
@@ -264,3 +279,5 @@ $maxLines: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+

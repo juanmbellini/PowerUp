@@ -25,6 +25,15 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         };
     });
 
+ //   powerUp.config(function($routeProvider, $locationProvider) {
+ //      $routeProvider
+//            .when('/list', {
+//                templateUrl: 'views/lists/lists.html',
+ //               controller: 'controllers/ListsCtrl',
+//                reloadOnSearch: false
+//            });
+//    });
+
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
     powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', 'envService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService, envService) {
         Restangular.setFullResponse(false);
@@ -42,6 +51,18 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         $scope.$on('$viewContentLoaded', function() {
             if ($location.path() !== '/login') {
                 $scope.loginRedirect = $location.url();
+            }
+        });
+
+        // Names of statuses to show
+        $scope.namesOfStatuses = {'plan-to-play': 'Plan to play', 'no-play-status': 'No play status', 'playing': 'Playing', 'played': 'Played'};
+
+
+        $scope.writeReviewRedirect = null;
+        // Update current page URL on page change, except when in login page
+        $scope.$on('$viewContentLoaded', function() {
+            if ($location.path() !== '/write-review') {
+                $scope.writeReviewRedirect = $location.url();
             }
         });
 
@@ -71,7 +92,7 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             $log.debug('Loading filters from local storage');
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
-        } else if (!envService.is('production')) {
+        } else if (envService.is('production')) {
           // FIXME optimize API call so we can use filters in production
           $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
             'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
