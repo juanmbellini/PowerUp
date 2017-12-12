@@ -50,6 +50,8 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     public static final String FEED_END_POINT = "feed";
 
+    public static final String PICTURE_END_POINT = "picture";
+
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService,
                                  MailService mailService, ShelfService shelfService) {
@@ -518,9 +520,9 @@ public class UserJerseyController implements UpdateParamsChecker {
     private static final List<String> SUPPORTED_PICTURE_TYPES = Arrays.asList("image/jpeg", "image/jpg", "image/png", "image/gif");
 
     @GET
-    @Path("/{id}/picture")
+    @Path("/{id : \\d+}/" + PICTURE_END_POINT)
     @Produces("image/*")
-    public Response getProfilePicture(@PathParam("id") final long id) {
+    public Response getProfilePicture(@SuppressWarnings("RSReferenceInspection") @PathParam("id") final long id) {
         final UserWithFollowCountsWrapper wrapper = userService.findById(id);
         if (wrapper == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -537,7 +539,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @OPTIONS
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     public Response pictureOptions() {
         Response.ResponseBuilder result = Response
                 .ok()
@@ -593,7 +595,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @PUT
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response uploadProfilePicture(String base64Input) {
         long userId = sessionService.getCurrentUserId();
@@ -650,7 +652,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     }
 
     @DELETE
-    @Path("/picture")
+    @Path("/" + PICTURE_END_POINT)
     @Produces("text/html")
     public Response deleteProfilePicture() {
         long userId = sessionService.getCurrentUserId();
