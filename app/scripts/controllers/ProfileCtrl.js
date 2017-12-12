@@ -212,7 +212,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
          * @param newPassword   The new password, as input in {@link firstPasswordSwal()}. Must match that.
          */
         function secondPasswordSwal(newPassword) {
-            if(resettingPassword) {
+            if (resettingPassword) {
                 return;
             }
             swal({
