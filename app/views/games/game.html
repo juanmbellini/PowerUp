@@ -1,4 +1,4 @@
-<main>
+<main ng-init="findGame(gameId)">
     <div class="container" >
         <div ng-if="game === null" class="center">
             <h5>Fetching game...</h5>
@@ -135,10 +135,9 @@
 
                 <div class="row" ng-if="game.videoUrls.length > 0">
                     <h4 class="center">Videos</h4>
-                    <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
+                    <div class="slick-carousel center" id="videos-carousel">
                         <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
-                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true">
-                            </iframe>
+                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true"></iframe>
                         </div>
                     </div>
                 </div>
@@ -150,7 +149,7 @@
                     </div>
                     <div class="row" >
                         <h4 class="center">Screenshots</h4>
-                        <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
+                        <div class="slick-carousel center" id="screenshots-carousel">
                             <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
                                 <div class="valign-wrapper slide-image">
                                     <a ng-href="{{picture}}" ng-attr-data-lightbox="screenshot-{{$index}}">

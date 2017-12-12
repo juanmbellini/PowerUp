@@ -16,11 +16,13 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             Restangular.one('games', gameId).get().then(function(game) {
                 $scope.game = game;
                 $scope.gameId = game.id;
-                console.log('Game: ', game);
+                $log.debug('Found game:', game);
                 if ($scope.gameId > 0 && $scope.game !== null) {
                     $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
                     $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
-                    $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+                    $timeout(function() {
+                      $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+                    });
                 } else {
                     // TODO show 'game not found'
                     $location.search({});
@@ -31,11 +33,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $location.search({});
                 $location.path('');
             });
-
         };
-
-        $scope.findGame($scope.gameId);
-
 
         if (AuthService.isLoggedIn()) {
             var userId = AuthService.getCurrentUser().id;
@@ -47,7 +45,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
                     return playStatusToFilter !== noPlayStatusString;
                 });
-
             }, function (response) {
                 $log.error('Could not get playStatuses', response);
             });
@@ -212,27 +209,27 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
 
-        /* *******************************
-         * Event receivers for ng-repeats, see http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
-         * ******************************/
-        // (Re-)initialize Slick for game pictures
-        $scope.$on('picturesRendered', function(event) {
-            angular.element('#screenshots-carousel').slick({
-                infinite: false,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-            require(['lightbox2']);
+        $scope.$on('gameFound', function(event) {
+          // Initialize carousels
+          angular.element('#screenshots-carousel').slick({
+            slidesToShow: $scope.picturesMin,
+            slidesToScroll: $scope.picturesMin,
+            infinite: false,
+            arrows: true,
+            lazyload: 'ondemand'
+          });
+
+          angular.element('#videos-carousel').slick({
+            slidesToShow: $scope.videosMin,
+            slidesToScroll: $scope.videosMin,
+            infinite: false,
+            arrows: true,
+            lazyload: 'ondemand'
+          });
         });
-        // (Re-)initialize Slick for game videos
-        $scope.$on('videosRendered', function(event) {
-            angular.element('#videos-carousel').slick({
-                infinite: false,
-                arrows: true
-            });
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
-        });
+
       // (Re-)initialize Slick for game streams
+      // TODO broadcast this
       $scope.$on('streamsRendered', function(event) {
         angular.element('#streams-carousel').slick({
           infinite: false,
