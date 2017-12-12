@@ -8,10 +8,6 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
         function initialize(initialUserId) {
             var feedProviders = [];
             var userId = initialUserId;
-            // var threadsFeedPaginator = PaginationService.initialize(Restangular.one('users',userId));
-            // var reviewsFeedPaginator = PaginationService.initialize(Restangular.one('users',userId));
-            // var statusFeedPaginator = PaginationService.initialize(Restangular.one('users',userId));
-            // TODO usar los verdadeors paginators
 
             // threads
             var threadFeedProvider = {};

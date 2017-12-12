@@ -72,13 +72,15 @@ public interface GameService {
     boolean existsWithTitle(String title);
 
     /**
-     * Returns a collection with all the filters that can be applied to a specified {@link FilterCategory}.
+     * Returns a {@link Page} with filters that can be applied to a specified {@link FilterCategory}.
      *
+     * @param pageNumber     The number of the {@link Page}.
+     * @param pageSize       The size of the {@link Page}.
      * @param filterCategory The filter category.
      * @return A collection of strings in which each element is a value that can be applied
      * as a filter of the given category
      */
-    List<String> getFiltersByType(FilterCategory filterCategory);
+    Page<String> getFiltersByType(FilterCategory filterCategory, int pageNumber, int pageSize);
 
     /**
      * @return A random game id from the game database.

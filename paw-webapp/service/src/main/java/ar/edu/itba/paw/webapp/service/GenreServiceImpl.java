@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 
@@ -21,11 +20,6 @@ public class GenreServiceImpl implements GenreService {
     @Autowired
     public GenreServiceImpl(GenreDao genreDao) {
         this.genreDao = genreDao;
-    }
-
-    @Override
-    public List<Genre> all() {
-        return genreDao.all();
     }
 
     @Override

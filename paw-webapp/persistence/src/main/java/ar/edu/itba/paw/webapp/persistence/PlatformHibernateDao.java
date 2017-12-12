@@ -1,9 +1,11 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.PlatformDao;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.model.Game;
 import ar.edu.itba.paw.webapp.model.GamePlatformReleaseDate;
 import ar.edu.itba.paw.webapp.model.Platform;
+import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,7 +15,6 @@ import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,10 +25,11 @@ public class PlatformHibernateDao implements PlatformDao {
     @PersistenceContext
     private EntityManager em;
 
-
     @Override
-    public List<Platform> all() {
-        return DaoHelper.findAll(em, Platform.class);
+    public Page<Platform> paginated(int pageNumber, int pageSize) {
+        return DaoHelper.findPageWithoutConditions(em, Platform.class,
+                "From Platform as platform", "platform", "id",
+                pageNumber, pageSize, "id", SortDirection.ASC, true);
     }
 
     @Override

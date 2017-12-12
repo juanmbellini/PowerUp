@@ -36,6 +36,10 @@ public class UserDto extends EntityDto {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @XmlElement
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String profilePictureUrl;
+
 
     public UserDto() {
         // For Jax-RS
@@ -54,6 +58,15 @@ public class UserDto extends EntityDto {
                 .path(UserJerseyController.END_POINT)
                 .path(Long.toString(user.getId()))
                 .build().toString();
+        if (user.hasProfilePicture()) {
+            this.profilePictureUrl = baseUri.clone()
+                    .path(UserJerseyController.END_POINT)
+                    .path(Long.toString(user.getId()))
+                    .path(UserJerseyController.PICTURE_END_POINT)
+                    .build().toString();
+        } else {
+            this.profilePictureUrl = null;
+        }
     }
 
 
@@ -76,6 +89,10 @@ public class UserDto extends EntityDto {
 
     public String getUserUrl() {
         return userUrl;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
     }
 
     /**
@@ -142,7 +159,7 @@ public class UserDto extends EntityDto {
                     .path(UserJerseyController.FOLLOWERS_END_POINT)
                     .build().toString();
             this.followedByCurrentUser = wrapper.getFollowedByCurrentUser();
-            this.followingCurrentUser= wrapper.getFollowingCurrentUser();
+            this.followingCurrentUser = wrapper.getFollowingCurrentUser();
         }
 
         public Long getFollowingCount() {

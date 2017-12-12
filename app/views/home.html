@@ -90,7 +90,7 @@
                             </form>
                             <p ng-if="loadingFollowFriend">Loading...</p>
                             <p ng-if="!loadingFollowFriend && followFriendError" class="formError">{{followFriendErrorMsj}}</p>
-                            <p ng-if="!loadingFollowFriend && !followFriendError && followFriendSend">User added!</p>
+                            <p ng-if="!loadingFollowFriend && !followFriendError && followFriendSend" ng-init="reloadFeed()">User added!</p>
                         </li>
                     </ul>
                 </div>
@@ -102,19 +102,21 @@
                             <div ng-if="feedElement.type === 'review' ">
                                 <div  class="row" style="margin-bottom: 0">
                                     <div class="col s10">
-                                        <img ng-src="{{apiLocation}}/users/{{feedElement.data.userId}}/picture"
-                                             alt="{{feedElement.data.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">
+                                            <img ng-src="{{apiLocation}}/users/{{feedElement.data.userId}}/picture" alt="{{feedElement.data.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                    <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> <span class="mediumText">reviewed</span>
-                                    <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
-                                </span>
-                                        <p class="wrap-text smallText">
-                                    <span>
-                                        <a ng-href="#reviews?userId={{feedElement.data.userId}}">Other
-                                        reviews by {{feedElement.data.username}}</a> | <a ng-href="#reviews?gameId={{feedElement.data.gameId}}">Other
-                                        {{feedElement.data.gameName}} reviews</a>
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
+                                        <span class="mediumText">reviewed</span>
+                                        <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
                                     </span>
-                                        </p>
+                                    <p class="wrap-text smallText">
+                                        <span>
+                                            <a ng-href="#reviews?userId={{feedElement.data.userId}}">Other
+                                            reviews by {{feedElement.data.username}}</a> | <a ng-href="#reviews?gameId={{feedElement.data.gameId}}">Other
+                                            {{feedElement.data.gameName}} reviews</a>
+                                        </span>
+                                    </p>
                                         <p ng-show="feedElement.data.shelves.length > 0" class="wrap-text smallText"> Shelves:
                                             <span ng-repeat="shelf in feedElement.data.shelves"><a ng-href="#list?id={{feedElement.data.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
                                         </p>
@@ -158,13 +160,16 @@
                                 </div>
                             </div>
                             <div ng-if="feedElement.type === 'thread'">
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 0">
                                     <div class="col s9">
-                                        <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.creator.username}}">
+                                            <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                    <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a> <span class="mediumText">started the thread </span>
-                                    <a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>
-                                </span>
+                                            <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a>
+                                            <span class="mediumText">started the thread </span>
+                                            <a ng-href="#thread/{{feedElement.data.id}}">{{feedElement.data.title}}</a>
+                                        </span>
                                         <!--<p>Submitted {{feedElement.data.createdAt | date: 'medium'}} by <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a></p>-->
                                     </div>
                                     <div class="col s3">
@@ -194,9 +199,12 @@
                             <div ng-if="feedElement.type === 'status'">
                                 <div class="row">
                                     <div class="col s9">
-                                        <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">
+                                            <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                        </a>
                                         <span class="title wrap-text">
-                                            <a ng-href="#profile?username={{feedElement.data.userId}}">{{feedElement.data.username}}</a> <span class="mediumText">changed </span>
+                                            <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
+                                            <span class="mediumText">changed </span>
                                             <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
                                         </span>
                                     </div>
@@ -210,34 +218,36 @@
                         </li>
                     </ul>
                 </div>
-                <h5 ng-if="!loadingFeed && thereAreMore" class="center"><a href="" ng-click="loadMoreFeed()" class="center">Load More</a></h5>
-                <h5 ng-if="loadingFeed" class="center">Loading...</h5>
+                <div class="center">
+                    <button class="btn" ng-show="thereAreMore" ng-disabled="loadingFeed || !thereAreMore" ng-click="loadMoreFeed()">Load More</button>
+                </div>
+                <div ng-show="loadingFeed" class="center">
+                    <loading-circle></loading-circle>
+                    <h5>Loading more...</h5>
+                </div>
                 <h5 ng-if="!loadingFeed && !thereAreMore && feed.length > 0" class="center">Congrats! You've reached the end!</h5>
                 <h5 ng-if="!loadingFeed && !thereAreMore && feed.length <= 0" class="center">This is your feed. Follow users to be updated!</h5>
             </div>
         </div>
 
         <div class="row"><div class="col s12 divider" style="margin-top: 5px;"></div></div>
-        <!--TODO show loading-->
         <!-- Recommended games -->
-        <div class="row">
-            <div class="col s2">
-            </div>
-            <div class="col s10">
-                <div class="container">
-                    <div class="section" style="padding-top: 1px;">
-                        <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
-                            <h5 class="center">Recommended Games for you!</h5>
-                            <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
-                                <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
-                                    <a ng-href="#game?id={{game.id}}">
-                                        <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
-                                    </a>
-                                    <h5 class="center slide-text">
-                                        <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
-                                    </h5>
-                                </div>
-                            </div>
+        <div class="row container">
+            <div class="col offset-s2 s10 center">
+                <div ng-show="loadingRecommended">
+                    <h5>Getting game recommendations for you...</h5>
+                    <loading-circle></loading-circle>
+                </div>
+                <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
+                    <h5>Recommended games for you</h5>
+                    <div class="slick-carousel" id="recommended-carousel">
+                        <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
+                            <a ng-href="#game?id={{game.id}}">
+                                <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
+                            </a>
+                            <h5 class="center slide-text">
+                                <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -245,19 +255,3 @@
         </div>
     </div>
 </main>
-
-
-<script type="text/javascript">
-    require(['slick-carousel'], function() {
-        //TODO consider only doing this if there are recommendedGames
-        $(function() {
-            $('.slick-carousel').slick({
-                infinite: false,
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-        });
-    });
-</script>
