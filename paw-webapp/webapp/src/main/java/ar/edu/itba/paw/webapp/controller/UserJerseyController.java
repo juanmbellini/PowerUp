@@ -20,7 +20,6 @@ import org.apache.tika.parser.ParseContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -52,7 +51,8 @@ public class UserJerseyController implements UpdateParamsChecker {
     public static final String FEED_END_POINT = "feed";
 
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService, MailService mailService, PasswordEncoder passwordEncoder, ShelfService shelfService) {
+    private UserJerseyController(UserService userService, SessionService sessionService,
+                                 MailService mailService, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
@@ -71,7 +71,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     @Context
     private UriInfo uriInfo;
 
-    private Logger LOG = LoggerFactory.getLogger(getClass());
+    private final static Logger LOG = LoggerFactory.getLogger(UserJerseyController.class);
 
 
     // ================ API methods ================
