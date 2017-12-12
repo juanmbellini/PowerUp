@@ -213,10 +213,19 @@
                             <p class="center">No reviews</p>
                         </div>
                         <!--End no reviews-->
+                        <div ng-if="canWriteReview" class="row">
+                            <div class="col s12 center">
+                                <a ng-href="#write-review?id={{game.id}}"
+                                   class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
+                                        class="material-icons right">send</i></a>
+                            </div>
+                        </div>
+                        <div ng-if="hasReview" class="row">
 
+                        </div>
                         <!--Review list-->
                         <div ng-if="reviews !== null && reviews.length > 0">
-                            <h5 class="center">Recent Reviews - <a href="#reviews?gameId={{game.id}}">See All ({{numReviews}})</a></h5>
+                            <h5 class="center">Community Reviews - <a href="#reviews?gameId={{game.id}}">See All ({{numReviews}})</a></h5>
                             <ul class="collection">
                                 <li class="collection-item avatar" ng-repeat="review in reviews">
                                     <div class="row" style="margin-bottom: 10px">
@@ -253,13 +262,7 @@
                             </ul>
                         </div>
                         <!--End review list-->
-                        <div ng-if="canWriteReview" class="row">
-                            <div class="col s12 center">
-                                <a ng-href="#write-review?id={{game.id}}"
-                                   class="center btn waves-effect waves-light offset-s4" style="">Write a Review <i
-                                        class="material-icons right">send</i></a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <!--END REVIEWS-->

@@ -177,6 +177,30 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars
             $scope.isInShelf = function(shelfName) {
                 return $scope.shelvesWithGame.indexOf(shelfName) !== -1;
             };
+
+            //Review
+            Restangular.all('reviews').getList({gameId: $scope.game.id, userId: userId}).then(function (response) {
+                var reviews = response.data;
+                if (reviews.length>0) {
+                    $scope.userReview = reviews[0];
+                    // Add scores
+                    Restangular.one('users', $scope.userReview.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                        var gameScore = response.data;
+                        if (gameScore.length > 0) {
+                            $scope.userReview.overallScore = gameScore[0].score;
+                        }
+                    });
+                    // Add shelves
+                        Restangular.one('users',$scope.userReview.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                            var shelvesWithGame = response.data;
+                            $scope.userReview.shelves = shelvesWithGame;
+                        });
+                    // Add user
+                    $scope.userReview.user = AuthService.getCurrentUser();
+                }
+            }, function() {
+                console.log('There was an error getting reviews');
+            });
         }
 
         // Related Games
