@@ -191,7 +191,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             if (isLoadedShelves) {
                 $timeout(function () {
                     $('select').material_select();
-                },10);
+                });
             } else {
                 isLoadedShelves = true;
             }
@@ -205,7 +205,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             if (isLoadedShelves) {
                 $timeout(function () {
                     $('select').material_select();
-                },10);
+                });
             } else {
                 isLoadedShelves = true;
             }

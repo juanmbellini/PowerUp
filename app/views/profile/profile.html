@@ -5,7 +5,7 @@
     </div>
     <div ng-show="requestedUser !== null">
         <h1 class="center orange-text">{{username}}'s Profile</h1>
-        <div class="row" style="margin-bottom: 0px">
+        <div class="row" style="margin-bottom: 0">
             <div class="col s4">
                 <img ng-if="requestedUser" ng-src="{{profile.picture.temp || profile.picture.data || profile.picture.url}}" style="max-width: 100%; height:auto;" ng-style="{opacity: pictureUploaded ? 1 : 0.5}"/>
                 <div ng-if="canChangePicture()">
@@ -98,8 +98,8 @@
             <div class="col 12">
                 <span>
                     <span ng-if="shelves.length==0">No Shelves</span>
-                    <span ng-if="shelves.length==1"><b>1</b> Shelf :</span>
-                    <span ng-if="shelves.length>1"><b>{{shelves.length}}</b> Shelves :</span>
+                    <span ng-if="shelves.length==1"><b>1</b> Shelf:</span>
+                    <span ng-if="shelves.length>1"><b>{{shelves.length}}</b> Shelves:</span>
                 </span>
                 <span ng-repeat="shelf in shelves">
                     <a ng-href="#list?id={{shelf.userId}}&shelf={{shelf.name}}"> {{shelf.name}}

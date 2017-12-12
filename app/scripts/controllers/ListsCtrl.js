@@ -173,6 +173,9 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             });
         };
 
+        /**
+         *  function that deletes the game from your list. Removing everything you did.
+         */
         $scope.deleteGame = function(item) {
             swal({
                     title: 'Are you sure?',
@@ -184,11 +187,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     closeOnConfirm: false
                 },
                 function (inputValue) {
-                    if (inputValue === false) {
-                        return false;
-                    }
                     swal.disableButtons();
-                    debugger;
                     var game = item.game;
                     var shelves = item.shelvesHolding;
                     $scope.games = $scope.games.filter(function(gameToFilter) {
@@ -196,13 +195,13 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     });
                     // delete score:
                     Restangular.one('users', $scope.userId).one('game-scores',game.id).remove().then(function (response) {
-                        $log.info('removed score from game', response);
+                        $log.debug('removed score from game', response);
                     }, function (response) {
                         $log.error('Could not remove score from game', response);
                     });
                     // delete status
                     Restangular.one('users', $scope.userId).one('play-status',game.id).remove().then(function (response) {
-                        $log.info('removed play status from game', response);
+                        $log.debug('removed play status from game', response);
                     }, function (response) {
                         $log.error('Could not remove play status from game', response);
                     });
@@ -219,7 +218,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                         var reviews = response.data;
                         if (reviews.length > 0) {
                             reviews[0].remove().then(function(data) {
-                                $log.info('Success: ', data);
+                                $log.debug('Success: ', data);
                             },
                             function(error) {
                                 $log.error('Error: ', error);

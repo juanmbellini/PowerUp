@@ -132,7 +132,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 if (isLoadedShelves) {
                     $timeout(function () {
                         $('select').material_select();
-                    },10);
+                    });
                 } else {
                     isLoadedShelves = true;
                 }
@@ -146,7 +146,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 if (isLoadedShelves) {
                     $timeout(function () {
                         $('select').material_select();
-                    },10);
+                    });
                 } else {
                     isLoadedShelves = true;
                 }

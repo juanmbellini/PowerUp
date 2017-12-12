@@ -49,7 +49,6 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             });
             $scope.profile.picture.url = getProfilePictureUrl(user);
             $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url); // FIXME get this from user JSON
-            getTopGames();
             getFollowerData();
             getShelvesData();
         }, function(response) {
