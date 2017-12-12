@@ -178,12 +178,15 @@ public class UserJerseyController implements UpdateParamsChecker {
         return result.build();
     }
 
+
+    // TODO: these must be changed...
+
     @DELETE
     @Path("/{id : \\d+}/password")
     public Response resetPassword(@PathParam("id") final long userId) {
-        String newPassword = userService.generateNewPassword();
-        userService.changePassword(userId, newPassword, userId);
-        mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
+//        String newPassword = userService.generateNewPassword();
+//        userService.changePassword(userId, newPassword, userId);
+//        mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
         return Response.noContent().build();
     }
 

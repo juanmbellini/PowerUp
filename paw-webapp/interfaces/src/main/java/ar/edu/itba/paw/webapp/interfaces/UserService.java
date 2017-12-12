@@ -253,14 +253,6 @@ public interface UserService {
                                                  int pageNumber, int pageSize,
                                                  UserDao.ListGameSortingType sortingType, SortDirection sortDirection);
 
-
-    /**
-     * Returns a new randomly generated password.
-     *
-     * @return The generated password.
-     */
-    String generateNewPassword();
-
     /**
      * Returns a paginated collection of {@link User} being followed by the {@link User} with the given {@code userId}.
      *
@@ -336,10 +328,23 @@ public interface UserService {
      */
     Page<UserGameStatus> getPlayStatusesForFeed(User user, int pageNumber, int pageSize);
 
-//    /**
-//     * Change the user's password with a new randomly generated one.
-//     * @param id The ID of the user whose password to reset.
-//     * @return The generated password.
-//     */
-//    void resetPassword(long id);
+    /**
+     * Performs the actions to start the reset password process
+     * (i.e generates a {@link ResetPasswordToken}, and sends an email with the link to finish the operation
+     * to the {@link User} to which its password is being reset).
+     *
+     * @param userId      The id of the {@link User} to which the password will be reset.
+     * @param urlTemplate A template for the url to be included in the email,
+     *                    holding a parameter for injecting the nonce to it.
+     */
+    void requireResetPassword(long userId, String urlTemplate);
+
+    /**
+     * Finished the process of password reset, according to the given {@code resetPasswordTokenNonce}.
+     *
+     * @param resetPasswordTokenNonce The nonce of the {@link ResetPasswordToken}, in base64url representation.
+     * @param newPassword             The new password for the {@link User}
+     *                                owning the {@link ResetPasswordToken} with the given nonce.
+     */
+    void resetPassword(String resetPasswordTokenNonce, String newPassword);
 }

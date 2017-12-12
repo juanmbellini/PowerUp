@@ -5,7 +5,10 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.validation.*;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValidationHelper;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
@@ -14,9 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,11 +50,13 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final PasswordEncoder passwordEncoder;
 
+    private final ResetPasswordTokenDao resetPasswordTokenDao;
+
 
     @Autowired
     public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
                            UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder, ResetPasswordTokenDao resetPasswordTokenDao) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
@@ -59,6 +65,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         this.commentDao = commentDao;
         this.threadLikeDao = threadLikeDao;
         this.passwordEncoder = passwordEncoder;
+        this.resetPasswordTokenDao = resetPasswordTokenDao;
     }
 
 
@@ -261,19 +268,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         }).build();
     }
 
-
-    /**
-     * Returns a new randomly generated password.
-     * Credits to erickson, a StackOverflow user.
-     *
-     * @return The generated password.
-     */
-    @Override
-    public String generateNewPassword() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(8);
-    }
-
     @Override
     public Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
         final User follower = getUser(userId); // Will throw NoSuchEntityException if not present
@@ -336,6 +330,30 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     @Override
     public Page<UserGameStatus> getPlayStatusesForFeed(User user, int pageNumber, int pageSize) {
         return feedDao.getPlayStatuses(user, pageNumber, pageSize);
+    }
+
+    @Override
+    public void requireResetPassword(long userId, String urlTemplate) {
+        // TODO: create token
+        // TODO: base64url encode the nonce of the token (replace 1234 with the nonce)
+        final String base64UrlNonce = Base64Utils.encodeToUrlSafeString(Long.toString(1234).getBytes());
+        // TODO: generate url to be sent in the email:
+        final String resetPasswordUrl = String.format(urlTemplate, base64UrlNonce);
+        // TODO: Send email
+    }
+
+    @Override
+    public void resetPassword(String resetPasswordTokenNonce, String newPassword) {
+        final String stringNonce = new String(Base64Utils.decodeFromUrlSafeString(resetPasswordTokenNonce),
+                StandardCharsets.UTF_8);
+        final long nonce = Long.valueOf(stringNonce); // TODO: check if this does not throws exception
+        final ResetPasswordToken token = Optional.ofNullable(resetPasswordTokenDao.findByNonce(nonce))
+                .orElseThrow(UnauthorizedException::new);
+        if (Instant.now().isAfter(token.getExpiresAt())) {
+            throw new RuntimeException("Expired"); // TODO: define custom exception? or just Unauthorized?
+        }
+
+        userDao.changePassword(token.getOwner(), newPassword);
     }
 
     // =====================
