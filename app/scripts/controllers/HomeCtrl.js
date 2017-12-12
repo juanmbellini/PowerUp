@@ -1,7 +1,7 @@
 'use strict';
 define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesService'], function (powerUp) {
 
-  powerUp.controller('HomeCtrl', ['$scope', '$location', '$log', '$route', 'searchedTitleService', 'Restangular', 'AuthService', 'FeedService', 'LikesService', function ($scope, $location, $log, $route, searchedTitleService, Restangular, AuthService, FeedService, LikesService) {
+  powerUp.controller('HomeCtrl', ['$scope', '$location', '$log', '$route', '$timeout', 'searchedTitleService', 'Restangular', 'AuthService', 'FeedService', 'LikesService', function ($scope, $location, $log, $route, $timeout, searchedTitleService, Restangular, AuthService, FeedService, LikesService) {
     Restangular.setFullResponse(true);
     $scope.homePageText = 'This is your homepage';
     $scope.gameTitle = '';
@@ -11,23 +11,30 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
       $location.path('search');
     };
 
+    $scope.loadingRecommended = false;
     if (AuthService.isLoggedIn()) {
       $scope.user = AuthService.getCurrentUser();
       Restangular.all('users').one('username', $scope.user.username).get().then(function (response) {
         var user = response.data;
+        $scope.loadingRecommended = true;
         Restangular.one('users', user.id).all('recommended-games').getList({}).then(function (response) {
           $scope.recommendedGames = response.data;
           $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+          $timeout(function () {
+            $scope.$broadcast('recommendedReady');
+          });
         });
       });
     }
 
-    $scope.$on('recommendedRendered', function (event) {
+    $scope.$on('recommendedReady', function (event) {
+      $scope.loadingRecommended = false;
       angular.element('#recommended-carousel').slick({
+        slidesToShow: $scope.recommendedMin,
+        slidesToScroll: $scope.recommendedMin,
         infinite: false,
         arrows: true
       });
-      require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
     });
 
     /* ***********************************************************************
