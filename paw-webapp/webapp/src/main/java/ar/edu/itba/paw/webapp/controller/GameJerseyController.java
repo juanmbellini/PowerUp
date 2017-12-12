@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.FilterValueDto;
 import ar.edu.itba.paw.webapp.dto.GameDto;
 import ar.edu.itba.paw.webapp.dto.TwitchStreamDto;
-import ar.edu.itba.paw.webapp.exceptions.IllegalParameterValueException;
 import ar.edu.itba.paw.webapp.interfaces.GameService;
 import ar.edu.itba.paw.webapp.interfaces.SortDirection;
 import ar.edu.itba.paw.webapp.interfaces.TwitchService;
@@ -132,15 +131,16 @@ public class GameJerseyController {
     @GET
     @Path("/filters/{type}")
     public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory,
-                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber) {
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                     @QueryParam("pageSize") @DefaultValue("500") final int pageSize) {
         // Validate stuff
         final JerseyControllerHelper.ParametersWrapper wrapper = JerseyControllerHelper.getParametersWrapper()
                 .addParameter("type", filterCategory, Objects::isNull)
-                .addParameter("pageNumber", pageNumber, number -> number <= 0);
+                .addParameter("pageNumber", pageNumber, number -> number <= 0)
+                .addParameter("pageSize", pageSize, size -> size <= 0 || size > 500);
         JerseyControllerHelper.checkParameters(wrapper);
 
         // Get page of filters
-        final int pageSize = 500;  // Will return always chunks of 500 elements
         final Page<String> page = gameService.getFiltersByType(filterCategory, pageNumber, pageSize);
 
         // Generate URLs for all pages
