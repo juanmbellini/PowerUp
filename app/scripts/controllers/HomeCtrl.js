@@ -53,7 +53,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'FeedService', 'LikesService'
                     $scope.feed.push(array[index]);
                 });
                 $scope.thereAreMore = feedObj.thereAreMore;
-                $scope.loadingFeed = false;
+                    $scope.loadingFeed = false;
             }
 		});
 

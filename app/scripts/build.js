@@ -56,7 +56,8 @@ require.config({
         'materialize.character_counter': '../../bower_components/materialize/js/character_counter',
         'materialize.picker': '../../bower_components/materialize/js/date_picker/picker',
         'materialize.picker.date': '../../bower_components/materialize/js/date_picker/picker.date',
-        'materialize.chips': '../../bower_components/materialize/js/chips'
+        'materialize.chips': '../../bower_components/materialize/js/chips',
+        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks'
     },
     shim: {
         jquery: {
@@ -145,10 +146,10 @@ require.config({
                 'angular'
             ]
         },
-        'ratingStars': {
-          deps: [
-            'angular'
-          ]
+        ratingStars: {
+            deps: [
+                'angular'
+            ]
         },
         AuthService: {
             deps: [

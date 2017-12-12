@@ -240,6 +240,11 @@ button#submit-search {
   word-wrap: break-word;
 }
 
+.picture-follower{
+  height: 50px;
+  width: 50px;
+}
+
 /*#logo-container {*/
 /*height: 60px;*/
 /*}*/
@@ -274,3 +279,5 @@ $maxLines: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
