@@ -332,10 +332,10 @@ public interface UserService {
      * Performs the actions to start the reset password process
      * (i.e generates a {@link ResetPasswordToken}, and sends an email with the link to finish the operation
      * to the {@link User} to which its password is being reset).
-     *  @param userId      The id of the {@link User} to which the password will be reset.
+     * @param userId      The id of the {@link User} to which the password will be reset.
      * @param urlTemplate A template for the url to be included in the email,
      */
-    String requireResetPassword(long userId, String urlTemplate);
+    void requireResetPassword(long userId, String urlTemplate);
 
     /**
      * Finished the process of password reset, according to the given {@code resetPasswordTokenNonce}.

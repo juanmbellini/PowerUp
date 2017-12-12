@@ -1,4 +1,4 @@
-package ar.edu.itba.paw.webapp.mail;
+package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.interfaces.MailService;
 import ar.edu.itba.paw.webapp.model.User;

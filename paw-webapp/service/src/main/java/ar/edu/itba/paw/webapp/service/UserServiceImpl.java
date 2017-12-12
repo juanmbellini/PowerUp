@@ -333,7 +333,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     }
 
     @Override
-    public String requireResetPassword(long userId, String urlTemplate) {
+    public void requireResetPassword(long userId, String urlTemplate) {
         //remove this
         String url = "";
         // TODO: create token
@@ -342,7 +342,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         // TODO: generate url to be sent in the email:
         final String resetPasswordUrl = String.format(urlTemplate, base64UrlNonce);
         // TODO: Send email
-        return url;
+
     }
 
     @Override
