@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -53,17 +54,15 @@ public class UserJerseyController implements UpdateParamsChecker {
     public static final String PICTURE_END_POINT = "picture";
 
     @Autowired
-    private UserJerseyController(UserService userService, SessionService sessionService,
-                                 MailService mailService, ShelfService shelfService) {
+
+    private UserJerseyController(UserService userService, SessionService sessionService, ShelfService shelfService) {
         this.userService = userService;
         this.sessionService = sessionService;
-        this.mailService = mailService;
+
         this.shelfService = shelfService;
     }
 
     private final UserService userService;
-
-    private final MailService mailService;
 
     private final ShelfService shelfService;
 
@@ -163,7 +162,7 @@ public class UserJerseyController implements UpdateParamsChecker {
     public Response changePassword(final UserDto userDto) {
         userService.changePassword(sessionService.getCurrentUserId(), userDto.getPassword(),
                 sessionService.getCurrentUserId());
-        mailService.sendPasswordChangedEmail(sessionService.getCurrentUser());
+
         return Response.noContent().build();
     }
 
@@ -173,22 +172,38 @@ public class UserJerseyController implements UpdateParamsChecker {
         Response.ResponseBuilder result = Response
                 .ok()
                 .type(MediaType.TEXT_HTML)                                             //Required by CORS
-                .header("Access-Control-Allow-Methods", "PUT")
+                .header("Access-Control-Allow-Methods", "PUT, POST")
                 .header("Access-Control-Allow-Headers", "Content-Type");  //Required by CORS
         return result.build();
     }
 
 
-    // TODO: these must be changed...
-
     @DELETE
     @Path("/{id : \\d+}/password")
-    public Response resetPassword(@PathParam("id") final long userId) {
-//        String newPassword = userService.generateNewPassword();
-//        userService.changePassword(userId, newPassword, userId);
-//        mailService.sendPasswordResetEmail(userService.findById(userId).getUser(), newPassword);
+    public Response resetPassword(@PathParam("id") final long userId,
+                                  @QueryParam("template") final String frontEndUrlTemplate) {
+        final JerseyControllerHelper.ParametersWrapper builder = JerseyControllerHelper.getParametersWrapper()
+                .addParameter("userId", userId, id -> id <= 0)
+                .addParameter("template", frontEndUrlTemplate, template -> !StringUtils.hasText(template));
+        JerseyControllerHelper.checkParameters(builder);
+
+        userService.requireResetPassword(userId, frontEndUrlTemplate);
+
         return Response.noContent().build();
     }
+
+    @POST
+    @Path("/password")
+    public Response setNewPassword(@QueryParam("nonce") final String nonce, final UserDto userDto) {
+        final JerseyControllerHelper.ParametersWrapper builder = JerseyControllerHelper.getParametersWrapper()
+                .addParameter("nonce", nonce, n -> !StringUtils.hasText(n));
+        JerseyControllerHelper.checkParameters(builder);
+
+        userService.resetPassword(nonce, userDto.getPassword());
+
+        return Response.noContent().build();
+    }
+
 
     @OPTIONS
     @Path("/{id : \\d+}/password")

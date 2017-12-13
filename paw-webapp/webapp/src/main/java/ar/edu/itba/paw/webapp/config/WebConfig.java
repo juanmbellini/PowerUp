@@ -36,7 +36,7 @@ import java.util.Properties;
         "ar.edu.itba.paw.webapp.external",
         "ar.edu.itba.paw.webapp.config",
         "ar.edu.itba.paw.webapp.scheduled",
-        "ar.edu.itba.paw.webapp.mail"})
+})
 @EnableScheduling
 @PropertySources({
         @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
@@ -82,9 +82,9 @@ public class WebConfig {
         final Properties properties = new Properties();
 //        properties.setProperty("hibernate.hbm2ddl.auto","update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL92Dialect");
-// Si ponen esto en prod, hay tabla!!!
-//                properties.setProperty("hibernate.show_sql", "true");
-//                        properties.setProperty("format_sql", "true");
+        // Si ponen esto en prod, hay tabla!!!
+//        properties.setProperty("hibernate.show_sql", "true");
+//        properties.setProperty("format_sql", "true");
         factoryBean.setJpaProperties(properties);
         return factoryBean;
     }
