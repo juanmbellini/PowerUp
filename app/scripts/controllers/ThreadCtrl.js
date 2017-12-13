@@ -33,7 +33,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
             $scope.isCurrentUser = AuthService.isCurrentUser($scope.thread.creator.username);
 
             // Get thread top-level comments on success, don't use getMoreTopLevelComments() because this is a special case
-            paginatedComments = PaginationService.initialize($scope.thread, 'comments');
+            paginatedComments = PaginationService.initialize($scope.thread, 'comments', 1, undefined, 'best', 'desc');
             PaginationService.get(paginatedComments, function(response) {
                 $scope.comments = response.data;
                 $scope.hasMoreComments = PaginationService.hasMorePages(paginatedComments);
@@ -205,7 +205,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
                 return;
             }
             if (!PaginationService.isInitialized(comment.paginatedReplies)) {
-                comment.paginatedReplies = PaginationService.initialize(Restangular.all('threads').one('comments', comment.id), 'replies', 0);  // Initialize on page 0 so the first call to nextPage will get page 1
+                comment.paginatedReplies = PaginationService.initialize(Restangular.all('threads').one('comments', comment.id), 'replies', 0, undefined, 'best', 'desc');  // Initialize on page 0 so the first call to nextPage will get page 1
             }
             comment.repliesBusy = true;
             PaginationService.getNextPage(comment.paginatedReplies, function(response) {
