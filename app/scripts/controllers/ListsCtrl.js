@@ -2,8 +2,6 @@
 define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadingCircle', 'ratingStars', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ListsCtrl', function($scope, $location, Restangular, SweetAlert, $log, AuthService, $timeout, $anchorScroll, PaginationService) {
-        Restangular.setFullResponse(true);
-
         // User
         $scope.checkCurrentUserLogged = function() { // TODO change name to isCurrentUserLoggedAndOwner
             $scope.isCurrentUserLogged = AuthService.isLoggedIn();
