@@ -14,6 +14,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
 
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(response) {
+              var game = response.data;
               $scope.game = game;
               $log.debug('Found game:', game);
 
