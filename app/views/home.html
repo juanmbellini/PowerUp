@@ -198,8 +198,10 @@
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
-                                            <span class="mediumText">changed </span>
-                                            <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
+                                            <span class="mediumText">{{feedElement.data.status!=='no-play-status'?'changed':'removed'}} </span>
+                                            <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
+                                            <span  ng-if="feedElement.data.status!=='no-play-status'" class="mediumText">play status to {{namesOfStatuses[feedElement.data.status]}}</span>
+                                            <span  ng-if="feedElement.data.status==='no-play-status'" class="mediumText">play status</span>
                                         </span>
                                     </div>
                                     <div class="col s3">
