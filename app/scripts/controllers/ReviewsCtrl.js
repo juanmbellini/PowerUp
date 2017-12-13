@@ -2,10 +2,7 @@
 define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ReviewsCtrl', function($scope, Restangular, $location, AuthService, $log, $route, LikesService, PaginationService) {
-
-        Restangular.setFullResponse(true);
-
-        // start copy
+        // Start copy
         $scope.searchParams = {
             userId: $location.search().userId,
             gameId: $location.search().gameId,
@@ -217,8 +214,7 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
 
                 if (AuthService.isLoggedIn()) {
                     Restangular.one('users', review.userId).get().then(function (response) {
-                        var reviewCreator = response.data;
-                        array[i].user = reviewCreator;
+                        array[i].user = response.data;
                     }, function(error) {
                         $log.error("Couldn't get user #" + review.userId + "'s social info for review #" + review.id + ': ', error);
                     });

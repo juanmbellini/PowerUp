@@ -111,6 +111,7 @@ define(['routes',
                     withCredentials: true
                 });
             }
+            RestangularProvider.setFullResponse(true);
 
             // TODO remove
             console.log('Current environment is', envServiceProvider.get(), ', API url is', RestangularProvider.configuration.baseUrl);

@@ -175,7 +175,6 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
                 beforeEach(function() {
                     mockLoggedIn();
                     AuthService.trackToken();
-                    Restangular.setFullResponse(true);
                 });
 
                 // Extracted to variable because ESLint
@@ -218,7 +217,6 @@ define(['powerUp', 'angular-mocks', 'restangular', 'angular-local-storage', 'Aut
         describe('#authenticate', function() {
             beforeEach(function() {
                 AuthService.trackToken();
-                Restangular.setFullResponse(true);
             });
 
             it('Logs in correctly', function () {
