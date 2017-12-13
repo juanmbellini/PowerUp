@@ -339,7 +339,8 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     @Override
     public void requireResetPassword(long userId, String urlTemplate) {
         final ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
-        final String resetPasswordUrl = MessageFormat.format(urlTemplate, token.getNonce());
+        final String base64Token = Base64Utils.encodeToUrlSafeString(Long.toString(token.getNonce()).getBytes());
+        final String resetPasswordUrl = MessageFormat.format(urlTemplate, base64Token);
 
         mailService.sendPasswordResetEmail(userDao.findById(userId), resetPasswordUrl);
     }
