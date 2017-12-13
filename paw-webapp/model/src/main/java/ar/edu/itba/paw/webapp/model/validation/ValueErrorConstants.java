@@ -106,6 +106,9 @@ public class ValueErrorConstants {
     public static final ValueError MISSING_USER = new ValueError(MISSING_VALUE, "user", "The user is missing.");
 
 
+    public static final ValueError MISSING_OWNER = new ValueError(MISSING_VALUE, "owner", "The owner is missing.");
+
+
     public static final ValueError MISSING_THREAD = new ValueError(MISSING_VALUE, "thread", "The thread is missing.");
 
     public static final ValueError MISSING_REVIEW = new ValueError(MISSING_VALUE, "review", "The review is missing.");
