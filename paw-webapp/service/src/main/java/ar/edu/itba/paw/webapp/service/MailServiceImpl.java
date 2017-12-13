@@ -79,7 +79,7 @@ public class MailServiceImpl implements MailService {
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear " + user.getUsername() + ", \n" +
                         "Your password was changed.\n" +
-                        "If it wasn't you, please reset it clicking on \"Forgot Password?\" in the log in page.\n\n" +
+                        "If it wasn't you, please reset it clicking on \"Forgot Password?\" in the log in page, or if you're already logged in, by clicking the \"Change Password\" button in your profile page.\n\n" +
                         "Yours sincerely, \n" +
                         "PowerUp team.");
                 mimeMessage.setSubject("PowerUp password change notice");
