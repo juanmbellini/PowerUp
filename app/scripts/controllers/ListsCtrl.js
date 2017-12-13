@@ -202,6 +202,9 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     closeOnConfirm: false
                 },
                 function (inputValue) {
+                    if (inputValue === false) {
+                        return false;
+                    }
                     swal.disableButtons();
                     var game = item.game;
                     var shelves = item.shelvesHolding;
