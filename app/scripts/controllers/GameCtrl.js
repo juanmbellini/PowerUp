@@ -304,11 +304,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             return result;
         };
 
-        $scope.getReviewUserProfilePictureUrl = function(review) {
-            // TODO NOW send creator in review and send profile picture URL (or null) in there
-            return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
-        };
-
         $scope.canDeleteReview = function(review) {
           return AuthService.isLoggedIn() && AuthService.getCurrentUser().username === review.username;
         };
