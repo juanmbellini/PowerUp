@@ -122,22 +122,41 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
     $scope.canDeleteReview = function (review) {
       return AuthService.isLoggedIn() && AuthService.getCurrentUser().username === review.username;
     };
-    $scope.deleteReview = function (review) {
-      review.remove().then(function (response) {
-          var data = response.data;
-          $log.info('Success: ', data);
-          $route.reload();
-          // TODO solo el filtering
-          // $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
-          //     return reviewToFilter.id !== review.id;
-          // });
-        },
-        function (error) {
-          $log.error('Error: ', error);
-        }, function () {
-          // $scope.checkCanWriteReview();
-        });
-    };
+      /**
+       * Deletes the review
+       * @param review
+       */
+      $scope.deleteReview = function(review) {
+          swal({
+                  title: 'Are you sure?',
+                  text: 'You are about to permanently delete your review for \"' + review.gameName + '\"',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#DD6B55',
+                  confirmButtonText: 'Delete',
+                  closeOnConfirm: false
+              },
+              function (inputValue) {
+                  if (inputValue === false) {
+                      return false;
+                  }
+                  swal.disableButtons();
+                  review.remove().then(function(data) {
+                          $log.info('Success: ', data.data);
+                          $route.reload();
+                          // if ($scope.review != null) {
+                          //     $scope.numReviews = $scope.numReviews - 1;
+                          // }
+                          swal('Success', 'Review successfully deleted', 'success');
+                      },
+                      function(error) {
+                          swal('Sever error', 'Sorry, please try again', 'error');
+                          $log.error('Error: ', error);
+                          $scope.checkCanWriteReview();
+                      });
+              });
+      };
+
 
     // functions:
     $scope.getReviewUserProfilePictureUrl = function(review) {

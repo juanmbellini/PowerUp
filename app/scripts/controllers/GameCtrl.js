@@ -183,6 +183,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 var reviews = response.data;
                 if (reviews.length > 0) {
                     $scope.review = reviews[0];
+                    $scope.checkCanWriteReview();
                     // Add scores
                     Restangular.one('users', $scope.review.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
                         var gameScore = response.data;
@@ -355,21 +356,38 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
         };
 
         $scope.deleteReview = function(review) {
-            review.remove().then(function(data) {
-                $log.info('Success: ', data.data);
-                $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
-                    return reviewToFilter.id !== review.id;
-                });
+            swal({
+                title: 'Are you sure?',
+                text: 'You are about to permanently delete your review for \"' + review.gameName + '\"',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Delete',
+                closeOnConfirm: false
             },
-            function(error) {
-                $log.error('Error: ', error);
-            },function () {
-                    $scope.checkCanWriteReview();
+            function (inputValue) {
+                if (inputValue === false) {
+                    return false;
+                }
+                swal.disableButtons();
+                review.remove().then(function(data) {
+                        $log.info('Success: ', data.data);
+                        $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                            return reviewToFilter.id !== review.id;
+                        });
+                        if ($scope.review != null) {
+                            $scope.numReviews = $scope.numReviews - 1;
+                        }
+                        $scope.review = null;
+                        $scope.checkCanWriteReview();
+                        swal('Success', 'Review successfully deleted', 'success');
+                    },
+                    function(error) {
+                        swal('Sever error', 'Sorry, please try again', 'error');
+                        $log.error('Error: ', error);
+                        $scope.checkCanWriteReview();
+                    });
             });
-        };
-        $scope.deleteOwnReview = function(review) {
-            $scope.deleteReview(review);
-            $scope.review = null;
         };
 
         // Likes

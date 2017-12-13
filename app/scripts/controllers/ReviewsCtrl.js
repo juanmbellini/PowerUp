@@ -35,7 +35,7 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
 
         // Sanitize numeric search param values
         if (isNaN(parseInt($scope.searchParams.pageSize, 10))) {
-            $scope.searchParams.pageSize = 25;
+            $scope.searchParams.pageSize = 10;
         } else {
             $scope.searchParams.pageSize = parseInt($scope.searchParams.pageSize, 10);
         }
@@ -94,7 +94,7 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
         };
 
         // Pagination control
-        $scope.pageSizes = [5, 10, 25, 50, 100];
+        $scope.pageSizes = [5, 10, 25, 50];
         $scope.resetPageNumberOnSubmit = false;
 
         $scope.validPageSizes = function() {
@@ -104,9 +104,9 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
                 return result;
             }
             $scope.pageSizes.forEach(function(pageSize, index, pageSizes) {
-                if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index - 1])) {
+                // if (pagination.totalElements >= pageSize || (index > 0 && pagination.totalElements > pageSizes[index - 1])) {
                     result.push(pageSize);
-                }
+                // }
             });
             var customPageSize = $scope.pageSizes.indexOf($scope.searchParams.pageSize) === -1 ? $scope.searchParams.pageSize : null;
             if (customPageSize) {
@@ -274,21 +274,37 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
          * @param review
          */
         $scope.deleteReview = function(review) {
-            review.remove().then(function(response) {
-                var data = response.data;
-                $log.info('Success: ', data);
-                // TODO revise this, reloading the page with one result less may result in an out-of-range error.
-                // Consider resetting to page 1, or at least trying to go 1 page back if there's an error after the reload
-                $route.reload();
-                // $scope.review = $scope.review.filter(function(reviewToFilter) {
-                //     return reviewToFilter.id !== review.id;
-                // });
-            },
-            function(error) {
-                $log.error('Error: ', error);
-            },function () {
-                    $scope.checkCanWriteReview();
-            });
+            swal({
+                    title: 'Are you sure?',
+                    text: 'You are about to permanently delete your review for \"' + review.gameName + '\"',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Delete',
+                    closeOnConfirm: false
+                },
+                function (inputValue) {
+                    if (inputValue === false) {
+                        return false;
+                    }
+                    swal.disableButtons();
+                    review.remove().then(function(data) {
+                            $log.info('Success: ', data.data);
+                            $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                                return reviewToFilter.id !== review.id;
+                            });
+                            // if ($scope.review != null) {
+                            //     $scope.numReviews = $scope.numReviews - 1;
+                            // }
+                            $scope.checkCanWriteReview();
+                            swal('Success', 'Review successfully deleted', 'success');
+                        },
+                        function(error) {
+                            swal('Sever error', 'Sorry, please try again', 'error');
+                            $log.error('Error: ', error);
+                            $scope.checkCanWriteReview();
+                        });
+                });
         };
 
         // Likes
