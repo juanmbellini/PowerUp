@@ -304,51 +304,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
             });
         };
 
-        // /**
-        //  * Changes the pageNumber query parameter using the newPageNumber
-        //  * @param newPageNumber
-        //  */
-        // $scope.setPageNumber = function(newPageNumber) {
-        //     if (!$scope.reviewsPaginator.pagination.totalPages) {
-        //         return;
-        //     }
-        //     if (newPageNumber >= 1 && newPageNumber <= $scope.reviewsPaginator.pagination.totalPages) {
-        //     //    $scope.pageNumber = newPageNumber;
-        //     //    $location.search('pageNumber', $scope.pageNumber);
-        //         $scope.searchParams.pageNumber = newPageNumber;
-        //     }
-        // };
-
-       //  /**
-       //   * Updates pagination variables using the pagination headers
-       //   */
-       // $scope.updatePagination = function() {
-       //     $scope.pageNumber = parseInt($scope.headersPagination['x-page-number'], 10);
-       //     $scope.totalPages = parseInt($scope.headersPagination['x-total-pages'], 10);
-       //     // Show the fist ten
-       //     $scope.paginationJustOne = ($scope.pageNumber - 4 <= 0) || ($scope.totalPages <= 10);
-       //     // Show the last ten
-       //     $scope.paginationNoMorePrev = ($scope.pageNumber + 5 > $scope.totalPages);
-       //
-       //     $scope.paginationTheFirstOnes = ($scope.pageNumber + 5 < 10);
-       //     $scope.paginationNoMoreNext = ($scope.pageNumber + 5 >= $scope.totalPages) || ($scope.totalPages < 10);
-       //
-       //     if ($scope.paginationJustOne) {
-       //         $scope.paginationBegin = 1;
-       //     } else {
-       //         $scope.paginationBegin = $scope.paginationNoMorePrev ? $scope.totalPages - 9 : $scope.pageNumber - 4;
-       //     }
-       //     if ($scope.paginationNoMoreNext) {
-       //         $scope.paginationEnd = $scope.totalPages;
-       //     } else {
-       //         $scope.paginationEnd = $scope.paginationTheFirstOnes ? 10 : $scope.pageNumber + 5;
-       //     }
-       //     $scope.rangePagination = [];
-       //     for (var i = $scope.paginationBegin; i <= $scope.paginationEnd; i++) {
-       //         $scope.rangePagination.push(i);
-       //     }
-       // };
-
         // Likes
         $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
         $scope.likeReview = function(review) {
