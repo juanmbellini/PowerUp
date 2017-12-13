@@ -19,7 +19,8 @@
     "lightbox2": "^2.9.0",
     "angular-local-storage": "^0.5.2",
     "ng-file-upload": "^12.2.13",
-    "angular-environment": "^1.0.8"
+    "angular-environment": "^1.0.8",
+    "validator-js": "^9.2.0"
   },
   "resolutions": {
     "angular": ">=1.3.0",
