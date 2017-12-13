@@ -1,8 +1,14 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.ResetPasswordTokenDao;
+import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 import ar.edu.itba.paw.webapp.model.User;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * Created by Juan Marcos Bellini on 12/12/17.
@@ -10,18 +16,35 @@ import ar.edu.itba.paw.webapp.model.User;
  */
 public class ResetPasswordTokenHibernateDao implements ResetPasswordTokenDao {
 
+    @PersistenceContext
+    private EntityManager em;
+
+    private static final int MAX_ITERATIONS = 15;
+
     @Override
     public ResetPasswordToken findByNonce(long nonce) {
-        // TODO: implement
-        return null;
+
+        TypedQuery<ResetPasswordToken> baseQuery = em.createQuery("FROM reset_password_tokens AS R where R.nonce = :nonce", ResetPasswordToken.class);
+        baseQuery.setParameter("nonce", nonce);
+        try {
+            return baseQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public ResetPasswordToken create(User owner) {
-        // TODO: implement...
-        // TODO: when creating the ResetPasswordToken, a unique validation of the nonce must be performed before saving it
-        // TODO: however, it's not possible to store two tokens with same nonce because of unique index in db,
-        // TODO: but better check to avoid exception, and always finish the task well.
-        return null;
+        boolean successful = false;
+        ResetPasswordToken resetPasswordToken;
+        int iterations = 0;
+        do{
+            resetPasswordToken = new ResetPasswordToken(owner);
+            if (findByNonce(resetPasswordToken.getNonce()) != null) successful = true;
+            iterations++;
+        } while (!successful && iterations < MAX_ITERATIONS);
+        if(!successful) return null;
+        em.persist(resetPasswordToken);
+        return resetPasswordToken;
     }
 }

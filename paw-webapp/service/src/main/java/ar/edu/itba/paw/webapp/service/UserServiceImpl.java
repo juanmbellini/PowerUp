@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
+import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
@@ -52,11 +53,13 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final ResetPasswordTokenDao resetPasswordTokenDao;
 
+    private final MailService mailService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
+    public UserServiceImpl(MailService mailService, UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
                            UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao,
                            PasswordEncoder passwordEncoder, ResetPasswordTokenDao resetPasswordTokenDao) {
+        this.mailService = mailService;
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
@@ -144,6 +147,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         validatePassword(newPassword);
         final String newHashedPassword = passwordEncoder.encode(newPassword);
         userDao.changePassword(checkUserValuesAndAuthoring(userId, updaterId), newHashedPassword);
+        mailService.sendPasswordChangedEmail(userDao.findById(userId));
     }
 
     @Override
@@ -334,15 +338,12 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     @Override
     public void requireResetPassword(long userId, String urlTemplate) {
-        //remove this
-        String url = "";
-        // TODO: create token
-        // TODO: base64url encode the nonce of the token (replace 1234 with the nonce)
-        final String base64UrlNonce = Base64Utils.encodeToUrlSafeString(Long.toString(1234).getBytes());
-        // TODO: generate url to be sent in the email:
-        final String resetPasswordUrl = String.format(urlTemplate, base64UrlNonce);
-        // TODO: Send email
-
+        // create token
+        ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
+        // generate url to be sent in the email:
+        final String resetPasswordUrl = String.format(urlTemplate, token.getNonce());
+        // Send email
+        mailService.sendPasswordResetEmail(userDao.findById(userId), resetPasswordUrl);
     }
 
     @Override
@@ -358,9 +359,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
         userDao.changePassword(token.getOwner(), newPassword);
     }
-
-    // =====================
-
 
     /**
      * Validates the given {@code rawPassword}.
@@ -558,4 +556,11 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private static final ValueError PASSWORD_TOO_LONG = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
             "password", "The password is too long.");
+
+
+    public static String generateToken() {
+        String uuid = UUID.randomUUID().toString();
+        uuid.replace("-", "");
+        return uuid;
+    }
 }
