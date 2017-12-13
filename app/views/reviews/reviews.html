@@ -56,11 +56,14 @@
 										</a>
 										<span style="vertical-align: super" class="title wrap-text">
 											<a ng-href="#profile?username={{review.username}}">{{review.username}}</a>
+                                        </span>
+                                            <span><b style="vertical-align: super"> reviewed </b></span>
+                                        <span style="vertical-align: super" class="title wrap-text">
 											<a ng-href="#game?id={{review.gameId}}">{{review.gameName}}</a>
 										</span>
 									</span>
 									<span ng-if="(review.overallScore<=10 && review.overallScore>0)" class="rating-number">
-										<b style="vertical-align: super"> rated it </b>
+										<b style="vertical-align: super"> rated {{game?'it ':''}}</b>
 										<span class="center">
 											<rating-stars rating="review.overallScore" class="rating-stars hide-on-small-and-down"></rating-stars>
 										</span>
