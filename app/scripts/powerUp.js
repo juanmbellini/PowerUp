@@ -89,10 +89,12 @@ define(['routes',
                       apiUrl: 'http://localhost:8080/api'
                   },
                   staging: {
-                      apiUrl: '/paw-2016b-02/api'
+                      apiUrl: '/paw-2016b-02/api',
+                      prefix: '/paw-2016b-02'
                   },
                   production: {
-                      apiUrl: 'http://pawserver.it.itba.edu.ar/paw-2016b-02/api'
+                      apiUrl: 'http://pawserver.it.itba.edu.ar/paw-2016b-02/api',
+                      prefix: '/paw-2016b-02'
                   },
                   defaults: {
                       // Defaults go here when no environment matches
