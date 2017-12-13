@@ -205,6 +205,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
 
         $scope.$on('gameFound', function(event) {
           // Initialize carousels
+          require(['lightbox2']);
           angular.element('#screenshots-carousel').slick({
             slidesToShow: $scope.picturesMin,
             slidesToScroll: $scope.picturesMin,
