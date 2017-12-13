@@ -53,7 +53,7 @@ public class MailServiceImpl implements MailService {
                 mimeMessage.setText("Dear " + user.getUsername() + ", \n" +
                         "This email was sent to you because someone requested a password reset on your account. \n\n" +
                         "Visit the following link to set a new password: \n\n" +
-                        url + "\n\n" +
+                        url + "\n\n\n" +
                         "Yours sincerely, \n" +
                         "PowerUp team.");
                 mimeMessage.setSubject("PowerUp password reset");
@@ -62,9 +62,9 @@ public class MailServiceImpl implements MailService {
 
         try {
             mailSender.send(preparator);
-            LOGGER.info("Sent new password email to {} ({})", user.getUsername(), user.getEmail());
+            LOGGER.info("Sent reset password email to {} ({})", user.getUsername(), user.getEmail());
         } catch (MailException ex) {
-            LOGGER.error("Couldn't send new password email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
+            LOGGER.error("Couldn't send reset password email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
         }
     }
 
@@ -102,12 +102,12 @@ public class MailServiceImpl implements MailService {
                 mimeMessage.setFrom(from());
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(user.getEmail()));
-                mimeMessage.setText("Dear "
-                        + user.getUsername()
-                        + ", \nWelcome to PowerUp, your videogame database and discovery platform. "
-                        + " We hope you enjoy our services. Feel free to send any feedback to powerappcontact@gmail.com. " +
-                        "\n Your sincerely," +
-                        "\n PowerUp team.");
+                mimeMessage.setText("Dear " + user.getUsername() + ", \n" +
+                        "Welcome to PowerUp, your videogame database and discovery platform. " +
+                        "We hope you enjoy our services.\n" +
+                        "Feel free to send any feedback to powerappcontact@gmail.com.\n\n" +
+                        "Yours sincerely,\n" +
+                        "PowerUp team.");
                 mimeMessage.setSubject(user.getUsername() + ", welcome to PowerUp!");
             }
         };
