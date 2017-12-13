@@ -1,7 +1,8 @@
 'use strict';
-define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular', 'validator-js'], function(powerUp) {
 
     powerUp.controller('LoginCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
+        var validator = require('validator-js');
 
         $scope.loginError = false;
 
@@ -48,8 +49,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
                 } else if (inputValue === '') {
                     swal.showInputError('Please write your account email');
                     return false;
-                } else if (!inputValue.match(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
-                    // Regex obtained from https://html.spec.whatwg.org/#e-mail-state-(type=email)
+                } else if (!validator.isEmail(inputValue)) {
                     swal.showInputError('Please enter a valid email address');
                     return false;
                 }
@@ -59,7 +59,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular'], function(powerUp) {
                 swal.disableButtons();
                 Restangular.all('users').one('email', inputValue).get().then(function(response) {
                     user = response.data || response;
-                    Restangular.one('users', user.id).all('password').remove().then(function(response) {
+                    var returnUrl = $location.protocol() + '://' + $location.host() + ($location.port() !== 80 ? ':' + $location.port() : '') + '/#/reset-password?nonce={0}';
+                    Restangular.one('users', user.id).all('password').remove({template: returnUrl}).then(function(response) {
                         swal('Password Reset!', 'Please check your email for reset instructions', 'success');
                         resettingPassword = false;
                     }, function(error) {
