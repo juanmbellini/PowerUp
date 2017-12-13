@@ -87,13 +87,23 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
       }
     };
 
-    // Threads
-    $scope.isLikedByCurrentUser = function (thread) {
-      if (!$scope.isLoggedIn || !thread.hasOwnProperty('likedByCurrentUser')) {
-        return false;
-      }
-      return thread.likedByCurrentUser;
+    // Likes
+    $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
+    $scope.likeReview = function(review) {
+        LikesService.like(review, undefined, function() {
+
+        }, function(error) {
+            $log.error('Error liking review #', review.id, ': ', error);
+        });
     };
+    $scope.unlikeReview = function(review) {
+        LikesService.unlike(review, undefined, function() {
+
+        }, function(error) {
+            $log.error('Error unliking review #', review.id, ': ', error);
+        });
+    };
+
 
     $scope.likeThread = function (thread) {
       LikesService.like(Restangular.one('threads', thread.id), thread, function () {
@@ -130,8 +140,44 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
         });
     };
 
+      /* *************************************************************************************************************
+                   FOLLOWS
+            * ************************************************************************************************************/
+      // Follows for reviews
+      $scope.followDisabled = false;
 
-    // Follow friend
+      $scope.canFollow = function (user) {
+          return user && AuthService.isLoggedIn() && !AuthService.isCurrentUser(user);
+      };
+
+      $scope.updateFollow = function (user) {
+          if ($scope.followDisabled) {
+              return;
+          }
+          $scope.followDisabled = true;
+
+          if (!user.social.followedByCurrentUser) {
+              // Follow
+              Restangular.one('users', user.id).one('followers').put().then(function () {
+                  $scope.followDisabled = false;
+                  user.social.followedByCurrentUser = true;
+                  user.social.followersCount++;
+              }, function () {
+                  $scope.followDisabled = false;
+              });
+          } else {
+              // Unfollow
+              Restangular.one('users',user.id).one('followers').remove().then(function () {
+                  $scope.followDisabled = false;
+                  user.social.followedByCurrentUser = false;
+                  user.social.followersCount--;
+              }, function () {
+                  $scope.followDisabled = false;
+              });
+          }
+      };
+
+    // Follow friend from feed
     $scope.followFriend = function () {
       if ($scope.friendName === $scope.user.username) {
         $scope.followFriendError = true;

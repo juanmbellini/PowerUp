@@ -11,14 +11,9 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             $location.path('');
         }
         $scope.game = null;
-        $scope.criteriaNames = ['story', 'graphics', 'audio', 'controls', 'fun'];
-        $scope.criteria = {};
+
         $scope.scoreTest = 0;
-        $scope.criteriaNames.forEach(function(criterionName) {
-            $scope.criteria[criterionName] = {};
-            $scope.criteria[criterionName].name = criterionName;
-            $scope.criteria[criterionName].score = 5;
-        });
+
         var errorHandler = function(error) {
             $log.error('Error: ', error);
             $location.path('');
@@ -50,10 +45,6 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             if (reviews.length > 0) {
                 oldReview = reviews[0];
                 $scope.review = oldReview.body;
-                $scope.criteriaNames.forEach(function(criterionName) {
-                    var criterion = $scope.criteria[criterionName];
-                    criterion.score = oldReview[criterion.name + 'Score'];
-                });
                 reviewAlreadyExist = true;
             } else {
                 reviewAlreadyExist = false;
@@ -66,10 +57,6 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         $scope.submitReview = function() {
             // TODO validate input?
             var review = {body: $scope.review, gameId: $scope.gameId};
-            $scope.criteriaNames.forEach(function(criterionName) {
-                var criterion = $scope.criteria[criterionName];
-                review[criterion.name + 'Score'] = criterion.score;
-            });
             console.log('Submiting Review', review);
             if (reviewAlreadyExist) {
                 oldReview.remove().then(function(response) {

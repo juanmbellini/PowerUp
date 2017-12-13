@@ -220,12 +220,62 @@
                                         class="material-icons right">send</i></a>
                             </div>
                         </div>
-                        <div ng-if="hasReview" class="row">
-
+                        <!-- User logged review -->
+                        <div ng-if="review">
+                            <h5 class="center">Your Review</h5>
+                            <ul class="collection">
+                                <li class="collection-item avatar">
+                                    <div class="row" style="margin-bottom: 10px">
+                                        <div class="col s10">
+                                            <a ng-href="#profile?username={{review.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle"></a>
+                                            <span style="vertical-align: super" class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
+                                            <span ng-if="(review.overallScore<=10 && review.overallScore>0)" class="rating-number">
+                                                <b style="vertical-align: super"> rated it </b>
+                                                <span class="center">
+                                                    <rating-stars rating="review.overallScore" class="rating-stars hide-on-small-and-down"></rating-stars>
+                                                </span>
+                                            </span>
+                                            <!--<span style="vertical-align: super"     ng-if="!(review.overallScore<=10 && review.overallScore>0)" class="rating-number center"><b> didn't rate it </b></span>-->
+                                            <p style="margin-top: -10px" class="smallText"><a href="#reviews?userId={{review.userId}}">Other reviews by {{review.username}}</a></p>
+                                            <p  style="margin-top: -5px" ng-show="review.shelves.length > 0" class="wrap-text smallText"> Shelves:
+                                                <span ng-repeat="shelf in review.shelves"><a ng-href="#list?id={{review.userId}}&shelf={{shelf.name}}">{{shelf.name}}</a>{{!$last ? ', ' : ''}}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col s2">
+                                            <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
+                                            <p class="right-align">
+                                                <!--Un/like section-->
+                                                <span>
+                                                    <b style="vertical-align: text-bottom">{{review.likeCount}}</b>
+                                                    <!--Not logged in - black actionless thumbs up-->
+                                                    <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                                                    <!--Logged in and liked - green thumbs up with action to unlike-->
+                                                    <a title="Dislike" ng-if="isLoggedIn && isLikedByCurrentUser(review)" ng-click="unlikeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+                                                        <i class="material-icons green-text">thumb_up</i>
+                                                    </a>
+                                                    <!--Logged in and not liked - black thumbs up with action to like-->
+                                                    <a title="Like" ng-if="isLoggedIn && !isLikedByCurrentUser(review)" ng-click="likeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+                                                        <i class="material-icons black-text">thumb_up</i>
+                                                    </a>
+                                                </span>
+                                                <!--End un/like section-->
+                                                <a title="Edit" ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+                                                <a title="Delete" ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
+                                                <a title="{{review.user.social.followedByCurrentUser ? 'Unfollow' : 'Follow'}}" ng-if="canFollow(review.user)" href="" ng-class="review.user.social.followedByCurrentUser ? 'material-icons text-lighten-1' : 'material-icons black-text text-lighten-1'" ng-click="updateFollow(review.user)"><i class="material-icons right">{{review.user.social.followedByCurrentUser ? "person" : "person_add"}}</i></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <p class="wrap-text preserve-newlines">{{review.body}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         <!--Review list-->
                         <div ng-if="reviews !== null && reviews.length > 0">
-                            <h5 class="center">Community Reviews - <a href="#reviews?gameId={{game.id}}">See All ({{numReviews}})</a></h5>
+                            <h5 class="center">Community Reviews - <a href="#reviews?gameId={{game.id}}">See All Reviews ({{numReviews}})</a></h5>
                             <ul class="collection">
                                 <li class="collection-item avatar" ng-repeat="review in reviews">
                                     <div class="row" style="margin-bottom: 10px">
@@ -247,6 +297,21 @@
                                         <div class="col s2">
                                             <p class="right-align" style="color: black;">{{review.date | date: 'mediumDate'}}</p>
                                             <p class="right-align">
+                                                <!--Un/like section-->
+                                                <span>
+                                                    <b style="vertical-align: text-bottom">{{review.likeCount}}</b>
+                                                    <!--Not logged in - black actionless thumbs up-->
+                                                    <i ng-if="!isLoggedIn" class="material-icons black-text">thumb_up</i>
+                                                    <!--Logged in and liked - green thumbs up with action to unlike-->
+                                                    <a title="Dislike" ng-if="isLoggedIn && isLikedByCurrentUser(review)" ng-click="unlikeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+                                                        <i class="material-icons green-text">thumb_up</i>
+                                                    </a>
+                                                    <!--Logged in and not liked - black thumbs up with action to like-->
+                                                    <a title="Like" ng-if="isLoggedIn && !isLikedByCurrentUser(review)" ng-click="likeReview(review)" ng-class="{disabled: review.likesDisabled}" href="">
+                                                        <i class="material-icons black-text">thumb_up</i>
+                                                    </a>
+                                                </span>
+                                                <!--End un/like section-->
                                                 <a ng-if="canDeleteReview(review)" ng-href="#write-review?id={{gameId}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
                                                 <a ng-if="canDeleteReview(review)" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(review)"><i class="material-icons right">delete</i></a>
                                                 <a title="{{review.user.social.followedByCurrentUser ? 'Unfollow' : 'Follow'}}" ng-if="canFollow(review.user)" href="" ng-class="review.user.social.followedByCurrentUser ? 'material-icons text-lighten-1' : 'material-icons black-text text-lighten-1'" ng-click="updateFollow(review.user)"><i class="material-icons right">{{review.user.social.followedByCurrentUser ? "person" : "person_add"}}</i></a>

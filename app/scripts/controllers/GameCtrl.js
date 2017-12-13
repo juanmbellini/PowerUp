@@ -1,7 +1,7 @@
 'use strict';
-define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars', 'AuthService'], function(powerUp) {
+define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars', 'AuthService'], function(powerUp) {
 
-    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, $timeout, $anchorScroll) {
+    powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, LikesService, $timeout, $anchorScroll) {
 
         $anchorScroll();
         Restangular.setFullResponse(true);
@@ -178,29 +178,34 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars
                 return $scope.shelvesWithGame.indexOf(shelfName) !== -1;
             };
 
-            //Review
-            Restangular.all('reviews').getList({gameId: $scope.game.id, userId: userId}).then(function (response) {
+            // Review
+            Restangular.all('reviews').getList({gameId: $scope.gameId, userId: userId, orderBy: 'BEST'}).then(function (response) {
                 var reviews = response.data;
-                if (reviews.length>0) {
-                    $scope.userReview = reviews[0];
+                if (reviews.length > 0) {
+                    $scope.review = reviews[0];
                     // Add scores
-                    Restangular.one('users', $scope.userReview.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+                    Restangular.one('users', $scope.review.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
                         var gameScore = response.data;
                         if (gameScore.length > 0) {
-                            $scope.userReview.overallScore = gameScore[0].score;
+                            $scope.review.overallScore = gameScore[0].score;
                         }
                     });
                     // Add shelves
-                        Restangular.one('users',$scope.userReview.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
+                        Restangular.one('users',$scope.review.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
                             var shelvesWithGame = response.data;
-                            $scope.userReview.shelves = shelvesWithGame;
+                            $scope.review.shelves = shelvesWithGame;
                         });
                     // Add user
-                    $scope.userReview.user = AuthService.getCurrentUser();
+                    $scope.review.user = AuthService.getCurrentUser();
                 }
             }, function() {
                 console.log('There was an error getting reviews');
             });
+            if ($scope.reviews != null) {
+                $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                    return reviewToFilter.id !== $scope.review.id;
+                });
+            }
         }
 
         // Related Games
@@ -272,9 +277,9 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars
         $scope.reviews = null;
         $scope.numReviews = 0;
         $scope.$on('gameFound', function() {
-            Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10}).then(function (response) {
+            Restangular.all('reviews').getList({gameId: $scope.game.id, pageSize: 10, orderBy: 'BEST', sortDirection: 'DESC'}).then(function (response) {
                 var reviews = response.data;
-                $scope.numReviews = parseInt(response.headers()['x-overall-amount-of-elements'], 10),
+                $scope.numReviews = parseInt(response.headers()['x-overall-amount-of-elements'], 10);
                 $scope.reviews = reviews;
                 console.log('found review ', $scope.reviews);
                 // Add scores
@@ -300,6 +305,11 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars
                         reviewArray[index].user = user;
                     });
                 });
+                if ($scope.review != null) {
+                    $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
+                        return reviewToFilter.id !== $scope.review.id;
+                    });
+                }
                 $scope.checkCanWriteReview();
             }, function() {
                 console.log('There was an error getting reviews');
@@ -355,6 +365,27 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'ratingStars
                 $log.error('Error: ', error);
             },function () {
                     $scope.checkCanWriteReview();
+            });
+        };
+        $scope.deleteOwnReview = function(review) {
+            $scope.deleteReview(review);
+            $scope.review = null;
+        };
+
+        // Likes
+        $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
+        $scope.likeReview = function(review) {
+            LikesService.like(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error liking review #', review.id, ': ', error);
+            });
+        };
+        $scope.unlikeReview = function(review) {
+            LikesService.unlike(review, undefined, function() {
+
+            }, function(error) {
+                $log.error('Error unliking review #', review.id, ': ', error);
             });
         };
 
