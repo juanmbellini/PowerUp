@@ -14,29 +14,21 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
 
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(response) {
-                var game = response.data;
-                $scope.game = game;
-                $scope.gameId = game.id;
-                console.log('Game: ', game);
-                if ($scope.gameId > 0 && $scope.game !== null) {
-                    $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
-                    $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
-                    $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
-                } else {
-                    // TODO show 'game not found'
-                    $location.search({});
-                    $location.path('');
-                }
+              $scope.game = game;
+              $log.debug('Found game:', game);
+
+              $scope.videosMin = Math.min($scope.game.videoUrls.length, 4);       // How many videos to show per carousel page
+              $scope.picturesMin = Math.min($scope.game.pictureUrls.length, 4);   // How many pictures to show per carousel page
+
+              $timeout(function() {
+                $scope.$broadcast('gameFound');                                     // Game found, fire all secondary searches (e.g. reviews)
+              });
             }, function(response) {
-                console.log('Error with status code', response.status); // TODO handle error
+                $log.error("Couldn't get game:", response.status, 'Redirecting to home'); // TODO handle error
                 $location.search({});
                 $location.path('');
             });
-
         };
-
-        $scope.findGame($scope.gameId);
-
 
         if (AuthService.isLoggedIn()) {
             var userId = AuthService.getCurrentUser().id;
@@ -49,7 +41,6 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
                     return playStatusToFilter !== noPlayStatusString;
                 });
-
             }, function (response) {
                 $log.error('Could not get playStatuses', response);
             });
@@ -158,7 +149,6 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 }
             });
             $scope.updateShelfSelect = function () {
-                // console.log(shelfUpdated);
                 $scope.loadingShelves = true;
                 angular.forEach($scope.shelvesWithGame, function (shelfName) {
                     if ($scope.oldShelvesWithGame.indexOf(shelfName) === -1) {
@@ -223,52 +213,50 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
 
         // Related Games
         $scope.relatedGames = [];
+        $scope.loadingRelated = true;
         Restangular.one('games', $scope.gameId).all('related-games').getList({}).then(function(response) {
-            var relatedGames = response.data;
-            $scope.relatedGames = relatedGames;
+            $scope.relatedGames = response.data;
             $scope.relatedMin = Math.min($scope.relatedGames.length, 5);
-        }, function (response) {
-            console.log('Error with status code', response.status); // TODO handle error
-        });
-        $scope.$on('relatedRendered', function(event) {
-            angular.element('#related-carousel').slick({
-                infinite: false,
-                arrows: true
+            $log.debug('Found', $scope.relatedGames.length, 'related games');
+            $timeout(function () {
+              $scope.$broadcast('relatedReady');
             });
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+        }, function (response) {
+            $log.error("Couldn't load related games:", response);
+            $scope.loadingRelated = false;
+        });
+
+        $scope.$on('relatedReady', function(event) {
+          $scope.loadingRelated = false;
+          angular.element('#related-carousel').slick({
+            slidesToShow: $scope.relatedMin,
+            slidesToScroll: $scope.relatedMin,
+            infinite: false,
+            arrows: true
+          });
         });
 
         // userURL.all('shelves').all('recommendedGames').getList({shelvesFilter = {'shelf1','shelf2'}})
 
-        /* *******************************
-         * Event receivers for ng-repeats, see http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
-         * ******************************/
-        // (Re-)initialize Slick for game pictures
-        $scope.$on('picturesRendered', function(event) {
-            angular.element('#screenshots-carousel').slick({
-                infinite: false,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-            require(['lightbox2']);
-        });
-        // (Re-)initialize Slick for game videos
-        $scope.$on('videosRendered', function(event) {
-            angular.element('#videos-carousel').slick({
-                infinite: false,
-                arrows: true
-            });
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
-        });
-      // (Re-)initialize Slick for game streams
-      $scope.$on('streamsRendered', function(event) {
-        angular.element('#streams-carousel').slick({
-          infinite: false,
-          arrows: true
-        });
-        require(['lightbox2']); // TODO ensure requirejs doesn't load this thrice
-      });
+        $scope.$on('gameFound', function(event) {
+          // Initialize carousels
+          require(['lightbox2']);
+          angular.element('#screenshots-carousel').slick({
+            slidesToShow: $scope.picturesMin,
+            slidesToScroll: $scope.picturesMin,
+            infinite: false,
+            arrows: true,
+            lazyload: 'ondemand'
+          });
 
+          angular.element('#videos-carousel').slick({
+            slidesToShow: $scope.videosMin,
+            slidesToScroll: $scope.videosMin,
+            infinite: false,
+            arrows: true,
+            lazyload: 'ondemand'
+          });
+        });
 
       /* *****************************************
        *                 TWITCH
@@ -278,10 +266,26 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
           $scope.game.all('twitch').getList({}).then(function(response) {
             $scope.twitchStreams = response.data.slice(0, 4);    // Take at most 4 streams because the Twitch player is heavy TODO: Get a way to lazy load players to be able to show more?
             $scope.streamsMin = Math.min($scope.twitchStreams.length, 4);   // How many streams to show per carousel page
-            $log.debug('First found Twitch stream: ', $scope.twitchStreams[0]);
+            if ($scope.twitchStreams.length) {
+              $log.debug('First found Twitch stream:', $scope.twitchStreams[0]);
+              $timeout(function() {
+                $scope.$broadcast('streamsFound');
+              });
+            } else {
+              $log.debug('No Twitch streams found');
+            }
           }, function(error) {
               $log.error('Error getting Twitch streams:', error);
           });
+      });
+
+      $scope.$on('streamsFound', function(event) {
+        angular.element('#streams-carousel').slick({
+          slidesToShow: $scope.streamsMin,
+          slidesToScroll: $scope.streamsMin,
+          infinite: false,
+          arrows: true
+        });
       });
 
         /* *****************************************
@@ -294,7 +298,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 var reviews = response.data;
                 $scope.numReviews = parseInt(response.headers()['x-overall-amount-of-elements'], 10);
                 $scope.reviews = reviews;
-                console.log('found review ', $scope.reviews);
+                $log.debug('Found', $scope.reviews.length, 'reviews');
                 // Add scores
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users', reviewRef.userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
@@ -324,8 +328,8 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                     });
                 }
                 $scope.checkCanWriteReview();
-            }, function() {
-                console.log('There was an error getting reviews');
+            }, function(error) {
+                $log.error('There was an error getting game reviews:', error);
             });
         });
 
@@ -336,15 +340,10 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 var currentUserUsername = AuthService.getCurrentUser().username;
                 Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
                     var reviews = response.data;
-                    if (reviews.length > 0) {
-                        $scope.canWriteReview = false;
-                    } else {
-                        $scope.canWriteReview = true;
-                    }
-                }, function(response) {
-                    console.log('There was an error getting reviews, ', response);
+                    $scope.canWriteReview = reviews.length === 0;
+                }, function(error) {
+                    $log.error('There was an error checking whether the current user can write a review:', error, "Assuming user can't write review");
                     $scope.canWriteReview = false;
-                    return;
                 });
             }
         };

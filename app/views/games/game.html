@@ -1,4 +1,4 @@
-<main>
+<main ng-init="findGame(gameId)">
     <div class="container" >
         <div ng-if="game === null" class="center">
             <h5>Fetching game...</h5>
@@ -19,7 +19,7 @@
                     <div class="col s10 center-align">
                         <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
                             <div class="col s3 center-align">
-                                <label>Score: </label>
+                                <label>Score</label>
                                 <ng-input>
                                     <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
                                         <option value="delete">Select score</option>
@@ -30,7 +30,7 @@
                                 </ng-input>
                             </div>
                             <div class="col s3 center-align">
-                                <label>PlayStatus: </label>
+                                <label>Play Status</label>
                                 <ng-input>
                                     <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
                                         <option value="no-play-status">Select play status</option>
@@ -41,7 +41,7 @@
                                 </ng-input>
                             </div>
                             <div class="col s6 center-align" class="divWithShelves">
-                                <label>Shelves: </label>
+                                <label>Shelves</label>
                                 <ng-input>
                                     <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
                                     <div ng-show="shelves.length > 0">
@@ -81,7 +81,7 @@
                         <p style="margin-top: 0;">
                             <!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
                         <div ng-switch="game.summary">
-                            <div ng-switch-when="null">No summary =(</div>
+                            <div ng-switch-when="null">No summary</div>
                             <div ng-switch-default>{{game.summary}}</div>
                         </div>
 
@@ -133,16 +133,15 @@
                 <div class="row" ng-if="game.videoUrls.length > 0 || game.pictureUrls.length > 0">
                     <div class="col s12 divider"></div>
 
-                    <div class="row" ng-if="game.videoUrls.length > 0">
-                        <h4 class="center">Videos</h4>
-                        <div class="slick-carousel center" id="videos-carousel" data-slick='{"slidesToShow": {{videosMin}}, "slidesToScroll": {{videosMin}}}'>
-                            <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
-                                <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true">
-                                </iframe>
-                            </div>
+                <div class="row" ng-if="game.videoUrls.length > 0">
+                    <h4 class="center">Videos</h4>
+                    <div class="slick-carousel center" id="videos-carousel">
+                        <div class="slide-container" ng-repeat="video in game.videoUrls" on-complete="videosRendered">
+                            <iframe type="text/html" width="{{game.videoUrls.length > 1 ? '90%' : '640'}}" height="360" ng-src="{{video}}" frameborder="0" allowfullscreen="true"></iframe>
                         </div>
                     </div>
                 </div>
+            </div>
 
                 <div ng-if="game.pictureUrls.length > 0">
                     <div class="row" ng-if="game.videoUrls.length > 0">
@@ -150,7 +149,7 @@
                     </div>
                     <div class="row" >
                         <h4 class="center">Screenshots</h4>
-                        <div class="slick-carousel center" id="screenshots-carousel" data-slick='{"slidesToShow": {{picturesMin}}, "slidesToScroll": {{picturesMin}}}'>
+                        <div class="slick-carousel center" id="screenshots-carousel">
                             <div class="slide-container" ng-repeat="picture in game.pictureUrls" on-complete="picturesRendered">
                                 <div class="valign-wrapper slide-image">
                                     <a ng-href="{{picture}}" ng-attr-data-lightbox="screenshot-{{$index}}">
@@ -180,17 +179,17 @@
                         <div ng-if="twitchStreams !== null && twitchStreams.length === 0">
                             <p class="center">No streams found</p>
                         </div>
-                        <!--End no reviews-->
+                        <!--End no streams-->
 
-                        <!--Review list-->
+                        <!--Streams-->
                         <div ng-if="twitchStreams !== null && twitchStreams.length > 0">
-                            <div class="slick-carousel center" id="streams-carousel" data-slick='{"slidesToShow": {{streamsMin}}, "slidesToScroll": {{streamsMin}}}'>
+                            <div class="slick-carousel center" id="streams-carousel">
                                 <div class="slide-container" ng-repeat="stream in twitchStreams" on-complete="streamsRendered">
                                     <iframe width="{{twitchStreams.length > 1 ? '90%' : '640'}}" height="300" ng-src="{{stream.src}}" frameborder="0" allowfullscreen="true"></iframe>
                                 </div>
                             </div>
                         </div>
-                        <!-- TODO view more link-->
+                        <!-- TODO view more link?-->
                     </div>
                 </div>
                 <!--END TWITCH STREAMS-->
@@ -332,17 +331,25 @@
                 <!--END REVIEWS-->
 
                 <!--RELATED GAMES-->
-                <div ng-if="relatedGames.length > 0" class="row">
-                    <div class="row"><div class="col s12 divider"/></div>
-                    <h5 class="center">Related Games</h5>
-                    <div class="slick-carousel center" id="related-carousel" data-slick='{"slidesToShow": {{relatedMin}}, "slidesToScroll": {{relatedMin}}}'>
-                        <div class="slide-container" ng-repeat="game in relatedGames" on-complete="relatedRendered">
-                            <a ng-href="#game?id={{game.id}}">
-                                <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
-                            </a>
-                            <h5 class="center slide-text">
-                                <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
-                            </h5>
+                <div class="row" ng-show="loadingRelated || relatedGames.length > 0">
+                    <div class="col s12 divider"></div>
+                </div>
+                <div ng-show="loadingRelated" class="center">
+                    <h5>Getting related games...</h5>
+                    <loading-circle></loading-circle>
+                </div>
+                <div ng-show="relatedGames.length > 0">
+                    <div ng-show="relatedGames.length > 0" class="center">
+                        <h5>Related Games</h5>
+                        <div class="slick-carousel" id="related-carousel">
+                            <div class="slide-container" ng-repeat="game in relatedGames">
+                                <a ng-href="#game?id={{game.id}}">
+                                    <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
+                                </a>
+                                <h5 class="center slide-text">
+                                    <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -352,75 +359,3 @@
 
 	</div>
 </main>
-
-
-<script type="text/javascript">
-    require(['slick-carousel'], function() {
-        //TODO consider only doing this if there are picture or videos or relatedGames
-        $(function() {
-            $('.slick-carousel').slick({
-                infinite: false,
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                arrows: true,
-                lazyload: 'ondemand'
-            });
-        });
-    });
-</script>
-
-<!--<script type="text/javascript" src="<c:url value="/slick/slick.min.js" />"></script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/game.js" />"></script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/sweetalert.min.js" />"></script>-->
-<!--<link rel="stylesheet" type="text/css" href="<c:url value="/css/sweetalert.css"/>" />-->
-<!--<script type="text/javascript">-->
-		<!--$(function () {-->
-			<!--$("#delete-button").on('click', function (event) {-->
-				<!--swal({-->
-							<!--title: "Are you sure?",-->
-							<!--text: "This game will be removed from all your shelves.",-->
-							<!--type: "warning",-->
-							<!--showCancelButton: true,-->
-							<!--confirmButtonColor: "#DD6B55",-->
-							<!--confirmButtonText: "Remove",-->
-							<!--closeOnConfirm: false-->
-						<!--},-->
-						<!--function () {-->
-							<!--//Disable submit button to prevent multiple submissions-->
-							<!--$(".confirm").attr('disabled', 'disabled');-->
-							<!--<c:url value="/delete-shelf" var="deleteUrl" />-->
-							<!--//Create an inline form and submit it to redirect with POST-->
-							<!--$("<form action='<c:url value="/remove-from-list" />' method='POST'> \-->
-                    <!--<input type='hidden' name='gameId' value='${game.id}' /> \-->
-                    <!--<input type='hidden' name='userId' value='${currentUser.id}' /> \-->
-                    <!--<input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \-->
-                   <!--</form>").submit();-->
-						<!--});-->
-			<!--});-->
-
-			<!--$(".delete-button").on('click', function (event) {-->
-				<!--var reviewId = $(this).data('reviewId');-->
-				<!--//Create an inline form and submit it to redirect with POST-->
-				<!--$("<form action='<c:url value="/delete-review" />' method='POST'> \-->
-                <!--<input type='hidden' name='reviewId' value='" + reviewId + "' /> \-->
-                <!--<input type='hidden' name='returnUrl' value='/game?id=${game.id}'/> \-->
-               <!--</form>").submit();-->
-			<!--});-->
-
-			<!--$("#shelves").on("change", function (event) {-->
-				<!--//$(this).material_select();-->
-				<!--var selectedShelves = $(this).val();-->
-				<!--if (selectedShelves.length == 0) {-->
-					<!--//No selected shelves, set everything to false-->
-					<!--$(".shelfHidden").val("false");-->
-				<!--} else {-->
-					<!--$(".shelfHidden").each(function (i, element) {-->
-						<!--element = $(element);-->
-						<!--element.val(selectedShelves.indexOf(element.attr("name")) != -1);-->
-					<!--});-->
-				<!--}-->
-				<!--$("#shelvesForm").find("button[type=submit]").removeAttr('disabled');-->
-			<!--});-->
-		<!--});-->
-<!--</script>-->
-<!--<script type="text/javascript" src="<c:url value="/js/lightbox.js" />"></script>-->
