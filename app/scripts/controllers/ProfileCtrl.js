@@ -94,15 +94,20 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 $scope.profile.picture.data = $scope.profile.picture.temp;
                 $scope.profile.picture.temp = null;
                 $scope.profile.picture.url = null;
+
+                swal({
+                    title: 'Profile picture updated',
+                    type: 'success'
+                });
             }, function (error) {
                 $log.error('Profile picture upload error: ', error);
                 $scope.pictureSubmitDisabled = false;
                 $scope.uploadingPicture = false;
                 swal({
                   title: 'Oh no!',
-                  text: error.data.errors.map(function(e) {
+                  text: (error.data.errors || [{message: 'Error uploading picture. Please try again, or try a different picture.'}]).map(function(e) {
                     return e.message;
-                  }).join('\n'),
+                  }).join('<br />'),
                   type: 'error'
                 });
             });
@@ -146,7 +151,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 title: "Oh no! Couldn't delete profile picture",
                 text: error.data.errors.map(function(e) {
                   return e.message;
-                }).join('\n'),
+                }).join('<br />'),
                 type: 'error'
               });
             });

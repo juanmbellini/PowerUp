@@ -188,7 +188,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          * @returns {boolean} Whether the specified data corresponds to the current user.
          */
         function isCurrentUser(data) {
-            if (!isLoggedIn()) {
+            if (!data || !isLoggedIn()) {
                 return false;
             }
             switch (typeof data) {
