@@ -27,8 +27,8 @@ public class ResetPasswordToken implements ValidationExceptionThrower {
      * The id of this token.
      */
     @Id
-    @SequenceGenerator(name = "shelves_seq", sequenceName = "shelves_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shelves_seq")
+    @SequenceGenerator(name = "reset_password_tokens_seq", sequenceName = "reset_password_tokens_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reset_password_tokens_seq")
     private long id;
 
     /**
