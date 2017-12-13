@@ -166,9 +166,24 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 }
                 swal.disableButtons();
                 userURL.one('shelves',shelf.name).remove().then(function(response) {
-                    swal('Success', 'Shelf "' + shelf.name + '" successfully deleted', 'success');
-                },function(error) {
-                    swal('Sever error', 'Sorry, please try again', 'error');
+                  // Remove shelf
+                  $scope.shelves.splice($scope.shelves.findIndex(function(s) {
+                    return s.id === shelf.id;
+                  }), 1);
+
+                  swal({
+                    title: 'Success',
+                    text: 'Shelf "' + shelf.name + '"successfully deleted',
+                    type: 'success'
+                  });
+                }, function(error) {
+                  swal({
+                    title: "Oh no! Couldn't delete shelf",
+                    text: error.data.errors.map(function(e) {
+                      return e.message;
+                    }).join('\n'),
+                    type: 'error'
+                  });
                 });
             });
         };
@@ -241,13 +256,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     inputPlaceholder: 'New name'
                 },
                 function (inputValue) {
-                    if (inputValue === false) {
-                        return false;
-                    }
-                    // TODO delete if no errors later.
-                    // inputValue = inputValue.replace(/,/g, ';');
-                    if (inputValue === '' || inputValue.length > 25) {
-                        swal.showInputError('Please write between 1 and 25 characters');
+                    if (!inputValue) {
+                        swal.showInputError('Please write a new name');
                         return false;
                     }
                     var oldName = shelf.name;
@@ -255,10 +265,12 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     userURL.one('shelves',oldName).customPUT(shelf).then(function (response) {
                         $log.debug('Updated Shelf. Now your shelf should be called ' + inputValue);
                         swal('Success', 'Shelf "' + oldName + '" renamed to "' + shelf.name + '"', 'success');
-                    }, function(response) {
-                        $log.error('Error renaming shelf. Error with status code', response.status);
+                    }, function(error) {
+                        $log.error('Error renaming shelf:', error);
                         shelf.name = oldName;
-                        swal.showInputError('Server error, please try again');
+                        swal.showInputError(error.data.errors.map(function(e) {
+                          return e.message;
+                        }).join('\n'));
                     });
                 });
         };
@@ -272,14 +284,18 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
           $scope.creatingShelf = true;
 
           $log.debug('Attempting to create shelf "' + $scope.newShelfName + '"');
-          // TODO validate input?
           var shelf = {name: $scope.newShelfName};
-          userURL.all('shelves').post(shelf).then(function(response) {
+          userURL.all('shelves').post(shelf).then(function(shelf) {
             $log.debug('Shelf "' + $scope.newShelfName + '" succesffully created');
             $scope.getShelves();
             $scope.newShelfName = '';
             $scope.creatingShelf = false;
-            // $scope.shelves.push(response);
+            $scope.shelves.push(shelf);
+            swal({
+              title: 'Success',
+              text: 'Shelf "' + shelf.name + '" successfully created',
+              type: 'success'
+            });
           }, function(error) {
             swal({
               title: "Oh no! Couldn't create shelf",
