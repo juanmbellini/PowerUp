@@ -33,7 +33,8 @@ public class ResetPasswordTokenHibernateDao implements ResetPasswordTokenDao {
         int count = 0;
         while (count < MAX_ITERATIONS) {
             final ResetPasswordToken token = new ResetPasswordToken(owner);
-            if (findByNonce(token.getNonce()) != null) {
+            // If no other token exists with the nonce of the generated token, store it and return
+            if (findByNonce(token.getNonce()) == null) {
                 em.persist(token);
                 return token;
             }
