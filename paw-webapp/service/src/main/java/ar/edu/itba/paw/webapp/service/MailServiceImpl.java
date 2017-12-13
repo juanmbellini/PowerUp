@@ -20,10 +20,10 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class MailServiceImpl implements MailService {
 
-    final JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
     private final Environment environment;
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final static Logger LOGGER = LoggerFactory.getLogger(MailServiceImpl.class);
 
     @Autowired
     public MailServiceImpl(JavaMailSender mailSender, Environment environment) {
@@ -37,7 +37,7 @@ public class MailServiceImpl implements MailService {
             String address = environment.getRequiredProperty("email.username");
             return new InternetAddress(name + " <" + address + ">");
         } catch (AddressException e) {
-            logger.error("Couldn't get PowerUp email", e);
+            LOGGER.error("Couldn't get PowerUp email", e);
             return null;
         }
     }
@@ -61,9 +61,9 @@ public class MailServiceImpl implements MailService {
 
         try {
             mailSender.send(preparator);
-            logger.info("Sent new password email to {} ({})", user.getUsername(), user.getEmail());
+            LOGGER.info("Sent new password email to {} ({})", user.getUsername(), user.getEmail());
         } catch (MailException ex) {
-            logger.error("Couldn't send new password email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
+            LOGGER.error("Couldn't send new password email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
         }
     }
 
@@ -85,9 +85,9 @@ public class MailServiceImpl implements MailService {
 
         try {
             mailSender.send(preparator);
-            logger.info("Sent password change confirmation email to {} ({})", user.getUsername(), user.getEmail());
+            LOGGER.info("Sent password change confirmation email to {} ({})", user.getUsername(), user.getEmail());
         } catch (MailException ex) {
-            logger.error("Couldn't send password change confirmation email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
+            LOGGER.error("Couldn't send password change confirmation email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
         }
     }
 
@@ -111,9 +111,9 @@ public class MailServiceImpl implements MailService {
 
         try {
             mailSender.send(preparator);
-            logger.info("Sent welcome email to {} ({})", user.getUsername(), user.getEmail());
+            LOGGER.info("Sent welcome email to {} ({})", user.getUsername(), user.getEmail());
         } catch (MailException ex) {
-            logger.error("Couldn't send welcome email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
+            LOGGER.error("Couldn't send welcome email to {} ({}): {}", user.getUsername(), user.getEmail(), ex);
         }
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.util.Base64Utils;
 import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -341,7 +342,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         // create token
         ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
         // generate url to be sent in the email:
-        final String resetPasswordUrl = String.format(urlTemplate, token.getNonce());
+        final String resetPasswordUrl = MessageFormat.format(urlTemplate, token.getNonce());
         // Send email
         mailService.sendPasswordResetEmail(userDao.findById(userId), resetPasswordUrl);
     }
