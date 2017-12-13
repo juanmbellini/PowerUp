@@ -4,8 +4,13 @@ package ar.edu.itba.paw.webapp.controller;
 import ar.edu.itba.paw.webapp.dto.ShelfDto;
 import ar.edu.itba.paw.webapp.exceptions.MissingJsonException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
-import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.*;
+import ar.edu.itba.paw.webapp.interfaces.SessionService;
+import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
+import ar.edu.itba.paw.webapp.interfaces.ShelfService;
+import ar.edu.itba.paw.webapp.interfaces.SortDirection;
+import ar.edu.itba.paw.webapp.model.Game;
+import ar.edu.itba.paw.webapp.model.OrderCategory;
+import ar.edu.itba.paw.webapp.model.Shelf;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,16 +40,13 @@ public class ShelfJerseyController implements UpdateParamsChecker {
     public static final String GAMES_END_POINT = "games";
 
     @Autowired
-    private ShelfJerseyController(ShelfService shelfService, SessionService sessionService, UserService userService) {
+    private ShelfJerseyController(ShelfService shelfService, SessionService sessionService) {
         this.shelfService = shelfService;
         this.sessionService = sessionService;
-        this.userService = userService;
     }
 
 
     private final ShelfService shelfService;
-
-    private final UserService userService;
 
     private final SessionService sessionService;
 
@@ -197,10 +199,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
         shelfService.addGameToShelf(userId, shelfName, shelfGameDto.getGameId(),
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
-        // TODO: move this logic to service
-        if (userService.getPlayStatuses(userId, shelfGameDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()) {
-            userService.setPlayStatus(userId, shelfGameDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
-        }
+
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(shelfGameDto.getGameId())).build();
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
@@ -217,11 +216,7 @@ public class ShelfJerseyController implements UpdateParamsChecker {
 
         shelfService.removeGameFromShelf(userId, shelfName, gameId,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
-        // TODO: move this logic to service
-        //  TODO: move this logic to service
-        if (!belongsToGameList(userId, gameId)) {
-            deleteFromGameList(userId, gameId);
-        }
+
         return Response.noContent().build();
     }
 
@@ -236,26 +231,6 @@ public class ShelfJerseyController implements UpdateParamsChecker {
         shelfService.clearShelf(userId, shelfName,
                 Optional.ofNullable(sessionService.getCurrentUser()).orElseThrow(UnauthenticatedException::new));
         return Response.noContent().build();
-    }
-
-    /**
-     * @return whether or not the game belongs to the User's GameList.
-     */
-    private boolean belongsToGameList(final long userId, final long gameId) {
-        boolean hasPlayStatus = false;
-        UserGameStatus ugs = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().iterator().next();
-        if (ugs == null) {
-            userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
-        } else {
-            if (!ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
-        }
-        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()
-                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
-                || hasPlayStatus;
-    }
-
-    private void deleteFromGameList(long userId, long gameId) {
-        userService.removePlayStatus(userId, gameId, userId);
     }
 
     @OPTIONS

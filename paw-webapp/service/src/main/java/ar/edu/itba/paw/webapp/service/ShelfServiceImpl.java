@@ -3,10 +3,7 @@ package ar.edu.itba.paw.webapp.service;
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
 import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
-import ar.edu.itba.paw.webapp.model.Game;
-import ar.edu.itba.paw.webapp.model.OrderCategory;
-import ar.edu.itba.paw.webapp.model.Shelf;
-import ar.edu.itba.paw.webapp.model.User;
+import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.validation.ValidationException;
 import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
 import ar.edu.itba.paw.webapp.model.validation.ValueError;
@@ -31,11 +28,14 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
 
     private final UserDao userDao;
 
+    private final GameListService gameListService;
+
     @Autowired
-    public ShelfServiceImpl(ShelfDao shelfDao, GameDao gameDao, UserDao userDao) {
+    public ShelfServiceImpl(ShelfDao shelfDao, GameDao gameDao, UserDao userDao, GameListService gameListService) {
         this.shelfDao = shelfDao;
         this.gameDao = gameDao;
         this.userDao = userDao;
+        this.gameListService = gameListService;
     }
 
 
@@ -113,7 +113,17 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         final User owner = getOwner(ownerId); // Throws NoSuchEntityException if it not exists.
         validateUpdatePermission(owner, updater);
         final Shelf shelf = getShelf(owner, shelfName); // Throws NoSuchEntityException if it not exists.
-        shelfDao.addGameToShelf(shelf, gameDao.findById(gameId)); // If game does not exists, lower layer will handle.
+        final Game game = gameDao.findById(gameId);
+
+        shelfDao.addGameToShelf(shelf, game); // If game does not exists, lower layer will handle.
+
+        // Check if the game has play status
+        final boolean noStatus = userDao.getPlayStatuses(owner, gameId, null, 1, 1,
+                UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC)
+                .getData().isEmpty();
+        if (noStatus) {
+            userDao.setPlayStatus(owner, game, PlayStatus.NO_PLAY_STATUS);
+        }
     }
 
     @Override
@@ -125,7 +135,12 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         validateUpdatePermission(owner, updater);
         final Shelf shelf = getShelf(owner, shelfName); // Throws NoSuchEntityException if it not exists.
         // If game not exists, do nothing (and be idempotent). If shelf not contains game, lower layer will handle
-        Optional.ofNullable(gameDao.findById(gameId)).ifPresent(game -> shelfDao.removeGameFromShelf(shelf, game));
+        Optional.ofNullable(gameDao.findById(gameId)).ifPresent(game -> {
+            shelfDao.removeGameFromShelf(shelf, game);
+            if (!gameListService.belongsToGameList(ownerId, gameId)) {
+                userDao.removePlayStatus(owner, game);
+            }
+        });
     }
 
     @Override
