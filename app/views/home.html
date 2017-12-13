@@ -103,7 +103,7 @@
                                 <div  class="row" style="margin-bottom: 0">
                                     <div class="col s10">
                                         <a ng-href="#profile?username={{feedElement.data.username}}">
-                                            <img ng-src="{{apiLocation}}/users/{{feedElement.data.userId}}/picture" alt="{{feedElement.data.username}}" class="circle">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data.userProfilePictureUrl)}}" alt="{{feedElement.data.username}}" class="circle">
                                         </a>
                                         <span class="title wrap-text">
                                         <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
