@@ -54,15 +54,18 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
             Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (playStatus) {
                 if (playStatus.length > 0) {
                     $scope.gamePlayStatus = playStatus[0].status;
+                    if ($scope.gamePlayStatus === noPlayStatusString) {
+                        $scope.gamePlayStatus = '';
+                    }
                 } else {
-                    $scope.gamePlayStatus = noPlayStatusString;
+                    $scope.gamePlayStatus = '';
                 }
             }, function (response) {
                 $log.error('Could not get play status from game', response);
             });
             $scope.updatePlayStatus = function () {
                 $scope.loadingStatus = true;
-                if ($scope.gamePlayStatus === noPlayStatusString) {
+                if ($scope.gamePlayStatus === '') {
                     Restangular.one('users', userId).one('play-status',$scope.gameId).remove().then(function (response) {
                         $log.info('removed play status from game', response);
                         $scope.updatedStatus = true;
@@ -82,6 +85,10 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                     });
                 }
             };
+            $scope.clearPlayStatus = function (){
+                $scope.gamePlayStatus = '';
+                $scope.updatePlayStatus();
+            };
 
 
             // Game Score
@@ -94,14 +101,14 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                 if (gameScore.length > 0) {
                     $scope.gameScore = gameScore[0].score;
                 } else {
-                    $scope.gameScore = 'delete';
+                    $scope.gameScore = '';
                 }
             }, function (response) {
                 $log.error('Could not get score from game', response);
             });
             $scope.updateScore = function () {
                 $scope.loadingScore = true;
-                if ($scope.gameScore === 'delete') {
+                if ($scope.gameScore === '') {
                     Restangular.one('users', userId).one('game-scores',$scope.gameId).remove().then(function (response) {
                         $log.info('removed score from game', response);
                         $scope.updatedScore = true;
@@ -120,6 +127,10 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
                         $scope.loadingScore = false;
                     });
                 }
+            };
+            $scope.clearScore = function (){
+                $scope.gameScore = '';
+                $scope.updateScore();
             };
 
             // Shelves
