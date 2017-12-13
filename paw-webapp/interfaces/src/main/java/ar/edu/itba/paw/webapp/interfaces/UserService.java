@@ -3,7 +3,6 @@ package ar.edu.itba.paw.webapp.interfaces;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 
@@ -235,24 +234,6 @@ public interface UserService {
      * @return A {@link Collection} of recommended {@link Game}s.
      */
     Collection<Game> recommendGames(long userId, List<String> shelfNameFilters);
-
-    /**
-     * Returns a {@link User}'s list (i.e games in a {@link Shelf} or with {@link PlayStatus}).
-     * Filtering and sorting can be applied.
-     *
-     * @param userId        The {@link User} owning the list's id.
-     * @param shelfNames    A {@link List} of names of {@link Shelf} to apply filtering.
-     * @param statuses      A {@link List} of {@link PlayStatus} to apply filtering.
-     * @param pageNumber    The page number.
-     * @param pageSize      The page size.
-     * @param sortingType   The sorting type.
-     * @param sortDirection The sort direction.
-     * @return The resulting page.
-     */
-    Page<GameWithUserShelvesWrapper> getGameList(long userId, List<String> shelfNames, List<PlayStatus> statuses,
-                                                 int pageNumber, int pageSize,
-                                                 UserDao.ListGameSortingType sortingType, SortDirection sortDirection);
-
 
     /**
      * Returns a new randomly generated password.

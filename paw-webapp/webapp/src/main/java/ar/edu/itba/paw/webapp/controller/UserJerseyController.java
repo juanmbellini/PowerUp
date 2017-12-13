@@ -7,6 +7,8 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthenticatedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
@@ -40,7 +42,7 @@ import static ar.edu.itba.paw.webapp.controller.UserJerseyController.END_POINT;
 @Path(END_POINT)
 @Component
 @Produces(value = {MediaType.APPLICATION_JSON,})
-public class UserJerseyController implements UpdateParamsChecker {
+public class UserJerseyController implements UpdateParamsChecker, ValidationExceptionThrower {
 
     public static final String END_POINT = "users";
 
@@ -54,20 +56,20 @@ public class UserJerseyController implements UpdateParamsChecker {
 
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService,
-                                 MailService mailService, ShelfService shelfService) {
+                                 MailService mailService, GameListService gameListService) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
-        this.shelfService = shelfService;
+        this.gameListService = gameListService;
     }
 
     private final UserService userService;
 
     private final MailService mailService;
 
-    private final ShelfService shelfService;
-
     private final SessionService sessionService;
+
+    private final GameListService gameListService;
 
 
     @Context
@@ -216,7 +218,7 @@ public class UserJerseyController implements UpdateParamsChecker {
                 .getPaginationReadyParametersWrapper(pageSize, pageNumber)
                 .addParameter("userId", userId, id -> id <= 0));
 
-        final Page<GameWithUserShelvesWrapper> gameList = userService.getGameList(userId, shelfNames, statuses,
+        final Page<GameWithUserShelvesWrapper> gameList = gameListService.getGameList(userId, shelfNames, statuses,
                 pageNumber, pageSize, sortingType, sortDirection);
         final JerseyControllerHelper.ParameterMapBuilder parametersBuilder = JerseyControllerHelper
                 .getParameterMapBuilder()
@@ -397,12 +399,18 @@ public class UserJerseyController implements UpdateParamsChecker {
         }).build();
     }
 
+    private final static ValueError ILLEGAL_STATUS = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "status", "Illegal status");
+
     @POST
     @Path("/{id : \\d+}/play-status")
     @Consumes(value = {MediaType.APPLICATION_JSON})
     public Response addPlayStatus(@PathParam("id") final long userId,
                                   final UserGameStatusDto userGameStatusDto) {
         checkUpdateValues(userId, "id", userGameStatusDto);
+        if (PlayStatus.NO_PLAY_STATUS.equals(userGameStatusDto.getStatus())) {
+            throwValidationException(Collections.singletonList(ILLEGAL_STATUS));
+        }
 
         userService.setPlayStatus(userId, userGameStatusDto.getGameId(), userGameStatusDto.getStatus(), userId); // TODO: updater
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameStatusDto.getGameId())).build();
@@ -417,9 +425,8 @@ public class UserJerseyController implements UpdateParamsChecker {
                 .addParameter("id", userId, id -> id <= 0)
                 .addParameter("gameId", gameId, id -> id <= 0));
 
-        userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId); // TODO: updater
-        // TODO: move this logic to service
-        if (!belongsToGameList(userId, gameId)) userService.removePlayStatus(userId, gameId, userId);
+        userService.removePlayStatus(userId, gameId, sessionService.getCurrentUserId());
+
         return Response.noContent().build();
     }
 
@@ -461,12 +468,9 @@ public class UserJerseyController implements UpdateParamsChecker {
         checkUpdateValues(userId, "id", userGameScoreDto);
 
         userService.setGameScore(userId, userGameScoreDto.getGameId(), userGameScoreDto.getScore(), userId); // TODO: updater
+
         final URI uri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(userGameScoreDto.getGameId())).build();
 
-        // TODO: move this logic to service
-        if (userService.getPlayStatuses(userId, userGameScoreDto.getGameId(), null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()) {
-            userService.setPlayStatus(userId, userGameScoreDto.getGameId(), PlayStatus.NO_PLAY_STATUS, userId);
-        }
         return Response.created(uri).status(Response.Status.CREATED).build();
     }
 
@@ -478,14 +482,9 @@ public class UserJerseyController implements UpdateParamsChecker {
                 .addParameter("id", userId, id -> id <= 0)
                 .addParameter("gameId", gameId, id -> id <= 0));
 
-        userService.removeGameScore(userId, gameId, userId); // TODO: updater
-        // TODO: move this logic to service
-        if (!belongsToGameList(userId, gameId)) deleteFromGameList(userId, gameId);
-        return Response.noContent().build();
-    }
+        userService.removeGameScore(userId, gameId, sessionService.getCurrentUserId());
 
-    private void deleteFromGameList(long userId, long gameId) {
-        userService.removePlayStatus(userId, gameId, userId);
+        return Response.noContent().build();
     }
 
 
@@ -724,26 +723,5 @@ public class UserJerseyController implements UpdateParamsChecker {
         Collection<Game> recommendedGames = userService.recommendGames(userId, shelves);
         return Response.ok(new GenericEntity<List<GameDto>>(GameDto.createList(recommendedGames)) {
         }).build();
-    }
-
-
-    /**
-     * @return whether or not the game belongs to the User's GameList.
-     */
-    // TODO: move logic to service
-    private boolean belongsToGameList(final long userId, final long gameId) {
-        boolean hasPlayStatus = false;
-        Collection<UserGameStatus> playStatuses = userService.getPlayStatuses(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData();
-        if (playStatuses != null && playStatuses.iterator().hasNext()) {
-            UserGameStatus ugs = playStatuses.iterator().next();
-            if (ugs == null) {
-                userService.setPlayStatus(userId, gameId, PlayStatus.NO_PLAY_STATUS, userId);
-            } else {
-                if (!ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
-            }
-        }
-        return !userService.getGameScores(userId, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()
-                || !shelfService.getUserShelves(userId, null, gameId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
-                || hasPlayStatus;
     }
 }

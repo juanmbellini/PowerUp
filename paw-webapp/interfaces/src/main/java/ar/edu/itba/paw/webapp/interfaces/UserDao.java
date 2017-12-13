@@ -94,7 +94,7 @@ public interface UserDao extends FindByIdDao<User> {
     void removeAuthority(User user, Authority authority);
 
     /**
-     * @see UserService#getGameList(long, List, List, int, int, ListGameSortingType, SortDirection)
+     * @see GameListService#getGameList(long, List, List, int, int, ListGameSortingType, SortDirection)
      */
     Page<Game> getGameList(User user, List<Shelf> shelves, List<PlayStatus> statuses,
                            int pageNumber, int pageSize,

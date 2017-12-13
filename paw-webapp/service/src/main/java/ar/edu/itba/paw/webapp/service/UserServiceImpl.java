@@ -5,9 +5,11 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.validation.*;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValidationHelper;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +48,13 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final PasswordEncoder passwordEncoder;
 
+    private final GameListService gameListService;
+
 
     @Autowired
     public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
                            UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder, GameListService gameListService) {
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
@@ -59,6 +63,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         this.commentDao = commentDao;
         this.threadLikeDao = threadLikeDao;
         this.passwordEncoder = passwordEncoder;
+        this.gameListService = gameListService;
     }
 
 
@@ -169,7 +174,14 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     @Override
     public void removePlayStatus(long userId, Long gameId, long updaterId) {
         checkPresentGameId(gameId);
-        userDao.removePlayStatus(checkUserValuesAndAuthoring(userId, updaterId), gameDao.findById(gameId));
+        final User user = checkUserValuesAndAuthoring(userId, updaterId);
+        final Game game = gameDao.findById(gameId);
+        // First check what happens with the game list if we set the status to "No play status"
+        userDao.setPlayStatus(user, game, PlayStatus.NO_PLAY_STATUS);
+        // If, after setting to "No play status" the game is taken from the list, remove it.
+        if (!gameListService.belongsToGameList(userId, gameId)) {
+            userDao.removePlayStatus(user, game);
+        }
     }
 
     @Override
@@ -184,15 +196,35 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     @Override
     public void setGameScore(long userId, long gameId, Integer score, long updaterId) {
         checkPresentGameId(gameId);
-        userDao.setGameScore(checkUserValuesAndAuthoring(userId, updaterId), gameDao.findById(gameId), score);
-        gameDao.updateAvgScore(gameId); // TODO: receive object
+        final User user = checkUserValuesAndAuthoring(userId, updaterId);
+        final Game game = gameDao.findById(gameId);
+        // Check if the game has play status
+        final boolean noStatus = userDao.getPlayStatuses(user, gameId, null, 1, 1,
+                UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC)
+                .getData().isEmpty();
+        if (noStatus) {
+            userDao.setPlayStatus(user, game, PlayStatus.NO_PLAY_STATUS);
+        }
+        userDao.setGameScore(user, game, score);
+        gameDao.updateAvgScore(gameId);
     }
 
     @Override
     public void removeGameScore(long userId, long gameId, long updaterId) {
         checkPresentGameId(gameId);
-        userDao.removeGameScore(checkUserValuesAndAuthoring(userId, updaterId), gameDao.findById(gameId));
-        gameDao.updateAvgScore(gameId); // TODO: receive object
+        final User user = checkUserValuesAndAuthoring(userId, updaterId);
+        final Game game = gameDao.findById(gameId);
+        // Indicates if the game has a "no play status" for it
+        final boolean hasNoPlayStatus = userDao.getPlayStatuses(user, gameId, null, 1, 1,
+                UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC)
+                .getData().stream()
+                .map(UserGameStatus::getPlayStatus)
+                .filter(playStatus -> playStatus == PlayStatus.NO_PLAY_STATUS).count() > 0;
+        if (hasNoPlayStatus) {
+            userDao.removePlayStatus(user, game);
+        }
+        userDao.removeGameScore(user, game);
+        gameDao.updateAvgScore(gameId);
     }
 
 
@@ -222,45 +254,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
                 .orElse(new HashSet<>()); // If list of names is null, return an empty hash set.
         return userDao.recommendGames(userId, shelves);
     }
-
-    @Override
-    public Page<GameWithUserShelvesWrapper> getGameList(long userId, List<String> shelfNames, List<PlayStatus> statuses,
-                                                        int pageNumber, int pageSize,
-                                                        UserDao.ListGameSortingType sortingType, SortDirection sortDirection) {
-        if (shelfNames == null || statuses == null) {
-            throw new IllegalArgumentException();
-        }
-
-        final User user = getUser(userId); // Will throw NoSuchEntityException if not exists
-        final List<Shelf> shelves = shelfNames.stream().map(name -> getShelf(user, name)).collect(Collectors.toList());
-
-        final Page<Game> page = userDao.getGameList(user, shelves, statuses,
-                pageNumber, pageSize, sortingType, sortDirection);
-
-        // Gets all shelves of the given user
-        final int amountOfShelves = (int) shelfDao.getShelves(null, null, null, user.getId(), null, 1, 1,
-                ShelfDao.SortingType.ID, SortDirection.ASC).getOverAllAmountOfElements();
-        final Collection<Shelf> userShelves = shelfDao.getShelves(null, null, null, user.getId(), null, 1, amountOfShelves,
-                ShelfDao.SortingType.ID, SortDirection.ASC).getData();
-
-        return ServiceHelper.fromAnotherPage(page, game -> {
-            final List<Shelf> shelvesHolding = userShelves.stream().filter(shelf -> shelf.getGames().contains(game))
-                    .collect(Collectors.toList());
-
-            final Iterator<Integer> scoresIt = userDao.getGameScores(user, game.getId(), null, 1, 1,
-                    UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC)
-                    .getData().stream().map(UserGameScore::getScore).iterator();
-            final Iterator<PlayStatus> statusesIt = userDao.getPlayStatuses(user, game.getId(), null, 1, 1,
-                    UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC)
-                    .getData().stream().map(UserGameStatus::getPlayStatus).iterator();
-
-            return new GameWithUserShelvesWrapper(user, game,
-                    shelvesHolding,
-                    scoresIt.hasNext() ? scoresIt.next() : null,
-                    statusesIt.hasNext() ? statusesIt.next() : null);
-        }).build();
-    }
-
 
     /**
      * Returns a new randomly generated password.
@@ -366,34 +359,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
     private User getUser(final long userId) throws NoSuchEntityException {
         return Optional.ofNullable(userDao.findById(userId))
                 .orElseThrow(NoSuchEntityException::new);
-    }
-
-
-    /**
-     * Retrieves the {@link Shelf} with the given {@code shelfName}, owned by the given {@code user}.
-     *
-     * @param user      The {@link User} who owns the {@link Shelf}.
-     * @param shelfName The {@link Shelf} name.
-     * @return The {@link Shelf} with the given {@code shelfName}, owned by the given {@code user}.
-     * @throws NoSuchEntityException If the {@link Shelf} does not exists.
-     */
-    private Shelf getShelf(final User user, final String shelfName) throws NoSuchEntityException {
-        return getShelfOptional(user, shelfName).orElseThrow(NoSuchEntityException::new);
-    }
-
-    /**
-     * Retrieves a nullable {@link Optional} of {@link Shelf} with the given {@code shelfName},
-     * owned by the given {@code user}.
-     *
-     * @param user      The {@link User} who owns the {@link Shelf}.
-     * @param shelfName The {@link Shelf} name.
-     * @return The nullable {@link Optional}.
-     */
-    private Optional<Shelf> getShelfOptional(final User user, final String shelfName) {
-        if (user == null || shelfName == null) {
-            throw new IllegalArgumentException("User and shelf name must not be null");
-        }
-        return Optional.ofNullable(shelfDao.findByName(user, shelfName));
     }
 
     /**
