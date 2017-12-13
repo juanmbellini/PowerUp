@@ -82,11 +82,11 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
 
       /**
        * Get the user's profile picture URL, falling back to a default profile picture.
-       * @param user      The user whose profile picture URL to get
+       * @param url      The user whose profile picture URL to get
        * @return {string} The resulting profile picture URL
        */
-      $scope.profilePictureUrl = function(user) {
-        return user.profilePictureUrl || DEFAULT_PROFILE_PICTURE_URL;
+      $scope.profilePictureUrl = function(url) {
+        return url || DEFAULT_PROFILE_PICTURE_URL;
       };
 
         Waves.displayEffect();      // To get waves effects working, https://gist.github.com/stephenjang/123740713c0b0ab21c9a#gistcomment-1982064

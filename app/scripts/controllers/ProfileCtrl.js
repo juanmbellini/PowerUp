@@ -47,7 +47,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                     $scope.profile.gamesAmount = 0;
                 }
             });
-            $scope.profile.picture.url = $scope.profilePictureUrl(user);
+            $scope.profile.picture.url = $scope.profilePictureUrl(user.profilePictureUrl);
             $scope.profile.picture.canDelete = user.profilePictureUrl !== null;
             getFollowerData();
             getShelvesData();
