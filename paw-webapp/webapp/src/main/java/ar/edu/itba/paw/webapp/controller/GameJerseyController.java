@@ -130,12 +130,36 @@ public class GameJerseyController {
 
     @GET
     @Path("/filters/{type}")
-    public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory) {
-        return Response
-                .ok(new GenericEntity<List<FilterValueDto>>(FilterValueDto
-                        .createList(gameService.getFiltersByType(filterCategory))) {
-                })
-                .build();
+    public Response getFiltersByType(@PathParam("type") final FilterCategory filterCategory,
+                                     @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,
+                                     @QueryParam("pageSize") @DefaultValue("500") final int pageSize) {
+        // Validate stuff
+        final JerseyControllerHelper.ParametersWrapper wrapper = JerseyControllerHelper.getParametersWrapper()
+                .addParameter("type", filterCategory, Objects::isNull)
+                .addParameter("pageNumber", pageNumber, number -> number <= 0)
+                .addParameter("pageSize", pageSize, size -> size <= 0 || size > 500);
+        JerseyControllerHelper.checkParameters(wrapper);
+
+        // Get page of filters
+        final Page<String> page = gameService.getFiltersByType(filterCategory, pageNumber, pageSize);
+
+        // Generate URLs for all pages
+        final URI prevPage = pageNumber == 1 ? null :
+                getPageUri(uriInfo.getBaseUriBuilder(), pageNumber - 1, pageSize);
+        final URI nextPage = pageNumber == page.getTotalPages() ? null :
+                getPageUri(uriInfo.getBaseUriBuilder(), pageNumber + 1, pageSize);
+        final URI firstPage = getPageUri(uriInfo.getBaseUriBuilder(), 1, pageSize);
+        final URI lastPage = getPageUri(uriInfo.getBaseUriBuilder(), page.getTotalPages(), pageSize);
+
+        // Create response, and fill it with stuff for pagination.
+        final Response.ResponseBuilder responseBuilder = Response
+                .ok(new GenericEntity<List<FilterValueDto>>(FilterValueDto.createList(page.getData())) {
+                });
+        JerseyControllerHelper.addPaginationHeaders(responseBuilder, page.getTotalPages(), page.getAmountOfElements(),
+                page.getOverAllAmountOfElements(), page.getPageNumber(), page.getPageSize(),
+                prevPage, nextPage, firstPage, lastPage);
+
+        return responseBuilder.build();
     }
 
 
@@ -179,4 +203,15 @@ public class GameJerseyController {
         return filters;
     }
 
+    /**
+     * Creates a {@link URI} from the given {@link UriBuilder}, adding query params for pagination.
+     *
+     * @param uriBuilder The {@link UriBuilder} used to build the {@link URI}.
+     * @param pageNumber The page number for the {@link URI}, to be included as a query param.
+     * @param pageSize   The page size for the {@link URI}, to be included as a query param.
+     * @return The created {@link URI}.
+     */
+    private URI getPageUri(UriBuilder uriBuilder, int pageNumber, int pageSize) {
+        return uriBuilder.queryParam("pageNumber", pageNumber).queryParam("pageSize", pageSize).build();
+    }
 }

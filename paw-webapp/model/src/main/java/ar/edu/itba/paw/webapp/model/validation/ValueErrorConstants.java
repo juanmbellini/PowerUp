@@ -46,7 +46,7 @@ public class ValueErrorConstants {
             "The picture is too small");
 
     public static final ValueError PICTURE_TOO_BIG = new ValueError(ILLEGAL_VALUE, "picture",
-            "The picture is too big");
+            String.format("The picture is too big. Maximum size is %dMB.", NumericConstants.PROFILE_PICTURE_MAX_SIZE / 1000000));
 
 
     public static final ValueError MISSING_MIME_TYPE = new ValueError(MISSING_VALUE, "mimeType",

@@ -7,9 +7,4 @@ public enum FilterCategory {
     genre,
     keyword,
     platform;
-
-    //TODO delete if unused
-    public String pretty() {
-        return ((Character)(name().charAt(0))).toString().toUpperCase() + name().substring(1);
-    }
 }

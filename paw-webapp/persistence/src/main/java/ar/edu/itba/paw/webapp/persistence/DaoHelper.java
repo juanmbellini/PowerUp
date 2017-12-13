@@ -208,6 +208,30 @@ import java.util.stream.IntStream;
     }
 
     /**
+     * Retrieves a {@link Page} without applying conditions.
+     *
+     * @param em            The entity manager.
+     * @param klass         The entity's class.
+     * @param baseQuery     A {@link StringBuilder} containing the base query.
+     * @param baseAlias     The alias used for the entity in the base query.
+     * @param countField    The field used to count.
+     * @param pageNumber    The number of page.
+     * @param pageSize      The size of page.
+     * @param sortByField   The field used to sort.
+     * @param sortDirection The sort direction (i.e ASC or DESC).
+     * @param <T>           The type of the entity.
+     * @return The page containing the data.
+     */
+    /* package */
+    static <T> Page<T> findPageWithoutConditions(EntityManager em, Class<T> klass, String baseQuery,
+                                                 String baseAlias, String countField,
+                                                 int pageNumber, int pageSize, String sortByField,
+                                                 SortDirection sortDirection, boolean includeSelect) {
+        return findPageWithConditions(em, klass, baseQuery, baseAlias, countField, Collections.emptyList(),
+                pageNumber, pageSize, sortByField, sortDirection, includeSelect);
+    }
+
+    /**
      * Performs a basic search with parameters, returning a page of results.
      *
      * @param <T>           The return type.

@@ -230,8 +230,7 @@
                     <div class="slick-carousel" id="recommended-carousel">
                         <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
                             <a ng-href="#game?id={{game.id}}">
-                                <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
-                                <!--data-lazy-->
+                                <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
                             </a>
                             <h5 class="center slide-text">
                                 <a ng-href="#game?id={{game.id}}">{{game.name}}</a>

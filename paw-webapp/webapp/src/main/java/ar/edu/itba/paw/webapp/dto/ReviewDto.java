@@ -5,6 +5,7 @@ import ar.edu.itba.paw.webapp.controller.ReviewJerseyController;
 import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Review;
 import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -62,6 +63,9 @@ public class ReviewDto extends EntityDto {
     @XmlElement
     private String likesUrl;
 
+    @XmlElement
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String userProfilePictureUrl;
 
     public ReviewDto() {
         // For Jax-RS
@@ -93,6 +97,15 @@ public class ReviewDto extends EntityDto {
                 .path(Long.toString(wrapper.getEntity().getId()))
                 .path(ReviewJerseyController.LIKES_END_POINT)
                 .build().toString();
+        if (wrapper.getEntity().getUser().hasProfilePicture()) {
+            this.userProfilePictureUrl = baseUri.clone()
+                    .path(UserJerseyController.END_POINT)
+                    .path(Long.toString(this.userId))
+                    .path(UserJerseyController.PICTURE_END_POINT)
+                    .build().toString();
+        } else {
+            this.userProfilePictureUrl = null;
+        }
     }
 
     private ReviewDto(Review review, UriBuilder baseUri) {
@@ -104,6 +117,15 @@ public class ReviewDto extends EntityDto {
         this.gameCoverPictureUrl = review.getGame().getCoverPictureUrl();
         this.date = LocalDateTime.ofInstant(review.getDate().toInstant(), ZoneId.systemDefault()).toString();
         this.body = review.getReview();
+        if (review.getUser().hasProfilePicture()) {
+            this.userProfilePictureUrl = baseUri.clone()
+                    .path(UserJerseyController.END_POINT)
+                    .path(Long.toString(this.userId))
+                    .path(UserJerseyController.PICTURE_END_POINT)
+                    .build().toString();
+        } else {
+            this.userProfilePictureUrl = null;
+        }
     }
 
 
@@ -153,6 +175,10 @@ public class ReviewDto extends EntityDto {
 
     public Boolean getLikedByCurrentUser() {
         return likedByCurrentUser;
+    }
+
+    public String getUserProfilePictureUrl() {
+        return userProfilePictureUrl;
     }
 
     /**

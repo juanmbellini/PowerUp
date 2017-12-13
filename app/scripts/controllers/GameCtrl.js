@@ -130,12 +130,17 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
             $scope.shelves = [];
             $scope.shelvesWithGame = []; // name array
             $scope.shelvesWithGameDirty = []; // name array
+            var isLoadedShelves = false;
             Restangular.one('users',userId).all('shelves').getList().then(function (response) {
                 var shelves = response.data;
                 $scope.shelves = shelves;
-                $timeout(function () {
-                    $('select').material_select();
-                },30);
+                if (isLoadedShelves) {
+                    $timeout(function () {
+                        $('select').material_select();
+                    });
+                } else {
+                    isLoadedShelves = true;
+                }
             });
             Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
                 var shelvesWithGame = response.data;
@@ -144,6 +149,13 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                     $scope.shelvesWithGame.push(shelf.name);
                 });
                 $scope.oldShelvesWithGame = $scope.shelvesWithGame;
+                if (isLoadedShelves) {
+                    $timeout(function () {
+                        $('select').material_select();
+                    });
+                } else {
+                    isLoadedShelves = true;
+                }
             });
             $scope.updateShelfSelect = function () {
                 // console.log(shelfUpdated);

@@ -43,7 +43,7 @@ public class GameHibernateDao implements GameDao {
                 if (firstArgument) {
                     firstArgument = false;
                     if (!(filterCategory.name().equals("platform"))) {
-                        fromString.append(" join g.").append(filterCategory.pretty().toLowerCase()).append("s as ").append(filterCategory.name());
+                        fromString.append(" join g.").append(filterCategory.name().toLowerCase()).append("s as ").append(filterCategory.name());
                     } else {
                         fromString.append(" , Platform as platform");
                     }

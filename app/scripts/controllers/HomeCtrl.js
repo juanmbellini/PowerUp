@@ -55,7 +55,7 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
     };
 
 
-    $scope.$watch('needFeed()', function () {
+		$scope.$watch('needFeed()', function () {
       if (AuthService.isLoggedIn() && feedObj !== null && FeedService.isReady(feedObj) && $scope.loadingFeed) {
         var feedArray = FeedService.getFeed(feedObj);
         $scope.feed = $scope.feed.concat(feedArray);
@@ -65,7 +65,7 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
         $scope.thereAreMore = feedObj.thereAreMore;
         $scope.loadingFeed = false;
       }
-    });
+		});
 
     $scope.loadMoreFeed = function () {
       $scope.loadingFeed = true;
