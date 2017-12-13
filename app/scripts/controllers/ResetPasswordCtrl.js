@@ -99,7 +99,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'validator-js'], functio
                 title: 'Token sent!',
                 text: 'Please check your email for your new token. Redirecting you to home...',
                 type: 'success',
-                closeOnConfirm: false
+                closeOnConfirm: false,
+                timer: 5000
               });
               $timeout(function() {
                 // Redirect to home
@@ -137,9 +138,12 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'validator-js'], functio
         title: 'Success',
         text: 'Password successfully reset! You will now be redirected to the log in page',
         type: 'success',
-        closeOnConfirm: false
+        closeOnConfirm: false,
+        timer: 5000
       });
       $timeout(function() {
+        // Redirect to login page, but redirect back to home after successful login, not back here!
+        $scope.loginRedirect = '/';
         $location.search({});
         $location.path('/login');
       }, 5000);
