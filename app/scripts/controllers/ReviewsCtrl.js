@@ -144,11 +144,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
             $location.search({});
             $location.path('');
         }
-        // $scope.updatePageSize = function (pageSizeSelected) {
-        //     $scope.pageSize = pageSizeSelected;
-        //     $location.search('pageSize', $scope.pageSize);
-        // };
-
         $scope.isLoggedIn = AuthService.isLoggedIn();
 
         /*
