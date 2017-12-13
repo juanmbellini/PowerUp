@@ -105,7 +105,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 $scope.uploadingPicture = false;
                 swal({
                   title: 'Oh no!',
-                  text: error.data.errors.map(function(e) {
+                  text: (error.data.errors || [{message: 'Error uploading picture. Please try again, or try a different picture.'}]).map(function(e) {
                     return e.message;
                   }).join('<br />'),
                   type: 'error'
