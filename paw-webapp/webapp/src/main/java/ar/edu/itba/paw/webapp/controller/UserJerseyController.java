@@ -56,19 +56,16 @@ public class UserJerseyController implements UpdateParamsChecker, ValidationExce
 
     @Autowired
     private UserJerseyController(UserService userService, SessionService sessionService,
-                                 MailService mailService, ShelfService shelfService, GameListService gameListService) {
+                                 MailService mailService, GameListService gameListService) {
         this.userService = userService;
         this.sessionService = sessionService;
         this.mailService = mailService;
-        this.shelfService = shelfService;
         this.gameListService = gameListService;
     }
 
     private final UserService userService;
 
     private final MailService mailService;
-
-    private final ShelfService shelfService;
 
     private final SessionService sessionService;
 
