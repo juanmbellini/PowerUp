@@ -10,17 +10,18 @@
                             <div class='row'>
                                 <div class='input-field col s6'>
                                     <p>Email:</p>
-                                    <input type="email" ng-model="userToSubmit.email" name="uEmail" ng-maxlength="254" required unique-email="" ng-class="{invalid: registerForm.uEmail.$invalid && (registerForm.uEmail.$error.maxlength || registerForm.uEmail.$touched) , valid: registerForm.uEmail.$dirty && registerForm.uEmail.$valid}" />
+                                    <input type="email" ng-model="userToSubmit.email" name="uEmail" ng-maxlength="254" required unique-email="" valid-email="" ng-class="{invalid: registerForm.uEmail.$invalid && (registerForm.uEmail.$error.maxlength || registerForm.uEmail.$touched) , valid: registerForm.uEmail.$dirty && registerForm.uEmail.$valid}" />
                                     <div ng-show=" submitted || registerForm.uEmail.$dirty">
                                         <div class="hide-while-in-focus" ng-show="!registerForm.uEmail.$error.required && !registerForm.uEmail.$error.email && !registerForm.uEmail.$error.maxlength" >
                                             <span ng-show="registerForm.uEmail.$loading">Loading...</span>
                                             <span class="formError" ng-show="registerForm.uEmail.$error.unique">Email taken!</span>
                                         </div>
                                         <span ng-show="registerForm.uEmail.$error.maxlength">Email needs to be 254 characters long or less.</span>
+                                        <span class="formError" ng-show="registerForm.uEmail.$error.valide">This is not a valid email.</span>
                                     </div>
                                     <div ng-show="submitted || registerForm.uEmail.$touched">
                                         <span class="formError" ng-show="registerForm.uEmail.$error.required">Tell us your email.</span>
-                                        <span class="formError" ng-show="registerForm.uEmail.$error.email">This is not a valid email.</span>
+                                        <!--<span class="formError" ng-show="registerForm.uEmail.$error.email">This is not a valid email.</span>-->
                                     </div>
                                 </div>
                                 <div class='input-field col s6'>
