@@ -6,7 +6,7 @@ define(['powerUp', 'validator-js'], function(powerUp) {
         $scope.submitted = false;
         $scope.isRegistering = false;
         $scope.userToSubmit = {};
-
+        $scope.failedSubmit = false;
 
         /**
          * Register User and returns true if it could be registered. False if not.
@@ -33,6 +33,7 @@ define(['powerUp', 'validator-js'], function(powerUp) {
                             $location.path('login');
                         });
                 }, function (response) {
+                    $scope.failedSubmit = true;
                     $log.error('There was an error registering user', response);
                     $scope.isRegistering = false;
                     return false;

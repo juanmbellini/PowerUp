@@ -17,7 +17,7 @@
                                             <span class="formError" ng-show="registerForm.uEmail.$error.unique">Email taken!</span>
                                         </div>
                                         <span ng-show="registerForm.uEmail.$error.maxlength">Email needs to be 254 characters long or less.</span>
-                                        <span class="formError" ng-show="registerForm.uEmail.$error.valide">This is not a valid email.</span>
+                                        <span class="formError" ng-show="registerForm.uEmail.$error.valide || failedSubmit">This is not a valid email.</span>
                                     </div>
                                     <div ng-show="submitted || registerForm.uEmail.$touched">
                                         <span class="formError" ng-show="registerForm.uEmail.$error.required">Tell us your email.</span>
