@@ -74,6 +74,17 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         );
 
       /* *****************************************************************
+       *                  PASSWORD RESET HELPER FUNCTION
+       * *****************************************************************/
+      $scope.resetPasswordUrl = function() {
+        return $location.protocol()
+          + '://' + $location.host()
+          + ($location.port() !== 80 ? ':' + $location.port() : '')
+          + (envService.read('prefix') || '') +
+          '/#/reset-password?nonce={0}';
+      };
+
+      /* *****************************************************************
        *                  PROFILE PICTURE HELPER METHOD
        * *****************************************************************/
       var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';

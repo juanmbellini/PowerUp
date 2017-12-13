@@ -92,8 +92,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'validator-js'], functio
           swal.disableButtons();
           Restangular.all('users').one('email', inputValue).get().then(function(response) {
             user = response.data || response;
-            var returnUrl = $location.protocol() + '://' + $location.host() + ($location.port() !== 80 ? ':' + $location.port() : '') + '/#/reset-password?nonce={0}';
-            Restangular.one('users', user.id).all('password').remove({template: returnUrl}).then(function(response) {
+            Restangular.one('users', user.id).all('password').remove({template: $scope.resetPasswordUrl()}).then(function(response) {
               resendingToken = false;
               swal({
                 title: 'Token sent!',
