@@ -84,12 +84,12 @@
                 <h5>Profile Stats</h5>
                 <p>Followers: <b>{{requestedUser.social.followersCount}}</b></p>
                 <span ng-repeat="follower in followers" title="{{follower.username}}">
-                    <a ng-href="#profile?username={{follower.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{follower.id}}/picture" alt="{{follower.username}}" class="circle">
+                    <a ng-href="#profile?username={{follower.username}}"> <img class="picture-follower" ng-src="{{profilePictureUrl(follower.profilePictureUrl)}}" alt="{{follower.username}}" class="circle">
                     </a>
                 </span>
                 <p>Following: <b>{{requestedUser.social.followingCount}}</b></p>
                 <span ng-repeat="followed in following" title="{{followed.username}}">
-                    <a ng-href="#profile?username={{followed.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{followed.id}}/picture" alt="{{followed.username}}" class="circle">
+                    <a ng-href="#profile?username={{followed.username}}"> <img class="picture-follower" ng-src="{{profilePictureUrl(followed.profilePictureUrl)}}" alt="{{followed.username}}" class="circle">
                     </a>
                 </span>
             </div>
