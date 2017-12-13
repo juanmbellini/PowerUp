@@ -16,24 +16,26 @@
 						<div class="col s3 center-align">
 							<label>Score: </label>
 							<ng-input>
-								<select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
-									<option value="delete">Select score</option>
-									<option ng-repeat="score in rangeScore">{{score}}</option>
+								<select ng-model="gameScore" class="browser-default" ng-change="updateScore()" ng-options="score as score for score in rangeScore">
+									<option value="" disabled>Select score</option>
 								</select>
 								<span ng-if="loadingScore">Loading...</span>
 								<span ng-if="updatedScore && !loadingScore">Updated!</span>
 							</ng-input>
+							<span><a ng-if="gameScore!==''" href="" ng-click="clearScore()">Clear</a></span>
+							<span ng-if="gameScore===''" style="color: grey"> Clear </span>
 						</div>
 						<div class="col s3 center-align">
 							<label>PlayStatus: </label>
 							<ng-input>
-								<select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
-									<option value="no-play-status">Select play status</option>
-									<option ng-repeat="playStatus in playStatusOptions">{{playStatus}}</option>
+								<select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()" ng-options="playStatus as namesOfStatuses[playStatus] for playStatus in playStatusOptions">
+									<option value="" disabled>Select play status</option>
 								</select>
 								<span ng-if="loadingStatus">Loading...</span>
 								<span ng-if="updatedStatus && !loadingStatus">Updated!</span>
 							</ng-input>
+							<span><a ng-if="gamePlayStatus!==''" href="" ng-click="clearPlayStatus()">Clear</a></span>
+							<span ng-if="gamePlayStatus===''" style="color: grey"> Clear </span>
 						</div>
 						<div class="col s6 center-align" class="divWithShelves">
 							<label>Shelves: </label>

@@ -27,7 +27,8 @@
                                     <span ng-if="loadingScore">Loading...</span>
                                     <span ng-if="updatedScore && !loadingScore">Updated!</span>
                                 </ng-input>
-                                <p><a href="" ng-click="clearScore()">clear</a></p>
+                                <span><a ng-if="gameScore!==''" href="" ng-click="clearScore()">Clear</a></span>
+                                <span ng-if="gameScore===''" style="color: grey"> Clear </span>
                             </div>
                             <div class="col s3 center-align">
                                 <label>PlayStatus: </label>
@@ -38,7 +39,8 @@
                                     <span ng-if="loadingStatus">Loading...</span>
                                     <span ng-if="updatedStatus && !loadingStatus">Updated!</span>
                                 </ng-input>
-                                <p><a href="" ng-click="clearPlayStatus()">clear</a></p>
+                                <span><a ng-if="gamePlayStatus!==''" href="" ng-click="clearPlayStatus()">Clear</a></span>
+                                <span ng-if="gamePlayStatus===''" style="color: grey"> Clear </span>
                             </div>
                             <div class="col s6 center-align" class="divWithShelves">
                                 <label>Shelves: </label>
