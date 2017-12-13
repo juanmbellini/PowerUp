@@ -7,7 +7,7 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
         $scope.comments = null;
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
-        $scope.isCurrentUser = false;
+        $scope.isCurrentUser = AuthService.isCurrentUser;
 
         // Pagination control
         var paginatedComments = null;
@@ -30,7 +30,6 @@ define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'sweetalert.angular', 
         // Get requested thread
         Restangular.one('threads', $scope.threadId).get().then(function(response) {
             $scope.thread = response.data;
-            $scope.isCurrentUser = AuthService.isCurrentUser($scope.thread.creator.username);
 
             // Get thread top-level comments on success, don't use getMoreTopLevelComments() because this is a special case
             paginatedComments = PaginationService.initialize($scope.thread, 'comments');
