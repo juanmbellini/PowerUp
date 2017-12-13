@@ -94,6 +94,11 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 $scope.profile.picture.data = $scope.profile.picture.temp;
                 $scope.profile.picture.temp = null;
                 $scope.profile.picture.url = null;
+
+                swal({
+                    title: 'Profile picture updated',
+                    type: 'success'
+                });
             }, function (error) {
                 $log.error('Profile picture upload error: ', error);
                 $scope.pictureSubmitDisabled = false;
