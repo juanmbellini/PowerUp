@@ -19,7 +19,7 @@
                     <div class="col s10 center-align">
                         <div ng-show="isLoggedIn()" class="row" style="margin-bottom:0;">
                             <div class="col s3 center-align">
-                                <label>Score: </label>
+                                <label>Score</label>
                                 <ng-input>
                                     <select ng-model="gameScore" class="browser-default" ng-change="updateScore()">
                                         <option value="delete">Select score</option>
@@ -30,7 +30,7 @@
                                 </ng-input>
                             </div>
                             <div class="col s3 center-align">
-                                <label>PlayStatus: </label>
+                                <label>Play Status</label>
                                 <ng-input>
                                     <select ng-model="gamePlayStatus" class="browser-default" ng-change="updatePlayStatus()">
                                         <option value="no-play-status">Select play status</option>
@@ -41,7 +41,7 @@
                                 </ng-input>
                             </div>
                             <div class="col s6 center-align" class="divWithShelves">
-                                <label>Shelves: </label>
+                                <label>Shelves</label>
                                 <ng-input>
                                     <p ng-show="shelves.length === 0">You have no shelves. Why not <a ng-href="#list">create one</a>?</p>
                                     <div ng-show="shelves.length > 0">
@@ -81,7 +81,7 @@
                         <p style="margin-top: 0;">
                             <!--<c:out value=" ${genre.name}" /> WAAAAAAT-->
                         <div ng-switch="game.summary">
-                            <div ng-switch-when="null">No summary =(</div>
+                            <div ng-switch-when="null">No summary</div>
                             <div ng-switch-default>{{game.summary}}</div>
                         </div>
 
