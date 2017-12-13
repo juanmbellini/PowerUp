@@ -59,8 +59,12 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             var review = {body: $scope.review, gameId: $scope.gameId};
             console.log('Submiting Review', review);
             if (reviewAlreadyExist) {
-                oldReview.remove().then(function(response) {
-                    post(review);
+                Restangular.one('reviews',oldReview.id).customPUT(review).then(function (response) {
+                    $log.debug('Updated Review');
+                    $location.search({id: $scope.gameId});
+                    $location.path('game');
+                }, function(response) {
+                    $log.error('Error updating review', response.status);
                 });
             } else {
                 post(review);
