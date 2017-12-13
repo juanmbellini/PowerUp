@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
-import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
@@ -339,26 +338,41 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     @Override
     public void requireResetPassword(long userId, String urlTemplate) {
-        // create token
-        ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
-        // generate url to be sent in the email:
+        final ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
         final String resetPasswordUrl = MessageFormat.format(urlTemplate, token.getNonce());
-        // Send email
+
         mailService.sendPasswordResetEmail(userDao.findById(userId), resetPasswordUrl);
     }
 
     @Override
     public void resetPassword(String resetPasswordTokenNonce, String newPassword) {
-        final String stringNonce = new String(Base64Utils.decodeFromUrlSafeString(resetPasswordTokenNonce),
-                StandardCharsets.UTF_8);
-        final long nonce = Long.valueOf(stringNonce); // TODO: check if this does not throws exception
+        if (resetPasswordTokenNonce == null) {
+            throwValidationException(Collections.singletonList(MISSING_NONCE));
+        }
+        String stringNonce = null;
+        try {
+            //noinspection ConstantConditions  Won't be null as an exception would be thrown
+            stringNonce = new String(Base64Utils.decodeFromUrlSafeString(resetPasswordTokenNonce),
+                    StandardCharsets.UTF_8);
+        } catch (Throwable e) {
+            throwValidationException(Collections.singletonList(INVALID_NONCE));
+        }
+        long nonce = 0;
+        try {
+            //noinspection ConstantConditions  Won't be null as an exception would be thrown
+            nonce = Long.valueOf(stringNonce);
+        } catch (NumberFormatException e) {
+            throwValidationException(Collections.singletonList(INVALID_NONCE));
+        }
+
         final ResetPasswordToken token = Optional.ofNullable(resetPasswordTokenDao.findByNonce(nonce))
                 .orElseThrow(UnauthorizedException::new);
         if (Instant.now().isAfter(token.getExpiresAt())) {
-            throw new RuntimeException("Expired"); // TODO: define custom exception? or just Unauthorized?
+            throwValidationException(Collections.singletonList(EXPIRED_TOKEN));
         }
 
-        userDao.changePassword(token.getOwner(), newPassword);
+        final long userId = token.getOwner().getId();
+        this.changePassword(userId, newPassword, userId);
     }
 
     /**
@@ -557,6 +571,15 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private static final ValueError PASSWORD_TOO_LONG = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
             "password", "The password is too long.");
+
+    private static final ValueError MISSING_NONCE = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "nonce", "The nonce is missing.");
+
+    private static final ValueError INVALID_NONCE = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "nonce", "The nonce is invalid.");
+
+    private static final ValueError EXPIRED_TOKEN = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "token", "The token is expired.");
 
 
     public static String generateToken() {
