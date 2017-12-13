@@ -3,8 +3,6 @@ define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.controller('CreateThreadCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', function($scope, $location, $log, Restangular, AuthService) {
 
-        Restangular.setFullResponse(true);
-
         $scope.thread = {body: '', title: ''};
 
         if (!AuthService.isLoggedIn()) {

@@ -2,9 +2,6 @@
 define(['powerUp', 'AuthService', 'loadingCircle', 'loadingCircleSmall', 'LikesService', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('ThreadsCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', 'PaginationService', function($scope, $location, $log, Restangular, AuthService, LikesService, PaginationService) {
-
-        Restangular.setFullResponse(true);  // TODO set this to true in initial config and always use it as such
-
         $scope.threads = null;
         $scope.order = $location.search().order || 'hot';
         $scope.direction = $location.search().sortDirection;

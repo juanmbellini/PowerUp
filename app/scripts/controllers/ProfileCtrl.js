@@ -2,7 +2,6 @@
 define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadingCircleSmall', 'ratingStars'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
-        Restangular.setFullResponse(true);
         $scope.Restangular = Restangular;
         $scope.AuthService = AuthService;
 
@@ -262,7 +261,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
 
             /* TODO sort by descending user score */
             Restangular.one('users', userId).getList('game-scores', {pageSize: 10}).then(function(response) {
-                $scope.profile.top10 = response;
+                $scope.profile.top10 = response.data;
             });
         }
 
