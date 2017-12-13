@@ -53,7 +53,7 @@ public class MailServiceImpl implements MailService {
                 mimeMessage.setText("Dear " + user.getUsername() + ", \n" +
                         "This email was sent to you because someone requested a password reset on your account. \n\n" +
                         "Visit the following link to set a new password: \n\n" +
-                        url + "\n" +
+                        url + "\n\n" +
                         "Yours sincerely, \n" +
                         "PowerUp team.");
                 mimeMessage.setSubject("PowerUp password reset");
@@ -69,6 +69,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
+    @Async
     public void sendPasswordChangedEmail(User user) {
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             @Override
@@ -78,7 +79,7 @@ public class MailServiceImpl implements MailService {
                         new InternetAddress(user.getEmail()));
                 mimeMessage.setText("Dear " + user.getUsername() + ", \n" +
                         "Your password was changed.\n" +
-                        "If it wasn't you, please reset it clicking on \"Forgot Password?\" in the log in page." +
+                        "If it wasn't you, please reset it clicking on \"Forgot Password?\" in the log in page.\n\n" +
                         "Yours sincerely, \n" +
                         "PowerUp team.");
                 mimeMessage.setSubject("PowerUp password change notice");

@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,6 +46,7 @@ import java.util.Properties;
         @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
         //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
 })
+@EnableAsync
 public class WebConfig {
 
     @Autowired
