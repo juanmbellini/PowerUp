@@ -34,62 +34,62 @@
                 </div>
                 <br />
                 <button ng-if="isCurrentUser(requestedUser)" class="btn waves-effect waves-light" ng-click="changePassword()">Change Password</button>
-                <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisabled" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">add person</i></button>
+                <button ng-if="canFollow()" class="btn waves-effect waves-light" ng-disabled="followDisabled" ng-click="updateFollow()">{{requestedUser.social.followedByCurrentUser ? "Unfollow" : "Follow"}}<i class="material-icons right">{{requestedUser.social.followedByCurrentUser ? "person" : "person_add"}}</i></button>
                 <br />
                 <p><b>{{profile.gamesAmount}}</b> <ng-pluralize count="profile.gamesAmount" when="{'one': 'game', 'other': 'games'}"></ng-pluralize> in <a ng-href="#list?id={{requestedUser.id}}">game list</a></p>
             </div>
             <div class="col s5">
-                <h4 class="center" ng-if="profile.top10.length > 0">Top 10 games</h4>
-                <p class="center" ng-if="profile.top10.length === 0">
-                    No scored games. <span ng-if="isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>
-                </p>
-                <ul class="collection games-list" ng-if="profile.top10.length > 0">
-                    <!--<c_forEach var="entry" items="${topGames}">-->
-                        <!--<c_set var="game" value="${entry.key}" />-->
-                        <!--<c_set var="score" value="${entry.value}" />-->
-                    <!--</c_forEach>-->
+                <!--<h4 class="center" ng-if="profile.top10.length > 0">Top 10 games</h4>-->
+                <!--<p class="center" ng-if="profile.top10.length === 0">-->
+                    <!--No scored games. <span ng-if="isCurrentUser(requestedUser)">Why don't you <a href="#search">search</a> and score some?</span>-->
+                <!--</p>-->
+                <!--<ul class="collection games-list" ng-if="profile.top10.length > 0">-->
+                    <!--&lt;!&ndash;<c_forEach var="entry" items="${topGames}">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<c_set var="game" value="${entry.key}" />&ndash;&gt;-->
+                        <!--&lt;!&ndash;<c_set var="score" value="${entry.value}" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;</c_forEach>&ndash;&gt;-->
 
-                    <li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">
-                        <!--TODO make this into a directive-->
-                        <div class="col s2 cover-pic-container valign-wrapper">
-                            <a ng-href="#game?id={{entry.gameId}}" class="cover-pic valign"><img ng-src="{{entry.gameCoverPictureUrl}}" alt="{{item.gameName}}"></a>
-                        </div>
-                        <div class="col primary-content s7">
-                            <p class="title">
-                                <a ng-href="#game?id={{entry.gameId}}">{{entry.entryName}}</a>
-                            </p>
-                            <p class="summary" style="display: -webkit-box">{{entry.gameSummary || "No summary"}}</p>
-                        </div>
-                        <div class="col s1 center">
-                            <p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}</p>
-                        </div>
-                        <div class="col s2">
-                            <div class="secondary-content">
-                                <div ng-switch="(entry.score <= 10 && entry.score > 0)">
-                                    <div ng-switch-when="true">
-                                        <!--TODO get score by user, not general score-->
-                                        <p class="rating-number center"><b><span>{{entry.score | limitTo:4}}</span></b></p>
-                                        <rating-stars rating="entry.score" class="rating-stars hide-on-small-and-down center"></rating-stars>
-                                    </div>
-                                    <div ng-switch-default>
-                                        <p class="rating-number center"><b>Unrated</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    <!--<li class="collection-item avatar col s12" ng-repeat="entry in profile.top10">-->
+                        <!--&lt;!&ndash;TODO make this into a directive&ndash;&gt;-->
+                        <!--<div class="col s2 cover-pic-container valign-wrapper">-->
+                            <!--<a ng-href="#game?id={{entry.gameId}}" class="cover-pic valign"><img ng-src="{{entry.gameCoverPictureUrl}}" alt="{{item.gameName}}"></a>-->
+                        <!--</div>-->
+                        <!--<div class="col primary-content s7">-->
+                            <!--<p class="title">-->
+                                <!--<a ng-href="#game?id={{entry.gameId}}">{{entry.entryName}}</a>-->
+                            <!--</p>-->
+                            <!--<p class="summary" style="display: -webkit-box">{{entry.gameSummary || "No summary"}}</p>-->
+                        <!--</div>-->
+                        <!--<div class="col s1 center">-->
+                            <!--<p style="margin-top: 33px;">{{entry.gameReleaseDate != null ? (game.releaseDate | date : 'yyyy') : "Unknown" }}</p>-->
+                        <!--</div>-->
+                        <!--<div class="col s2">-->
+                            <!--<div class="secondary-content">-->
+                                <!--<div ng-switch="(entry.score <= 10 && entry.score > 0)">-->
+                                    <!--<div ng-switch-when="true">-->
+                                        <!--&lt;!&ndash;TODO get score by user, not general score&ndash;&gt;-->
+                                        <!--<p class="rating-number center"><b><span>{{entry.score | limitTo:4}}</span></b></p>-->
+                                        <!--<rating-stars rating="entry.score" class="rating-stars hide-on-small-and-down center"></rating-stars>-->
+                                    <!--</div>-->
+                                    <!--<div ng-switch-default>-->
+                                        <!--<p class="rating-number center"><b>Unrated</b></p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
             </div>
             <div class="col s3">
                 <h5>Profile Stats</h5>
                 <p>Followers: <b>{{requestedUser.social.followersCount}}</b></p>
                 <span ng-repeat="follower in followers" title="{{follower.username}}">
-                    <a ng-href="#profile?username={{follower.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{follower.id}}/picture" alt="{{follower.username}}" class="circle">
+                    <a ng-href="#profile?username={{follower.username}}"> <img class="picture-follower" ng-src="{{profilePictureUrl(follower.profilePictureUrl)}}" alt="{{follower.username}}" class="circle">
                     </a>
                 </span>
                 <p>Following: <b>{{requestedUser.social.followingCount}}</b></p>
                 <span ng-repeat="followed in following" title="{{followed.username}}">
-                    <a ng-href="#profile?username={{followed.username}}"> <img class="picture-follower" ng-src="{{apiLocation}}/users/{{followed.id}}/picture" alt="{{followed.username}}" class="circle">
+                    <a ng-href="#profile?username={{followed.username}}"> <img class="picture-follower" ng-src="{{profilePictureUrl(followed.profilePictureUrl)}}" alt="{{followed.username}}" class="circle">
                     </a>
                 </span>
             </div>
