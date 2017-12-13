@@ -104,7 +104,6 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
         });
     };
 
-
     $scope.likeThread = function (thread) {
       LikesService.like(Restangular.one('threads', thread.id), thread, function () {
       }, function (error) {
@@ -139,6 +138,12 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
           // $scope.checkCanWriteReview();
         });
     };
+
+    // functions:
+    $scope.getReviewUserProfilePictureUrl = function(review) {
+        return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
+    };
+
 
       /* *************************************************************************************************************
                    FOLLOWS

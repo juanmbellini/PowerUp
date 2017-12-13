@@ -171,6 +171,10 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
                     var shelvesWithGame = response.data;
                     element.shelves = shelvesWithGame;
                 });
+                Restangular.one('users', element.userId).get().then(function (response) {
+                    var reviewCreator = response.data;
+                    element.user = reviewCreator;
+                });
             }
             return wrapper;
         }

@@ -228,8 +228,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
                     $log.error("Couldn't get user #" + review.userId + "'s score for game #" + review.gameId + ': ', error);
                 });
 
-                // Whether the creator is followed by the current user
-                // TODO include this in API response?
                 if (AuthService.isLoggedIn()) {
                     Restangular.one('users', review.userId).get().then(function (response) {
                         var reviewCreator = response.data;
@@ -238,7 +236,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
                         $log.error("Couldn't get user #" + review.userId + "'s social info for review #" + review.id + ': ', error);
                     });
                 }
-
                 // All the creator's shelves that the reviewed game belongs to
                 Restangular.one('users', review.userId).all('shelves').getList({gameId: review.gameId}).then(function (response) {
                     array[i].shelves = response.data;
