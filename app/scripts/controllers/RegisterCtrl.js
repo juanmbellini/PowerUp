@@ -101,10 +101,6 @@ define(['powerUp', 'validator-js'], function(powerUp) {
         };
     });
 
-
-
-    // Email validation
-    // // TODO DIEGO CODE HERE. La que usé es esta https://github.com/chriso/validator.js fijate el README
     var validator = require('validator-js');
     console.log(validator.isEmail('foo@bar.com'));
     powerUp.directive('validEmail', ['Restangular', function(Restangular) {
