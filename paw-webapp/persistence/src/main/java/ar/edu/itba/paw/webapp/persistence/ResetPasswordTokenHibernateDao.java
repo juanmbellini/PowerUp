@@ -3,6 +3,7 @@ package ar.edu.itba.paw.webapp.persistence;
 import ar.edu.itba.paw.webapp.interfaces.ResetPasswordTokenDao;
 import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 import ar.edu.itba.paw.webapp.model.User;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import java.text.MessageFormat;
  * Created by Juan Marcos Bellini on 12/12/17.
  * Questions at jbellini@itba.edu.ar or juanmbellini@gmail.com
  */
+@Repository
 public class ResetPasswordTokenHibernateDao implements ResetPasswordTokenDao {
 
     @PersistenceContext
