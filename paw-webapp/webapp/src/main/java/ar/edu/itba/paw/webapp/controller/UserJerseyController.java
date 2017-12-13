@@ -199,6 +199,9 @@ public class UserJerseyController implements UpdateParamsChecker {
         final JerseyControllerHelper.ParametersWrapper builder = JerseyControllerHelper.getParametersWrapper()
                 .addParameter("nonce", nonce, n -> !StringUtils.hasText(n));
         JerseyControllerHelper.checkParameters(builder);
+        if (userDto == null) {
+            throw new MissingJsonException();
+        }
 
         userService.resetPassword(nonce, userDto.getPassword());
 
