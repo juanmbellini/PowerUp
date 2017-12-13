@@ -47,8 +47,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                     $scope.profile.gamesAmount = 0;
                 }
             });
-            $scope.profile.picture.url = getProfilePictureUrl(user);
-            $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url); // FIXME get this from user JSON
+            $scope.profile.picture.url = $scope.profilePictureUrl(user);
+            $scope.profile.picture.canDelete = user.profilePictureUrl !== null;
             getFollowerData();
             getShelvesData();
         }, function(response) {
@@ -250,17 +250,6 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         /* ******************************************
          *              PRIVATE FUNCTIONS
          * *****************************************/
-
-        function getProfilePictureUrl(user) {
-          return Restangular.one('users', user.id).one('picture').getRequestedUrl();
-        }
-
-        function canDeleteProfilePicture(profilePictureUrl) {
-            return profilePictureUrl !== DEFAULT_PROFILE_PICTURE_URL;
-        }
-
-
-
         function getTopGames() {
             var userId = $scope.requestedUser.id;
             if (!userId) {

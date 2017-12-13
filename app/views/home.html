@@ -163,7 +163,7 @@
                                 <div class="row" style="margin-bottom: 0">
                                     <div class="col s9">
                                         <a ng-href="#profile?username={{feedElement.data.creator.username}}">
-                                            <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data.creator)}}" alt="{{feedElement.data.creator.username}}" class="circle">
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a>
@@ -200,7 +200,7 @@
                                 <div class="row">
                                     <div class="col s9">
                                         <a ng-href="#profile?username={{feedElement.data.username}}">
-                                            <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data)}}" alt="{{feedElement.data.username}}" class="circle">
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>

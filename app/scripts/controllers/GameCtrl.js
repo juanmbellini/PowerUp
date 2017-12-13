@@ -305,6 +305,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'loadingCircle', 'AuthService
         };
 
         $scope.getReviewUserProfilePictureUrl = function(review) {
+            // TODO NOW send creator in review and send profile picture URL (or null) in there
             return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
         };
 
