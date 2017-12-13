@@ -7,9 +7,6 @@ define(['powerUp', 'validator-js'], function(powerUp) {
         $scope.isRegistering = false;
         $scope.userToSubmit = {};
 
-        // TODO DIEGO CODE HERE. La que usé es esta https://github.com/chriso/validator.js fijate el README
-        var validator = require('validator-js');
-        console.log(validator.isEmail('foo@bar.com'));
 
         /**
          * Register User and returns true if it could be registered. False if not.
@@ -103,4 +100,22 @@ define(['powerUp', 'validator-js'], function(powerUp) {
             }
         };
     });
+
+
+
+    // Email validation
+    // // TODO DIEGO CODE HERE. La que usé es esta https://github.com/chriso/validator.js fijate el README
+    var validator = require('validator-js');
+    console.log(validator.isEmail('foo@bar.com'));
+    powerUp.directive('validEmail', ['Restangular', function(Restangular) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                element.bind('blur', function (e) {
+                    ngModel.$setValidity('valide', validator.isEmail(element.val()));
+                });
+            }
+        };
+    }]);
 });
