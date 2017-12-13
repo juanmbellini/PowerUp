@@ -166,9 +166,24 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                 }
                 swal.disableButtons();
                 userURL.one('shelves',shelf.name).remove().then(function(response) {
-                    swal('Success', 'Shelf "' + shelf.name + '" successfully deleted', 'success');
-                },function(error) {
-                    swal('Sever error', 'Sorry, please try again', 'error');
+                  // Remove shelf
+                  $scope.shelves.splice($scope.shelves.findIndex(function(s) {
+                    return s.id === shelf.id;
+                  }), 1);
+
+                  swal({
+                    title: 'Success',
+                    text: 'Shelf "' + shelf.name + '"successfully deleted',
+                    type: 'success'
+                  });
+                }, function(error) {
+                  swal({
+                    title: "Oh no! Couldn't delete shelf",
+                    text: error.data.errors.map(function(e) {
+                      return e.message;
+                    }).join('<br />'),
+                    type: 'error'
+                  });
                 });
             });
         };
@@ -224,8 +239,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                                 $log.error('Error: ', error);
                             });
                         }
-                    }, function() {
-                        console.log('There was an error getting reviews');
+                    }, function(error) {
+                        $log.error('There was an error getting the review to delete:', error);
                     });
                     swal('Success', 'Game" ' + item.game.name + ' " successfully deleted from your list!', 'success');
                 });
@@ -241,13 +256,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     inputPlaceholder: 'New name'
                 },
                 function (inputValue) {
-                    if (inputValue === false) {
-                        return false;
-                    }
-                    // TODO delete if no errors later.
-                    // inputValue = inputValue.replace(/,/g, ';');
-                    if (inputValue === '' || inputValue.length > 25) {
-                        swal.showInputError('Please write between 1 and 25 characters');
+                    if (!inputValue) {
+                        swal.showInputError('Please write a new name');
                         return false;
                     }
                     var oldName = shelf.name;
@@ -255,48 +265,86 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     userURL.one('shelves',oldName).customPUT(shelf).then(function (response) {
                         $log.debug('Updated Shelf. Now your shelf should be called ' + inputValue);
                         swal('Success', 'Shelf "' + oldName + '" renamed to "' + shelf.name + '"', 'success');
-                    }, function(response) {
-                        $log.error('Error renaming shelf. Error with status code', response.status);
+                    }, function(error) {
+                        $log.error('Error renaming shelf:', error);
                         shelf.name = oldName;
-                        swal.showInputError('Server error, please try again');
+                        swal.showInputError(error.data.errors.map(function(e) {
+                          return e.message;
+                        }).join('<br />'));
                     });
                 });
         };
 
         $scope.newShelfName = null;
+        $scope.creatingShelf = false;
         $scope.createShelf = function() {
-            console.log($scope.newShelfName);
-            // TODO validate input?
-            var shelf = {name: $scope.newShelfName};
-            userURL.all('shelves').post(shelf).then(function(response) {
-                $log.debug('Created Shelf');
-                $scope.getShelves();
-                $scope.newShelfName = '';
-                // $scope.shelves.push(response);
-            }, function(response) {
-                $log.error('Error creating shelf. Error with status code', response.status); // TODO handle error
+          if ($scope.creatingShelf) {
+            return;
+          }
+          $scope.creatingShelf = true;
+
+          $log.debug('Attempting to create shelf "' + $scope.newShelfName + '"');
+          var shelf = {name: $scope.newShelfName};
+          userURL.all('shelves').post(shelf).then(function(shelf) {
+            $log.debug('Shelf "' + $scope.newShelfName + '" succesffully created');
+            $scope.getShelves();
+            $scope.newShelfName = '';
+            $scope.creatingShelf = false;
+            $scope.shelves.push(shelf);
+            swal({
+              title: 'Success',
+              text: 'Shelf "' + shelf.name + '" successfully created',
+              type: 'success'
             });
+          }, function(error) {
+            swal({
+              title: "Oh no! Couldn't create shelf",
+              text: error.data.errors.map(function(e) {
+                return e.message;
+              }).join('<br />'),
+              type: 'error'
+            });
+            $scope.creatingShelf = false;
+            $log.error('Error creating shelf:', error);
+          });
         };
 
+        /* ***************************************************************************
+         *                          RECOMMENDED GAMES CONTROL
+         * ***************************************************************************/
         // Recommended games
         $scope.hasSlick = false;
-        $scope.first = true;
-        $scope.$on('recommendedRendered', function(event) {
-            $scope.first = false;
-            if ($scope.hasSlick) {
-                $scope.hasSlick = false;
-                angular.element('#recommended-carousel').slick('unslick');
+        $scope.loadingRecommended = false;
+
+        $scope.recommendedText = function() {
+            var result = $scope.isUserLoggedOwner ? 'you' : ($scope.user && $scope.user.username);
+            if ($scope.selectedShelves.length > 0) {
+                result += ' using selected shelves';
             }
-             angular.element('#recommended-carousel').slick({
+            return result;
+        };
+
+        $scope.$on('recommendedReady', function(event) {
+            $scope.loadingRecommended = false;
+            if ($scope.hasSlick) {
+                // Un-slick first
+                angular.element('#recommended-carousel').slick('unslick');
+                $scope.hasSlick = false;
+            }
+            if ($scope.recommendedGames.length) {
+              angular.element('#recommended-carousel').slick({
+                slidesToShow: $scope.recommendedMin,
+                slidesToScroll: $scope.recommendedMin,
                 infinite: false,
                 arrows: true
-            });
-            $scope.hasSlick = true;
-            require(['lightbox2']); // TODO ensure requirejs doesn't load this twice
+              });
+              $scope.hasSlick = true;
+            }
         });
 
-
-        // Pagination control
+      /* ***************************************************************************
+       *                          PAGINATION CONTROL
+       * ***************************************************************************/
         $scope.pageSizes = [25, 50, 100];
         $scope.searchParams = {
             shelfName: undefined,
@@ -352,12 +400,28 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
             }
 
             // Update game suggestions
+            $scope.loadingRecommended = true;
+            $timeout(function() {
+              if ($scope.hasSlick) {
+                // Un-slick
+                angular.element('#recommended-carousel').slick('unslick');
+                $scope.recommendedGames = [];
+                $scope.hasSlick = false;
+              }
+            });
             Restangular.one('users',$scope.userId).all('recommended-games').getList({shelves: $scope.selectedShelves}).then(function (response) {
                 $scope.recommendedGames = response.data;
                 $scope.recommendedMin = Math.min($scope.recommendedGames.length, 5);
+                $timeout(function() {
+                    $scope.$broadcast('recommendedReady');
+                });
             }, function (response) {
-                $log.error('Could not get recommended games', response);
-                $scope.recommendedGames = [];
+              $log.error('Could not get recommended games', response);
+              $scope.loadingRecommended = false;
+              $scope.recommendedGames = [];
+              $timeout(function() {
+                $scope.$broadcast('recommendedReady');
+              });
             });
         });
 
