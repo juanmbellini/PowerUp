@@ -69,11 +69,15 @@ public class UserGameStatusDto extends EntityDto {
         this.status = gameStatus.getPlayStatus();
         this.date = LocalDateTime.ofInstant(gameStatus.getDate().toInstant(), ZoneId.systemDefault()).toString();
         this.username = gameStatus.getUser().getUsername();
-        this.profilePictureUrl = baseUri.clone()
-                .path(UserJerseyController.END_POINT)
-                .path(Long.toString(gameStatus.getUser().getId()))
-                .path("picture")
-                .build().toString();
+        if (gameStatus.getUser().hasProfilePicture()) {
+            this.profilePictureUrl = baseUri.clone()
+                    .path(UserJerseyController.END_POINT)
+                    .path(Long.toString(gameStatus.getUser().getId()))
+                    .path(UserJerseyController.PICTURE_END_POINT)
+                    .build().toString();
+        } else {
+            this.profilePictureUrl = null;
+        }
         this.userUrl = baseUri.clone()
                 .path(UserJerseyController.END_POINT)
                 .path(Long.toString(gameStatus.getUser().getId()))

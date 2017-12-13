@@ -3,7 +3,7 @@
         <h5>Fetching lists...</h5>
         <loading-circle></loading-circle>
     </div>
-    <div class="row" ng-if="ready">
+    <div class="row" ng-show="ready">
         <div class="col s1"></div> <!-- TODO borrar esto y reparar offset -->
         <div class="col s2">
             <form name="shelfForm" class="css-form"  ng-submit="submitSearch()" novalidate>
@@ -11,7 +11,7 @@
                 <p ng-repeat="playStatus in playStatuses" class="checkbox-list">
                     <input   ng-click="toggleSelectionPlayStatus(playStatus)" type="checkbox" name="playStatusesCheckbox" id="{{playStatus}}" value="{{playStatus}}"  ng-checked="selectedPlayStatuses.indexOf(playStatus) > -1"/>
                     <!--{{((containsPlayStatusesFilter(playStatus))? 'checked' : '')}} TODO droche-->
-                    <label class="wrap-text" for="{{playStatus}}">{{playStatus}}</label>
+                    <label class="wrap-text" for="{{playStatus}}">{{namesOfStatuses[playStatus]}}</label>
                 </p>
                 <h5>Filter by Shelf</h5>
                 <p ng-repeat="shelf in shelves" class="checkbox-list">
@@ -28,19 +28,15 @@
                 <!--<button type='submit' class='btn waves-effect'>Filter <i class="material-icons right">filter_list</i></button>-->
             </form>
             <br/>
-            <!--<%&#45;&#45;<c:if test="${fn:length(shelves) == 0}">&#45;&#45;%>-->
-            <!--<%&#45;&#45;<h4 class="center">No shelves. <c:if test="${user.username == currentUsername}">Why not create one?</c:if></h4>&#45;&#45;%>-->
-            <!--<%&#45;&#45;</c:if>&#45;&#45;%>-->
-            <div ng-hide = "!isUserLoggedOwner">
+            <div ng-show="isUserLoggedOwner">
                 <div class="col s12 divider"></div>
                 <h5 style="margin-bottom:0;">Create a Shelf</h5>
                 <form ng-submit="createShelf()">
                     <!--<form class="css-form" novalidate id="new-shelf-form">-->
                     <div class="input-field col s12" style="margin-top: 0; padding:0;">
-                        <input type="text" name="name" ng-model="newShelfName" autocomplete="off"/>
+                        <input type="text" name="name" ng-model="newShelfName" autocomplete="off" required/>
                         <!--length="25" required-->
-                        <button type='submit' class='btn waves-effect light-blue'>Create <i class="material-icons right">playlist_add</i>
-                        </button>
+                        <button type='submit' class='btn waves-effect light-blue' ng-disabled="creatingShelf">Create <i class="material-icons right">playlist_add</i></button>
                     </div>
                 </form>
             </div>
@@ -85,7 +81,7 @@
                                     <p class="title wrap-text"><a ng-href="#game?id={{item.game.id}}">{{item.game.name}}</a></p>
                                 </div>
                                 <div class="col s1 center">
-                                    <p style="margin-top: 33px;"><b>{{item.status || 'No Status'}}</b></p>
+                                    <p style="margin-top: 33px;"><b>{{namesOfStatuses[item.status] ||'No Status'}}</b></p>
                                 </div>
                                 <div class="col s2 center">
                                     <p class=wrap-text style="margin-top: 33px;"><b>
@@ -113,7 +109,8 @@
                                 </div>
                                 <div class="col s1">
                                     <div class="secondary-content">
-                                        <!--Nothing to see here-->
+                                        <a ng-if="isUserLoggedOwner" ng-href="#write-review?id={{item.game.id}}" class="material-icons blue-text text-lighten-1 "><i class="material-icons right">mode_edit</i></a>
+                                        <a ng-if="isUserLoggedOwner" href="" class="material-icons red-text text-lighten-1" ng-click="deleteReview(item.game)"><i class="material-icons right">delete</i></a>
                                     </div>
                                 </div>
                             </li>
@@ -191,21 +188,19 @@
 
             <div class="row col s12 divider"></div>
 
-            <!--RECOMMENDED GAMES-->
-            <div class="container">
-                <div class="section">
-                    <div ng-if="games.length > 0 && recommendedGames.length > 0" class="row">
-                        <h5 class="center">Recommended Games for
-                                <!--<c:if test="${! empty shelvesFilter}">for this shelves</c:if>!-->
-                            <span ng-if="isUserLoggedOwner">you</span>
-                            <span ng-if="!isUserLoggedOwner">{{user.username}}</span>
-                            <span ng-if="selectedShelves.length > 0"> using selected shelves</span>
-                            !</h5>
-                        <div class="slick-carousel center" id="recommended-carousel" data-slick='{"slidesToShow": {{recommendedMin}}, "slidesToScroll": {{recommendedMin}}}'>
+            <!-- RECOMMENDED GAMES -->
+            <div class="row container">
+                <div class="center">
+                    <div ng-show="loadingRecommended">
+                        <h5>Getting game recommendations for {{recommendedText()}}...</h5>
+                        <loading-circle></loading-circle>
+                    </div>
+                    <div ng-if="recommendedGames && recommendedGames.length > 0" class="row">
+                        <h5>Recommended games for {{recommendedText()}}</h5>
+                        <div class="slick-carousel" id="recommended-carousel">
                             <div class="slide-container" ng-repeat="game in recommendedGames" on-complete="recommendedRendered">
                                 <a ng-href="#game?id={{game.id}}">
-                                    <img ng-src="{{game.coverPictureUrl}}" class="valign"/>
-                                    <!--data-lazy-->
+                                    <img ng-attr-data-lazy="{{game.coverPictureUrl}}" class="valign"/>
                                 </a>
                                 <h5 class="center slide-text">
                                     <a ng-href="#game?id={{game.id}}">{{game.name}}</a>
@@ -217,9 +212,7 @@
             </div>
             <!--END RECOMMENDED GAMES-->
         </div>
-        <div class="col s1">
-
-        </div>
+        <div class="col s1"></div>
     </div>
 </main>
 

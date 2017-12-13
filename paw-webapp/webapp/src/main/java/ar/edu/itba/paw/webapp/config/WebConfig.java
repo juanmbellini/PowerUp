@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +37,7 @@ import java.util.Properties;
         "ar.edu.itba.paw.webapp.external",
         "ar.edu.itba.paw.webapp.config",
         "ar.edu.itba.paw.webapp.scheduled",
-        "ar.edu.itba.paw.webapp.mail"})
+})
 @EnableScheduling
 @PropertySources({
         @PropertySource(value = "classpath:config/common.properties", ignoreResourceNotFound = false),
@@ -45,6 +46,7 @@ import java.util.Properties;
         @PropertySource(value = "classpath:config/development.properties", ignoreResourceNotFound = true),
         //IMPORTANT!! In case of duplicates, the last file declared here overrides the others
 })
+@EnableAsync
 public class WebConfig {
 
     @Autowired
@@ -82,9 +84,9 @@ public class WebConfig {
         final Properties properties = new Properties();
 //        properties.setProperty("hibernate.hbm2ddl.auto","update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL92Dialect");
-// Si ponen esto en prod, hay tabla!!!
-//                properties.setProperty("hibernate.show_sql", "true");
-//                        properties.setProperty("format_sql", "true");
+        // Si ponen esto en prod, hay tabla!!!
+//        properties.setProperty("hibernate.show_sql", "true");
+//        properties.setProperty("format_sql", "true");
         factoryBean.setJpaProperties(properties);
         return factoryBean;
     }

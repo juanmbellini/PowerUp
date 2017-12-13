@@ -58,8 +58,7 @@ require.config({
         'materialize.chips': '../../bower_components/materialize/js/chips',
         'validator-js': '../../bower_components/validator-js/validator',
         'angular-cookies': '../../bower_components/angular-cookies/angular-cookies',
-        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks',
-        materialize: '../../bower_components/materialize/bin/materialize'
+        'angular-mocks': '../../bower_components/angular-mocks/angular-mocks'
     },
     shim: {
         jquery: {

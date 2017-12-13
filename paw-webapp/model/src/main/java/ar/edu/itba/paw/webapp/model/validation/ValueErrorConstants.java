@@ -46,7 +46,7 @@ public class ValueErrorConstants {
             "The picture is too small");
 
     public static final ValueError PICTURE_TOO_BIG = new ValueError(ILLEGAL_VALUE, "picture",
-            "The picture is too big");
+            String.format("The picture is too big. Maximum size is %dMB.", NumericConstants.PROFILE_PICTURE_MAX_SIZE / 1000000));
 
 
     public static final ValueError MISSING_MIME_TYPE = new ValueError(MISSING_VALUE, "mimeType",
@@ -104,6 +104,9 @@ public class ValueErrorConstants {
 
 
     public static final ValueError MISSING_USER = new ValueError(MISSING_VALUE, "user", "The user is missing.");
+
+
+    public static final ValueError MISSING_OWNER = new ValueError(MISSING_VALUE, "owner", "The owner is missing.");
 
 
     public static final ValueError MISSING_THREAD = new ValueError(MISSING_VALUE, "thread", "The thread is missing.");

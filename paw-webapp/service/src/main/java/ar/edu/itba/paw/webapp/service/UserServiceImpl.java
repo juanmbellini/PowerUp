@@ -5,7 +5,10 @@ import ar.edu.itba.paw.webapp.exceptions.UnauthorizedException;
 import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model.Thread;
-import ar.edu.itba.paw.webapp.model.validation.*;
+import ar.edu.itba.paw.webapp.model.validation.ValidationException;
+import ar.edu.itba.paw.webapp.model.validation.ValidationExceptionThrower;
+import ar.edu.itba.paw.webapp.model.validation.ValidationHelper;
+import ar.edu.itba.paw.webapp.model.validation.ValueError;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.model_wrappers.UserWithFollowCountsWrapper;
@@ -14,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,11 +51,15 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private final PasswordEncoder passwordEncoder;
 
+    private final ResetPasswordTokenDao resetPasswordTokenDao;
+
+    private final MailService mailService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
+    public UserServiceImpl(MailService mailService, UserDao userDao, GameDao gameDao, ShelfDao shelfDao, UserFollowDao userFollowDao,
                            UserFeedDao feedDao, CommentDao commentDao, ThreadLikeDao threadLikeDao,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder, ResetPasswordTokenDao resetPasswordTokenDao) {
+        this.mailService = mailService;
         this.userDao = userDao;
         this.gameDao = gameDao;
         this.shelfDao = shelfDao;
@@ -59,6 +68,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         this.commentDao = commentDao;
         this.threadLikeDao = threadLikeDao;
         this.passwordEncoder = passwordEncoder;
+        this.resetPasswordTokenDao = resetPasswordTokenDao;
     }
 
 
@@ -137,6 +147,7 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         validatePassword(newPassword);
         final String newHashedPassword = passwordEncoder.encode(newPassword);
         userDao.changePassword(checkUserValuesAndAuthoring(userId, updaterId), newHashedPassword);
+        mailService.sendPasswordChangedEmail(userDao.findById(userId));
     }
 
     @Override
@@ -261,19 +272,6 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         }).build();
     }
 
-
-    /**
-     * Returns a new randomly generated password.
-     * Credits to erickson, a StackOverflow user.
-     *
-     * @return The generated password.
-     */
-    @Override
-    public String generateNewPassword() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(8);
-    }
-
     @Override
     public Page<User> getFollowing(long userId, int pageNumber, int pageSize, SortDirection sortDirection) {
         final User follower = getUser(userId); // Will throw NoSuchEntityException if not present
@@ -338,8 +336,45 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
         return feedDao.getPlayStatuses(user, pageNumber, pageSize);
     }
 
-    // =====================
+    @Override
+    public void requireResetPassword(long userId, String urlTemplate) {
+        final ResetPasswordToken token = resetPasswordTokenDao.create(userDao.findById(userId));
+        final String base64Token = Base64Utils.encodeToUrlSafeString(Long.toString(token.getNonce()).getBytes());
+        final String resetPasswordUrl = MessageFormat.format(urlTemplate, base64Token);
 
+        mailService.sendPasswordResetEmail(userDao.findById(userId), resetPasswordUrl);
+    }
+
+    @Override
+    public void resetPassword(String resetPasswordTokenNonce, String newPassword) {
+        if (resetPasswordTokenNonce == null) {
+            throwValidationException(Collections.singletonList(MISSING_NONCE));
+        }
+        String stringNonce = null;
+        try {
+            //noinspection ConstantConditions  Won't be null as an exception would be thrown
+            stringNonce = new String(Base64Utils.decodeFromUrlSafeString(resetPasswordTokenNonce),
+                    StandardCharsets.UTF_8);
+        } catch (Throwable e) {
+            throwValidationException(Collections.singletonList(INVALID_NONCE));
+        }
+        long nonce = 0;
+        try {
+            //noinspection ConstantConditions  Won't be null as an exception would be thrown
+            nonce = Long.valueOf(stringNonce);
+        } catch (NumberFormatException e) {
+            throwValidationException(Collections.singletonList(INVALID_NONCE));
+        }
+
+        final ResetPasswordToken token = Optional.ofNullable(resetPasswordTokenDao.findByNonce(nonce))
+                .orElseThrow(UnauthorizedException::new);
+        if (Instant.now().isAfter(token.getExpiresAt())) {
+            throwValidationException(Collections.singletonList(EXPIRED_TOKEN));
+        }
+
+        final long userId = token.getOwner().getId();
+        this.changePassword(userId, newPassword, userId);
+    }
 
     /**
      * Validates the given {@code rawPassword}.
@@ -414,7 +449,9 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
      * @return The created {@link UserWithFollowCountsWrapper}.
      */
     private UserWithFollowCountsWrapper getWithSocialStuff(User retrievedUser, User currentUser) {
-
+        if (retrievedUser == null) {
+            return null;
+        }
         return getRetrieveOptional(retrievedUser,
                 Optional.ofNullable(currentUser)
                         .filter(current -> current.getId() != retrievedUser.getId())
@@ -535,4 +572,20 @@ public class UserServiceImpl implements UserService, ValidationExceptionThrower,
 
     private static final ValueError PASSWORD_TOO_LONG = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
             "password", "The password is too long.");
+
+    private static final ValueError MISSING_NONCE = new ValueError(ValueError.ErrorCause.MISSING_VALUE,
+            "nonce", "The nonce is missing.");
+
+    private static final ValueError INVALID_NONCE = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "nonce", "The nonce is invalid.");
+
+    private static final ValueError EXPIRED_TOKEN = new ValueError(ValueError.ErrorCause.ILLEGAL_VALUE,
+            "token", "The token is expired.");
+
+
+    public static String generateToken() {
+        String uuid = UUID.randomUUID().toString();
+        uuid.replace("-", "");
+        return uuid;
+    }
 }

@@ -5,7 +5,6 @@ import ar.edu.itba.paw.webapp.controller.UserJerseyController;
 import ar.edu.itba.paw.webapp.model.Thread;
 import ar.edu.itba.paw.webapp.model.User;
 import ar.edu.itba.paw.webapp.model_wrappers.CommentableAndLikeableWrapper;
-import ar.edu.itba.paw.webapp.model_wrappers.LikeableWrapper;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -158,11 +157,15 @@ public class ThreadDto extends EntityDto {
                     .path(UserJerseyController.END_POINT)
                     .path(Long.toString(user.getId()))
                     .build().toString();
-            this.profilePictureUrl = baseUri.clone()
-                    .path(UserJerseyController.END_POINT)
-                    .path(Long.toString(user.getId()))
-                    .path("picture")
-                    .build().toString();
+            if (user.hasProfilePicture()) {
+                this.profilePictureUrl = baseUri.clone()
+                        .path(UserJerseyController.END_POINT)
+                        .path(Long.toString(user.getId()))
+                        .path(UserJerseyController.PICTURE_END_POINT)
+                        .build().toString();
+            } else {
+                this.profilePictureUrl = null;
+            }
         }
 
 

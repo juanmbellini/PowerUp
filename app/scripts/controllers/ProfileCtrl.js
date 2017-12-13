@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'ratingStars'], function(powerUp) {
+define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadingCircleSmall', 'ratingStars'], function(powerUp) {
 
     powerUp.controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$log', 'Restangular', 'AuthService', function($scope, $location, $timeout, $log, Restangular, AuthService) {
         Restangular.setFullResponse(true);
@@ -13,6 +13,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
         $scope.currentUser = AuthService.getCurrentUser();
 
         $scope.requestedUser = null;
+        $scope.uploadingPicture = false;
+        $scope.pictureUploaded = true;
         // All profile-specific info will go here
         $scope.profile = {
             gamesInList: 0,
@@ -25,10 +27,9 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
         };
 
         // Form control variables
-        $scope.pictureSubmitDisabled = false;
+        $scope.pictureSubmitDisabled = true;
         var deleteProfilePictureDisabled = false;
         var resettingPassword = false;
-        var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
         Restangular.one('users').one('username', $scope.username).get().then(function(response) {
             var user = response.data;
@@ -45,9 +46,10 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
                     $scope.profile.gamesAmount = 0;
                 }
             });
-            $scope.profile.picture.url = getProfilePictureUrl(user.id);
-            $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url);
-            getTopGames();
+            $scope.profile.picture.url = $scope.profilePictureUrl(user.profilePictureUrl);
+            $scope.profile.picture.canDelete = user.profilePictureUrl !== null;
+            getFollowerData();
+            getShelvesData();
         }, function(response) {
             $log.error('Error retrieving user: ', response); // TODO handle error
             $location.search({});
@@ -66,6 +68,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
                 $timeout(function() {
                     $scope.pictureSubmitDisabled = false;
                     $scope.profile.picture.temp = pictureBase64;
+                    $scope.pictureUploaded = false;
                 });
             };
             r.readAsDataURL(file);
@@ -78,43 +81,80 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
             }
 
             $scope.pictureSubmitDisabled = true;
+            $scope.uploadingPicture = true;
             Restangular.one('users').one('picture').customPUT(data).then(function (response) {
-                $scope.pictureSubmitDisabled = false;
+                // Don't re-enable submit button, user should select a different picture to re-submit
+
+                $scope.uploadingPicture = false;
                 $scope.profile.picture.canDelete = true;
+                $scope.pictureUploaded = true;
 
                 // Load the profile picture from own computer, no need to re-retrieve picture
                 $scope.profile.picture.data = $scope.profile.picture.temp;
                 $scope.profile.picture.temp = null;
                 $scope.profile.picture.url = null;
+
+                swal({
+                    title: 'Profile picture updated',
+                    type: 'success'
+                });
             }, function (error) {
                 $log.error('Profile picture upload error: ', error);
                 $scope.pictureSubmitDisabled = false;
+                $scope.uploadingPicture = false;
+                swal({
+                  title: 'Oh no!',
+                  text: (error.data.errors || [{message: 'Error uploading picture. Please try again, or try a different picture.'}]).map(function(e) {
+                    return e.message;
+                  }).join('<br />'),
+                  type: 'error'
+                });
             });
         };
 
-        $scope.deleteProfilePicture = function() {
+        $scope.confirmDeleteProfilePicture = function() {
+          swal({
+            title: 'Delete profile picture?',
+            text: 'Are you sure you want to delete your profile picture?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            closeOnConfirm: false
+          }, function() {
             if (!$scope.profile.picture.canDelete || deleteProfilePictureDisabled) {
-                return;
+              return;
             }
 
+            swal.disableButtons();
             $scope.pictureSubmitDisabled = false;
             deleteProfilePictureDisabled = true;
             Restangular.one('users').one('picture').remove().then(function(response) {
-                $timeout(function() {
-                    // Reset profile picture URL to get default picture
-                    $scope.profile.picture.url = DEFAULT_PROFILE_PICTURE_URL;
-                    $scope.profile.picture.data = null;
-                    $scope.profile.picture.temp = null;
-                    $scope.profile.picture.canDelete = false;
+              // Reset profile picture URL to get default picture
+              $scope.profile.picture.url = null;
+              $scope.profile.picture.data = null;
+              $scope.profile.picture.temp = null;
+              $scope.profile.picture.canDelete = false;
+              $scope.pictureSubmitDisabled = false;
+              deleteProfilePictureDisabled = false;
 
-                    $scope.pictureSubmitDisabled = false;
-                    deleteProfilePictureDisabled = false;
-                });
+              swal({
+                title: 'Picture deleted!',
+                type: 'success'
+              });
             }, function(error) {
-                $log.error('Couldn\'t delete profile picture ', error);
-                $scope.pictureSubmitDisabled = false;
-                deleteProfilePictureDisabled = false;
+              $log.error('Couldn\'t delete profile picture ', error);
+              $scope.pictureSubmitDisabled = false;
+              deleteProfilePictureDisabled = false;
+
+              swal({
+                title: "Oh no! Couldn't delete profile picture",
+                text: error.data.errors.map(function(e) {
+                  return e.message;
+                }).join('<br />'),
+                type: 'error'
+              });
             });
+          });
         };
 
         $scope.canChangePicture = function() {
@@ -145,9 +185,36 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
         };
 
         /* *************************************************************************************************************
+               Shelves
+        * ************************************************************************************************************/
+        $scope.shelves = [];
+        var getShelvesData = function() {
+            var userId = $scope.requestedUser.id;
+            Restangular.one('users', userId).all('shelves').getList({}).then(function (response) {
+                $scope.shelves = response.data;
+                // TODO get the number of elements in each shelf. users/:userId/shelves/:shelfName/games Or get it from back.
+            });
+        };
+
+
+
+
+        /* *************************************************************************************************************
                 FOLLOWS
          * ************************************************************************************************************/
         $scope.followDisabled = false;
+        $scope.followers = [];
+        $scope.following = [];
+
+        var getFollowerData = function() {
+            var userId = $scope.requestedUser.id;
+            Restangular.one('users', userId).all('followers').getList({}).then(function (response) {
+                $scope.followers = response.data;
+            });
+            Restangular.one('users', userId).all('following').getList({}).then(function (response) {
+                $scope.following = response.data;
+            });
+        };
 
         $scope.canFollow = function () {
             return $scope.requestedUser && AuthService.isLoggedIn() && !AuthService.isCurrentUser($scope.requestedUser);
@@ -180,19 +247,13 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'rating
             }
         };
 
+
+
+
+
         /* ******************************************
          *              PRIVATE FUNCTIONS
          * *****************************************/
-
-        function getProfilePictureUrl(userId) {
-            return Restangular.one('users', userId).one('picture').getRequestedUrl();
-        }
-
-        function canDeleteProfilePicture(profilePictureUrl) {
-            return profilePictureUrl !== DEFAULT_PROFILE_PICTURE_URL;
-        }
-
-
         function getTopGames() {
             var userId = $scope.requestedUser.id;
             if (!userId) {

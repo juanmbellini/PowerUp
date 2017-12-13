@@ -60,7 +60,7 @@ public class ReviewJerseyController implements UpdateParamsChecker {
 
 
     @GET
-    public Response getReviews(@QueryParam("orderBy") @DefaultValue("id") final ReviewDao.SortingType sortingType,
+        public Response getReviews(@QueryParam("orderBy") @DefaultValue("id") final ReviewDao.SortingType sortingType,
                                @QueryParam("sortDirection") @DefaultValue("ASC") final SortDirection sortDirection,
                                @QueryParam("pageSize") @DefaultValue("25") final int pageSize,
                                @QueryParam("pageNumber") @DefaultValue("1") final int pageNumber,

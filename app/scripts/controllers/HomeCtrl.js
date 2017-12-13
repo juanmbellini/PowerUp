@@ -23,6 +23,10 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
           $timeout(function () {
             $scope.$broadcast('recommendedReady');
           });
+        }, function(error) {
+          $log.error("Couldn't get recommended games:", error);
+          $scope.loadingRecommended = false;
+          $scope.recommendedGames = [];
         });
       });
     }
@@ -55,7 +59,7 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
     };
 
 
-    $scope.$watch('needFeed()', function () {
+		$scope.$watch('needFeed()', function () {
       if (AuthService.isLoggedIn() && feedObj !== null && FeedService.isReady(feedObj) && $scope.loadingFeed) {
         var feedArray = FeedService.getFeed(feedObj);
         $scope.feed = $scope.feed.concat(feedArray);
@@ -65,7 +69,7 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
         $scope.thereAreMore = feedObj.thereAreMore;
         $scope.loadingFeed = false;
       }
-    });
+		});
 
     $scope.loadMoreFeed = function () {
       $scope.loadingFeed = true;
@@ -87,12 +91,21 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
       }
     };
 
-    // Threads
-    $scope.isLikedByCurrentUser = function (thread) {
-      if (!$scope.isLoggedIn || !thread.hasOwnProperty('likedByCurrentUser')) {
-        return false;
-      }
-      return thread.likedByCurrentUser;
+    // Likes
+    $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
+    $scope.likeReview = function(review) {
+        LikesService.like(Restangular.one('reviews',review.id), review, function() {
+
+        }, function(error) {
+            $log.error('Error liking review #', review.id, ': ', error);
+        });
+    };
+    $scope.unlikeReview = function(review) {
+        LikesService.unlike(Restangular.one('reviews',review.id), review, function() {
+
+        }, function(error) {
+            $log.error('Error unliking review #', review.id, ': ', error);
+        });
     };
 
     $scope.likeThread = function (thread) {
@@ -113,25 +126,86 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
     $scope.canDeleteReview = function (review) {
       return AuthService.isLoggedIn() && AuthService.getCurrentUser().username === review.username;
     };
-    $scope.deleteReview = function (review) {
-      review.remove().then(function (response) {
-          var data = response.data;
-          $log.info('Success: ', data);
-          $route.reload();
-          // TODO solo el filtering
-          // $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
-          //     return reviewToFilter.id !== review.id;
-          // });
-        },
-        function (error) {
-          $log.error('Error: ', error);
-        }, function () {
-          // $scope.checkCanWriteReview();
-        });
+      /**
+       * Deletes the review
+       * @param review
+       */
+      $scope.deleteReview = function(review) {
+          swal({
+                  title: 'Are you sure?',
+                  text: 'You are about to permanently delete your review for \"' + review.gameName + '\"',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#DD6B55',
+                  confirmButtonText: 'Delete',
+                  closeOnConfirm: false
+              },
+              function (inputValue) {
+                  if (inputValue === false) {
+                      return false;
+                  }
+                  swal.disableButtons();
+                  review.remove().then(function(data) {
+                          $log.info('Success: ', data.data);
+                          $route.reload();
+                          // if ($scope.review != null) {
+                          //     $scope.numReviews = $scope.numReviews - 1;
+                          // }
+                          swal('Success', 'Review successfully deleted', 'success');
+                      },
+                      function(error) {
+                          swal('Sever error', 'Sorry, please try again', 'error');
+                          $log.error('Error: ', error);
+                          $scope.checkCanWriteReview();
+                      });
+              });
+      };
+
+
+    // functions:
+    $scope.getReviewUserProfilePictureUrl = function(review) {
+        return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
     };
 
 
-    // Follow friend
+      /* *************************************************************************************************************
+                   FOLLOWS
+            * ************************************************************************************************************/
+      // Follows for reviews
+      $scope.followDisabled = false;
+
+      $scope.canFollow = function (user) {
+          return user && AuthService.isLoggedIn() && !AuthService.isCurrentUser(user);
+      };
+
+      $scope.updateFollow = function (user) {
+          if ($scope.followDisabled) {
+              return;
+          }
+          $scope.followDisabled = true;
+
+          if (!user.social.followedByCurrentUser) {
+              // Follow
+              Restangular.one('users', user.id).one('followers').put().then(function () {
+                  $scope.followDisabled = false;
+                  user.social.followedByCurrentUser = true;
+                  user.social.followersCount++;
+              }, function () {
+                  $scope.followDisabled = false;
+              });
+          } else {
+              // Unfollow
+              Restangular.one('users',user.id).one('followers').remove().then(function () {
+                  $scope.followDisabled = false;
+                  user.social.followedByCurrentUser = false;
+                  user.social.followersCount--;
+              }, function () {
+                  $scope.followDisabled = false;
+              });
+          }
+      };
+
+    // Follow friend from feed
     $scope.followFriend = function () {
       if ($scope.friendName === $scope.user.username) {
         $scope.followFriendError = true;

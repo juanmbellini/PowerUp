@@ -1,5 +1,5 @@
 'use strict';
-define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'], function (powerUp) {
+define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment', 'PaginationService'], function (powerUp) {
 
     // TODO BORRAR
     powerUp.factory('Data', function() {
@@ -25,8 +25,17 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         };
     });
 
+ //   powerUp.config(function($routeProvider, $locationProvider) {
+ //      $routeProvider
+//            .when('/list', {
+//                templateUrl: 'views/lists/lists.html',
+ //               controller: 'controllers/ListsCtrl',
+//                reloadOnSearch: false
+//            });
+//    });
+
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
-    powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', 'envService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService, envService) {
+    powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', 'envService', 'PaginationService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService, envService, PaginationService) {
         Restangular.setFullResponse(false);
 
         AuthService.trackToken();
@@ -40,8 +49,20 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
         $scope.loginRedirect = '/';
         // Update current page URL on page change, except when in login page
         $scope.$on('$viewContentLoaded', function() {
-            if ($location.path() !== '/login') {
+            if (['/login', '/reset-password'].indexOf($location.path()) === -1) {
                 $scope.loginRedirect = $location.url();
+            }
+        });
+
+        // Names of statuses to show
+        $scope.namesOfStatuses = {'plan-to-play': 'Plan to play', 'no-play-status': 'No play status', 'playing': 'Playing', 'played': 'Played'};
+
+
+        $scope.writeReviewRedirect = null;
+        // Update current page URL on page change, except when in login page
+        $scope.$on('$viewContentLoaded', function() {
+            if ($location.path() !== '/write-review') {
+                $scope.writeReviewRedirect = $location.url();
             }
         });
 
@@ -54,15 +75,32 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             true    // This is necessary because getCurrentUser returns a different object instance every time. With this as true, we check for value equality rather than instance equality
         );
 
+      /* *****************************************************************
+       *                  PROFILE PICTURE HELPER METHOD
+       * *****************************************************************/
+      var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
+
+      /**
+       * Get the user's profile picture URL, falling back to a default profile picture.
+       * @param url      The user whose profile picture URL to get
+       * @return {string} The resulting profile picture URL
+       */
+      $scope.profilePictureUrl = function(url) {
+        return url || DEFAULT_PROFILE_PICTURE_URL;
+      };
+
         Waves.displayEffect();      // To get waves effects working, https://gist.github.com/stephenjang/123740713c0b0ab21c9a#gistcomment-1982064
 
+        /* *************************************************************************************************************
+         *                                          FILTER DOWNLOAD CONTROL
+         * ************************************************************************************************************/
         /*
          * Fetch possible game filters. Even though this is necessary only in Search, if the page changes or gets
          * reloaded the controller is lost. Main controller is always present so processing will continue loading
          * filters even on page changes.
          */
         $scope.filters = {};
-        $scope.filterCategories = ['publisher', 'developer', 'genre', 'keyword', 'platform'];
+        $scope.filterCategories = ['genre', 'platform', 'publisher', 'developer'];
         $scope.filtersReady = false;
         var remainingRequests = $scope.filterCategories.length;
 
@@ -71,25 +109,31 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
             $log.debug('Loading filters from local storage');
             $scope.filters = LocalStorageService.get('filters');
             $scope.filtersReady = true;
-        } else if (!envService.is('production')) {
-          // FIXME optimize API call so we can use filters in production
-          $log.warn('WARNING! Filters are not stored in local storage and querying the server will most likely bring it down. Aborting filter load.',
-            'To get the filters, run the app on development or staging and copy-paste them from local storage (or ask Juen).');
         } else {
           $log.debug('Querying API for filters');
           $scope.filterCategories.forEach(function(filterType) {
-              Restangular.all('games').all('filters').all(filterType).getList().then(function(response) {
-                  $scope.filters[filterType] = response.data || response;    // TODO always use full response and response.data
-                  remainingRequests--;
-                  $log.debug('Done fetching filters for type ' + filterType + ', ' + remainingRequests + ' types remaining');
-                  if (remainingRequests <= 0) {
-                      $log.debug('Done fetching all filters, saving to local storage');
-                      LocalStorageService.set('filters', $scope.filters);
-                      $scope.filtersReady = true;
-                  }
-              }, function(error) {
-                  $log.error('ERROR getting filters for type ' + filterType + ': ', error);
-              });
+            $scope.filters[filterType] = [];
+            var paginator = PaginationService.initialize(
+              Restangular.all('games').all('filters').all(filterType),
+              undefined,
+              1,
+              500
+            );
+            PaginationService.getAllPages(paginator, function(response) {
+              $scope.filters[filterType] = $scope.filters[filterType].concat(response.data || response);
+              $log.debug('Got page', paginator.pagination.pageNumber, '/', paginator.pagination.totalPages, 'of ' + filterType + 's');
+              if (paginator.pagination.pageNumber >= paginator.pagination.totalPages) {
+                $log.info('Done fetching filters for ' + filterType + ', ' + remainingRequests + ' remaining');
+                if (--remainingRequests <= 0) {
+                  $log.debug('Done fetching all filters, saving to local storage');
+                  // TODO NOW treat each filter type independently (enable, save, etc.)
+                  LocalStorageService.set('filters', $scope.filters);
+                  $scope.filtersReady = true;
+                }
+              }
+            }, function(error) {
+              $log.error("Couldn't get filters for " + filterType, error);
+            });
           });
         }
 
