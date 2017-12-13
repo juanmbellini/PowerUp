@@ -36,8 +36,6 @@ define(['powerUp', 'AuthService', 'angular-local-storage', 'angular-environment'
 
     // 'Restangular' != 'restangular! http://stackoverflow.com/a/32904726/2333689
     powerUp.controller('MainCtrl', ['$scope', '$log', '$location', 'Restangular', 'AuthService', 'localStorageService', 'envService', 'PaginationService', function($scope, $log, $location, Restangular, AuthService, LocalStorageService, envService, PaginationService) {
-        Restangular.setFullResponse(false);
-
         AuthService.trackToken();
 
         $scope.logOut = AuthService.logOut;

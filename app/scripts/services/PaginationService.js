@@ -3,10 +3,6 @@ define(['powerUp'], function(powerUp) {
 
     powerUp.service('PaginationService', ['$log', 'Restangular', function ($log, Restangular) {
 
-        // Needed to access headers
-        // TODO change this in general configuration and use it everywhere
-        Restangular.setFullResponse(true);
-
         /* ********************************************
          *              Public functions
          * *******************************************/
