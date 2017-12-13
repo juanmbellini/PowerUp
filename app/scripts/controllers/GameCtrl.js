@@ -4,7 +4,6 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
     powerUp.controller('GameCtrl', ['$scope', '$location', '$log', 'Restangular', 'AuthService', 'LikesService', '$timeout', '$anchorScroll', function($scope, $location, $log, Restangular, AuthService, LikesService, $timeout, $anchorScroll) {
 
         $anchorScroll();
-        Restangular.setFullResponse(true);
         $scope.gameId = $location.search().id;
         $scope.game = null;
 
@@ -37,8 +36,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
             // Play Status
             $scope.playStatusOptions = [];
             Restangular.all('users').all('play-statuses').getList({}).then(function (response) {
-                var playStatuses = response.data;
-                $scope.playStatusOptions = playStatuses;
+                $scope.playStatusOptions = response.data;
                 $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
                     return playStatusToFilter !== noPlayStatusString;
                 });
@@ -93,7 +91,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
             }
             $scope.gameScore = null;
             Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
-                var gameScore = response;
+              var gameScore = response.data;
                 if (gameScore.length > 0) {
                     $scope.gameScore = gameScore[0].score;
                 } else {
@@ -135,8 +133,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
             $scope.shelvesWithGameDirty = []; // name array
             var isLoadedShelves = false;
             Restangular.one('users',userId).all('shelves').getList().then(function (response) {
-                var shelves = response.data;
-                $scope.shelves = shelves;
+                $scope.shelves = response.data;
                 if (isLoadedShelves) {
                     $timeout(function () {
                         $('select').material_select();
@@ -207,8 +204,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                     });
                     // Add shelves
                         Restangular.one('users',$scope.review.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
-                            var shelvesWithGame = response.data;
-                            $scope.review.shelves = shelvesWithGame;
+                            $scope.review.shelves = response.data;
                         });
                     // Add user
                     $scope.review.user = AuthService.getCurrentUser();
@@ -323,18 +319,16 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 // Add shelves
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users',reviewRef.userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
-                        var shelvesWithGame = response.data;
-                        reviewArray[index].shelves = shelvesWithGame;
+                        reviewArray[index].shelves = response.data;
                     });
                 });
                 // Add users
                 angular.forEach(reviews, function (reviewRef, index, reviewArray) {
                     Restangular.one('users').one('username', reviewRef.username).get().then(function(response) {
-                        var user = response.data;
-                        reviewArray[index].user = user;
+                        reviewArray[index].user = response.data;
                     });
                 });
-                if ($scope.review != null) {
+                if ($scope.review !== null) {
                     $scope.reviews = $scope.reviews.filter(function(reviewToFilter) {
                         return reviewToFilter.id !== $scope.review.id;
                     });

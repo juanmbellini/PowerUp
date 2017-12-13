@@ -2,8 +2,6 @@
 define(['powerUp', 'loadingCircle', 'loadingCircleSmall', 'ratingStars', 'PaginationService'], function(powerUp) {
 
     powerUp.controller('SearchCtrl', ['$scope', '$timeout', '$location', '$log', 'Restangular', 'PaginationService', function ($scope, $timeout, $location, $log, Restangular, PaginationService) {
-        Restangular.setFullResponse(true);
-
         $scope.searchParams = {
             name: $location.search().name,
             publisher: $location.search().publisher,

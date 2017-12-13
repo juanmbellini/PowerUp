@@ -2,7 +2,6 @@
 define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesService'], function (powerUp) {
 
   powerUp.controller('HomeCtrl', ['$scope', '$location', '$log', '$route', '$timeout', 'searchedTitleService', 'Restangular', 'AuthService', 'FeedService', 'LikesService', function ($scope, $location, $log, $route, $timeout, searchedTitleService, Restangular, AuthService, FeedService, LikesService) {
-    Restangular.setFullResponse(true);
     $scope.homePageText = 'This is your homepage';
     $scope.gameTitle = '';
     $scope.submitSearch = function () {

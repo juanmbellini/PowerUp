@@ -2,9 +2,6 @@
 define(['powerUp', 'PaginationService'], function(powerUp) {
 
     powerUp.service('FeedService', ['$log', 'Restangular', 'AuthService', 'PaginationService', function($log, Restangular, AuthService, PaginationService) {
-// TODO limpiar lo que no se usa
-        Restangular.setFullResponse(true);
-
         function initialize(initialUserId) {
             var feedProviders = [];
             var userId = initialUserId;

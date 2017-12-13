@@ -2,7 +2,6 @@
 define(['powerUp', 'AuthService'], function(powerUp) {
 
     powerUp.controller('WriteReviewCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', '$timeout', '$anchorScroll', function($scope, $location, $log, AuthService, Restangular, $timeout, $anchorScroll) {
-        Restangular.setFullResponse(false);
         $anchorScroll();
         $scope.gameId = $location.search().id;
         if (!$scope.gameId) {
@@ -20,9 +19,9 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         };
 
         // Get Game
-        Restangular.one('games', $scope.gameId).get().then(function(game) {
-            $scope.game = game;
-            $log.debug('Writing review for ', game);
+        Restangular.one('games', $scope.gameId).get().then(function(response) {
+            $scope.game = response.data;
+            $log.debug('Writing review for ', $scope.game);
             if ($scope.game !== null) {
                 // All good. TODO If no logic is needed here, only handle negative case.
             } else {
@@ -34,7 +33,8 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         var oldReview;
         // Recover review if it already exist
         var currentUserUsername = AuthService.getCurrentUser().username;
-        Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (reviews) {
+        Restangular.all('reviews').getList({username: currentUserUsername, gameId: $scope.gameId}).then(function (response) {
+            var reviews = response.data;
             if (reviews.length > 0) {
                 oldReview = reviews[0];
                 $scope.review = oldReview.body;
@@ -93,7 +93,7 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         // Play Status
         $scope.playStatusOptions = [];
         Restangular.all('users').all('play-statuses').getList({}).then(function (playStatuses) {
-            $scope.playStatusOptions = playStatuses;
+            $scope.playStatusOptions = playStatuses.data;
             $scope.playStatusOptions = $scope.playStatusOptions.filter(function(playStatusToFilter) {
                 return playStatusToFilter !== noPlayStatusString;
             });
@@ -101,7 +101,8 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         }, function (response) {
             $log.error('Could not get playStatuses', response);
         });
-        Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (playStatus) {
+        Restangular.one('users', userId).one('play-status', $scope.gameId).get().then(function (response) {
+            var playStatus = response.data;
             if (playStatus.length > 0) {
                 $scope.gamePlayStatus = playStatus[0].status;
                 if ($scope.gamePlayStatus === noPlayStatusString) {
@@ -147,7 +148,8 @@ define(['powerUp', 'AuthService'], function(powerUp) {
             $scope.rangeScore.push(i);
         }
         $scope.gameScore = null;
-        Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (gameScore) {
+        Restangular.one('users', userId).all('game-scores').getList({gameId: $scope.gameId}).then(function (response) {
+            var gameScore = response.data;
             if (gameScore.length > 0) {
                 $scope.gameScore = gameScore[0].score;
             } else {
@@ -188,8 +190,8 @@ define(['powerUp', 'AuthService'], function(powerUp) {
         $scope.shelvesWithGame = []; // name array
         $scope.shelvesWithGameDirty = []; // name array
         var isLoadedShelves = false;
-        Restangular.one('users',userId).all('shelves').getList().then(function (shelves) {
-            $scope.shelves = shelves;
+        Restangular.one('users',userId).all('shelves').getList().then(function (response) {
+            $scope.shelves = response.data;
             if (isLoadedShelves) {
                 $timeout(function () {
                     $('select').material_select();
@@ -198,8 +200,9 @@ define(['powerUp', 'AuthService'], function(powerUp) {
                 isLoadedShelves = true;
             }
         });
-        Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (shelvesWithGame) {
+        Restangular.one('users',userId).all('shelves').getList({gameId: $scope.gameId}).then(function (response) {
             $scope.shelvesWithGame = [];
+            var shelvesWithGame = response.data;
             angular.forEach(shelvesWithGame, function (shelf) {
                 $scope.shelvesWithGame.push(shelf.name);
             });
