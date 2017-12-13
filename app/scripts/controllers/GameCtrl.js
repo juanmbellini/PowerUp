@@ -14,6 +14,7 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
 
         $scope.findGame = function(gameId) {
             Restangular.one('games', gameId).get().then(function(response) {
+              var game = response.data;
               $scope.game = game;
               $log.debug('Found game:', game);
 
@@ -367,10 +368,6 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
                 result += review[field] / fields.length;
             });
             return result;
-        };
-
-        $scope.getReviewUserProfilePictureUrl = function(review) {
-            return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
         };
 
         $scope.canDeleteReview = function(review) {

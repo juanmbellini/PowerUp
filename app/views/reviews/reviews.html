@@ -7,7 +7,7 @@
 					<a ng-if="game" ng-href="#game?id={{game.id}}"> {{game.name}} </a>
 				 	Reviews
 					<span ng-if="user">
-						by <a ng-href="#profile?username={{user.username}}"> {{user.username}} <img class="circle" style="width:50px; height:50px; vertical-align: middle;" ng-src="{{apiLocation}}/users/{{user.id}}/picture"/></a>
+						by <a ng-href="#profile?username={{user.username}}"> {{user.username}} <img class="circle" style="width:50px; height:50px; vertical-align: middle;" ng-src="{{profilePictureUrl(user.profilePictureUrl)}}"/></a>
 					</span>
 				</span>
 			</h2>
@@ -39,7 +39,9 @@
 								<div class="col s10">
 									<span ng-if="!user && game">
 										<!--Viewing reviews by game, variable is user-->
-										<a ng-href="#profile?username={{review.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle"></a>
+										<a ng-href="#profile?username={{review.username}}">
+											<img ng-src="{{profilePictureUrl(review.userProfilePictureUrl)}}" alt="{{review.username}}" class="circle">
+										</a>
 										<span style="vertical-align: super" class="title wrap-text"> <a ng-href="#profile?username={{review.username}}">{{review.username}}</a> </span>
 									</span>
 									<span ng-if="user && !game">
@@ -49,7 +51,9 @@
 									</span>
 									<span ng-if="user && game">
 										<!--Viewing reviews by game and user, show user in picture but provide links to both game and user-->
-										<a ng-href="#profile?username={{review.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(review)}}" alt="{{review.username}}" class="circle"></a>
+										<a ng-href="#profile?username={{review.username}}">
+											<img ng-src="{{profilePictureUrl(review.userProfilePictureUrl)}}" alt="{{review.username}}" class="circle">
+										</a>
 										<span style="vertical-align: super" class="title wrap-text">
 											<a ng-href="#profile?username={{review.username}}">{{review.username}}</a>
                                         </span>
