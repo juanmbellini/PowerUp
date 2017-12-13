@@ -175,6 +175,10 @@ define(['powerUp', 'PaginationService'], function(powerUp) {
                     var reviewCreator = response.data;
                     element.user = reviewCreator;
                 });
+                Restangular.one('reviews',element.id).get().then(function (response) {
+                    element.likeCount = response.data.likeCount;
+                    element.likedByCurrentUser = response.data.likedByCurrentUser;
+                });
             }
             return wrapper;
         }

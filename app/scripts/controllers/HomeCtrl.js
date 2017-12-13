@@ -90,14 +90,14 @@ define(['powerUp', 'slick-carousel', 'loadingCircle', 'FeedService', 'LikesServi
     // Likes
     $scope.isLikedByCurrentUser = LikesService.isLikedByCurrentUser;
     $scope.likeReview = function(review) {
-        LikesService.like(review, undefined, function() {
+        LikesService.like(Restangular.one('reviews',review.id), review, function() {
 
         }, function(error) {
             $log.error('Error liking review #', review.id, ': ', error);
         });
     };
     $scope.unlikeReview = function(review) {
-        LikesService.unlike(review, undefined, function() {
+        LikesService.unlike(Restangular.one('reviews',review.id), review, function() {
 
         }, function(error) {
             $log.error('Error unliking review #', review.id, ': ', error);
