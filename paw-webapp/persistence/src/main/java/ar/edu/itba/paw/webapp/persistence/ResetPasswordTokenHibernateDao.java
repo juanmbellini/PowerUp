@@ -1,14 +1,13 @@
 package ar.edu.itba.paw.webapp.persistence;
 
 import ar.edu.itba.paw.webapp.interfaces.ResetPasswordTokenDao;
-import ar.edu.itba.paw.webapp.model.Company;
 import ar.edu.itba.paw.webapp.model.ResetPasswordToken;
 import ar.edu.itba.paw.webapp.model.User;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import java.text.MessageFormat;
 
 /**
  * Created by Juan Marcos Bellini on 12/12/17.
@@ -23,28 +22,22 @@ public class ResetPasswordTokenHibernateDao implements ResetPasswordTokenDao {
 
     @Override
     public ResetPasswordToken findByNonce(long nonce) {
-
-        TypedQuery<ResetPasswordToken> baseQuery = em.createQuery("FROM reset_password_tokens AS R where R.nonce = :nonce", ResetPasswordToken.class);
-        baseQuery.setParameter("nonce", nonce);
-        try {
-            return baseQuery.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+        return DaoHelper.findByField(em, ResetPasswordToken.class, "nonce", nonce);
     }
 
     @Override
     public ResetPasswordToken create(User owner) {
-        boolean successful = false;
-        ResetPasswordToken resetPasswordToken;
-        int iterations = 0;
-        do{
-            resetPasswordToken = new ResetPasswordToken(owner);
-            if (findByNonce(resetPasswordToken.getNonce()) != null) successful = true;
-            iterations++;
-        } while (!successful && iterations < MAX_ITERATIONS);
-        if(!successful) return null;
-        em.persist(resetPasswordToken);
-        return resetPasswordToken;
+        Assert.notNull(owner, "The owner must not be null");
+        int count = 0;
+        while (count < MAX_ITERATIONS) {
+            final ResetPasswordToken token = new ResetPasswordToken(owner);
+            if (findByNonce(token.getNonce()) != null) {
+                em.persist(token);
+                return token;
+            }
+            count++;
+        }
+        throw new RuntimeException(MessageFormat.format("Could not create a secure random " +
+                "that does not exists in the system after {0} iterations", MAX_ITERATIONS));
     }
 }
