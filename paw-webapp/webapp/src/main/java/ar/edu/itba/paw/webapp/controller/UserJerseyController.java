@@ -184,7 +184,8 @@ public class UserJerseyController implements UpdateParamsChecker {
                                   @QueryParam("template") final String frontEndUrlTemplate) {
         final JerseyControllerHelper.ParametersWrapper builder = JerseyControllerHelper.getParametersWrapper()
                 .addParameter("userId", userId, id -> id <= 0)
-                .addParameter("template", frontEndUrlTemplate, template -> !StringUtils.hasText(template));
+                .addParameter("template", frontEndUrlTemplate,
+                        template -> !StringUtils.hasText(template) && template.contains("{0}"));
         JerseyControllerHelper.checkParameters(builder);
 
         userService.requireResetPassword(userId, frontEndUrlTemplate);
