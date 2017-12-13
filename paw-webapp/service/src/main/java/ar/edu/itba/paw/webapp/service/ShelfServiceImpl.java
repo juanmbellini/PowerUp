@@ -152,6 +152,15 @@ public class ShelfServiceImpl implements ShelfService, ValidationExceptionThrowe
         validateUpdatePermission(owner, updater);
         final Shelf shelf = getShelf(owner, shelfName); // Throws NoSuchEntityException if it not exists.
         shelfDao.clearShelf(shelf);
+        final long amount = shelfDao
+                .getShelfGames(shelf, 1, 1, OrderCategory.NAME, SortDirection.ASC)
+                .getOverAllAmountOfElements();
+        shelfDao.getShelfGames(shelf, 1, (int) amount, OrderCategory.NAME, SortDirection.ASC)
+                .getData().forEach(game -> {
+            if (!gameListService.belongsToGameList(ownerId, game.getId())) {
+                userDao.removePlayStatus(owner, game);
+            }
+        });
     }
 
 
