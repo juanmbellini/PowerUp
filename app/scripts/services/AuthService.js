@@ -83,7 +83,6 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             $log.debug('Adding auth token REQUEST interceptor');
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
                 // Only attach token to protected endpoints, or to optionally authenticated GET endpoints when logged in
-                $log.debug('Testing', url, 'as optionally authenticated endpoint:', isOptionallyAuthenticatedEndpoint(url));    //TODO NOW delete
                 if (['post', 'put', 'remove'].indexOf(operation) !== -1 || (['get', 'getList'].indexOf(operation) !== -1 && isOptionallyAuthenticatedEndpoint(url)) && isLoggedIn()) {
                     var token = getToken();
                     if (token !== null) {
