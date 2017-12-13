@@ -1,11 +1,12 @@
 'use strict';
-define(['powerUp'], function(powerUp) {
+define(['powerUp', 'validator-js'], function(powerUp) {
 
     powerUp.controller('RegisterCtrl', ['$scope', '$location', '$log', 'AuthService', 'Restangular', function($scope, $location, $log, AuthService, Restangular) {
 
         $scope.submitted = false;
         $scope.isRegistering = false;
         $scope.userToSubmit = {};
+
 
         /**
          * Register User and returns true if it could be registered. False if not.
@@ -99,4 +100,18 @@ define(['powerUp'], function(powerUp) {
             }
         };
     });
+
+    var validator = require('validator-js');
+    console.log(validator.isEmail('foo@bar.com'));
+    powerUp.directive('validEmail', ['Restangular', function(Restangular) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attrs, ngModel) {
+                element.bind('blur', function (e) {
+                    ngModel.$setValidity('valide', validator.isEmail(element.val()));
+                });
+            }
+        };
+    }]);
 });
