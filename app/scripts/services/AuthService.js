@@ -36,11 +36,11 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
 
         function isOptionallyAuthenticatedEndpoint(url) {
             // Disregard protocol, domain and port; care only about path after '/api'
-            var regex = /http:\/\/(\w+)(:\d*)?\/api\/(.*)/;
+            var regex = /\/api(.*)/;
             if (!regex.test(url)) {
                 return false;
             }
-            url = '/' + regex.exec(url)[3];
+            url = regex.exec(url)[1];
             // Return true on the first element that matches, or false if no element matches.
             // Thanks to https://stackoverflow.com/a/2641374/2333689
             return optionalAuthenticationEndpoints.some(function(urlRegex) {
@@ -188,7 +188,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
          * @returns {boolean} Whether the specified data corresponds to the current user.
          */
         function isCurrentUser(data) {
-            if (!isLoggedIn()) {
+            if (!data || !isLoggedIn()) {
                 return false;
             }
             switch (typeof data) {
