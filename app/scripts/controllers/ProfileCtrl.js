@@ -102,7 +102,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                   title: 'Oh no!',
                   text: error.data.errors.map(function(e) {
                     return e.message;
-                  }).join('\n'),
+                  }).join('<br />'),
                   type: 'error'
                 });
             });
@@ -146,7 +146,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                 title: "Oh no! Couldn't delete profile picture",
                 text: error.data.errors.map(function(e) {
                   return e.message;
-                }).join('\n'),
+                }).join('<br />'),
                 type: 'error'
               });
             });

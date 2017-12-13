@@ -181,7 +181,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                     title: "Oh no! Couldn't delete shelf",
                     text: error.data.errors.map(function(e) {
                       return e.message;
-                    }).join('\n'),
+                    }).join('<br />'),
                     type: 'error'
                   });
                 });
@@ -270,7 +270,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                         shelf.name = oldName;
                         swal.showInputError(error.data.errors.map(function(e) {
                           return e.message;
-                        }).join('\n'));
+                        }).join('<br />'));
                     });
                 });
         };
@@ -301,7 +301,7 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
               title: "Oh no! Couldn't create shelf",
               text: error.data.errors.map(function(e) {
                 return e.message;
-              }).join('\n'),
+              }).join('<br />'),
               type: 'error'
             });
             $scope.creatingShelf = false;
