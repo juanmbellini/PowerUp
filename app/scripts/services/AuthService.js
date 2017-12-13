@@ -36,11 +36,11 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
 
         function isOptionallyAuthenticatedEndpoint(url) {
             // Disregard protocol, domain and port; care only about path after '/api'
-            var regex = /http:\/\/(\w+)(:\d*)?\/api\/(.*)/;
+            var regex = /\/api(.*)/;
             if (!regex.test(url)) {
                 return false;
             }
-            url = '/' + regex.exec(url)[3];
+            url = regex.exec(url)[1];
             // Return true on the first element that matches, or false if no element matches.
             // Thanks to https://stackoverflow.com/a/2641374/2333689
             return optionalAuthenticationEndpoints.some(function(urlRegex) {
@@ -83,6 +83,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
             $log.debug('Adding auth token REQUEST interceptor');
             Restangular.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
                 // Only attach token to protected endpoints, or to optionally authenticated GET endpoints when logged in
+                $log.debug('Testing', url, 'as optionally authenticated endpoint:', isOptionallyAuthenticatedEndpoint(url));    //TODO NOW delete
                 if (['post', 'put', 'remove'].indexOf(operation) !== -1 || (['get', 'getList'].indexOf(operation) !== -1 && isOptionallyAuthenticatedEndpoint(url)) && isLoggedIn()) {
                     var token = getToken();
                     if (token !== null) {
