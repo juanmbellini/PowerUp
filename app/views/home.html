@@ -102,7 +102,9 @@
                             <div ng-if="feedElement.type === 'review' ">
                                 <div class="row" style="margin-bottom: 10px">
                                     <div class="col s10">
-                                        <a ng-href="#profile?username={{feedElement.data.username}}"><img ng-src="{{getReviewUserProfilePictureUrl(feedElement.data)}}" alt="{{feedElement.data.username}}" class="circle"></a>
+                                        <a ng-href="#profile?username={{feedElement.data.username}}">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data.userProfilePictureUrl)}}" alt="{{feedElement.data.username}}" class="circle">
+                                        </a>
                                         <span style="vertical-align: super" class="title wrap-text"> <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> </span>
                                         <span ng-if="(feedElement.data.overallScore<=10 && feedElement.data.overallScore>0)" class="rating-number">
                                                 <b style="vertical-align: super"> rated it </b>
@@ -150,7 +152,7 @@
                                 <div class="row" style="margin-bottom: 0">
                                     <div class="col s9">
                                         <a ng-href="#profile?username={{feedElement.data.creator.username}}">
-                                            <img ng-src="{{feedElement.data.creator.profilePictureUrl}}" alt="{{feedElement.data.creator.username}}" class="circle">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data.creator.profilePictureUrl)}}" alt="{{feedElement.data.creator.username}}" class="circle">
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.creator.username}}">{{feedElement.data.creator.username}}</a>
@@ -187,7 +189,7 @@
                                 <div class="row">
                                     <div class="col s9">
                                         <a ng-href="#profile?username={{feedElement.data.username}}">
-                                            <img ng-src="{{feedElement.data.profilePictureUrl}}" alt="{{feedElement.data.username}}" class="circle">
+                                            <img ng-src="{{profilePictureUrl(feedElement.data.profilePictureUrl)}}" alt="{{feedElement.data.username}}" class="circle">
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>

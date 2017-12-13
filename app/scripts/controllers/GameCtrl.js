@@ -370,10 +370,6 @@ define(['powerUp', 'LikesService', 'slick-carousel', 'onComplete', 'loadingCircl
             return result;
         };
 
-        $scope.getReviewUserProfilePictureUrl = function(review) {
-            return Restangular.one('users', review.userId).one('picture').getRequestedUrl();
-        };
-
         $scope.canDeleteReview = function(review) {
           return AuthService.isLoggedIn() && AuthService.getCurrentUser().username === review.username;
         };

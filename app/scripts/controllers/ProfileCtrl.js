@@ -30,7 +30,6 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         $scope.pictureSubmitDisabled = true;
         var deleteProfilePictureDisabled = false;
         var resettingPassword = false;
-        var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
         Restangular.one('users').one('username', $scope.username).get().then(function(response) {
             var user = response.data;
@@ -47,8 +46,8 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
                     $scope.profile.gamesAmount = 0;
                 }
             });
-            $scope.profile.picture.url = getProfilePictureUrl(user);
-            $scope.profile.picture.canDelete = canDeleteProfilePicture($scope.profile.picture.url); // FIXME get this from user JSON
+            $scope.profile.picture.url = $scope.profilePictureUrl(user.profilePictureUrl);
+            $scope.profile.picture.canDelete = user.profilePictureUrl !== null;
             getFollowerData();
             getShelvesData();
         }, function(response) {
@@ -131,7 +130,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             deleteProfilePictureDisabled = true;
             Restangular.one('users').one('picture').remove().then(function(response) {
               // Reset profile picture URL to get default picture
-              $scope.profile.picture.url = DEFAULT_PROFILE_PICTURE_URL;
+              $scope.profile.picture.url = null;
               $scope.profile.picture.data = null;
               $scope.profile.picture.temp = null;
               $scope.profile.picture.canDelete = false;
@@ -255,17 +254,6 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         /* ******************************************
          *              PRIVATE FUNCTIONS
          * *****************************************/
-
-        function getProfilePictureUrl(user) {
-          return Restangular.one('users', user.id).one('picture').getRequestedUrl();
-        }
-
-        function canDeleteProfilePicture(profilePictureUrl) {
-            return profilePictureUrl !== DEFAULT_PROFILE_PICTURE_URL;
-        }
-
-
-
         function getTopGames() {
             var userId = $scope.requestedUser.id;
             if (!userId) {
