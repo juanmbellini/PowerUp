@@ -139,14 +139,13 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
                 return;
             }
             Restangular.all('auth/logout').post(undefined, undefined).then(function (response) {
-                var data = response.data;
                 setCurrentUser(null);
                 setToken(null);
                 $log.info('Successfully logged out');
                 if (typeof successCallback !== 'undefined') {
                     successCallback();
                 } else {
-                    $location.search();
+                    $location.search({});
                     $location.path('');
                 }
             }, function(error) {
@@ -158,7 +157,7 @@ define(['powerUp', 'angular-local-storage'], function(powerUp) {
                     if (typeof successCallback !== 'undefined') {
                         successCallback();
                     } else {
-                        $location.search();
+                        $location.search({});
                         $location.path('');
                     }
                     return;
