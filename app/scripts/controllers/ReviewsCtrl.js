@@ -94,7 +94,7 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
         };
 
         // Pagination control
-        $scope.pageSizes = [25, 50, 100];
+        $scope.pageSizes = [5, 10, 25, 50, 100];
         $scope.resetPageNumberOnSubmit = false;
 
         $scope.validPageSizes = function() {
@@ -134,7 +134,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
 
 
         $scope.canWriteReview = false;
-        $scope.pageSizes = [1,5,10,15];
 
         $scope.userId = $location.search().userId;
         $scope.gameId = $location.search().gameId;
