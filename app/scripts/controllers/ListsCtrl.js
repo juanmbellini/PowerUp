@@ -224,8 +224,8 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
                                 $log.error('Error: ', error);
                             });
                         }
-                    }, function() {
-                        console.log('There was an error getting reviews');
+                    }, function(error) {
+                        $log.error('There was an error getting the review to delete:', error);
                     });
                     swal('Success', 'Game" ' + item.game.name + ' " successfully deleted from your list!', 'success');
                 });
@@ -264,26 +264,40 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         };
 
         $scope.newShelfName = null;
+        $scope.creatingShelf = false;
         $scope.createShelf = function() {
-            console.log($scope.newShelfName);
-            // TODO validate input?
-            var shelf = {name: $scope.newShelfName};
-            userURL.all('shelves').post(shelf).then(function(response) {
-                $log.debug('Created Shelf');
-                $scope.getShelves();
-                $scope.newShelfName = '';
-                // $scope.shelves.push(response);
-            }, function(response) {
-                $log.error('Error creating shelf. Error with status code', response.status); // TODO handle error
+          if ($scope.creatingShelf) {
+            return;
+          }
+          $scope.creatingShelf = true;
+
+          $log.debug('Attempting to create shelf "' + $scope.newShelfName + '"');
+          // TODO validate input?
+          var shelf = {name: $scope.newShelfName};
+          userURL.all('shelves').post(shelf).then(function(response) {
+            $log.debug('Shelf "' + $scope.newShelfName + '" succesffully created');
+            $scope.getShelves();
+            $scope.newShelfName = '';
+            $scope.creatingShelf = false;
+            // $scope.shelves.push(response);
+          }, function(error) {
+            swal({
+              title: "Oh no! Couldn't create shelf",
+              text: error.data.errors.map(function(e) {
+                return e.message;
+              }).join('\n'),
+              type: 'error'
             });
+            $scope.creatingShelf = false;
+            $log.error('Error creating shelf:', error);
+          });
         };
 
         /* ***************************************************************************
          *                          RECOMMENDED GAMES CONTROL
          * ***************************************************************************/
         // Recommended games
-        $scope.hasSlick = false;    // TODO NOW delete everything using this
-        $scope.first = true;        // TODO NOW volar esto tb?
+        $scope.hasSlick = false;
         $scope.loadingRecommended = false;
 
         $scope.recommendedText = function() {
@@ -295,7 +309,6 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
         };
 
         $scope.$on('recommendedReady', function(event) {
-            $scope.first = false;
             $scope.loadingRecommended = false;
             if ($scope.hasSlick) {
                 // Un-slick first
