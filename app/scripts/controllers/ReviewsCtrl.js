@@ -192,13 +192,6 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
         $scope.reviewsPaginator = PaginationService.initialize(Restangular.all('reviews'), undefined, $scope.searchParams.pageNumber, $scope.searchParams.pageSize, $scope.searchParams.orderBy, $scope.searchParams.sortDirection);
         PaginationService.setRequestParams($scope.reviewsPaginator, $scope.searchParams);
 
-
-       // Pagination control
-
-        // $scope.getPageRange = function(deltaPages) {
-        //     return PaginationService.getPageRange($scope.reviewsPaginator, deltaPages);
-        // };
-
         // Automatically get requested reviews
         PaginationService.get($scope.reviewsPaginator, function(response) {
             // TODO si el pageNumber se pasa, se tiene que retornar el numero de pagina maxima y si hay review para ese usuario.
