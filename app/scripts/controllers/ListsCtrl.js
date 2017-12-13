@@ -285,12 +285,12 @@ define(['powerUp', 'slick-carousel', 'onComplete', 'sweetalert.angular', 'loadin
 
           $log.debug('Attempting to create shelf "' + $scope.newShelfName + '"');
           var shelf = {name: $scope.newShelfName};
-          userURL.all('shelves').post(shelf).then(function(shelf) {
-            $log.debug('Shelf "' + $scope.newShelfName + '" succesffully created');
+          userURL.all('shelves').post(shelf).then(function(data) {
+            $log.debug('Shelf "' + shelf.name + '" successfully created');
             $scope.getShelves();
-            $scope.newShelfName = '';
             $scope.creatingShelf = false;
             $scope.shelves.push(shelf);
+            $scope.newShelfName = '';
             swal({
               title: 'Success',
               text: 'Shelf "' + shelf.name + '" successfully created',
