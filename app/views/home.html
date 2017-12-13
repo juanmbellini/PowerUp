@@ -102,12 +102,17 @@
                             <div ng-if="feedElement.type === 'review' ">
                                 <div class="row" style="margin-bottom: 10px">
                                     <div class="col s10">
-                                        <a ng-href="#profile?username={{feedElement.data.username}}">
-                                            <img ng-src="{{profilePictureUrl(feedElement.data.userProfilePictureUrl)}}" alt="{{feedElement.data.username}}" class="circle">
-                                        </a>
-                                        <span style="vertical-align: super" class="title wrap-text"> <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a> </span>
+
+                                        <a ng-href="#profile?username={{feedElement.data.username}}"><img ng-src="{{profilePictureUrl(feedElement.data.userProfilePictureUrl)}}" alt="{{feedElement.data.username}}" class="circle"></a>
+                                        <span style="vertical-align: super" class="title wrap-text">
+											<a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
+                                        </span>
+                                        <span><b style="vertical-align: super"> reviewed </b></span>
+                                        <span style="vertical-align: super" class="title wrap-text">
+											<a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
+										</span>
                                         <span ng-if="(feedElement.data.overallScore<=10 && feedElement.data.overallScore>0)" class="rating-number">
-                                                <b style="vertical-align: super"> rated it </b>
+                                                <b style="vertical-align: super"> and rated it </b>
                                                 <span class="center">
                                                     <rating-stars rating="feedElement.data.overallScore" class="rating-stars hide-on-small-and-down"></rating-stars>
                                                 </span>
@@ -193,8 +198,10 @@
                                         </a>
                                         <span class="title wrap-text">
                                             <a ng-href="#profile?username={{feedElement.data.username}}">{{feedElement.data.username}}</a>
-                                            <span class="mediumText">changed </span>
-                                            <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a> <span class="mediumText">play status to {{feedElement.data.status}}</span>
+                                            <span class="mediumText">{{feedElement.data.status!=='no-play-status'?'changed':'removed'}} </span>
+                                            <a ng-href="#game?id={{feedElement.data.gameId}}">{{feedElement.data.gameName}}</a>
+                                            <span  ng-if="feedElement.data.status!=='no-play-status'" class="mediumText">play status to {{namesOfStatuses[feedElement.data.status]}}</span>
+                                            <span  ng-if="feedElement.data.status==='no-play-status'" class="mediumText">play status</span>
                                         </span>
                                     </div>
                                     <div class="col s3">
