@@ -1,10 +1,7 @@
 package ar.edu.itba.paw.webapp.service;
 
 import ar.edu.itba.paw.webapp.exceptions.NoSuchEntityException;
-import ar.edu.itba.paw.webapp.interfaces.GameListService;
-import ar.edu.itba.paw.webapp.interfaces.ShelfDao;
-import ar.edu.itba.paw.webapp.interfaces.SortDirection;
-import ar.edu.itba.paw.webapp.interfaces.UserDao;
+import ar.edu.itba.paw.webapp.interfaces.*;
 import ar.edu.itba.paw.webapp.model.*;
 import ar.edu.itba.paw.webapp.model_wrappers.GameWithUserShelvesWrapper;
 import ar.edu.itba.paw.webapp.utilities.Page;
@@ -15,7 +12,6 @@ import org.springframework.util.Assert;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Concrete implementation of {@link GameListService}.
@@ -28,10 +24,13 @@ public class GameListServiceImpl implements GameListService {
 
     private final UserDao userDao;
 
+    private final GameDao gameDao;
+
     @Autowired
-    public GameListServiceImpl(ShelfDao shelfDao, UserDao userDao) {
+    public GameListServiceImpl(ShelfDao shelfDao, UserDao userDao, GameDao gameDao) {
         this.shelfDao = shelfDao;
         this.userDao = userDao;
+        this.gameDao = gameDao;
     }
 
     @Override
@@ -74,20 +73,34 @@ public class GameListServiceImpl implements GameListService {
 
     @Override
     public boolean belongsToGameList(long userId, long gameId) {
-        final List<PlayStatus> validPlayStatuses = Stream
-                .of(PlayStatus.PLAN_TO_PLAY, PlayStatus.PLAYED, PlayStatus.PLAYING)
-                .collect(Collectors.toList());
-        final long amount = getGameList(userId, new LinkedList<>(), validPlayStatuses,
-                1, 1, UserDao.ListGameSortingType.GAME_NAME, SortDirection.ASC)
-                .getOverAllAmountOfElements();
-
-        return getGameList(userId, new LinkedList<>(), validPlayStatuses,
-                1, (int) amount, UserDao.ListGameSortingType.GAME_NAME, SortDirection.ASC)
-                .getData().stream()
-                .map(GameWithUserShelvesWrapper::getGame)
-                .map(Game::getId)
-                .filter(id -> id == gameId)
-                .count() > 0;
+//        final List<PlayStatus> validPlayStatuses = Stream
+//                .of(PlayStatus.PLAN_TO_PLAY, PlayStatus.PLAYED, PlayStatus.PLAYING)
+//                .collect(Collectors.toList());
+//        final long amount = getGameList(userId, new LinkedList<>(), validPlayStatuses,
+//                1, 1, UserDao.ListGameSortingType.GAME_NAME, SortDirection.ASC)
+//                .getOverAllAmountOfElements();
+//
+//        return getGameList(userId, new LinkedList<>(), validPlayStatuses,
+//                1, (int) amount, UserDao.ListGameSortingType.GAME_NAME, SortDirection.ASC)
+//                .getData().stream()
+//                .map(GameWithUserShelvesWrapper::getGame)
+//                .map(Game::getId)
+//                .filter(id -> id == gameId)
+//                .count() > 0;
+        final User user = getUser(userId);
+        boolean hasPlayStatus = false;
+        Collection<UserGameStatus> playStatuses = userDao.getPlayStatuses(user, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData();
+        if (playStatuses != null && playStatuses.iterator().hasNext()) {
+            UserGameStatus ugs = playStatuses.iterator().next();
+            if (ugs == null) {
+                userDao.setPlayStatus(user, Optional.ofNullable(gameDao.findById(gameId)).orElseThrow(NoSuchElementException::new), PlayStatus.NO_PLAY_STATUS);
+            } else {
+                if (!ugs.getPlayStatus().equals(PlayStatus.NO_PLAY_STATUS)) hasPlayStatus = true;
+            }
+        }
+        return !userDao.getGameScores(user, gameId, null, 1, 1, UserDao.PlayStatusAndGameScoresSortingType.GAME_ID, SortDirection.ASC).getData().isEmpty()
+                || !shelfDao.getShelves(null, gameId, null, userId, null, 1, 1, ShelfDao.SortingType.ID, SortDirection.ASC).isEmpty()
+                || hasPlayStatus;
     }
 
 
