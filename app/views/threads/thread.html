@@ -36,7 +36,7 @@
 						</form>
 
 						<!--Thread action links-->
-						<div ng-if="isLoggedIn && isCurrentUser" class="action-links">
+						<div ng-if="isCurrentUser(thread.creator.username)" class="action-links">
 							<!--Rename link-->
 							<a ng-click="changeThreadTitle()">Change Title</a>
 							<!--Edit link-->
@@ -149,10 +149,12 @@
 							<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
 								<!--Reply link-->
 								<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
-								<!--Edit link-->
-								| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
-								<!--Delete link-->
-								| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+								<span ng-if="isCurrentUser(comment.commenter)">
+									<!--Edit link-->
+									| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+									<!--Delete link-->
+									| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+								</span>
 							</div>
 							<!--End comment action links-->
 
@@ -236,10 +238,12 @@
 									<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
 										<!--Reply link-->
 										<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
-										<!--Edit link-->
-										| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
-										<!--Delete link-->
-										| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+										<span ng-if="isCurrentUser(comment.commenter)">
+											<!--Edit link-->
+											| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+											<!--Delete link-->
+											| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+										</span>
 									</div>
 									<!--End comment action links-->
 
@@ -321,10 +325,12 @@
 											<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
 												<!--Reply link-->
 												<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
-												<!--Edit link-->
-												| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
-												<!--Delete link-->
-												| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+												<span ng-if="isCurrentUser(comment.commenter)">
+													<!--Edit link-->
+													| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+													<!--Delete link-->
+													| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+												</span>
 											</div>
 											<!--End comment action links-->
 
@@ -407,10 +413,12 @@
 													<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
 														<!--Reply link-->
 														<a href="" class="reply-link" ng-click="showReplyToCommentForm(comment)">Reply</a>
-														<!--Edit link-->
-														| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
-														<!--Delete link-->
-														| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+														<span ng-if="isCurrentUser(comment.commenter)">
+															<!--Edit link-->
+															| <a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+															<!--Delete link-->
+															| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+														</span>
 													</div>
 													<!--End comment action links-->
 
@@ -473,10 +481,12 @@
 															<!--Comment action links-->
 															<div class="action-links" ng-if="isLoggedIn && !comment.deleted">
 																<!--NO reply link-->
-																<!--Edit link-->
-																<a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
-																<!--Delete link-->
-																| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+																<span ng-if="isCurrentUser(comment.commenter)">
+																	<!--Edit link-->
+																	<a href="" class="edit-comment-link" ng-click="showChangeCommentForm(comment)">Edit</a>
+																	<!--Delete link-->
+																	| <a href="" class="red-text" ng-class="{disabled: comment.deleted}" ng-click="deleteComment(comment)">{{comment.deleted ? 'Deleted' : 'Delete'}}</a>
+																</span>
 															</div>
 															<!--End comment action links-->
 
