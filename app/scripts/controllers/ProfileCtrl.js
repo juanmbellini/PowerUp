@@ -30,7 +30,6 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
         $scope.pictureSubmitDisabled = true;
         var deleteProfilePictureDisabled = false;
         var resettingPassword = false;
-        var DEFAULT_PROFILE_PICTURE_URL = 'http://res.cloudinary.com/dtbyr26w9/image/upload/v1476797451/default-cover-picture.png';
 
         Restangular.one('users').one('username', $scope.username).get().then(function(response) {
             var user = response.data;
@@ -131,7 +130,7 @@ define(['powerUp', 'AuthService', 'sweetalert.angular', 'loadingCircle', 'loadin
             deleteProfilePictureDisabled = true;
             Restangular.one('users').one('picture').remove().then(function(response) {
               // Reset profile picture URL to get default picture
-              $scope.profile.picture.url = DEFAULT_PROFILE_PICTURE_URL;
+              $scope.profile.picture.url = null;
               $scope.profile.picture.data = null;
               $scope.profile.picture.temp = null;
               $scope.profile.picture.canDelete = false;
