@@ -20,8 +20,8 @@ define(['powerUp', 'LikesService', 'ratingStars', 'AuthService', 'PaginationServ
         var paginationSearchParams = ['orderBy', 'sortDirection', 'pageSize', 'pageNumber'];
 
         var defaultSortDirections = {
-            avg_score: 'desc',  // eslint-disable-line camelcase
-            release: 'desc'
+            date: 'desc',  // eslint-disable-line camelcase
+            best: 'desc'
         };
 
         // Sanitize search param values
