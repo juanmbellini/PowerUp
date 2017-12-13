@@ -105,6 +105,31 @@ define(['powerUp'], function(powerUp) {
             getPage(object, newPageNumber, successCallback, errorCallback);
         }
 
+      /**
+       * Gets the next page of data for the given object.
+       *
+       * @param object            The object to get the next page of. Must be initialized.
+       * @param successCallback   Callback called with response on every returned page
+       * @param errorCallback     Callback called on any page that causes error. Will stop requests of all further pages.
+       */
+      function getAllPages(object, successCallback, errorCallback) {
+        if (!isInitialized(object)) {
+          return;
+        }
+        if (object.pagination.totalPages && object.pagination.pageNumber && object.pagination.pageNumber > object.pagination.totalPages) {
+          return;
+        }
+        // Not done yet, get current page and enqueue next one
+        get(object, function(response) {
+          successCallback(response);
+          if (object.pagination.pageNumber < object.pagination.totalPages) {
+            object.pagination.pageNumber++;
+            // Get next page!
+            getAllPages(object, successCallback, errorCallback);
+          }
+        }, errorCallback);
+      }
+
         /**
          * Gets the previous page of data for the given object.
          *
@@ -290,6 +315,7 @@ define(['powerUp'], function(powerUp) {
             get: get,
             getPage: getPage,
             getNextPage: getNextPage,
+            getAllPages: getAllPages,
             getPreviousPage: getPreviousPage,
             getFirstPage: getFirstPage,
             getLastPage: getLastPage,

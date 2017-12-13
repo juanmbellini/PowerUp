@@ -80,7 +80,8 @@ public class WebAuthConfig extends WebSecurityConfigurerAdapter {
         return new OrRequestMatcher(
                 // TODO hacer la lista más específica para no procesar endpoints de más
                 new AntPathRequestMatcher("/**", "GET"),
-                new RegexRequestMatcher("/api/users/\\d+/password", "DELETE")
+                new RegexRequestMatcher("/api/users/\\d+/password\\?template=.*", "DELETE"),
+                new RegexRequestMatcher("/api/users/password\\?nonce=.*", "POST")
         );
     }
 
