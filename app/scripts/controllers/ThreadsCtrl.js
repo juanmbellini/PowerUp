@@ -7,14 +7,9 @@ define(['powerUp', 'AuthService', 'loadingCircle', 'loadingCircleSmall', 'LikesS
 
         $scope.threads = null;
         $scope.order = $location.search().order || 'hot';
-        $scope.direction = $location.search().sortDirection;
+        $scope.direction = 'desc';
         $scope.isLoggedIn = AuthService.isLoggedIn();
         $scope.currentUser = AuthService.getCurrentUser();
-
-        // Hotfix
-        if ($scope.order === 'best' && !$scope.direction) {
-            $scope.direction = 'desc';
-        }
 
         // DOM control
         $scope.pendingRequests = {
