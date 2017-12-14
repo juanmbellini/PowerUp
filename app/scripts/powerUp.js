@@ -34,7 +34,8 @@ define(['routes',
           '$sceDelegateProvider',
           'localStorageServiceProvider',
           'envServiceProvider',
-          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider, localStorageServiceProvider, envServiceProvider) {
+          '$logProvider',
+          function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $translateProvider, RestangularProvider, $sceDelegateProvider, localStorageServiceProvider, envServiceProvider, $logProvider) {
 
             powerUp.controller = $controllerProvider.register;
             powerUp.directive = $compileProvider.directive;
@@ -115,8 +116,12 @@ define(['routes',
             }
             RestangularProvider.setFullResponse(true);
 
-            // TODO remove
-            console.log('Current environment is', envServiceProvider.get(), ', API url is', RestangularProvider.configuration.baseUrl);
+            // Disable debug logs in production
+            if (envServiceProvider.is('production')) {
+              $logProvider.debugEnabled(false);
+            } else {
+              console.debug('Current environment is', envServiceProvider.get(), ', API url is', RestangularProvider.configuration.baseUrl);
+            }
 
             // Configure local storage
             localStorageServiceProvider
